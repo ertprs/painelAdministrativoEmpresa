@@ -1,0 +1,40 @@
+<div class="conteudo" [formGroup]="form">
+
+
+    <div class="c1" style="width: 68%; float: left;">
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Nome do adicional</mat-label>
+            <input formControlName="nome" matInput placeholder="Ex. item 1" type="text">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+    </div>
+
+    <div class="c1" style="width: 30%; float: left;margin-left: 3px;">
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Preço do adicional</mat-label>
+            <input formControlName="preco" matInput placeholder="Ex. R$1,50" type="text">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+    </div>
+
+    <div class="c1" style="width: 100%;">
+        {{categoriasItem}}
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Categorias adicionais</mat-label>
+            <mat-select multiple formControlName="categoria" [(ngModel)]="categoriasItem">
+                <mat-option *ngFor="let item of servcadc.getCategoriasAdicional()" [value]="item">{{item.nome}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+    <div class="c1">
+        <mat-slide-toggle formControlName="status">Disponível</mat-slide-toggle>
+    </div>
+
+
+    <div class="c1" style="text-align: right;">
+        <button [disabled]="btstatus" *ngIf="tipoacao" mat-flat-button color="primary" (click)="onClickAdd()">Adicionar</button>
+        <button *ngIf="!tipoacao" mat-flat-button color="primary" (click)="onSalvarItem()">Salvar</button>
+    </div>
+
+</div>

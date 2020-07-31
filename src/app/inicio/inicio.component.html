@@ -1,0 +1,146 @@
+<div class="divnocord" *ngIf="servico.getDadosEmpresa().coordenadas[0] === 'coordenadas'">
+  <div class="divnocord-second">
+    <div style="width: 100%;padding-top: 5%;">
+      <mat-card class="csscard">
+        <div>
+          <mat-icon>info</mat-icon>
+        </div>
+        <h3>Entre em contato conosco para configurar seu estabalecimento</h3>
+        <h4>
+          <a mat-flat-button color="warn" target="new_" href="https://api.whatsapp.com/send?phone=5574988020460">
+            <mat-icon>phone</mat-icon> (74)9.8802-0460 <mat-icon>message</mat-icon>
+          </a>
+
+        </h4>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<agm-map [fitBounds]="false" [latitude]="lat" [zoom]="13" [longitude]="lgn"
+  *ngIf="servico.getDadosEmpresa().coordenadas[0] !== 'coordenadas'" (mapReady)="onMapReady($event)">
+
+  <!--
+  <agm-marker [latitude]="lat" [longitude]="lgn">
+    <agm-info-window>iiIIidjf</agm-info-window>
+  </agm-marker>
+-->
+
+  <agm-overlay [latitude]="lat" [longitude]="lgn">
+    <!-- blue html square -->
+    <agm-info-window>{{servico.getDadosEmpresa().nome}}</agm-info-window>
+    <div class="customMarker">
+      <img class="customMarker-img" src="{{servico.getDadosEmpresa().imagem}}">
+    </div>
+  </agm-overlay>
+
+
+  <!--Entregas-->
+  <span *ngFor="let item of this.servico.getListaEntregas()">
+
+
+    <!--<agm-overlay [latitude]="getNumber(item.coordenada_cliente[0])" [longitude]="getNumber(item.coordenada_cliente[1])"
+      *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2' || item.status_pedido === '8'">-->
+      <!-- blue html square -->
+      <agm-overlay [latitude]="getNumber(item.coordenada_cliente[0])" [longitude]="getNumber(item.coordenada_cliente[1])"
+      *ngIf="item.status === '0' || item.status === '1'">
+
+      <agm-info-window>Entrega #{{item.id}}</agm-info-window>
+      <!--<agm-direction [renderOptions]="{suppressMarkers: true, draggable: true}"
+        [origin]="{lat:getNumber(item.coordenada_cliente[0]), lng:getNumber( item.coordenada_cliente[1])}"
+        [destination]="{lat:lat, lng:lgn} "
+        *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2' || item.status_pedido === '8'">
+      </agm-direction>-->
+
+      <div class="customMarkerEntrega">
+        <div class="customMarker-inter"></div>
+        <div class="customMarker-linha">
+          <div *ngIf="item.entregador" class="customMarker-linha-entre"
+            style="background-image: url({{item.entregador.imagem}});" (click)="onclickImagemEnt(item)">
+            <!--Entregador-->
+          </div>
+          <div *ngIf="!item.entregador" class="customMarker-linha-entre">
+            <!--Entregador-->
+          </div>
+          <div class="customMarker-pau"></div>
+        </div>
+        <div class="customMarkerEntrega-ponta"></div>
+      </div>
+
+
+    </agm-overlay>
+  </span>
+  <!--Entregas-->
+
+
+
+
+
+  <!--Direções-->
+  <span *ngFor="let item of this.servico.getListaEntregas()">
+    <span *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2' || item.status_pedido === '8' ">
+
+      <!--Sicroniza entrega com o entregador-->
+      <!-- Do entregador para a entrega: aceita-->
+      <span *ngFor="let ent_entregador of this.servico.getListaEntregador()">
+        <span *ngIf="item.entregador && item.entregador.id === ent_entregador.id">
+          <agm-direction [renderOptions]="renderOptions" [visible]="config.getStatusRotasEntregador()"
+            *ngIf="item.status_pedido === '1'"
+            [origin]="{lat: getNumber(ent_entregador.coordenadas[0]), lng: getNumber(ent_entregador.coordenadas[1])}"
+            [destination]="{lat: getNumber(lat), lng: getNumber(lgn)}">
+          </agm-direction>
+          <!-- Do entregador para a entrega: a caminho-->
+          <agm-direction [renderOptions]="renderOptions2" [visible]="config.getStatusRotasEntregador()"
+            *ngIf="item.status_pedido === '2'"
+            [origin]="{lat: getNumber(ent_entregador.coordenadas[0]), lng: getNumber(ent_entregador.coordenadas[1])}"
+            [destination]="{lat: getNumber(item.coordenada_cliente[0]), lng: getNumber(item.coordenada_cliente[1])}">
+          </agm-direction>
+        </span>
+      </span>
+      <!--Sicroniza com o entregador-->
+      <!-- Da empresa para a entrega-->
+      <agm-direction [renderOptions]="renderOptions" [visible]="config.getStatusRotas()"
+        [origin]="{lat: getNumber(item.coordenada_cliente[0]), lng: getNumber(item.coordenada_cliente[1])}"
+        [destination]="{lat: getNumber(lat), lng: getNumber(lgn)}"></agm-direction>
+
+
+
+    </span>
+  </span>
+  <!--Direções-->
+
+
+
+
+
+
+  <span *ngFor="let item of servico.getListaEntregador()">
+
+    <agm-info-window>{{item.nome}}</agm-info-window>
+
+    <agm-overlay [latitude]="getNumber( item.coordenadas[0] )" [longitude]="getNumber( item.coordenadas[1] )"
+      id="agm-overlay-{{item.id}}">
+      <!-- blue html square -->
+      <div class="customMarker">
+        <img class="customMarker-img" src="{{item.imagem_ic}}">
+      </div>
+
+
+
+    </agm-overlay>
+  </span>
+
+</agm-map>
+
+<!--
+<div class="customMarkerEntrega">
+  <div class="customMarker-inter">
+  </div>
+  <div class="customMarker-linha">
+    <div class="customMarker-linha-entre">
+    </div>
+    <div class="customMarker-pau"></div>
+  </div>
+  <div class="customMarkerEntrega-ponta"></div>
+</div>
+-->

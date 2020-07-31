@@ -1,0 +1,201 @@
+<div style="padding: 10px;">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Motoboy vinculado
+        </mat-panel-title>
+        <mat-panel-description>
+          Quando o motoboy estiver vinculado a sua empresa, ele receberá créditos por conta do Vulto automaticamente por
+          cada entrega cadastrada e
+          for finalizada.
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <!---->
+      <span *ngIf="!servico.getDadosEmpresa().entregador_vinc.nome">
+        <form class="example-form" [formGroup]="formVin">
+          <mat-form-field style="width: 400px; margin-top: 10px;">
+            <mat-label>Informe o email do motoboy cadastrado no Vulto</mat-label>
+            <input matInput formControlName="email" placeholder="@email.com">
+          </mat-form-field>
+          <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="oncllickVincular()"
+            disabled="{{btvstatus}}">Vincular</button>
+        </form>
+      </span>
+      <span *ngIf="servico.getDadosEmpresa().entregador_vinc.nome">
+        <mat-list style="margin-top: 20px;">
+          <mat-list-item>
+            <div>
+              <img src="{{servico.getDadosEmpresa().entregador_vinc.imagem}}" alt="Imagem do motoboy" width="70px"
+                style="border-radius: 10px;">
+
+              <button mat-flat-button color="warn" disabled="{{btvstatus}}" (click)="onclickdesvinc()"
+                style="margin-left: 40px;margin-bottom: 10px;">Desvincular</button>
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div style="font-size: 13px;margin-top: 20px;">
+              <mat-icon style="font-size: 18px; color:  rgb(78, 76, 76);">sports_motorsports</mat-icon>
+              {{servico.getDadosEmpresa().entregador_vinc.nome}}
+              <br>
+              <mat-icon style="font-size: 18px; color:  rgb(78, 76, 76);">phone</mat-icon> (74)98842-0307
+            </div>
+          </mat-list-item>
+
+        </mat-list>
+      </span>
+      <!---->
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Rotas entregas
+        </mat-panel-title>
+        <mat-panel-description>
+          Mostrar rotas no mapa
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Mostrar rotas de entregas direcionada a sua empresa no mapa</p>
+      <section class="example-section">
+        <mat-slide-toggle [(ngModel)]="statusRota" class="example-margin" [color]="'primary'" [checked]="statusRota"
+          [disabled]="false" (click)="config.setStatusRotas(statusRota)">
+          Mostrar rotas
+        </mat-slide-toggle>
+      </section>
+
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Rotas entregador
+        </mat-panel-title>
+        <mat-panel-description>
+          Mostrar rotas do mapa
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Mostrar rotas do entregador direcionadas a suas entregas quando o status da entrega estiver a caminho e a sua
+        empresa quando o status estiver aceito.</p>
+      <section class="example-section">
+        <mat-slide-toggle [(ngModel)]="statusRotaEntregador" class="example-margin" [color]="'primary'"
+          [checked]="statusRotaEntregador" [disabled]="false"
+          (click)="config.setStatusRotasEntregador(statusRotaEntregador)">
+          Mostrar rotas
+        </mat-slide-toggle>
+      </section>
+
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+
+          <img width="40px" src="../../assets/logo_pedeai.png" alt="">
+        </mat-panel-title>
+        <mat-panel-description>
+          Cadastre os pedidos de seu restaurante do <b><span style="margin-left: 5px; margin-right: 5px;"> Pede.ai
+            </span></b> no Vulto
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <!---->
+      <span *ngIf="true">
+        <form class="example-form" [formGroup]="formRefPede">
+          <mat-form-field style="width: 400px; margin-top: 10px;">
+            <mat-label>Informe o login de acesso do Pede.ai</mat-label>
+            <input matInput formControlName="username" placeholder="@email.com">
+          </mat-form-field>
+          <mat-form-field style="width: 400px; margin-top: 10px;">
+            <mat-label>Informe a senha de acesso do Pede.ai</mat-label>
+            <input matInput formControlName="password" placeholder="****" type="password">
+          </mat-form-field>
+
+          <button *ngIf="!statusAutenticadoPedeai" mat-flat-button color="primary" style="margin-left: 10px;"
+            disabled="{{btAstatus}}" (click)="onclickAutenticarPedeai()">Autenticar</button>
+
+          <button *ngIf="statusAutenticadoPedeai" mat-flat-button color="warn" style="margin-left: 10px;"
+            disabled="{{btAstatus}}" (click)="desAutPedeai()">Desautenticar</button>
+        </form>
+        <div style="font-size: 12px;
+        color: #ee2a2a;">
+          Quando autenticado ao Pede.ai você só precisará informar o id do pedido, que os dados serão carregados
+          automaticamente
+          no formulário de cadastro de pedido do Vulto
+        </div>
+      </span>
+      <span *ngIf="true">
+
+        <div class="dd" *ngIf="!statusAutenticadoPedeai">
+          <mat-icon style="float: left;">error</mat-icon>
+          <div style="margin-top: 3px;">Sua empresa não está autenticada com o Pede.ai</div>
+        </div>
+
+        <div class="dd-true" *ngIf="statusAutenticadoPedeai">
+          <mat-icon style="float: left;">check</mat-icon>
+          <div style="margin-top: 2px;">{{restauranteNomePedeai}} Pede.ai</div>
+        </div>
+
+      </span>
+      <!---->
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+
+          Taxas de entrega
+        </mat-panel-title>
+        <mat-panel-description>
+          Consulte as taxas de entrega a partir do endereço do seu estabelecimento.
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <!---->
+      <mat-list>
+        <div mat-subheader>Cidades</div>
+        <mat-list-item *ngFor="let cidade of servico.getListaCidades()">
+          <mat-icon mat-list-icon>location_city</mat-icon>
+          <mat-radio-button value="cidade" (click)="getBairros(cidade)"></mat-radio-button>
+          <div mat-line>{{cidade.nome}}</div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+
+        <div id="area_print">
+        <span *ngFor="let bairro of servico.getListaBairros()">
+          <mat-list-item>
+            <div mat-line>{{bairro.nome}} <span style="    background-color: #fff700;
+              padding: 5px;
+              border-radius: 10px;
+              color: rgb(0, 0, 0);" *ngIf="bairro.taxa" > {{bairro.taxa | currency}} </span>
+              <mat-progress-bar mode="buffer" *ngIf="bairro.statusload == true"></mat-progress-bar>
+            </div>
+            <div mat-line style="font-size: 11px;">
+              {{bairro.distancia}} {{bairro.duracao}}
+            </div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </span>
+        </div>
+      </mat-list>
+      <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="onclickPrint()">Imprimir</button>
+      <!---->
+    </mat-expansion-panel>
+
+    <!--<mat-expansion-panel  (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Self aware panel
+        </mat-panel-title>
+        <mat-panel-description>
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>-->
+  </mat-accordion>
+</div>

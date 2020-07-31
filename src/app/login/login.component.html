@@ -1,0 +1,32 @@
+<mat-grid-list cols="1" rowHeight="100%">
+
+  <mat-grid-tile>
+
+
+
+    <form class="example-form" [formGroup]="formLogin">
+      <h1>Painel Vulto Empresas</h1>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Entre com seu email</mat-label>
+        <input matInput placeholder="Ex. @email" type="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="****" type="password" formControlName="senha">
+      </mat-form-field>
+
+      <section>
+
+        <div class="example-button-row" style="text-align: center;">
+          <button mat-raised-button color="primary" (click)="oncllickEntrar()" disabled="{{btloginstatus}}">Entrar</button>
+          <button mat-raised-button color="warn" style="margin-left: 10px;" routerLink="/cadastro">Novo Cadastro</button>
+        </div>
+      </section>
+
+
+    </form>
+
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,60 @@
+<mat-toolbar>
+  <span>Motoboys</span>
+  <button mat-raised-button color="link"  style="margin-left: 10px;" (click)="onclickAddMtb()">Adicionar mototboy do Vulto</button>
+</mat-toolbar>
+<div style="padding: 10px;">
+
+  <mat-card>Envie as entregas diretamente aos motoboys do Vulto que estão online e adicionados em sua lista</mat-card>
+
+
+  <span *ngFor="let item of servico.getMotoboysEmpresa()">
+    <div *ngIf="item.status_time_text !== 'Online'"  style="
+    text-align: left;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    background-color: red;
+    float: left;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 22px;">Offline</div>
+    <div *ngIf="item.status_time_text == 'Online'" style="
+    text-align: left;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(36, 114, 10);
+    float: left;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 22px;">Online</div>
+  <mat-list role="list">
+
+
+    <mat-list-item role="listitem">
+      <mat-list-item role="listitem">
+        <div> <span class="delsuc-3"> {{item.nome}} </span> <br>  <img width="40px" style="border-radius: 15px;" src="{{item.imagem}}" alt="Photo of a Shiba Inu">  </div>
+      </mat-list-item>
+
+
+      <mat-list-item role="listitem" style="font-size: 13px;">
+        <div> <span class="delsuc-3">  </span>
+           <br> {{item.telefone}}
+           <br> {{item.email}}
+          </div>
+      </mat-list-item>
+
+
+
+      <mat-list-item role="listitem">
+        <button mat-raised-button color="primary" (click)="onclickCadEntrega(item)" *ngIf="item.status_time_text == 'Online'">Cadastrar entrega</button>
+        <button mat-raised-button color="primary" (click)="servico.mostrarMensagem('Motoboy está offline')" *ngIf="item.status_time_text !== 'Online'" disabled>Cadastrar entrega</button>
+        <button mat-raised-button color="link" style="margin-left: 10px;" (click)="onclickRemoveMotoboy(item)">Remover</button>
+      </mat-list-item>
+    </mat-list-item>
+
+  </mat-list>
+
+  <mat-divider style="margin-top: 12px;"></mat-divider>
+
+  </span>
+
+</div>

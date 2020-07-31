@@ -1,0 +1,152 @@
+<div class="conteudo">
+    <div class="c1">Pedido #8842</div>
+    <mat-vertical-stepper [linear]="false" #stepper>
+
+        <mat-step>
+            <ng-template matStepLabel>Informações do cliente</ng-template>
+            <div class="c2">
+                <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}</div>
+                <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone}}</div>
+                <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().dadoscliente.rua}}, {{servpedidos.getPedido().dadoscliente.numero}}, {{servpedidos.getPedido().dadoscliente.bairro}} - {{servpedidos.getPedido().dadoscliente.cidade}}
+                </div>
+                <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().dadoscliente.complementno}}</div>
+                <div class="c22"><span class="ddc">Tipo residência:</span> {{servpedidos.getPedido().dadoscliente.tiporesidencia}}</div>
+            </div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Tipo de serviço</ng-template>
+            <mat-card style="background-color: yellow;">
+                {{servpedidos.getPedido().detalhes.tipopedido}}
+            </mat-card>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Metodo de pagamento</ng-template>
+            <div class="">{{servpedidos.getPedido().detalhes.formapagamento}}</div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Detalhes do pedido</ng-template>
+
+            <div class="" style="width: 100%;">
+                <table mat-table [dataSource]="servpedidos.getPedido().detalhes.itens">
+
+
+                    <ng-container matColumnDef="quantidade">
+                        <th mat-header-cell *matHeaderCellDef> Qnt. </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span matBadge="{{element.qnt}}" [matBadgeHidden]="false" matBadgeColor="accent"></span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="item">
+                        <th mat-header-cell *matHeaderCellDef> Item. </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="itmnome">{{element.nome}}</div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="observacao">
+                        <th mat-header-cell *matHeaderCellDef> Observacao. </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="srtbs">{{element.observacao}}</div>
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="adicionais">
+                        <th mat-header-cell *matHeaderCellDef> Adicionais. </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div class="itmadc" *ngFor="let adc of element.adicionais">
+                                {{adc.qnt}}<strong>x</strong> {{adc.nome}}
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="desconto">
+                        <th mat-header-cell *matHeaderCellDef> Desconto. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.desconto | currency}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="preco">
+                        <th mat-header-cell *matHeaderCellDef> Preço. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.preco | currency}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total">
+                        <th mat-header-cell *matHeaderCellDef> Total. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="detalhespedido"></tr>
+                    <tr mat-row *matRowDef="let row; columns: detalhespedido;"></tr>
+                </table>
+
+                <div class="ccde">
+                    <div class="ccde1">
+                        <div class="ccde11">Subtotal</div>
+                        <div>{{servpedidos.getPedido().detalhes.subtotal | currency}}</div>
+                    </div>
+
+                    <div class="ccde1">
+                        <div class="ccde11">Taxa de entrega</div>
+                        <div>{{servpedidos.getPedido().detalhes.taxaentrega | currency}}</div>
+                    </div>
+
+                    <div class="ccde1 gff">
+                        <div class="ccde11">Total</div>
+                        <div>{{servpedidos.getPedido().detalhes.total | currency}}</div>
+                    </div>
+
+                </div>
+            </div>
+        </mat-step>
+
+        <mat-step>
+
+            <ng-template matStepLabel>Histórico do pedido</ng-template>
+
+            <div class="" style="width: 100%;">
+                <table mat-table [dataSource]="servpedidos.getPedido().detalhes.historico">
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="info">
+                        <th mat-header-cell *matHeaderCellDef> Data. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.info}} </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+
+
+
+    <div class="arbts">
+        <div style="padding: 6px;">
+
+            <mat-chip-list aria-label="Fish selection">
+
+                <mat-chip style="background-color: rgb(92, 177, 6); color: white;" color="accent" matTooltip="Entregas que ainda não foram aceitas por motoboys">Aceitar</mat-chip>
+                <mat-chip style="background-color:  rgb(168, 14, 40);color: white;" color="accent" matTooltip="Entregas enviadas diretamente aos motoboys de sua lista">Rejeitar</mat-chip>
+                <mat-chip color="accent">A caminho</mat-chip>
+                <mat-chip color="accent">Cancelar</mat-chip>
+                <mat-chip color="accent">Entregue</mat-chip>
+                <mat-chip color="accent">Concluída</mat-chip>
+            </mat-chip-list>
+
+
+        </div>
+    </div>
+
+
+</div>

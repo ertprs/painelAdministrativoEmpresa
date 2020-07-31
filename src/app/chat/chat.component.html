@@ -1,0 +1,265 @@
+<style>
+    .alertooff {
+        position: absolute;
+        margin-left: 1%;
+        background-color: #ff0018;
+        padding: 10px;
+        border-radius: 9px;
+        margin-top: -3.3%;
+        font-weight: 500;
+        color: white;
+        display: flex;
+        padding-bottom: 0px;
+        padding-top: 6px;
+    }
+
+    .temaBackgroundChat {
+        background-color: #f1eee6;
+    }
+
+    .col1 {
+        float: left;
+        height: 100%;
+        background-color: #eee;
+        width: 29.8%;
+        border: 1px solid #b9b9b9;
+    }
+
+    .col2 {
+        float: left;
+        height: 100%;
+        background-color: #50505005;
+        width: 70%;
+    }
+
+    .itemUsuario {
+        background-color: #fffefe;
+        width: 100%;
+        display: flex;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        color: #9c9c9c;
+        margin-bottom: 1px;
+    }
+
+    .iadados {
+        padding-left: 10px;
+        width: 69%;
+    }
+
+    .iaimg {
+        padding-left: 10px;
+    }
+
+    .finome {
+        color: black;
+    }
+
+    .st {
+        width: 95%;
+        height: 40px;
+        border: none;
+        border-radius: 40px;
+        padding-left: 10px;
+        margin-top: 10px;
+        outline: 0;
+    }
+
+    .areamsgs {
+        height: 89%;
+    }
+
+    .areaop {
+        text-align: center;
+        height: 11%;
+        width: 100%;
+    }
+
+    .dadosmsgs {
+        width: 97.3%;
+        height: 39px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        border: 1px solid #c7c7c7;
+        border-left: none;
+        border-top: none;
+        border-right: none;
+    }
+
+    .dadosmsgs2 {
+        width: 98.8%;
+        height: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        border: 1px solid #c7c7c7;
+        border-left: none;
+        border-top: none;
+        border-right: none;
+    }
+
+    .c {
+        float: left;
+    }
+
+    .cc {
+        float: left;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    .msgserver {
+        width: 100%;
+        float: left;
+        margin-top: 10px;
+    }
+
+    .msgserver1 {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px;
+        float: left;
+        border-top-left-radius: 0px;
+        margin-left: 10px;
+        padding-bottom: 0px;
+        box-shadow: 2px 2px 10px rgba(51, 51, 51, 0.5);
+    }
+
+    .msgcliente {
+        width: 100%;
+        float: right;
+        margin-top: 10px;
+    }
+
+    .msgcliente1 {
+        background-color: #9aff93;
+        border-radius: 20px;
+        padding: 10px;
+        float: right;
+        border-top-right-radius: 0px;
+        margin-right: 10px;
+        padding-bottom: 0px;
+        box-shadow: -2px 2px 10px rgba(51, 51, 51, 0.5);
+    }
+
+    .caixamsgs {
+        padding-left: 50px;
+        padding-right: 50px;
+        height: 88%;
+        overflow: auto;
+        padding-bottom: 7px;
+    }
+
+    .infoserver {
+        text-align: right;
+        font-size: 11px;
+        color: #a5a19d;
+        margin-left: 44px;
+        margin-top: -5px;
+    }
+
+    .arealistaUsuariosChat {
+        height: 90.1%;
+        overflow: auto;
+        float: left;
+        width: 100%;
+    }
+</style>
+
+
+
+
+<div style="    display: flex;
+height: 89%;">
+
+    <div class="col1">
+        <div class="dadosmsgs temaBackgroundChat">
+            <div class="c">
+                <img width="40" src="{{servicoApp.getDadosEmpresa().imagem}}" alt="logo_empresa" style="border-radius: 5px;">
+            </div>
+            <div class="cc">
+                <span>{{servicoApp.getDadosEmpresa().nome}}</span>
+                <!--<br><div style="font-size: 11px;">{{ servicoChat.getCanalChat() }}</div>-->
+            </div>
+        </div>
+
+        <div class="arealistaUsuariosChat temaBackgroundChat">
+            <span *ngFor="let item of servicoChat.getUsuariosChat()">
+      <a href="javascript:;" style="text-decoration: none;">
+        <div class="itemUsuario" *ngIf="item.status" (click)="abrirCanalChatUsu(item)">
+          <div class="iaimg"><img width="40" src="https://vulto.site/vulto_/assets/audio/chatb.gif" alt="imgusuario"></div>
+          <div class="iadados">
+            <div class="finome">{{item.nome}}</div>
+            <div>
+              <span style="color: rgb(105, 105, 105);"> {{item.telefone}} </span>
+        </div>
+    </div>
+    <div class="iadados_">
+        <div style="    margin-top: 42px;
+            margin-left: 18px;    background-color: #19b12c;" class="info" matBadge="{{item.qntVist}}" [matBadgeHidden]="item.statusVisto" matBadgeColor="accent"></div>
+    </div>
+</div>
+</a>
+</span>
+</div>
+</div>
+
+<div class="col2">
+    <span *ngIf="statusCanal">
+    <div class="areamsgs">
+      <div class="dadosmsgs2 temaBackgroundChat">
+        <div class="c">
+          <img width="40" src="https://vulto.site/vulto_/assets/iconeChat.png" alt="imgusuario">
+        </div>
+        <div class="cc">
+          <span>{{servicoChat.getDadosCanal().nome}}</span>
+</div>
+</div>
+
+
+<!--msgs-->
+<div class="caixamsgs">
+    <span *ngFor="let item of servicoChat.getDadosCanal().mensagens">
+          <div class="msgserver" *ngIf="item.tipo == 'server'">
+
+            <div class="msgserver1">
+              {{item.mensagem}}
+              <div class="infoserver">{{item.info}}</div>
+            </div>
+
+
+          </div>
+
+
+          <div class="msgcliente" *ngIf="item.tipo == 'cliente'">
+
+            <div class="msgcliente1">
+              {{item.mensagem}}
+              <div class="infoserver">{{item.info}}</div>
+            </div>
+
+
+          </div>
+        </span>
+</div>
+<!--msgs-->
+
+
+</div>
+<div class="areaop temaBackgroundChat">
+    <div class="alertooff" *ngIf="servicoChat.getDadosCanal().status == false">
+        <div>
+            <mat-icon>info</mat-icon>
+        </div>
+        <div style="    padding-top: 3px;
+        padding-left: 4px;">O cliente foi desconectado
+        </div>
+    </div>
+    <input type="text" placeholder="Digite uma mensagem" class="st" [(ngModel)]="msgInput" [disabled]="false">
+</div>
+</span>
+</div>
+
+
+</div>

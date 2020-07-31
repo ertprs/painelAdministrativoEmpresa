@@ -1,0 +1,173 @@
+<div class="loader" *ngIf="statusLoadConteudo"></div>
+
+<div class="all" *ngIf="servhome.getstatusLoaderpage()">
+    <div class="conteudo2">
+
+        <mat-card class="imagem-card">
+
+            <img mat-card-image [src]="imagem" class="imagemItem" alt="imagem produto">
+            <mat-card-content>
+                <p>
+                    Selecione uma imagem para seu item
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <form id="form1">
+                    <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
+                    <button mat-button (click)="onClickImagemSelecionar()">Selecionar</button>
+
+                </form>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="example-card" style="margin-top: 10px; text-align: center;">
+            <button (click)="enviaImagem()" color="warn" mat-button>Cancelar</button>
+            <button (click)="onClickAddItem()" mat-flat-button color="primary">Adicionar item</button>
+        </mat-card>
+
+    </div>
+
+    <div class="conteudo" [formGroup]="form">
+
+
+
+        <!--Tabela-->
+        <div class="area-form" style="margin-top: 0px;">
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Dados do item
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+
+                    <mat-form-field appearance="outline" style="width: 80%;">
+                        <mat-label>Nome do item</mat-label>
+                        <input formControlName="nome" matInput placeholder="Ex. Pizza de calabresa" type="text">
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="width: 19%; margin-left: 1px;">
+                        <mat-label>Preço</mat-label>
+                        <input formControlName="preco" matInput placeholder="Ex. Pizza de calabresa" type="text">
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+
+                    <div class="area-form">
+                        <mat-form-field appearance="outline" style="width: 100%;">
+                            <mat-label>Descrição</mat-label>
+                            <input formControlName="descricao" matInput placeholder="Ex. Pizza de calabresa" type="text">
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+                    </div>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <!--Tabela-->
+
+
+
+
+
+        <!--Tabela-->
+
+        <div class="area-form">
+            <h2>Extras</h2>
+            <mat-accordion>
+                <mat-expansion-panel (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Configurações do item
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem">
+                            <mat-slide-toggle formControlName="esconder">Esconder</mat-slide-toggle>
+                        </mat-list-item>
+                        <mat-list-item role="listitem">
+                            <mat-slide-toggle formControlName="esgotado">Esgotado</mat-slide-toggle>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <!--Tabela-->
+
+        <!--Tabela-->
+        <div class="area-form">
+            <h2>Disponibilidade</h2>
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Dias
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <mat-list>
+                        <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade').controls; let i = index">
+                            <mat-slide-toggle [(ngModel)]="diasLista[i].status" [formControlName]="i"> {{ diasLista[i].nome }} </mat-slide-toggle>
+                        </mat-list-item>
+                    </mat-list>
+
+                </mat-expansion-panel>
+
+            </mat-accordion>
+        </div>
+        <!--Tabela-->
+
+
+        <!--Tabela-->
+
+        <div class="area-form">
+            <h2>Adicionais</h2>
+            <span formArrayName="categoriaadicional" *ngFor="let item of form.get('categoriaadicional').controls; let i = index">
+
+          <mat-accordion >
+              <mat-expansion-panel style="margin-top: 2px;" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                      <mat-panel-title>
+                          {{ catsEAdcs[i].nome }}
+                      </mat-panel-title>
+
+                      <mat-panel-description>
+
+                      </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+            <mat-list>
+              <mat-list-item >
+                Obrigatório <mat-slide-toggle style="margin-left: 10px;" [formControlName]="i" [(ngModel)]="catsEAdcs[i].obrigatorio" [checked]="catsEAdcs[i].obrigatorio"> </mat-slide-toggle>
+              </mat-list-item>
+          </mat-list>
+
+
+            <mat-list>
+                <mat-list-item *ngFor="let adicional of catsEAdcs[i].itens; let i = index">
+                    <mat-slide-toggle [formControlName]="i" [(ngModel)]="adicional.status">{{adicional.nome}}</mat-slide-toggle>
+                </mat-list-item>
+            </mat-list>
+
+
+            </mat-expansion-panel>
+            </mat-accordion>
+
+            </span>
+
+        </div>
+        <!--Tabela-->
+
+
+    </div>
+</div>

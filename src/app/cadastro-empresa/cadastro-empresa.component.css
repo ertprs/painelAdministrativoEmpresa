@@ -1,0 +1,48 @@
+.lg {
+  margin-top: 58%;
+  width: 180px;
+  height: 180px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 29px;
+  background-color: black;
+  background-image: url("/assets/logo_v.png");
+  margin-left: 90px;
+}
+
+.ldelsuc {
+  text-align: center;
+  width: 100%;
+  margin-left: 66px;
+  font-size: 11px;
+  color: #3187b9;
+}
+
+.tdel {
+  font-size: 23px;
+  color: #777777;
+}
+
+.allc {
+  width: 60%;
+  background-color: #3f51b5;
+  float: left;
+  height: 85%;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+mat-icon{
+  color: #00BCD4;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}

@@ -1,0 +1,74 @@
+.c1 {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.c10 {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.c22 {
+    margin-bottom: 5px;
+}
+
+.conteudo {
+    height: 550px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.itmadc {
+    background: #d6d6d6;
+    border-radius: 4px;
+    padding: 2px;
+    width: 90%;
+    margin-bottom: 1px;
+}
+
+.itmnome {
+    font-weight: 600;
+}
+
+.srtbs {
+    width: 190px;
+    color: #5a5a5a;
+    font-size: 12px;
+    text-align: c;
+    border: 1px solid #d8ded9;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.ccde {
+    font-size: 17px;
+}
+
+.ccde1 {
+    display: flex;
+    border: 1px solid #d4d4d4;
+    border-left: none;
+    border-right: none;
+    margin-top: 23px;
+    border-top: none;
+}
+
+.gff {
+    font-weight: 500;
+}
+
+.ccde11 {
+    width: 90%;
+}
+
+.ddc {
+    font-weight: bold;
+    font-size: 15px;
+    color: #0a0a0a;
+    border-radius: 4px;
+    padding: 5px;
+}

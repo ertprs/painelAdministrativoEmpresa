@@ -1,0 +1,46 @@
+<form class="example-form" style="margin:auto;" [formGroup]="formCadastroCliente">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Ex. Nome Cliente..." value="" formControlName="nome">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Telefone</mat-label>
+    <input matInput placeholder="Ex. (74)98842-0307" value="" formControlName="telefone">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Rua</mat-label>
+    <input matInput placeholder="Ex. Rua Nome..." value="" formControlName="rua">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Número</mat-label>
+    <input matInput placeholder="Ex. 83" value="" formControlName="numero">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Bairro</mat-label>
+    <input matInput placeholder="Ex. Nome Bairro..." value="" formControlName="bairro">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Cidade</mat-label>
+    <input matInput placeholder="Ex. Nome Cidade" value="" formControlName="cidade">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Uf</mat-label>
+    <input matInput placeholder="Ex. BA" value="" formControlName="uf">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Complemento</mat-label>
+    <input matInput placeholder="Ex. Casa em frente ao Delivery" value="" formControlName="complemento">
+  </mat-form-field>
+
+  <button mat-button color="warn" (click)="servico.getDialogapp().close()">Cancelar</button>
+  <button mat-button color="primary" (click)="onclickCadastroCliente()">Adicionar</button>
+</form>

@@ -1,0 +1,18 @@
+<h1>Adicionar motoboy</h1>
+
+<form class="example-form" style="width: 100%; text-align: center;" [formGroup]="formCadastroMotoboy">
+
+  <mat-form-field class="mat-form-field-style">
+    <mat-label>Nome do motoboy</mat-label>
+    <input matInput placeholder="Informe o nome de sua preferência para o motoboy" formControlName="nome">
+  </mat-form-field>
+
+  <mat-form-field class="mat-form-field-style">
+    <mat-label>Telefone do motoboy cadastrado no Vulto</mat-label>
+    <input matInput placeholder="(xx)xxxxx-xxxx" formControlName="telefone"  mask="(00)00000-0000">
+  </mat-form-field>
+
+ <br> <button mat-raised-button color="primary" (click)="onclickCadastroMotoboy()">Adicionar</button>
+  <button mat-raised-button color="danger" (click)="servico.getDialogapp().close()" style="margin-left: 20px;">Cancelar</button>
+
+  </form>

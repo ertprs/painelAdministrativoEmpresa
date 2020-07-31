@@ -1,0 +1,45 @@
+<div class="conteudo">
+
+
+    <span [formGroup]="formCadastro">
+    <div class="c1"  >
+        <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Nome da categoria</mat-label>
+            <input formControlName="nome" matInput placeholder="Ex. Esolha seu item" type="name">
+            <mat-hint></mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="c1"  >
+      <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Descrição da categoria</mat-label>
+          <input formControlName="descricao" matInput placeholder="Ex. Descrição sobre a categoria" type="name">
+          <mat-hint></mat-hint>
+      </mat-form-field>
+  </div>
+    <div class="c1">
+        <mat-slide-toggle formControlName="status" [(ngModel)]="status">Disponível</mat-slide-toggle>
+    </div>
+  </span>
+    <div class="c1">
+        <div class="">
+            Quantidade máxima de adicionais que o cliente pode adicionar
+        </div>
+        <div class="" style="display: flex;">
+            <mat-slider class="mat-slider-guin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="quantidade" [vertical]="vertical">
+            </mat-slider>
+            <div class="styleqnt"> {{quantidade}} </div>
+        </div>
+
+    </div>
+
+    <div class="c1" style="text-align: right;">
+        <span *ngIf="servDCadc.getTipoacao()">
+        <button [disabled]="btstatus" mat-flat-button color="dark" (click)="onSalvarItem(status, quantidade)">Salvar</button>
+      </span>
+        <span *ngIf="!servDCadc.getTipoacao()">
+        <button [disabled]="btstatus" mat-flat-button color="primary" (click)="onClickAdd(status, quantidade)">Adicionar</button>
+      </span>
+
+    </div>
+
+</div>

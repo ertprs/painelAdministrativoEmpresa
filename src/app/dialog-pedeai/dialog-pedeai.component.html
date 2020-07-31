@@ -1,0 +1,11 @@
+<div>
+  <img width="195px" src="../../assets/refPede.png">
+  <form class="example-form" [formGroup]="formRefPede">
+    <mat-form-field class="example-full-width">
+      <mat-label>Código pedido Pede.Ai</mat-label>
+      <input matInput placeholder="Ex. XXXXXX" value="" formControlName="ref">
+      <span matPrefix>Ref# &nbsp;</span>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" style="margin-left: 10px;" (click)="onclickVerEntrega()">Ok</button>
+  </form>
+</div>

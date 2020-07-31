@@ -1,0 +1,113 @@
+import { CrudServicoService } from 'src/app/crud-servico.service';
+import { ServicoService } from 'src/app/servico.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DialogCadastroCategoriaAdcService } from './dialog-cadastro-categoria-adc.service';
+import { CategoriaAdicionalService } from '../../categorias-adicionais/categoria-adicional.service';
+
+@Component({
+  selector: 'app-dialog-categoria-adicional',
+  templateUrl: './dialog-categoria-adicional.component.html',
+  styleUrls: ['./dialog-categoria-adicional.component.css']
+})
+export class DialogCategoriaAdicionalComponent implements OnInit {
+
+  autoTicks = true;
+  disabled = false;
+  invert = false;
+  max = 100;
+  min = 0;
+  showTicks = true;
+  step = 1;
+  thumbLabel = true;
+  quantidade = 1;
+  vertical = false;
+  tickInterval = 0;
+
+  formCadastro: FormGroup;
+  btstatus: boolean;
+  status: boolean;
+
+  constructor(private formBuilder: FormBuilder, private servapp: ServicoService, private crud: CrudServicoService,
+              public servDCadc: DialogCadastroCategoriaAdcService, private servcatadc: CategoriaAdicionalService) { }
+
+  ngOnInit(): void {
+    this.iniciaForm();
+  }
+
+  onClickAdd(status: any, quantidade: any) {
+    this.formCadastro.value.status = status;
+    this.formCadastro.value.maxsele = quantidade;
+    console.log(this.formCadastro.value);
+
+    this.btstatus = true;
+    const callbfun = () => {
+      console.log('callback');
+      const r = this.servapp.getRespostaApi();
+      console.log(r);
+      if (r.erro === true) {
+        this.servapp.mostrarMensagem(r.mensagem);
+        this.btstatus = false;
+      } else {
+        this.btstatus = false;
+        this.servcatadc.setCategoriasAdicional(r.lista);
+      }
+    };
+    console.log( this.crud.post_api('cadastro_categoria_adicional', callbfun, this.formCadastro.value ) );
+  }
+
+  onSalvarItem(status: any, quantidade: any) {
+    this.formCadastro.value.status = status;
+    this.formCadastro.value.maxsele = quantidade;
+    console.log(this.formCadastro.value);
+
+    this.btstatus = true;
+    const callbfun = () => {
+      console.log('callback');
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) {
+        this.servapp.mostrarMensagem(r.detalhes);
+        this.btstatus = false;
+      } else {
+        this.btstatus = false;
+        this.servcatadc.setCategoriasAdicional(r.lista);
+        this.servapp.mostrarMensagem(r.detalhes);
+      }
+    };
+    this.crud.post_api('editar_cat_adc', callbfun, this.formCadastro.value );
+  }
+
+  iniciaForm() {
+    // se true == editar
+    if (this.servDCadc.getTipoacao()) {
+      this.quantidade = this.servDCadc.getCategoriaAdicional().maxsele;
+      this.status = this.servDCadc.getCategoriaAdicional().status;
+      this.formCadastro = this.formBuilder.group({
+        id_empresa: [this.servapp.getDadosEmpresa().id],
+        id_categoria: [this.servDCadc.getCategoriaAdicional().id],
+        nome: [this.servDCadc.getCategoriaAdicional().nome, Validators.required],
+        descricao: [this.servDCadc.getCategoriaAdicional().descricao],
+        status: [this.servDCadc.getCategoriaAdicional().status],
+        maxsele: [this.servDCadc.getCategoriaAdicional().maxsele],
+      });
+      return;
+    }
+    this.status = false;
+    this.formCadastro = this.formBuilder.group({
+      id_empresa: [this.servapp.getDadosEmpresa().id],
+      nome: [null, Validators.required],
+      descricao: [''],
+      status: [null],
+      maxsele: [null],
+    });
+  }
+
+  getSliderTickInterval(): number | 'auto' {
+    if (this.showTicks) {
+      return this.autoTicks ? 'auto' : this.tickInterval;
+    }
+
+    return 0;
+  }
+
+}

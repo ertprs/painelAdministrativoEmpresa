@@ -1,0 +1,214 @@
+<div style="padding: 10px;">
+  <h2>Cadastro entrega</h2>
+
+  <mat-vertical-stepper [linear]="isLinear" #stepper>
+
+    <mat-step>
+      <ng-template matStepLabel>Opções entrega</ng-template>
+
+      <!-- <mat-card *ngIf="entSele !== false" style="padding: 1px;text-align: center;">
+      <div style="font-size: 11px; color: rgb(104, 172, 255);">
+        Essa entrega será enviada para
+      </div>
+      <div>
+        <img src="{{entregador.imagem}}" alt="Photo of a Shiba Inu" style="width: 40px;">
+
+      </div>
+      <div>
+        {{entregador.nome}}
+      </div>
+      <div>
+        <button mat-button color="warn" (click)="onclickRemoverEntSele()">Remover</button>
+      </div>
+    </mat-card>-->
+
+      <mat-list>
+        <mat-list-item *ngIf="servico.getClienteSelecionado() !== false">
+          <mat-icon>face</mat-icon>
+          <span style="font-size: 11px; color: blueviolet;">Cliente selecionado</span>
+          <mat-icon style="margin-left: 10px; margin-right: 10px;">double_arrow</mat-icon>
+          <div>Iago Delsuc Galdino dos Santos</div>
+          <button mat-mini-fab color="primary" aria-label="Desmarcar cliente" style="margin-left: 15px;"
+            (click)="onclickRemoverCliSele()">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="entSele !== false">
+          <mat-icon>sports_motorsports</mat-icon>
+          <span style="font-size: 11px; color: rgb(241, 24, 16);">Motoboy selecionado</span>
+          <mat-icon style="margin-left: 10px; margin-right: 10px;">double_arrow</mat-icon>
+          <div>{{entregador.nome}}</div>
+          <button mat-mini-fab color="primary" aria-label="Desmarcar cliente" style="margin-left: 15px;"
+            (click)="onclickRemoverEntSele()">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </mat-list-item>
+
+
+
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip color="accent" (click)="onclickSelecionarM()" *ngIf="entSele === false" matTooltip="Envie entregas diretamente ao motoboy de sua lista">
+            <mat-icon>sports_motorsports</mat-icon> Selecionar motoboy de minha lista
+          </mat-chip>
+          <mat-chip color="accent" (click)="onclickSelecionarC()" *ngIf="servico.getClienteSelecionado() == false"
+            matTooltip="Selecione os clientes que estão cadastrados em sua lista">
+            <mat-icon>supervisor_account</mat-icon> Selecionar cliente de minha lista
+          </mat-chip>
+          <mat-chip color="accent" matTooltip="Cadastre a entrega do Pede.ai automaticamente"
+            (click)="onclickCPedeai()">
+            <mat-icon>storefront</mat-icon> Ver entrega do Pede.ai
+          </mat-chip>
+          <mat-chip *ngIf="servico.getStatusEntregaPedeai()" selected color="accent"
+            matTooltip="Clique aqui e o formulário de entrega será preenchido automaticamente" (click)="onclickSelecionarEntregaPedeai()">
+            <mat-icon>edit</mat-icon> Selecionar entrega do Pede.ai
+          </mat-chip>
+
+        </mat-chip-list>
+
+      </mat-list>
+
+    </mat-step>
+
+    <mat-step [stepControl]="formCadastroEntrega">
+
+      <form [formGroup]="formCadastroEntrega">
+        <ng-template matStepLabel>Dados cliente</ng-template>
+
+        <mat-form-field class="example-full-width form-field-60">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Ex. Nome do cliente..." formControlName="nome_cliente" type="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-40">
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="Ex. (74)98842-0307" formControlName="telefone_cliente" mask="(00)00000-0000">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-40">
+          <mat-label>Valor pedido</mat-label>
+          <input class="input.example-right-align" matInput formControlName="valor_pedido_cliente" mask="separator.2"
+            thousandSeparator=".">
+          <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-30">
+          <mat-label>Forma de pagamento</mat-label>
+          <input matInput placeholder="Ex. Dinheito/Cartão/Online" formControlName="forma_pag_cliente" type="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-30">
+          <mat-label>Tipo entrega</mat-label>
+          <input matInput placeholder="Ex. Comida/Roupa/Bebida" formControlName="tipo_entrega" type="name">
+        </mat-form-field>
+
+        <!--<div>
+        <button style="width: 100%;" mat-button matStepperNext color="accent">Próximo</button>
+      </div>-->
+      </form>
+
+    </mat-step>
+
+
+    <mat-step [stepControl]="formCadastroEntrega">
+      <form [formGroup]="formCadastroEntrega">
+        <ng-template matStepLabel>Endereço da entrega</ng-template>
+
+        <mat-form-field class="example-full-width form-field-60">
+          <mat-label>Rua</mat-label>
+          <input matInput placeholder="Ex. Rua Nome..." formControlName="rua_cliente" type="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-20">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="Ex. 83" formControlName="numero_cliente" type="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-20">
+          <mat-label>Tipo residência</mat-label>
+          <input matInput placeholder="Ex. Casa/Hotel/Apartamento" formControlName="tipo_res_cliente" type="name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-60">
+          <mat-label>Cidade</mat-label>
+
+          <mat-select (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade
+            formControlName="cidadeAuto">
+            <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
+              {{item.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width form-field-40">
+          <mat-label>Bairro</mat-label>
+
+          <mat-select formControlName="bairroAuto"  (selectionChange)="carregaTaxa(itemBairro.value)" #itemBairro>
+            <!--#bairroClienteSelecionada-->
+            <mat-option *ngFor="let item of servico.getListaBairros()" [value]="item">
+              {{item.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Complemento</mat-label>
+          <input matInput placeholder="Ex. Casa em frente ao Delivery" formControlName="ponto_res_cliente" type="name">
+        </mat-form-field>
+
+        <!--<div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>-->
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Taxa entrega</ng-template>
+      <mat-card style="background-color: #FFEB3B;">
+        Valor que o motoboy irá receber pela entrega
+        </mat-card>
+
+        <mat-card style="    background-color: rgba(0, 0, 0, 0.7);
+        margin-top: 10px;
+        color: white;
+        font-size: 32px;">
+        <p style="font-size: 13px;margin-bottom: 10px;">Taxa de entrega calculada a partir do endereço de seu estabelecimento até o endereço da entrega.</p>
+          {{taxaEntregadorText | currency}}
+          </mat-card>
+      <form [formGroup]="formCadastroEntrega" style="margin-top: 10px; display:none;">
+        <mat-form-field class="example-full-width form-field-40">
+          <mat-label>Taxa de entrega</mat-label>
+          <input matInput placeholder="Ex. R$7,00" formControlName="taxa_entrega" mask="separator.2" thousandSeparator="." [(ngModel)]="taxaEntregador">
+          <span matPrefix>R$&nbsp;</span>
+        </mat-form-field>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Finalizar</ng-template>
+
+      <button *ngIf="carregandoRequest === false" style="margin-left: 2px; width: 100%;" mat-stroked-button
+        color="primary" (click)="onclickCadastrarEntrega(formCadastroEntrega.value.bairroAuto)">
+        Cadastrar
+      </button>
+
+      <button *ngIf="carregandoRequest === true && pedidoFinalizado === false" style="margin-left: 2px; width: 100%;"
+        mat-stroked-button color="primary" disabled>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        Cadastrar
+      </button>
+
+      <mat-card *ngIf="pedidoFinalizado === true" style="background-color: rgb(20, 150, 108);color: rgb(255, 255, 255);">
+        Entrega cadastrada com sucesso!
+        <br> <span style="font-size: 12px;">
+          Quando o motoboy aceitar sua entrega aparecerá uma notificação.
+        </span>
+      </mat-card>
+
+    </mat-step>
+
+
+  </mat-vertical-stepper>
+
+</div>

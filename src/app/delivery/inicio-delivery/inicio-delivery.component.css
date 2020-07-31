@@ -1,0 +1,51 @@
+.lg {
+    margin-top: 58%;
+    width: 180px;
+    height: 180px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 29px;
+    background-color: black;
+    background-image: url("/assets/logo_v.png");
+    margin-left: 90px;
+}
+
+.ldelsuc {
+    text-align: center;
+    width: 100%;
+    margin-left: 66px;
+    font-size: 11px;
+    color: #3187b9;
+}
+
+.tdel {
+    font-size: 23px;
+    color: #777777;
+}
+
+.allc {
+    width: 90%;
+    float: left;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 50px;
+}
+
+mat-icon {
+    color: #00BCD4;
+}
+
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+}
+
+.itensCard {
+    margin: 5px;
+}

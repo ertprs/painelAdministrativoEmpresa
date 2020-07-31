@@ -1,0 +1,16 @@
+.example-form {
+  width: 350px;
+  height: 150px;
+  text-align: center;
+  margin-top: -80px;
+}
+.example-form h1 {
+  margin-bottom: 30px;
+}
+.example-full-width {
+  width: 100%;
+}
+
+mat-grid-tile {
+  color: rgb(24, 23, 23);
+}

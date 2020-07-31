@@ -1,0 +1,52 @@
+
+<style>
+  .area-form {
+    width: 100%;
+    float: left;
+  }
+</style>
+
+<form [formGroup]="formItem">
+
+<div class="area-form">
+  <h2>{{ servicoCardapio.getCategoria().nome }}</h2>
+</div>
+
+<div class="area-form" style="width: 80%;">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Nome do item</mat-label>
+    <input matInput placeholder="Ex. Pizza de calabresa" type="text" formControlName="nome">
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</div>
+
+<div class="area-form" style="width: 20%;">
+  <mat-form-field appearance="outline" style="width: 100%;margin-left: 1px;">
+    <mat-label>Preço</mat-label>
+    <input matInput placeholder="Ex. R$ 10,00" type="text" formControlName="preco" mask="separator.2"
+    thousandSeparator=".">
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</div>
+
+<div class="area-form">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Descrição do item</mat-label>
+    <input matInput placeholder="Ex. Ingredientes" type="text" formControlName="descricao">
+    <mat-hint></mat-hint>
+  </mat-form-field>
+</div>
+
+
+<!--
+<div class="area-form">
+  <mat-slide-toggle matTooltip="Se ativado, os usuários não poderão ver no cardápio" formControlName="esconder">Esconder</mat-slide-toggle>
+  <mat-slide-toggle matTooltip="Se ativado, os usuários veem como indisponível" style="margin-left: 10px;" formControlName="esgotado">Esgotado</mat-slide-toggle>
+</div>
+-->
+<div class="area-form" style="margin-top: 30px;    text-align: end;">
+  <button mat-flat-button color="warn" (click)="serivoApp.getDialogapp().close()">Cancelar</button>
+  <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="onclickAddItem()" disabled="{{statusbt}}">Adicionar</button>
+</div>
+
+</form>

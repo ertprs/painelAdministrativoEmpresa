@@ -1,0 +1,10 @@
+
+<div style="padding: 10px;">
+  <span *ngFor="let item of servico.getListaNotificacoes()" >
+    <mat-card style="margin-top: 2px;">
+      <div style="width: 100%;font-size: 11px;color: rgb(151, 148, 148);">{{item.info}}</div>
+      <div style="width: 100%;" [innerHTML]="item.texto" ></div>
+    </mat-card>
+  </span>
+</div>
+

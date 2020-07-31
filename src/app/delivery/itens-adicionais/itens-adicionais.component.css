@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+}
+
+.st {
+    background: #00BCD4;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 4px;
+    margin-top: 1px;
+    width: 86%;
+}

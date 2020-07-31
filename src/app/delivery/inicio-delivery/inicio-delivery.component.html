@@ -1,0 +1,177 @@
+<div class="allc">
+
+    <mat-card>
+        <h1>Configurações empresa</h1>
+        <p>Configurações para funcionamento delivery.</p>
+    </mat-card>
+
+    <form class="example-form" [formGroup]="formCadastro" style="margin-top: 20px;" *ngIf="formcadastroStatus === false">
+        <mat-vertical-stepper [linear]="false" #stepper>
+
+            <mat-step>
+                <ng-template matStepLabel>Valores de pedidos</ng-template>
+
+                <div class="" style="width: 100%;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Valor mínimo do pedido</mat-label>
+                        <input matInput placeholder="Ex. R$8,00" type="text" formControlName="nome">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                        <mat-label>Valor máximo do pedido</mat-label>
+                        <input matInput placeholder="Ex. R$800,00" type="text" formControlName="nome">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+                </div>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Extras</ng-template>
+
+                <div class="" style="width: 100%;">
+                    <mat-form-field style="width: 400px" appearance="outline">
+                        <mat-label>Tags</mat-label>
+                        <input matInput placeholder="Ex. hamburguer, pizza, sopa, suco" type="text" formControlName="nome">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                        <mat-label>Tipo empresa</mat-label>
+                        <input matInput placeholder="Ex. Hamburgueria, Pizzaria, Açaiteria" type="text" formControlName="nome">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+                </div>
+            </mat-step>
+
+
+            <mat-step>
+                <ng-template matStepLabel>Tempo entrega</ng-template>
+
+                <div class="" style="width: 100%;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Estimativa de entrega</mat-label>
+                        <input matInput placeholder="Ex. 45 a 75 minutos" type="text" formControlName="nome">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+                </div>
+            </mat-step>
+
+
+            <mat-step>
+                <ng-template matStepLabel>Tipo de serviço</ng-template>
+
+                <div style="margin-top: 10px; width: 250px;">
+                    <mat-select (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade style="width: 100%;margin-left: 1px;">
+                        <mat-option selected value="">
+                            Selecione uma opção
+                        </mat-option>
+                        <mat-option [value]="'Entrega'">
+                            Somente entrega
+                        </mat-option>
+                        <mat-option [value]="'Retirada'">
+                            Somente retirada
+                        </mat-option>
+                        <mat-option [value]="'Entrega e retirada'">
+                            Entrega e retirada
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Metodos de pagamento</ng-template>
+
+                <div style="width: 100%;" *ngFor="let item of metodosPagamento">
+                    <mat-slide-toggle [checked]="item.status">{{item.descricao}}</mat-slide-toggle>
+                    <span *ngFor="let cartao of item.itens">
+            <div class="itensCard">
+              {{cartao.nome}} <mat-slide-toggle [checked]="item.status"></mat-slide-toggle>
+            </div>
+          </span>
+
+                </div>
+
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Dias e horários de funcionamento</ng-template>
+
+                <div style="width: 100%;" *ngFor="let item of getHrfun">
+                    <div class="nomed" style="width: 400px;">
+                        <mat-slide-toggle [checked]="item.status">{{item.nome}}</mat-slide-toggle>
+                    </div>
+
+
+                    <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
+                        <mat-label>Abre</mat-label>
+                        <input matInput placeholder="Ex. Nome da Empresa" type="text" formControlName="nome">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field style="margin-left: 5px; width: 150px;" appearance="outline">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput placeholder="Ex. Nome da Empresa" type="text" formControlName="nome">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+
+                </div>
+
+
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Cidades de entrega</ng-template>
+                <span *ngFor="let item of locaisEntrega">
+          <div class="" style="width: 100%;">
+            <mat-slide-toggle [checked]="item.status">{{item.nome}}</mat-slide-toggle>
+          </div>
+
+        </span>
+
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Bairros de entrega</ng-template>
+
+                <span *ngFor="let item of locaisEntrega">
+                      <div class="s" style="width: 100%;">
+            <span *ngFor="let bairro of item.bairros">
+
+              <div class="" style="width: 100%;">
+                <mat-slide-toggle style="width: 190px;" [checked]="bairro.status">{{bairro.nome}}</mat-slide-toggle>
+                <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
+                  <mat-label>Taxa entrega</mat-label>
+                  <input matInput placeholder="Ex. R$10,00" type="text" formControlName="nome">
+                  <mat-icon matSuffix>home_work</mat-icon>
+              </mat-form-field>
+
+              </div>
+
+            </span>
+</div>
+</span>
+</mat-step>
+
+
+
+<mat-step>
+    <ng-template matStepLabel>Finalizar</ng-template>
+    <button style="width: 100%;" mat-raised-button color="accent" disabled="{{btCstatus}}">Cadastrar</button>
+</mat-step>
+
+
+
+</mat-vertical-stepper>
+
+
+</form>
+
+<mat-card style="background-color: #fbff05; color: black; margin-top: 20px;" *ngIf="formcadastroStatus === true">
+    <h1> Cadastro realizado com sucesso! </h1>
+    <p>
+        <button mat-raised-button color="primary" routerLink="/login">Entrar</button>
+    </p>
+</mat-card>
+
+</div>

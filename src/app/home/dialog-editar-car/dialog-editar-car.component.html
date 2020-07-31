@@ -1,0 +1,28 @@
+<style>
+  .area-form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+</style>
+
+<form [formGroup]="formCategoria">
+
+
+<div class="c" style="padding: 1px;">
+  <mat-form-field appearance="outline" style="width: 100%; margin-left: 1px;">
+    <mat-label>Nome da categoria</mat-label>
+    <input matInput placeholder="Ex. Pizza" type="text" formControlName="nome">
+    <mat-hint></mat-hint>
+  </mat-form-field>
+
+  <div class="area-form">
+    <mat-slide-toggle matTooltip="Se ativado, os usuários não poderão ver no cardápio" formControlName="esconder" >Esconder</mat-slide-toggle>
+    <mat-slide-toggle matTooltip="Se ativado, os usuários veem como indisponível" style="margin-left: 10px;" formControlName="esgotado" >Esgotado</mat-slide-toggle>
+  </div>
+
+  <button mat-flat-button color="warn" (click)="servicoapp.getDialogapp().close()">Cancelar</button>
+  <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="onclickSalvar()" disabled="{{statusbt}}">Salvar edição</button>
+
+</div>
+
+</form>

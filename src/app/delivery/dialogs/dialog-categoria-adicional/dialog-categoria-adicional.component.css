@@ -1,0 +1,19 @@
+.c1 {
+    margin-top: 10px;
+}
+
+.styleqnt {
+    background: #bd2156;
+    min-width: 30px;
+    text-align: center;
+    padding: 6px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 5px;
+    height: 20px;
+    color: white;
+}
+
+.mat-slider-guin {
+    width: 100%;
+}

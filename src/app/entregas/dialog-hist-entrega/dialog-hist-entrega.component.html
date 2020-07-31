@@ -1,0 +1,6 @@
+<mat-list>
+    <span *ngFor="let item of entrega.entregador.historico" >
+        <span style="font-size: 13px; color: rgb(136, 134, 134);"> {{item.info}} </span>
+        <mat-list-item style="font-size: 12px;"> <mat-icon>done</mat-icon> {{item.descricao}} </mat-list-item>
+    </span>
+</mat-list>

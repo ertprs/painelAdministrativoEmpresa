@@ -1,0 +1,12 @@
+<div> <span class="dadosPede"> Status pedido: </span> <br> {{servico.getEntregaPedeAi().status}}</div>
+<div> <span class="dadosPede"> Nome cliente: </span> <br> {{servico.getEntregaPedeAi().client_info.full_name}}</div>
+<div> <span class="dadosPede"> Telefone: </span> <br> {{servico.getEntregaPedeAi().client_info.contact_phone}}</div>
+<div> <span class="dadosPede"> Subtotal: </span> <br> {{servico.getEntregaPedeAi().total.subtotal}} </div>
+<div> <span class="dadosPede"> Valor total pedido: </span> <br> {{servico.getEntregaPedeAi().total.total}} </div>
+<div> <span class="dadosPede"> Forma de pagamento: </span> <br> {{servico.getEntregaPedeAi().payment_type}}</div>
+<div> <span class="dadosPede"> Endereço </span> <br> {{servico.getEntregaPedeAi().client_info.address}}</div>
+<div> <span class="dadosPede"> Complemento: </span> <br> {{servico.getEntregaPedeAi().delivery_instruction}}</div>
+<div> <span class="dadosPede"> Taxa entrega: </span> <br> {{servico.getEntregaPedeAi().total.delivery_charges}}</div>
+<div>
+  <button mat-stroked-button color="primary" (click)="onclickSelcionarEntregaPedeai()">Ok</button>
+</div>

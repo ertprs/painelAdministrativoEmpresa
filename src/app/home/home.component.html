@@ -1,0 +1,133 @@
+<style>
+    .area-itens {
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 2px;
+        margin-top: 25px;
+        width: 98%;
+        margin: 10px;
+    }
+    
+    .item-cat {
+        margin-bottom: 25px;
+        display: flex;
+        background-color: rgb(255, 255, 255);
+    }
+    
+    .item-imagem {
+        width: 90px;
+        height: 90px;
+        background-color: #e3e3ec;
+        /* background-image: url('https://xdelssy.com.br/sis_entregas/php/upload/91e38ccb007749ee04d98fc17bd35f56.png');*/
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        border-radius: 3px;
+    }
+    
+    .area-dados-item {
+        width: 100%;
+        padding-left: 10px;
+    }
+    
+    .item-nome {
+        width: 100%;
+    }
+    
+    .item-descricao {
+        font-size: 11px;
+        color: rgb(114, 114, 114);
+    }
+    
+    .item-preco {
+        width: 100%;
+    }
+    
+    .cc_ {
+        width: 100%;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .c {
+        padding: 10px;
+    }
+</style>
+
+<mat-card style="margin:2px">
+    Link do cardápio digital:
+    <a target="new_" href="https://vulto.site/{{servicoapp.getDadosEmpresa().nomemin}}" class="" style="background: #E91E63;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;font-weight: 500;">
+    https://vulto.site/{{servicoapp.getDadosEmpresa().nomemin}}
+  </a>
+</mat-card>
+
+
+<div class="c">
+    <button mat-raised-button color="primary" (click)="dialogAddCat()">
+    <mat-icon>add</mat-icon> Adicionar categoria
+  </button>
+</div>
+
+
+
+<span *ngFor="let categoria of servico.getCardapio()">
+  <div class="area-itens">
+    <div class="cc_">
+      <div style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon color="primary">settings</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="dialogEditarCar(categoria)">
+            <mat-icon>edit</mat-icon> Editar categoria
+          </button>
+          <button mat-menu-item (click)="removerCat(categoria)">
+            <mat-icon>restore_from_trash</mat-icon> Remover categoria
+          </button>
+        </mat-menu>
+        {{categoria.nome}}
+      </div>
+      <div style="width: 100%; font-size: 14px;">
+        <button mat-raised-button color="accent"  matTooltip="Adicionar item desta categoria" (click)="dialogAddItem(categoria)">
+          <mat-icon>add</mat-icon> Adicionar item
+        </button>
+
+      </div>
+    </div>
+    <span *ngFor="let item of categoria.itens">
+      <div class="item-cat">
+        <div class="item-imagem" style="background-image: url({{item.imagem}});">
+
+        </div>
+        <div class="area-dados-item">
+          <div class="-item-nome">
+
+
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon  color="accent">settings</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item  (click)="dialogEditarItem(item, categoria)">
+                <mat-icon>edit</mat-icon> Editar item
+              </button>
+              <button mat-menu-item  (click)="onClickConfigurarItem(item)">
+                <mat-icon>settings</mat-icon> Configurar item
+              </button>
+              <button mat-menu-item (click)="removerItem(item)">
+                <mat-icon>restore_from_trash</mat-icon> Remover item
+              </button>
+            </mat-menu>
+            {{item.nome}}
+          </div>
+          <div class="item-descricao">{{item.descricao}}</div>
+          <div class="item-preco">{{item.preco | currency}}</div>
+        </div>
+      </div>
+    </span>
+
+
+</div>
+<div style="height: 1px;  width: 100%; background-color: rgb(209, 222, 223);"></div>
+
+</span>

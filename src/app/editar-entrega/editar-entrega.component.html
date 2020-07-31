@@ -1,0 +1,93 @@
+<div style="padding: 20px;">
+  <h1>Editar entrega</h1>
+</div>
+<div style="padding: 20px;
+padding-left: 161px;
+padding-right: 170px;
+">
+  <mat-card>
+    #{{servico.getEntrega().id}}
+    <form class="example-form" style="width: 100%;margin-top: 20px;" [formGroup]="formCadastroEntrega">
+
+      <mat-form-field class="example-full-width form-field-60">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Ex. Nome Cliente..." formControlName="nome_cliente">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-40">
+        <mat-label>Telefone</mat-label>
+        <input matInput placeholder="Ex. (00)00000-0000" formControlName="telefone_cliente"  mask="(00)00000-0000">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-60">
+        <mat-label>Rua</mat-label>
+        <input matInput placeholder="Ex. Rua Nome..." formControlName="rua_cliente">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-20">
+        <mat-label>Número</mat-label>
+        <input matInput placeholder="Ex. 83" formControlName="numero_cliente">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-20">
+        <mat-label>Tipo residência</mat-label>
+        <input matInput placeholder="Ex. Casa/Hotel/Apartamento" formControlName="tipo_res_cliente">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-60">
+        <mat-label>Cidade</mat-label>
+        <!--<input matInput placeholder="Ex. Nome Cidade" formControlName="cidade_cliente">-->
+        <mat-select (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
+          <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
+            {{item.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-40">
+        <mat-label>Bairro</mat-label>
+        <!--<input matInput placeholder="Ex. Nome Bairro..." formControlName="bairro_cliente">-->
+        <mat-select #bairroClienteSelecionada>
+          <mat-option *ngFor="let item of servico.getListaBairros()" [value]="item.nome">
+            {{item.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Complemento</mat-label>
+        <input matInput placeholder="Ex. Casa em frente ao Delivery" formControlName="ponto_res_cliente">
+      </mat-form-field>
+
+
+
+      <mat-form-field class="example-full-width form-field-60">
+        <mat-label>Tipo entrega</mat-label>
+        <input matInput placeholder="Ex. Comida/Roupa/Bebida" formControlName="tipo_entrega">
+      </mat-form-field>
+
+
+
+      <mat-form-field class="example-full-width form-field-40">
+        <mat-label>Valor pedido</mat-label>
+        <input matInput placeholder="Ex. R$59,00" formControlName="valor_pedido_cliente" >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-60">
+        <mat-label>Forma de pagamento</mat-label>
+        <input matInput placeholder="Ex. Dinheito/Cartão/Online" formControlName="forma_pag_cliente">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width form-field-40">
+        <mat-label>Taxa entrega</mat-label>
+        <input matInput placeholder="Ex. R$7,00" formControlName="taxa_entrega" >
+      </mat-form-field>
+
+
+
+
+    </form>
+
+    <button style="margin-left: 2px;" mat-stroked-button color="primary" (click)="onclickSalvarEntrega(bairroClienteSelecionada.value)">Salvar</button>
+  </mat-card>
+</div>

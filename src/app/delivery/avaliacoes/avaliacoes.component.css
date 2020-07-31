@@ -1,0 +1,14 @@
+.areaCard {
+    width: 230px;
+}
+
+.areaCards {
+    padding: 10px;
+}
+
+.textoaval {
+    height: 115px;
+    overflow: auto;
+    font-size: 13px;
+    color: #616161;
+}

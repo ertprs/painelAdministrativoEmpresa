@@ -1,0 +1,88 @@
+<div style="padding: 6px;">
+    <mat-card>
+
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip color="accent" selected>
+                De hoje</mat-chip>
+            <mat-chip color="accent" matTooltip="Lista de todos os pedidos recebidos">Todos pedidos</mat-chip>
+        </mat-chip-list>
+
+
+    </mat-card>
+</div>
+
+
+
+<div style="padding: 20px;">
+    <table mat-table [dataSource]="servpedidos.getPedidos()" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="botoes">
+            <th mat-header-cell *matHeaderCellDef> Opções </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" (click)="onClickPedido(element)">
+              <mat-icon>menu</mat-icon>
+            </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="onClickverPedido()">Ver pedido</button>
+                    <button mat-menu-item>Aceitar pedido</button>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status. </th>
+            <td mat-cell *matCellDef="let element"> {{element.status_texto}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> Nome cliente </th>
+            <td mat-cell *matCellDef="let element"> {{element.dadoscliente.nome}} </td>
+        </ng-container>
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let element"> {{element.detalhes.tipopedido}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="formapagamento">
+            <th mat-header-cell *matHeaderCellDef> Metodo pagamento </th>
+            <td mat-cell *matCellDef="let element"> {{element.detalhes.formapagamento}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let element"> {{element.detalhes.total | currency}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="info">
+            <th mat-header-cell *matHeaderCellDef> Data </th>
+            <td mat-cell *matCellDef="let element"> {{element.info}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Pedido </th>
+            <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+        </ng-container>
+
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>

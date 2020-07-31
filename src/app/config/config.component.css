@@ -1,0 +1,21 @@
+.dd{
+  background-color: #ee2a2a;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  padding-left: 5px;
+  border-radius: 4px;
+  float: left;
+  margin-right: 20px;
+  width: 31%;
+}
+
+.dd-true{
+  background-color: #117112;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  padding-left: 5px;
+  border-radius: 4px;
+  margin-right: 20px;
+  width: 31%;
+  font-size: 13px;
+}

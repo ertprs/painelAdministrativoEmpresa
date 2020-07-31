@@ -1,0 +1,49 @@
+.area-form {
+    margin-top: 10px;
+}
+
+.conteudo2 {
+    width: 25%;
+    float: left;
+    margin-left: 5px;
+}
+
+.conteudo {
+    width: 50%;
+    margin: auto;
+    float: left;
+    margin-left: 25px;
+}
+
+.guin {
+    font-weight: 500;
+    color: #e91e63;
+}
+
+.imgitem {
+    width: 60px;
+    height: 60px;
+    background: #d2cfcf;
+    border-radius: 3px;
+}
+
+.all {
+    padding: 15px;
+}
+
+.imagemItem {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.imagem-card {
+    text-align: center;
+}
+
+.loader {
+    width: 100%;
+    height: 91%;
+    background: #00010299;
+    position: absolute;
+    z-index: 1;
+}

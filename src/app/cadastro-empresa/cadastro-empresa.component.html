@@ -1,0 +1,267 @@
+<div class="allc">
+
+  <mat-card> <h1>Cadastro empresa</h1>  <p>Encontre mototboys para fazer as entregas de sua empresa.</p></mat-card>
+
+  <form class="example-form" [formGroup]="formCadastro" style="margin-top: 20px;" *ngIf="formcadastroStatus === false" >
+    <mat-horizontal-stepper [linear]="false" #stepper>
+
+      <mat-step>
+        <ng-template matStepLabel>Dados empresa</ng-template>
+
+        <mat-form-field appearance="outline" style="width: 70%;">
+          <mat-label>Nome empresa</mat-label>
+          <input matInput placeholder="Ex. Nome da Empresa" type="text" formControlName="nome">
+          <mat-icon matSuffix>home_work</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 29%;margin-left: 1px;">
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="Ex. (00)00000-0000" mask="(00)00000-0000" type="tel" formControlName="telefone">
+          <mat-icon matSuffix>contact_phone</mat-icon>
+          <mat-hint>Telefone comercial.</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Cnpj/Cpf</mat-label>
+          <input matInput placeholder="Ex. 00000000000000" type="tel" formControlName="cnpj">
+          <mat-hint>Infome o CNPJ da empresa ou o CPF do responsável.</mat-hint>
+        </mat-form-field>
+
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Dados para acesso</ng-template>
+
+        <mat-form-field appearance="outline" style="width: 70%;">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Ex. ***" type="email" formControlName="email">
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          <mat-hint>Digite aqui o email para acessar o sistema.</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 29%; margin-left: 1px;">
+          <mat-label>Senha</mat-label>
+          <input matInput placeholder="Ex. ***" type="password" formControlName="senha">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+          <mat-hint>Digite aqui sua senha para acesso.</mat-hint>
+        </mat-form-field>
+
+
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Endereço</ng-template>
+
+        <div style="width: 100%;"></div>
+        <mat-form-field appearance="outline" style="width: 80%;">
+          <mat-label>CEP</mat-label>
+          <input matInput placeholder="Ex. 000.000-000" mask="00.000-000" type="text" formControlName="cep">
+          <mat-hint></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 19%; margin-left: 1px;">
+          <mat-label>número</mat-label>
+          <input matInput placeholder="Ex. 83" type="text" formControlName="numero">
+          <mat-hint></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Rua</mat-label>
+          <input matInput placeholder="Ex. Rua nome..." type="text" formControlName="rua">
+          <mat-hint></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 50%;">
+          <mat-label>Cidade</mat-label>
+          <mat-select (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade
+            style="width: 100%;margin-left: 1px;">
+            <mat-option *ngFor="let item of listaCidadesEntrega" [value]="item">
+              {{item.nome}}
+            </mat-option>
+          </mat-select>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 49%; margin-left: 1px;">
+          <mat-label>Bairro</mat-label>
+          <mat-select #itemCidade style="width: 100%;margin-left: 1px;" #bairro>
+            <mat-option *ngFor="let item of servico.getListaBairros()" [value]="item">
+              {{item.nome}}
+            </mat-option>
+          </mat-select>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Confirmar</ng-template>
+
+        <mat-form-field appearance="outline" style="width: 70%;">
+          <mat-label>Confimar Email</mat-label>
+          <input matInput placeholder="Ex. Informe novamente o email para acesso" type="email" formControlName="emailconfirmar">
+          <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 29%; margin-left: 1px;">
+          <mat-label>Confimar senha</mat-label>
+          <input matInput placeholder="Ex. ***" type="password" formControlName="senhaconfirmar">
+          <mat-icon matSuffix>vpn_key</mat-icon>
+          <mat-hint>Confirme a sua senha para acesso.</mat-hint>
+        </mat-form-field>
+
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Finalizar</ng-template>
+        <button style="width: 100%;" mat-raised-button color="accent" (click)="onclickCadastrar(bairro.value)" disabled="{{btCstatus}}">Cadastrar</button>
+      </mat-step>
+
+
+
+    </mat-horizontal-stepper>
+
+    <div style="text-align: center; margin-top: 32px;">
+      <button mat-flat-button color="primary" routerLink="/login">Entrar com uma conta existente</button>
+    </div>
+  </form>
+
+<mat-card style="background-color: #fbff05; color: black; margin-top: 20px;" *ngIf="formcadastroStatus === true" >
+ <h1> Cadastro realizado com sucesso! </h1>
+ <p>
+  <button mat-raised-button color="primary" routerLink="/login">Entrar</button>
+ </p>
+</mat-card>
+
+</div>
+<!--<div class="allc">
+  <mat-card style="width: 750px; float: left;">
+    <div style="width: 100%; float: left;">
+      <div style="width: 100%;">
+        <span style="font-size: 14px;    color: #38b6ff;">Vulto Empresas</span>
+      </div>
+      <div style="width: 100%;">
+        <span class="tdel">Criar sua Conta do Vulto</span>
+      </div>
+      <form class="example-form" style="width: 100%;margin-top: 20px;">
+
+        <div style="width: 100%;">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Nome empresa</mat-label>
+            <input matInput placeholder="Ex. Nome da Empresa" type="text">
+            <mat-icon matSuffix>home_work</mat-icon>
+          </mat-form-field>
+
+        </div>
+
+        <div style="width: 100%;">
+
+
+          <mat-form-field appearance="outline" style="width: 50%;margin-left: 1px;">
+            <mat-label>Telefone</mat-label>
+            <input matInput placeholder="Ex. (00)00000-0000" mask="(00)00000-0000" type="tel">
+            <mat-icon matSuffix>contact_phone</mat-icon>
+            <mat-hint>Telefone comercial.</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 49%; margin-left: 1px;">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Ex. ***" type="password">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+            <mat-hint>Digite aqui sua senha para acesso.</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div style="width: 100%;">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Ex. ***" type="email">
+            <mat-icon matSuffix>alternate_email</mat-icon>
+            <mat-hint>Digite aqui o email existente para cadastrar.</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Cnpj/Cpf</mat-label>
+            <input matInput placeholder="Ex. 00000000000000" type="tel">
+            <mat-hint>Infome o CNPJ da empresa ou o CPF do resposnável.</mat-hint>
+          </mat-form-field>
+
+        </div>
+
+        <div style="width: 100%; margin-top: 20px;">
+          Endereço
+        </div>
+
+        <div style="width: 100%;">
+          <mat-form-field appearance="outline" style="width: 80%;">
+            <mat-label>CEP</mat-label>
+            <input matInput placeholder="Ex. 000.000-000" mask="00.000-000" type="text">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 19%; margin-left: 1px;">
+            <mat-label>número</mat-label>
+            <input matInput placeholder="Ex. 83" type="text">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+
+        </div>
+
+        <div style="width: 100%;">
+
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Rua</mat-label>
+            <input matInput placeholder="Ex. Rua nome..." type="text">
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+
+        </div>
+
+        <div style="width: 100%;">
+
+
+          <mat-form-field appearance="outline" style="width: 50%;">
+            <mat-label>Cidade</mat-label>
+            <mat-select  (selectionChange)="selectionChangeCidade(itemCidade.value)"
+              #itemCidade style="width: 100%;margin-left: 1px;">
+              <mat-option *ngFor="let item of listaCidadesEntrega" [value]="item">
+                {{item.nome}}
+              </mat-option>
+            </mat-select>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 49%; margin-left: 1px;">
+            <mat-label>Bairro</mat-label>
+            <mat-select
+              #itemCidade style="width: 100%;margin-left: 1px;">
+              <mat-option *ngFor="let item of servico.getListaBairros()" [value]="item">
+                {{item.nome}}
+              </mat-option>
+            </mat-select>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+
+
+
+
+        </div>
+
+
+      </form>
+    </div>
+
+    <div style="float: left; width: 100%;">
+
+      <button mat-flat-button color="primary" style="margin-left: 10px;">Finalizar Cadastro</button>
+      <button mat-flat-button color="linkj" routerLink="/login">Entrar com uma conta existente</button>
+
+    </div>
+  </mat-card>
+</div>
+-->

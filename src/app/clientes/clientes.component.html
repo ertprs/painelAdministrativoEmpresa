@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span>Meus clientes</span>
+  <button mat-raised-button color="link"  style="margin-left: 10px;" (click)="onclickCadastroCliente()">Cadastrar cliente</button>
+</mat-toolbar>
+<div style="padding: 10px;">
+
+  <span *ngFor="let item of servico.getClientesEmpresa()">
+    <div style="text-align: left; font-size: 12px;color: rgb(182, 180, 180);">Cadastro {{item.info}}</div>
+  <mat-list role="list">
+
+    <mat-list-item role="listitem">
+      <mat-list-item role="listitem" style="font-size: 13px;">
+        <div> <span class="delsuc-3"> Nome </span> <br> {{item.nome}} </div>
+      </mat-list-item>
+
+
+      <mat-list-item role="listitem" style="font-size: 13px;">
+        <div> <span class="delsuc-3"> Telefone </span> <br> {{item.telefone}} </div>
+      </mat-list-item>
+
+      <mat-list-item role="listitem" style="font-size: 13px;">
+        <div> <span class="delsuc-3"> Endereço </span> <br> {{item.rua}}, {{item.numero}}, {{item.bairro}} - {{item.cidade}} {{item.uf}} </div>
+      </mat-list-item>
+
+      <mat-list-item role="listitem">
+        <button mat-raised-button color="primary" (click)="onclickCadastrarEntrega(item)">Cadastrar entrega</button>
+        <button mat-raised-button color="link" style="margin-left: 10px;" (click)="onclickEditarCliente(item)">Editar</button>
+        <button mat-raised-button color="link" style="margin-left: 10px;" (click)="onclickRemoverCliente(item)">Remover</button>
+      </mat-list-item>
+    </mat-list-item>
+
+  </mat-list>
+
+  <mat-divider style="margin-top: 12px;"></mat-divider>
+
+  </span>
+
+</div>
