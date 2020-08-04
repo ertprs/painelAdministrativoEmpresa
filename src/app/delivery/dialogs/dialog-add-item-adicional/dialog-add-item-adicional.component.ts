@@ -29,7 +29,7 @@ export class DialogAddItemAdicionalComponent implements OnInit {
     this.form = this.formBuilder.group({
       id_empresa: [this.servapp.getDadosEmpresa().id],
       nome: [''],
-      status: [''],
+      disponivel: [''],
       categoria: [''],
       preco: ['']
     });
@@ -41,7 +41,7 @@ export class DialogAddItemAdicionalComponent implements OnInit {
       id_empresa: [this.servapp.getDadosEmpresa().id],
       id: [this.itensServ.getItemAdicional().id],
       nome: [this.itensServ.getItemAdicional().nome],
-      status: [this.itensServ.getItemAdicional().status],
+      disponivel: [this.itensServ.getItemAdicional().disponivel],
       categoria: [this.itensServ.getItemAdicional().categoria],
       preco: [this.itensServ.getItemAdicional().preco]
     });

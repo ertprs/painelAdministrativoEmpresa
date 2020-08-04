@@ -1,15 +1,13 @@
 <div class="loader" *ngIf="statusLoadConteudo"></div>
 
-<div class="all" *ngIf="servhome.getstatusLoaderpage()">
+<div class="all" *ngIf="!statusLoadConteudo" [formGroup]="form">
     <div class="conteudo2">
 
         <mat-card class="imagem-card">
 
             <img mat-card-image [src]="imagem" class="imagemItem" alt="imagem produto">
             <mat-card-content>
-                <p>
-                    Selecione uma imagem para seu item
-                </p>
+
             </mat-card-content>
             <mat-card-actions>
                 <form id="form1">
@@ -21,13 +19,13 @@
         </mat-card>
 
         <mat-card class="example-card" style="margin-top: 10px; text-align: center;">
-            <button (click)="enviaImagem()" color="warn" mat-button>Cancelar</button>
+            <button (click)="onClickCancelar()" color="warn" mat-button>Cancelar</button>
             <button (click)="onClickAddItem()" mat-flat-button color="primary">Adicionar item</button>
         </mat-card>
 
     </div>
 
-    <div class="conteudo" [formGroup]="form">
+    <div class="conteudo">
 
 
 
@@ -69,8 +67,6 @@
             </mat-accordion>
         </div>
         <!--Tabela-->
-
-
 
 
 
@@ -116,8 +112,11 @@
                     </mat-expansion-panel-header>
 
                     <mat-list>
-                        <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade').controls; let i = index">
-                            <mat-slide-toggle [(ngModel)]="diasLista[i].status" [formControlName]="i"> {{ diasLista[i].nome }} </mat-slide-toggle>
+
+                        <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
+                            <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])" [checked]="diasLista[i].status">
+                                {{ diasLista[i].nome }} :: {{ diasLista[i].status }}
+                            </mat-slide-toggle>
                         </mat-list-item>
                     </mat-list>
 
@@ -129,34 +128,45 @@
 
 
         <!--Tabela-->
-
         <div class="area-form">
             <h2>Adicionais</h2>
-            <span formArrayName="categoriaadicional" *ngFor="let item of form.get('categoriaadicional').controls; let i = index">
+            <span formArrayName="categoriaadicional" *ngFor="let item of form.get('categoriaadicional')['controls']; let i = index">
 
-          <mat-accordion >
-              <mat-expansion-panel style="margin-top: 2px;" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                      <mat-panel-title>
-                          {{ catsEAdcs[i].nome }}
-                      </mat-panel-title>
+        <mat-accordion>
+          <mat-expansion-panel style="margin-top: 2px;" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ catsEAdcs[i].nome }}
+                <span *ngIf="!catsEAdcs[i].disponivel"  class="spanDispo">INDISPONIVEL</span>
+            </mat-panel-title>
 
-                      <mat-panel-description>
+            <mat-panel-description>
 
-                      </mat-panel-description>
-                  </mat-expansion-panel-header>
-
-            <mat-list>
-              <mat-list-item >
-                Obrigatório <mat-slide-toggle style="margin-left: 10px;" [formControlName]="i" [(ngModel)]="catsEAdcs[i].obrigatorio" [checked]="catsEAdcs[i].obrigatorio"> </mat-slide-toggle>
-              </mat-list-item>
-          </mat-list>
-
+            </mat-panel-description>
+            </mat-expansion-panel-header>
 
             <mat-list>
-                <mat-list-item *ngFor="let adicional of catsEAdcs[i].itens; let i = index">
-                    <mat-slide-toggle [formControlName]="i" [(ngModel)]="adicional.status">{{adicional.nome}}</mat-slide-toggle>
+                <mat-list-item>
+                    Obrigatório {{ catsEAdcs[i].obrigatorio }}
+                    <mat-slide-toggle style="margin-left: 10px;" [checked]="catsEAdcs[i].obrigatorio" (change)="onClickObrigatorio($event, catsEAdcs[i])">
+                    </mat-slide-toggle>
                 </mat-list-item>
+            </mat-list>
+
+
+            <mat-list>
+                <span>
+                <mat-list-item *ngFor="let adicional of catsEAdcs[i].itens; let x = index">
+                  <mat-slide-toggle  (change)="onClickAdicional($event, adicional)" [checked]="adicional.status"> {{ adicional.nome }} {{ adicional.status }}</mat-slide-toggle>
+                </mat-list-item>
+              </span>
+                <span>
+                <mat-list-item>
+                    Nenhum adicional desta categoria foi criado
+                </mat-list-item>
+              </span>
+
             </mat-list>
 
 
@@ -170,4 +180,32 @@
 
 
     </div>
+
+    <div class="conteudo3">
+        <!--Tabela-->
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Itens catalogo
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-list>
+                    <mat-list-item formArrayName="categoria" *ngFor="let item of form.get('categoria')['controls']; let i = index">
+                        <mat-slide-toggle (change)="onClickCategoria($event, categoriasCatalogo[i])" [checked]="categoriasCatalogo[i].status">
+                            {{ categoriasCatalogo[i].nome }} -- {{categoriasCatalogo[i].status}}
+                        </mat-slide-toggle>
+                    </mat-list-item>
+                </mat-list>
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+        <!--Tabela-->
+    </div>
+
 </div>

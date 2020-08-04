@@ -14,13 +14,13 @@
                 <div class="" style="width: 100%;">
                     <mat-form-field appearance="outline">
                         <mat-label>Valor mínimo do pedido</mat-label>
-                        <input matInput placeholder="Ex. R$8,00" type="text" formControlName="nome">
+                        <input matInput placeholder="Ex. R$8,00" type="text" formControlName="pedidomin">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" style="margin-left: 10px;">
                         <mat-label>Valor máximo do pedido</mat-label>
-                        <input matInput placeholder="Ex. R$800,00" type="text" formControlName="nome">
+                        <input matInput placeholder="Ex. R$800,00" type="text" formControlName="pedidomax">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
                 </div>
@@ -32,13 +32,13 @@
                 <div class="" style="width: 100%;">
                     <mat-form-field style="width: 400px" appearance="outline">
                         <mat-label>Tags</mat-label>
-                        <input matInput placeholder="Ex. hamburguer, pizza, sopa, suco" type="text" formControlName="nome">
+                        <input matInput placeholder="Ex. hamburguer, pizza, sopa, suco" type="text" formControlName="tags">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" style="margin-left: 10px;">
                         <mat-label>Tipo empresa</mat-label>
-                        <input matInput placeholder="Ex. Hamburgueria, Pizzaria, Açaiteria" type="text" formControlName="nome">
+                        <input matInput placeholder="Ex. Hamburgueria, Pizzaria, Açaiteria" type="text" formControlName="seguimento">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="" style="width: 100%;">
                     <mat-form-field appearance="outline">
                         <mat-label>Estimativa de entrega</mat-label>
-                        <input matInput placeholder="Ex. 45 a 75 minutos" type="text" formControlName="nome">
+                        <input matInput placeholder="Ex. 45 a 75 minutos" type="text" formControlName="tempoentrega">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
                 </div>
@@ -62,7 +62,7 @@
                 <ng-template matStepLabel>Tipo de serviço</ng-template>
 
                 <div style="margin-top: 10px; width: 250px;">
-                    <mat-select (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade style="width: 100%;margin-left: 1px;">
+                    <mat-select #itemCidade style="width: 100%;margin-left: 1px;" formControlName="formasfuncionamento">
                         <mat-option selected value="">
                             Selecione uma opção
                         </mat-option>
@@ -79,85 +79,116 @@
                 </div>
             </mat-step>
 
-            <mat-step>
+            <mat-step formArrayName="metodosPagamento">
                 <ng-template matStepLabel>Metodos de pagamento</ng-template>
 
-                <div style="width: 100%;" *ngFor="let item of metodosPagamento">
-                    <mat-slide-toggle [checked]="item.status">{{item.descricao}}</mat-slide-toggle>
-                    <span *ngFor="let cartao of item.itens">
+                <div style="width: 100%;margin-bottom: 10px;" [formGroupName]="i" [formGroupName]="i" *ngFor="let item of formCadastro.get('metodosPagamento')['controls']; let i = index">
+                    <mat-slide-toggle formControlName="disponivel">
+                        {{ item.value | json }}{{item.value.descricao}} </mat-slide-toggle>
+
+                    <span formArrayName="itens">
+          <span [formGroupName]="a" *ngFor="let cartao of item.controls.itens.controls; let a = index">
             <div class="itensCard">
-              {{cartao.nome}} <mat-slide-toggle [checked]="item.status"></mat-slide-toggle>
+              {{ cartao.value | json }} {{ cartao.value.nome }} <mat-slide-toggle formControlName="disponivel"></mat-slide-toggle>
             </div>
           </span>
+                    </span>
+
 
                 </div>
 
             </mat-step>
 
-            <mat-step>
+            <mat-step formArrayName="hrfun">
                 <ng-template matStepLabel>Dias e horários de funcionamento</ng-template>
 
-                <div style="width: 100%;" *ngFor="let item of getHrfun">
-                    <div class="nomed" style="width: 400px;">
-                        <mat-slide-toggle [checked]="item.status">{{item.nome}}</mat-slide-toggle>
+                <div style="width: 100%;" *ngFor="let item of formCadastro.get('hrfun')['controls']; let i = index">
+                    <div [formGroupName]="i">
+                        <div class="nomed" style="width: 400px;">
+                            <!--{{ item.value | json }}-->
+                            <mat-slide-toggle formControlName="status"> {{ item.value.nome }} </mat-slide-toggle>
+                        </div>
+
+
+                        <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
+                            <mat-label>Abre</mat-label>
+                            <input matInput placeholder="Ex. 18:30" type="text" formControlName="abre" [disabled]="true">
+                            <mat-icon matSuffix>home_work</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field style="margin-left: 5px; width: 150px;" appearance="outline">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput placeholder="Ex. 00:00" type="text" formControlName="fecha">
+                            <mat-icon matSuffix>home_work</mat-icon>
+                        </mat-form-field>
                     </div>
-
-
-                    <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
-                        <mat-label>Abre</mat-label>
-                        <input matInput placeholder="Ex. Nome da Empresa" type="text" formControlName="nome">
-                        <mat-icon matSuffix>home_work</mat-icon>
-                    </mat-form-field>
-
-                    <mat-form-field style="margin-left: 5px; width: 150px;" appearance="outline">
-                        <mat-label>Fecha</mat-label>
-                        <input matInput placeholder="Ex. Nome da Empresa" type="text" formControlName="nome">
-                        <mat-icon matSuffix>home_work</mat-icon>
-                    </mat-form-field>
-
                 </div>
 
 
             </mat-step>
 
-            <mat-step>
+            <mat-step formArrayName="locaisEntrega">
                 <ng-template matStepLabel>Cidades de entrega</ng-template>
-                <span *ngFor="let item of locaisEntrega">
-          <div class="" style="width: 100%;">
-            <mat-slide-toggle [checked]="item.status">{{item.nome}}</mat-slide-toggle>
+
+                <span [formGroupName]="i" *ngFor="let item of formCadastro.get('locaisEntrega')['controls']; let i = index">
+
+          <div class="" style="width: 100%;margin-bottom: 10px;">
+            <mat-slide-toggle formControlName="disponivel"> {{ item.value.nome }} </mat-slide-toggle>
           </div>
 
         </span>
 
             </mat-step>
 
-            <mat-step>
-                <ng-template matStepLabel>Bairros de entrega</ng-template>
+            <mat-step formArrayName="locaisEntrega">
+                <ng-template matStepLabel>Bairros</ng-template>
 
-                <span *ngFor="let item of locaisEntrega">
-                      <div class="s" style="width: 100%;">
-            <span *ngFor="let bairro of item.bairros">
-
-              <div class="" style="width: 100%;">
-                <mat-slide-toggle style="width: 190px;" [checked]="bairro.status">{{bairro.nome}}</mat-slide-toggle>
-                <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
-                  <mat-label>Taxa entrega</mat-label>
-                  <input matInput placeholder="Ex. R$10,00" type="text" formControlName="nome">
-                  <mat-icon matSuffix>home_work</mat-icon>
-              </mat-form-field>
-
-              </div>
-
+                <div style="width: 100%;">
+                    <mat-radio-group>
+                        <!--{{ cidadeSelecionada }}-->
+                        <span *ngFor="let item of dadosEmpresa.locais_entrega">
+              <mat-radio-button style="margin-left: 18px;" [value]="item" (click)="onClickSelecionarCidadeFiltro(item)">
+                {{ item.nome }} </mat-radio-button>
             </span>
+                    </mat-radio-group>
+                </div>
+
+
+                <span [formGroupName]="i" *ngFor="let item of formCadastro.get('locaisEntrega')['controls']; let i = index">
+          <div class="s" style="width: 100%;">
+
+            <span formArrayName="bairros">
+              <span [formGroupName]="b" *ngFor="let bairro of item.controls.bairros.controls; let b = index">
+
+                <div class="" style="width: 100%;" *ngIf="bairro.value.cidade_id === cidadeSelecionada">
+                  <!--{{ bairro.value | json }}-->
+                  <mat-slide-toggle style="width: 190px;" formControlName="disponivel"
+                    matTooltip="{{bairro.value.nome}} - Taxa de entrega {{bairro.value.taxa | currency}}">
+                    {{ bairro.value.nome }}
+                  </mat-slide-toggle>
+                  <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
+                    <mat-label>Taxa entrega</mat-label>
+                    <input matInput placeholder="Ex. R$10,00" type="text" formControlName="taxa">
+                    <mat-icon matSuffix>home_work</mat-icon>
+                  </mat-form-field>
+
+                </div>
+
+              </span>
+                </span>
+
+
 </div>
 </span>
+
+
 </mat-step>
 
 
 
 <mat-step>
     <ng-template matStepLabel>Finalizar</ng-template>
-    <button style="width: 100%;" mat-raised-button color="accent" disabled="{{btCstatus}}">Cadastrar</button>
+    <button style="width: 100%;" mat-raised-button color="accent" disabled="{{btCstatus}}" (click)="onclickCadastrar()">Cadastrar</button>
 </mat-step>
 
 
@@ -168,9 +199,9 @@
 </form>
 
 <mat-card style="background-color: #fbff05; color: black; margin-top: 20px;" *ngIf="formcadastroStatus === true">
-    <h1> Cadastro realizado com sucesso! </h1>
+    <h1> As configurações foram salvas! </h1>
     <p>
-        <button mat-raised-button color="primary" routerLink="/login">Entrar</button>
+        <button mat-raised-button color="primary" routerLink="/painel">Entrar</button>
     </p>
 </mat-card>
 

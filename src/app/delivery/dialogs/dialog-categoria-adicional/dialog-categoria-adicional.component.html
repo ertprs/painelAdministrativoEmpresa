@@ -17,7 +17,7 @@
       </mat-form-field>
   </div>
     <div class="c1">
-        <mat-slide-toggle formControlName="status" [(ngModel)]="status">Disponível</mat-slide-toggle>
+        <mat-slide-toggle formControlName="disponivel" [(ngModel)]="disponivel">Disponível</mat-slide-toggle>
     </div>
   </span>
     <div class="c1">
@@ -34,10 +34,10 @@
 
     <div class="c1" style="text-align: right;">
         <span *ngIf="servDCadc.getTipoacao()">
-        <button [disabled]="btstatus" mat-flat-button color="dark" (click)="onSalvarItem(status, quantidade)">Salvar</button>
+        <button [disabled]="btstatus" mat-flat-button color="dark" (click)="onSalvarItem(disponivel, quantidade)">Salvar</button>
       </span>
         <span *ngIf="!servDCadc.getTipoacao()">
-        <button [disabled]="btstatus" mat-flat-button color="primary" (click)="onClickAdd(status, quantidade)">Adicionar</button>
+        <button [disabled]="btstatus" mat-flat-button color="primary" (click)="onClickAdd(disponivel, quantidade)">Adicionar</button>
       </span>
 
     </div>

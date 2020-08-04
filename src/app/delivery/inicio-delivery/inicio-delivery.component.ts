@@ -1,6 +1,7 @@
+import { map } from 'rxjs/operators';
 import { DeliveryService } from './../delivery.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { Router } from '@angular/router';
@@ -21,25 +22,44 @@ export class InicioDeliveryComponent implements OnInit {
   public getHrfun: any;
   public metodosPagamento: any;
   public locaisEntrega: any;
+  public dadosEmpresa: any;
+  private valorSubmit: any;
+  public cidadeSelecionada: any;
 
   constructor(private crud: CrudServicoService, private formBuilder: FormBuilder, public servico: ServicoService,
               private router: Router, public servdelivery: DeliveryService) { }
 
   ngOnInit(): void {
+
+
+    this.formCadastro = this.formBuilder.group({
+      tags: [''],
+      pedidomin: [''],
+      pedidomax: [''],
+      seguimento: [''],
+      formasfuncionamento: [''],
+      tempoentrega: [''],
+      hrfun: [''],
+      metodosPagamento: [''],
+    });
+
     console.log('#CadastroEmpresaComponent');
     this.consultaCidades();
-    this.iniciaForm();
     this.formcadastroStatus = false; // => false
     this.btCstatus = false;
     this.getHrfun = this.servdelivery.getHrfun();
     this.metodosPagamento = this.servdelivery.getFormaspagamento();
     this.locaisEntrega = this.servdelivery.getLocaisEntrega();
+    this.dadosEmpresa = this.servico.getDadosEmpresa();
+
+    this.getHrfun = this.dadosEmpresa.hrfun;
+
+    this.iniciaForm();
   }
 
   consultaCidades() {
     console.log('#consultaCidades');
     this.crud.get_api('cidades_server').subscribe(data => {
-      console.log(data);
       if (data.lista === null) { } else {
         this.listaCidades = data.lista_cidades;
         this.listaCidadesEntrega = data.lista_cidades_entrega;
@@ -68,42 +88,103 @@ export class InicioDeliveryComponent implements OnInit {
 
   iniciaForm() {
     this.formCadastro = this.formBuilder.group({
-      email: [null, Validators.required],
-      telefone: [null, Validators.required],
-      cep: [null, Validators.required],
-      senha: [null, Validators.required],
-      nome: [null, Validators.required],
-      cnpj: [null, Validators.required],
-      rua: [null, Validators.required],
-      numero: [null, Validators.required],
-      emailconfirmar: [null, Validators.required],
-      senhaconfirmar: [null, Validators.required],
-      bairro: [null, Validators.required],
-      cidade: [null, Validators.required],
-      cidade_id: [null, Validators.required],
+      id: [this.servico.getDadosEmpresa().id],
+      tags: [this.dadosEmpresa.tags, Validators.required],
+      pedidomin: [this.dadosEmpresa.pedidomin, Validators.required],
+      pedidomax: [this.dadosEmpresa.pedidomax, Validators.required],
+      seguimento: [this.dadosEmpresa.seguimento, Validators.required],
+      formasfuncionamento: [this.dadosEmpresa.formasfuncionamento, Validators.required],
+      tempoentrega: [this.dadosEmpresa.tempoentrega, Validators.required],
+      hrfun: this.buildDiasForm(),
+      locaisEntrega: this.buildLocaisEntregaForm(),
+      metodosPagamento: this.buildFp(),
     });
   }
 
-  onclickCadastrar(bairro: any) {
+  buildDiasForm() {
+    const valores = this.dadosEmpresa.hrfun.map((v, i) => this.createItem(v));
+    return this.formBuilder.array(valores);
+  }
+
+  createItem(data: {nome, abre, fecha, status}): FormGroup {
+    return this.formBuilder.group({
+      nome: data.nome,
+      abre: data.abre,
+      fecha: data.fecha,
+      status: data.status
+    });
+  }
+
+  buildLocaisEntregaForm() {
+    const valores = this.dadosEmpresa.locais_entrega.map((v, i) => this.createCidade(v));
+    return this.formBuilder.array(valores);
+  }
+
+  createCidade(data: any): FormGroup {
+    return this.formBuilder.group({
+      id: data.id,
+      nome: data.nome,
+      disponivel: data.disponivel,
+      bairros: this.buildBairro(data.bairros)
+    });
+  }
+
+  buildBairro(data) {
+    const valores = data.map((v, i) => this.createBairro(v));
+    return this.formBuilder.array(valores);
+  }
+
+  createBairro(data: any): FormGroup {
+    return new FormGroup({
+      id: new FormControl(data.id),
+      cidade_id: new FormControl(data.cidade_id),
+      nome: new FormControl(data.nome),
+      disponivel: new FormControl(data.disponivel),
+      taxa: new FormControl(data.taxa),
+    });
+  }
+
+  buildFp() {
+    console.log('config forma de pagamento');
+    console.log(this.dadosEmpresa.formaspagamento);
+    const valores = this.dadosEmpresa.formaspagamento.map((v, i) => this.createItemFp(v));
+    console.log(valores);
+    return this.formBuilder.array(valores);
+  }
+
+  createItemFp(data: any): FormGroup {
+    return new FormGroup({
+      id: new FormControl(data.id),
+      nome: new FormControl(data.nome),
+      descricao: new FormControl(data.descricao),
+      disponivel: new FormControl(data.disponivel),
+      itens: this.buildItemFp(data.itens),
+    });
+  }
+
+  buildItemFp(data) {
+    const valores = data.map((v, i) => this.createFp(v));
+    return this.formBuilder.array(valores);
+  }
+
+  createFp(data: any): FormGroup {
+    return new FormGroup({
+      id: new FormControl(data.id),
+      id_formapagamento: new FormControl(data.id_formapagamento),
+      imagem: new FormControl(data.imagem),
+      nome: new FormControl(data.nome),
+      disponivel: new FormControl(data.disponivel),
+    });
+  }
+
+
+  onclickCadastrar() {
+    console.log('#onclickCadastrar');
+
+
+    console.log(this.formCadastro);
     console.log(this.formCadastro.value);
 
-    try {
-      this.formCadastro.value.cidade = this.cidadeClienteSelecionada.nome;
-      this.formCadastro.value.cidade_id = this.cidadeClienteSelecionada.id;
-    } catch (e) { this.servico.mostrarMensagem('Selecione a cidade de sua empresa'); return; }
-    try {
-      this.formCadastro.value.bairro = bairro.nome;
-    } catch (e) { this.servico.mostrarMensagem('Selecione o bairro de sua empresa'); return; }
-    if (this.formCadastro.value.email !== this.formCadastro.value.emailconfirmar) {
-      this.servico.mostrarMensagem('O email de confirmação não confere com o email inserido em DADOS PARA ACESSO');
-      return;
-    }
-    if (this.formCadastro.value.senha !== this.formCadastro.value.senhaconfirmar) {
-      this.servico.mostrarMensagem('A senha de confirmação não confere com o senha inserida em DADOS PARA ACESSO');
-      return;
-    }
-
-    console.log(this.formCadastro.value);
     this.btCstatus = true;
     const loginres = () => {
       console.log('callback');
@@ -117,7 +198,7 @@ export class InicioDeliveryComponent implements OnInit {
         this.formcadastroStatus = true;
       }
     };
-    console.log( this.crud.post_api('cadastro_empresa', loginres, this.formCadastro.value ) );
+    console.log( this.crud.post_api('salva_config_delivery_empresa', loginres, this.formCadastro.value ) );
   }
 
   cadatroFeito() {
@@ -125,6 +206,10 @@ export class InicioDeliveryComponent implements OnInit {
   }
 
 
+  onClickSelecionarCidadeFiltro(item) {
+    console.log(item);
+    this.cidadeSelecionada = item.id;
+  }
 
 
 }

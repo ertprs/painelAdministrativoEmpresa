@@ -55,7 +55,7 @@ export class ItensService {
   }
 
   attStatusItem(item) {
-    if (item.status) { item.statusatt = false; } else { item.statusatt = true; }
+    if (item.disponivel) { item.disponivelatt = false; } else { item.disponivelatt = true; }
     const callbfun = () => {
       console.log('callback');
       const r = this.servapp.getRespostaApi();

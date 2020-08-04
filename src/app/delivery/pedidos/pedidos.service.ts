@@ -20,18 +20,17 @@ export class PedidosService {
         cidade: '',
         telefone: '',
       },
-      detalhes: {
       historico: [],
+      itens: [],
       tipopedido: '',
       formapagamento: '',
       desconto: '',
       info: '',
       troco: '',
       total: '',
-      itens: [],
       subtotal: '',
       taxaentrega: '',
-    }
+      detalhes: {}
   };
 
   constructor(private crud: CrudServicoService, private servapp: ServicoService) { }

@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItensAdicionaisComponent implements OnInit {
 
-  displayedColumns: string[] = ['opcoes', 'status', 'nome', 'nomecategoria', 'preco', 'info', 'datamodificado', 'remover'];
+  displayedColumns: string[] = ['opcoes', 'disponivel', 'nome', 'nomecategoria', 'preco', 'info', 'datamodificado', 'remover'];
   itensadicionais = [];
   dialogDelsuc: any;
   constructor(private dialog: MatDialog, public itensAdcServ: ItensService) { }
@@ -23,7 +23,7 @@ export class ItensAdicionaisComponent implements OnInit {
       nome: 'Barbecue',
       preco: 4.3,
       info: '10/06/1993 às 10:30',
-      status: true
+      disponivel: true
     }];
 
     setTimeout(() => {

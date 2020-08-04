@@ -72,7 +72,93 @@
 
 
 <span *ngFor="let categoria of servico.getCardapio()">
-  <div class="area-itens">
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ categoria.nome }}
+          <span *ngIf="!categoria.esconder"  class="sptrue">Disponível</span>
+<span *ngIf="categoria.esconder" class="spfalse">Indisponível</span>
+
+<span *ngIf="!categoria.esgotado" class="sptrue">Ativo</span>
+<span *ngIf="categoria.esgotado" class="spfalse">Esgotado</span>
+</mat-panel-title>
+<mat-panel-description>
+    <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+</mat-panel-description>
+</mat-expansion-panel-header>
+
+<div style="width: 100%;">
+    <mat-list role="list">
+        <mat-list-item role="listitem">
+            <div class="cc_">
+                <div style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+                    <button mat-button [matMenuTriggerFor]="menu">
+                  <mat-icon color="primary">settings</mat-icon>
+                </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="dialogEditarCar(categoria)">
+                    <mat-icon>edit</mat-icon> Editar categoria
+                  </button>
+                        <button mat-menu-item (click)="removerCat(categoria)">
+                    <mat-icon>restore_from_trash</mat-icon> Remover categoria
+                  </button>
+                    </mat-menu>
+
+                    <button mat-raised-button color="accent" matTooltip="Adicionar item desta categoria" (click)="dialogAddItem(categoria)">
+                  <mat-icon>add</mat-icon> Adicionar item
+                </button>
+
+                </div>
+                <div style="width: 100%; font-size: 14px;">
+
+                </div>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</div>
+
+
+<span *ngFor="let item of categoria.itens">
+
+
+        <div class="item-cat">
+          <div class="item-imagem" style="background-image: url({{item.imagem}});">
+
+          </div>
+          <div class="area-dados-item">
+            <div class="-item-nome">
+
+
+              <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon color="accent">settings</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="dialogEditarItem(item, categoria)">
+                  <mat-icon>edit</mat-icon> Editar item
+                </button>
+                <button mat-menu-item (click)="onClickConfigurarItem(item, categoria)">
+                  <mat-icon>settings</mat-icon> Configurar item
+                </button>
+                <button mat-menu-item (click)="removerItem(item)">
+                  <mat-icon>restore_from_trash</mat-icon> Remover item
+                </button>
+              </mat-menu>
+              {{item.nome}}
+            </div>
+            <div class="item-descricao">{{item.descricao}}</div>
+            <div class="item-preco">{{item.preco | currency}}</div>
+          </div>
+        </div>
+
+      </span>
+
+</mat-expansion-panel>
+</mat-accordion>
+</span>
+
+<!--<div class="area-itens"  >
     <div class="cc_">
       <div style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
         <button mat-button [matMenuTriggerFor]="menu">
@@ -111,7 +197,7 @@
               <button mat-menu-item  (click)="dialogEditarItem(item, categoria)">
                 <mat-icon>edit</mat-icon> Editar item
               </button>
-              <button mat-menu-item  (click)="onClickConfigurarItem(item)">
+              <button mat-menu-item  (click)="onClickConfigurarItem(item, categoria)">
                 <mat-icon>settings</mat-icon> Configurar item
               </button>
               <button mat-menu-item (click)="removerItem(item)">
@@ -127,7 +213,6 @@
     </span>
 
 
-</div>
-<div style="height: 1px;  width: 100%; background-color: rgb(209, 222, 223);"></div>
+</div>-->
 
-</span>
+<div style="height: 1px;  width: 100%; background-color: rgb(209, 222, 223);"></div>

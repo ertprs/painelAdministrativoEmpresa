@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
@@ -20,77 +21,125 @@ export class EditarItemCompletoComponent implements OnInit {
   panelOpenState: boolean;
   imagem: any;
   item = { imagem: '', disponibilidade: [], categoriaadicional: [] };
-  @ViewChild('diasitem') diasitem: any;
   diaselecionado: any;
   diasItem: any;
-  diasLista: [];
-  catsEAdcs: [];
+  diasLista: Array<any>;
+  catsEAdcs : any;
+  categoriasCatalogo: Array<any>;
+
   arquivo: any;
-  statusLoadConteudo = false;
+  itemRequest: any;
+  statusLoadConteudo = true;
+
   constructor(private formBuilder: FormBuilder, public servhome: HomeService, private servapp: ServicoService,
-              private crud: CrudServicoService, private http: HttpClient) {
-
-    this.diasLista = this.servhome.getItemModel().disponibilidade;
-    this.catsEAdcs = this.servhome.getItemModel().categoriaadicional;
-
-
-  }
+              private crud: CrudServicoService, private http: HttpClient, private route: Router) { }
 
 
 
   ngOnInit(): void {
 
     this.imagem = this.servapp.getDadosEmpresa().imagem;
-    console.log(this.servhome.getItem());
 
-    this.form = this.formBuilder.group({
-      id: [''],
-      nome: [''],
-      descricao: [''],
-      esconder: [false],
-      esgotado: [false],
-      preco: [''],
-      id_empresa: [this.servapp.getDadosEmpresa().id],
-      id_categoria: [this.servhome.getCategoria().id],
-      categoria_nome: [''],
-      imagem: [''],
-      disponibilidade: this.buildDiasDisponiveis(),
-      categoriaadicional: this.buildCategoriasEAdicionais(),
-      status_promocao: [''],
-      desconto: [''],
-    });
-    /*
-        if (this.servhome.getTipoAcao()) {
-          // editar item
+
+    if (this.servhome.getTipoAcao()) {
+      // editar item
+      console.log(' ~~~~~~~~ EDITAR ITEM ~~~~~~~~');
+
+
+      this.crud.get_api('consulta_item_cardapio&id_empresa=' +
+      this.servapp.getDadosEmpresa().id +
+      '&id_item=' + this.servhome.getItem().id).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.itemRequest = data.item;
+          this.imagem = data.item.imagem;
+          this.diasLista = data.item.disponibilidade;
+          this.catsEAdcs = data.item.categoriaadicional;
+          this.categoriasCatalogo = data.item.categoria;
+
+
           this.form = this.formBuilder.group({
             id: [this.servhome.getItem().id],
             idcategoria: [''],
-            nome: [this.servhome.getItem().nome],
-            descricao: [this.servhome.getItem().descricao],
-            preco: [this.servhome.getItem().preco],
-            status_promocao: [this.servhome.getItem().status_promocao],
-            desconto: [this.servhome.getItem().desconto],
-            disponibilidade: [''],
+            nome: [this.itemRequest.nome],
+            descricao: [this.itemRequest.descricao],
+            esconder: [this.itemRequest.esconder],
+            esgotado: [this.itemRequest.esgotado],
+            preco: [this.itemRequest.preco],
+            id_empresa: [this.servapp.getDadosEmpresa().id],
+            id_categoria: [this.servhome.getCategoria().id],
+            categoria_nome: [''],
+            imagem: [this.imagem],
+            disponibilidade: this.buildDiasDisponiveis(),
+            categoriaadicional: this.buildCategoriasEAdicionais(),
+            status_promocao: [this.itemRequest.status_promocao],
+            desconto: [this.itemRequest.desconto],
+            categoria: this.buildCategoriasCardapio(),
+
           });
 
-        } else {
-          // novo item
+          this.statusLoadConteudo = false;
 
-          //
-         }
-         */
+
+        },
+        error => {
+          alert(error);
+        }
+      );
+
+
+
+
+    } else {
+      // novo item
+      console.log(' ~~~~~~~~ NOVO ITEM ~~~~~~~~');
+
+      this.diasLista = this.servhome.getItemModel().disponibilidade;
+      this.catsEAdcs = this.servhome.getItemModel().categoriaadicional;
+      this.categoriasCatalogo = this.servhome.getItemModel().categoria;
+
+
+      this.form = this.formBuilder.group({
+        id: [''],
+        nome: [''],
+        descricao: [''],
+        esconder: [false],
+        esgotado: [false],
+        preco: [''],
+        id_empresa: [this.servapp.getDadosEmpresa().id],
+        id_categoria: [this.servhome.getCategoria().id],
+        categoria_nome: [''],
+        imagem: [''],
+        disponibilidade: this.buildDiasDisponiveis(),
+        categoriaadicional: this.buildCategoriasEAdicionais(),
+        status_promocao: [''],
+        desconto: [''],
+        categoria: this.buildCategoriasCardapio()
+      });
+      //
+      setTimeout(() => {
+        this.statusLoadConteudo = false;
+      }, 600);
+
+    }
+
   }
 
   onClickAddItem() {
     this.valorSubmit = Object.assign({}, this.form.value);
     this.valorSubmit = Object.assign(this.valorSubmit, {
       disponibilidade: this.valorSubmit.disponibilidade
-        .map((v, i) => v ? this.diasLista[i] : null)
+        .map((v, i) => v ? this.diasLista[i] : this.diasLista[i])
     });
 
     this.valorSubmit = Object.assign(this.valorSubmit, {
       categoriaadicional: this.valorSubmit.categoriaadicional
         .map((v, i) => v ? this.catsEAdcs[i] : this.catsEAdcs[i])
+    });
+
+    this.valorSubmit = Object.assign(this.valorSubmit, {
+      categoria: this.valorSubmit.categoria
+        .map((v, i) => v ? this.categoriasCatalogo[i] : this.categoriasCatalogo[i])
     });
 
     console.log(this.valorSubmit);
@@ -147,21 +196,40 @@ export class EditarItemCompletoComponent implements OnInit {
       } else {
         this.servapp.mostrarMensagem(r.mensagem);
         this.statusLoadConteudo = false;
+        this.route.navigate(['cardapio']);
       }
     };
 
-    this.crud.post_api('add_item_cardapio', loginres, this.valorSubmit);
+    if (this.servhome.getTipoAcao()) {
+      /*Edita item*/
+      this.crud.post_api('att_item_cardapio', loginres, this.valorSubmit);
+    } else {
+      /*Add novo item*/
+      this.crud.post_api('add_item_cardapio', loginres, this.valorSubmit);
+     }
+
 
   }
 
-  buildDiasDisponiveis() {
-    const valores = this.diasLista.map((v) => new FormControl(false));
+  buildDiasDisponiveis(): any {
+    try {
+      const valores = this.diasLista.map((v) => new FormControl(v.status)  );
+      return this.formBuilder.array(valores);
+    } catch (e) {
+      this.diasLista = this.servhome.getItemModel().disponibilidade;
+      const valores = this.diasLista.map((v) => new FormControl(v.status)  );
+      return this.formBuilder.array(valores);
+     }
+  }
+
+
+  buildCategoriasEAdicionais(): any {
+    const valores = this.catsEAdcs.map((v) => new FormControl(v.status));
     return this.formBuilder.array(valores);
   }
 
-
-  buildCategoriasEAdicionais() {
-    const valores = this.catsEAdcs.map((v) => new FormControl(false));
+  buildCategoriasCardapio(): any {
+    const valores = this.categoriasCatalogo.map((v) => new FormControl(v.status));
     return this.formBuilder.array(valores);
   }
 
@@ -178,6 +246,30 @@ export class EditarItemCompletoComponent implements OnInit {
 
   onClickImagemSelecionar() {
     document.getElementById('imgInp').click();
+  }
+
+  onClickObrigatorio(event, item) {
+    item.obrigatorio = event.checked;
+    console.log(item);
+  }
+
+  onClickAdicional(event, item) {
+    item.status = event.checked;
+    console.log(item);
+  }
+
+  onClickDiaDisponivel(event, item) {
+    item.status = event.checked;
+    console.log(item);
+  }
+
+  onClickCategoria(event, item) {
+    item.status = event.checked;
+    console.log(item);
+  }
+
+  onClickCancelar() {
+    this.route.navigate(['painel']);
   }
 
 }

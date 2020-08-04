@@ -26,7 +26,7 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
 
   formCadastro: FormGroup;
   btstatus: boolean;
-  status: boolean;
+  disponivel: boolean;
 
   constructor(private formBuilder: FormBuilder, private servapp: ServicoService, private crud: CrudServicoService,
               public servDCadc: DialogCadastroCategoriaAdcService, private servcatadc: CategoriaAdicionalService) { }
@@ -35,8 +35,8 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
     this.iniciaForm();
   }
 
-  onClickAdd(status: any, quantidade: any) {
-    this.formCadastro.value.status = status;
+  onClickAdd(disponivel: any, quantidade: any) {
+    this.formCadastro.value.disponivel = disponivel;
     this.formCadastro.value.maxsele = quantidade;
     console.log(this.formCadastro.value);
 
@@ -56,8 +56,8 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
     console.log( this.crud.post_api('cadastro_categoria_adicional', callbfun, this.formCadastro.value ) );
   }
 
-  onSalvarItem(status: any, quantidade: any) {
-    this.formCadastro.value.status = status;
+  onSalvarItem(disponivel: any, quantidade: any) {
+    this.formCadastro.value.disponivel = disponivel;
     this.formCadastro.value.maxsele = quantidade;
     console.log(this.formCadastro.value);
 
@@ -81,23 +81,23 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
     // se true == editar
     if (this.servDCadc.getTipoacao()) {
       this.quantidade = this.servDCadc.getCategoriaAdicional().maxsele;
-      this.status = this.servDCadc.getCategoriaAdicional().status;
+      this.disponivel = this.servDCadc.getCategoriaAdicional().disponivel;
       this.formCadastro = this.formBuilder.group({
         id_empresa: [this.servapp.getDadosEmpresa().id],
         id_categoria: [this.servDCadc.getCategoriaAdicional().id],
         nome: [this.servDCadc.getCategoriaAdicional().nome, Validators.required],
         descricao: [this.servDCadc.getCategoriaAdicional().descricao],
-        status: [this.servDCadc.getCategoriaAdicional().status],
+        disponivel: [this.servDCadc.getCategoriaAdicional().disponivel],
         maxsele: [this.servDCadc.getCategoriaAdicional().maxsele],
       });
       return;
     }
-    this.status = false;
+    this.disponivel = false;
     this.formCadastro = this.formBuilder.group({
       id_empresa: [this.servapp.getDadosEmpresa().id],
       nome: [null, Validators.required],
       descricao: [''],
-      status: [null],
+      disponivel: [null],
       maxsele: [null],
     });
   }

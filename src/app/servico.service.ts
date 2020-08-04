@@ -13,7 +13,7 @@ export class ServicoService {
   private dadosEntregador = false;
   private dadosCliente = false;
   // private urlapi = 'https://www.vulto.site/api';
-  private urlapi = 'http://192.168.0.108/sistema.vulto/api';
+  private urlapi = 'http://localhost/sistema.vulto/api';
   private dir = '?acao=';
   private statusLogado = false;
   private dadosLogin: any;

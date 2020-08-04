@@ -3,16 +3,24 @@
 }
 
 .conteudo2 {
-    width: 25%;
+    width: 20%;
     float: left;
     margin-left: 5px;
 }
 
 .conteudo {
-    width: 50%;
+    width: 40%;
     margin: auto;
     float: left;
     margin-left: 25px;
+}
+
+.conteudo3 {
+    width: 35%;
+    margin: auto;
+    float: left;
+    margin-left: 25px;
+    float: left;
 }
 
 .guin {
@@ -46,4 +54,12 @@
     background: #00010299;
     position: absolute;
     z-index: 1;
+}
+
+.spanDispo {
+    background-color: rgb(249 4 4);
+    padding: 3px;
+    border-radius: 7px;
+    color: white;
+    font-size: 12px;
 }

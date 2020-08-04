@@ -17,20 +17,20 @@
         <mat-step>
             <ng-template matStepLabel>Tipo de serviço</ng-template>
             <mat-card style="background-color: yellow;">
-                {{servpedidos.getPedido().detalhes.tipopedido}}
+                {{servpedidos.getPedido().tipopedido}}
             </mat-card>
         </mat-step>
 
         <mat-step>
             <ng-template matStepLabel>Metodo de pagamento</ng-template>
-            <div class="">{{servpedidos.getPedido().detalhes.formapagamento}}</div>
+            <div class="">{{servpedidos.getPedido().formapagamento}}</div>
         </mat-step>
 
         <mat-step>
             <ng-template matStepLabel>Detalhes do pedido</ng-template>
 
             <div class="" style="width: 100%;">
-                <table mat-table [dataSource]="servpedidos.getPedido().detalhes.itens">
+                <table mat-table [dataSource]="servpedidos.getPedido().itens">
 
 
                     <ng-container matColumnDef="quantidade">
@@ -87,17 +87,17 @@
                 <div class="ccde">
                     <div class="ccde1">
                         <div class="ccde11">Subtotal</div>
-                        <div>{{servpedidos.getPedido().detalhes.subtotal | currency}}</div>
+                        <div>{{servpedidos.getPedido().subtotal | currency}}</div>
                     </div>
 
                     <div class="ccde1">
                         <div class="ccde11">Taxa de entrega</div>
-                        <div>{{servpedidos.getPedido().detalhes.taxaentrega | currency}}</div>
+                        <div>{{servpedidos.getPedido().taxaentrega | currency}}</div>
                     </div>
 
                     <div class="ccde1 gff">
                         <div class="ccde11">Total</div>
-                        <div>{{servpedidos.getPedido().detalhes.total | currency}}</div>
+                        <div>{{servpedidos.getPedido().total | currency}}</div>
                     </div>
 
                 </div>
@@ -109,7 +109,7 @@
             <ng-template matStepLabel>Histórico do pedido</ng-template>
 
             <div class="" style="width: 100%;">
-                <table mat-table [dataSource]="servpedidos.getPedido().detalhes.historico">
+                <table mat-table [dataSource]="servpedidos.getPedido().historico">
 
                     <ng-container matColumnDef="status">
                         <th mat-header-cell *matHeaderCellDef> Status. </th>

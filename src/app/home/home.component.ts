@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   categorias: any;
   dialogDelsuc: any;
   public formCategoria: any;
+  itemRequest: any;
 
   constructor(public dialog: MatDialog, private formBuilder: FormBuilder, public servico: HomeService,
               private crud: CrudServicoService, public servicoapp: ServicoService, private route: Router) { }
@@ -30,6 +31,13 @@ export class HomeComponent implements OnInit {
     this.consultaCardapio();
     this.servico.consultaModelItem();
   }
+
+  setItemRequest(item) {
+      this.itemRequest = item;
+  }
+  getItemRequest() {
+    return this.itemRequest;
+}
 
   dialogAddCat() {
     this.dialogDelsuc = this.dialog.open(DialogAddCatComponent, {
@@ -116,9 +124,10 @@ export class HomeComponent implements OnInit {
     this.crud.post_api('cardapio&acmenu=removerItem', accallback, item);
   }
 
-  onClickConfigurarItem(item) {
+  onClickConfigurarItem(item, categoria) {
     this.servico.setItem(item);
     this.servico.setTipoAcao(true);
+    this.servico.setCategoria(categoria);
     this.route.navigate(['configitem']);
   }
 
