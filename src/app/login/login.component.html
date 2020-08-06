@@ -1,32 +1,39 @@
-<mat-grid-list cols="1" rowHeight="100%">
+<div class="conteudo">
 
-  <mat-grid-tile>
-
-
-
-    <form class="example-form" [formGroup]="formLogin">
-      <h1>Painel Vulto Empresas</h1>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Entre com seu email</mat-label>
-        <input matInput placeholder="Ex. @email" type="email" formControlName="email">
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Senha</mat-label>
-        <input matInput placeholder="****" type="password" formControlName="senha">
-      </mat-form-field>
-
-      <section>
-
-        <div class="example-button-row" style="text-align: center;">
-          <button mat-raised-button color="primary" (click)="oncllickEntrar()" disabled="{{btloginstatus}}">Entrar</button>
-          <button mat-raised-button color="warn" style="margin-left: 10px;" routerLink="/cadastro">Novo Cadastro</button>
+    <div class="aform" defa [formGroup]="formLogin">
+        <div class="aform2">
+            <img class="imglogo" [defaultImage]="'assets/vultopreto.png'" [lazyLoad]="'assets/vultoroxonome.png'" offset="10000">
+            <div style="margin-top: 20px;">
+                Conectar a sua conta do Vulto
+            </div>
+            <div>
+                Ainda não tem um cadastro? <a href="javascript:;" routerLink="/cadastro"> Cadastre-se </a>
+            </div>
         </div>
-      </section>
+
+        <div class="aform1">
+            <mat-form-field color="primary" appearance="outline" class="example-full-width">
+                <mat-label color="primary">Entre com seu email</mat-label>
+                <input matInput placeholder="Ex. @email" type="email" formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field color="accent" appearance="outline" class="example-full-width">
+                <mat-label>Senha</mat-label>
+                <input matInput placeholder="****" type="password" formControlName="senha">
+            </mat-form-field>
+
+            <section>
+
+                <div class="example-button-row" style="text-align: center;">
+                    <button class="bt1" mat-raised-button color="primary" (click)="oncllickEntrar()" disabled="{{btloginstatus}}">Entrar</button>
+                    <button class="bt2" mat-stroked-button color="primary" style="margin-left: 10px;" routerLink="/cadastro">Novo
+            Cadastro</button>
+                </div>
+            </section>
+
+        </div>
 
 
-    </form>
+    </div>
 
-  </mat-grid-tile>
-</mat-grid-list>
+</div>

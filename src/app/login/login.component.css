@@ -1,16 +1,87 @@
 .example-form {
-  width: 350px;
-  height: 150px;
-  text-align: center;
-  margin-top: -80px;
+    width: 350px;
+    text-align: center;
 }
-.example-form h1 {
-  margin-bottom: 30px;
-}
+
 .example-full-width {
-  width: 100%;
+    width: 100%;
 }
 
 mat-grid-tile {
-  color: rgb(24, 23, 23);
+    color: rgb(24, 23, 23);
+}
+
+.conteudo {
+    background: #0c0c0c;
+    height: 41.3rem;
+    padding-top: 5rem;
+}
+
+.aform {
+    text-align: -webkit-center;
+    background: #1a1a1b;
+    width: 420px;
+    margin: auto;
+    color: #bdbcbc;
+}
+
+.bt1 {
+    width: 100%;
+}
+
+.bt2 {
+    margin-top: 20px;
+}
+
+.imglogo {
+    width: 70px;
+    border-radius: 48px;
+}
+
+.aform1 {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    margin-top: 30px;
+}
+
+.aform2 {
+    padding: 20px;
+}
+
+a {
+    color: #0289ff;
+}
+
+mat-form-field.mat-form-field {
+    font-size: 16px;
+    color: #bdbcbc;
+}
+
+mat-label {
+    color: #bdbcbc;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgb(97, 97, 97)!important;
+}
+
+::placeholder {
+    color: rgb(66, 66, 66);
+    opacity: 1;
+    /* Firefox */
+}
+
+
+/* Cor de fundo do autocomplete */
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #1a1a1b inset;
+}
+
+
+/* Cor do texto do autocomplete */
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #0289ff !important;
 }

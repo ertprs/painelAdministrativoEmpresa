@@ -1,3 +1,4 @@
+import { PedidosService } from './../delivery/pedidos/pedidos.service';
 import { ChatservicoService } from './../chat/chatservico.service';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -20,7 +21,8 @@ export class MainNavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, public servico: ServicoService, public servicoChat: ChatservicoService) {}
+  constructor(private breakpointObserver: BreakpointObserver, public servico: ServicoService, public servicoChat: ChatservicoService,
+              public servpedidos: PedidosService) {}
 
 
 }

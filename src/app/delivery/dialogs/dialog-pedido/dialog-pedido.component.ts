@@ -1,5 +1,7 @@
 import { PedidosService } from './../../pedidos/pedidos.service';
 import { Component, OnInit } from '@angular/core';
+import { CrudServicoService } from 'src/app/crud-servico.service';
+import { ServicoService } from 'src/app/servico.service';
 
 @Component({
   selector: 'app-dialog-pedido',
@@ -12,29 +14,32 @@ export class DialogPedidoComponent implements OnInit {
   detalhespedido: string[] = ['quantidade', 'item', 'observacao', 'adicionais', 'desconto', 'preco', 'total'];
   historico: any;
   produtosPedido: any;
+  btCstatus = false;
 
-  constructor(public servpedidos: PedidosService) { }
+  constructor(public servpedidos: PedidosService, private servapp: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
 
-    // this.historico = this.servpedidos.getPedido();
-/*
-    this.produtosPedido = [{
-    id: '1',
-    nome: 'Artesanal Frango',
-    preco: 100.0,
-    total: '200',
-    desconto: '0',
-    qnt: 2,
-    observacao: 'Sem cebola, com muito molho de tomate',
-    adicionais: [
-      {qnt: '1', nome: 'Bacon', preco: '7'},
-      {qnt: '1', nome: 'Sem Sal', preco: '7'},
-      {qnt: '1', nome: 'Fanta', preco: '7'},
-    ]
-}];
-*/
 
+  }
+
+
+  onClickAttStatusPedido(statusPedido) {
+    this.btCstatus = true;
+    const loginres = () => {
+      console.log('callback');
+      const r = this.servapp.getRespostaApi();
+      console.log(r);
+      if (r.erro === true) {
+        this.servapp.mostrarMensagem(r.mensagem);
+        this.btCstatus = false;
+      } else {
+        this.servapp.mostrarMensagem(r.mensagem);
+        this.servpedidos.consultaPedidos();
+      }
+    };
+    const data = { id_pedido: this.servpedidos.getPedido().id, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido};
+    console.log( this.crud.post_api('att_status_pedido', loginres, data ) );
   }
 
 

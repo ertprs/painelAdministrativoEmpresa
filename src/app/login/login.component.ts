@@ -1,7 +1,7 @@
 import { ChatservicoService } from './../chat/chatservico.service';
 import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from '../crud-servico.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ServicoService } from '../servico.service';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
@@ -15,6 +15,7 @@ import { Socket } from 'ngx-socket-io';
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   btloginstatus: any;
+  logo = 'assets/vultoroxonome.png';
 
   constructor(private crud: CrudServicoService,
               private formBuilder: FormBuilder,
@@ -27,12 +28,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.btloginstatus = false;
-    this.formLogin = this.formBuilder.group({ email: [null], senha: [null] });
     console.log('Aguarda canal chat');
     this.socket.on('tokensessao', data => {
       console.log('CANALL!!');
       console.log(data);
       this.servicoChat.setCanalChat(data);
+    });
+
+    this.formLogin = this.formBuilder.group({
+      email: [null, Validators.required],
+      senha: [null, Validators.required],
     });
 
   }

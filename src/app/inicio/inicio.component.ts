@@ -5,6 +5,7 @@ import { DialogEntregadorComponent } from '../dialog-entregador/dialog-entregado
 import { MatDialog } from '@angular/material/dialog';
 import { InicioService } from './inicio.service';
 import { ConfigServicoService } from '../config/config-servico.service';
+import { PedidosService } from '../delivery/pedidos/pedidos.service';
 
 declare var google: any;
 export interface Tile {
@@ -35,7 +36,7 @@ export class InicioComponent implements OnInit {
 
   breakpoint: number;
   constructor(public servico: ServicoService, public dialog: MatDialog, private servInicio: InicioService,
-              public config: ConfigServicoService, private crud: CrudServicoService) { }
+              public config: ConfigServicoService, private crud: CrudServicoService, private servpedidos: PedidosService) { }
 
   ngOnInit(): void {
 
@@ -52,7 +53,14 @@ export class InicioComponent implements OnInit {
     if (this.config.getStatusAutPede() === false) {
       this.autoAutenticarPedeai();
     }
+
   }
+
+  getStatusDelivery() {
+    return this.servico.getStatusDelivery();
+  }
+
+
 
   onMapReady(map: any) {
     console.log(map);

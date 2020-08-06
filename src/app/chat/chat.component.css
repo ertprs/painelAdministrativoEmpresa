@@ -1,0 +1,169 @@
+.alertooff {
+    position: absolute;
+    margin-left: 1%;
+    background-color: #ff0018;
+    padding: 10px;
+    border-radius: 9px;
+    margin-top: -3.3%;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    padding-bottom: 0px;
+    padding-top: 6px;
+}
+
+.temaBackgroundChat {
+    background-color: #f1eee6;
+}
+
+.col1 {
+    float: left;
+    height: 100%;
+    background-color: #eee;
+    width: 29.8%;
+    border: 1px solid #b9b9b9;
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+}
+
+.col2 {
+    float: left;
+    height: 100%;
+    background-color: #50505005;
+    width: 70%;
+}
+
+.itemUsuario {
+    background-color: #fffefe;
+    width: 100%;
+    display: flex;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    color: #9c9c9c;
+    margin-bottom: 1px;
+}
+
+.iadados {
+    padding-left: 10px;
+    width: 69%;
+}
+
+.iaimg {
+    padding-left: 10px;
+}
+
+.finome {
+    color: black;
+}
+
+.st {
+    width: 95%;
+    height: 40px;
+    border: none;
+    border-radius: 40px;
+    padding-left: 10px;
+    margin-top: 10px;
+    outline: 0;
+}
+
+.areamsgs {
+    height: 89%;
+}
+
+.areaop {
+    text-align: center;
+    height: 11%;
+    width: 100%;
+}
+
+.dadosmsgs {
+    width: 97.3%;
+    height: 39px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border: 1px solid #c7c7c7;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.dadosmsgs2 {
+    width: 98.8%;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border: 1px solid #c7c7c7;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.c {
+    float: left;
+}
+
+.cc {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.msgserver {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+.msgserver1 {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    float: left;
+    border-top-left-radius: 0px;
+    margin-left: 10px;
+    padding-bottom: 0px;
+    box-shadow: 2px 2px 10px rgba(51, 51, 51, 0.5);
+}
+
+.msgcliente {
+    width: 100%;
+    float: right;
+    margin-top: 10px;
+}
+
+.msgcliente1 {
+    background-color: #9aff93;
+    border-radius: 20px;
+    padding: 10px;
+    float: right;
+    border-top-right-radius: 0px;
+    margin-right: 10px;
+    padding-bottom: 0px;
+    box-shadow: -2px 2px 10px rgba(51, 51, 51, 0.5);
+}
+
+.caixamsgs {
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 88%;
+    overflow: auto;
+    padding-bottom: 7px;
+}
+
+.infoserver {
+    text-align: right;
+    font-size: 11px;
+    color: #a5a19d;
+    margin-left: 44px;
+    margin-top: -5px;
+}
+
+.arealistaUsuariosChat {
+    height: 90.1%;
+    overflow: auto;
+    float: left;
+    width: 100%;
+}

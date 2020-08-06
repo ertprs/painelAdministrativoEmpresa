@@ -1,3 +1,4 @@
+import { PedidosService } from './../delivery/pedidos/pedidos.service';
 import { Injectable } from '@angular/core';
 declare var google: any;
 

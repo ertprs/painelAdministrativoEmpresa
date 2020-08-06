@@ -7,10 +7,10 @@
             <div class="c2">
                 <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}</div>
                 <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone}}</div>
-                <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().dadoscliente.rua}}, {{servpedidos.getPedido().dadoscliente.numero}}, {{servpedidos.getPedido().dadoscliente.bairro}} - {{servpedidos.getPedido().dadoscliente.cidade}}
+                <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}}, {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
                 </div>
-                <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().dadoscliente.complementno}}</div>
-                <div class="c22"><span class="ddc">Tipo residência:</span> {{servpedidos.getPedido().dadoscliente.tiporesidencia}}</div>
+                <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().endereco.complemento}}</div>
+                <div class="c22"><span class="ddc">Tipo residência:</span> {{servpedidos.getPedido().endereco.tiporesidencia}}</div>
             </div>
         </mat-step>
 
@@ -136,12 +136,14 @@
 
             <mat-chip-list aria-label="Fish selection">
 
-                <mat-chip style="background-color: rgb(92, 177, 6); color: white;" color="accent" matTooltip="Entregas que ainda não foram aceitas por motoboys">Aceitar</mat-chip>
-                <mat-chip style="background-color:  rgb(168, 14, 40);color: white;" color="accent" matTooltip="Entregas enviadas diretamente aos motoboys de sua lista">Rejeitar</mat-chip>
-                <mat-chip color="accent">A caminho</mat-chip>
-                <mat-chip color="accent">Cancelar</mat-chip>
-                <mat-chip color="accent">Entregue</mat-chip>
-                <mat-chip color="accent">Concluída</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(1)" style="background-color: rgb(92, 177, 6); color: white;" color="accent">Aceitar</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(10)" style="background-color:  rgb(168, 14, 40);color: white;" color="accent" matTooltip="Obs! Se rejeita este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">Rejeitar</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1" (click)="onClickAttStatusPedido(2)" color="accent">Pronto para sair</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1" (click)="onClickAttStatusPedido(3)" color="accent">Pronto para retirada</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 || servpedidos.getPedido().status_pedido == 3" (click)="onClickAttStatusPedido(4)" color="accent">A caminho</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 4" (click)="onClickAttStatusPedido(5)" color="accent">Entregue</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido != 0 && servpedidos.getPedido().status_pedido < 4" (click)="onClickAttStatusPedido(7)" color="accent">Cancelar</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 5 || servpedidos.getPedido().status_pedido == 7" (click)="onClickAttStatusPedido(6)" color="accent">Concluído</mat-chip>
             </mat-chip-list>
 
 

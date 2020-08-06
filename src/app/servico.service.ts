@@ -39,6 +39,7 @@ export class ServicoService {
   private entregaPedeAi: any;
   private statusentPedeai = false;
   private cardapioDigtal = '0';
+  private statusDelivery = false;
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servicoChat: ChatservicoService, private socket: Socket) { }
@@ -75,11 +76,12 @@ export class ServicoService {
     this.cardapioDigtal = this.dadosEmpresa.cardapio_digital;
     // this.listaBairros = dados;
     if (this.statusLogado === false) {
-      document.getElementById('btnav').click();
+      //document.getElementById('btnav').click();
     }
     this.statusLogado = true;
     this.config.iniciarConfig();
     this.servicoChat.adicionaEmpresaChat(this.dadosEmpresa.nome, this.dadosEmpresa.id);
+    this.setStatusDelivery(this.dadosEmpresa.status_delivery);
 
     this.socket.on('coordenadas', data => {
      // console.error(data);
@@ -122,6 +124,7 @@ export class ServicoService {
   }
 
   setListaNotificacoes(lista) {
+    if (!lista) { return; }
     // tslint:disable-next-line: prefer-for-of
     for (let a = 0; a < lista.length; a++) {
       if (lista[a].notificar === true) {
@@ -280,6 +283,14 @@ export class ServicoService {
 
   getStatusCardapioDigital() {
     return this.cardapioDigtal;
+  }
+
+  getStatusDelivery() {
+    return this.statusDelivery;
+  }
+
+  setStatusDelivery(status) {
+    this.statusDelivery = status;
   }
 
 

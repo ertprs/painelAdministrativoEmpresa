@@ -1,3 +1,4 @@
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -82,7 +83,9 @@ import { ItensAdicionaisComponent } from './delivery/itens-adicionais/itens-adic
 import { DialogCategoriaAdicionalComponent } from './delivery/dialogs/dialog-categoria-adicional/dialog-categoria-adicional.component';
 import { DialogAddItemAdicionalComponent } from './delivery/dialogs/dialog-add-item-adicional/dialog-add-item-adicional.component';
 import { EditarItemCompletoComponent } from './home/editar-item-completo/editar-item-completo.component';
-
+import { TodosPedidosComponent } from './delivery/pedidos/todos-pedidos/todos-pedidos.component';
+import { PainelPedidosComponent } from './delivery/pedidos/painel-pedidos/painel-pedidos.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 const config: SocketIoConfig = { url: 'https://guinho-site.umbler.net', options: {} };
 // const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -128,9 +131,13 @@ const config: SocketIoConfig = { url: 'https://guinho-site.umbler.net', options:
     DialogCategoriaAdicionalComponent,
     DialogAddItemAdicionalComponent,
     EditarItemCompletoComponent,
+    TodosPedidosComponent,
+    PainelPedidosComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
+    LazyLoadImageModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
@@ -172,7 +179,8 @@ const config: SocketIoConfig = { url: 'https://guinho-site.umbler.net', options:
     MatSlideToggleModule,
     MatRadioModule,
     SocketIoModule.forRoot(config),
-    MatTableModule
+    MatTableModule,
+
   ],
   entryComponents: [
     DialoDelsucgComponent

@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true" style="background-color: #F8F8F8;">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
         <mat-toolbar style="background-color: 36A0E1; color: #36a0e1;">Menu</mat-toolbar>
 
         <button mat-button style="display: none;" (click)="drawer.toggle()" id="btnav">sidenav.toggle()</button>
@@ -11,9 +11,10 @@
                 Início
             </a>
 
-            <a mat-list-item routerLink="/pedidos">
+            <a mat-list-item routerLink="/painelpedidos/pedidos">
+                <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="O estabalecimento está fechado">info</mat-icon>
                 <mat-icon>view_headline</mat-icon>
-                Pedidos
+                <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
             </a>
 
             <a mat-list-item routerLink="/entregas">

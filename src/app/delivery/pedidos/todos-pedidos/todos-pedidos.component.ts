@@ -1,47 +1,40 @@
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { CrudServicoService } from 'src/app/crud-servico.service';
-import { PedidosService } from './pedidos.service';
-import { ServicoService } from 'src/app/servico.service';
-import { DialogPedidoComponent } from './../dialogs/dialog-pedido/dialog-pedido.component';
 import { Component, OnInit } from '@angular/core';
-import { DialoDelsucgComponent } from 'src/app/dialo-delsucg/dialo-delsucg.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PedidosService } from '../pedidos.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ServicoService } from 'src/app/servico.service';
+import { DialogPedidoComponent } from '../../dialogs/dialog-pedido/dialog-pedido.component';
 
 @Component({
-  selector: 'app-pedidos',
-  templateUrl: './pedidos.component.html',
-  styleUrls: ['./pedidos.component.css']
+  selector: 'app-todos-pedidos',
+  templateUrl: './todos-pedidos.component.html',
+  styleUrls: ['./todos-pedidos.component.css']
 })
-export class PedidosComponent implements OnInit {
+export class TodosPedidosComponent implements OnInit {
 
   displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'formapagamento', 'total', 'info', 'statusmotoboy', 'id'];
   pedidos = [];
-  dialogDelsuc: any;
   statusLoadEntregas: boolean;
   form: FormGroup;
+  dialogDelsuc: any;
+
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService) { }
 
   ngOnInit(): void {
 
-
-
-    this.statusLoadEntregas = true;
     setTimeout( () => {
-      this.servpedidos.consultaPedidos();
+      this.servpedidos.consultaTodosPedidos();
     } , 600 );
 
-
   }
-
-
-
 
   onClickPedido(item: any) {
     this.servpedidos.setPedido(item);
     console.log(item);
   }
+
 
   onClickverPedido(): void {
     this.dialogDelsuc = this.dialog.open(DialogPedidoComponent, {
@@ -54,14 +47,4 @@ export class PedidosComponent implements OnInit {
 
   }
 
-
-
-}
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
 }
