@@ -45,7 +45,6 @@ const routes: Routes = [
       { path: 'perfil', component: PerfilComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'config', component: ConfigComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'cadastro-entrega', component: DialogCadastroEntregaComponent, canActivate: [GuardaAtenticacaoService] },
-      /*{ path: '', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },*/
       { path: 'cardapio', component: HomeComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'chat', component: ChatComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaAtenticacaoService] },

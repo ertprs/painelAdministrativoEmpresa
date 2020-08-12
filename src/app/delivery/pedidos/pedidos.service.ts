@@ -2,6 +2,7 @@ import { ServicoService } from 'src/app/servico.service';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { Injectable } from '@angular/core';
 import { isEqual } from 'lodash';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,7 @@ export class PedidosService {
   private todospedidos: [];
 
 
-  constructor(private crud: CrudServicoService, public servapp: ServicoService) {
+  constructor(private crud: CrudServicoService, public servapp: ServicoService, private socket: Socket) {
 
     setInterval(() => {
       if (this.servapp.getDadosEmpresa().status_delivery) {
@@ -132,7 +133,8 @@ export class PedidosService {
     console.log(this.crud.post_api('cancelar_solicitacao_motoboy', loginres, data));
   }
 
-  onClickAttStatusPedido(statusPedido, idPedido) {
+  onClickAttStatusPedido(statusPedido, idPedido, pedido) {
+
     const loginres = () => {
       console.log('callback');
       const r = this.servapp.getRespostaApi();
@@ -142,7 +144,13 @@ export class PedidosService {
       } else {
         this.servapp.mostrarMensagem(r.mensagem);
         this.consultaPedidos();
+
       }
+
+      const data = { acao: 'enviaNotificacaoUsuario', pedidoCliente: pedido  };
+        this.socket.emit('acao', data);
+
+
     };
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido };
     console.log(this.crud.post_api('att_status_pedido', loginres, data));

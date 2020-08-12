@@ -163,8 +163,10 @@ export class InicioDeliveryComponent implements OnInit {
   }
 
   buildItemFp(data) {
+    try {
     const valores = data.map((v, i) => this.createFp(v));
     return this.formBuilder.array(valores);
+    } catch (e) { console.log('????????'); }
   }
 
   createFp(data: any): FormGroup {

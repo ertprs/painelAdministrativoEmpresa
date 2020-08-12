@@ -84,12 +84,12 @@
 
                 <div style="width: 100%;margin-bottom: 10px;" [formGroupName]="i" [formGroupName]="i" *ngFor="let item of formCadastro.get('metodosPagamento')['controls']; let i = index">
                     <mat-slide-toggle formControlName="disponivel">
-                        {{ item.value | json }}{{item.value.descricao}} </mat-slide-toggle>
+                        <!--{{ item.value | json }}-->{{item.value.descricao}} </mat-slide-toggle>
 
                     <span formArrayName="itens">
           <span [formGroupName]="a" *ngFor="let cartao of item.controls.itens.controls; let a = index">
             <div class="itensCard">
-              {{ cartao.value | json }} {{ cartao.value.nome }} <mat-slide-toggle formControlName="disponivel"></mat-slide-toggle>
+              <!--{{ cartao.value | json }}--> <img width="40" [src]="cartao.value.imagem" alt="img"> {{ cartao.value.nome }} <mat-slide-toggle formControlName="disponivel"></mat-slide-toggle>
             </div>
           </span>
                     </span>
