@@ -12,23 +12,28 @@
     <div class="c1" style="width: 30%; float: left;margin-left: 3px;">
         <mat-form-field appearance="outline" style="width: 100%;">
             <mat-label>Preço do adicional</mat-label>
-            <input formControlName="preco" matInput placeholder="Ex. R$1,50" type="text">
+            <input formControlName="preco" matInput placeholder="Ex. R$1,50" type="tel" matInput mask="separator.2" thousandSeparator=",">
             <mat-hint></mat-hint>
         </mat-form-field>
     </div>
 
     <div class="c1" style="width: 100%;">
-        {{categoriasItem}}
+
         <mat-form-field appearance="fill" style="width: 100%;">
-            <mat-label>Categorias adicionais</mat-label>
-            <mat-select multiple formControlName="categoria" [(ngModel)]="categoriasItem">
-                <mat-option *ngFor="let item of servcadc.getCategoriasAdicional()" [value]="item">{{item.nome}}</mat-option>
+            <mat-label>Categorias adicional</mat-label>
+            <mat-select formControlName="categoria">
+
+                <mat-option *ngFor="let item of categoriaLista; let i = index" [value]="categoriaLista[i]">
+                    {{ categoriaLista[i].nome }}
+                </mat-option>
             </mat-select>
         </mat-form-field>
 
+
+
     </div>
-    <div class="c1">
-        <mat-slide-toggle formControlName="disponivel">Disponível</mat-slide-toggle>
+    <div class="c1" style="margin-top: 25px;">
+        <mat-slide-toggle formControlName="disponivel">Disponibilidade do adicional</mat-slide-toggle>
     </div>
 
 

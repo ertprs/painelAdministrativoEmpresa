@@ -1,9 +1,10 @@
 <div style="padding: 6px;">
+
     <mat-card>
 
         <div style="display: flex;">
             <div style="margin-right: 30px;" [formGroup]="form">
-                <mat-slide-toggle color="primary" style="margin-top: 5px;" (click)="onClickStatusDelivery()" formControlName="statusdelivery">
+                <mat-slide-toggle [disabled]="!servapp.getStatusSistemaDelivery()" color="primary" style="margin-top: 5px;" (click)="onClickStatusDelivery()" formControlName="statusdelivery">
                     <span class="spstatusdli op" *ngIf="form.value.statusdelivery"> Aberto </span>
                     <span class="spstatusdli cl" *ngIf="!form.value.statusdelivery"> Fechado </span>
                 </mat-slide-toggle>
@@ -20,6 +21,14 @@
 
 
     </mat-card>
+
+
+    <mat-card *ngIf="!servapp.getStatusSistemaDelivery()" style="    margin-top: 5px;
+    background: red;
+    color: white;">
+        O estabelecimento não está configurado para funcionamento delivery. <a mat-button href="javascript:;" routerLink="/painel/delivery"> Clique aqui para configurar </a>
+    </mat-card>
+
 </div>
 
 <router-outlet></router-outlet>

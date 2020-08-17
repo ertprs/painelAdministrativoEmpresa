@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Resposta</h1>
+<div [formGroup]="form">
+    <div mat-dialog-content>
+
+        <p> {{ item.item.nome }} avaliou com a nota {{ item.item.nota }}
+            <br> <i style="color: orange;">{{ item.item.texto }}  </i>
+        </p>
+        <mat-form-field>
+            <mat-label>Digite sua resposta</mat-label>
+            <input matInput formControlName="resposta" placeholder="Digite aqui...">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-button [mat-dialog-close]="form.value" cdkFocusInitial>Enviar</button>
+    </div>
+</div>

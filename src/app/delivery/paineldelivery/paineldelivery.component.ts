@@ -1,3 +1,4 @@
+import { ServicoService } from './../../servico.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaineldeliveryComponent implements OnInit {
 
-  constructor() { }
+  constructor(public servapp: ServicoService) { }
 
   ngOnInit(): void {
   }

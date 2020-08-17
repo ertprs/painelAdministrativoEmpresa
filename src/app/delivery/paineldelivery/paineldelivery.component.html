@@ -1,53 +1,23 @@
-<div>
+<mat-card style="margin: 5px;">
 
 
-    <mat-list role="list">
+    <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button [matMenuTriggerFor]="belowMenu"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações do cardápio</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item routerLink="/painel/cardapio">Cardápio</button>
+        <button mat-menu-item [matMenuTriggerFor]="itensadicionais" routerLink="/painel/categoriasadicionais">Categorias adicionais</button>
+    </mat-menu>
+
+    <mat-menu #itensadicionais="matMenu">
+        <button mat-menu-item routerLink="/painel/itensadicionais"> Itens adicionais</button>
+    </mat-menu>
 
 
-        <mat-list-item role="listitem">
-
-            <button mat-button [matMenuTriggerFor]="belowMenu"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações do cardápio</button>
-            <mat-menu #belowMenu="matMenu" yPosition="below">
-                <button mat-menu-item routerLink="/cardapio">Cardápio</button>
-                <button mat-menu-item [matMenuTriggerFor]="itensadicionais" routerLink="/categoriasadicionais">Categorias adicionais</button>
-            </mat-menu>
-
-            <mat-menu #itensadicionais="matMenu">
-                <button mat-menu-item routerLink="/itensadicionais"> Itens adicionais</button>
-            </mat-menu>
-
-        </mat-list-item>
-        <mat-divider></mat-divider>
+    <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button routerLink="/painel/avaliacoes"> <mat-icon aria-hidden="false">star</mat-icon> Avaliações</button>
 
 
+    <button mat-button routerLink="/painel/delivery"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações para funcionamento delivery</button>
 
 
+</mat-card>
 
-        <mat-list-item role="listitem">
-            <button mat-button routerLink="/avaliacoes"> <mat-icon aria-hidden="false">star</mat-icon> Avaliações</button>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-
-        <mat-list-item role="listitem" routerLink="/delivery">
-            <button mat-button> <mat-icon aria-hidden="false">settings</mat-icon> Configurações para funcionamento delivery</button>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-
-
-    </mat-list>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
+<router-outlet> </router-outlet>

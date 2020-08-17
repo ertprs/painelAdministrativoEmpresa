@@ -13,7 +13,7 @@ export class ItensService {
 
   constructor(private servapp: ServicoService, private crud: CrudServicoService) { }
 
-  consultaCategoriasAdicionais() {
+  consultaAdicionais() {
     console.log('#consultaEntregas');
     this.crud.get_api('consulta_adicionais&id=' + this.servapp.getDadosEmpresa().id).subscribe(data => {
       console.log(data);
@@ -21,6 +21,8 @@ export class ItensService {
       this.itensAdicional = data;
     });
   }
+
+
 
   getItensAdicional() {
     return this.itensAdicional;

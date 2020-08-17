@@ -2,6 +2,7 @@ import { ItensService } from './itens.service';
 import { DialogAddItemAdicionalComponent } from './../dialogs/dialog-add-item-adicional/dialog-add-item-adicional.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { CategoriaAdicionalService } from '../categorias-adicionais/categoria-adicional.service';
 
 @Component({
   selector: 'app-itens-adicionais',
@@ -13,9 +14,11 @@ export class ItensAdicionaisComponent implements OnInit {
   displayedColumns: string[] = ['opcoes', 'disponivel', 'nome', 'nomecategoria', 'preco', 'info', 'datamodificado', 'remover'];
   itensadicionais = [];
   dialogDelsuc: any;
-  constructor(private dialog: MatDialog, public itensAdcServ: ItensService) { }
+  constructor(private dialog: MatDialog, public itensAdcServ: ItensService, private servcatadc: CategoriaAdicionalService,
+              public servcadc: CategoriaAdicionalService) { }
 
   ngOnInit(): void {
+    this.servcadc.consultaCategoriasAdicionais();
     this.itensadicionais = [{
       id: '1',
       idcategoria: '1',
@@ -27,8 +30,8 @@ export class ItensAdicionaisComponent implements OnInit {
     }];
 
     setTimeout(() => {
-      this.itensAdcServ.consultaCategoriasAdicionais();
-    }, 600);
+      this.itensAdcServ.consultaAdicionais();
+    }, 300);
   }
 
   onClickAddItemAdc(): void {

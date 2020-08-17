@@ -23,11 +23,12 @@ table {
 }
 
 .itmadc {
-    background: #d6d6d6;
+    background: #FFEB3B;
     border-radius: 4px;
     padding: 2px;
     width: 90%;
     margin-bottom: 1px;
+    font-size: 11px;
 }
 
 .itmnome {

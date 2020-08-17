@@ -45,20 +45,25 @@ const routes: Routes = [
       { path: 'perfil', component: PerfilComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'config', component: ConfigComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'cadastro-entrega', component: DialogCadastroEntregaComponent, canActivate: [GuardaAtenticacaoService] },
-      { path: 'cardapio', component: HomeComponent, canActivate: [GuardaAtenticacaoService] },
+      // { path: 'cardapio', component: HomeComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'chat', component: ChatComponent, canActivate: [GuardaAtenticacaoService] },
-      { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaAtenticacaoService] },
-      { path: 'painel', component: PaineldeliveryComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'painel', component: PaineldeliveryComponent, canActivate: [GuardaAtenticacaoService], children: [
+          { path: 'cardapio', component: HomeComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'itensadicionais', component: ItensAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'avaliacoes', component: AvaliacoesComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaAtenticacaoService] },
+
+      ] },
       {
         path: 'painelpedidos', component: PainelPedidosComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'pedidos', component: PedidosComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'todospedidos', component: TodosPedidosComponent, canActivate: [GuardaAtenticacaoService] },
         ]
       },
-      { path: 'avaliacoes', component: AvaliacoesComponent, canActivate: [GuardaAtenticacaoService] },
-      { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
-      { path: 'itensadicionais', component: ItensAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
-      { path: 'configitem', component: EditarItemCompletoComponent, canActivate: [GuardaAtenticacaoService] },
+      // { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
+      // { path: 'itensadicionais', component: ItensAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
+       { path: 'configitem', component: EditarItemCompletoComponent, canActivate: [GuardaAtenticacaoService] },
 
 
     ]

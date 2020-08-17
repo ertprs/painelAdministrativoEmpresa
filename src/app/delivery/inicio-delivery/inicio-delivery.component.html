@@ -14,13 +14,13 @@
                 <div class="" style="width: 100%;">
                     <mat-form-field appearance="outline">
                         <mat-label>Valor mínimo do pedido</mat-label>
-                        <input matInput placeholder="Ex. R$8,00" type="text" formControlName="pedidomin">
+                        <input matInput placeholder="Ex. R$8,00" type="text" formControlName="pedidomin" matInput mask="separator.2" thousandSeparator=".">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" style="margin-left: 10px;">
                         <mat-label>Valor máximo do pedido</mat-label>
-                        <input matInput placeholder="Ex. R$800,00" type="text" formControlName="pedidomax">
+                        <input matInput placeholder="Ex. R$800,00" type="text" formControlName="pedidomax" matInput mask="separator.2" thousandSeparator=".">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
                 </div>
@@ -63,17 +63,8 @@
 
                 <div style="margin-top: 10px; width: 250px;">
                     <mat-select #itemCidade style="width: 100%;margin-left: 1px;" formControlName="formasfuncionamento">
-                        <mat-option selected value="">
-                            Selecione uma opção
-                        </mat-option>
-                        <mat-option [value]="'Entrega'">
-                            Somente entrega
-                        </mat-option>
-                        <mat-option [value]="'Retirada'">
-                            Somente retirada
-                        </mat-option>
-                        <mat-option [value]="'Entrega e retirada'">
-                            Entrega e retirada
+                        <mat-option selected [value]="item" *ngFor="let item of tipoServico">
+                            {{ item.nome }}
                         </mat-option>
                     </mat-select>
                 </div>
@@ -112,13 +103,13 @@
 
                         <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
                             <mat-label>Abre</mat-label>
-                            <input matInput placeholder="Ex. 18:30" type="text" formControlName="abre" [disabled]="true">
+                            <input matInput placeholder="Ex. 18:30" type="time" formControlName="abre" [disabled]="true">
                             <mat-icon matSuffix>home_work</mat-icon>
                         </mat-form-field>
 
                         <mat-form-field style="margin-left: 5px; width: 150px;" appearance="outline">
                             <mat-label>Fecha</mat-label>
-                            <input matInput placeholder="Ex. 00:00" type="text" formControlName="fecha">
+                            <input matInput placeholder="Ex. 00:00" type="time" formControlName="fecha">
                             <mat-icon matSuffix>home_work</mat-icon>
                         </mat-form-field>
                     </div>
@@ -168,7 +159,7 @@
                   </mat-slide-toggle>
                   <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
                     <mat-label>Taxa entrega</mat-label>
-                    <input matInput placeholder="Ex. R$10,00" type="text" formControlName="taxa">
+                    <input matInput placeholder="Ex. R$10,00" type="text" formControlName="taxa" matInput mask="separator.2" thousandSeparator=",">
                     <mat-icon matSuffix>home_work</mat-icon>
                   </mat-form-field>
 
@@ -198,10 +189,12 @@
 
 </form>
 
-<mat-card style="background-color: #fbff05; color: black; margin-top: 20px;" *ngIf="formcadastroStatus === true">
+<mat-card style="background-color: #6d6d6d;
+color: white;
+margin-top: 20px;" *ngIf="formcadastroStatus === true">
     <h1> As configurações foram salvas! </h1>
     <p>
-        <button mat-raised-button color="primary" routerLink="/painel">Entrar</button>
+        <button mat-raised-button color="primary" routerLink="/painel">Ok</button>
     </p>
 </mat-card>
 

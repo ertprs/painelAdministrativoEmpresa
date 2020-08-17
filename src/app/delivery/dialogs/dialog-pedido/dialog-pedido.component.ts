@@ -34,7 +34,7 @@ export class DialogPedidoComponent implements OnInit {
         this.servapp.mostrarMensagem(r.mensagem);
         this.btCstatus = false;
       } else {
-        this.servapp.mostrarMensagem(r.mensagem);
+        this.servapp.mostrarMensagem(r.detalhes);
         this.servpedidos.consultaPedidos();
       }
     };

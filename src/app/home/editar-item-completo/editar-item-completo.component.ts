@@ -83,7 +83,7 @@ export class EditarItemCompletoComponent implements OnInit {
 
         },
         error => {
-          alert(error);
+          console.log(error);
         }
       );
 
@@ -196,7 +196,7 @@ export class EditarItemCompletoComponent implements OnInit {
       } else {
         this.servapp.mostrarMensagem(r.mensagem);
         this.statusLoadConteudo = false;
-        this.route.navigate(['cardapio']);
+        this.route.navigate(['/painel/cardapio']);
       }
     };
 

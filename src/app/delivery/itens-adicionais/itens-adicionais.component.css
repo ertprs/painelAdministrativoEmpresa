@@ -3,10 +3,9 @@ table {
 }
 
 .st {
-    background: #00BCD4;
+    background: #efefef;
     text-align: center;
-    color: #ffffff;
     border-radius: 4px;
-    margin-top: 1px;
-    width: 86%;
+    margin-top: 2px;
+    width: 90%;
 }

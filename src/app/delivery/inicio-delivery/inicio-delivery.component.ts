@@ -25,6 +25,7 @@ export class InicioDeliveryComponent implements OnInit {
   public dadosEmpresa: any;
   private valorSubmit: any;
   public cidadeSelecionada: any;
+  public tipoServico: any;
 
   constructor(private crud: CrudServicoService, private formBuilder: FormBuilder, public servico: ServicoService,
               private router: Router, public servdelivery: DeliveryService) { }
@@ -53,6 +54,12 @@ export class InicioDeliveryComponent implements OnInit {
     this.dadosEmpresa = this.servico.getDadosEmpresa();
 
     this.getHrfun = this.dadosEmpresa.hrfun;
+
+    this.tipoServico = [
+      { nome: 'Somente entrega', tipo: 1 },
+      { nome: 'Somente retirada', tipo: 2 },
+      { nome: 'Entrega e retirada', tipo: 3 },
+    ];
 
     this.iniciaForm();
   }

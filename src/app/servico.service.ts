@@ -13,8 +13,9 @@ export class ServicoService {
   private dadosEntregador = false;
   private dadosCliente = false;
   // private urlapi = 'https://www.vulto.site/api';
-  private urlapi = 'http://localhost/sistema.vulto/api';
-  private dir = '?acao=';
+  // private urlapi = 'http://localhost/sistema.vulto/api';
+  private urlapi = 'http://192.168.0.108/apivulto/?api=apiEstabelecimento';
+  private dir = '&acao=';
   private statusLogado = false;
   private dadosLogin: any;
   private respApi: any;
@@ -40,6 +41,7 @@ export class ServicoService {
   private statusentPedeai = false;
   private cardapioDigtal = '0';
   private statusDelivery = false;
+  private statusSistemaDelivery = false;
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servicoChat: ChatservicoService, private socket: Socket) { }
@@ -82,6 +84,7 @@ export class ServicoService {
     this.config.iniciarConfig();
     this.servicoChat.adicionaEmpresaChat(this.dadosEmpresa.nome, this.dadosEmpresa.id);
     this.setStatusDelivery(this.dadosEmpresa.status_delivery);
+    this.setStatusSistemaDelivery(this.dadosEmpresa.sistema_delivery);
 
     this.socket.on('coordenadas', data => {
      // console.error(data);
@@ -293,6 +296,10 @@ export class ServicoService {
     this.statusDelivery = status;
   }
 
+  setStatusSistemaDelivery(status) {
+    this.statusSistemaDelivery = status;
+  }
+  getStatusSistemaDelivery() { return this.statusSistemaDelivery; }
 
 
 

@@ -12,7 +12,7 @@
             <mat-card-actions>
                 <form id="form1">
                     <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
-                    <button mat-button (click)="onClickImagemSelecionar()">Selecionar</button>
+                    <button color="primary" mat-button (click)="onClickImagemSelecionar()">Selecionar imagem</button>
 
                 </form>
             </mat-card-actions>
@@ -20,7 +20,7 @@
 
         <mat-card class="example-card" style="margin-top: 10px; text-align: center;">
             <button (click)="onClickCancelar()" color="warn" mat-button>Cancelar</button>
-            <button (click)="onClickAddItem()" mat-flat-button color="primary">Adicionar item</button>
+            <button (click)="onClickAddItem()" mat-flat-button color="primary">Salvar</button>
         </mat-card>
 
     </div>
@@ -51,7 +51,8 @@
 
                     <mat-form-field appearance="outline" style="width: 19%; margin-left: 1px;">
                         <mat-label>Preço</mat-label>
-                        <input formControlName="preco" matInput placeholder="Ex. Pizza de calabresa" type="text">
+                        <input formControlName="preco" matInput placeholder="0.00" type="text" matInput mask="separator.2" thousandSeparator=",">
+                        <span matPrefix>R$&nbsp;</span>
                         <mat-hint></mat-hint>
                     </mat-form-field>
 

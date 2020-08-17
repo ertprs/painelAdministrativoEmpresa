@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Status Sistema Empresa
+Para a empresa poder funcionar delivery o sistema_delivery tem que ser verdadeiro
+## Tipo de serviço
+Texto: Somente Entrega       code: 1
+Texto: Somente Retirada      code: 2
+Texto: Entrega e retirada    code: 3
+

@@ -56,9 +56,9 @@ export class PedidosService {
 
   consultaPedidos() {
       this.statusloadpedidos = true;
-      console.log('#consultaEntregas');
+      // console.log('#consultaEntregas');
       this.crud.get_api('pedidos&id=' + this.servapp.getDadosEmpresa().id).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.qntPedidosEmaberto = data.qnt_pedidos_pendente;
         this.statusloadpedidos = false;
 
@@ -147,13 +147,12 @@ export class PedidosService {
 
       }
 
-      const data = { acao: 'enviaNotificacaoUsuario', pedidoCliente: pedido  };
-        this.socket.emit('acao', data);
-
-
     };
+
+
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido };
-    console.log(this.crud.post_api('att_status_pedido', loginres, data));
+    this.crud.post_api('att_status_pedido', loginres, data);
+
   }
 
   onClickAttStatusDelivery(statusDelivery) {
@@ -169,7 +168,7 @@ export class PedidosService {
       }
     };
     const data = { id_empresa: this.servapp.getDadosEmpresa().id, status: statusDelivery };
-    console.log(this.crud.post_api('att_status_delivery', loginres, data));
+    this.crud.post_api('att_status_delivery', loginres, data);
   }
 
   getPedidos() {
