@@ -53,12 +53,13 @@ export class LoginComponent implements OnInit {
       console.log('callback');
       const r = this.servico.getRespostaApi();
       console.log(r);
+      setTimeout( () => {  this.btloginstatus = false; } , 1500 );
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.mensagem);
         this.auth.mostrarMenu.emit(false);
         this.btloginstatus = false;
       } else {
-        this.servico.setDadosLogin(r);
+        this.servico.setDadosLogin(r.resultado);
         this.crud.consultaSistema();
         this.router.navigate(['/inicio']);
         this.auth.mostrarMenu.emit(true);

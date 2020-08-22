@@ -56,9 +56,9 @@ export class InicioDeliveryComponent implements OnInit {
     this.getHrfun = this.dadosEmpresa.hrfun;
 
     this.tipoServico = [
-      { nome: 'Somente entrega', tipo: 1 },
-      { nome: 'Somente retirada', tipo: 2 },
-      { nome: 'Entrega e retirada', tipo: 3 },
+      { nome: 'Somente entrega', tipo: '1' },
+      { nome: 'Somente retirada', tipo: '2' },
+      { nome: 'Entrega e retirada', tipo: '3' }
     ];
 
     this.iniciaForm();
@@ -100,12 +100,26 @@ export class InicioDeliveryComponent implements OnInit {
       pedidomin: [this.dadosEmpresa.pedidomin, Validators.required],
       pedidomax: [this.dadosEmpresa.pedidomax, Validators.required],
       seguimento: [this.dadosEmpresa.seguimento, Validators.required],
-      formasfuncionamento: [this.dadosEmpresa.formasfuncionamento, Validators.required],
+      formasfuncionamento: [''],
       tempoentrega: [this.dadosEmpresa.tempoentrega, Validators.required],
       hrfun: this.buildDiasForm(),
       locaisEntrega: this.buildLocaisEntregaForm(),
       metodosPagamento: this.buildFp(),
     });
+
+     // async orders
+   /*  console.log(this.dadosEmpresa.formasfuncionamento);
+    (this.dadosEmpresa.formasfuncionamento).subscribe(orders => {
+      this.tipoServico = orders;
+      this.formCadastro.controls.formasfuncionamento.patchValue(this.tipoServico[0]);
+    });
+*/
+    this.tipoServico.forEach(element => {
+      if (element.tipo === this.dadosEmpresa.formasfuncionamento.tipo) {
+        this.formCadastro.controls.formasfuncionamento.patchValue(element);
+       }
+    });
+
   }
 
   buildDiasForm() {
@@ -113,12 +127,13 @@ export class InicioDeliveryComponent implements OnInit {
     return this.formBuilder.array(valores);
   }
 
-  createItem(data: {nome, abre, fecha, status}): FormGroup {
+  createItem(data: {nome, abre, fecha, status, id_nome}): FormGroup {
     return this.formBuilder.group({
       nome: data.nome,
       abre: data.abre,
       fecha: data.fecha,
-      status: data.status
+      status: data.status,
+      id_nome: data.id_nome,
     });
   }
 

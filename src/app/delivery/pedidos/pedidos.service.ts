@@ -133,7 +133,7 @@ export class PedidosService {
     console.log(this.crud.post_api('cancelar_solicitacao_motoboy', loginres, data));
   }
 
-  onClickAttStatusPedido(statusPedido, idPedido, pedido) {
+  onClickAttStatusPedido(statusPedido, idPedido, params) {
 
     const loginres = () => {
       console.log('callback');
@@ -150,7 +150,7 @@ export class PedidosService {
     };
 
 
-    const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido };
+    const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido, params };
     this.crud.post_api('att_status_pedido', loginres, data);
 
   }

@@ -8,6 +8,10 @@ table {
     color: white;
 }
 
+.bts {
+    font-size: 11px;
+}
+
 .op {
     background-color: #8BC34A;
 }

@@ -111,7 +111,7 @@ agm-map {
 
 .divnocord {
     background-color: black;
-    height: 89.9%;
+    height: 91.3%;
     background-image: url('https://vulto.site/vulto_/assets/galax.gif');
 }
 
@@ -123,7 +123,6 @@ agm-map {
 }
 
 .divnocord-second {
-    background-color: rgba(63, 81, 181, 0.42);
-    ;
+    background-color: rgb(0 0 0 / 79%);
     height: 100%;
 }

@@ -62,9 +62,9 @@
                 <ng-template matStepLabel>Tipo de serviço</ng-template>
 
                 <div style="margin-top: 10px; width: 250px;">
-                    <mat-select #itemCidade style="width: 100%;margin-left: 1px;" formControlName="formasfuncionamento">
-                        <mat-option selected [value]="item" *ngFor="let item of tipoServico">
-                            {{ item.nome }}
+                    <mat-select style="width: 100%;margin-left: 1px;" formControlName="formasfuncionamento">
+                        <mat-option *ngFor="let item of tipoServico; let i = index" [value]="tipoServico[i]">
+                            {{ tipoServico[i].nome }}
                         </mat-option>
                     </mat-select>
                 </div>

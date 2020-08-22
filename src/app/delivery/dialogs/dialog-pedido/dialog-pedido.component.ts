@@ -2,6 +2,8 @@ import { PedidosService } from './../../pedidos/pedidos.service';
 import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
+import { CancelarPedidoComponent } from '../../pedidos/cancelar-pedido/cancelar-pedido.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-pedido',
@@ -16,7 +18,8 @@ export class DialogPedidoComponent implements OnInit {
   produtosPedido: any;
   btCstatus = false;
 
-  constructor(public servpedidos: PedidosService, private servapp: ServicoService, private crud: CrudServicoService) { }
+  constructor(public servpedidos: PedidosService, private servapp: ServicoService, private crud: CrudServicoService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -41,6 +44,8 @@ export class DialogPedidoComponent implements OnInit {
     const data = { id_pedido: this.servpedidos.getPedido().id, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido};
     console.log( this.crud.post_api('att_status_pedido', loginres, data ) );
   }
+
+
 
 
 

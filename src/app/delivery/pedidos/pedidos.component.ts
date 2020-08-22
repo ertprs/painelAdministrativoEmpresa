@@ -1,3 +1,4 @@
+import { CancelarPedidoComponent } from './cancelar-pedido/cancelar-pedido.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { PedidosService } from './pedidos.service';
@@ -38,20 +39,44 @@ export class PedidosComponent implements OnInit {
 
 
 
+
+
   onClickPedido(item: any) {
     this.servpedidos.setPedido(item);
     console.log(item);
   }
+
+
 
   onClickverPedido(): void {
     this.dialogDelsuc = this.dialog.open(DialogPedidoComponent, {
       width: '800px',
     });
 
+    this.servapp.setDialogapp(this.dialogDelsuc);
+
     this.dialogDelsuc.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed result');
+      console.log(result);
+      if (result === 'cancelar_pedido') {
+        setTimeout( () => { this.onClickCancelarPedido(this.servpedidos.getPedido());  } , 600 );
+      }
     });
 
+  }
+
+  onClickCancelarPedido(item): void {
+    this.servapp.getDialogapp().close();
+    const dialogRef = this.dialog.open(CancelarPedidoComponent, {
+      width: '450px',
+      data: {item}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed cancelar pedido');
+      console.log(result);
+      this.servpedidos.onClickAttStatusPedido(7, result.idPedido, result);
+    });
   }
 
 

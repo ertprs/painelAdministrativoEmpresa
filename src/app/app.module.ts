@@ -87,6 +87,7 @@ import { TodosPedidosComponent } from './delivery/pedidos/todos-pedidos/todos-pe
 import { PainelPedidosComponent } from './delivery/pedidos/painel-pedidos/painel-pedidos.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RespavaliacaoComponent } from './delivery/dialogs/respavaliacao/respavaliacao.component';
+import { CancelarPedidoComponent } from './delivery/pedidos/cancelar-pedido/cancelar-pedido.component';
 //const config: SocketIoConfig = { url: 'https://guinho-site.umbler.net', options: {} };
 const config: SocketIoConfig = { url: 'http://192.168.0.108:3000', options: {} };
 
@@ -136,6 +137,7 @@ const config: SocketIoConfig = { url: 'http://192.168.0.108:3000', options: {} }
     PainelPedidosComponent,
     DashboardComponent,
     RespavaliacaoComponent,
+    CancelarPedidoComponent,
   ],
   imports: [
     BrowserModule,

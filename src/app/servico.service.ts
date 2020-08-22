@@ -70,11 +70,11 @@ export class ServicoService {
 
   setDadosLogin(dados: any) {
     console.log(dados);
-    this.token = dados.mensagem.dados_conta.token;
-    this.dadosEmpresa = dados.mensagem.dados_conta;
-    this.dadosLogin = dados.mensagem;
-    this.listaCidades = dados.mensagem.cidade.lista_cidades;
-    this.listaCidadesEntrega = dados.mensagem.cidade.lista_cidades_entrega;
+    this.token = dados.dados_conta.token;
+    this.dadosEmpresa = dados.dados_conta;
+    this.dadosLogin = dados.dados_conta;
+    this.listaCidades = dados.cidade.lista_cidades;
+    this.listaCidadesEntrega = dados.cidade.lista_cidades_entrega;
     this.cardapioDigtal = this.dadosEmpresa.cardapio_digital;
     // this.listaBairros = dados;
     if (this.statusLogado === false) {

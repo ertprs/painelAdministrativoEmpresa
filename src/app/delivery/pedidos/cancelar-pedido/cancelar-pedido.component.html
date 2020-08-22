@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Cancelar pedido</h1>
+<div [formGroup]="form">
+    <div mat-dialog-content>
+
+        <mat-form-field>
+            <mat-label>Digite o motivo do cancelamento</mat-label>
+            <input matInput formControlName="motivo" placeholder="Digite aqui o motivo...">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Fechar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="form.value" cdkFocusInitial>Cancelar pedido</button>
+    </div>
+</div>
