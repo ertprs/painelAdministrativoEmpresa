@@ -1,0 +1,58 @@
+<mat-nav-list *ngIf="servcard.getTipoSheet() === 'formapagamento'">
+
+    <a mat-list-item (click)="servcard.onclickFPDinheiro()">
+        <span mat-line>Dinheiro</span>
+        <span mat-line>Pagamento em dinheiro</span>
+    </a>
+
+    <a mat-list-item (click)="servcard.onclickFPCartao()">
+        <span mat-line>Cartão</span>
+        <span mat-line>Pagamento com cartão</span>
+
+    </a>
+
+</mat-nav-list>
+
+<mat-nav-list *ngIf=" servcard.getTipoSheet()==='canalpedido' ">
+
+    <a mat-list-item (click)="servcard.setOrigemPedido('Whatsapp')">
+        <span mat-line>Whatsapp</span>
+        <span mat-line>O cliente fez o pedido pelo Whatsapp</span>
+    </a>
+
+    <a mat-list-item (click)="servcard.setOrigemPedido('Instagram')">
+        <span mat-line>Instagram</span>
+        <span mat-line>O cliente fez o pedido pelo Instagram</span>
+    </a>
+
+    <a mat-list-item (click)="servcard.setOrigemPedido('Telefone')">
+        <span mat-line>Telefone</span>
+        <span mat-line>O cliente fez o pedido pelo telefone</span>
+    </a>
+
+    <a mat-list-item (click)="servcard.setOrigemPedido('Facebook')">
+        <span mat-line>Facebook</span>
+        <span mat-line>O cliente fez o pedido pelo Facebook</span>
+    </a>
+
+    <a mat-list-item (click)="servcard.setOrigemPedido('Outro')">
+        <span mat-line>Outro</span>
+        <span mat-line>O cliente fez o pedido por outro meio não listado nas opções acima</span>
+    </a>
+
+</mat-nav-list>
+
+<mat-nav-list *ngIf="servcard.getTipoSheet()==='tipopedido' ">
+
+    <a mat-list-item (click)="servcard.setOrigemPedido('Whatsapp')" (click)="servcard.onclickEntregaTipo() ">
+        <span mat-line>Entrega</span>
+        <span mat-line>O cliente quer que envie o pedido</span>
+    </a>
+
+    <a mat-list-item (click)="servcard.onclickRetiradaTipo() ">
+        <span mat-line>Retirada</span>
+        <span mat-line>O cliente irá retirar o pedido no estabelecimento</span>
+
+    </a>
+
+</mat-nav-list>

@@ -1,3 +1,9 @@
-.mat-form-field-style{
-  width: 100%;
+.mat-form-field-style {
+    width: 100%;
+}
+
+.row {
+    display: grid;
+    max-height: 500px;
+    overflow: auto;
 }

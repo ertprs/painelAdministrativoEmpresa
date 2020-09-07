@@ -2,7 +2,7 @@
 
 .delsuc-1 {
     background-color: rgb(255, 255, 255);
-    background-image: url('https://vulto.site/vulto_/assets/mapa-google.jpg');
+    background-image: url('../../assets/mapa-google.jpg');
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -57,7 +57,7 @@ agm-map {
 }
 
 .customMarker-inter {
-    background-image: url('https://vulto.site/vulto_/assets/casa.gif');
+    background-image: url('../../assets/casa.gif');
     width: 30px;
     height: 28px;
     border-radius: 50px;
@@ -85,7 +85,7 @@ agm-map {
     width: 30px;
     margin-top: -21px;
     border-radius: 16%;
-    background-image: url('https://vulto.site/api_/imagens/im1.png');
+    background-image: url('../../assets/logo_v.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -112,7 +112,7 @@ agm-map {
 .divnocord {
     background-color: black;
     height: 91.3%;
-    background-image: url('https://vulto.site/vulto_/assets/galax.gif');
+    background-image: url('../../assets/galax.gif');
 }
 
 .csscard {

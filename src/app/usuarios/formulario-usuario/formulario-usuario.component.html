@@ -1,0 +1,32 @@
+<div class="row" [formGroup]="form">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo">
+            <mat-option value="adm">
+                Administrador
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Nome</mat-label>
+        <input formControlName="nome" matInput placeholder="Ex. nome do usuário">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Ex. email do usuário">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Senha</mat-label>
+        <input formControlName="senha" matInput placeholder="Ex. Senha do usuário">
+    </mat-form-field>
+</div>
+
+<div style="margin-top: 10px;">
+    <button mat-stroked-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+    <button style="margin-left: 10px;" mat-stroked-button color="primary" [mat-dialog-close]="form.value" *ngIf="data.acao === 'add'">Adicionar</button>
+    <button style="margin-left: 10px;" mat-stroked-button color="primary" [mat-dialog-close]="form.value" *ngIf="data.acao !== 'add'">Salvar</button>
+</div>

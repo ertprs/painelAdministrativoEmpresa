@@ -2,7 +2,6 @@ import { ServicoService } from 'src/app/servico.service';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { Injectable } from '@angular/core';
 import { isEqual } from 'lodash';
-import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +34,7 @@ export class PedidosService {
     total: '',
     subtotal: '',
     taxaentrega: '',
+    cupom: any,
     detalhes: {}
   };
   private audio1 = new Audio('assets/audio/pedido.mp3');
@@ -45,7 +45,7 @@ export class PedidosService {
   private todospedidos: [];
 
 
-  constructor(private crud: CrudServicoService, public servapp: ServicoService, private socket: Socket) {
+  constructor(private crud: CrudServicoService, public servapp: ServicoService) {
 
     setInterval(() => {
       if (this.servapp.getDadosEmpresa().status_delivery) {
@@ -61,7 +61,7 @@ export class PedidosService {
         // console.log(data);
         this.qntPedidosEmaberto = data.qnt_pedidos_pendente;
         this.statusloadpedidos = false;
-
+        this.servapp.setStatusDelivery(data.status_loja.status_empresa);
         if (isEqual(this.pedidos, data.lista_pedidos) === false) {
           this.pedidos = data.lista_pedidos;
         }
@@ -142,7 +142,7 @@ export class PedidosService {
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.mensagem);
       } else {
-        this.servapp.mostrarMensagem(r.mensagem);
+        this.servapp.mostrarMensagem(r.detalhes);
         this.consultaPedidos();
 
       }

@@ -1,11 +1,9 @@
-import { ChatservicoService } from './../chat/chatservico.service';
 import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from '../crud-servico.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ServicoService } from '../servico.service';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-login',
@@ -22,18 +20,12 @@ export class LoginComponent implements OnInit {
               private servico: ServicoService,
               private router: Router,
               private auth: AuthService,
-              private socket: Socket,
-              private servicoChat: ChatservicoService
               ) { }
 
   ngOnInit(): void {
     this.btloginstatus = false;
     console.log('Aguarda canal chat');
-    this.socket.on('tokensessao', data => {
-      console.log('CANALL!!');
-      console.log(data);
-      this.servicoChat.setCanalChat(data);
-    });
+
 
     this.formLogin = this.formBuilder.group({
       email: [null, Validators.required],

@@ -116,7 +116,8 @@
 
                         <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
                             <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])" [checked]="diasLista[i].status">
-                                {{ diasLista[i].nome }} :: {{ diasLista[i].status }}
+                                {{ diasLista[i].nome }}
+                                <!--:: {{ diasLista[i].status }}-->
                             </mat-slide-toggle>
                         </mat-list-item>
                     </mat-list>
@@ -149,7 +150,8 @@
 
             <mat-list>
                 <mat-list-item>
-                    Obrigatório {{ catsEAdcs[i].obrigatorio }}
+                    Obrigatório
+                    <!-- {{ catsEAdcs[i].obrigatorio }} -->
                     <mat-slide-toggle style="margin-left: 10px;" [checked]="catsEAdcs[i].obrigatorio" (change)="onClickObrigatorio($event, catsEAdcs[i])">
                     </mat-slide-toggle>
                 </mat-list-item>
@@ -159,13 +161,13 @@
             <mat-list>
                 <span>
                 <mat-list-item *ngFor="let adicional of catsEAdcs[i].itens; let x = index">
-                  <mat-slide-toggle  (change)="onClickAdicional($event, adicional)" [checked]="adicional.status"> {{ adicional.nome }} {{ adicional.status }}</mat-slide-toggle>
+                  <mat-slide-toggle  (change)="onClickAdicional($event, adicional)" [checked]="adicional.status"> {{ adicional.nome }} <!--{{ adicional.status }}--> </mat-slide-toggle>
                 </mat-list-item>
               </span>
                 <span>
-                <mat-list-item>
+                <!--<mat-list-item>
                     Nenhum adicional desta categoria foi criado
-                </mat-list-item>
+                </mat-list-item>-->
               </span>
 
             </mat-list>
@@ -198,7 +200,8 @@
                 <mat-list>
                     <mat-list-item formArrayName="categoria" *ngFor="let item of form.get('categoria')['controls']; let i = index">
                         <mat-slide-toggle (change)="onClickCategoria($event, categoriasCatalogo[i])" [checked]="categoriasCatalogo[i].status">
-                            {{ categoriasCatalogo[i].nome }} -- {{categoriasCatalogo[i].status}}
+                            {{ categoriasCatalogo[i].nome }}
+                            <!---- {{categoriasCatalogo[i].status}} -->
                         </mat-slide-toggle>
                     </mat-list-item>
                 </mat-list>

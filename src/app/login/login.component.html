@@ -2,7 +2,7 @@
 
     <div class="aform" defa [formGroup]="formLogin">
         <div class="aform2">
-            <img class="imglogo" [defaultImage]="'assets/vultopreto.png'" [lazyLoad]="'assets/vultoroxonome.png'" offset="10000">
+            <img class="imglogo" [src]="'assets/vultoroxonome.png'" offset="10000">
             <div style="margin-top: 20px;">
                 Conectar a sua conta do Vulto
             </div>
@@ -26,8 +26,7 @@
 
                 <div class="example-button-row" style="text-align: center;">
                     <button class="bt1" mat-raised-button color="primary" (click)="oncllickEntrar()" disabled="{{btloginstatus}}">Entrar</button>
-                    <button class="bt2" mat-stroked-button color="primary" style="margin-left: 10px;" routerLink="/cadastro">Novo
-            Cadastro</button>
+                    <button class="bt2" mat-stroked-button color="primary" style="margin-left: 10px;" routerLink="/recuperar"> Recuperar conta </button>
                 </div>
             </section>
 

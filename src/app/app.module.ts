@@ -70,8 +70,6 @@ import { DialogAddCatComponent } from './home/dialog-add-cat/dialog-add-cat.comp
 import { DialogAddItemComponent } from './home/dialog-add-item/dialog-add-item.component';
 import { DialogEditarCarComponent } from './home/dialog-editar-car/dialog-editar-car.component';
 import { DialogEditarItemComponent } from './home/dialog-editar-item/dialog-editar-item.component';
-import { ChatComponent } from './chat/chat.component';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { InicioDeliveryComponent } from './delivery/inicio-delivery/inicio-delivery.component';
 import { PaineldeliveryComponent } from './delivery/paineldelivery/paineldelivery.component';
 import { PedidosComponent } from './delivery/pedidos/pedidos.component';
@@ -88,9 +86,15 @@ import { PainelPedidosComponent } from './delivery/pedidos/painel-pedidos/painel
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RespavaliacaoComponent } from './delivery/dialogs/respavaliacao/respavaliacao.component';
 import { CancelarPedidoComponent } from './delivery/pedidos/cancelar-pedido/cancelar-pedido.component';
-//const config: SocketIoConfig = { url: 'https://guinho-site.umbler.net', options: {} };
-const config: SocketIoConfig = { url: 'http://192.168.0.108:3000', options: {} };
-
+import { AvisoTaxaPedidoComponent } from './delivery/pedidos/aviso-taxa-pedido/aviso-taxa-pedido.component';
+import { RecuperarContaComponent } from './recuperar-conta/recuperar-conta.component';
+import { RelatoriosComponent } from './relatorios/relatorios.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { FormularioUsuarioComponent } from './usuarios/formulario-usuario/formulario-usuario.component';
+import { CadastroPedidoComponent } from './delivery/pedidos/cadastro-pedido/cadastro-pedido.component';
+import { ItemCatalogoComponent } from './delivery/pedidos/cadastro-pedido/item-catalogo/item-catalogo.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { SelecionarFormaPagComponent } from './delivery/pedidos/cadastro-pedido/selecionar-forma-pag/selecionar-forma-pag.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,7 +126,6 @@ const config: SocketIoConfig = { url: 'http://192.168.0.108:3000', options: {} }
     DialogAddItemComponent,
     DialogEditarCarComponent,
     DialogEditarItemComponent,
-    ChatComponent,
     InicioDeliveryComponent,
     PaineldeliveryComponent,
     PedidosComponent,
@@ -138,6 +141,14 @@ const config: SocketIoConfig = { url: 'http://192.168.0.108:3000', options: {} }
     DashboardComponent,
     RespavaliacaoComponent,
     CancelarPedidoComponent,
+    AvisoTaxaPedidoComponent,
+    RecuperarContaComponent,
+    RelatoriosComponent,
+    UsuariosComponent,
+    FormularioUsuarioComponent,
+    CadastroPedidoComponent,
+    ItemCatalogoComponent,
+    SelecionarFormaPagComponent,
   ],
   imports: [
     BrowserModule,
@@ -182,14 +193,13 @@ const config: SocketIoConfig = { url: 'http://192.168.0.108:3000', options: {} }
     MatCheckboxModule,
     MatSlideToggleModule,
     MatRadioModule,
-    SocketIoModule.forRoot(config),
     MatTableModule,
-
+    MatTabsModule,
   ],
   entryComponents: [
     DialoDelsucgComponent
   ],
-  providers: [AuthService, MatDatepickerModule, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthService, MatDatepickerModule],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

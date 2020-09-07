@@ -1,0 +1,9 @@
+<div>Será calculada uma nova taxa de entrega para ser paga ao motoboy</div>
+<div style="margin-top: 20px;    font-size: 26px;
+color: #686b6d;">
+    <b>Taxa de entrega: {{ data.taxa_entrega | currency}} </b>
+</div>
+<div style="margin-top: 50px;">
+    <button mat-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+    <button mat-button color="primary" [mat-dialog-close]="true">Confirmar</button>
+</div>

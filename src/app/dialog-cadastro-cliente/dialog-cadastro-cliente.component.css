@@ -1,1 +1,9 @@
-.example-full-width{ width: 100%; }
+.example-full-width {
+    width: 100%;
+}
+
+.row {
+    display: grid;
+    max-height: 500px;
+    overflow: auto;
+}

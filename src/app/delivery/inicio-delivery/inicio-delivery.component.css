@@ -1,3 +1,8 @@
+.dda {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .lg {
     margin-top: 58%;
     width: 180px;

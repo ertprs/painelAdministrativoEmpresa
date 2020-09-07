@@ -20,9 +20,21 @@
         <mat-slide-toggle formControlName="disponivel" [(ngModel)]="disponivel">Disponível</mat-slide-toggle>
     </div>
   </span>
+
     <div class="c1">
         <div class="">
-            Quantidade máxima de adicionais que o cliente pode adicionar
+            Quantidade de adicionais de cada item que o cliente pode adicionar
+        </div>
+        <div class="" style="display: flex;">
+            <mat-slider class="mat-slider-guin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="qntAdcItem" [vertical]="vertical">
+            </mat-slider>
+            <div class="styleqnt"> {{qntAdcItem}} </div>
+        </div>
+
+    </div>
+    <div class="c1">
+        <div class="">
+            Quantidade de adicionais em geral que o cliente pode adicionar
         </div>
         <div class="" style="display: flex;">
             <mat-slider class="mat-slider-guin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="quantidade" [vertical]="vertical">
@@ -34,10 +46,10 @@
 
     <div class="c1" style="text-align: right;">
         <span *ngIf="servDCadc.getTipoacao()">
-        <button [disabled]="btstatus" mat-flat-button color="dark" (click)="onSalvarItem(disponivel, quantidade)">Salvar</button>
+        <button [disabled]="btstatus" mat-flat-button color="dark" (click)="onSalvarItem(disponivel, quantidade, qntAdcItem)">Salvar</button>
       </span>
         <span *ngIf="!servDCadc.getTipoacao()">
-        <button [disabled]="btstatus" mat-flat-button color="primary" (click)="onClickAdd(disponivel, quantidade)">Adicionar</button>
+        <button [disabled]="btstatus" mat-flat-button color="primary" (click)="onClickAdd(disponivel, quantidade, qntAdcItem)">Adicionar</button>
       </span>
 
     </div>

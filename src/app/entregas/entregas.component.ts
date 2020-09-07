@@ -1,17 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialoDelsucgComponent } from '../dialo-delsucg/dialo-delsucg.component';
-import { DialogCadastroEntregaComponent } from '../dialog-cadastro-entrega/dialog-cadastro-entrega.component';
 import { ServicoService } from '../servico.service';
 import { CrudServicoService } from '../crud-servico.service';
 import { Router } from '@angular/router';
 import { DialogHistEntregaComponent } from './dialog-hist-entrega/dialog-hist-entrega.component';
 import { ServicoEntregaService } from './servico-entrega.service';
-
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
-
 
 
 @Component({

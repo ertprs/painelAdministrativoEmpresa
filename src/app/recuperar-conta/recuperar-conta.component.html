@@ -1,0 +1,30 @@
+<div class="conteudo">
+
+    <div class="aform">
+        <div class="aform2">
+            <img class="imglogo" [defaultImage]="'assets/vultopreto.png'" [lazyLoad]="'assets/vultoroxonome.png'" offset="10000">
+            <div>
+                Insira o email da conta para recuperar
+            </div>
+        </div>
+
+        <div class="aform1">
+            <mat-form-field color="primary" appearance="outline" class="example-full-width">
+                <mat-label color="primary"> Insira seu email </mat-label>
+                <input matInput placeholder="Digite aqui o email" type="email" formControlName="email">
+            </mat-form-field>
+
+            <section>
+
+                <div class="example-button-row" style="text-align: center;">
+                    <button class="bt2" mat-stroked-button color="primary" style="margin-left: 10px;" routerLink="/recuperar"> Recuperar conta </button>
+                    <button class="bt2" mat-stroked-button color="accent" style="margin-left: 10px;" routerLink="/login"> Entrar com uma conta existente </button>
+                </div>
+            </section>
+
+        </div>
+
+
+    </div>
+
+</div>

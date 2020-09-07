@@ -20,6 +20,7 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
   showTicks = true;
   step = 1;
   thumbLabel = true;
+  qntAdcItem = 1;
   quantidade = 1;
   vertical = false;
   tickInterval = 0;
@@ -35,9 +36,10 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
     this.iniciaForm();
   }
 
-  onClickAdd(disponivel: any, quantidade: any) {
+  onClickAdd(disponivel: any, quantidade: any, qntAdcItem: any) {
     this.formCadastro.value.disponivel = disponivel;
     this.formCadastro.value.maxsele = quantidade;
+    this.formCadastro.value.qntAdcItem = qntAdcItem;
     console.log(this.formCadastro.value);
 
     this.btstatus = true;
@@ -51,14 +53,18 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
       } else {
         this.btstatus = false;
         this.servcatadc.setCategoriasAdicional(r.lista);
+        this.formCadastro.controls.nome.setValue('');
+        this.formCadastro.controls.descricao.setValue('');
+
       }
     };
     console.log( this.crud.post_api('cadastro_categoria_adicional', callbfun, this.formCadastro.value ) );
   }
 
-  onSalvarItem(disponivel: any, quantidade: any) {
+  onSalvarItem(disponivel: any, quantidade: any, qntAdcItem: any) {
     this.formCadastro.value.disponivel = disponivel;
     this.formCadastro.value.maxsele = quantidade;
+    this.formCadastro.value.qntAdcItem = qntAdcItem;
     console.log(this.formCadastro.value);
 
     this.btstatus = true;
@@ -89,6 +95,7 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
         descricao: [this.servDCadc.getCategoriaAdicional().descricao],
         disponivel: [this.servDCadc.getCategoriaAdicional().disponivel],
         maxsele: [this.servDCadc.getCategoriaAdicional().maxsele],
+        qntAdcItem: [this.servDCadc.getCategoriaAdicional().qnt_adc_item],
       });
       return;
     }
@@ -99,6 +106,7 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
       descricao: [''],
       disponivel: [null],
       maxsele: [null],
+      qntAdcItem: [1],
     });
   }
 

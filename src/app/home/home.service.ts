@@ -31,6 +31,7 @@ export class HomeService {
     this.crud.get_api('cardapio&acmenu=listar').subscribe(data => {
       console.log(data);
       this.cardapio = data.catalogo ;
+      this.consultaModelItem();
     });
   }
 

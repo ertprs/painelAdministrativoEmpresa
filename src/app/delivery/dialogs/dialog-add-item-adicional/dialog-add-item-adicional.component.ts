@@ -111,6 +111,8 @@ export class DialogAddItemAdicionalComponent implements OnInit {
         this.btstatus = false;
         this.itensServ.consultaAdicionais();
         this.servapp.mostrarMensagem(r.detalhes);
+        // this.form.controls.nome.setValue('');
+        // this.form.controls.preco.setValue('');
       }
     };
     this.crud.post_api('editar_item_adc', callbfun, this.form.value );
@@ -128,6 +130,8 @@ export class DialogAddItemAdicionalComponent implements OnInit {
         this.servapp.mostrarMensagem(r.detalhes);
         this.btstatus = false;
         this.itensServ.setItensAdicional(r.lista);
+        this.form.controls.nome.setValue('');
+        this.form.controls.preco.setValue('');
       }
     };
     this.crud.post_api('add_adicional', callbfun, this.form.value );

@@ -1,0 +1,232 @@
+<mat-horizontal-stepper labelPosition="bottom" #stepper [formGroup]="form">
+    <mat-step>
+
+        <mat-accordion>
+
+            <ng-template matStepLabel> Catálogo </ng-template>
+
+            <span *ngFor="let item of catalogo">
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ item.nome }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <!--This is a summary of the content-->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-list role="list">
+            <span *ngFor="let itemc of item.itens">
+              <mat-list-item role="listitem">
+
+                <div>
+
+                  <button (click)="onClickItem(itemc)" color="primary" mat-icon-button>
+                    <mat-icon>add</mat-icon>
+                  </button>
+
+                </div>
+                <div> <img width="80px" [src]="itemc.imagem" alt="" srcset=""> </div>
+                <div>
+                  <div> {{ itemc.id }} {{ itemc.nome }} </div>
+                  <div style="font-size: 13px; color: rgb(90, 89, 89);"> {{ itemc.descricao }} </div>
+                  <div> {{ itemc.preco | currency }} </div>
+                </div>
+              </mat-list-item>
+            </span>
+            </mat-list>
+
+            </mat-expansion-panel>
+
+            </span>
+
+        </mat-accordion>
+
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel> Dados cliente </ng-template>
+
+
+
+        <div class="dados1">
+            <div class="dados2">
+
+                <mat-form-field color="primary" appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input formControlName="nome" matInput placeholder="" type="name">
+                </mat-form-field>
+
+                <mat-form-field color="primary" appearance="outline">
+                    <mat-label>Telefone</mat-label>
+                    <input formControlName="telefone" matInput placeholder="" type="tel">
+                </mat-form-field>
+
+            </div>
+
+
+            <mat-form-field color="primary" appearance="outline">
+                <mat-label>Complemento</mat-label>
+                <input formControlName="complemento" matInput placeholder="" type="name">
+            </mat-form-field>
+
+            <div class="dados3">
+                <mat-form-field color="primary" appearance="outline">
+                    <mat-label>Logradouro</mat-label>
+                    <input formControlName="rua" matInput placeholder="Rua Canadá" type="name">
+                </mat-form-field>
+
+                <mat-form-field color="primary" appearance="outline">
+                    <mat-label>Numero</mat-label>
+                    <input formControlName="numero" matInput placeholder="Apt/Casa" type="name">
+                </mat-form-field>
+            </div>
+
+
+            <div class="dados4">
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Cidade</mat-label>
+                    <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
+                        <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
+                            {{item.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Bairro
+                        <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
+                    </mat-label>
+                    <mat-select formControlName="bairro" (selectionChange)="carregaTaxa(itemBairro.value)" #itemBairro>
+                        <!--#bairroClienteSelecionada-->
+                        <mat-option *ngFor="let item of servico.getListaBairros()" [value]="item">
+                            {{item.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field color="primary" appearance="outline">
+
+                    <mat-label>Taxa de entrega
+                        <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderTaxa"></mat-progress-bar>
+                    </mat-label>
+                    <input formControlName="taxaentrega" matInput placeholder="R$17,50" type="tel" mask="separator.2" thousandSeparator=".">
+                </mat-form-field>
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </mat-step>
+
+
+    <mat-step>
+        <ng-template matStepLabel> Opções da compra </ng-template>
+
+        <div class="opby">
+
+
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip (click)="openBottomSheet('canalpedido')">Origem do pedido</mat-chip>
+                <mat-chip (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
+                <mat-chip (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
+            </mat-chip-list>
+
+            <mat-form-field style="margin-left: 10px;" color="primary" appearance="outline">
+                <mat-label>Troco para</mat-label>
+                <input matInput placeholder="" type="name">
+            </mat-form-field>
+        </div>
+
+
+
+
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel> Carrinho </ng-template>
+
+        <div class="car">
+            <div>
+                <!--Itens sacola-->
+                <div class="isac" *ngFor="let item of servcard.getItensCarrinho()">
+
+                    <div>
+                        <button mat-icon-button color="warn" aria-label="Example icon button with a menu icon" (click)="servcard.removeItemCar(item)">
+              <mat-icon style="color: yellow;">delete</mat-icon>
+            </button>
+                    </div>
+
+                    <div>
+                        <div class="isacT"> {{ item.qnt }}x - {{ item.nome }} - Preço: {{ item.preco | currency }}</div>
+                        <div>Observação: {{ item.observacao }} </div>
+                        <div>Adicionais:
+                            <span *ngFor="let adc of item.adicionais" class="isacAdcs"> {{ adc.nome }} </span>
+                        </div>
+                        <div class="isacT">Total: {{ item.total | currency }}</div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="car1">
+                <div>
+                    <div class="car12">
+                        <div>Tipo do pedido</div>
+                        <div>
+
+                            <span *ngIf="servcard.getCarrinho().tipopedido === 'false'">Não selecionado</span>
+                            <span *ngIf="servcard.getCarrinho().tipopedido !== 'false'"> {{ servcard.getCarrinho().tipopedido }} </span>
+                        </div>
+                    </div>
+                    <div class="car12">
+                        <div (click)="openBottomSheet()">Forma de pagamento</div>
+                        <div>
+                            <span *ngIf="servcard.getCarrinho().formapagamento.nome === 'false'">
+                            Não selecionado
+                          </span>
+
+                            <span *ngIf="servcard.getCarrinho().formapagamento.nome !== 'false'">
+                            {{ servcard.getCarrinho().formapagamento.nome }}
+                          </span>
+                        </div>
+                    </div>
+                    <div class="car12">
+                        <div>Subtotal</div>
+                        <div>{{ servcard.getSubTotalCarrinho() | currency }}</div>
+                    </div>
+                    <div class="car12">
+                        <div> Taxa de entrega</div>
+                        <div>{{ servcard.getTaxaEntrega() | currency }}</div>
+                    </div>
+                    <div class="car11 car12">
+                        <div>Total </div>
+                        <div> {{ servcard.getTotalCarrinho() | currency }}</div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <button class="car11bt" mat-raised-button color="primary" (click)="onClickFinalizarPedido()">
+            <mat-icon>send</mat-icon> Concluir pedido
+          </button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </mat-step>
+
+
+
+</mat-horizontal-stepper>

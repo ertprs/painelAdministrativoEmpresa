@@ -1,10 +1,8 @@
-import { ChatservicoService } from './chat/chatservico.service';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InicioService } from './inicio/inicio.service';
 import { isEqual } from 'lodash';
 import { ConfigServicoService } from './config/config-servico.service';
-import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +10,8 @@ import { Socket } from 'ngx-socket-io';
 export class ServicoService {
   private dadosEntregador = false;
   private dadosCliente = false;
-  // private urlapi = 'https://www.vulto.site/api';
-  // private urlapi = 'http://localhost/sistema.vulto/api';
-  private urlapi = 'http://192.168.0.108/apivulto/?api=apiEstabelecimento';
+  private urlapi = 'http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
+  // private urlapi = 'http://192.168.0.108/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
   private dir = '&acao=';
   private statusLogado = false;
   private dadosLogin: any;
@@ -44,7 +41,7 @@ export class ServicoService {
   private statusSistemaDelivery = false;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servicoChat: ChatservicoService, private socket: Socket) { }
+  constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService) { }
 
   getEntregadoeSelecionado() {
     return this.dadosEntregador;
@@ -82,25 +79,10 @@ export class ServicoService {
     }
     this.statusLogado = true;
     this.config.iniciarConfig();
-    this.servicoChat.adicionaEmpresaChat(this.dadosEmpresa.nome, this.dadosEmpresa.id);
     this.setStatusDelivery(this.dadosEmpresa.status_delivery);
     this.setStatusSistemaDelivery(this.dadosEmpresa.sistema_delivery);
 
-    this.socket.on('coordenadas', data => {
-     // console.error(data);
-      for (const x in this.listaEntregadores) {
-          if (this.listaEntregadores[x].id === data.id) {
-            this.listaEntregadores[x].coordenadas = data.coordenadas;
-          }
-      }
 
-    });
-
-    this.socket.on('qntmt', data => {
-      console.error('Quantidade de motoboys online em tempo real');
-      console.log(data);
-      this.quantidadeEntOn = data;
-    });
 
   }
 

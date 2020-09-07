@@ -1,60 +1,75 @@
 <mat-toolbar>
     <span>Motoboys</span>
-    <button mat-raised-button color="link" style="margin-left: 10px;" (click)="onclickAddMtb()">Adicionar mototboy do Vulto</button>
 </mat-toolbar>
-<div style="padding: 10px;">
 
-    <mat-card>Envie as entregas diretamente aos motoboys do Vulto que estão online e adicionados em sua lista</mat-card>
+<div style="padding: 20px;">
 
-
-    <span *ngFor="let item of servico.getMotoboysEmpresa()">
-    <div *ngIf="item.status_time_text !== 'Online'"  style="
-    text-align: left;
-    font-size: 12px;
-    color: rgb(255, 255, 255);
-    background-color: red;
-    float: left;
-    border-radius: 4px;
-    padding: 5px;
-    margin-top: 22px;">Offline</div>
-    <div *ngIf="item.status_time_text == 'Online'" style="
-    text-align: left;
-    font-size: 12px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(36, 114, 10);
-    float: left;
-    border-radius: 4px;
-    padding: 5px;
-    margin-top: 22px;">Online</div>
-  <mat-list role="list">
+    <table mat-table [dataSource]="itens" class="mat-elevation-z8">
 
 
-    <mat-list-item role="listitem">
-      <mat-list-item role="listitem">
-        <div> <span class="delsuc-3"> {{item.nome}} </span> <br> <img width="40px" style="border-radius: 15px;" [defaultImage]="'assets/vultoroxonome.png'" [lazyLoad]="item.imagem" offset="100"> </div>
-</mat-list-item>
+        <ng-container matColumnDef="op">
+            <th mat-header-cell *matHeaderCellDef> Editar. </th>
+            <td mat-cell *matCellDef="let element">
+
+                <button mat-icon-button color="accent" (click)="onClickEditar(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="op2">
+            <th mat-header-cell *matHeaderCellDef> Remover. </th>
+            <td mat-cell *matCellDef="let element">
+
+                <button (click)="removerItem(element)" mat-icon-button color="accent">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c1">
+            <th mat-header-cell *matHeaderCellDef> Dados pessoais. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.email}} - {{element.nome}}
+                <br> {{element.telefone}} - {{element.cpf}}
+                <br> {{element.rg}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c2">
+            <th mat-header-cell *matHeaderCellDef> Endereço. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.rua}}, {{element.numero}}, {{element.bairro}} - {{element.cidade}}
+                <br> {{element.cep}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c3">
+            <th mat-header-cell *matHeaderCellDef> Data criado. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.data_cadastro}}
+            </td>
+        </ng-container>
 
 
-<mat-list-item role="listitem" style="font-size: 13px;">
-    <div> <span class="delsuc-3">  </span>
-        <br> {{item.telefone}}
-        <br> {{item.email}}
-    </div>
-</mat-list-item>
+
+        <ng-container matColumnDef="add">
+            <th mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="accent" (click)="add()">
+            <mat-icon>add</mat-icon>
+          </button> </th>
+            <td mat-cell *matCellDef="let element">
+
+
+            </td>
+        </ng-container>
 
 
 
-<mat-list-item role="listitem">
-    <button mat-raised-button color="primary" (click)="onclickCadEntrega(item)" *ngIf="item.status_time_text == 'Online'">Cadastrar entrega</button>
-    <button mat-raised-button color="primary" (click)="servico.mostrarMensagem('Motoboy está offline')" *ngIf="item.status_time_text !== 'Online'" disabled>Cadastrar entrega</button>
-    <button mat-raised-button color="link" style="margin-left: 10px;" (click)="onclickRemoveMotoboy(item)">Remover</button>
-</mat-list-item>
-</mat-list-item>
-
-</mat-list>
-
-<mat-divider style="margin-top: 12px;"></mat-divider>
-
-</span>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 
 </div>

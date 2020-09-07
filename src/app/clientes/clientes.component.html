@@ -1,38 +1,102 @@
 <mat-toolbar>
-  <span>Meus clientes</span>
-  <button mat-raised-button color="link"  style="margin-left: 10px;" (click)="onclickCadastroCliente()">Cadastrar cliente</button>
+    <span>Meus clientes</span>
 </mat-toolbar>
-<div style="padding: 10px;">
-
-  <span *ngFor="let item of servico.getClientesEmpresa()">
-    <div style="text-align: left; font-size: 12px;color: rgb(182, 180, 180);">Cadastro {{item.info}}</div>
-  <mat-list role="list">
-
-    <mat-list-item role="listitem">
-      <mat-list-item role="listitem" style="font-size: 13px;">
-        <div> <span class="delsuc-3"> Nome </span> <br> {{item.nome}} </div>
-      </mat-list-item>
 
 
-      <mat-list-item role="listitem" style="font-size: 13px;">
-        <div> <span class="delsuc-3"> Telefone </span> <br> {{item.telefone}} </div>
-      </mat-list-item>
+<div style="padding: 20px;">
 
-      <mat-list-item role="listitem" style="font-size: 13px;">
-        <div> <span class="delsuc-3"> Endereço </span> <br> {{item.rua}}, {{item.numero}}, {{item.bairro}} - {{item.cidade}} {{item.uf}} </div>
-      </mat-list-item>
+    <table mat-table [dataSource]="itens" class="mat-elevation-z8">
 
-      <mat-list-item role="listitem">
-        <button mat-raised-button color="primary" (click)="onclickCadastrarEntrega(item)">Cadastrar entrega</button>
-        <button mat-raised-button color="link" style="margin-left: 10px;" (click)="onclickEditarCliente(item)">Editar</button>
-        <button mat-raised-button color="link" style="margin-left: 10px;" (click)="onclickRemoverCliente(item)">Remover</button>
-      </mat-list-item>
-    </mat-list-item>
 
-  </mat-list>
+        <ng-container matColumnDef="op">
+            <th mat-header-cell *matHeaderCellDef> Editar. </th>
+            <td mat-cell *matCellDef="let element">
 
-  <mat-divider style="margin-top: 12px;"></mat-divider>
+                <button mat-icon-button color="accent" (click)="onClickEditar(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
 
-  </span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="op2">
+            <th mat-header-cell *matHeaderCellDef> Remover. </th>
+            <td mat-cell *matCellDef="let element">
+
+                <button (click)="removerItem(element)" mat-icon-button color="accent">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+            </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> Nome. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.nome}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefone">
+            <th mat-header-cell *matHeaderCellDef> Telefone. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.telefone}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="aniversario">
+            <th mat-header-cell *matHeaderCellDef> Data aniversário. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.data_aniversario}}
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="endereco">
+            <th mat-header-cell *matHeaderCellDef> Endereço. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.rua}}, {{element.numero}} - {{element.bairro}}, {{element.cidade}} - {{element.uf}}
+                <br> {{element.complemento}}
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef> Tipo. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.tipo}}
+            </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="info">
+            <th mat-header-cell *matHeaderCellDef> Data criação. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.info}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="add">
+            <th mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="accent" (click)="add()">
+            <mat-icon>add</mat-icon>
+          </button> </th>
+            <td mat-cell *matCellDef="let element">
+
+                <button class="car11bt" mat-raised-button color="primary">
+                <mat-icon>add</mat-icon> Cadastrar pedido
+              </button>
+
+            </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 
 </div>

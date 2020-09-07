@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ServicoService } from '../servico.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CrudServicoService } from '../crud-servico.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-mototboy',
@@ -10,33 +11,34 @@ import { CrudServicoService } from '../crud-servico.service';
 })
 export class DialogAddMototboyComponent implements OnInit {
 
-  formCadastroMotoboy: FormGroup;
-  constructor(public servico: ServicoService, private formBuilder: FormBuilder, private crud: CrudServicoService) { }
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<DialogAddMototboyComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    this.ini();
-  }
 
-  private ini() {
-    console.log(this.servico.getDadosEmpresa());
-    this.formCadastroMotoboy = this.formBuilder.group({
-      nome: [null],
-      telefone: [null],
+    if (this.data.acao === 'add') {
+    this.form = this.fb.group({
+      nome: [null, Validators.required],
+      email: [null, Validators.required],
+      telefone: [null, Validators.required],
+      senha: [null, Validators.required],
+      cpf: [null, Validators.required],
+      cnh: [null, Validators.required],
+      placa: [null, Validators.required],
+      rua: [null, Validators.required],
+      numero: [null, Validators.required],
+      bairro: [null, Validators.required],
+      cidade: [null, Validators.required],
+      cep: [null, Validators.required],
+      rg: [null, Validators.required],
     });
+
+  } else {
+
   }
 
-  onclickCadastroMotoboy() {
-    const accallback = () => {
-      console.log('callback');
-      const r = this.servico.getRespostaApi();
-      if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
-        this.servico.mostrarMensagem(r.detalhes);
-        this.servico.setMotoboysEmpresa(r.resultado);
-        this.servico.getDialogapp().close();
-      }
-      this.servico.mostrarMensagem(r.detalhes);
-    };
-    this.crud.post_api('add_ent_lista_emp', accallback, this.formCadastroMotoboy.value);
   }
 
 

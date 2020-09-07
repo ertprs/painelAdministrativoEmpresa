@@ -1,0 +1,130 @@
+<mat-toolbar>
+    <span>Vendas por período</span>
+</mat-toolbar>
+
+<div style="padding: 10px;">
+    <mat-form-field class="example-full-width">
+        <mat-label>Data</mat-label>
+        <input type="date" matInput placeholder="Ex. 10/06/1993" #dataf>
+    </mat-form-field>
+
+    <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="onClickDataDiltro(dataf.value)">Buscar</button>
+    <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="onClickDataDiltro(false)">Mês atual</button>
+</div>
+
+
+<mat-accordion>
+
+    <mat-expansion-panel hideToggle *ngFor="let item of pedidos[0]">
+
+
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ item[0].day_name }} {{ item[0].day_week }}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{ item[0].month_name }} - Total: {{ item[0].total_vendas | currency }}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+
+            <div style="padding: 20px;">
+                <div style="height: 5px;">
+
+                    <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
+                </div>
+                <table mat-table [dataSource]="item[0].orders">
+
+
+
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status. </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.status_texto}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="nome">
+                        <th mat-header-cell *matHeaderCellDef> Nome cliente </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dadoscliente.nome}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="botoes">
+                        <th mat-header-cell *matHeaderCellDef> Taxa de entrega </th>
+                        <td mat-cell *matCellDef="let element">
+
+                            {{ element.taxaentrega | currency }}
+
+                        </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="total">
+                        <th mat-header-cell *matHeaderCellDef> Total </th>
+                        <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
+                    </ng-container>
+
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="tipo">
+                        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.tipopedido}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="formapagamento">
+                        <th mat-header-cell *matHeaderCellDef> Metodo pagamento </th>
+                        <td mat-cell *matCellDef="let element"> {{element.formapagamento}} </td>
+                    </ng-container>
+
+
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="info">
+                        <th mat-header-cell *matHeaderCellDef> Data </th>
+                        <td mat-cell *matCellDef="let element"> {{element.info}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="statusmotoboy">
+                        <th mat-header-cell *matHeaderCellDef> Status Motoboys </th>
+                        <td mat-cell *matCellDef="let element">
+
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> Pedido </th>
+                        <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+                    </ng-container>
+
+
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-list role="list">
+                    <mat-list-item role="listitem">
+                        <div class="delsc">
+                            <div class="delnome">Total taxas de entrega</div>
+                            <div>{{ item[0].taxa_entrega | currency }}</div>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+
+            </div>
+
+
+
+
+        </div>
+
+    </mat-expansion-panel>
+
+</mat-accordion>

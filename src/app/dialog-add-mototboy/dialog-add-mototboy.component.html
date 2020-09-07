@@ -1,18 +1,80 @@
-<h1>Adicionar motoboy</h1>
+<div class="row" [formGroup]="form">
 
-<form class="example-form" style="width: 100%; text-align: center;" [formGroup]="formCadastroMotoboy">
 
-  <mat-form-field class="mat-form-field-style">
-    <mat-label>Nome do motoboy</mat-label>
-    <input matInput placeholder="Informe o nome de sua preferência para o motoboy" formControlName="nome">
-  </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Nome</mat-label>
+        <input formControlName="nome" matInput placeholder="Ex. nome do motoboy">
+    </mat-form-field>
 
-  <mat-form-field class="mat-form-field-style">
-    <mat-label>Telefone do motoboy cadastrado no Vulto</mat-label>
-    <input matInput placeholder="(xx)xxxxx-xxxx" formControlName="telefone"  mask="(00)00000-0000">
-  </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Ex. email do motoboy">
+    </mat-form-field>
 
- <br> <button mat-raised-button color="primary" (click)="onclickCadastroMotoboy()">Adicionar</button>
-  <button mat-raised-button color="danger" (click)="servico.getDialogapp().close()" style="margin-left: 20px;">Cancelar</button>
+    <mat-form-field class="example-full-width">
+        <mat-label>Senha</mat-label>
+        <input formControlName="senha" matInput placeholder="Ex. Senha do motoboy">
+    </mat-form-field>
 
-  </form>
+    <mat-form-field class="example-full-width">
+        <mat-label>Telefone</mat-label>
+        <input formControlName="telefone" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>CPF</mat-label>
+        <input formControlName="cpf" matInput placeholder="Ex. CPF do motoboy">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>RG</mat-label>
+        <input formControlName="rg" matInput placeholder="Ex. Rg do motoboy">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>CNH</mat-label>
+        <input formControlName="cnh" matInput placeholder="Ex. CNH do motoboy">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Placa</mat-label>
+        <input formControlName="placa" matInput placeholder="Ex. Placa do motoboy">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Rua</mat-label>
+        <input formControlName="rua" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Número</mat-label>
+        <input formControlName="numero" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Bairro</mat-label>
+        <input formControlName="bairro" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Cep</mat-label>
+        <input formControlName="cep" matInput placeholder="99.999-999">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Cidade</mat-label>
+        <input formControlName="cidade" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Cep</mat-label>
+        <input formControlName="cep" matInput placeholder="">
+    </mat-form-field>
+
+
+</div>
+
+<div style="margin-top: 10px;">
+    <button mat-stroked-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+    <button style="margin-left: 10px;" mat-stroked-button color="primary" [mat-dialog-close]="form.value">Salvar</button>
+</div>

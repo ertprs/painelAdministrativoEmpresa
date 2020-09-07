@@ -144,9 +144,9 @@ export class EditarItemCompletoComponent implements OnInit {
 
     console.log(this.valorSubmit);
 
-    if (!this.form.value.nome) { alert('Infome o nome do item'); return; }
-    if (!this.form.value.preco) { alert('Infome o preço do item'); return; }
-    if (!this.form.value.descricao) { alert('Infome a descrição do item'); return; }
+    if (!this.form.value.nome) { alert('Informe o nome do item'); return; }
+    // if (!this.form.value.preco) { alert('Informe o preço do item'); return; }
+    if (!this.form.value.descricao) { alert('Informe a descrição do item'); return; }
 
     // Se o usuario não selecionar a imagem, envia a imagem da empresa
     if (this.arquivo) {
@@ -269,7 +269,7 @@ export class EditarItemCompletoComponent implements OnInit {
   }
 
   onClickCancelar() {
-    this.route.navigate(['painel']);
+    this.route.navigate(['painel/cardapio']);
   }
 
 }

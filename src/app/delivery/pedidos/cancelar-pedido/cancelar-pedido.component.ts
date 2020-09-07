@@ -3,7 +3,6 @@ import { ServicoService } from 'src/app/servico.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from 'src/app/entregas/entregas.component';
 
 @Component({
   selector: 'app-cancelar-pedido',
@@ -15,7 +14,7 @@ export class CancelarPedidoComponent implements OnInit {
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private servapp: ServicoService,
-              public dialogRef: MatDialogRef<CancelarPedidoComponent>,@Inject(MAT_DIALOG_DATA) public data: DialogData,
+              public dialogRef: MatDialogRef<CancelarPedidoComponent>,@Inject(MAT_DIALOG_DATA) public data: any,
               private servpedidos: PedidosService) { }
 
   ngOnInit(): void {

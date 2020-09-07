@@ -6,6 +6,7 @@ import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-inicio-delivery',
   templateUrl: './inicio-delivery.component.html',
@@ -114,11 +115,13 @@ export class InicioDeliveryComponent implements OnInit {
       this.formCadastro.controls.formasfuncionamento.patchValue(this.tipoServico[0]);
     });
 */
+    if (this.dadosEmpresa.formasfuncionamento) {
     this.tipoServico.forEach(element => {
       if (element.tipo === this.dadosEmpresa.formasfuncionamento.tipo) {
         this.formCadastro.controls.formasfuncionamento.patchValue(element);
        }
     });
+  }
 
   }
 
@@ -215,11 +218,12 @@ export class InicioDeliveryComponent implements OnInit {
       const r = this.servico.getRespostaApi();
       console.log(r);
       if (r.erro === true) {
-        this.servico.mostrarMensagem(r.mensagem);
+        this.servico.mostrarMensagem(r.detalhes);
         this.btCstatus = false;
       } else {
-        this.servico.mostrarMensagem(r.mensagem);
+        this.servico.mostrarMensagem(r.detalhes);
         this.formcadastroStatus = true;
+        this.router.navigate(['/login']);
       }
     };
     console.log( this.crud.post_api('salva_config_delivery_empresa', loginres, this.formCadastro.value ) );

@@ -7,6 +7,11 @@
         <button mat-menu-item [matMenuTriggerFor]="itensadicionais" routerLink="/painel/categoriasadicionais">Categorias adicionais</button>
     </mat-menu>
 
+    <button mat-button mat-button [matMenuTriggerFor]="usuarios"> <mat-icon>settings</mat-icon> Usuários </button>
+    <mat-menu #usuarios="matMenu" yPosition="below">
+        <button mat-menu-item routerLink="/painel/usuarios">Listar usuário</button>
+    </mat-menu>
+
     <mat-menu #itensadicionais="matMenu">
         <button mat-menu-item routerLink="/painel/itensadicionais"> Itens adicionais</button>
     </mat-menu>
@@ -14,6 +19,8 @@
 
     <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button routerLink="/painel/avaliacoes"> <mat-icon aria-hidden="false">star</mat-icon> Avaliações</button>
 
+
+    <button mat-button routerLink="/config"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações painel</button>
 
     <button mat-button routerLink="/painel/delivery"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações para funcionamento delivery</button>
 

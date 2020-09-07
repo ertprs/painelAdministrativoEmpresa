@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+}
+
+.delsc {
+    display: flex;
+    width: 100%;
+}
+
+.delnome {
+    width: 94%;
+}

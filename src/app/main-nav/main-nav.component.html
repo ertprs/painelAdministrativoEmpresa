@@ -23,47 +23,44 @@
             </a>
 
 
+            <a mat-list-item routerLink="/painel">
+                <mat-icon>settings</mat-icon>
+                Configurações
+            </a>
+
+
             <a mat-list-item routerLink="/meusclientes">
                 <mat-icon>perm_identity</mat-icon>
                 Meus clientes
             </a>
             <a mat-list-item routerLink="/motoboys">
                 <mat-icon>sports_motorsports</mat-icon>
-                Meus motoboys
+                Motoboys
             </a>
             <a mat-list-item routerLink="/notificacoes">
                 <mat-icon>info</mat-icon>
                 <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"> Notificações </span>
             </a>
 
-            <span *ngIf="servicoChat.getCanalChat()">
-        <a mat-list-item routerLink="/chat" *ngIf="servico.getStatusCardapioDigital() == '1'">
-          <mat-icon matBadge="1" [matBadgeHidden]="servicoChat.getIconnotificacao()"  matBadgeColor="accent">message</mat-icon>
-          <span> Chat </span>
+
+
+
+            <a mat-list-item routerLink="/relatorio">
+                <mat-icon>view_headline</mat-icon>
+                Vendas
             </a>
-            </span>
-            <span *ngIf="!servicoChat.getCanalChat()">
-        <a mat-list-item *ngIf="servico.getStatusCardapioDigital() == '1'">
-          <mat-icon matBadge="1" [matBadgeHidden]="servicoChat.getIconnotificacao()"  matBadgeColor="accent">message</mat-icon>
-          <span> Chat <mat-icon style="color: rgb(151, 28, 28); position: absolute;" matTooltip="Chat indisponível! Tente fazer o login novamente">report_problem</mat-icon></span>
-            </a>
-            </span>
 
             <a mat-list-item routerLink="/perfil">
                 <mat-icon>home</mat-icon>
                 Perfil
             </a>
 
-            <a mat-list-item routerLink="/painel">
-                <mat-icon>shopping_cart</mat-icon>
-                Delivery
-            </a>
 
 
-            <a mat-list-item routerLink="/config">
+            <!--<a mat-list-item routerLink="/config">
                 <mat-icon>settings</mat-icon>
                 <span> Configurações </span>
-            </a>
+            </a>-->
             <!--<a mat-list-item routerLink="/login">
         <mat-icon>input</mat-icon>
         Sair

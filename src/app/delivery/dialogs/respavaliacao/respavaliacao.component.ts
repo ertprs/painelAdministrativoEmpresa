@@ -1,7 +1,6 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from 'src/app/entregas/entregas.component';
 
 @Component({
   selector: 'app-respavaliacao',
@@ -14,7 +13,7 @@ export class RespavaliacaoComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<RespavaliacaoComponent>,@Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public dialogRef: MatDialogRef<RespavaliacaoComponent>,@Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder) {  }
 
   ngOnInit(): void {
