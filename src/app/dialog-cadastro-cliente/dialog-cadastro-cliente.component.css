@@ -6,4 +6,5 @@
     display: grid;
     max-height: 500px;
     overflow: auto;
+    grid-template-columns: 1fr 1fr;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PedidosService } from '../delivery/pedidos/pedidos.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicoService } from '../servico.service';
 import { CrudServicoService } from '../crud-servico.service';
 
@@ -13,39 +13,58 @@ import { CrudServicoService } from '../crud-servico.service';
 export class RelatoriosComponent implements OnInit {
 
   displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'formapagamento', 'total', 'info', 'statusmotoboy', 'id'];
-  pedidos = [];
+  itens = [];
   dialogDelsuc: any;
   statusLoadEntregas: boolean;
   statusloadpedidos = false;
+  form: FormGroup;
 
-  constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
+  constructor(private dialog: MatDialog, public servpedidos: PedidosService, private fb: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
 
-
+    this.form = this.fb.group({
+      data: [null],
+      id: [this.servapp.getDadosEmpresa().id],
+      tipo: [null]
+    });
 
     this.statusLoadEntregas = true;
     setTimeout(() => {
-      this.f5(false);
+      this.form.controls.tipo.setValue(false);
+      this.f5();
     }, 600);
 
 
   }
 
-  onClickDataDiltro(dataFiltro: any) {
-    this.f5(dataFiltro);
+  onClickDataDiltro(tipo) {
+    this.form.controls.tipo.setValue(tipo);
+    this.f5();
   }
 
-  f5(dataFiltro: any) {
+  f5() {
+
+    
     this.statusloadpedidos = true;
-    this.crud.get_api('relatorio&id=' + this.servapp.getDadosEmpresa().id + '&data=' + dataFiltro).subscribe(data => {
-      // console.log(data);
-      this.statusloadpedidos = false;
-      this.pedidos[0] = data;
-      console.log('Relatorio');
-      console.log(this.pedidos);
-    });
+
+    const loginres = () => {
+      const r = this.servapp.getRespostaApi();
+      console.log(r);
+      if (r.erro === true) {
+
+      } else {
+
+        this.statusloadpedidos = false;
+        this.itens = r.itens;
+        this.form.controls.data.setValue(r.datafiltro);
+        console.log('Relatorio');
+        console.log(r);
+
+      }
+    };
+    this.crud.post_api('relatorio', loginres, this.form.value);
 }
 
 }

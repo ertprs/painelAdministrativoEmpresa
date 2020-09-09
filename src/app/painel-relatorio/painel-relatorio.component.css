@@ -1,0 +1,15 @@
+.lay {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-auto-rows: 90.4vh;
+}
+
+.btlista {
+    width: 100%;
+    color: #503f61;
+    text-align: inherit;
+}
+
+.col-1 {
+    border-right: 1px solid #cacbcc;
+}

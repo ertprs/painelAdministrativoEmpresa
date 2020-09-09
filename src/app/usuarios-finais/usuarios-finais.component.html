@@ -1,0 +1,70 @@
+<mat-toolbar>
+    <span>Usuários app</span>
+</mat-toolbar>
+
+<div style="padding: 20px;">
+
+    <table mat-table [dataSource]="itens" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="op">
+            <th mat-header-cell *matHeaderCellDef> Imagem. </th>
+            <td mat-cell *matCellDef="let element">
+
+                <img [lazyLoad]="element.imagem" width="50px">
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="op2">
+            <th mat-header-cell *matHeaderCellDef> Nome. </th>
+            <td mat-cell *matCellDef="let element">
+                ( {{element.status_conta}} )
+                <br> {{element.nome}} {{element.sobrenome}}
+
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c1">
+            <th mat-header-cell *matHeaderCellDef> Telefone. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.telefone}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c2">
+            <th mat-header-cell *matHeaderCellDef> Email. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.email}}
+                <br> {{element.datanascimento}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c3">
+            <th mat-header-cell *matHeaderCellDef> Info. </th>
+            <td mat-cell *matCellDef="let element">
+                Data cadastro: {{element.info}}
+                <br> Último acesso: {{element.ultimoacesso}}
+            </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="add">
+            <th mat-header-cell *matHeaderCellDef>
+                Onesignal Id
+            </th>
+            <td mat-cell *matCellDef="let element">
+
+                {{element.onesignal_id}}
+
+            </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>

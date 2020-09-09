@@ -1,3 +1,4 @@
+import { CadastroPedidoService } from './../delivery/pedidos/cadastro-pedido/cadastro-pedido.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCadastroClienteComponent } from '../dialog-cadastro-cliente/dialog-cadastro-cliente.component';
@@ -16,7 +17,8 @@ export class ClientesComponent implements OnInit {
   itens = [];
 
 
-  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
+  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog,
+              private router: Router,  private sercard: CadastroPedidoService) { }
 
   ngOnInit(): void {
     this.f5();
@@ -31,7 +33,7 @@ export class ClientesComponent implements OnInit {
 
 add(): void {
   const dialogRef = this.dialog.open(DialogCadastroClienteComponent, {
-    width: '450px',
+    width: '650px',
     data: {acao: 'add'}
   });
 
@@ -100,4 +102,11 @@ removerItem(item) {
   this.crud.post_api('remove_cliente_lista_emp', accallback, item);
 
 }
+
+
+onClickCadastraPedido(item: any) {
+  this.sercard.setCadastroClienteLista(item);
+  this.router.navigate(['/painelpedidos/cadastro-pedido']);
+}
+
 }

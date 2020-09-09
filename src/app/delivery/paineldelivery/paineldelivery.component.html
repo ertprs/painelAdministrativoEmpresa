@@ -7,10 +7,7 @@
         <button mat-menu-item [matMenuTriggerFor]="itensadicionais" routerLink="/painel/categoriasadicionais">Categorias adicionais</button>
     </mat-menu>
 
-    <button mat-button mat-button [matMenuTriggerFor]="usuarios"> <mat-icon>settings</mat-icon> Usuários </button>
-    <mat-menu #usuarios="matMenu" yPosition="below">
-        <button mat-menu-item routerLink="/painel/usuarios">Listar usuário</button>
-    </mat-menu>
+
 
     <mat-menu #itensadicionais="matMenu">
         <button mat-menu-item routerLink="/painel/itensadicionais"> Itens adicionais</button>

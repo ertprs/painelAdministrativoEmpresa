@@ -2,28 +2,27 @@
     <span>Vendas por período</span>
 </mat-toolbar>
 
-<div style="padding: 10px;">
+<div style="padding: 10px;" [formGroup]="form">
     <mat-form-field class="example-full-width">
         <mat-label>Data</mat-label>
-        <input type="date" matInput placeholder="Ex. 10/06/1993" #dataf>
+        <input type="date" formControlName="data" matInput placeholder="Ex. 10/06/1993">
     </mat-form-field>
 
-    <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="onClickDataDiltro(dataf.value)">Buscar</button>
+    <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="onClickDataDiltro(true)">Buscar</button>
     <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="onClickDataDiltro(false)">Mês atual</button>
 </div>
 
-
 <mat-accordion>
 
-    <mat-expansion-panel hideToggle *ngFor="let item of pedidos[0]">
+    <mat-expansion-panel hideToggle *ngFor="let item of itens">
 
 
         <mat-expansion-panel-header>
             <mat-panel-title>
-                {{ item[0].day_name }} {{ item[0].day_week }}
+                {{ item.day_name }} {{ item.day_week }}
             </mat-panel-title>
             <mat-panel-description>
-                {{ item[0].month_name }} - Total: {{ item[0].total_vendas | currency }}
+                {{ item.month_name }} - Total: {{ item.total_vendas | currency }}
             </mat-panel-description>
         </mat-expansion-panel-header>
         <div>
@@ -33,7 +32,7 @@
 
                     <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
                 </div>
-                <table mat-table [dataSource]="item[0].orders">
+                <table mat-table [dataSource]="item.orders">
 
 
 
@@ -113,7 +112,7 @@
                     <mat-list-item role="listitem">
                         <div class="delsc">
                             <div class="delnome">Total taxas de entrega</div>
-                            <div>{{ item[0].taxa_entrega | currency }}</div>
+                            <div>{{ item.taxa_entrega | currency }}</div>
                         </div>
                     </mat-list-item>
                 </mat-list>

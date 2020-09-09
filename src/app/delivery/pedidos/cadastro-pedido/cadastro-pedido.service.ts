@@ -43,8 +43,12 @@ export class CadastroPedidoService {
   };
   tiposheet: any;
   bottomSheet: any;
+  cadastroClienteLista: any;
 
   constructor(private servico: ServicoService) { }
+
+  setCadastroClienteLista(cliente: any) { this.cadastroClienteLista = cliente; }
+  getCadastroClienteLista() { return this.cadastroClienteLista; }
 
   setSubtotal(valor: any) { this.carrinho.subtotal = valor; }
 

@@ -1,68 +1,81 @@
 <div style="padding: 10px; text-align: center;">
-  <mat-card style="margin-top: 2px;">
-    <div style="margin-top: 20px;">
-      <img mat-card-image src="{{imagemEmpresa}}" alt="Photo of a Shiba Inu"
-        style="width: 80px; border-radius: 10px;">
-    </div>
-    <form class="example-form" style="margin:auto;" [formGroup]="formPerfil">
+    <mat-card style="margin-top: 2px;">
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Ex. @email" formControlName="email" type="email" disabled>
-      </mat-form-field>
-<!--
+        <form id="form1">
+            <div style="margin-top: 20px;
+        display: grid;
+        justify-content: space-around;">
+                <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
+                <img mat-card-image [defaultImage]="'assets/vultoroxonome.png'" [lazyLoad]="imagemEmpresa" alt="Logomarca" style="width: 80px; border-radius: 10px;margin: auto;" id="imgInp" (change)="inputFile($event)">
+                <button color="primary" mat-button (click)="onClickImagemSelecionar()">Selecionar imagem</button>
+            </div>
+        </form>
+
+        <form class="example-form" style="margin:auto;" [formGroup]="formPerfil">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Ex. @email" formControlName="email" type="email" disabled>
+            </mat-form-field>
+            <!--
       <mat-form-field class="example-full-width">
         <mat-label>Senha</mat-label>
         <input matInput placeholder="Ex. ***" formControlName="senha" type="password" disabled>
       </mat-form-field>
     -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Nome empresa</mat-label>
-        <input matInput placeholder="Ex. Vulto Delivery" formControlName="nome" type="text">
-      </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Telefone</mat-label>
-        <input matInput placeholder="Ex. (74)98842-0307" formControlName="telefone" type="tel" mask="(00)00000-0000">
-      </mat-form-field>
+            <!--<mat-form-field class="example-full-width">
+                <mat-label>Imagem empresa</mat-label>
+                <input matInput placeholder="Ex. url logo" formControlName="imagem">
+            </mat-form-field>-->
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nome empresa</mat-label>
+                <input matInput placeholder="Ex. Vulto Delivery" formControlName="nome" type="text">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Telefone</mat-label>
+                <input matInput placeholder="Ex. (74)98842-0307" formControlName="telefone" type="tel" mask="(00)00000-0000">
+            </mat-form-field>
 
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Rua da empresa</mat-label>
-        <input matInput placeholder="Ex. Rua nome... " formControlName="rua" type="text">
-      </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Rua da empresa</mat-label>
+                <input matInput placeholder="Ex. Rua nome... " formControlName="rua" type="text">
+            </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Bairro da empresa</mat-label>
-        <input matInput placeholder="Ex. nome bairro..." formControlName="bairro" type="text">
-      </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Bairro da empresa</mat-label>
+                <input matInput placeholder="Ex. nome bairro..." formControlName="bairro" type="text">
+            </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Número da empresa</mat-label>
-        <input matInput placeholder="Ex. 83" formControlName="numero" type="tel">
-      </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Número da empresa</mat-label>
+                <input matInput placeholder="Ex. 83" formControlName="numero" type="tel">
+            </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Cidade</mat-label>
-        <input matInput placeholder="Ex. 83" formControlName="cidade" type="text">
-      </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Cidade</mat-label>
+                <input matInput placeholder="Ex. 83" formControlName="cidade" type="text">
+            </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>CEP</mat-label>
-        <input matInput placeholder="Ex. 00.000-000" formControlName="cep" type="tel" mask="00.000-000">
-      </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>CEP</mat-label>
+                <input matInput placeholder="Ex. 00.000-000" formControlName="cep" type="tel" mask="00.000-000">
+            </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>CNPJ/CPF</mat-label>
-        <input matInput placeholder="Ex. **************" formControlName="cnpj" type="tel">
-      </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>CNPJ/CPF</mat-label>
+                <input matInput placeholder="Ex. **************" formControlName="cnpj" type="tel">
+            </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Política de entrega</mat-label>
-        <textarea matInput placeholder="Ex. Em casos de entrega canceladas..."  formControlName="politica" type="text"></textarea>
-      </mat-form-field>
-    </form>
+            <mat-form-field class="example-full-width">
+                <mat-label>Política de entrega</mat-label>
+                <textarea matInput placeholder="Ex. Em casos de entrega canceladas..." formControlName="politica" type="text"></textarea>
+            </mat-form-field>
+        </form>
 
-    <button mat-raised-button color="primary" (click)="onclickSalvar()">Salvar</button>
-  </mat-card>
+        <button mat-raised-button color="primary" (click)="enviaImagem()">Salvar</button>
+    </mat-card>
 </div>

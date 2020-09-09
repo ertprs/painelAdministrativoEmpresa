@@ -68,7 +68,7 @@ editar(form) {
     }
     console.log(r);
   };
-  this.crud.post_api('att_cliente_lista_emp', accallback, form);
+  this.crud.post_api('editarPerfilEntregador', accallback, form);
 }
 
 f1(form) {

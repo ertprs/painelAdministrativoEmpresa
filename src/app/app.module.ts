@@ -95,6 +95,24 @@ import { CadastroPedidoComponent } from './delivery/pedidos/cadastro-pedido/cada
 import { ItemCatalogoComponent } from './delivery/pedidos/cadastro-pedido/item-catalogo/item-catalogo.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SelecionarFormaPagComponent } from './delivery/pedidos/cadastro-pedido/selecionar-forma-pag/selecionar-forma-pag.component';
+import { GaleriaComponent } from './galeria/galeria.component';
+import { BairrosSistemaComponent } from './bairros-sistema/bairros-sistema.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { FormasPagamentoComponent } from './formas-pagamento/formas-pagamento.component';
+import { ItensPagamentoComponent } from './itens-pagamento/itens-pagamento.component';
+import { CuponsComponent } from './cupons/cupons.component';
+import { NotificacoesSistemaComponent } from './notificacoes-sistema/notificacoes-sistema.component';
+import { DialogDinamComponent } from './dialog-dinam/dialog-dinam.component';
+import { UsuariosFinaisComponent } from './usuarios-finais/usuarios-finais.component';
+import { CidadesSistemaComponent } from './cidades-sistema/cidades-sistema.component';
+import { PainelRelatorioComponent } from './painel-relatorio/painel-relatorio.component';
+import { RelatorioItensComponent } from './painel-relatorio/relatorio-itens/relatorio-itens.component';
+import { RelatorioFpComponent } from './painel-relatorio/relatorio-fp/relatorio-fp.component';
+import { RelatorioEntregasComponent } from './painel-relatorio/relatorio-entregas/relatorio-entregas.component';
+import { RelatorioFretesComponent } from './painel-relatorio/relatorio-fretes/relatorio-fretes.component';
+import { RelatorioFaturamentoComponent } from './painel-relatorio/relatorio-faturamento/relatorio-faturamento.component';
+import { RelatorioPedidosCanceladosComponent } from './painel-relatorio/relatorio-faturamento/relatorio-pedidos-cancelados/relatorio-pedidos-cancelados.component';
+import { RelatorioClientesComponent } from './painel-relatorio/relatorio-clientes/relatorio-clientes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -149,6 +167,23 @@ import { SelecionarFormaPagComponent } from './delivery/pedidos/cadastro-pedido/
     CadastroPedidoComponent,
     ItemCatalogoComponent,
     SelecionarFormaPagComponent,
+    GaleriaComponent,
+    BairrosSistemaComponent,
+    FormasPagamentoComponent,
+    ItensPagamentoComponent,
+    CuponsComponent,
+    NotificacoesSistemaComponent,
+    DialogDinamComponent,
+    UsuariosFinaisComponent,
+    CidadesSistemaComponent,
+    PainelRelatorioComponent,
+    RelatorioItensComponent,
+    RelatorioFpComponent,
+    RelatorioEntregasComponent,
+    RelatorioFretesComponent,
+    RelatorioFaturamentoComponent,
+    RelatorioPedidosCanceladosComponent,
+    RelatorioClientesComponent,
   ],
   imports: [
     BrowserModule,
@@ -195,6 +230,7 @@ import { SelecionarFormaPagComponent } from './delivery/pedidos/cadastro-pedido/
     MatRadioModule,
     MatTableModule,
     MatTabsModule,
+    MatPaginatorModule,
   ],
   entryComponents: [
     DialoDelsucgComponent

@@ -1,0 +1,43 @@
+<table mat-table [dataSource]="itens">
+
+
+    <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> Item </th>
+        <td mat-cell *matCellDef="let element">
+
+            {{ element.nome_rel }}
+
+        </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Quantidade pedidos. </th>
+        <td mat-cell *matCellDef="let element">
+
+            <span *ngIf="element.qnt_total"> {{ element.qnt_total }}x </span>
+            <span *ngIf="!element.qnt_total"> {{ element.total }} </span>
+
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> Fat. Total </th>
+        <td mat-cell *matCellDef="let element">
+
+            {{ element.total_fat | currency }}
+
+        </td>
+    </ng-container>
+
+
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>

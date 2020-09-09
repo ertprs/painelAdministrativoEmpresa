@@ -57,7 +57,7 @@
         <ng-container matColumnDef="endereco">
             <th mat-header-cell *matHeaderCellDef> Endereço. </th>
             <td mat-cell *matCellDef="let element">
-                {{element.rua}}, {{element.numero}} - {{element.bairro}}, {{element.cidade}} - {{element.uf}}
+                {{element.rua}}, {{element.numero}} - {{element.bairro.nome}}, {{element.cidade.nome}} - {{element.uf}}
                 <br> {{element.complemento}}
             </td>
         </ng-container>
@@ -86,7 +86,7 @@
           </button> </th>
             <td mat-cell *matCellDef="let element">
 
-                <button class="car11bt" mat-raised-button color="primary">
+                <button class="car11bt" mat-raised-button color="primary" (click)="onClickCadastraPedido(element)">
                 <mat-icon>add</mat-icon> Cadastrar pedido
               </button>
 

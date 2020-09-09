@@ -1,0 +1,104 @@
+<div *ngIf="data.nomeDialog === 'form_formaspagamento'" [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Nome da forma de pagamento</mat-label>
+        <input matInput placeholder="Ex. Dinheiro" formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <input matInput placeholder="Ex. Descrição" formControlName="descricao">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput placeholder="Ex. Status" formControlName="status">
+    </mat-form-field>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Adicionar</button>
+    </div>
+</div>
+
+<div *ngIf="data.nomeDialog === 'itens_formaspagamento'" [formGroup]="form">
+
+
+    <mat-form-field>
+        <mat-label>Id forma pag.</mat-label>
+        <input matInput placeholder="Id forma de pagamento" formControlName="id_formapagamento">
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <mat-label>Imagem</mat-label>
+        <input matInput placeholder="Ex. Url da imagem" formControlName="imagem">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Nome da forma de pagamento</mat-label>
+        <input matInput placeholder="Ex. Nome" formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput placeholder="Ex. Status">
+    </mat-form-field>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+    </div>
+</div>
+
+
+<div *ngIf="data.nomeDialog === 'form_cidade'" [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Nome cidade</mat-label>
+        <input matInput placeholder="Ex. Cidade" formControlName="cidade">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Id Cidade</mat-label>
+        <input matInput placeholder="Ex. id cidade" formControlName="id_cidade">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput placeholder="Ex. Status" formControlName="status">
+    </mat-form-field>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+    </div>
+
+</div>
+
+<div *ngIf="data.nomeDialog === 'form_bairro'" [formGroup]="form">
+
+    <mat-form-field>
+        <mat-label>Cidade</mat-label>
+        <input matInput placeholder="Ex. cidade_id" formControlName="cidade_id">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Nome bairro</mat-label>
+        <input matInput placeholder="Ex. Nome" formControlName="bairro">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Latitude</mat-label>
+        <input matInput placeholder="-99999999" formControlName="latitude">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Longetude</mat-label>
+        <input matInput placeholder="-99999999" formControlName="longetude">
+    </mat-form-field>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+    </div>
+
+</div>
