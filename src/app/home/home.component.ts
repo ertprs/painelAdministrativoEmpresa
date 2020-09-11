@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   dialogAddItem(categoria: any) {
     this.servico.setTipoAcao(false);
     this.servico.setCategoria(categoria);
-    this.route.navigate(['configitem']);
+    this.route.navigate(['painel/configitem']);
     /*
     this.dialogDelsuc = this.dialog.open(DialogAddItemComponent, {
       width: '550px',
@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit {
     this.servico.setItem(item);
     this.servico.setTipoAcao(true);
     this.servico.setCategoria(categoria);
-    this.route.navigate(['configitem']);
+    this.route.navigate(['painel/configitem']);
   }
 
 

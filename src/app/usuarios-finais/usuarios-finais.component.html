@@ -2,9 +2,9 @@
     <span>Usuários app</span>
 </mat-toolbar>
 
-<div style="padding: 20px;">
+<div>
 
-    <table mat-table [dataSource]="itens" class="mat-elevation-z8">
+    <table mat-table [dataSource]="itens">
 
 
         <ng-container matColumnDef="op">
@@ -19,8 +19,8 @@
         <ng-container matColumnDef="op2">
             <th mat-header-cell *matHeaderCellDef> Nome. </th>
             <td mat-cell *matCellDef="let element">
-                ( {{element.status_conta}} )
-                <br> {{element.nome}} {{element.sobrenome}}
+
+                {{element.nome}} {{element.sobrenome}} ( {{element.status_conta}} )
 
             </td>
         </ng-container>
@@ -52,11 +52,13 @@
 
         <ng-container matColumnDef="add">
             <th mat-header-cell *matHeaderCellDef>
-                Onesignal Id
+
             </th>
             <td mat-cell *matCellDef="let element">
 
-                {{element.onesignal_id}}
+                <button mat-flat-button color="primary" *ngIf="element.status_conta === 'ativo'" (click)="enviarCupom(element)">
+                    Enviar cupom
+                </button>
 
             </td>
         </ng-container>

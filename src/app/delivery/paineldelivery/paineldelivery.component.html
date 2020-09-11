@@ -1,3 +1,72 @@
+<div class="g">
+    <div class="c1">
+        <div class="c11">
+            <div>
+                <button mat-button [matMenuTriggerFor]="csis" matTooltip="Configurações do sistema da loja">
+                <mat-icon>settings</mat-icon>
+            </button>
+
+                <mat-menu #csis="matMenu" yPosition="above">
+                    <button mat-menu-item routerLink="/painel/cidades-sistema"><mat-icon>view_headline</mat-icon> Cidades</button>
+                    <button mat-menu-item routerLink="/painel/bairros-sistema"><mat-icon>view_headline</mat-icon> Bairros</button>
+                    <button mat-menu-item routerLink="/painel/galeria"><mat-icon>image</mat-icon> Galeria</button>
+                    <button mat-menu-item routerLink="/painel/motoboys"><mat-icon>sports_motorsports</mat-icon> Motoboys</button>
+                    <button mat-menu-item routerLink="/painel/formas-pagamento"><mat-icon>money</mat-icon> Formas de pagamento</button>
+                    <button mat-menu-item routerLink="/painel/itens-pagamento"><mat-icon>view_headline</mat-icon> Itens de pagamento</button>
+                    <button mat-menu-item routerLink="/painel/usuarios-app"><mat-icon>view_headline</mat-icon> Usuários app</button>
+                    <button mat-menu-item routerLink="/painel/usuarios"> <mat-icon>view_headline</mat-icon>Usuários sistema</button>
+                    <button mat-menu-item routerLink="/painel/cupons"><mat-icon>view_headline</mat-icon> Cupons</button>
+                    <button mat-menu-item routerLink="/painel/notificacoes-usuarios"><mat-icon>view_headline</mat-icon> Notificações</button>
+                    <button mat-menu-item><mat-icon>view_headline</mat-icon> Pagamento online</button>
+                </mat-menu>
+            </div>
+
+            <div>
+                <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button [matMenuTriggerFor]="belowMenu" matTooltip="Configurações do cardápio"> 
+                <mat-icon aria-hidden="false">assignment</mat-icon>  
+            </button>
+                <mat-menu #belowMenu="matMenu" yPosition="below">
+                    <button mat-menu-item routerLink="/painel/cardapio">Cardápio</button>
+                    <button mat-menu-item [matMenuTriggerFor]="itensadicionais" routerLink="/painel/categoriasadicionais">Categorias adicionais</button>
+                </mat-menu>
+                <mat-menu #itensadicionais="matMenu">
+                    <button mat-menu-item routerLink="/painel/itensadicionais"> Itens adicionais</button>
+                </mat-menu>
+            </div>
+
+            <div>
+                <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button routerLink="/painel/avaliacoes" matTooltip="Avaliações"> 
+                <mat-icon aria-hidden="false">star</mat-icon>  
+            </button>
+            </div>
+
+            <div>
+                <button mat-button routerLink="/painel/config" matTooltip="Configurações painel"> 
+                <mat-icon aria-hidden="false">settings</mat-icon>  
+            </button>
+            </div>
+
+            <div>
+                <button mat-button routerLink="/painel/delivery" matTooltip="Configurações para funcionamento delivery"> 
+                <mat-icon aria-hidden="false">shopping</mat-icon> 
+                 </button>
+            </div>
+
+            <div>
+                <button mat-button routerLink="/painel/perfil" matTooltip="Perfil">
+                <mat-icon>store</mat-icon>
+            </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="c2">
+        <router-outlet> </router-outlet>
+    </div>
+
+</div>
+<!--
+
 <mat-card style="margin: 5px;">
 
 
@@ -25,3 +94,5 @@
 </mat-card>
 
 <router-outlet> </router-outlet>
+
+-->

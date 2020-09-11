@@ -3,6 +3,7 @@ import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddMototboyComponent } from '../dialog-add-mototboy/dialog-add-mototboy.component';
+import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
 
 @Component({
   selector: 'app-usuarios-finais',
@@ -13,6 +14,8 @@ export class UsuariosFinaisComponent implements OnInit {
 
   displayedColumns: string[] = ['op', 'op2', 'c1', 'c2', 'c3', 'add'];
   itens = [];
+  dadosCupomAdd: any;
+  acao: string;
 
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
@@ -57,6 +60,77 @@ onClickEditar(item): void {
     }
   });
 }
+
+enviarCupom(usuario) {
+  const dialogRef = this.dialog.open(DialogDinamComponent, {
+    width: '350px',
+    data: {tipo: 'add', item: usuario, nomeDialog: 'form_cupom'}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(result);
+    if (result) {
+      this.dadosCupomAdd = result;
+      this.acao = 'add';
+      this.inSenha();
+    }
+  });
+}
+
+addCupom() {
+
+  const accallback = () => {
+    console.log('callback');
+    const r = this.servico.getRespostaApi();
+    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); this.reabrir();  } else {
+      this.servico.mostrarMensagem('Cupom adicionado');
+      this.f5();
+    }
+    console.log(r);
+  };
+  this.crud.post_api('enviarCupom', accallback, this.dadosCupomAdd);
+}
+
+inSenha() {
+  const dialogRef = this.dialog.open(DialogDinamComponent, {
+    width: '350px',
+    data: {tipo: 'add', nomeDialog: 'form_pass'}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(result);
+
+    if (result) {
+      console.log('Envia backend');
+      console.log(result);
+      this.dadosCupomAdd.senha = result.senha;
+      this.addCupom();
+    }
+
+  });
+}
+
+reabrir() {
+
+  const dialogRef = this.dialog.open(DialogDinamComponent, {
+    width: '350px',
+    data: {tipo: 'editar', nomeDialog: 'form_cupom', item: this.dadosCupomAdd}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(result);
+
+    if (result) {
+      this.inSenha();
+    }
+
+  });
+
+}
+
 
 editar(form) {
   const accallback = () => {

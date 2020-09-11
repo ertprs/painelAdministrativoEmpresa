@@ -22,13 +22,6 @@
                 Entregas
             </a>
 
-
-            <a mat-list-item routerLink="/painel">
-                <mat-icon>settings</mat-icon>
-                Configurações
-            </a>
-
-
             <a mat-list-item routerLink="/meusclientes">
                 <mat-icon>perm_identity</mat-icon>
                 Meus clientes
@@ -40,38 +33,15 @@
                 </span>
             </a>
 
-
-
-
             <a mat-list-item routerLink="/painel-relatorio">
                 <mat-icon>view_headline</mat-icon>
                 Relatórios
             </a>
 
-            <a mat-list-item routerLink="/perfil">
-                <mat-icon>home</mat-icon>
-                Perfil
-            </a>
-
-            <a mat-list-item [matMenuTriggerFor]="csis">
+            <a mat-list-item routerLink="/painel">
                 <mat-icon>settings</mat-icon>
-                Config. Sistema
+                Configurações
             </a>
-
-            <mat-menu #csis="matMenu" yPosition="above">
-                <button mat-menu-item routerLink="/cidades-sistema"><mat-icon>view_headline</mat-icon> Cidades</button>
-                <button mat-menu-item routerLink="/bairros-sistema"><mat-icon>view_headline</mat-icon> Bairros</button>
-                <button mat-menu-item routerLink="/galeria"><mat-icon>image</mat-icon> Galeria</button>
-                <button mat-menu-item routerLink="/motoboys"><mat-icon>sports_motorsports</mat-icon> Motoboys</button>
-                <button mat-menu-item routerLink="/formas-pagamento"><mat-icon>money</mat-icon> Formas de pagamento</button>
-                <button mat-menu-item routerLink="/itens-pagamento"><mat-icon>view_headline</mat-icon> Itens de pagamento</button>
-                <button mat-menu-item routerLink="/usuarios-app"><mat-icon>view_headline</mat-icon> Usuários app</button>
-                <button mat-menu-item routerLink="/painel/usuarios"> <mat-icon>view_headline</mat-icon>Usuários sistema</button>
-                <button mat-menu-item routerLink="/cupons"><mat-icon>view_headline</mat-icon> Cupons</button>
-                <button mat-menu-item routerLink="/notificacoes-usuarios"><mat-icon>view_headline</mat-icon> Notificações</button>
-                <button mat-menu-item><mat-icon>view_headline</mat-icon> Pagamento online</button>
-            </mat-menu>
-
 
 
             <!--<a mat-list-item routerLink="/config">
@@ -85,11 +55,11 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar color="primary" style="background-color: black;">
+        <mat-toolbar color="primary">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-            <span>Vulto</span>
+            <span>Dashboard</span>
             <div style="position: absolute;margin-left: 12%;" *ngIf="servico.getStatusLogado() !== false">
                 <span matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="accent">
                     <mat-icon title="Motoboys disponíveis">sports_motorsports</mat-icon>

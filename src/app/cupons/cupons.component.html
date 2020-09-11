@@ -1,59 +1,91 @@
+<mat-toolbar>
+    <span>Cupons</span>
+</mat-toolbar>
+
 <table mat-table [dataSource]="itens" class="mat-elevation-z8">
 
 
-    <ng-container matColumnDef="c0">
-        <th mat-header-cell *matHeaderCellDef> Imagem. </th>
-        <td mat-cell *matCellDef="let element">
 
-            <img width="50px" [src]="element.imagem">
+    <div class="delsuc">
 
-        </td>
-    </ng-container>
+        <ng-container matColumnDef="c7">
+            <th mat-header-cell *matHeaderCellDef> Editar. </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="accent" (click)="onClickEditar(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
 
-    <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Id Forma de pagamento. </th>
-        <td mat-cell *matCellDef="let element">
+        <ng-container matColumnDef="c0">
+            <th mat-header-cell *matHeaderCellDef> Titulo. </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.titulo }}
+            </td>
+        </ng-container>
 
-            <mat-form-field class="example-full-width">
-                <input matInput [value]="element.id_formapagamento">
-            </mat-form-field>
-        </td>
-    </ng-container>
+        <ng-container matColumnDef="c1">
+            <th mat-header-cell *matHeaderCellDef> Texto. </th>
+            <td mat-cell *matCellDef="let element">
+                <span style="font-size: 12px;">{{ element.texto }}
+                <br> {{ element.regras }}</span>
+            </td>
+        </ng-container>
 
-    <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> Nome. </th>
-        <td mat-cell *matCellDef="let element">
-            <mat-form-field class="example-full-width">
-                <input matInput [value]="element.nome">
-            </mat-form-field>
-        </td>
-    </ng-container>
+        <ng-container matColumnDef="c2">
+            <th mat-header-cell *matHeaderCellDef> Data de expiração. </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.datafim }}
+            </td>
+        </ng-container>
 
-    <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> imagem. </th>
-        <td mat-cell *matCellDef="let element">
-            <mat-form-field class="example-full-width">
-                <input matInput [value]="element.imagem">
-            </mat-form-field>
-        </td>
-    </ng-container>
+        <ng-container matColumnDef="c8">
+            <th mat-header-cell *matHeaderCellDef> Data criado. </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.info }}
+            </td>
+        </ng-container>
 
-    <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef>
 
-            <button mat-icon-button color="accent" (click)="add()">
+        <ng-container matColumnDef="c5">
+            <th mat-header-cell *matHeaderCellDef> Enviado para. </th>
+            <td mat-cell *matCellDef="let element">
+                <span *ngIf="element.id_destino !== '0'"> {{ element.cliente.nome }} <br> {{ element.cliente.telefone}} </span>
+                <span *ngIf="element.id_destino === '0'"> Todos clientes </span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c6">
+            <th mat-header-cell *matHeaderCellDef> Valor. </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.valor | currency}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c3">
+            <th mat-header-cell *matHeaderCellDef> Status. </th>
+            <td mat-cell *matCellDef="let element">
+                <span *ngIf="element.status === '0'"> Sem uso </span>
+                <span *ngIf="element.status !== '0'"> Resgatado </span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c4">
+            <th mat-header-cell *matHeaderCellDef>
+
+                <button mat-icon-button color="accent" (click)="add()">
                 <mat-icon>add</mat-icon>
             </button>
 
-        </th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="accent">
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="accent" (click)="onClickRemover(element)">
                 <mat-icon>delete</mat-icon>
             </button>
-        </td>
-    </ng-container>
+            </td>
+        </ng-container>
 
-
+    </div>
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
