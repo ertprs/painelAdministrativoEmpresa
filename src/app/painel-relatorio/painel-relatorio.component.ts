@@ -1,3 +1,4 @@
+import { RelatorioService } from './relatorio.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PainelRelatorioComponent implements OnInit {
 
-  constructor() { }
+  constructor(public servrelat: RelatorioService) { }
 
   ngOnInit(): void {
   }

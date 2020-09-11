@@ -113,6 +113,8 @@ import { RelatorioFretesComponent } from './painel-relatorio/relatorio-fretes/re
 import { RelatorioFaturamentoComponent } from './painel-relatorio/relatorio-faturamento/relatorio-faturamento.component';
 import { RelatorioPedidosCanceladosComponent } from './painel-relatorio/relatorio-faturamento/relatorio-pedidos-cancelados/relatorio-pedidos-cancelados.component';
 import { RelatorioClientesComponent } from './painel-relatorio/relatorio-clientes/relatorio-clientes.component';
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -231,6 +233,7 @@ import { RelatorioClientesComponent } from './painel-relatorio/relatorio-cliente
     MatTableModule,
     MatTabsModule,
     MatPaginatorModule,
+    ChartsModule,
   ],
   entryComponents: [
     DialoDelsucgComponent

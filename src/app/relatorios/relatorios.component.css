@@ -10,3 +10,26 @@ table {
 .delnome {
     width: 94%;
 }
+
+.col1 {
+    text-align: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #d4d4d4;
+}
+
+.ttg {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.guinho {
+    width: 100%;
+}
+
+.tt {
+    font-size: 20px;
+    font-weight: 600;
+    color: #565656;
+}

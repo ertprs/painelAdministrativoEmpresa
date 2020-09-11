@@ -2,17 +2,103 @@
     <span>Vendas por período</span>
 </mat-toolbar>
 
-<div style="padding: 10px;" [formGroup]="form">
-    <mat-form-field class="example-full-width">
-        <mat-label>Data</mat-label>
-        <input type="date" formControlName="data" matInput placeholder="Ex. 10/06/1993">
-    </mat-form-field>
+<div class="ttg">
+    <div class="col1">
 
-    <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="onClickDataDiltro(true)">Buscar</button>
-    <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="onClickDataDiltro(false)">Mês atual</button>
+        <div class="ffrela" [formGroup]="form">
+            <div>
+                <mat-form-field class="guinho" appearance="fill">
+                    <mat-label>Período</mat-label>
+                    <mat-select (selectionChange)="altSelectPeriodo($event.value)">
+
+                        <mat-option value="ontem">
+                            Ontem
+                        </mat-option>
+
+                        <mat-option value="hoje">
+                            Hoje
+                        </mat-option>
+
+                        <mat-option value="15">
+                            Últimos 15 dias
+                        </mat-option>
+                        <mat-option value="30">
+                            Últimos 30 dias
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Data início</mat-label>
+                    <input matInput placeholder="Ex. 10/06/2020" formControlName="data" type="date">
+                    <mat-icon matSuffix>calendar</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Data final</mat-label>
+                    <input matInput placeholder="Ex. 24/06/2020" formControlName="datafinal" type="date">
+                    <mat-icon matSuffix>calendar</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <button mat-raised-button color="primary" (click)="onClickDataDiltro(true)">Filtrar</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col2">
+
+
+        <div style="display: block; padding: 15px; width: 90%;">
+            <div class="tt">
+                Faturamento
+            </div>
+            <canvas baseChart [datasets]="barChartDataSales" [labels]="barChartLabelsSales" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartTypeSales" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
+        <div style="display: block; padding: 15px; width: 90%;">
+            <div class="tt">
+                Pedidos concluídos/cancelados
+            </div>
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
+        <div style="display: block; padding: 15px; width: 90%;">
+            <div class="tt">
+                Top clientes
+            </div>
+            <canvas baseChart [datasets]="barChartDataClient" [labels]="barChartLabelsClient" [options]="barChartOptionsClient" [legend]="barChartLegendClient" [chartType]="barChartTypeClient" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
+        <div style="display: block; padding: 15px; width: 90%;">
+            <div class="tt">
+                Formas de pagamento
+            </div>
+            <canvas baseChart [datasets]="barChartDataFp" [labels]="barChartLabelsFp" [options]="barChartOptionsFp" [legend]="barChartLegendFp" [chartType]="barChartTypeFp" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
+        <div style="display: block; padding: 15px; width: 90%;">
+            <div class="tt">
+                Tipo pedido
+            </div>
+            <canvas baseChart [datasets]="barChartDataTipoPedido" [labels]="barChartLabelsTipoPedido" [options]="barChartOptionsTipoPedido" [legend]="barChartLegendTipoPedido" [chartType]="barChartTypeTipoPedido" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
+
+    </div>
+
 </div>
 
-<mat-accordion>
+
+
+
+
+<!--<mat-accordion>
 
     <mat-expansion-panel hideToggle *ngFor="let item of itens">
 
@@ -44,13 +130,13 @@
                         </td>
                     </ng-container>
 
-                    <!-- Name Column -->
+
                     <ng-container matColumnDef="nome">
                         <th mat-header-cell *matHeaderCellDef> Nome cliente </th>
                         <td mat-cell *matCellDef="let element"> {{element.dadoscliente.nome}} </td>
                     </ng-container>
 
-                    <!-- Symbol Column -->
+
                     <ng-container matColumnDef="botoes">
                         <th mat-header-cell *matHeaderCellDef> Taxa de entrega </th>
                         <td mat-cell *matCellDef="let element">
@@ -60,20 +146,20 @@
                         </td>
                     </ng-container>
 
-                    <!-- Symbol Column -->
+
                     <ng-container matColumnDef="total">
                         <th mat-header-cell *matHeaderCellDef> Total </th>
                         <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
                     </ng-container>
 
 
-                    <!-- Name Column -->
+
                     <ng-container matColumnDef="tipo">
                         <th mat-header-cell *matHeaderCellDef> Tipo </th>
                         <td mat-cell *matCellDef="let element"> {{element.tipopedido}} </td>
                     </ng-container>
 
-                    <!-- Weight Column -->
+
                     <ng-container matColumnDef="formapagamento">
                         <th mat-header-cell *matHeaderCellDef> Metodo pagamento </th>
                         <td mat-cell *matCellDef="let element"> {{element.formapagamento}} </td>
@@ -81,20 +167,20 @@
 
 
 
-                    <!-- Symbol Column -->
+
                     <ng-container matColumnDef="info">
                         <th mat-header-cell *matHeaderCellDef> Data </th>
                         <td mat-cell *matCellDef="let element"> {{element.info}} </td>
                     </ng-container>
 
-                    <!-- Symbol Column -->
+
                     <ng-container matColumnDef="statusmotoboy">
                         <th mat-header-cell *matHeaderCellDef> Status Motoboys </th>
                         <td mat-cell *matCellDef="let element">
 
                     </ng-container>
 
-                    <!-- Symbol Column -->
+
                     <ng-container matColumnDef="id">
                         <th mat-header-cell *matHeaderCellDef> Pedido </th>
                         <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
@@ -127,3 +213,5 @@
     </mat-expansion-panel>
 
 </mat-accordion>
+
+-->
