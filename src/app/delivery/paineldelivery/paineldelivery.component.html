@@ -23,7 +23,7 @@
 
             <div>
                 <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button [matMenuTriggerFor]="belowMenu" matTooltip="Configurações do cardápio"> 
-                <mat-icon aria-hidden="false">assignment</mat-icon>  
+                <mat-icon aria-hidden="false">view_headline</mat-icon>  
             </button>
                 <mat-menu #belowMenu="matMenu" yPosition="below">
                     <button mat-menu-item routerLink="/painel/cardapio">Cardápio</button>
@@ -57,6 +57,14 @@
                 <mat-icon>store</mat-icon>
             </button>
             </div>
+
+            <div routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
+                <button mat-button routerLink="/painel/painel-relatorio" matTooltip="Relatórios">
+                    <mat-icon>assignment</mat-icon>
+                </button>
+
+            </div>
+
         </div>
     </div>
 

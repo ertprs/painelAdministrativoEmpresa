@@ -1,0 +1,25 @@
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printable,
+    #printable * {
+        visibility: visible;
+    }
+    #printable {
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+}
+
+.c {
+    background-color: #ecececa8;
+    padding: 10px;
+    font-size: 11pt;
+}
+
+.ab {
+    margin-top: 10px;
+    text-align: center;
+}

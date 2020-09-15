@@ -1,0 +1,28 @@
+<div [formGroup]="form">
+
+
+    <div style="    text-align: center;
+    font-size: 12px;
+    margin: 20px;
+    margin-top: 2px;">
+        Retirar estoque da loja
+    </div>
+
+    <div class="delsuc">
+
+        <div>
+            Informe a quantidade que será retirado da loja
+        </div>
+
+        <mat-form-field>
+            <mat-label>Quantidade</mat-label>
+            <input matInput type="number" placeholder="1" formControlName="quantidade">
+        </mat-form-field>
+
+    </div>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Confirmar</button>
+    </div>
+</div>

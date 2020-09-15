@@ -21,4 +21,8 @@ export class AuthService {
       return true;
     }
   }
+
+  verificaTipoUsuario() {
+    return this.servico.getDadosEmpresa().operador.tipo;
+  }
 }

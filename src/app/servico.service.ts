@@ -10,6 +10,7 @@ import { ConfigServicoService } from './config/config-servico.service';
 export class ServicoService {
   private dadosEntregador = false;
   private dadosCliente = false;
+  private defaultImg = '/assets/semImg.png';
   private urlapi = 'http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
   // private urlapi = 'http://192.168.0.108/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
   private dir = '&acao=';
@@ -42,6 +43,11 @@ export class ServicoService {
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService) { }
+
+
+  getDefaultImage() {
+    return this.defaultImg;
+  }
 
   getEntregadoeSelecionado() {
     return this.dadosEntregador;
@@ -106,6 +112,10 @@ export class ServicoService {
 
   getToken() {
     return this.token;
+  }
+
+  setListaNotificacoesNoFiltro(lista: any) {
+    this.listaNotificacoes = lista;
   }
 
   setListaNotificacoes(lista) {

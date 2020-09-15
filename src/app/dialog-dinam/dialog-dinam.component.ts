@@ -48,7 +48,8 @@ export class DialogDinamComponent implements OnInit {
       datafim: [null, Validators.required],
 
       senha: [null, Validators.required],
-
+      quantidade: [null, Validators.required],
+       
     });
 
   } else {
@@ -78,6 +79,10 @@ export class DialogDinamComponent implements OnInit {
       valor: [this.data.item.valor, Validators.required],
       datafim: [this.data.item.datafim, Validators.required],
       
+      quantidade: ['', Validators.required],
+      id_motoboy: [this.data.item.motoboy.dados.id, Validators.required],
+      id_estoque: [this.data.item.id, Validators.required],
+
 
     });
   }

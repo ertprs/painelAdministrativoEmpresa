@@ -28,3 +28,21 @@ body {
     width: 100%;
     font-size: 11px;
 }
+
+.active-link {
+    background-color: #2196F3;
+    color: white;
+    outline: none;
+    color: white;
+}
+
+.active-button {
+    color: #F44336;
+}
+
+@media print {
+    @page {
+        size: 5.5in 8.5in;
+        size: landscape;
+    }
+}

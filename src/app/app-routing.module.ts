@@ -1,4 +1,11 @@
+import { ListaMotoboysComponent } from './estoque/lista-motoboys/lista-motoboys.component';
+import { FinaceiroComponent } from './finaceiro/finaceiro.component';
+import { EstoqueMotoboyComponent } from './estoque/estoque-motoboy/estoque-motoboy.component';
+import { ItensEstoqueComponent } from './estoque/itens-estoque/itens-estoque.component';
+import { HistoricoComponent } from './estoque/historico/historico.component';
+import { EstoqueComponent } from './estoque/estoque.component';
 import { RelatorioClientesComponent } from './painel-relatorio/relatorio-clientes/relatorio-clientes.component';
+// tslint:disable-next-line: max-line-length
 import { RelatorioPedidosCanceladosComponent } from './painel-relatorio/relatorio-faturamento/relatorio-pedidos-cancelados/relatorio-pedidos-cancelados.component';
 import { RelatorioFaturamentoComponent } from './painel-relatorio/relatorio-faturamento/relatorio-faturamento.component';
 import { RelatorioFretesComponent } from './painel-relatorio/relatorio-fretes/relatorio-fretes.component';
@@ -44,6 +51,7 @@ import { EditarEntregaComponent } from './editar-entrega/editar-entrega.componen
 import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.component';
 import { GuardaAtenticacaoService } from './guards/guarda-atenticacao.service';
 import { ConfigComponent } from './config/config.component';
+import { GuardaConfigSistemaService } from './guards/guarda-config-sistema.service';
 
 const routes: Routes = [
 
@@ -56,21 +64,14 @@ const routes: Routes = [
     path: '', component: DashboardComponent, canActivate: [GuardaAtenticacaoService], children: [
 
       { path: 'inicio', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [
+            { path: 'historico', component: HistoricoComponent, canActivate: [GuardaConfigSistemaService] },
+            { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
+            { path: 'estoque-motoboy', component: EstoqueMotoboyComponent, canActivate: [GuardaConfigSistemaService] },
+            { path: 'lista-motoboys', component: ListaMotoboysComponent, canActivate: [GuardaConfigSistemaService] },
+      ] },
 
-
-
-      {
-        path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
-          { path: 'vendas', component: RelatoriosComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'itens', component: RelatorioItensComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'formas-pagamento', component: RelatorioFpComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'entregas', component: RelatorioEntregasComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'total-fretes', component: RelatorioFretesComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'faturamento', component: RelatorioFaturamentoComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'pedidos-cancelados', component: RelatorioPedidosCanceladosComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'clientes', component: RelatorioClientesComponent, canActivate: [GuardaAtenticacaoService] },
-        ]
-      },
 
       { path: 'meusclientes', component: ClientesComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'editar-cliente', component: EditarClienteComponent, canActivate: [GuardaAtenticacaoService] },
@@ -78,28 +79,41 @@ const routes: Routes = [
       { path: 'editar-entrega', component: EditarEntregaComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'notificacoes', component: NotificacoesComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'cadastro-entrega', component: DialogCadastroEntregaComponent, canActivate: [GuardaAtenticacaoService] },
-    
-      {
-        path: 'painel', component: PaineldeliveryComponent, canActivate: [GuardaAtenticacaoService], children: [
-          { path: 'cardapio', component: HomeComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'itensadicionais', component: ItensAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'avaliacoes', component: AvaliacoesComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardaAtenticacaoService] },
 
-          { path: 'galeria', component: GaleriaComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'bairros-sistema', component: BairrosSistemaComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'cidades-sistema', component: CidadesSistemaComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'formas-pagamento', component: FormasPagamentoComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'itens-pagamento', component: ItensPagamentoComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'cupons', component: CuponsComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'perfil', component: PerfilComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'config', component: ConfigComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'configitem', component: EditarItemCompletoComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'motoboys', component: MototboysComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaAtenticacaoService] },
+      {
+        path: 'painel', component: PaineldeliveryComponent, canActivate: [GuardaConfigSistemaService], children: [
+          { path: 'cardapio', component: HomeComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'itensadicionais', component: ItensAdicionaisComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'avaliacoes', component: AvaliacoesComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardaConfigSistemaService] },
+
+          { path: 'galeria', component: GaleriaComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'bairros-sistema', component: BairrosSistemaComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'cidades-sistema', component: CidadesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'formas-pagamento', component: FormasPagamentoComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'itens-pagamento', component: ItensPagamentoComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'cupons', component: CuponsComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'perfil', component: PerfilComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'config', component: ConfigComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'configitem', component: EditarItemCompletoComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'motoboys', component: MototboysComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaConfigSistemaService] },
+
+          {
+            path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
+              { path: 'vendas', component: RelatoriosComponent, canActivate: [GuardaAtenticacaoService] },
+              { path: 'itens', component: RelatorioItensComponent, canActivate: [GuardaAtenticacaoService] },
+              { path: 'formas-pagamento', component: RelatorioFpComponent, canActivate: [GuardaAtenticacaoService] },
+              { path: 'entregas', component: RelatorioEntregasComponent, canActivate: [GuardaAtenticacaoService] },
+              { path: 'total-fretes', component: RelatorioFretesComponent, canActivate: [GuardaAtenticacaoService] },
+              { path: 'faturamento', component: RelatorioFaturamentoComponent, canActivate: [GuardaAtenticacaoService] },
+              { path: 'pedidos-cancelados', component: RelatorioPedidosCanceladosComponent, canActivate: [GuardaAtenticacaoService] },
+              { path: 'clientes', component: RelatorioClientesComponent, canActivate: [GuardaAtenticacaoService] },
+            ]
+          },
 
         ]
       },
@@ -110,9 +124,6 @@ const routes: Routes = [
           { path: 'cadastro-pedido', component: CadastroPedidoComponent, canActivate: [GuardaAtenticacaoService] },
         ]
       },
-      // { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
-      // { path: 'itensadicionais', component: ItensAdicionaisComponent, canActivate: [GuardaAtenticacaoService] },
-       
 
 
     ]

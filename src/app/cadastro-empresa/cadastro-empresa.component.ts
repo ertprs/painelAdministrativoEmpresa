@@ -101,7 +101,7 @@ export class CadastroEmpresaComponent implements OnInit {
         this.formcadastroStatus = true;
       }
     };
-    console.log( this.crud.post_api('cadastro_empresa', loginres, this.formCadastro.value ) );
+    this.crud.post_api('cadastro_empresa', loginres, this.formCadastro.value );
   }
 
   cadatroFeito() {

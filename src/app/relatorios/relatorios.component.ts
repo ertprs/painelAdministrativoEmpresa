@@ -97,6 +97,24 @@ export class RelatoriosComponent implements OnInit {
     { data: [], label: 'Qbt. tipo pedido' },
   ];
 
+   // Gráfico de Produto
+   public barChartOptionsProduto: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+  };
+  public barChartTypeProduto: ChartType = 'pie';
+  public barChartLegendProduto = true;
+  public barChartLabelsProduto: Label[] = []; // Label
+  public barChartDataProduto: ChartDataSets[] = [
+    { data: [], label: 'Qbt. Produto' },
+  ];
+  public pieChartColorsProduto = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)', '#ff98009c;', 'rgba(0,0,255,0.3)', '#0094857d', '#ffeb3b', '#9c27b0', '#03a9f4'],
+    },
+  ];
+
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private fb: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService, public servrelat: RelatorioService) { }
 
@@ -121,6 +139,7 @@ export class RelatoriosComponent implements OnInit {
 
   onClickDataDiltro(tipo) {
     this.form.controls.tipo.setValue(tipo);
+    this.form.controls.periodo.setValue(':)');
     this.f5();
   }
 
@@ -141,6 +160,7 @@ export class RelatoriosComponent implements OnInit {
         this.servrelat.setTotalFat(r.faturamento_total);
         this.servrelat.setQntPedido(r.qnt_pedidos);
         this.servrelat.setCupom(r.total_cupons);
+        this.servrelat.setTicketMedio(r.ticket_medio);
 
         r.itens.forEach(element => {
           this.barChartLabels.push(element.day_week); // Data completa do dia
@@ -170,6 +190,13 @@ export class RelatoriosComponent implements OnInit {
           try {
           this.barChartLabelsTipoPedido.push(element.nome); // Data completa do dia
           this.barChartDataTipoPedido[0].data.push(element.qnt);
+          } catch (e) { console.log(e); }
+        });
+
+        r.itens_pedido.forEach((element, key) => {
+          try {
+          this.barChartLabelsProduto.push(element.nome); // Data completa do dia
+          this.barChartDataProduto[0].data.push(element.qnt_pedidos);
           } catch (e) { console.log(e); }
         });
 
@@ -241,6 +268,9 @@ resetaGrafico() {
 
   this.barChartLabelsTipoPedido = []; // Data completa do dia
   this.barChartDataTipoPedido[0].data = [];
+
+  this.barChartLabelsProduto = []; // Data completa do dia
+  this.barChartDataProduto[0].data = [];
 }
 
  // events

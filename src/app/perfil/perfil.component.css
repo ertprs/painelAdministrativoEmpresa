@@ -1,9 +1,31 @@
 .example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
 }
 
 .example-full-width {
-  width: 100%;
+    width: 100%;
+}
+
+.idelsuc {
+    display: grid;
+    grid-template-columns: 0fr 5fr 1fr;
+    justify-content: space-around;
+    background: #eaeaea;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    background-repeat: no-repeat;
+    /* background-size: 100%; */
+    background-position: center;
+    width: 925px;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.delsuccapa {
+    margin: 10px;
+    margin-top: -22px;
 }

@@ -15,29 +15,9 @@
 
 <mat-nav-list *ngIf=" servcard.getTipoSheet()==='canalpedido' ">
 
-    <a mat-list-item (click)="servcard.setOrigemPedido('Whatsapp')">
-        <span mat-line>Whatsapp</span>
-        <span mat-line>O cliente fez o pedido pelo Whatsapp</span>
-    </a>
-
-    <a mat-list-item (click)="servcard.setOrigemPedido('Instagram')">
-        <span mat-line>Instagram</span>
-        <span mat-line>O cliente fez o pedido pelo Instagram</span>
-    </a>
-
-    <a mat-list-item (click)="servcard.setOrigemPedido('Telefone')">
-        <span mat-line>Telefone</span>
-        <span mat-line>O cliente fez o pedido pelo telefone</span>
-    </a>
-
-    <a mat-list-item (click)="servcard.setOrigemPedido('Facebook')">
-        <span mat-line>Facebook</span>
-        <span mat-line>O cliente fez o pedido pelo Facebook</span>
-    </a>
-
-    <a mat-list-item (click)="servcard.setOrigemPedido('Outro')">
-        <span mat-line>Outro</span>
-        <span mat-line>O cliente fez o pedido por outro meio não listado nas opções acima</span>
+    <a *ngFor="let item of servico.getDadosEmpresa().canais_venda" mat-list-item (click)="servcard.setOrigemPedido(item.nome)">
+        <span mat-line> {{ item.nome }} </span>
+        <span mat-line> {{ item.descricao }} </span>
     </a>
 
 </mat-nav-list>

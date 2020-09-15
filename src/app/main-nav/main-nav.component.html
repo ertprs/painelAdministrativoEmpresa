@@ -6,40 +6,55 @@
 
 
         <mat-nav-list>
-            <a mat-list-item routerLink="/inicio">
+            <a mat-list-item [routerLink]="['/inicio']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>public</mat-icon>
                 Início
             </a>
 
-            <a mat-list-item routerLink="/painelpedidos/pedidos">
+            <a mat-list-item [routerLink]="['/painelpedidos/pedidos']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="O estabalecimento está fechado">info</mat-icon>
                 <mat-icon>view_headline</mat-icon>
                 <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
             </a>
 
-            <a mat-list-item routerLink="/entregas">
+            <a mat-list-item routerLink="/entregas" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>view_headline</mat-icon>
                 Entregas
             </a>
 
-            <a mat-list-item routerLink="/meusclientes">
+            <a mat-list-item routerLink="/meusclientes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>perm_identity</mat-icon>
                 Meus clientes
             </a>
 
-            <a mat-list-item routerLink="/notificacoes">
+            <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>info</mat-icon>
                 <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"> Notificações
                 </span>
             </a>
 
-            <a mat-list-item routerLink="/painel-relatorio">
-                <mat-icon>view_headline</mat-icon>
-                Relatórios
+
+            <a mat-list-item routerLink="/estoque">
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">view_headline</mat-icon>
+                Estoque
             </a>
 
-            <a mat-list-item routerLink="/painel">
+            <a mat-list-item routerLink="/financeiro">
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">view_headline</mat-icon>
+                Financeiro
+            </a>
+
+            <a *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'" mat-list-item routerLink="/painel" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>settings</mat-icon>
+                Configurações
+            </a>
+
+
+
+            <a mat-list-item *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'">
+                <mat-icon style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
                 Configurações
             </a>
 

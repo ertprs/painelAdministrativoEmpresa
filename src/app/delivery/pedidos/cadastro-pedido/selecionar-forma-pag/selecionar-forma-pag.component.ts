@@ -1,3 +1,4 @@
+import { ServicoService } from './../../../../servico.service';
 import { CadastroPedidoService } from './../cadastro-pedido.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelecionarFormaPagComponent implements OnInit {
 
-  constructor(public servcard: CadastroPedidoService) { }
+  constructor(public servcard: CadastroPedidoService, public servico: ServicoService) { }
 
   ngOnInit(): void {
   }

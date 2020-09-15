@@ -114,6 +114,18 @@ import { RelatorioFaturamentoComponent } from './painel-relatorio/relatorio-fatu
 import { RelatorioPedidosCanceladosComponent } from './painel-relatorio/relatorio-faturamento/relatorio-pedidos-cancelados/relatorio-pedidos-cancelados.component';
 import { RelatorioClientesComponent } from './painel-relatorio/relatorio-clientes/relatorio-clientes.component';
 import { ChartsModule } from 'ng2-charts';
+import {LOCALE_ID} from '@angular/core';
+import { ImpressaoPedidoComponent } from './delivery/pedidos/impressao-pedido/impressao-pedido.component';
+import { EstoqueComponent } from './estoque/estoque.component';
+import { HistoricoComponent } from './estoque/historico/historico.component';
+import { EstoqueMotoboyComponent } from './estoque/estoque-motoboy/estoque-motoboy.component';
+import { ItensEstoqueComponent } from './estoque/itens-estoque/itens-estoque.component';
+import { EstoqueEnviarComponent } from './estoque/estoque-enviar/estoque-enviar.component';
+import { EstoqueRetirarLojaComponent } from './estoque/estoque-retirar-loja/estoque-retirar-loja.component';
+import { ReporEstoqueComponent } from './estoque/repor-estoque/repor-estoque.component';
+import { FormEstoqueComponent } from './estoque/form-estoque/form-estoque.component';
+import { FinaceiroComponent } from './finaceiro/finaceiro.component';
+import { ListaMotoboysComponent } from './estoque/lista-motoboys/lista-motoboys.component';
 
 @NgModule({
   declarations: [
@@ -186,6 +198,17 @@ import { ChartsModule } from 'ng2-charts';
     RelatorioFaturamentoComponent,
     RelatorioPedidosCanceladosComponent,
     RelatorioClientesComponent,
+    ImpressaoPedidoComponent,
+    EstoqueComponent,
+    HistoricoComponent,
+    EstoqueMotoboyComponent,
+    ItensEstoqueComponent,
+    EstoqueEnviarComponent,
+    EstoqueRetirarLojaComponent,
+    ReporEstoqueComponent,
+    FormEstoqueComponent,
+    FinaceiroComponent,
+    ListaMotoboysComponent,
   ],
   imports: [
     BrowserModule,

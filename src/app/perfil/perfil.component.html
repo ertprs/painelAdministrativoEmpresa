@@ -1,13 +1,25 @@
 <div style="padding: 10px; text-align: center;">
-    <mat-card style="margin-top: 2px;">
+    <div style="margin-top: 2px;">
 
         <form id="form1">
-            <div style="margin-top: 20px;
-        display: grid;
-        justify-content: space-around;">
-                <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
-                <img mat-card-image [defaultImage]="'assets/vultoroxonome.png'" [lazyLoad]="imagemEmpresa" alt="Logomarca" style="width: 80px; border-radius: 10px;margin: auto;" id="imgInp" (change)="inputFile($event)">
-                <button color="primary" mat-button (click)="onClickImagemSelecionar()">Selecionar imagem</button>
+            <input style="display: none;" type='file' id="imgInpCapa" (change)="inputFileCapa($event)" />
+            <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
+
+            <div class="idelsuc" [lazyLoad]="imagemEmpresaCapa" alt="Logomarca">
+
+                <div class="delsuccapa">
+                    <button mat-raised-button color="primary" (click)="onClickImagemSelecionarCapa()">Selecionar
+                        capa</button>
+                </div>
+                <div>
+                    <div>
+                        <img mat-card-image [defaultImage]="'assets/vultoroxonome.png'" [lazyLoad]="imagemEmpresa" alt="Logomarca" style="width: 80px; border-radius: 10px;margin: auto;" id="imgInp" (change)="inputFile($event)">
+                    </div>
+                    <div>
+                        <button style="margin-top: 10px;" color="primary" mat-raised-button (click)="onClickImagemSelecionar()">Selecionar logomarca</button>
+                    </div>
+                </div>
+
             </div>
         </form>
 
@@ -76,6 +88,6 @@
             </mat-form-field>
         </form>
 
-        <button mat-raised-button color="primary" (click)="enviaImagem()">Salvar</button>
-    </mat-card>
+        <button mat-raised-button color="primary" (click)="onClickSav()">Salvar</button>
+    </div>
 </div>

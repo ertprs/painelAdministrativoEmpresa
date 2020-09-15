@@ -1,0 +1,28 @@
+<div [formGroup]="form">
+
+
+    <div class="delsuc">
+
+        <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input matInput type="name" placeholder="Nome item" formControlName="nome">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <input matInput type="name" placeholder="Descrição item" formControlName="descricao">
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label>Valor</mat-label>
+            <input matInput type="tel" placeholder="R$0,00" formControlName="valor" mask="separator.2" thousandSeparator=".">
+        </mat-form-field>
+
+    </div>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+    </div>
+</div>

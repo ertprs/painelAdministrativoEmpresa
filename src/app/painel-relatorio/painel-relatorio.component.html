@@ -9,11 +9,11 @@
                 </div>
                 <div class="ddf">
                     <div>Receita</div>
-                    <div class="ddf_f">{{ servrelat.getTotalFat() | currency }}</div>
+                    <div class="ddf_f">{{ servrelat.getTotalFat() | currency:'BRL':true }}</div>
                 </div>
                 <div class="ddf">
                     <div>Ticket Médio</div>
-                    <div class="ddf_f"> {{ '28.51' | currency }} </div>
+                    <div class="ddf_f"> {{ servrelat.getTicketMedio() | currency:'BRL':true }} </div>
                 </div>
                 <div class="ddf">
                     <div>Pedidos com cupom</div>

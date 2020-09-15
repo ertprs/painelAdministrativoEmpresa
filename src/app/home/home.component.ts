@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     this.servico.consultaModelItem();
   }
 
+
   setItemRequest(item) {
       this.itemRequest = item;
   }

@@ -19,6 +19,20 @@ export class NotificacoesComponent implements OnInit {
     this.servico.setMostrarNost(true);
   }
 
+  onClickRem(item: any) {
+    const fcallb = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      console.log(r);
+      if (r.erro === true) {
+        this.servico.mostrarMensagem(r.detalhes);
+      } else {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.crud.cc();
+      }
+    };
+    this.crud.post_api('remove_notificacao', fcallb, item);
+  }
 
 
 }

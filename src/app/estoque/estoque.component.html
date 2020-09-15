@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <span>Estoque loja</span>
+</mat-toolbar>
+<div class="c">
+    <div class="c1">
+
+        <mat-list role="list">
+            <mat-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" routerLink="/estoque/historico">
+                <span routerLinkActive="active-link"> Histórico</span>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" routerLink="/estoque/itens-estoque">
+                <span routerLinkActive="active-link"> Estoque Loja</span>
+                <mat-divider></mat-divider>
+
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active-link" routerLink="/estoque/lista-motoboys">
+                <span routerLinkActive="active-link"> Estoque Motoboy</span>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+
+
+    </div>
+    <div class="c2">
+
+
+
+        <router-outlet></router-outlet>
+
+    </div>
+</div>

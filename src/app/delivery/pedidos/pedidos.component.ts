@@ -1,3 +1,4 @@
+import { ImpressaoPedidoComponent } from './impressao-pedido/impressao-pedido.component';
 import { AvisoTaxaPedidoComponent } from './aviso-taxa-pedido/aviso-taxa-pedido.component';
 import { CancelarPedidoComponent } from './cancelar-pedido/cancelar-pedido.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -16,7 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PedidosComponent implements OnInit {
 
-  displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'formapagamento', 'total', 'info', 'statusmotoboy', 'id'];
+  displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'formapagamento', 'total', 'info', 'statusmotoboy', 'origem', 'id'];
   pedidos = [];
   dialogDelsuc: any;
   statusLoadEntregas: boolean;
@@ -38,7 +39,18 @@ export class PedidosComponent implements OnInit {
   }
 
 
-
+  onClickImprimir() {
+    this.dialogDelsuc = this.dialog.open(ImpressaoPedidoComponent, {
+      width: '360px', data: this.servpedidos.getPedido()
+    });
+    this.dialogDelsuc.afterClosed().subscribe(result => {
+      console.log('The dialog was closed result');
+      console.log(result);
+      if (result) {
+        alert('ok');
+      }
+    });
+  }
 
 
 

@@ -1,5 +1,5 @@
 <div class="conteudo">
-    <div class="c1">Pedido #8842</div>
+    <div class="c1">Pedido #{{servpedidos.getPedido().id}}</div>
     <mat-vertical-stepper [linear]="false" #stepper>
 
         <mat-step>
@@ -66,17 +66,17 @@
 
                     <ng-container matColumnDef="desconto">
                         <th mat-header-cell *matHeaderCellDef> Desconto. </th>
-                        <td mat-cell *matCellDef="let element"> {{element.desconto | currency}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.desconto | currency:'BRL':true}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="preco">
                         <th mat-header-cell *matHeaderCellDef> Preço. </th>
-                        <td mat-cell *matCellDef="let element"> {{element.preco | currency}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.preco | currency:'BRL':true}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="total">
                         <th mat-header-cell *matHeaderCellDef> Total. </th>
-                        <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.total | currency:'BRL':true}} </td>
                     </ng-container>
 
 
@@ -87,33 +87,33 @@
                 <div class="ccde">
                     <div class="ccde1">
                         <div class="ccde11">Subtotal</div>
-                        <div>{{servpedidos.getPedido().subtotal | currency}}</div>
+                        <div>{{servpedidos.getPedido().subtotal | currency:'BRL':true}}</div>
                     </div>
 
                     <div class="ccde1">
                         <div class="ccde11">Taxa de entrega</div>
-                        <div>{{servpedidos.getPedido().taxaentrega | currency}}</div>
+                        <div>{{servpedidos.getPedido().taxaentrega | currency:'BRL':true}}</div>
                     </div>
 
                     <div class="ccde1">
                         <div class="ccde11">Desconto</div>
-                        <div>{{servpedidos.getPedido().desconto | currency}}</div>
+                        <div>{{servpedidos.getPedido().desconto | currency:'BRL':true}}</div>
                     </div>
 
                     <div class="ccde1 gff">
                         <div class="ccde11">Total</div>
-                        <div>{{servpedidos.getPedido().total | currency}}</div>
+                        <div>{{servpedidos.getPedido().total | currency:'BRL':true}}</div>
                     </div>
 
                     <div class="ccde1">
                         <div class="ccde11">Troco para</div>
-                        <div>{{servpedidos.getPedido().troco | currency}}</div>
+                        <div>{{servpedidos.getPedido().troco | currency:'BRL':true}}</div>
                     </div>
 
                 </div>
 
                 <mat-card class="ccupom" *ngIf="servpedidos.getPedido().cupom">
-                    <div> O cliente usou um cupom no valor {{servpedidos.getPedido().cupom.valor | currency}} de para este pedido</div>
+                    <div> O cliente usou um cupom no valor {{servpedidos.getPedido().cupom.valor | currency:'BRL':true}} de para este pedido</div>
                     <div style="font-size: 12px;"> {{ servpedidos.getPedido().cupom.descricao }} </div>
                 </mat-card>
 

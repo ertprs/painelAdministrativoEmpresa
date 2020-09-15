@@ -31,7 +31,7 @@ export class EditarItemCompletoComponent implements OnInit {
   itemRequest: any;
   statusLoadConteudo = true;
 
-  constructor(private formBuilder: FormBuilder, public servhome: HomeService, private servapp: ServicoService,
+  constructor(private formBuilder: FormBuilder, public servhome: HomeService, public servapp: ServicoService,
               private crud: CrudServicoService, private http: HttpClient, private route: Router) { }
 
 

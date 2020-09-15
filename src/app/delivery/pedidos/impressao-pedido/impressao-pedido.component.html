@@ -1,0 +1,98 @@
+<div class="c" id="impressao">
+    <style>
+        .jj {
+            text-align-last: justify;
+        }
+    </style>
+    <div style="width: 240px; font-size: 11pt;    margin: auto;">
+        <div style="text-align: center;"> <b> {{ data.dadosempresa.nome }} </b> </div>
+        <div style="text-align: center;"> Obrigado pela preferência, volte sempre </div>
+        <div style="text-align: center;"> <b> {{ data.dadosempresa.telefone }} </b> </div>
+        <div style="margin-top: 30px;"> <b> Detalhes do pedido #{{ data.id }} </b> </div>
+        <div> Nome: {{ data.dadoscliente.nome }} </div>
+        <div> Telefone: {{ data.dadoscliente.telefone }} </div>
+        <div> Horário: {{ data.info }} </div>
+        <div> Tipo serviço: {{ data.tipopedido }} </div>
+        <div> Pagamento: {{ data.formapagamento }} </div>
+        <div> Endereço: {{ data.endereco.rua }}, {{ data.endereco.numero }} </div>
+        <div> Bairro/Cidade: {{ data.endereco.bairro.nome }}/{{ data.endereco.cidade.nome }} </div>
+        <div> Complemento: {{ data.endereco.complemento }} </div>
+        <div> Referência: {{ data.endereco.tiporesidencia }} </div>
+        <hr>
+        <div> Itens: </div>
+        <div *ngFor="let produto of data.itens">
+            <div style="    display: grid;
+    grid-template-columns: 12fr 1fr;">
+                <div> <b> {{ produto.qnt }}x </b> {{ produto.nome }} </div>
+                <div>{{ produto.preco | currency:'BRL':true }} </div>
+            </div>
+            <div> <b> Observações: </b> {{ produto.observacao }} </div>
+            <div> Adicionais: </div>
+            <div style="    display: grid;
+    grid-template-columns: 12fr 1fr;" *ngFor="let adc of produto.adicionais">
+                <div>{{ adc.nome }} </div>
+                <div> {{ adc.preco | currency:'BRL':true }} </div>
+            </div>
+        </div>
+        <hr>
+        <div style="    display: grid;
+    grid-template-columns: 12fr 1fr;">
+            <div>Desconto:</div>
+            <div>{{ data.desconto | currency:'BRL':true }}</div>
+        </div>
+        <div style="    display: grid;
+    grid-template-columns: 12fr 1fr;">
+            <div>Subtotal:</div>
+            <div>{{ data.subtotal | currency:'BRL':true }}</div>
+        </div>
+        <div style="    display: grid;
+    grid-template-columns: 12fr 1fr;">
+            <div>Taxa de entrega:</div>
+            <div>{{ data.taxaentrega | currency:'BRL':true }}</div>
+        </div>
+        <div style="    display: grid;
+    grid-template-columns: 12fr 1fr;">
+
+            <div><b> Total: </b></div>
+            <div><b>{{ data.total | currency:'BRL':true }}</b></div>
+
+        </div>
+    </div>
+</div>
+
+<div class="ab">
+    <button (click)="onClickImprimir()" mat-raised-button color="primary">
+        Imprimir
+    </button>
+</div>
+
+
+<!--
+-XDelssy Hamburgueria Artesanal
+-Detalhes do Pedido #8414
+-Nome:Mariana Gonçalves
+-Telefone:74988186857
+-Horário:05/Set/2020 19:45:31
+-Tipo:Entrega
+-Pagamento:Cartão (MasterCard)
+-Endereço:Rua 4, 54
+-Bairro/Cidade:Alto da Maravilha/Juazeiro
+-Complemento:Casa
+-Referência:Perto da Madenox
+-1xCombo Frango
+-R$23.00
+
+-Observações: Sem tomate
+
+R$23.00
+Escolha o Sabor:
+1x0.00 Pepsi-
+Como você deseja a batata?
+1x0.00 Com sal-
+-Desconto 10%R$2.30
+-ubtotalR$20.70
+-Taxa de EntregaR$4.50
+- Descontos(R$15.00)
+
+TotalR$10.20
+-->

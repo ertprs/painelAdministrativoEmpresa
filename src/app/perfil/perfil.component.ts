@@ -13,9 +13,14 @@ export class PerfilComponent implements OnInit {
   formPerfil: FormGroup;
   imagemEmpresa: any;
   arquivo: any;
+  arquivoCapa: any;
   imagem: any;
   statusLoadConteudo = false;
   valorSubmit: any;
+  imagemEmpresaCapa: any;
+
+  statusMudarLogo = false;
+  statusMudarCapa = false;
 
   constructor(private formBuilder: FormBuilder, private servico: ServicoService, private crud: CrudServicoService,
               private http: HttpClient, private servapp: ServicoService) { }
@@ -24,6 +29,7 @@ export class PerfilComponent implements OnInit {
     console.log( this.servico.getDadosEmpresa() );
     this.formPerfil = this.formBuilder.group({
       nome: [this.servico.getDadosEmpresa().nome],
+      capa: [this.servico.getDadosEmpresa().capa],
       telefone: [this.servico.getDadosEmpresa().telefone],
       email: [this.servico.getDadosEmpresa().email],
       senha: [this.servico.getDadosEmpresa().senha],
@@ -37,6 +43,7 @@ export class PerfilComponent implements OnInit {
       politica: [this.servico.getDadosEmpresa().politica],
     });
     this.imagemEmpresa = this.servico.getDadosEmpresa().imagem;
+    this.imagemEmpresaCapa = this.servico.getDadosEmpresa().capa;
   }
 
   onclickSalvar() {
@@ -49,6 +56,10 @@ export class PerfilComponent implements OnInit {
       console.log(r);
     };
     this.crud.post_api('atualizar_perfil_empresa', accallback, this.formPerfil.value);
+  }
+
+  onClickImagemSelecionarCapa() {
+    document.getElementById('imgInpCapa').click();
   }
 
   onClickImagemSelecionar() {
@@ -64,8 +75,57 @@ export class PerfilComponent implements OnInit {
       this.imagemEmpresa = fileRead.result;
     };
     fileRead.readAsDataURL(this.arquivo);
+    this.statusMudarLogo = true;
   }
 
+  inputFileCapa(event: any) {
+    console.log(this);
+    this.arquivoCapa = event.target.files[0];
+    console.log(this.arquivoCapa);
+    const fileRead = new FileReader();
+    fileRead.onloadend = () => {
+      this.imagemEmpresaCapa = fileRead.result;
+    };
+    fileRead.readAsDataURL(this.arquivoCapa);
+    this.statusMudarCapa = true;
+  }
+
+  enviaCapaEmpresa() {
+    this.statusLoadConteudo = true;
+
+    const formData = new FormData();
+    formData.append('nome_imagem_text', this.arquivoCapa.name);
+    formData.append('imagem', this.arquivoCapa);
+    this.http.post(this.servapp.getApiAcao('upload_img_galeria'), formData).subscribe(
+      (data: any) => {
+        // logo que enviar a imagem pega o nome da imagem e salva o produto no banco de dados
+        // this.valorSubmit.imagem = data.mensagem;
+        this.formPerfil.controls.capa.setValue(data.mensagem);
+        if (this.statusMudarLogo) {
+          this.enviaImagem();
+        } else {
+          this.onclickSalvar();
+        }
+      },
+      error => {
+        this.statusLoadConteudo = false;
+        alert('Não foi possível enviar a imagem do item');
+      }
+    );
+  }
+
+  onClickSav() {
+    // So tenta envia a imagem se sofrer att
+    if (this.statusMudarCapa) {
+      this. enviaCapaEmpresa();
+      return;
+    }
+    if (this.statusMudarLogo) {
+      this.enviaImagem();
+      return;
+    }
+    this.onclickSalvar();
+  }
 
   enviaImagem() {
 

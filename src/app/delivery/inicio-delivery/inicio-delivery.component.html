@@ -23,6 +23,13 @@
                         <input matInput placeholder="Ex. R$800,00" type="text" formControlName="pedidomax" matInput mask="separator.2" thousandSeparator=".">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                        <mat-label>Entrega grátis</mat-label>
+                        <input matInput placeholder="Ex. Para pedidos acima de R$100,00" type="text" formControlName="pedidomax" matInput mask="separator.2" thousandSeparator=".">
+                        <mat-icon matSuffix>home_work</mat-icon>
+                    </mat-form-field>
+
                 </div>
             </mat-step>
 
@@ -154,7 +161,7 @@
                 <div class="" style="width: 100%;" *ngIf="bairro.value.cidade_id === cidadeSelecionada">
                   <!--{{ bairro.value | json }}-->
                   <mat-slide-toggle style="width: 190px;" formControlName="disponivel"
-                    matTooltip="{{bairro.value.nome}} - Taxa de entrega {{bairro.value.taxa | currency}}">
+                    matTooltip="{{bairro.value.nome}} - Taxa de entrega {{bairro.value.taxa | currency:'BRL':true}}">
                     {{ bairro.value.nome }}
                   </mat-slide-toggle>
                   <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">

@@ -89,6 +89,14 @@
             <canvas baseChart [datasets]="barChartDataTipoPedido" [labels]="barChartLabelsTipoPedido" [options]="barChartOptionsTipoPedido" [legend]="barChartLegendTipoPedido" [chartType]="barChartTypeTipoPedido" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
         </div>
 
+        <div style="display: block; padding: 15px; width: 90%;">
+            <div class="tt">
+                Produtos
+            </div>
+            <canvas baseChart [colors]="pieChartColorsProduto" [datasets]="barChartDataProduto" [labels]="barChartLabelsProduto" [options]="barChartOptionsProduto" [legend]="barChartLegendProduto" [chartType]="barChartTypeProduto" (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
 
     </div>
 
