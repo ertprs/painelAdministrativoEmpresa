@@ -13,6 +13,7 @@ export class BairrosSistemaComponent implements OnInit {
 
   displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c4'];
   itens = [];
+  bairros: [];
 
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
@@ -25,9 +26,14 @@ export class BairrosSistemaComponent implements OnInit {
     this.crud.get_api('bairros_sistema').subscribe(data => {
        console.log(data);
        this.itens = data;
+       console.log(data);
     });
 }
 
+select(itens) {
+  console.log(itens);
+  this.bairros = itens;
+}
 
 add(): void {
   const dialogRef = this.dialog.open(DialogDinamComponent, {

@@ -55,10 +55,19 @@
             </td>
         </ng-container>
 
+
+
         <ng-container matColumnDef="c6">
-            <th mat-header-cell *matHeaderCellDef> Valor. </th>
+            <th mat-header-cell *matHeaderCellDef> Valor cupom. </th>
             <td mat-cell *matCellDef="let element">
                 {{ element.valor | currency:'BRL':true}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c9">
+            <th mat-header-cell *matHeaderCellDef> Pedido acima de: </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.pedido_min | currency:'BRL':true}}
             </td>
         </ng-container>
 

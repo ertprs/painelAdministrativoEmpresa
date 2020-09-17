@@ -11,7 +11,7 @@
                 <mat-card-title>{{ item.nome }}</mat-card-title>
                 <mat-card-subtitle>Nota {{ item.nota }}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image [defaultImage]="'assets/vultoroxonome.png'" [lazyLoad]="item.imagem" offset="100" alt="Photo">
+            <img mat-card-image [defaultImage]="servico.getDefaultImage()" [lazyLoad]="item.imagem" offset="100" alt="Photo">
             <mat-card-content>
                 <p class="" style="font-size: 12px;"> {{ item.info }} </p>
                 <p class="textoaval">

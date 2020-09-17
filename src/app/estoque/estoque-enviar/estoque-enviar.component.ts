@@ -24,6 +24,7 @@ export class EstoqueEnviarComponent implements OnInit {
            this.form = this.fb.group({
                   id: [this.data.item.id, Validators.required],
                   propriedade: [this.motoboys, Validators.required],
+                  id_item_estoque: [this.data.item.id_item_estoque, Validators.required],
                   quantidade: [null, Validators.required],
           });
 

@@ -126,6 +126,16 @@ import { ReporEstoqueComponent } from './estoque/repor-estoque/repor-estoque.com
 import { FormEstoqueComponent } from './estoque/form-estoque/form-estoque.component';
 import { FinaceiroComponent } from './finaceiro/finaceiro.component';
 import { ListaMotoboysComponent } from './estoque/lista-motoboys/lista-motoboys.component';
+import { FormCupomComponent } from './cupons/form-cupom/form-cupom.component';
+import { RetornarDeMotoboyComponent } from './estoque/retornar-de-motoboy/retornar-de-motoboy.component';
+import { FormFormapagamentoComponent } from './formas-pagamento/form-formapagamento/form-formapagamento.component';
+import { EstoqueEntradaComponent } from './estoque/estoque-entrada/estoque-entrada.component';
+import { ItensEstoqueDetalhesComponent } from './estoque/itens-estoque-detalhes/itens-estoque-detalhes.component';
+import { CaixaFinanceiroComponent } from './finaceiro/caixa-financeiro/caixa-financeiro.component';
+import { ComissaoEntregasComponent } from './finaceiro/comissao-entregas/comissao-entregas.component';
+import { ComprasClientesComponent } from './finaceiro/compras-clientes/compras-clientes.component';
+import { ListaComprasClientesComponent } from './finaceiro/compras-clientes/lista-compras-clientes/lista-compras-clientes.component';
+import { ConsolidacaoFinanceiraComponent } from './finaceiro/consolidacao-financeira/consolidacao-financeira.component';
 
 @NgModule({
   declarations: [
@@ -209,6 +219,16 @@ import { ListaMotoboysComponent } from './estoque/lista-motoboys/lista-motoboys.
     FormEstoqueComponent,
     FinaceiroComponent,
     ListaMotoboysComponent,
+    FormCupomComponent,
+    RetornarDeMotoboyComponent,
+    FormFormapagamentoComponent,
+    EstoqueEntradaComponent,
+    ItensEstoqueDetalhesComponent,
+    CaixaFinanceiroComponent,
+    ComissaoEntregasComponent,
+    ComprasClientesComponent,
+    ListaComprasClientesComponent,
+    ConsolidacaoFinanceiraComponent,
   ],
   imports: [
     BrowserModule,

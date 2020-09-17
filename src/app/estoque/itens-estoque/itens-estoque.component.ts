@@ -48,7 +48,7 @@ export class ItensEstoqueComponent implements OnInit {
 
 
 add(): void {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormEstoqueComponent, {
     width: '450px',
     data: {tipo: 'add', nomeDialog: 'form_estoque'}
   });

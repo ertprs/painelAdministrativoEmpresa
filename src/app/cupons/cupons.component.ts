@@ -3,6 +3,7 @@ import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
+import { FormCupomComponent } from './form-cupom/form-cupom.component';
 
 @Component({
   selector: 'app-cupons',
@@ -12,7 +13,7 @@ import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
 export class CuponsComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['c7', 'c0', 'c1', 'c2', 'c8', 'c5', 'c6', 'c3', 'c4'];
+  displayedColumns: string[] = ['c7', 'c0', 'c1', 'c2', 'c8', 'c5', 'c6', 'c9', 'c3', 'c4'];
   itens = [];
   dadosCupomAdd: any;
   acao: string;
@@ -31,7 +32,7 @@ export class CuponsComponent implements OnInit {
 }
 
 add() {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormCupomComponent, {
     width: '350px',
     data: {tipo: 'add', nomeDialog: 'form_cupom'}
   });
@@ -75,7 +76,7 @@ inSenha() {
 
 reabrir() {
 
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormCupomComponent, {
     width: '350px',
     data: {tipo: 'editar', nomeDialog: 'form_cupom', item: this.dadosCupomAdd}
   });
@@ -137,7 +138,7 @@ f2(form) {
 
 
 onClickEditar(element) {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormCupomComponent, {
     width: '350px',
     data: {tipo: 'editar', nomeDialog: 'form_cupom', item: element}
   });

@@ -13,7 +13,7 @@ export class AvaliacoesComponent implements OnInit {
 
   respotasItem: any;
 
-  constructor(private crud: CrudServicoService, private servico: ServicoService, public dialog: MatDialog) { }
+  constructor(private crud: CrudServicoService, public servico: ServicoService, public dialog: MatDialog) { }
 
   listaavaliacoes: any;
   itemClicado: any;

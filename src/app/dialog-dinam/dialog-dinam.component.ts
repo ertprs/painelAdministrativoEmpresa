@@ -10,7 +10,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogDinamComponent implements OnInit {
 
   form: FormGroup;
-  iddes: any;
 
   constructor(public dialogRef: MatDialogRef<DialogDinamComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder) { }
@@ -18,9 +17,7 @@ export class DialogDinamComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);
 
-    try {
-      if (this.data.item.id) { this.iddes = this.data.item.id;  } else {  this.iddes = 0; }
-    } catch (e) {  this.iddes = 0; }
+    
 
     if (this.data.tipo === 'add') {
 
@@ -40,16 +37,8 @@ export class DialogDinamComponent implements OnInit {
       id_formapagamento: [null, Validators.required],
       imagem: [null, Validators.required],
 
-      id_destino: [this.iddes, Validators.required],
-      titulo: [null, Validators.required],
-      texto: [null, Validators.required],
-      regras: [null, Validators.required],
-      valor: [null, Validators.required],
-      datafim: [null, Validators.required],
-
       senha: [null, Validators.required],
       quantidade: [null, Validators.required],
-       
     });
 
   } else {
@@ -72,17 +61,12 @@ export class DialogDinamComponent implements OnInit {
       id_formapagamento: [this.data.item.id_formapagamento, Validators.required],
       imagem: [this.data.item.imagem, Validators.required],
 
-      id_destino: [this.data.item.id_destino, Validators.required],
-      titulo: [this.data.item.titutlo, Validators.required],
-      texto: [this.data.item.texto, Validators.required],
-      regras: [this.data.item.regras, Validators.required],
-      valor: [this.data.item.valor, Validators.required],
-      datafim: [this.data.item.datafim, Validators.required],
-      
+     
+/*
       quantidade: ['', Validators.required],
       id_motoboy: [this.data.item.motoboy.dados.id, Validators.required],
       id_estoque: [this.data.item.id, Validators.required],
-
+*/
 
     });
   }

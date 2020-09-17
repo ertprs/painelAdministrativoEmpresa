@@ -1,0 +1,27 @@
+.g {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    height: 85.5%;
+}
+
+table {
+    width: 100%;
+}
+
+.col1 {
+    background: #efefef;
+    border-right: 1px solid #cecece;
+}
+
+.col2 {
+    background: #efefef;
+}
+
+.bb {
+    width: 100%;
+}
+
+.m_selecionado {
+    background: #2196F3;
+    color: white;
+}

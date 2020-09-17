@@ -3,9 +3,18 @@
 
     <div class="delsuc">
 
+        <mat-form-field appearance="fill">
+            <mat-label>Itens</mat-label>
+            <mat-select formControlName="id_item_estoque">
+                <mat-option *ngFor="let item of itensCatalogo" [value]="item.id">
+                    {{ item.nome }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
         <mat-form-field>
-            <mat-label>Nome</mat-label>
-            <input matInput type="name" placeholder="Nome item" formControlName="nome">
+            <mat-label>Quantidade</mat-label>
+            <input matInput type="number" placeholder="Descrição item" formControlName="quantidade">
         </mat-form-field>
 
         <mat-form-field>
@@ -15,7 +24,7 @@
 
 
         <mat-form-field>
-            <mat-label>Valor</mat-label>
+            <mat-label>Valor únidade</mat-label>
             <input matInput type="tel" placeholder="R$0,00" formControlName="valor" mask="separator.2" thousandSeparator=".">
         </mat-form-field>
 

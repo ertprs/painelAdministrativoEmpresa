@@ -4,6 +4,7 @@ import { ServicoService } from '../servico.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddMototboyComponent } from '../dialog-add-mototboy/dialog-add-mototboy.component';
 import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
+import { FormCupomComponent } from '../cupons/form-cupom/form-cupom.component';
 
 @Component({
   selector: 'app-usuarios-finais',
@@ -62,7 +63,7 @@ onClickEditar(item): void {
 }
 
 enviarCupom(usuario) {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormCupomComponent, {
     width: '350px',
     data: {tipo: 'add', item: usuario, nomeDialog: 'form_cupom'}
   });
@@ -114,7 +115,7 @@ inSenha() {
 
 reabrir() {
 
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormCupomComponent, {
     width: '350px',
     data: {tipo: 'editar', nomeDialog: 'form_cupom', item: this.dadosCupomAdd}
   });

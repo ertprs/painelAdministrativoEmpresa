@@ -1,3 +1,4 @@
+import { RetornarDeMotoboyComponent } from './../retornar-de-motoboy/retornar-de-motoboy.component';
 import { EstoqueService } from './../estoque.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -66,7 +67,7 @@ enviar(element): void {
 
 retirar(element): void {
   element.id = element.id;
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(RetornarDeMotoboyComponent, {
     width: '450px',
     data: {tipo: 'editar', nomeDialog: 'form_estoque_enviar', item: element}
   });
@@ -75,7 +76,6 @@ retirar(element): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-   
       const accallback = () => {
         console.log('callback');
         const r = this.servapp.getRespostaApi();
@@ -85,7 +85,6 @@ retirar(element): void {
         }
         console.log(r);
       };
-       
       this.crud.post_api('subEstoqueMotoboy', accallback, result);
 
 

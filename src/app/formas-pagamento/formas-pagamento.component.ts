@@ -3,6 +3,7 @@ import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
+import { FormFormapagamentoComponent } from './form-formapagamento/form-formapagamento.component';
 
 @Component({
   selector: 'app-formas-pagamento',
@@ -29,14 +30,15 @@ export class FormasPagamentoComponent implements OnInit {
 }
 
 add() {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormFormapagamentoComponent, {
     width: '250px',
-    data: {nomeDialog: 'form_formaspagamento'}
+    data: {tipo: 'add', nomeDialog: 'form_formaspagamento'}
   });
 
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     console.log(result);
+    this.f1(result);
   });
 }
 
@@ -76,11 +78,11 @@ f1(form) {
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
-      this.itens = r.resultado;
+     this.f5();
     }
     console.log(r);
   };
-  this.crud.post_api('add_cidade_sistema', accallback, form);
+  this.crud.post_api('addFormaspagamento', accallback, form);
 }
 
 removerItem(item) {

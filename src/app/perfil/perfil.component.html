@@ -5,7 +5,7 @@
             <input style="display: none;" type='file' id="imgInpCapa" (change)="inputFileCapa($event)" />
             <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
 
-            <div class="idelsuc" [lazyLoad]="imagemEmpresaCapa" alt="Logomarca">
+            <div class="idelsuc" [defaultImage]="servico.getDefaultImage()" [lazyLoad]="imagemEmpresaCapa" alt="Logomarca">
 
                 <div class="delsuccapa">
                     <button mat-raised-button color="primary" (click)="onClickImagemSelecionarCapa()">Selecionar
@@ -13,7 +13,7 @@
                 </div>
                 <div>
                     <div>
-                        <img mat-card-image [defaultImage]="'assets/vultoroxonome.png'" [lazyLoad]="imagemEmpresa" alt="Logomarca" style="width: 80px; border-radius: 10px;margin: auto;" id="imgInp" (change)="inputFile($event)">
+                        <img mat-card-image [defaultImage]="servico.getDefaultImage()" [lazyLoad]="imagemEmpresa" alt="Logomarca" style="width: 80px; height: 80px; border-radius: 10px;margin: auto;" id="imgInp" (change)="inputFile($event)">
                     </div>
                     <div>
                         <button style="margin-top: 10px;" color="primary" mat-raised-button (click)="onClickImagemSelecionar()">Selecionar logomarca</button>

@@ -23,7 +23,7 @@
                     <button *ngIf="element.status_pedido == 1 && element.tipopedido !== 'retirada'" (click)="servpedidos.onClickAttStatusPedido(2, element.id, element)" mat-menu-item><mat-icon>check</mat-icon> Pronto para sair</button>
                     <button *ngIf="element.status_pedido == 1 && element.status_motoboy != '2'" (click)="servpedidos.onClickAttStatusPedido(3, element.id, element)" mat-menu-item><mat-icon>check</mat-icon> Pronto para retirada</button>
 
-                    <button *ngIf="element.status_pedido == 2 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>A Caminho</button>
+                    <button *ngIf="element.status_pedido == 2 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item><mat-icon>check</mat-icon> A Caminho</button>
                     <button *ngIf="element.status_pedido == 4" (click)="servpedidos.onClickAttStatusPedido(5, element.id, element)" mat-menu-item><mat-icon>check</mat-icon>Entregue</button>
                     <button *ngIf="element.status_pedido == 6" (click)="servpedidos.onClickAttStatusPedido(6, element.id, element)" mat-menu-item><mat-icon>check</mat-icon> Concluído</button>
                     <button mat-menu-item (click)="onClickImprimir()"><mat-icon>print</mat-icon> Imprimir</button>

@@ -30,10 +30,9 @@ body {
 }
 
 .active-link {
-    background-color: #2196F3;
-    color: white;
+    background-color: gold;
+    color: rgb(0, 0, 0);
     outline: none;
-    color: white;
 }
 
 .active-button {

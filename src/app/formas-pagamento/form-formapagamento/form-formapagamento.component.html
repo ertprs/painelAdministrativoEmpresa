@@ -1,0 +1,21 @@
+<div [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Nome da forma de pagamento</mat-label>
+        <input matInput placeholder="Ex. Dinheiro" formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <input matInput placeholder="Ex. Descrição" formControlName="descricao">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput placeholder="Ex. Status" formControlName="status">
+    </mat-form-field>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+    </div>
+</div>

@@ -22,8 +22,8 @@ export class PerfilComponent implements OnInit {
   statusMudarLogo = false;
   statusMudarCapa = false;
 
-  constructor(private formBuilder: FormBuilder, private servico: ServicoService, private crud: CrudServicoService,
-              private http: HttpClient, private servapp: ServicoService) { }
+  constructor(private formBuilder: FormBuilder, public servico: ServicoService, private crud: CrudServicoService,
+              private http: HttpClient) { }
 
   private ini() {
     console.log( this.servico.getDadosEmpresa() );
@@ -96,7 +96,7 @@ export class PerfilComponent implements OnInit {
     const formData = new FormData();
     formData.append('nome_imagem_text', this.arquivoCapa.name);
     formData.append('imagem', this.arquivoCapa);
-    this.http.post(this.servapp.getApiAcao('upload_img_galeria'), formData).subscribe(
+    this.http.post(this.servico.getApiAcao('upload_img_galeria'), formData).subscribe(
       (data: any) => {
         // logo que enviar a imagem pega o nome da imagem e salva o produto no banco de dados
         // this.valorSubmit.imagem = data.mensagem;
@@ -135,7 +135,7 @@ export class PerfilComponent implements OnInit {
     const formData = new FormData();
     formData.append('nome_imagem_text', this.arquivo.name);
     formData.append('imagem', this.arquivo);
-    this.http.post(this.servapp.getApiAcao('upload_img_galeria'), formData).subscribe(
+    this.http.post(this.servico.getApiAcao('upload_img_galeria'), formData).subscribe(
       (data: any) => {
         // logo que enviar a imagem pega o nome da imagem e salva o produto no banco de dados
         // this.valorSubmit.imagem = data.mensagem;

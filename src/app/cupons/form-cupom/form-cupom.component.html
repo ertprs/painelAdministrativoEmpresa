@@ -1,0 +1,44 @@
+<div [formGroup]="form">
+
+
+    <div class="delsuc">
+
+        <mat-form-field>
+            <mat-label>Titulo</mat-label>
+            <input matInput placeholder="Ex. Cupom de boa vindas" formControlName="titulo">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Texto</mat-label>
+            <input matInput placeholder="Ex. Você recebeu um cupom para fazer sua primeira compra" formControlName="texto">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Regras</mat-label>
+            <input matInput placeholder="Ex. O cupom só poderá ser usado apenas uma vez" formControlName="regras">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Valor</mat-label>
+            <input matInput placeholder="R$15,00" formControlName="valor" mask="separator.2" thousandSeparator=".">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Pedido mínimo</mat-label>
+            <input matInput placeholder="R$12,00" formControlName="pedido_min" mask="separator.2" thousandSeparator=".">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Data de expiração</mat-label>
+            <input matInput formControlName="datafim" type="date">
+        </mat-form-field>
+
+
+        <div>
+            <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+            <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+        </div>
+
+    </div>
+
+</div>

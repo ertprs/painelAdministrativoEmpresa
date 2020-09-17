@@ -38,6 +38,7 @@ export class InicioDeliveryComponent implements OnInit {
       tags: [''],
       pedidomin: [''],
       pedidomax: [''],
+      entrega_gratis: [''],
       seguimento: [''],
       formasfuncionamento: [''],
       tempoentrega: [''],
@@ -100,6 +101,7 @@ export class InicioDeliveryComponent implements OnInit {
       tags: [this.dadosEmpresa.tags, Validators.required],
       pedidomin: [this.dadosEmpresa.pedidomin, Validators.required],
       pedidomax: [this.dadosEmpresa.pedidomax, Validators.required],
+      entrega_gratis: [this.dadosEmpresa.entrega_gratis],
       seguimento: [this.dadosEmpresa.seguimento, Validators.required],
       formasfuncionamento: [''],
       tempoentrega: [this.dadosEmpresa.tempoentrega, Validators.required],
@@ -224,6 +226,7 @@ export class InicioDeliveryComponent implements OnInit {
         this.servico.mostrarMensagem(r.detalhes);
         this.formcadastroStatus = true;
         this.router.navigate(['/login']);
+        setTimeout(() => { location.reload(); }, 700);
       }
     };
     console.log( this.crud.post_api('salva_config_delivery_empresa', loginres, this.formCadastro.value ) );
