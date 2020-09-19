@@ -175,4 +175,8 @@ removerItem(item) {
 
 }
 
+onClickItem(element) {
+  alert('configurar');
+}
+
 }

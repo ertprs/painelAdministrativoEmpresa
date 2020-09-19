@@ -1,24 +1,26 @@
 <div class="g">
     <div class="col1">
 
+        <mat-form-field class="f-cli" style="margin-left: 15px;">
+            <mat-label>Nome motoboy</mat-label>
+            <input matInput type="name">
+        </mat-form-field>
+
+        <button mat-icon-button color="primary">
+            <mat-icon>search</mat-icon>
+          </button>
+
         <table mat-table [dataSource]="dataSource">
-
-
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="motoboy">
                 <th mat-header-cell *matHeaderCellDef> Motoboy </th>
                 <td [class.m_selecionado]="element.id == servestm.getIdMotoboy()" mat-cell *matCellDef="let element" (click)="estoqueMotoboy(element)">
 
-
                     <span [class.m_selecionado]="element.id == servestm.getIdMotoboy()"> {{ element.nome }} </span>
-
-
 
                 </td>
             </ng-container>
-
-
             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
             <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
         </table>
@@ -26,6 +28,8 @@
     </div>
 
     <div class="col2">
+
+
         <app-estoque-motoboy></app-estoque-motoboy>
     </div>
 

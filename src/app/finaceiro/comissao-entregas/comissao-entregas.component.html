@@ -1,3 +1,20 @@
+<mat-toolbar>
+    <span>
+
+        <button mat-raised-button color="primary"> Pagos </button>
+        <button style="margin-left: 4px;" mat-raised-button color="primary"> Não pagos </button>
+
+        <mat-form-field class="f-cli">
+            <mat-label>Nome cliente</mat-label>
+            <input matInput type="name">
+          </mat-form-field>
+
+        <button style="margin-left: 4px;" mat-raised-button color="accent"> Filtrar motoboy </button>
+
+        
+    </span>
+</mat-toolbar>
+
 <table mat-table [dataSource]="dataSource">
 
 
@@ -44,6 +61,7 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="c4">
         <th mat-header-cell *matHeaderCellDef>
+
         </th>
         <td mat-cell *matCellDef="let element">
             <button [disabled]="element.status_pago" mat-raised-button color="primary"> Pagar </button>
