@@ -1,3 +1,4 @@
+import { TransferirEstoqueMotoboyComponent } from './../transferir-estoque-motoboy/transferir-estoque-motoboy.component';
 import { RetornarDeMotoboyComponent } from './../retornar-de-motoboy/retornar-de-motoboy.component';
 import { EstoqueService } from './../estoque.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ import { ServicoService } from 'src/app/servico.service';
 })
 export class EstoqueMotoboyComponent implements OnInit {
 
-  columnsToDisplay = ['nome', 'quantidade', 'info', 'sub', 'adicionar'];
+  columnsToDisplay = ['nome', 'quantidade', 'sub', 'adicionar'];
   dataSource = [];
   expandedElement: any | null;
   dialogDelsuc: any;
@@ -85,7 +86,34 @@ retirar(element): void {
         }
         console.log(r);
       };
-      this.crud.post_api('subEstoqueMotoboy', accallback, result);
+      this.crud.post_api('trans_estoque_motoboy', accallback, result);
+
+
+    }
+  });
+}
+
+transferirEstoque(element): void {
+  element.id = element.id;
+  const dialogRef = this.dialog.open(TransferirEstoqueMotoboyComponent, {
+    width: '450px',
+    data: { item: element}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(result);
+    if (result) {
+      const accallback = () => {
+        console.log('callback');
+        const r = this.servapp.getRespostaApi();
+        if (r.erro === true) { this.servapp.mostrarMensagem(r.mensagem); } else {
+          this.servapp.mostrarMensagem(r.mensagem);
+          this.estoqueMotoboy();
+        }
+        console.log(r);
+      };
+      this.crud.post_api('trans_estoque_motoboy', accallback, result);
 
 
     }

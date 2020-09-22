@@ -283,6 +283,17 @@ export class CadastroPedidoService {
   setTimeout( () => { this.servico.mostrarMensagem('Pedido para retirada'); }, 700 );
 }
 
+onClickFp(item) {
+  if (item.nome === 'dinheiro') { this.onclickFPDinheiro(); }
+  if (item.nome === 'cartao') { this.onclickFPCartao(); }
+
+  console.log(item);
+
+  this.bottomSheet.dismiss();
+  this.setFormaPag({tipo: item.nome, nome: item.nome, troco: ''});
+  setTimeout( () => { this.servico.mostrarMensagem('Pagamento selecionado: ' + item.nome); }, 700 );
+
+}
 
 onclickFPDinheiro() {
 

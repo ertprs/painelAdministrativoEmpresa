@@ -136,6 +136,10 @@ import { ComissaoEntregasComponent } from './finaceiro/comissao-entregas/comissa
 import { ComprasClientesComponent } from './finaceiro/compras-clientes/compras-clientes.component';
 import { ListaComprasClientesComponent } from './finaceiro/compras-clientes/lista-compras-clientes/lista-compras-clientes.component';
 import { ConsolidacaoFinanceiraComponent } from './finaceiro/consolidacao-financeira/consolidacao-financeira.component';
+import { EnderecosClienteComponent } from './clientes/enderecos-cliente/enderecos-cliente.component';
+import { FormEnderecoClienteComponent } from './clientes/form-endereco-cliente/form-endereco-cliente.component';
+import { TransferirEstoqueMotoboyComponent } from './estoque/transferir-estoque-motoboy/transferir-estoque-motoboy.component';
+import { FormBairroComponent } from './bairros-sistema/form-bairro/form-bairro.component';
 
 @NgModule({
   declarations: [
@@ -229,6 +233,10 @@ import { ConsolidacaoFinanceiraComponent } from './finaceiro/consolidacao-financ
     ComprasClientesComponent,
     ListaComprasClientesComponent,
     ConsolidacaoFinanceiraComponent,
+    EnderecosClienteComponent,
+    FormEnderecoClienteComponent,
+    TransferirEstoqueMotoboyComponent,
+    FormBairroComponent,
   ],
   imports: [
     BrowserModule,

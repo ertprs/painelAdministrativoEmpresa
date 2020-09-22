@@ -11,7 +11,7 @@
             <mat-form-field appearance="fill" style="margin-top: 10px;">
                 <mat-label>Cidade</mat-label>
                 <mat-select (selectionChange)="select($event.value)">
-                    <mat-option *ngFor="let item of itens" [value]="item.bairros">
+                    <mat-option *ngFor="let item of itens" [value]="item">
                         {{ item.nome }}
                     </mat-option>
                 </mat-select>

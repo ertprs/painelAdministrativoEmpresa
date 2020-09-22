@@ -19,7 +19,7 @@ export class EstoqueRetirarLojaComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      id: [this.data.item.id],
+      id: [this.data.item.id_item_estoque],
       quantidade: [null],
     });
 

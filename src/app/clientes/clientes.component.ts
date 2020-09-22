@@ -1,3 +1,5 @@
+import { FormEnderecoClienteComponent } from './form-endereco-cliente/form-endereco-cliente.component';
+import { EnderecosClienteComponent } from './enderecos-cliente/enderecos-cliente.component';
 import { CadastroPedidoService } from './../delivery/pedidos/cadastro-pedido/cadastro-pedido.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,8 +15,9 @@ import { Router } from '@angular/router';
 })
 export class ClientesComponent implements OnInit {
 
-  displayedColumns: string[] = ['op', 'op2', 'nome', 'telefone', 'endereco', 'aniversario', 'tipo', 'info', 'add'];
+  displayedColumns: string[] = ['op', 'nome', 'telefone', 'endereco', 'aniversario', 'tipo', 'info', 'add'];
   itens = [];
+  itemSelecionado: any;
 
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog,
@@ -104,9 +107,86 @@ removerItem(item) {
 }
 
 
+onClickBtMenu(element) {
+  this.itemSelecionado = element;
+}
+
 onClickCadastraPedido(item: any) {
   this.sercard.setCadastroClienteLista(item);
   this.router.navigate(['/painelpedidos/cadastro-pedido']);
+}
+
+
+enderecoCliente(element): void {
+  const dialogRef = this.dialog.open(EnderecosClienteComponent, {
+    width: '750px',
+    data: {item: element}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    console.log(result);
+
+
+    if (!result) { return; }
+    if (result === 'add_endereco') { 
+      this.formaddEnd();
+      return;
+    }
+
+    if (result.acao === 'rem_endereco') { 
+      this.removerEndereco(result.item);
+      return;
+    }
+
+    console.log('The dialog was closed');
+    this.itemSelecionado.rua = result.rua;
+    this.itemSelecionado.numero = result.numero;
+    this.itemSelecionado.bairro = result.bairro;
+    this.itemSelecionado.cidade = result.cidade;
+    this.itemSelecionado.complemento = result.complemento;
+    this.itemSelecionado.tiporesidencia = result.tiporesidencia;
+    this.onClickCadastraPedido(this.itemSelecionado);
+    console.log(this.itemSelecionado);
+  });
+}
+
+formaddEnd() {
+  const dialogRef = this.dialog.open(FormEnderecoClienteComponent, {
+    width: '450px',
+    data: {acao: 'editar', item: this.itemSelecionado}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(result);
+    if (result) {
+        
+      const accallback = () => {
+        console.log('callback');
+        const r = this.servico.getRespostaApi();
+        if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+          this.servico.mostrarMensagem(r.detalhes);
+          this.f5();
+        }
+        console.log(r);
+      };
+      this.crud.post_api('add_end_usuario', accallback, result);
+      
+    }
+  });
+}
+
+removerEndereco(item) {
+  const accallback = () => {
+    console.log('callback');
+    const r = this.servico.getRespostaApi();
+    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+      this.servico.mostrarMensagem(r.detalhes);
+    }
+    console.log(r);
+  };
+  this.crud.post_api('removerEndereco', accallback, item);
 }
 
 }

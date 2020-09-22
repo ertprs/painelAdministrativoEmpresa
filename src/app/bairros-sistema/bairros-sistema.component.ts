@@ -3,6 +3,7 @@ import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
+import { FormBairroComponent } from './form-bairro/form-bairro.component';
 
 @Component({
   selector: 'app-bairros-sistema',
@@ -14,7 +15,7 @@ export class BairrosSistemaComponent implements OnInit {
   displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c4'];
   itens = [];
   bairros: [];
-
+  itemSelecionado: any;
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
 
@@ -30,15 +31,16 @@ export class BairrosSistemaComponent implements OnInit {
     });
 }
 
-select(itens) {
-  console.log(itens);
-  this.bairros = itens;
+select(item) {
+  console.log(item);
+  this.itemSelecionado = item;
+  this.bairros = item.bairros;
 }
 
 add(): void {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormBairroComponent, {
     width: '450px',
-    data: {tipo: 'add', nomeDialog: 'form_bairro'}
+    data: {tipo: 'add', item: this.itemSelecionado}
   });
 
   dialogRef.afterClosed().subscribe(result => {
@@ -51,7 +53,7 @@ add(): void {
 }
 
 onClickEditar(i): void {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormBairroComponent, {
     width: '450px',
     data: {tipo: 'editar', nomeDialog: 'form_bairro', item: i}
   });

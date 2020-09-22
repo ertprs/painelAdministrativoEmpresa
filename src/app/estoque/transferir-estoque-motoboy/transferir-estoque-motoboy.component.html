@@ -1,0 +1,31 @@
+<div [formGroup]="form">
+    <div style="margin-bottom: 15px;">Tranferir estoque</div>
+    <div class="delsuc">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Motoboys</mat-label>
+                <mat-select formControlName="propriedade">
+                    <span *ngFor="let item of motoboys">
+                        <mat-option *ngIf="data.item.motoboy.dados.id !== item.id"  [value]="item.id">
+                            {{ item.nome }}
+                        </mat-option>
+                    </span>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field>
+                <mat-label>Quantidade</mat-label>
+                <input matInput type="number" placeholder="1" formControlName="quantidade">
+            </mat-form-field>
+        </div>
+
+
+    </div>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Confirmar</button>
+    </div>
+</div>

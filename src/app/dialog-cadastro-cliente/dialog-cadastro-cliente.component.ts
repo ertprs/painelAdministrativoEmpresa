@@ -24,6 +24,7 @@ export class DialogCadastroClienteComponent implements OnInit {
     if (this.data.acao === 'add') {
       this.form = this.fb.group({
         tipo: [null, Validators.required],
+        email: [null, Validators.required],
         nome: [null, Validators.required],
         telefone: [null, Validators.required],
         rua: [null, Validators.required],
@@ -38,6 +39,7 @@ export class DialogCadastroClienteComponent implements OnInit {
     } else {
       this.form = this.fb.group({
         id: [this.data.usuario.id],
+        email: [this.data.usuario.email],
         tipo: [this.data.usuario.tipo],
         nome: [this.data.usuario.nome],
         telefone: [this.data.usuario.telefone],
