@@ -86,7 +86,7 @@ retirar(element): void {
         }
         console.log(r);
       };
-      this.crud.post_api('trans_estoque_motoboy', accallback, result);
+      this.crud.post_api('subEstoqueMotoboy', accallback, result);
 
 
     }
@@ -107,8 +107,8 @@ transferirEstoque(element): void {
       const accallback = () => {
         console.log('callback');
         const r = this.servapp.getRespostaApi();
-        if (r.erro === true) { this.servapp.mostrarMensagem(r.mensagem); } else {
-          this.servapp.mostrarMensagem(r.mensagem);
+        if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
+          this.servapp.mostrarMensagem(r.detalhes);
           this.estoqueMotoboy();
         }
         console.log(r);

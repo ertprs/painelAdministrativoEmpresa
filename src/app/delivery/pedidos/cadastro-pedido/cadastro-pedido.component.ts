@@ -31,6 +31,10 @@ export class CadastroPedidoComponent implements OnInit {
   statusLoaderTaxa = false;
   statusLoaderEnviaPedido = false;
 
+  listaCidades: any;
+  listaBairros: any;
+
+
   constructor(public servico: ServicoService, private crud: CrudServicoService,  private dialog: MatDialog,
               public servcard: CadastroPedidoService, private fb: FormBuilder,
               private bottomSheet: MatBottomSheet, private router: Router) { }
@@ -81,6 +85,20 @@ export class CadastroPedidoComponent implements OnInit {
 
   }
 
+  }
+
+
+  selecionaCidadeSelect(item) {
+    this.cidadeClienteSelecionada = item;
+    this.listaBairros = item.bairros;
+  }
+
+  formTaxa(item) {
+
+    this.form.controls.taxaentrega.setValue( item.taxa );
+    this.servcard.setTaxaEntrega( parseFloat( item.taxa ) );
+    this.servico.getDadosEmpresa().taxa_entrega = parseFloat( item.taxa );
+    this.taxaEntregadorText = item.taxa;
   }
 
   selecionarCidadeAuto(nomeCidade: string, nomeBairro: string) {
@@ -153,6 +171,7 @@ export class CadastroPedidoComponent implements OnInit {
       // console.log(data);
         this.catalogo = data.catalogo;
         this.statusLoad = false;
+        this.listaCidades = data.empresa.locais_entrega;
     });
 
   }

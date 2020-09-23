@@ -116,9 +116,9 @@ enviarNovoEstoque(element): void {
       const accallback = () => {
         console.log('callback');
         const r = this.servapp.getRespostaApi();
-        if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
+        if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
           this.servapp.mostrarMensagem(r.detalhes.mensagem);
-          this.dataSource = r.detalhes.itens;
+          this.estoque();
         }
         console.log(r);
       };
@@ -143,9 +143,10 @@ retirarEstoqueLoja(element) {
       const accallback = () => {
         console.log('callback');
         const r = this.servapp.getRespostaApi();
-        if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
-          this.servapp.mostrarMensagem(r.detalhes.mensagem);
-          this.dataSource = r.detalhes.itens;
+        if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
+          this.servapp.mostrarMensagem(r.detalhes);
+          // this.dataSource = r.detalhes.resultado;
+          this.estoque();
         }
         console.log(r);
       };

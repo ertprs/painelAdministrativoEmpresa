@@ -10,9 +10,14 @@
 
     <div class="delsuc">
 
-        <div>
-            Informe a quantidade que será retirado da loja
+        <div style="text-align: center;">
+            Informe o motivo da quebra de estoque e a quantidade que será retirado da loja
         </div>
+
+        <mat-form-field>
+            <mat-label>Motivo da quebra do estoque</mat-label>
+            <input matInput type="name" placeholder="Ex.: Quebra/Abono/Premium" formControlName="motivo">
+        </mat-form-field>
 
         <mat-form-field>
             <mat-label>Quantidade</mat-label>
@@ -23,6 +28,6 @@
 
     <div>
         <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
-        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Confirmar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" (click)="confirmar()">Confirmar</button>
     </div>
 </div>

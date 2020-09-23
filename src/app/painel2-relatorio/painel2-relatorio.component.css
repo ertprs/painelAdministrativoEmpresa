@@ -1,0 +1,13 @@
+.g {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 90.6vh;
+}
+
+.col1 {
+    border-right: 1px solid #989898;
+}
+
+.col2 {
+    background-color: #ffffff;
+}

@@ -1,6 +1,6 @@
 .g {
     display: grid;
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 1fr;
     height: 85.5%;
 }
 

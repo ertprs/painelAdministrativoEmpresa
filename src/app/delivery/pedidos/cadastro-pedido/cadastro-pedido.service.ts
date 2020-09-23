@@ -14,7 +14,7 @@ export class CadastroPedidoService {
     cliente: '',
     itens: [],
     subtotal: '',
-    origempedido: '',
+    origempedido: false,
     formapagamento: {tipo: '', troco: 0, nome: 'false'},
     desconto: 0,
     cupom: {},

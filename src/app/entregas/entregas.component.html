@@ -2,16 +2,18 @@
     <mat-card>
 
         <mat-chip-list aria-label="Fish selection">
-            <mat-chip color="accent" selected (click)="onclickCadastroEnt()">
-                <mat-icon>add</mat-icon> Nova Entrega</mat-chip>
+
+            <!--<mat-chip color="accent" selected (click)="onclickCadastroEnt()">
+               <mat-icon>add</mat-icon> Nova Entrega
+            </mat-chip>-->
 
             <mat-chip color="accent" (click)="onclickFiltroStatusEnt(0)" matTooltip="Entregas que ainda não foram aceitas por motoboys">Pendentes</mat-chip>
-            <mat-chip color="accent" (click)="onclickFiltroStatusEnt(8)" matTooltip="Entregas enviadas diretamente aos motoboys de sua lista">Diretas Pendentes</mat-chip>
+            <!--<mat-chip color="accent" (click)="onclickFiltroStatusEnt(8)" matTooltip="Entregas enviadas diretamente aos motoboys de sua lista">Diretas Pendentes</mat-chip>-->
             <mat-chip color="accent" (click)="onclickFiltroStatusEnt(1)" matTooltip="Entregas que já foram aceitas por motoboys">Aceitas</mat-chip>
             <mat-chip color="accent" (click)="onclickFiltroStatusEnt(2)" matTooltip="Entregas que estão a caminho do cliente">A caminho</mat-chip>
             <mat-chip color="accent" (click)="onclickFiltroStatusEnt(3)" matTooltip="Entregas que já foram entregues">Entregues</mat-chip>
             <mat-chip color="accent" (click)="onclickFiltroStatusEnt(4)" matTooltip="Entregas canceladas pelos motoboys ou pela empresa">Canceladas</mat-chip>
-            <mat-chip color="accent" (click)="onclickFiltroStatusEnt(5)" matTooltip="Entregas com formulário pronto para serem publicadas">Rascunho</mat-chip>
+            <!--<mat-chip color="accent" (click)="onclickFiltroStatusEnt(5)" matTooltip="Entregas com formulário pronto para serem publicadas">Rascunho</mat-chip>-->
             <mat-chip style="background-color: rgb(73, 136, 9); color: white;" color="accent" (click)="onclickFiltroStatusEnt(9)" matTooltip="Entregas concluídas">Concluídas</mat-chip>
         </mat-chip-list>
 

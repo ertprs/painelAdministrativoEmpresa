@@ -1,3 +1,4 @@
+import { ServicoService } from 'src/app/servico.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -13,7 +14,7 @@ export class EstoqueRetirarLojaComponent implements OnInit {
   form: FormGroup;
   iddes: any;
 
-  constructor(public dialogRef: MatDialogRef<DialogDinamComponent>,
+  constructor(private servapp: ServicoService,public dialogRef: MatDialogRef<DialogDinamComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -21,8 +22,14 @@ export class EstoqueRetirarLojaComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.data.item.id_item_estoque],
       quantidade: [null],
+      motivo: [null],
     });
 
+  }
+
+  confirmar() {
+    if (!this.form.value.motivo) { this.servapp.mostrarMensagem('Informe o motivo da quebra do estoque'); return;  }
+    this.dialogRef.close(this.form.value);
   }
 
 }

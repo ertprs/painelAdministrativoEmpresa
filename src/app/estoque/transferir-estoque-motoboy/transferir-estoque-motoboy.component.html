@@ -4,9 +4,9 @@
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Motoboys</mat-label>
-                <mat-select formControlName="propriedade">
+                <mat-select formControlName="destino">
                     <span *ngFor="let item of motoboys">
-                        <mat-option *ngIf="data.item.motoboy.dados.id !== item.id"  [value]="item.id">
+                        <mat-option *ngIf="data.item.propriedade !== item.id"  [value]="item.id">
                             {{ item.nome }}
                         </mat-option>
                     </span>

@@ -84,7 +84,7 @@
                           Entrega aceita
                     </button>
 
-                    <button class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="dialogAvisoTaxa(element)" mat-stroked-button>Solicitar motoboy</button>
+                    <button class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="servpedidos.solicitaMotoboy(element.id)" mat-stroked-button>Solicitar motoboy</button>
 
                     <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1" matTooltip="Aguardando motoboy aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
 

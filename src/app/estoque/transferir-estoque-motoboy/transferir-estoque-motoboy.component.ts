@@ -23,9 +23,10 @@ export class TransferirEstoqueMotoboyComponent implements OnInit {
 
     this.form = this.fb.group({
       quantidade: [null],
-      propriedade: [null], // Id do motoboy que vai receber
+      propriedade: [this.data.item.propriedade], // Id do motoboy que vai enviar
+      destino: [null], // Id do motoboy que vai receber
       idEstoqueMotoboy: [this.data.item.id], // Id do estoque motoboy tabela:estoque_motoboy
-      idItemEstoque: [this.data.item.id_item_catalogo],
+      idItemEstoque: [this.data.item.id_item_estoque],
       idEstoque: [this.data.item.id_estoque],
 });
 

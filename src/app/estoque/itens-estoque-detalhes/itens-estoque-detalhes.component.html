@@ -1,3 +1,32 @@
+<mat-form-field appearance="fill">
+    <mat-label>Filtrar Local</mat-label>
+    <mat-select formControlName="propriedade">
+        <mat-option value="loja">
+            Loja
+        </mat-option>
+        <mat-option value="motoboy">
+            Motoboy
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field class="f-cli" style="margin-left: 15px;">
+    <mat-label>Filtro por data</mat-label>
+    <input matInput type="date">
+</mat-form-field>
+
+
+
+
+<mat-form-field class="f-cli" style="margin-left: 15px;">
+    <mat-label>Filtro por produto</mat-label>
+    <input matInput type="name">
+</mat-form-field>
+
+<button mat-icon-button color="primary">
+    <mat-icon>search</mat-icon>
+  </button>
+
 <table mat-table [dataSource]="dataSource">
 
 
@@ -73,15 +102,15 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="c7">
         <th mat-header-cell *matHeaderCellDef>
-            <button matTooltip="Adicionar únidades de estoque" mat-icon-button>
+            <!--<button matTooltip="Adicionar únidades de estoque" mat-icon-button>
                 <mat-icon class="mat-18">print</mat-icon>
-            </button>
+            </button>-->
         </th>
         <td mat-cell *matCellDef="let element">
 
-            <button matTooltip="Adicionar únidades de estoque" mat-icon-button>
+            <!--<button matTooltip="Adicionar únidades de estoque" mat-icon-button>
                 <mat-icon class="mat-18">delete</mat-icon>
-            </button>
+            </button>-->
 
         </td>
     </ng-container>

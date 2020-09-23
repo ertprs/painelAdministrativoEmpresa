@@ -30,12 +30,12 @@
 }
 
 .isac {
-    border-bottom: 1px solid #9C27B0;
+    border-bottom: 1px solid #525252;
     padding-bottom: 18px;
     display: grid;
     grid-template-columns: 0fr 1fr;
     align-items: center;
-    background: #2196F3;
+    background: #4c4c4c;
     border-radius: 10px;
     margin-right: 5px;
     color: white;
@@ -44,7 +44,7 @@
 }
 
 .isacT {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     margin-top: 10px;
 }
@@ -58,7 +58,7 @@
 
 .car {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .car1 {

@@ -21,8 +21,9 @@ export class RetornarDeMotoboyComponent implements OnInit {
 
     this.form = this.fb.group({
       quantidade: ['', Validators.required],
-      id_motoboy: [this.data.item.motoboy.dados.id, Validators.required],
+      id_motoboy: [this.data.item.propriedade, Validators.required],
       id_estoque: [this.data.item.id, Validators.required],
+      id_item_estoque: [this.data.item.id_item_estoque, Validators.required],
     });
   }
 }

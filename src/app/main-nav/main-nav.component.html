@@ -40,11 +40,26 @@
                 Estoque
             </a>
 
+
+
+            <a mat-list-item routerLink="/relatorio" *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">
+                <mat-icon>view_headline</mat-icon>
+                Relatórios
+            </a>
+
             <a mat-list-item routerLink="/financeiro">
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">view_headline</mat-icon>
                 Financeiro
             </a>
+
+            <a mat-list-item routerLink="/financeiro">
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">view_headline</mat-icon>
+                Fechar caixa
+            </a>
+
+
 
             <a *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'" mat-list-item routerLink="/painel" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>settings</mat-icon>

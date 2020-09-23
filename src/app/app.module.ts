@@ -140,6 +140,7 @@ import { EnderecosClienteComponent } from './clientes/enderecos-cliente/endereco
 import { FormEnderecoClienteComponent } from './clientes/form-endereco-cliente/form-endereco-cliente.component';
 import { TransferirEstoqueMotoboyComponent } from './estoque/transferir-estoque-motoboy/transferir-estoque-motoboy.component';
 import { FormBairroComponent } from './bairros-sistema/form-bairro/form-bairro.component';
+import { Painel2RelatorioComponent } from './painel2-relatorio/painel2-relatorio.component';
 
 @NgModule({
   declarations: [
@@ -237,6 +238,7 @@ import { FormBairroComponent } from './bairros-sistema/form-bairro/form-bairro.c
     FormEnderecoClienteComponent,
     TransferirEstoqueMotoboyComponent,
     FormBairroComponent,
+    Painel2RelatorioComponent,
   ],
   imports: [
     BrowserModule,

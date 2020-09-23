@@ -1,3 +1,4 @@
+import { Painel2RelatorioComponent } from './painel2-relatorio/painel2-relatorio.component';
 import { ConsolidacaoFinanceiraComponent } from './finaceiro/consolidacao-financeira/consolidacao-financeira.component';
 import { ComprasClientesComponent } from './finaceiro/compras-clientes/compras-clientes.component';
 import { ComissaoEntregasComponent } from './finaceiro/comissao-entregas/comissao-entregas.component';
@@ -69,13 +70,19 @@ const routes: Routes = [
     path: '', component: DashboardComponent, canActivate: [GuardaAtenticacaoService], children: [
 
       { path: 'inicio', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
+     
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
-          { path: 'itens-estoque', component: ItensEstoqueDetalhesComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
-          { path: 'vendas-clientes', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
       ] },
+
+      { path: 'relatorio', component: Painel2RelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
+        { path: 'posicao-estoque', component: ItensEstoqueDetalhesComponent, canActivate: [GuardaAtenticacaoService] },
+        { path: 'caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
+        { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
+        { path: 'pagamentos-clientes', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
+        { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
+    ] },
+
       { path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [
             { path: 'historico', component: HistoricoComponent, canActivate: [GuardaConfigSistemaService] },
             { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },

@@ -22,7 +22,7 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="quantidade">
         <th mat-header-cell *matHeaderCellDef> Qnt. </th>
-        <td mat-cell *matCellDef="let element"> {{element.quantidade}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.quantidade_total_unidades}} </td>
     </ng-container>
 
 
@@ -48,18 +48,18 @@
         <th mat-header-cell *matHeaderCellDef> Transferir </th>
         <td mat-cell *matCellDef="let element">
 
-            <!--<button matTooltip="Retornar estoque à loja" *ngIf="element.quantidade > 0" mat-icon-button (click)="retirar(element)">
+            <button matTooltip="Retornar estoque à loja" *ngIf="element.quantidade_total_unidades > 0" mat-icon-button (click)="retirar(element)">
                 <mat-icon class="mat-18">undo</mat-icon>
-            </button>-->
+            </button>
 
-            <button matTooltip="Transferir a outro motoboy" *ngIf="element.quantidade > 0" mat-icon-button (click)="transferirEstoque(element)">
+            <button matTooltip="Transferir a outro motoboy" *ngIf="element.quantidade_total_unidades > 0" mat-icon-button (click)="transferirEstoque(element)">
                 <mat-icon class="mat-18">redo</mat-icon>
             </button>
 
-            <button matTooltip="Remover estoque" *ngIf="element.quantidade === '0'" mat-icon-button (click)="removerEstoqueMotoboy(element)">
+            <!--<button matTooltip="Remover estoque" *ngIf="element.quantidade_total_unidades === '0' || element.quantidade_total_unidades === 0" mat-icon-button (click)="removerEstoqueMotoboy(element)">
                 <mat-icon class="mat-18">delete</mat-icon>
-            </button
-              >
+            </button>-->
+
 
         </td>
     </ng-container>
