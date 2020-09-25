@@ -1,3 +1,5 @@
+import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/conciliacao-bancaria.component';
+import { ControleFiadoComponent } from './finaceiro/controle-fiado/controle-fiado.component';
 import { Painel2RelatorioComponent } from './painel2-relatorio/painel2-relatorio.component';
 import { ConsolidacaoFinanceiraComponent } from './finaceiro/consolidacao-financeira/consolidacao-financeira.component';
 import { ComprasClientesComponent } from './finaceiro/compras-clientes/compras-clientes.component';
@@ -70,17 +72,18 @@ const routes: Routes = [
     path: '', component: DashboardComponent, canActivate: [GuardaAtenticacaoService], children: [
 
       { path: 'inicio', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
      
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'controle-fiado', component: ControleFiadoComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'conciliacao-bancaria', component: ConciliacaoBancariaComponent, canActivate: [GuardaAtenticacaoService] },
       ] },
 
       { path: 'relatorio', component: Painel2RelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
         { path: 'posicao-estoque', component: ItensEstoqueDetalhesComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'pagamentos-clientes', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
+        { path: 'historico-vendas', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
     ] },
 
       { path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [

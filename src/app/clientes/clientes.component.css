@@ -5,3 +5,7 @@ table {
 .f-cli {
     margin-top: 8px;
 }
+
+mat-form-field {
+    width: 94%;
+}

@@ -1,3 +1,4 @@
+import { ComprasClienteService } from './../compras-cliente.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class ListaComprasClientesComponent implements OnInit {
 
   columnsToDisplay = ['c1', 'c2', 'c3', 'c4', 'c5'];
-  dataSource = [];
 
-  constructor() { }
+  constructor(public servCompC: ComprasClienteService) { }
 
   ngOnInit(): void {
 

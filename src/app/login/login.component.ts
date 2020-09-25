@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private crud: CrudServicoService,
               private formBuilder: FormBuilder,
-              private servico: ServicoService,
+              public servico: ServicoService,
               private router: Router,
               private auth: AuthService,
               ) { }

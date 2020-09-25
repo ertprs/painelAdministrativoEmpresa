@@ -1,16 +1,16 @@
-<mat-card>
+<mat-card [formGroup]="form">
     <span>
         <mat-form-field class="example-full-width">
             <mat-label>Data iníncio</mat-label>
-            <input matInput type="date">
+            <input matInput type="date" formControlName="dataInicio">
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Data fim</mat-label>
-            <input matInput type="date">
+            <input matInput type="date" formControlName="dataFim">
           </mat-form-field>
 
-          <button mat-stroked-button color="primary">Filtrar período</button>
+          <button mat-stroked-button color="primary" (click)="consultaPedidoCliente('periodo')">Filtrar período</button>
 
     </span>
 
@@ -21,7 +21,9 @@
                    placeholder="Filtrar por cliente"
                    aria-label="Number"
                    matInput
-                    
+                   formControlName="clienteNome"
+                   (keyup)="consultaClienteFiltro($event)" 
+                
                    [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
               <mat-option *ngFor="let option of clientes" [value]="option.nome">
@@ -30,6 +32,7 @@
             </mat-autocomplete>
           </mat-form-field>
 
+          <button mat-stroked-button color="primary" (click)="consultaPedidoCliente('nome')">Filtrar cliente</button>
          
 
     </span>

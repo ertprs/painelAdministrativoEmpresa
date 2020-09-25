@@ -1,0 +1,84 @@
+<mat-toolbar>
+    <span>
+        Pedidos fiado 
+        </span>
+</mat-toolbar>
+
+<div>
+
+
+
+    <mat-form-field class="f-cli" style="margin-left: 15px;">
+        <mat-label>Filtro por cliente</mat-label>
+        <input matInput type="name">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary">
+        <mat-icon>search</mat-icon>
+      </button>
+
+    <mat-form-field class="f-cli" style="margin-left: 15px;">
+        <mat-label>Data início</mat-label>
+        <input matInput type="name">
+    </mat-form-field>
+
+    <mat-form-field class="f-cli" style="margin-left: 15px;">
+        <mat-label>Data fim</mat-label>
+        <input matInput type="name">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary">
+        <mat-icon>search</mat-icon>
+      </button>
+</div>
+
+<table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="c0">
+        <th mat-header-cell *matHeaderCellDef> Cliente. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.dadoscliente.id}} {{element.dadoscliente.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> Data compra. </th>
+        <td mat-cell *matCellDef="let element"> {{element.info}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Data pagamento. </th>
+        <td mat-cell *matCellDef="let element"> {{element.data_pagamento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Dívida. </th>
+        <td mat-cell *matCellDef="let element"> <span style="color: red;"> {{ element.valor_devedor | currency:'BRL':true }} </span> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> Valor pedido. </th>
+        <td mat-cell *matCellDef="let element"> <span style="color: rgb(67, 67, 67);"> {{ element.total | currency:'BRL':true }} </span> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+
+            <button mat-flat-button color="warn" (click)="onClickPagar(element)">Pagar</button>
+
+        </td>
+    </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>

@@ -1,7 +1,8 @@
 .dados1 {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 98%;
     grid-column-gap: 1em;
+    padding-left: 10px;
 }
 
 .dados2 {
@@ -18,7 +19,7 @@
 
 .dados4 {
     display: grid;
-    grid-template-columns: 4fr 8fr 0fr;
+    grid-template-columns: 25% 46% 24%;
     grid-column-gap: 1em;
 }
 
@@ -82,4 +83,18 @@
 .car12 {
     justify-content: space-between;
     display: flex;
+}
+
+.itemCatalogo {
+    height: 76px;
+    padding-top: 31px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.acar {
+    padding: 20px;
+}
+
+.itemCat {
+    margin: 5px;
 }

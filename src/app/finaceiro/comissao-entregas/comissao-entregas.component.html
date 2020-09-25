@@ -1,70 +1,95 @@
-<mat-toolbar>
+<mat-card>
     <span>
 
         <button mat-raised-button color="primary"> Pagos </button>
         <button style="margin-left: 4px;" mat-raised-button color="primary"> Não pagos </button>
 
-        <mat-form-field class="f-cli">
-            <mat-label>Nome cliente</mat-label>
+        <mat-form-field class="f-cli" >
+            <mat-label>Nome motoboy</mat-label>
             <input matInput type="name">
           </mat-form-field>
 
-        <button style="margin-left: 4px;" mat-raised-button color="accent"> Filtrar motoboy </button>
+          <button mat-icon-button color="primary">
+            <mat-icon>search</mat-icon>
+          </button>
+
+        
 
         
     </span>
-</mat-toolbar>
+</mat-card>
+
+
+<mat-form-field class="f-cli" style="margin-top: 20px;">
+    <mat-label>Data início</mat-label>
+    <input matInput type="date">
+</mat-form-field>
+
+<mat-form-field class="f-cli" style="margin-top: 20px;">
+    <mat-label>Data fim</mat-label>
+    <input matInput type="date">
+</mat-form-field>
+
+<button mat-icon-button color="primary">
+    <mat-icon>search</mat-icon>
+  </button>
 
 <table mat-table [dataSource]="dataSource">
 
 
-    <!-- Name Column -->
     <ng-container matColumnDef="c0">
-        <th mat-header-cell *matHeaderCellDef> Tipos de pagamentos </th>
+        <th mat-header-cell *matHeaderCellDef> Forma pagamento cliente </th>
         <td mat-cell *matCellDef="let element">
-
-            {{ element.nome }}
+            #{{ element.id_pedido }} {{ element.forma_pag_cliente }}
 
         </td>
     </ng-container>
 
 
-    <!-- Name Column -->
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Total entregas </th>
+        <th mat-header-cell *matHeaderCellDef> Total entrega </th>
         <td mat-cell *matCellDef="let element">
 
-            {{ element.total_entregas }}
+            {{ element.valor_pedido_cliente | currency:'BRL':true }}
 
         </td>
     </ng-container>
 
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element">
-
-        </td>
-    </ng-container>
-
-    <!-- Weight Column -->
     <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> Total a pagar </th>
+        <th mat-header-cell *matHeaderCellDef> Taxa de entrega </th>
         <td mat-cell *matCellDef="let element">
 
-            {{ element.total_pagar | currency:'BRL':true}}
+            {{ element.taxa_entrega | currency:'BRL':true}}
 
         </td>
     </ng-container>
 
-    <!-- Symbol Column -->
     <ng-container matColumnDef="c4">
         <th mat-header-cell *matHeaderCellDef>
 
         </th>
         <td mat-cell *matCellDef="let element">
-            <button [disabled]="element.status_pago" mat-raised-button color="primary"> Pagar </button>
+            <button [disabled]="element.status_pago" mat-raised-button color="primary" (click)="onClickPagar(element)"> Pagar </button>
+        </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef>
+            Pago por
+        </th>
+        <td mat-cell *matCellDef="let element">
+            Nome de Quem Pagou
+        </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="c6">
+        <th mat-header-cell *matHeaderCellDef>
+            Data pagamento
+        </th>
+        <td mat-cell *matCellDef="let element">
+            11/09/2020
         </td>
     </ng-container>
 

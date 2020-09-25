@@ -36,26 +36,26 @@
 
             <a mat-list-item routerLink="/estoque">
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">view_headline</mat-icon>
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">book</mat-icon>
                 Estoque
             </a>
 
 
 
             <a mat-list-item routerLink="/relatorio" *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">
-                <mat-icon>view_headline</mat-icon>
+                <mat-icon>assignment</mat-icon>
                 Relatórios
             </a>
 
             <a mat-list-item routerLink="/financeiro">
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">view_headline</mat-icon>
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">money</mat-icon>
                 Financeiro
             </a>
 
-            <a mat-list-item routerLink="/financeiro">
+            <a mat-list-item routerLink="/fechar-caixa">
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">view_headline</mat-icon>
+                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">archive</mat-icon>
                 Fechar caixa
             </a>
 
@@ -89,12 +89,18 @@
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-            <span>Dashboard</span>
+            <span>
+                <div>Dashboard</div>
+                <div class="ddgui_"> {{ this.servico.getDadosEmpresa().operador.nome }} ({{ this.servico.getDadosEmpresa().operador.tipo }}) </div>
+
+            </span>
             <div style="position: absolute;margin-left: 12%;" *ngIf="servico.getStatusLogado() !== false">
                 <span matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="accent">
-                    <mat-icon title="Motoboys disponíveis">sports_motorsports</mat-icon>
-                </span>
+                        <mat-icon title="Motoboys disponíveis">sports_motorsports</mat-icon>
+                    </span>
             </div>
+
+
         </mat-toolbar>
         <!-- Add Content Here -->
         <router-outlet></router-outlet>

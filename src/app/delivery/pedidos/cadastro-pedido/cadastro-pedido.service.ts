@@ -1,10 +1,15 @@
 import { ServicoService } from './../../../servico.service';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CadastroPedidoService {
+
+
+  selectedIndex: 0;
+  
+  iniciaFormCadastro = new EventEmitter<any>();
 
   private tipoPedido = {entrega: 'entrega', retirada: 'retirada'};
   private formadepagamento = {dinheiro: 'dinheiro', cartao: {nome: 'cartao', cartoes: []}};
@@ -46,6 +51,10 @@ export class CadastroPedidoService {
   cadastroClienteLista: any;
 
   constructor(private servico: ServicoService) { }
+
+
+  setSelectedIndex(index) { this.selectedIndex = index;  }
+  getSelectedIndex() { return this.selectedIndex;  }
 
   setCadastroClienteLista(cliente: any) { this.cadastroClienteLista = cliente; }
   getCadastroClienteLista() { return this.cadastroClienteLista; }

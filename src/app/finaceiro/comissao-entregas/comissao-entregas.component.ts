@@ -1,3 +1,4 @@
+import { AdicionarPagamentoComponent } from './adicionar-pagamento/adicionar-pagamento.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +14,7 @@ import { ServicoService } from 'src/app/servico.service';
 })
 export class ComissaoEntregasComponent implements OnInit {
 
-  columnsToDisplay = ['c0', 'c1', 'c2', 'c3', 'c4'];
+  columnsToDisplay = ['c0', 'c1', 'c3', 'c5', 'c6', 'c4'];
   dataSource = [];
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
@@ -25,11 +26,33 @@ export class ComissaoEntregasComponent implements OnInit {
       {nome: 'Motoboy 2', total_entregas: 65, total_pagar: 73, status_pago: true, },
       {nome: 'Motoboy 3', total_entregas: 100, total_pagar: 96, status_pago: false, },
     ];
-   // this.estoque();
+    this.consultaPedidosFiado();
   }
-  estoque() {
-    this.crud.get_api('itens_estoque_det').subscribe(data => {
-        this.dataSource = data;
-    });
+
+  consultaPedidosFiado() {
+
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
+        // this.servapp.mostrarMensagem(r.resultado.mensagem);
+        this.dataSource = r.resultado.itens;
+      }
+      console.log(r);
+    };
+    this.crud.post_api('comissao_entregas', accallback, '');
+  }
+
+onClickPagar(element) {
+  const dialogRef = this.dialog.open(AdicionarPagamentoComponent, {
+    width: '250px',
+    data: {item: element}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+
+  });
 }
+
 }

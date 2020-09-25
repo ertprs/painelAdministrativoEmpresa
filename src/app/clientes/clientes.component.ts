@@ -15,16 +15,15 @@ import { Router } from '@angular/router';
 })
 export class ClientesComponent implements OnInit {
 
-  displayedColumns: string[] = ['op', 'nome', 'telefone', 'endereco', 'aniversario', 'tipo', 'info', 'add'];
+  displayedColumns: string[] = ['op', 'nome', 'telefone', 'aniversario', 'tipo', 'info', 'add'];
   itens = [];
   itemSelecionado: any;
-
-
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog,
               private router: Router,  private sercard: CadastroPedidoService) { }
 
   ngOnInit(): void {
-    this.f5();
+    setTimeout( () => { this.f5(); }, 600 );
+
   }
 
   f5() {
@@ -113,7 +112,8 @@ onClickBtMenu(element) {
 
 onClickCadastraPedido(item: any) {
   this.sercard.setCadastroClienteLista(item);
-  this.router.navigate(['/painelpedidos/cadastro-pedido']);
+  // this.router.navigate(['/painelpedidos/cadastro-pedido']);
+  this.router.navigate(['/inicio']);
 }
 
 
@@ -140,12 +140,16 @@ enderecoCliente(element): void {
     }
 
     console.log('The dialog was closed');
+    this.itemSelecionado.id = result.id;
     this.itemSelecionado.rua = result.rua;
     this.itemSelecionado.numero = result.numero;
     this.itemSelecionado.bairro = result.bairro;
     this.itemSelecionado.cidade = result.cidade;
     this.itemSelecionado.complemento = result.complemento;
     this.itemSelecionado.tiporesidencia = result.tiporesidencia;
+
+    this.sercard.iniciaFormCadastro.emit(this.itemSelecionado);
+
     this.onClickCadastraPedido(this.itemSelecionado);
     console.log(this.itemSelecionado);
   });

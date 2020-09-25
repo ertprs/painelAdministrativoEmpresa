@@ -5,3 +5,8 @@ table {
 .rem_true {
     color: red;
 }
+
+.atb {
+    overflow: auto;
+    height: 76%;
+}

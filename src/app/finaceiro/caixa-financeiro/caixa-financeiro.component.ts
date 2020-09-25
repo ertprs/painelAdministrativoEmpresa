@@ -13,18 +13,16 @@ import { ServicoService } from 'src/app/servico.service';
 })
 export class CaixaFinanceiroComponent implements OnInit {
 
-  columnsToDisplay = ['c5', 'c0', 'c1', 'c2', 'c3', 'c4'];
+  columnsToDisplay = ['c0', 'c1', 'c2', 'c3', 'c4'];
+  columnsToDisplay2 = ['c0', 'c1', 'c2', 'c3', 'c4'];
   dataSource = [];
+  dataSource2 = [];
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
 
   ngOnInit(): void {
-    this.dataSource = [
-      {nome: 'Dinheiro', total: 5.000, valorInserido: '', diferenca: 0, },
-      {nome: 'Fiado', total: 1.000, valorInserido: '', diferenca: 0, },
-      {nome: 'Cartão', total: 7.000, valorInserido: '', diferenca: 0, },
-    ];
+    this.dataSource = this.servapp.getDadosEmpresa().formaspagamento;
    // this.estoque();
   }
   estoque() {

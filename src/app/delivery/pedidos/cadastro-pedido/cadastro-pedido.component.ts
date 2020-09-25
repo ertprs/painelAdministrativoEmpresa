@@ -21,7 +21,7 @@ export class CadastroPedidoComponent implements OnInit {
   statusLoad = false;
   statusLoadItem = false;
   form: FormGroup;
-  endereco: any; 
+  endereco: any;
   statusbt = false;
   cidadeClienteSelecionada: any;
   taxaEntregador: any;
@@ -33,6 +33,7 @@ export class CadastroPedidoComponent implements OnInit {
 
   listaCidades: any;
   listaBairros: any;
+  indexTabGroup =  0;
 
 
   constructor(public servico: ServicoService, private crud: CrudServicoService,  private dialog: MatDialog,
@@ -64,7 +65,48 @@ export class CadastroPedidoComponent implements OnInit {
 
   } else {
 
+    this.iniciaFormDados();
+    this.selecionarCidadeAuto(this.servcard.getCadastroClienteLista().cidade.nome, this.servcard.getCadastroClienteLista().bairro.nome);
+    this.indexTabGroup = 1;
+  }
+
+    this.carregaDadosUsuario();
+
+  }
+
+  carregaDadosUsuario() {
+    this.servcard.iniciaFormCadastro.subscribe(
+      (data) => {
+        console.log(data);
+
+        this.indexTabGroup = 1;
+
+        this.form = this.fb.group({
+          id: [data.id, Validators.required],
+          nome: [data.nome, Validators.required],
+          telefone: [data.telefone, Validators.required],
+          rua: [data.rua, Validators.required],
+          numero: [data.numero, Validators.required],
+          complemento: [data.complemento],
+          tiporesidencia: [data.tiporesidencia],
+          bairro: [null],
+          cidade: [null],
+          taxaentrega: [null, Validators.required],
+          formapagamento: [false, Validators.required],
+          canalpedido: [false, Validators.required],
+          tipopedido: [false, Validators.required],
+          troco: ['0.00', Validators.required],
+        });
+
+
+      }
+    );
+  }
+
+  iniciaFormDados() {
+    console.log(this.servcard.getCadastroClienteLista());
     this.form = this.fb.group({
+      id: [this.servcard.getCadastroClienteLista().id, Validators.required],
       nome: [this.servcard.getCadastroClienteLista().nome, Validators.required],
       telefone: [this.servcard.getCadastroClienteLista().telefone, Validators.required],
       rua: [this.servcard.getCadastroClienteLista().rua, Validators.required],
@@ -79,14 +121,7 @@ export class CadastroPedidoComponent implements OnInit {
       tipopedido: [false, Validators.required],
       troco: ['0.00', Validators.required],
     });
-
-    this.selecionarCidadeAuto(this.servcard.getCadastroClienteLista().cidade.nome, this.servcard.getCadastroClienteLista().bairro.nome);
-    
-
   }
-
-  }
-
 
   selecionaCidadeSelect(item) {
     this.cidadeClienteSelecionada = item;
@@ -221,7 +256,7 @@ export class CadastroPedidoComponent implements OnInit {
     if (!this.form.value.nome) { this.servico.mostrarMensagem('Informe o nome do cliente'); return; }
     if (!this.form.value.nome) { this.servico.mostrarMensagem('Informe o telefone do cliente'); return; }
 
-    const cli = { imagem: '', id: this.servico.getDadosEmpresa().id, nome: this.form.value.nome, telefone: this.form.value.telefone };
+    const cli = { imagem: '', id: this.form.value.id, nome: this.form.value.nome, telefone: this.form.value.telefone };
     this.servcard.setCliente(cli);
     this.servcard.setEmpresaCarrinho(this.servico.getDadosEmpresa());
     this.servcard.setSubtotal(this.servcard.getSubTotalCarrinho());
@@ -308,9 +343,9 @@ export class CadastroPedidoComponent implements OnInit {
     this.statusLoaderTaxa = true;
     const data = { cidadeNome, coordendasBairro };
     this.crud.post_api('calc_taxa', fcallb, data);
-  } catch (e) { 
+  } catch (e) {
     console.error(e);
-    this.servico.mostrarMensagem('Não foi possível calcular a taxa de entrega. Tente cadastrar uma nova entrega novamente.'); 
+    this.servico.mostrarMensagem('Não foi possível calcular a taxa de entrega. Tente cadastrar uma nova entrega novamente.');
   }
 }
 

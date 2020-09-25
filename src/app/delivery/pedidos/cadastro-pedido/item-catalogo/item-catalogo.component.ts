@@ -155,7 +155,10 @@ export class ItemCatalogoComponent implements OnInit {
     this.itemCatalogo.observacao = obs;
     // console.log(this.item);
     const r = this.servcard.addItemCarrinho(this.itemCatalogo);
-    if (r) { this.servico.mostrarMensagem('Item adicionado ao carrinho!'); }
+    if (r) { 
+      this.servico.mostrarMensagem('Item adicionado ao carrinho!');
+      this.dialogRef.close();
+  }
     setTimeout( () => { this.statusAdd = false; }, 800 );
   }
 

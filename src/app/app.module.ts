@@ -141,6 +141,15 @@ import { FormEnderecoClienteComponent } from './clientes/form-endereco-cliente/f
 import { TransferirEstoqueMotoboyComponent } from './estoque/transferir-estoque-motoboy/transferir-estoque-motoboy.component';
 import { FormBairroComponent } from './bairros-sistema/form-bairro/form-bairro.component';
 import { Painel2RelatorioComponent } from './painel2-relatorio/painel2-relatorio.component';
+import { NomePipe } from './nome.pipe';
+import { SelecionarMotoboyComponent } from './estoque/itens-estoque-detalhes/selecionar-motoboy/selecionar-motoboy.component';
+import { AdicionarDespesaComponent } from './finaceiro/consolidacao-financeira/adicionar-despesa/adicionar-despesa.component';
+import { DetalhesItemTabelaComponent } from './finaceiro/consolidacao-financeira/detalhes-item-tabela/detalhes-item-tabela.component';
+import { AdicionarPagamentoComponent } from './finaceiro/comissao-entregas/adicionar-pagamento/adicionar-pagamento.component';
+import { ControleFiadoComponent } from './finaceiro/controle-fiado/controle-fiado.component';
+import { PedidosFiadoComponent } from './finaceiro/controle-fiado/pedidos-fiado/pedidos-fiado.component';
+import { PagarDividaComponent } from './finaceiro/controle-fiado/pagar-divida/pagar-divida.component';
+import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/conciliacao-bancaria.component';
 
 @NgModule({
   declarations: [
@@ -239,6 +248,15 @@ import { Painel2RelatorioComponent } from './painel2-relatorio/painel2-relatorio
     TransferirEstoqueMotoboyComponent,
     FormBairroComponent,
     Painel2RelatorioComponent,
+    NomePipe,
+    SelecionarMotoboyComponent,
+    AdicionarDespesaComponent,
+    DetalhesItemTabelaComponent,
+    AdicionarPagamentoComponent,
+    ControleFiadoComponent,
+    PedidosFiadoComponent,
+    PagarDividaComponent,
+    ConciliacaoBancariaComponent,
   ],
   imports: [
     BrowserModule,

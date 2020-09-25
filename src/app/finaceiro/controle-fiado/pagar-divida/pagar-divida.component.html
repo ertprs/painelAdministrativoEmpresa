@@ -1,0 +1,33 @@
+<div>
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label> Valor a pagar </mat-label>
+        <input matInput placeholder="Ex. Nome da Empresa" type="text">
+        <mat-icon matSuffix>money</mat-icon>
+    </mat-form-field>
+
+</div>
+
+<div class="cv">Pagamentos</div>
+
+
+<div class="itensPag">
+    <div class="adel">Lançado por: Operador Sistema - 22/09/2020 às 23:10</div>
+    Pagamento 1x: {{ 50 | currency:'BRL':true }}
+</div>
+
+<div class="itensPag">
+    <div class="adel">Lançado por: Operador Sistema - 22/09/2020 às 23:10</div>
+    Pagamento 2x: {{ 50 | currency:'BRL':true }}
+</div>
+
+<div class="itensPag">
+    <div class="adel">Lançado por: Operador Sistema - 22/09/2020 às 23:10</div>
+    Pagamento 3x: {{ 50 | currency:'BRL':true }}
+</div>
+
+
+<div>
+    <button mat-stroked-button color="warn" [mat-dialog-close]="false"> Fechar </button>
+    <button mat-stroked-button color="primary" [mat-dialog-close]="false" style="margin-left: 10px;"> Pagar </button>
+</div>
