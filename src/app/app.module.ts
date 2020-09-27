@@ -150,6 +150,9 @@ import { ControleFiadoComponent } from './finaceiro/controle-fiado/controle-fiad
 import { PedidosFiadoComponent } from './finaceiro/controle-fiado/pedidos-fiado/pedidos-fiado.component';
 import { PagarDividaComponent } from './finaceiro/controle-fiado/pagar-divida/pagar-divida.component';
 import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/conciliacao-bancaria.component';
+import { AdicionarBancoComponent } from './finaceiro/conciliacao-bancaria/adicionar-banco/adicionar-banco.component';
+import { BancosComponent } from './bancos/bancos.component';
+import { FormBancoComponent } from './bancos/form-banco/form-banco.component';
 
 @NgModule({
   declarations: [
@@ -257,6 +260,9 @@ import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/c
     PedidosFiadoComponent,
     PagarDividaComponent,
     ConciliacaoBancariaComponent,
+    AdicionarBancoComponent,
+    BancosComponent,
+    FormBancoComponent,
   ],
   imports: [
     BrowserModule,

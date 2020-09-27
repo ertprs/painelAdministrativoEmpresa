@@ -1,3 +1,4 @@
+import { BancosComponent } from './bancos/bancos.component';
 import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/conciliacao-bancaria.component';
 import { ControleFiadoComponent } from './finaceiro/controle-fiado/controle-fiado.component';
 import { Painel2RelatorioComponent } from './painel2-relatorio/painel2-relatorio.component';
@@ -109,6 +110,7 @@ const routes: Routes = [
           { path: 'avaliacoes', component: AvaliacoesComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'bancos', component: BancosComponent, canActivate: [GuardaConfigSistemaService] },
 
           { path: 'galeria', component: GaleriaComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'bairros-sistema', component: BairrosSistemaComponent, canActivate: [GuardaConfigSistemaService] },

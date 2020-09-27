@@ -12,7 +12,7 @@ export class ImpressaoPedidoComponent implements OnInit {
   dataDia: string;
 
   constructor(public dialogRef: MatDialogRef<ImpressaoPedidoComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-    public servapp: ServicoService) { }
+              public servapp: ServicoService) { }
 
   ngOnInit(): void {
     console.log(this.data);

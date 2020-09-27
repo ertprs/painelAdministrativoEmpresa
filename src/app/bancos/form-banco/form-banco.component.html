@@ -1,0 +1,29 @@
+<div [formGroup]="form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Ex. Nome banco" formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Conta</mat-label>
+        <input matInput placeholder="Ex. Conta banco" formControlName="conta">
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Operação</mat-label>
+        <input matInput placeholder="Ex. Operação banco" formControlName="operacao">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Descrição</mat-label>
+        <input matInput placeholder="Ex. Descrição banco" formControlName="descricao">
+    </mat-form-field>
+
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button mat-stroked-button color="warn" (click)="onclickAdd()" style="margin-left: 4px;">Salvar</button>
+    </div>
+
+</div>

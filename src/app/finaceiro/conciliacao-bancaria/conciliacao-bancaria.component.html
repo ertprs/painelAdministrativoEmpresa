@@ -1,27 +1,57 @@
-<span *ngFor="let item of dataSource">
-  <div class="sep">
-      <mat-icon style="    color: #e4e4e4;">attachment</mat-icon>
-  </div>  
+<div class="sep">
 
-    <table mat-table [dataSource]="item.itens" class="">
+    <mat-form-field class="f-cli" style="margin-left: 15px;">
+        <mat-label>Filtro por data</mat-label>
+        <input matInput type="date">
+    </mat-form-field>
 
-        <ng-container matColumnDef="c1">
-            <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600">{{ item.nome }} </span></th>
-<td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-</ng-container>
+    <button mat-icon-button color="primary">
+        <mat-icon>search</mat-icon>
+    </button>
 
-<ng-container matColumnDef="c2">
-    <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600">Valor</span> </th>
-    <td mat-cell *matCellDef="let element"> {{ element.valor | currency:'BRL':true }} </td>
-</ng-container>
+    <mat-form-field class="f-cli" style="margin-left: 15px;">
+        <mat-label>Filtro por banco</mat-label>
+        <input matInput type="date">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary">
+        <mat-icon>search</mat-icon>
+    </button>
+
+    <mat-form-field class="f-cli" style="margin-left: 15px;">
+        <mat-label>Filtro por Situação</mat-label>
+        <input matInput type="date">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary">
+        <mat-icon>search</mat-icon>
+    </button>
+</div>
+<table mat-table [dataSource]="dataSource" class="">
+
+    <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600"> Bancos </span></th>
+        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600"> Total </span> </th>
+        <td mat-cell *matCellDef="let element"> {{ 0 | currency:'BRL':true }} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button color="primary">Confirmar</button>
+            <button mat-stroked-button color="warn" style="margin-left: 10px;"> Confirmar com erro nos valores </button>
+        </td>
+    </ng-container>
 
 
 
 
 
-
-<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-</span>

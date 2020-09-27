@@ -1,8 +1,8 @@
-<div>
+<div [formGroup]="form">
 
     <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label> Valor a pagar </mat-label>
-        <input matInput placeholder="Ex. Nome da Empresa" type="text">
+        <input matInput placeholder="Ex. Valor pagamento" type="number" formControlName="valor_pag">
         <mat-icon matSuffix>money</mat-icon>
     </mat-form-field>
 
@@ -11,23 +11,12 @@
 <div class="cv">Pagamentos</div>
 
 
-<div class="itensPag">
-    <div class="adel">Lançado por: Operador Sistema - 22/09/2020 às 23:10</div>
-    Pagamento 1x: {{ 50 | currency:'BRL':true }}
+<div class="itensPag" *ngFor="let item of data.item.pagamentos_fiado">
+    <div class="adel">Lançado por: {{ item.operador }} - {{ item.dia_pagamento }} </div>
+    Pagamento : {{ item.valor_pagamento | currency:'BRL':true }}
 </div>
-
-<div class="itensPag">
-    <div class="adel">Lançado por: Operador Sistema - 22/09/2020 às 23:10</div>
-    Pagamento 2x: {{ 50 | currency:'BRL':true }}
-</div>
-
-<div class="itensPag">
-    <div class="adel">Lançado por: Operador Sistema - 22/09/2020 às 23:10</div>
-    Pagamento 3x: {{ 50 | currency:'BRL':true }}
-</div>
-
 
 <div>
     <button mat-stroked-button color="warn" [mat-dialog-close]="false"> Fechar </button>
-    <button mat-stroked-button color="primary" [mat-dialog-close]="false" style="margin-left: 10px;"> Pagar </button>
+    <button *ngIf="data.valor_devedor !== '0'" mat-stroked-button color="primary" [mat-dialog-close]="false" style="margin-left: 10px;" (click)="onClickPagar()"> Pagar </button>
 </div>

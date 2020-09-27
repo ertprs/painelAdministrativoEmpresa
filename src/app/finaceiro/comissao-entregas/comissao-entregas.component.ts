@@ -14,18 +14,14 @@ import { ServicoService } from 'src/app/servico.service';
 })
 export class ComissaoEntregasComponent implements OnInit {
 
-  columnsToDisplay = ['c0', 'c1', 'c3', 'c5', 'c6', 'c4'];
-  dataSource = [];
+  columnsToDisplay = ['c0','c66', 'c1', 'c3', 'c5', 'c6', 'c4'];
+  dataSource: any;
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
 
   ngOnInit(): void {
-    this.dataSource = [
-      {nome: 'Motoboy 1', total_entregas: 15, total_pagar: 30, status_pago: false, },
-      {nome: 'Motoboy 2', total_entregas: 65, total_pagar: 73, status_pago: true, },
-      {nome: 'Motoboy 3', total_entregas: 100, total_pagar: 96, status_pago: false, },
-    ];
+    this.dataSource = [];
     this.consultaPedidosFiado();
   }
 
@@ -51,7 +47,9 @@ onClickPagar(element) {
 
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
-
+    if (dialogRef) {
+      this.consultaPedidosFiado();
+    }
   });
 }
 

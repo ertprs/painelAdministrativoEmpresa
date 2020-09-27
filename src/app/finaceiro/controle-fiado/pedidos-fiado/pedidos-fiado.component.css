@@ -1,3 +1,20 @@
 table {
     width: 100%;
 }
+
+.t1 {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 20px;
+    padding-left: 10px;
+    font-size: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #bfbbbb;
+    font-weight: 600;
+}
+
+.t3 {
+    text-align: end;
+    padding-right: 26PX;
+}

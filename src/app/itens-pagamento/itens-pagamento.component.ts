@@ -29,6 +29,8 @@ export class ItensPagamentoComponent implements OnInit {
     });
 }
 
+
+
 add() {
   const dialogRef = this.dialog.open(DialogDinamComponent, {
     width: '250px',

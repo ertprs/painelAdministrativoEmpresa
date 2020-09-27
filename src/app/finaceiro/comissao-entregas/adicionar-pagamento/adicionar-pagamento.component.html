@@ -1,14 +1,18 @@
-<mat-form-field class="example-full-width">
-    <mat-label>Data</mat-label>
-    <input matInput type="date">
-</mat-form-field>
+<div [formGroup]="form">
 
-<mat-form-field class="example-full-width">
-    <mat-label>Pago por quem</mat-label>
-    <input matInput placeholder="Ex. Nome">
-</mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Data</mat-label>
+        <input matInput type="date" formControlName="data">
+    </mat-form-field>
 
-<div>
-    <button mat-flat-button color="primary">Cancelar</button>
-    <button mat-flat-button color="accent" style="margin-left: 10px;">Confirmar</button>
+    <mat-form-field class="example-full-width">
+        <mat-label>Pago por quem</mat-label>
+        <input matInput placeholder="Ex. Nome" formControlName="operador">
+    </mat-form-field>
+
+    <div>
+        <button mat-flat-button color="primary" [mat-dialog-close]="false">Cancelar</button>
+        <button mat-flat-button color="accent" style="margin-left: 10px;" (click)="onClickPagar()">Confirmar</button>
+    </div>
+
 </div>

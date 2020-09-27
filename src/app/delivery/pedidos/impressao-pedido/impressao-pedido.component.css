@@ -17,6 +17,8 @@
     background-color: #ecececa8;
     padding: 10px;
     font-size: 11pt;
+    max-height: 470px;
+    overflow: auto;
 }
 
 .ab {
