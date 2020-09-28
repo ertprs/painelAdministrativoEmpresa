@@ -10,13 +10,14 @@
 
 <div class="cv">Pagamentos</div>
 
+<div style="height: 400px; overflow: auto;">
+    <div class="itensPag" *ngFor="let item of data.item.pagamentos_fiado">
+        <div class="adel">Lançado por: {{ item.operador }} - {{ item.dia_pagamento }} </div>
+        Pagamento : {{ item.valor_pagamento | currency:'BRL':true }}
+    </div>
 
-<div class="itensPag" *ngFor="let item of data.item.pagamentos_fiado">
-    <div class="adel">Lançado por: {{ item.operador }} - {{ item.dia_pagamento }} </div>
-    Pagamento : {{ item.valor_pagamento | currency:'BRL':true }}
-</div>
-
-<div>
-    <button mat-stroked-button color="warn" [mat-dialog-close]="false"> Fechar </button>
-    <button *ngIf="data.valor_devedor !== '0'" mat-stroked-button color="primary" [mat-dialog-close]="false" style="margin-left: 10px;" (click)="onClickPagar()"> Pagar </button>
+    <div>
+        <button mat-stroked-button color="warn" [mat-dialog-close]="false"> Fechar </button>
+        <button *ngIf="data.valor_devedor !== '0'" mat-stroked-button color="primary" [mat-dialog-close]="false" style="margin-left: 10px;" (click)="onClickPagar()"> Pagar </button>
+    </div>
 </div>

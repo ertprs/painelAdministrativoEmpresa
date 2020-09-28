@@ -1,13 +1,20 @@
 .g {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 89vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 40px 83vh;
 }
 
 .col1 {
-    border-right: 1px solid #989898;
+    border-bottom: 1px solid #cecece;
+    overflow: auto;
+    max-height: 100%;
+    background: #ececec;
+    padding-top: 2px;
+    padding-left: 3px;
 }
 
 .col2 {
-    background-color: #ffffff;
+    background-color: #f5f1f1;
+    overflow: auto;
+    max-height: 100%;
 }

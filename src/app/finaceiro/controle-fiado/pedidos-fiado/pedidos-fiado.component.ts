@@ -20,6 +20,7 @@ export class PedidosFiadoComponent implements OnInit {
 
 
   clientes = [];
+  total = 0;
 
   constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
               public servpedidos: PedidosService) { }
@@ -38,7 +39,8 @@ export class PedidosFiadoComponent implements OnInit {
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
         // this.servico.mostrarMensagem(r.resultado.mensagem);
-        this.dataSource = r.resultado.itens;
+        this.dataSource = r.resultado.itens.lista;
+        this.total = r.resultado.itens.total;
       }
       console.log(r);
     };

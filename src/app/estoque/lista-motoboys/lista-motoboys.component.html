@@ -2,7 +2,7 @@
     <div class="col1">
 
         <mat-form-field class="f-cli" style="margin-left: 15px;">
-            <mat-label>Nome motoboy</mat-label>
+            <mat-label>Nome entregador</mat-label>
             <input matInput type="name">
         </mat-form-field>
 
@@ -14,7 +14,7 @@
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="motoboy">
-                <th mat-header-cell *matHeaderCellDef> Motoboy </th>
+                <th mat-header-cell *matHeaderCellDef> Lista de entregadores </th>
                 <td [class.m_selecionado]="element.id == servestm.getIdMotoboy()" mat-cell *matCellDef="let element" (click)="estoqueMotoboy(element)">
 
                     <span [class.m_selecionado]="element.id == servestm.getIdMotoboy()"> {{ element.nome }} </span>

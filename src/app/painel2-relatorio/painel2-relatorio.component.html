@@ -1,30 +1,13 @@
 <div class="g">
     <div class="col1">
 
-        <mat-list role="list">
-            <mat-list-item routerLinkActive="active-link" routerLink="/relatorio/posicao-estoque">
-                <span routerLinkActive="active-link"> 
-                    Posição de estoque   
-                  </span>
-                <mat-divider></mat-divider>
-            </mat-list-item>
-
-
-            <mat-list-item routerLinkActive="active-link" routerLink="/relatorio/historico-vendas">
-                <span routerLinkActive="active-link"> Histórico de vendas </span>
-                <mat-divider></mat-divider>
-            </mat-list-item>
-
-
-
-
-        </mat-list>
+        <button mat-button routerLinkActive="active-link" routerLink="/relatorio/posicao-estoque"> Posição de estoque </button>
+        <button mat-button routerLinkActive="active-link" routerLink="/relatorio/historico-vendas"> Histórico de vendas </button>
 
     </div>
     <div class="col2">
 
         <router-outlet></router-outlet>
-
 
     </div>
 </div>

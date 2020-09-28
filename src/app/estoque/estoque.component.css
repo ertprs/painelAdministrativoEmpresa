@@ -1,16 +1,22 @@
 .c {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 81.3vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 40px 83;
 }
 
 .c1 {
-    background-color: #efefef;
-    border-right: 1px solid #d2d2d2;
+    border-bottom: 1px solid #cecece;
+    overflow: auto;
+    max-height: 100%;
+    background: #ececec;
+    padding-top: 2px;
+    padding-left: 3px;
 }
 
 .c2 {
+    background-color: #f5f1f1;
     overflow: auto;
+    max-height: 100%;
 }
 
 .bbd {

@@ -40,7 +40,7 @@ export class BancosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result) { 
-        this.consultabancos();
+        this.requestAPI('cadastrarContaBancaria', result);
       }
     });
   }
@@ -53,14 +53,28 @@ export class BancosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      if (result) { 
-         
+      if (result) {
+         this.requestAPI('editarContaBancaria', result);
       }
     });
   }
 
-  clickremove() {
+  requestAPI(acao, param) {
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem);  } else {
+        this.servico.mostrarMensagem(r.mensagem);
+        this.servico.setClienteSelecionado(false);
+        this.consultabancos();
+      }
+      console.log(r);
+    };
+    this.crud.post_api(acao, accallback, param);
+  }
 
+  clickremove(element) {
+    this.requestAPI('removerContaBancaria', element.id);
   }
 
 }

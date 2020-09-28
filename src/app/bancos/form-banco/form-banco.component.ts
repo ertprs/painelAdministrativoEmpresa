@@ -40,7 +40,7 @@ export class FormBancoComponent implements OnInit {
   }
 
   onclickAdd() {
-    this.dialogRef.close();
+    this.dialogRef.close(this.form.value);
   }
 
 }

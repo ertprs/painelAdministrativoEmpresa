@@ -153,6 +153,8 @@ import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/c
 import { AdicionarBancoComponent } from './finaceiro/conciliacao-bancaria/adicionar-banco/adicionar-banco.component';
 import { BancosComponent } from './bancos/bancos.component';
 import { FormBancoComponent } from './bancos/form-banco/form-banco.component';
+import { BarraTotalComponent } from './componentes/barra-total/barra-total.component';
+import { ClientesDetalhesComponent } from './clientes/clientes-detalhes/clientes-detalhes.component';
 
 @NgModule({
   declarations: [
@@ -263,6 +265,8 @@ import { FormBancoComponent } from './bancos/form-banco/form-banco.component';
     AdicionarBancoComponent,
     BancosComponent,
     FormBancoComponent,
+    BarraTotalComponent,
+    ClientesDetalhesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,28 +1,26 @@
 <span [formGroup]="form">
-<mat-toolbar>
 
-        <mat-form-field appearance="fill" style="width: 100%; margin-top: 10px;">
-            <mat-label>Filtrar Local</mat-label>
-            <mat-select (selectionChange)="selectChange($event.value)">
-                <mat-option value="loja">
-                    Loja
-                </mat-option>
-                <mat-option value="motoboy" (click)="this.selecionarMotoboy()">
-                    Motoboy
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-</mat-toolbar>
+<div style="padding-top: 2px;">
 
-<mat-toolbar style="padding-top: 20px;">
-
-    <mat-form-field class="f-cli" style="margin-left: 15px;">
-        <mat-label>Filtro por data</mat-label>
-        <input matInput type="date" formControlName="dataInicio">
+    <mat-form-field appearance="fill">
+        <mat-label>Filtrar Local</mat-label>
+        <mat-select (selectionChange)="selectChange($event.value)">
+            <mat-option value="loja">
+                Loja
+            </mat-option>
+            <mat-option value="motoboy" (click)="this.selecionarMotoboy()">
+                Motoboy
+            </mat-option>
+        </mat-select>
     </mat-form-field>
 
     <mat-form-field class="f-cli" style="margin-left: 15px;">
-        <mat-label>Filtro por data</mat-label>
+        <mat-label>Data início</mat-label>
+        <input matInput type="date" formControlName="dataInicio">
+    </mat-form-field>
+
+    <mat-form-field class="f-cli" style="margin-left: 0px;">
+        <mat-label>Data fim</mat-label>
         <input matInput type="date" formControlName="dataFim">
     </mat-form-field>
 
@@ -39,7 +37,7 @@
     <mat-icon>search</mat-icon>
   </button>
 
-</mat-toolbar>
+</div>
 
  </span>
 
