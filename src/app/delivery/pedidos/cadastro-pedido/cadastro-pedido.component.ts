@@ -1,3 +1,4 @@
+import { SelecionarBancoComponent } from './../../../bancos/selecionar-banco/selecionar-banco.component';
 import { Router } from '@angular/router';
 import { SelecionarFormaPagComponent } from './selecionar-forma-pag/selecionar-forma-pag.component';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -8,6 +9,8 @@ import { ServicoService } from 'src/app/servico.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { SelecionarMotoboyComponent } from 'src/app/estoque/itens-estoque-detalhes/selecionar-motoboy/selecionar-motoboy.component';
+import { SelecionarCartaoPagamentoComponent } from './selecionar-cartao-pagamento/selecionar-cartao-pagamento.component';
 
 @Component({
   selector: 'app-cadastro-pedido',
@@ -21,6 +24,7 @@ export class CadastroPedidoComponent implements OnInit {
   statusLoad = false;
   statusLoadItem = false;
   form: FormGroup;
+  formvalorFp: FormGroup;
   endereco: any;
   statusbt = false;
   cidadeClienteSelecionada: any;
@@ -34,6 +38,7 @@ export class CadastroPedidoComponent implements OnInit {
   listaCidades: any;
   listaBairros: any;
   indexTabGroup =  0;
+  cataoSelecionado: any;
 
 
   constructor(public servico: ServicoService, private crud: CrudServicoService,  private dialog: MatDialog,
@@ -42,6 +47,10 @@ export class CadastroPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultaCatalogo();
+
+    this.formvalorFp = this.fb.group({
+      valor: [''],
+    });
 
     // console.log(this.servcard.getCadastroClienteLista());
 
@@ -60,7 +69,10 @@ export class CadastroPedidoComponent implements OnInit {
       formapagamento: [false, Validators.required],
       canalpedido: [false, Validators.required],
       tipopedido: [false, Validators.required],
-      troco: ['0.00', Validators.required],
+      troco: ['', Validators.required],
+      desconto: [''],
+      taxaextra: [''],
+
     });
 
   } else {
@@ -72,7 +84,17 @@ export class CadastroPedidoComponent implements OnInit {
 
     this.carregaDadosUsuario();
 
+    this.servcard.funcaoEmitter.subscribe( data => {
+      this.selecionarBanco();
+    });
+
+    this.servcard.selecionarCartao.subscribe( data => {
+      this.cataoSelecionado = data;
+      this.selecionarCartao(data);
+    });
+
   }
+
 
   carregaDadosUsuario() {
     this.servcard.iniciaFormCadastro.subscribe(
@@ -95,7 +117,10 @@ export class CadastroPedidoComponent implements OnInit {
           formapagamento: [false, Validators.required],
           canalpedido: [false, Validators.required],
           tipopedido: [false, Validators.required],
-          troco: ['0.00', Validators.required],
+          troco: ['', Validators.required],
+          desconto: [''],
+          taxaextra: [''],
+
         });
 
 
@@ -106,7 +131,7 @@ export class CadastroPedidoComponent implements OnInit {
   iniciaFormDados() {
     console.log(this.servcard.getCadastroClienteLista());
     this.form = this.fb.group({
-      id: [this.servcard.getCadastroClienteLista().id, Validators.required],
+      id: [this.servcard.getCadastroClienteLista().id],
       nome: [this.servcard.getCadastroClienteLista().nome, Validators.required],
       telefone: [this.servcard.getCadastroClienteLista().telefone, Validators.required],
       rua: [this.servcard.getCadastroClienteLista().rua, Validators.required],
@@ -115,11 +140,13 @@ export class CadastroPedidoComponent implements OnInit {
       tiporesidencia: [this.servcard.getCadastroClienteLista().tiporesidencia],
       bairro: [null],
       cidade: [null],
-      taxaentrega: [null, Validators.required],
-      formapagamento: [false, Validators.required],
-      canalpedido: [false, Validators.required],
-      tipopedido: [false, Validators.required],
-      troco: ['0.00', Validators.required],
+      taxaentrega: [null],
+      formapagamento: [false],
+      canalpedido: [false],
+      tipopedido: [false],
+      troco: [''],
+      desconto: [''],
+      taxaextra: [''],
     });
   }
 
@@ -228,20 +255,101 @@ export class CadastroPedidoComponent implements OnInit {
     });
   }
 
+  selecionarBanco(): void {
+
+
+    const dialogRef = this.dialog.open(SelecionarBancoComponent, {
+      width: '400px',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+      console.log(result);
+
+      this.servcard.getCarrinho().item_pagamento.id = result.id;
+      this.servcard.getCarrinho().item_pagamento.nome = result.nome;
+      this.servcard.getCarrinho().item_pagamento.status = true;
+
+      }
+    });
+  }
+
+  selecionarCartao(cartao): void {
+
+
+    const dialogRef = this.dialog.open(SelecionarCartaoPagamentoComponent, {
+      width: '400px',
+      data: {item: cartao }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+      console.log(result);
+      this.servcard.getCarrinho().item_pagamento.id = result.id;
+      this.servcard.getCarrinho().item_pagamento.nome = result.nome;
+      this.servcard.getCarrinho().item_pagamento.status = true;
+      }
+    });
+  }
+
 
   onClickFinalizarPedido() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
     console.log(this.servcard.getCarrinho());
+    // Verifica se as formas de pagamento o total esta maior que o valor do pedido em se
+    console.log(this.servcard.getTotalCarrinho());
+    if (this.servcard.verificaFpsTotal() > this.servcard.getTotalCarrinho()) {
+      this.servico.mostrarMensagem('Os valores das formas de pagamento estão maior que o valor total do pedido');
+      return;
+    }
 
+ 
 
     if (this.servcard.getQntItensCar() < 1) { this.servico.mostrarMensagem('O carrinho está vazio!'); return; }
-    if (this.servcard.getCarrinho().formapagamento.nome === 'false') {
-      this.servico.mostrarMensagem('Selecione a forma de pagamento deste pedido'); return; }
+    if (this.servcard.verificaFp() === false) {
+      this.servico.mostrarMensagem('Selecione a forma de pagamento deste pedido');
+      return;
+    }
+
+    if (this.servcard.verificaFpsTotal() !== this.servcard.getTotalCarrinho()) {
+      this.servico.mostrarMensagem
+      ('Os total da forma de pagamento esta menor que o total do pedido. o total das formas de pagamento está: R$' +
+      this.servcard.verificaFpsTotal() + ',00');
+      return;
+    }
+
+      // Verifica se foi selecionado a bandeira do carão em Cartao Crédito ou Déb.
+    const nomeFp = this.servcard.getCarrinho().formapagamento.nome.toLocaleLowerCase();
+    console.log(nomeFp);
+    if (nomeFp === 'cartão de crédito' || nomeFp === 'cartão de débido') {
+        if (this.servcard.getCarrinho().item_pagamento.status === false) {
+          console.warn('Selecionar a bandeira do cartão');
+          this.selecionarCartao(this.cataoSelecionado);
+          return;
+        }
+      }
+
+
+       // Verifica se foi selecionado o banco da tranderência bancária.
+    if (nomeFp === 'transferência bancária' || nomeFp === 'transferência') {
+      if (this.servcard.getCarrinho().item_pagamento.status === false) {
+        this.selecionarBanco();
+        console.warn('Selecionar o banco');
+        return;
+      }
+    }
+    console.log('OKK');
+
+
     if (this.servcard.getCarrinho().tipopedido === 'false') {
       this.servico.mostrarMensagem('Selecione a opção do pedido, se é para entrega ou para retirada');
       return;
     }
-
     if (this.form.value.rua === '' || !this.form.value.rua) { this.servico.mostrarMensagem('Informe a rua do pedido'); return; }
     if (this.form.value.cidade === false) { this.servico.mostrarMensagem('Selecione a cidade do pedido'); return; }
     if (this.form.value.bairro === false) { this.servico.mostrarMensagem('Selecione o bairro do pedido'); return; }
@@ -264,16 +372,24 @@ export class CadastroPedidoComponent implements OnInit {
     this.servcard.getCarrinho().endereco.bairro = this.form.value.bairro;
     this.servcard.setItensEndereco(this.form.value);
     this.servcard.atualizaTotalComTaxa();
+    this.servcard.setDescontoCarrinho(this.form.value.desconto);
     this.statusbt = true;
+
+
+
+
+
+    if (this.servcard.getCarrinho().formapagamento.nome === 'dinheiro' ||
+    this.servcard.getCarrinho().formapagamento.nome === 'Dinheiro') {
+      this.servcard.setTroco(this.form.value.troco);
+    }
+
+    this.statusLoaderEnviaPedido = true;
 
     console.log('Envia para o backend');
     console.log(this.servcard.getCarrinho());
 
-    if (this.servcard.getCarrinho().formapagamento.nome === 'dinheiro') {
-      this.servcard.getCarrinho().formapagamento.troco = this.form.value.troco;
-    }
 
-    this.statusLoaderEnviaPedido = true;
     const accallback = () => {
       console.log('callback');
       this.statusLoaderEnviaPedido = false;
@@ -288,9 +404,10 @@ export class CadastroPedidoComponent implements OnInit {
     this.crud.post_api('adicionar_pedido', accallback, this.servcard.getCarrinho());
 
 
-  }
 
-  selectionChangeCidade(item: any) {
+}
+
+    selectionChangeCidade(item: any) {
     console.log('#selectionChangeCidade');
     console.log(item);
 
@@ -310,7 +427,7 @@ export class CadastroPedidoComponent implements OnInit {
 
   }
 
-  carregaTaxa(itembairro: any) {
+    carregaTaxa(itembairro: any) {
     try {
     console.log(itembairro);
     let coordendasBairro = '';
@@ -349,7 +466,7 @@ export class CadastroPedidoComponent implements OnInit {
   }
 }
 
-onclickEntregaTipo() {
+    onclickEntregaTipo() {
   if (this.servico.getDadosEmpresa().formasfuncionamento.tipo === '2') {
   // Verifica as formas de servico da empresa
     this.servico.mostrarMensagem('Este estabelecimento só aceita pedidos para retirada');
@@ -362,7 +479,7 @@ onclickEntregaTipo() {
 }
 
 
-openBottomSheet(tipo): void {
+    openBottomSheet(tipo): void {
   this.servcard.setTipoSheet(tipo, this.bottomSheet);
   this.bottomSheet.open(SelecionarFormaPagComponent);
 }

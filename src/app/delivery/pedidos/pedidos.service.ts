@@ -12,6 +12,8 @@ export class PedidosService {
   private pedido: {
     id: '',
     status_pedido: any,
+    formaspagamento: '',
+    comprovante: '',
     dadoscliente: {
       nome: '',
       sobrenome: '',

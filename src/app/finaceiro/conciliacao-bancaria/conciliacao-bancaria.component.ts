@@ -1,3 +1,4 @@
+import { VerImagemComponent } from './../../upload-imagem/ver-imagem/ver-imagem.component';
 import { AdicionarBancoComponent } from './adicionar-banco/adicionar-banco.component';
 import { AdicionarDespesaComponent } from './../consolidacao-financeira/adicionar-despesa/adicionar-despesa.component';
 import { CrudServicoService } from './../../crud-servico.service';
@@ -12,33 +13,20 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ConciliacaoBancariaComponent implements OnInit {
 
-  displayedColumns: string[] = ['c1', 'c2', 'c3'];
+  displayedColumns: string[] = ['c1', 'c7', 'c2', 'c3', 'c4', 'c5', 'c6'];
   dataSource: any;
+  total: any;
 
   constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.dataSource = [
-        { nome: 'Bancos', itens: [
-        { nome: 'Santander', valor: 400 },
-        { nome: 'Bradesco', valor: 400 },
-        { nome: 'Itaú', valor: 400 },
-        { nome: 'Banco do Brasil', valor: 400 },
-        { nome: 'Caixa', valor: 400 },
-        { nome: 'Inter', valor: 400 },
-        { nome: 'Nubank', valor: 400 },
-        { nome: 'C6', valor: 400 },
-        { nome: 'Original', valor: 400 },
-        { nome: 'Neon', valor: 400 },
-      ] },
+    this.dataSource = [];
 
-    ];
-
-    this.consultaBancos();
+    this.conciliacaoBancaria();
 
   }
 
-  consultaBancos() {
+  conciliacaoBancaria() {
     const fcall = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
@@ -46,10 +34,11 @@ export class ConciliacaoBancariaComponent implements OnInit {
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.detalhes.resultado.mensagem);
       } else {
-        this.dataSource = r.resultado;
+        this.dataSource = r.resultado.itens.lista;
+        this.total = r.resultado.itens.total;
       }
     };
-    this.crud.post_api('consultaContasBancaria', fcall, '' );
+    this.crud.post_api('conciliacaoBancaria', fcall, '' );
   }
 
   adicionarbanco() {
@@ -61,6 +50,36 @@ export class ConciliacaoBancariaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  lancarFluxo(pedido) {
+    const fcall = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      console.log(r);
+      if (r.erro === true) {
+        this.servico.mostrarMensagem(r.resultado.mensagem);
+        this.conciliacaoBancaria();
+
+      } else {
+        this.servico.mostrarMensagem(r.resultado.mensagem);
+        this.conciliacaoBancaria();
+      }
+    };
+    this.crud.post_api('lancarConsolidacaoBancaria', fcall,
+{ idPedido: pedido.id, operador: this.servico.getDadosEmpresa().operador.nome } );
+  }
+
+
+  verComprovante(element) {
+      const dialogRef = this.dialog.open(VerImagemComponent, {
+        width: '450px',
+        data: element
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
   }
 
 }

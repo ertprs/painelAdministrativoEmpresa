@@ -6,8 +6,24 @@
 
 <div class="sep">
 
+
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label> Bancos </mat-label>
+        <mat-select>
+            <mat-option>
+                Lista dos banco aqui...
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
     <mat-form-field class="f-cli" style="margin-left: 15px;">
-        <mat-label>Filtro por data</mat-label>
+        <mat-label>Data início</mat-label>
+        <input matInput type="date">
+    </mat-form-field>
+
+    <mat-form-field class="f-cli">
+        <mat-label>Data fim</mat-label>
         <input matInput type="date">
     </mat-form-field>
 
@@ -15,42 +31,65 @@
         <mat-icon>search</mat-icon>
     </button>
 
-    <mat-form-field class="f-cli" style="margin-left: 15px;">
-        <mat-label>Filtro por banco</mat-label>
-        <input matInput type="date">
-    </mat-form-field>
+    <button mat-stroked-button color="primary"> Confirmados </button>
 
-    <button mat-icon-button color="primary">
-        <mat-icon>search</mat-icon>
-    </button>
 
-    <mat-form-field class="f-cli" style="margin-left: 15px;">
-        <mat-label>Filtro por Situação</mat-label>
-        <input matInput type="date">
-    </mat-form-field>
 
-    <button mat-icon-button color="primary">
-        <mat-icon>search</mat-icon>
-    </button>
+
+
+
 </div>
 <table mat-table [dataSource]="dataSource" class="">
 
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600"> Bancos </span></th>
-        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+        <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600"> Referência pedido </span></th>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
+            #{{ element.id_pedido }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c7">
+        <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600"> Nome do Cliente </span></th>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
+            {{ element.dadoscliente.nome }}
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600"> Total </span> </th>
-        <td mat-cell *matCellDef="let element"> {{ 0 | currency:'BRL':true }} </td>
+        <th mat-header-cell *matHeaderCellDef> <span style="font-weight: 600"> Banco </span> </th>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
+            {{ element.item_pagamento }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Horário </th>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
+            {{ element.dia_pagamento }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c4">
+        <th mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
+            {{ element.valor_pagamento | currency:'BRL':true }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="c5">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
+            <button (click)="verComprovante(element.comprovante)" mat-stroked-button color="primary"> Comprovante </button>
+        </td>
     </ng-container>
 
 
-    <ng-container matColumnDef="c3">
+    <ng-container matColumnDef="c6">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-stroked-button color="primary">Ok</button>
-            <button mat-stroked-button color="warn" style="margin-left: 10px;"> Diferença </button>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
+            <section class="example-section">
+                <mat-checkbox (click)="lancarFluxo(element)" class="example-margin" [checked]="element.status_consolidacao_cartao"></mat-checkbox>
+            </section>
         </td>
     </ng-container>
 
@@ -62,4 +101,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<app-barra-total [nome]="'Total'" [valor]="12"></app-barra-total>
+<app-barra-total [nome]="'Total'" [valor]="total"></app-barra-total>

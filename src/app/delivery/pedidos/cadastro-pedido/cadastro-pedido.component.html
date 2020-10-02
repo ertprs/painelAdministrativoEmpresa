@@ -106,8 +106,8 @@
                             <div>
 
                                 <button (click)="onClickItem(itemc)" color="primary" mat-icon-button>
-                            <mat-icon>add</mat-icon>
-                          </button>
+                                    <mat-icon>add</mat-icon>
+                                </button>
 
                             </div>
                             <div> <img width="80px" [src]="itemc.imagem" alt="" srcset=""> </div>
@@ -132,16 +132,68 @@
             <div class="Carrinho">
 
 
-                <mat-chip-list aria-label="Fish selection">
+                <mat-chip-list style="text-align: center;">
                     <mat-chip (click)="openBottomSheet('canalpedido')">Origem do pedido</mat-chip>
-                    <mat-chip (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
+
                     <mat-chip (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
                 </mat-chip-list>
 
-                <mat-form-field style="margin-top:20px;" color="primary" appearance="outline">
-                    <mat-label>Troco para</mat-label>
-                    <input formControlName="troco" matInput placeholder="0.00" type="name">
-                </mat-form-field>
+                <div style="border-bottom: 1px solid #ececec;">
+                    <div class="qued">
+                        <mat-chip (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
+                    </div>
+                    <div class="boxfps" *ngFor="let item of servcard.getCarrinho().formasPagamento">
+
+                        <div class="icdel">
+                            <button mat-icon-button color="accent" (click)=" servcard.removeItemFp(item)">
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                        </div>
+                        <div class="biagod"> {{ item.nome }} </div>
+
+                        <div [formGroup]="formvalorFp">
+                            <mat-form-field appearance="fill" style="margin-top: 18px;">
+                                <mat-label> Item pagamento </mat-label>
+                                <mat-select [(ngModel)]="item.itemSelecionado" [ngModelOptions]="{standalone: true}">
+                                    <mat-option *ngFor="let ipag of item.itens" [value]="ipag">
+                                        {{ ipag.nome }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+
+                        <div [formGroup]="formvalorFp">
+                            <mat-form-field color="primary" class="fotmg" style="margin-top:20px;" appearance="outline">
+                                <mat-label>Valor</mat-label>
+                                <input [(ngModel)]="item.valor" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number">
+                            </mat-form-field>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="vcb">
+                    <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                        <mat-label>Troco para</mat-label>
+                        <input formControlName="troco" matInput placeholder="R$0,00" type="name">
+                    </mat-form-field>
+
+                    <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                        <mat-label>Desconto</mat-label>
+                        <input formControlName="desconto" matInput placeholder="R$0,00" type="number">
+                    </mat-form-field>
+
+                    <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                        <mat-label>Taxa extra</mat-label>
+                        <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number">
+                    </mat-form-field>
+                </div>
+
+
+
             </div>
 
             <div class="car">
@@ -154,15 +206,24 @@
 
                             <div>
                                 <button mat-icon-button color="warn" aria-label="Example icon button with a menu icon" (click)="servcard.removeItemCar(item)">
-                        <mat-icon style="color: yellow;">delete</mat-icon>
-                        </button>
+                                    <mat-icon style="color: black">delete</mat-icon>
+                                </button>
                             </div>
 
                             <div>
-                                <div class="isacT"> {{ item.qnt }}x - {{ item.nome }} - Preço: {{ item.preco | currency }}</div>
-                                <div>Observação: {{ item.observacao }} </div>
-                                <div>Adicionais:
-                                    <span *ngFor="let adc of item.adicionais" class="isacAdcs"> {{ adc.nome }} </span>
+                                <div class="isacT">
+                                    <div> {{ item.qnt }}x {{ item.nome }} </div>
+                                    <div> Preço: {{ item.preco | currency:'BRL':true }} </div>
+                                </div>
+                                <div class="obsbuinho">Observação: {{ item.observacao }} </div>
+                                <div> <span style="font-size: 11px;">Adicionais:</span>
+                                    <div *ngFor="let adc of item.adicionais" class="isacAdcs">
+
+                                        <div> {{ adc.qnt }}x {{ adc.nome }} </div>
+                                        <div class="linhaadd"></div>
+                                        <div> {{ adc.qnt*adc.preco | currency:'BRL':true}} </div>
+
+                                    </div>
                                 </div>
                                 <div class="isacT">Total: {{ item.total | currency }}</div>
                             </div>
@@ -178,7 +239,8 @@
                             <div>
 
                                 <span *ngIf="servcard.getCarrinho().origempedido === false">Não selecionado</span>
-                                <span *ngIf="servcard.getCarrinho().origempedido !== false"> {{ servcard.getCarrinho().origempedido }} </span>
+                                <span *ngIf="servcard.getCarrinho().origempedido !== false">
+                                    {{ servcard.getCarrinho().origempedido }} </span>
                             </div>
                         </div>
 
@@ -187,40 +249,68 @@
                             <div>
 
                                 <span *ngIf="servcard.getCarrinho().tipopedido === 'false'">Não selecionado</span>
-                                <span *ngIf="servcard.getCarrinho().tipopedido !== 'false'"> {{ servcard.getCarrinho().tipopedido }} </span>
+                                <span *ngIf="servcard.getCarrinho().tipopedido !== 'false'">
+                                    {{ servcard.getCarrinho().tipopedido }} </span>
                             </div>
                         </div>
-                        <div class="car12">
+                        <!--<div class="car12">
                             <div>Forma de pagamento</div>
                             <div>
                                 <span *ngIf="servcard.getCarrinho().formapagamento.nome === 'false'">
-                                        Não selecionado
-                                    </span>
+                                    Não selecionado
+                                </span>
 
                                 <span *ngIf="servcard.getCarrinho().formapagamento.nome !== 'false'">
-                                        {{ servcard.getCarrinho().formapagamento.nome }}
-                                    </span>
+                                    {{ servcard.getCarrinho().formapagamento.nome }}
+                                </span>
+                            </div>
+                        </div>-->
+
+                        <div class="car12">
+                            <div> Item de pagamento</div>
+                            <div>
+                                <span *ngIf="servcard.getCarrinho().item_pagamento.status === false">
+                                    Não selecionado
+                                </span>
+
+                                <span *ngIf="servcard.getCarrinho().item_pagamento.status !== false">
+                                    {{ servcard.getCarrinho().item_pagamento.nome }}
+                                </span>
                             </div>
                         </div>
+
                         <div class="car12">
                             <div>Subtotal</div>
-                            <div>{{ servcard.getSubTotalCarrinho() | currency }}</div>
+                            <div>{{ servcard.getSubTotalCarrinho() | currency:'BRL':true }}</div>
                         </div>
+
+                        <div class="car12">
+                            <div> Desconto </div>
+                            <div>
+                                <span *ngIf="!form.controls.desconto.value"> {{ 0 | currency:'BRL':true}} </span>
+                                <span *ngIf="form.controls.desconto.value">
+                                    {{ form.controls.desconto.value | currency:'BRL':true}} </span>
+
+                            </div>
+                        </div>
+
                         <div class="car12">
                             <div> Taxa de entrega</div>
-                            <div>{{ servcard.getTaxaEntrega() | currency }}</div>
+                            <div>{{ servcard.getTaxaEntrega() | currency:'BRL':true }}</div>
                         </div>
+
                         <div class="car11 car12">
                             <div>Total </div>
-                            <div> {{ servcard.getTotalCarrinho() | currency }}</div>
+                            <div> {{ servcard.getTotalCarrinho() - form.controls.desconto.value | currency:'BRL':true }}
+                            </div>
                         </div>
 
                     </div>
 
                     <div>
                         <button class="car11bt" mat-raised-button color="primary" (click)="onClickFinalizarPedido()">
-                        <mat-icon>send</mat-icon> Concluir pedido
-                    </button>
+                            Concluir pedido <mat-icon>check</mat-icon>
+                        </button>
                     </div>
                 </div>
             </div>

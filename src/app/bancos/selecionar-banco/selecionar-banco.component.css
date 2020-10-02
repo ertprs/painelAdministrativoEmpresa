@@ -1,0 +1,17 @@
+.itemSelecionado {
+    background-color: gold;
+}
+
+.item:hover {
+    background-color: rgb(225, 225, 225);
+}
+
+.guinho {
+    background: antiquewhite;
+    padding: 5px;
+    border-radius: 10px;
+    background: aliceblue;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 11px;
+}

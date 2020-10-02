@@ -155,6 +155,13 @@ import { BancosComponent } from './bancos/bancos.component';
 import { FormBancoComponent } from './bancos/form-banco/form-banco.component';
 import { BarraTotalComponent } from './componentes/barra-total/barra-total.component';
 import { ClientesDetalhesComponent } from './clientes/clientes-detalhes/clientes-detalhes.component';
+import { SelecionarBancoComponent } from './bancos/selecionar-banco/selecionar-banco.component';
+import { ConsolidacaoCartaoComponent } from './finaceiro/consolidacao-cartao/consolidacao-cartao.component';
+import { SelecionarMotoboyEntregaComponent } from './delivery/pedidos/selecionar-motoboy-entrega/selecionar-motoboy-entrega.component';
+import { FormItemPagamentoComponent } from './itens-pagamento/form-item-pagamento/form-item-pagamento.component';
+import { SelecionarCartaoPagamentoComponent } from './delivery/pedidos/cadastro-pedido/selecionar-cartao-pagamento/selecionar-cartao-pagamento.component';
+import { UploadImagemComponent } from './upload-imagem/upload-imagem.component';
+import { VerImagemComponent } from './upload-imagem/ver-imagem/ver-imagem.component';
 
 @NgModule({
   declarations: [
@@ -267,6 +274,13 @@ import { ClientesDetalhesComponent } from './clientes/clientes-detalhes/clientes
     FormBancoComponent,
     BarraTotalComponent,
     ClientesDetalhesComponent,
+    SelecionarBancoComponent,
+    ConsolidacaoCartaoComponent,
+    SelecionarMotoboyEntregaComponent,
+    FormItemPagamentoComponent,
+    SelecionarCartaoPagamentoComponent,
+    UploadImagemComponent,
+    VerImagemComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,34 +4,42 @@
         <span>
         Comissão por entregas
     </span>
+
+
 </mat-toolbar>
 
-<mat-form-field class="f-cli">
-    <mat-label>Nome motoboy</mat-label>
-    <input matInput type="name" formControlName="nome">
+
+
+<mat-form-field class="example-full-width" style="margin-left: 20px;">
+    <input type="text" formControlName="nome" placeholder="Filtrar por cliente" aria-label="Number" matInput (keyup)="consultaMNome()" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of itensOptions" [value]="option.nome">
+            {{option.nome}}
+        </mat-option>
+    </mat-autocomplete>
 </mat-form-field>
 
-<button mat-icon-button color="primary">
-    <mat-icon>search</mat-icon>
-  </button>
+
 
 <mat-form-field class="f-cli" style="margin-top: 20px;">
     <mat-label>Data início</mat-label>
     <input matInput type="date" formControlName="datainicio">
 </mat-form-field>
 
-<mat-form-field class="f-cli" style="margin-top: 20px;">
+<mat-form-field class="f-cli" style="margin-top: 0px;">
     <mat-label>Data fim</mat-label>
     <input matInput type="date" formControlName="datafim">
 </mat-form-field>
 
 <button mat-icon-button color="primary">
     <mat-icon>search</mat-icon>
-  </button>
-</span>
+</button>
 
-<button mat-raised-button color="primary" (click)="onClickFPagos()"> Pagos </button>
-<button style="margin-left: 4px;" mat-raised-button color="primary" (click)="onClickFNPagos()"> Não pagos </button>
+
+
+<button mat-stroked-button color="primary" (click)="onClickTodos()" style="margin-left: 10px;"> Todos </button>
+<button mat-stroked-button color="primary" (click)="onClickFPagos()" style="margin-left: 10px;"> Pagos </button>
+<button style="margin-left: 4px;" mat-stroked-button color="primary" (click)="onClickFNPagos()" style="margin-left: 10px;"> Não pagos </button>
 
 <table mat-table [dataSource]="dataSource">
 
@@ -57,7 +65,7 @@
 
 
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Referência </th>
+        <th mat-header-cell *matHeaderCellDef> Referência da entrega </th>
         <td mat-cell *matCellDef="let element">
 
             #{{ element.id_pedido }}

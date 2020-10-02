@@ -1,3 +1,4 @@
+import { UploadimagemService } from './../../../upload-imagem/uploadimagem.service';
 import { PedidosService } from './../../pedidos/pedidos.service';
 import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from 'src/app/crud-servico.service';
@@ -19,7 +20,7 @@ export class DialogPedidoComponent implements OnInit {
   btCstatus = false;
 
   constructor(public servpedidos: PedidosService, private servapp: ServicoService, private crud: CrudServicoService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog, public upimgServ: UploadimagemService) { }
 
   ngOnInit(): void {
 
@@ -34,7 +35,7 @@ export class DialogPedidoComponent implements OnInit {
       const r = this.servapp.getRespostaApi();
       console.log(r);
       if (r.erro === true) {
-        this.servapp.mostrarMensagem(r.mensagem);
+        this.servapp.mostrarMensagem(r.detalhes);
         this.btCstatus = false;
       } else {
         this.servapp.mostrarMensagem(r.detalhes);

@@ -1,3 +1,4 @@
+import { FormItemPagamentoComponent } from './form-item-pagamento/form-item-pagamento.component';
 import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
@@ -11,7 +12,7 @@ import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
 })
 export class ItensPagamentoComponent implements OnInit {
 
- 
+
   displayedColumns: string[] = [ 'c00', 'c0', 'c1', 'c2', 'c3', 'c5', 'c4'];
   itens = [];
 
@@ -25,15 +26,15 @@ export class ItensPagamentoComponent implements OnInit {
   f5() {
     this.crud.get_api('itens_pagamento').subscribe(data => {
        console.log(data);
-       this.itens = data;
+       this.itens = data.resultado;
     });
 }
 
 
 
 add() {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
-    width: '250px',
+  const dialogRef = this.dialog.open(FormItemPagamentoComponent, {
+    width: '450px',
     data: {tipo: 'add', nomeDialog: 'itens_formaspagamento'}
   });
 
@@ -46,7 +47,7 @@ add() {
 
 
 onClickEditar(i): void {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
+  const dialogRef = this.dialog.open(FormItemPagamentoComponent, {
     width: '450px',
     data: {tipo: 'editar', nomeDialog: 'itens_formaspagamento', item: i}
   });

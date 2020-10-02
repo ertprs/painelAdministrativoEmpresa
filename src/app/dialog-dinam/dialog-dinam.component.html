@@ -20,35 +20,7 @@
     </div>
 </div>
 
-<div *ngIf="data.nomeDialog === 'itens_formaspagamento'" [formGroup]="form">
 
-
-    <mat-form-field>
-        <mat-label>Id forma pag.</mat-label>
-        <input matInput placeholder="Id forma de pagamento" formControlName="id_formapagamento">
-    </mat-form-field>
-
-
-    <mat-form-field>
-        <mat-label>Imagem</mat-label>
-        <input matInput placeholder="Ex. Url da imagem" formControlName="imagem">
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>Nome da forma de pagamento</mat-label>
-        <input matInput placeholder="Ex. Nome" formControlName="nome">
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>Status</mat-label>
-        <input matInput placeholder="Ex. Status">
-    </mat-form-field>
-
-    <div>
-        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
-        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
-    </div>
-</div>
 
 
 <div *ngIf="data.nomeDialog === 'form_cidade'" [formGroup]="form">

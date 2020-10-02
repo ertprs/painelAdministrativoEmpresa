@@ -4,13 +4,19 @@
     </span>
 </mat-toolbar>
 
-<div style="padding-top: 20px;">
+<div style="padding-top: 3px;" [formGroup]="form">
     <mat-form-field class="f-cli" style="margin-left: 15px;">
-        <mat-label>Filtro por data</mat-label>
-        <input matInput type="date">
+        <mat-label>Data início</mat-label>
+        <input matInput type="date" formControlName="dataInicio">
     </mat-form-field>
 
-    <button mat-icon-button color="primary">
+
+    <mat-form-field class="f-cli" style="margin-left: 0px;">
+        <mat-label>Data fim</mat-label>
+        <input matInput type="date" formControlName="dataFim">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" (click)="consultaTabelaFiltro()">
         <mat-icon>search</mat-icon>
     </button>
 </div>
@@ -18,7 +24,7 @@
 <table mat-table [dataSource]="despesas" class="mat-elevation-z8">
 
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef>
+        <th mat-header-cell *matHeaderCellDef style="width: 85%;">
             <button mat-icon-button color="accent" (click)="addDespesa()">
                 <mat-icon>add</mat-icon>
               </button> Nome.
@@ -51,7 +57,7 @@
 <table mat-table [dataSource]="dataSourceDespesa" class="">
 
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef style="width: 68%;"> Resumo despesas </th>
+        <th mat-header-cell *matHeaderCellDef style="width: 85%;"> Resumo despesas </th>
         <td mat-cell *matCellDef="let element"> </td>
     </ng-container>
 
@@ -68,7 +74,7 @@
 <table mat-table [dataSource]="dataSource" class="">
 
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef style="width: 68%;"> Total faturamento </th>
+        <th mat-header-cell *matHeaderCellDef style="width: 85%;"> Total faturamento </th>
         <td mat-cell *matCellDef="let element"> </td>
     </ng-container>
 
@@ -88,7 +94,7 @@
 <table mat-table [dataSource]="fatliquido" class="">
 
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef style="width: 68%;"> Faturamento líquido</th>
+        <th mat-header-cell *matHeaderCellDef style="width: 85%;"> Faturamento líquido</th>
         <td mat-cell *matCellDef="let element">
 
         </td>

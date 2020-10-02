@@ -1,11 +1,13 @@
 import { AdicionarPagamentoComponent } from './adicionar-pagamento/adicionar-pagamento.component';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { PedidosService } from 'src/app/delivery/pedidos/pedidos.service';
 import { ServicoService } from 'src/app/servico.service';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-comissao-entregas',
@@ -14,17 +16,26 @@ import { ServicoService } from 'src/app/servico.service';
 })
 export class ComissaoEntregasComponent implements OnInit {
 
-  columnsToDisplay = ['c0','c66', 'c1', 'c3', 'c5', 'c6', 'c4'];
+  columnsToDisplay = ['c0', 'c66', 'c1', 'c3', 'c5', 'c6', 'c4'];
   dataSource: any;
   total = 0;
-  filtroPagos = false;
+  filtroPagos: any;
   filtroNome = '';
   form: FormGroup;
+
+  myControl = new FormControl();
+  filteredOptions: Observable<any>;
+  itensOptions = [];
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private fb: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
 
   ngOnInit(): void {
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(startWith(''),
+    map(value => this.filter(value))
+  );
+
     this.dataSource = [];
     this.form = this.fb.group({
       nome: [''],
@@ -54,6 +65,11 @@ export class ComissaoEntregasComponent implements OnInit {
      );
   }
 
+  onClickTodos() {
+    this.filtroPagos = 'todos';
+    this.consulta();
+  }
+
   onClickFPagos() {
     this.filtroPagos = true;
     this.consulta();
@@ -78,6 +94,28 @@ onClickPagar(element) {
       this.consulta();
     }
   });
+}
+
+filter(value: string): string[] {
+  const filterValue = value.toLowerCase();
+
+  return this.itensOptions.filter(option => option.toLowerCase().includes(filterValue));
+}
+
+consultaMNome() {
+  const accallback = () => {
+    console.log('callback');
+    const r = this.servapp.getRespostaApi();
+    if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
+      // this.servapp.mostrarMensagem(r.resultado.mensagem);
+      if (r.resultado) {
+        console.log('okkkk');
+        this.itensOptions = r.resultado;
+      }
+    }
+    console.log(r);
+  };
+  this.crud.post_api('consulta_motoboy_nome', accallback, {});
 }
 
 }

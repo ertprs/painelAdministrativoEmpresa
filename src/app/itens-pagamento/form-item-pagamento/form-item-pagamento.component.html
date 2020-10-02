@@ -1,0 +1,38 @@
+<div [formGroup]="form" style="display: grid;">
+
+
+    <!--<mat-form-field>
+        <mat-label>Id forma pag.</mat-label>
+        <input matInput placeholder="Id forma de pagamento" formControlName="id_formapagamento">
+    </mat-form-field>-->
+
+    <mat-form-field appearance="fill">
+        <mat-label>Forma de pagamento</mat-label>
+        <mat-select formControlName="id_formapagamento">
+            <mat-option *ngFor="let item of formaspagamento" [value]="item.id">
+                {{item.nome}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <mat-label>Imagem</mat-label>
+        <input matInput placeholder="Ex. Url da imagem" formControlName="imagem">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Nome da forma de pagamento</mat-label>
+        <input matInput placeholder="Ex. Nome" formControlName="nome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput placeholder="Ex. Status" formControlName="status">
+    </mat-form-field>
+
+    <div>
+        <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+    </div>
+</div>

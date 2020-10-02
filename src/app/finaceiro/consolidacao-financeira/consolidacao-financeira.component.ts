@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudServicoService } from './../../crud-servico.service';
 import { ServicoService } from './../../servico.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,10 +27,17 @@ export class ConsolidacaoFinanceiraComponent implements OnInit {
   totalReceita = 0;
   totalLiquido = 0;
 
-  constructor(private dialog: MatDialog, private servico: ServicoService, private crud: CrudServicoService) { }
+  form: FormGroup;
+
+  constructor(private dialog: MatDialog, private servico: ServicoService, private crud: CrudServicoService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.despesas = [];
+
+    this.form = this.fb.group({
+      dataInicio: [''],
+      dataFim: [''],
+    });
 
     this.dataSourceDespesa = [
     ];
@@ -49,15 +57,31 @@ export class ConsolidacaoFinanceiraComponent implements OnInit {
       console.log('callback');
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
-        this.servico.mostrarMensagem(r.resultado.mensagem);
+        // this.servico.mostrarMensagem(r.resultado.mensagem);
         this.despesas = r.resultado.itens.itens;
         this.resumoDespesa = r.resultado.itens.total_despesa;
         this.totalReceita = r.resultado.itens.total_receita;
         this.totalLiquido = r.resultado.itens.total_liquido;
       }
-      console.log(r);
     };
     this.crud.post_api('consolidacao_financeira', accallback, '');
+  }
+
+  consultaTabelaFiltro() {
+
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
+        // this.servico.mostrarMensagem(r.resultado.mensagem);
+        this.despesas = r.resultado.itens.itens;
+        this.resumoDespesa = r.resultado.itens.total_despesa;
+        this.totalReceita = r.resultado.itens.total_receita;
+        this.totalLiquido = r.resultado.itens.total_liquido;
+      }
+    };
+    this.crud.post_api('consolidacao_financeira', accallback, {tipo: 'periodo',
+    datai: this.form.value.dataInicio, dataf: this.form.value.dataFim});
   }
 
 

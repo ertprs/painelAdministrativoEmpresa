@@ -15,12 +15,7 @@ export class ControleFiadoComponent implements OnInit {
   constructor(private servico: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
-    this.dataSource = [
-      {nome: 'Cliente 1', valor: 200},
-      {nome: 'Cliente 2', valor: 300},
-      {nome: 'Cliente 3', valor: 400},
-      {nome: 'Cliente 4', valor: 500},
-    ];
+    this.dataSource = [];
 
   }
 

@@ -5,25 +5,31 @@
         <mat-step>
             <ng-template matStepLabel>Informações do cliente</ng-template>
             <div class="c2">
-                <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}</div>
-                <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone}}</div>
+                <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}
+                </div>
+                <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone}}
+                </div>
                 <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}}, {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
                 </div>
-                <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().endereco.complemento}}</div>
-                <div class="c22"><span class="ddc">Ponto de referência:</span> {{servpedidos.getPedido().endereco.tiporesidencia}}</div>
+                <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().endereco.complemento}}
+                </div>
+                <div class="c22"><span class="ddc">Ponto de referência:</span> {{servpedidos.getPedido().endereco.tiporesidencia}}
+                </div>
             </div>
         </mat-step>
 
         <mat-step>
             <ng-template matStepLabel>Tipo de serviço</ng-template>
-            <mat-card style="background-color: yellow;">
+            <mat-card>
                 {{servpedidos.getPedido().tipopedido}}
             </mat-card>
         </mat-step>
 
         <mat-step>
             <ng-template matStepLabel>Metodo de pagamento</ng-template>
-            <div class="">{{servpedidos.getPedido().formapagamento}}</div>
+            <div class="" *ngFor="let item of servpedidos.getPedido().formaspagamento">
+                {{ item.nome }} <span *ngIf="item.itemSelecionado"> - {{ item.itemSelecionado.nome }} - </span> Valor:{{ item.valor | currency:'BRL':true }}
+            </div>
         </mat-step>
 
         <mat-step>
@@ -144,6 +150,30 @@
                 </table>
             </div>
         </mat-step>
+        <span *ngFor="let item of servpedidos.getPedido().formaspagamento">
+            <mat-step *ngIf="item.nome === 'Transferência bancária'">
+
+                <ng-template matStepLabel>Comprovante</ng-template>
+
+                <div class="" style="    width: 100%;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: grid;">
+                    <app-upload-imagem *ngIf="!servpedidos.getPedido().comprovante"
+                        [mensagem]="'O comprovante foi anexado ao pedido'" [nomeBotao]="'Selecionar comprovante'"
+                        [coluna]="'comprovante'" [tabela]="'pedidos'" [idItem]="servpedidos.getPedido().id">
+                    </app-upload-imagem>
+                    <img *ngIf="upimgServ.getImagem() && !servpedidos.getPedido().comprovante" width="365"
+                        [lazyLoad]="upimgServ.getImagem()" alt="Sem imagem de comprovate">
+                    <img *ngIf="servpedidos.getPedido().comprovante" width="365"
+                        [src]="servpedidos.getPedido().comprovante" alt="Sem imagem de comprovate">
+
+                </div>
+            </mat-step>
+        </span>
+
+
     </mat-vertical-stepper>
 
 
@@ -154,7 +184,8 @@
             <mat-chip-list aria-label="Fish selection">
 
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(1)" style="background-color: rgb(92, 177, 6); color: white;" color="accent">Aceitar</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" [mat-dialog-close]="'cancelar_pedido'" style="background-color:  rgb(168, 14, 40);color: white;" color="accent" matTooltip="Obs! Se rejeitar este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">Rejeitar</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" [mat-dialog-close]="'cancelar_pedido'" style="background-color:  rgb(168, 14, 40);color: white;" color="accent" matTooltip="Obs! Se rejeitar este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">
+                    Rejeitar</mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1" (click)="onClickAttStatusPedido(2)" color="accent">Pronto para sair</mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1" (click)="onClickAttStatusPedido(3)" color="accent">Pronto para retirada</mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 || servpedidos.getPedido().status_pedido == 3" (click)="onClickAttStatusPedido(4)" color="accent">A caminho</mat-chip>
@@ -165,6 +196,9 @@
 
 
         </div>
+
+
+
     </div>
 
 

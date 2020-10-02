@@ -10,6 +10,14 @@
 <table mat-table [dataSource]="dataSource">
 
     <!-- Name Column -->
+    <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon class="bandeira" [class.bandeiraMim]="false">flag</mat-icon>
+        </td>
+    </ng-container>
+
+    <!-- Name Column -->
     <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef> Nome </th>
         <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
@@ -18,8 +26,12 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="descricao">
-        <th mat-header-cell *matHeaderCellDef> Descrição </th>
-        <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+        <th mat-header-cell *matHeaderCellDef>
+            <!--Descrição-->
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <!--{{element.descricao}}-->
+        </td>
     </ng-container>
 
     <!-- Weight Column -->
@@ -58,10 +70,7 @@
 
         </th>
         <td mat-cell *matCellDef="let element">
-
-            <button matTooltip="Enviar estoque ao motoboy" mat-icon-button (click)="enviarNovoEstoque(element)">
-                <mat-icon class="mat-18">send</mat-icon>
-            </button>
+            <button mat-stroked-button color="primary" (click)="enviarNovoEstoque(element)"> Enviar estoque </button>
 
         </td>
     </ng-container>

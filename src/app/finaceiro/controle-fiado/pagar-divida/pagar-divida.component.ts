@@ -1,3 +1,4 @@
+import { UploadimagemService } from './../../../upload-imagem/uploadimagem.service';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -12,23 +13,33 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class PagarDividaComponent implements OnInit {
 
   public form: FormGroup;
+  itensPagamento: any;
+  transf = false;
+  cartao = false;
+  itensPag: any;
 
   constructor(public dialogRef: MatDialogRef<PagarDividaComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
-              private servico: ServicoService, private crud: CrudServicoService) { }
+              private servico: ServicoService, private crud: CrudServicoService, public upimgserv: UploadimagemService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       id_cliente: [this.data.item.dadoscliente.id],
       id_pedido: [this.data.item.id],
       valor_pag: [null],
+      formapagamento: [null],
+      itemPagamento: [null],
+      comprovante: [null],
       operador: [this.servico.getDadosEmpresa().operador.nome],
     });
+    this.itensPagamento = this.servico.getDadosEmpresa().formaspagamento;
   }
 
   onClickPagar() {
+    this.form.value.comprovante = this.upimgserv.getImagem();
     const fcall = () => {
       const r = this.servico.getRespostaApi();
+      console.log(r.erro);
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.resultado.mensagem);
       } else {
@@ -37,6 +48,24 @@ export class PagarDividaComponent implements OnInit {
       }
     };
     this.crud.post_api('pagar_pedido_fiado', fcall, this.form.value);
+  }
+
+  selectChange() {
+    console.log(this.form.value);
+
+    this.itensPag = this.form.value.formapagamento.itens;
+
+
+    if (this.form.value.formapagamento.nome === 'Transferência bancária') {
+       this.transf = true;
+       this.cartao = true;
+       return;
+      } else {
+          this.transf = false;
+        }
+    if (this.form.value.formapagamento.nome === 'Cartão de crédito' ||
+    this.form.value.formapagamento.nome === 'Cartão de débito') { this.cartao = true; } else { this.cartao = false; }
+
   }
 
 }

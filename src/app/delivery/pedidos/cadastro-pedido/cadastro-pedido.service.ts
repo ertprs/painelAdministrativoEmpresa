@@ -8,8 +8,10 @@ export class CadastroPedidoService {
 
 
   selectedIndex: 0;
-  
+
   iniciaFormCadastro = new EventEmitter<any>();
+  funcaoEmitter = new EventEmitter<any>();
+  selecionarCartao = new EventEmitter<any>();
 
   private tipoPedido = {entrega: 'entrega', retirada: 'retirada'};
   private formadepagamento = {dinheiro: 'dinheiro', cartao: {nome: 'cartao', cartoes: []}};
@@ -20,12 +22,16 @@ export class CadastroPedidoService {
     itens: [],
     subtotal: '',
     origempedido: false,
+    status_pedido: 1,
+    formasPagamento: [],
     formapagamento: {tipo: '', troco: 0, nome: 'false'},
+    item_pagamento: {id: '', nome: '', status: false},
     desconto: 0,
     cupom: {},
     total: 0,
     total_pedido: 0,
     taxaentrega: 0,
+    taxaextra: 0,
     tipopedido: 'false',
     endereco: {
       rua: '',
@@ -52,6 +58,27 @@ export class CadastroPedidoService {
 
   constructor(private servico: ServicoService) { }
 
+  addFp(item) {
+    item.valor = '';
+    let statusadd = false;
+    this.carrinho.formasPagamento.forEach(element => {
+      if (element.id === item.id) {
+        // statusadd = true;
+      }
+    });
+    if (!statusadd) { this.carrinho.formasPagamento.push(item); }
+    console.log(this.carrinho.formasPagamento);
+  }
+
+  removeItemFp(item: any) {
+    let indeArray: any;
+    for (const x in this.carrinho.formasPagamento) {
+      if (this.carrinho.formasPagamento[x] === item) {
+        indeArray = x;
+      }
+    }
+    this.carrinho.formasPagamento.splice(indeArray, 1);
+  }
 
   setSelectedIndex(index) { this.selectedIndex = index;  }
   getSelectedIndex() { return this.selectedIndex;  }
@@ -157,6 +184,10 @@ export class CadastroPedidoService {
     this.carrinho.formapagamento.nome = fp.nome;
     this.carrinho.formapagamento.troco = fp.troco;
     console.log(this.carrinho);
+  }
+
+  setTroco(valor: number) {
+    this.carrinho.formapagamento.troco = valor;
   }
 
   getCarrinho() {
@@ -293,19 +324,39 @@ export class CadastroPedidoService {
 }
 
 onClickFp(item) {
-  if (item.nome === 'dinheiro') { this.onclickFPDinheiro(); }
-  if (item.nome === 'cartao') { this.onclickFPCartao(); }
-
-  console.log(item);
-
+  // if (item.nome === 'Dinheiro' || item.nome === 'dinheiro') { this.onclickFPDinheiro(item); }
+  // if (item.nome === 'cartao' || item.nome === 'Cartão') { this.onclickFPCartao(); }
+  /*if (item.nome === 'Fiado' || item.nome === 'Fiado') {
+    this.carrinho.item_pagamento.status = false;
+   }
+  */
+  this.addFp(item);
   this.bottomSheet.dismiss();
+  /*
   this.setFormaPag({tipo: item.nome, nome: item.nome, troco: ''});
-  setTimeout( () => { this.servico.mostrarMensagem('Pagamento selecionado: ' + item.nome); }, 700 );
+  setTimeout( () => {
+     this.servico.mostrarMensagem('Pagamento selecionado: ' + item.nome);
+     if (item.nome === 'Tranferência bancária') {
+       console.log('Selecionar o banco');
+       this.funcaoEmitter.emit();
+      }
 
+     if (item.nome.toLowerCase() === 'cartão'
+     || item.nome.toLowerCase() === 'cartão de crédito'
+     || item.nome.toLowerCase() === 'cartão de débito'
+     || item.nome.toLowerCase() === 'cartão poupança') {
+        console.log('Selecionar o banco');
+        this.selecionarCartao.emit(item);
+       }
+
+
+    }, 700 );
+*/
 }
 
-onclickFPDinheiro() {
-
+onclickFPDinheiro(item) {
+  console.log('onclickFPDinheiro');
+  console.log(item);
   if (this.servico.getDadosEmpresa().formaspagamento[0].disponivel === false) {
     // Verifica as formas de pagamento da empresa
     this.servico.mostrarMensagem('Este estabelecimento não aceita pagamento em dinheiro');
@@ -314,6 +365,7 @@ onclickFPDinheiro() {
 
   this.bottomSheet.dismiss();
   this.setFormaPag({tipo: 'dinheiro', nome: 'dinheiro', troco: ''});
+  this.carrinho.item_pagamento.status = false;
   setTimeout( () => { this.servico.mostrarMensagem('Pagamento em dinheiro selecionado'); }, 700 );
 
 
@@ -331,6 +383,23 @@ onclickFPCartao() {
 
   this.setFormaPag({tipo: 'cartão', nome: 'cartão', troco: ''});
   setTimeout( () => { this.servico.mostrarMensagem('Pagamento com cartão selecionado'); }, 700 );
+}
+
+verificaFpsTotal() {
+  let total = 0;
+  this.carrinho.formasPagamento.forEach(element => {
+    total += element.valor;
+  });
+  return total;
+}
+
+verificaFp() {
+  // Se existir forma de pagamento selecionada retornar  true
+  let statusErro = false;
+  this.carrinho.formasPagamento.forEach(element => {
+    statusErro = true;
+  });
+  return statusErro;
 }
 
 

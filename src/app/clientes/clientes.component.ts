@@ -140,7 +140,7 @@ enderecoCliente(element): void {
     }
 
     console.log('The dialog was closed');
-    this.itemSelecionado.id = result.id;
+    // this.itemSelecionado.id = result.id;
     this.itemSelecionado.rua = result.rua;
     this.itemSelecionado.numero = result.numero;
     this.itemSelecionado.bairro = result.bairro;

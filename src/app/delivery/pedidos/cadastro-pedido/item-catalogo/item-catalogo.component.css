@@ -1,10 +1,10 @@
 img {
-    width: 250px;
+    width: 130px;
 }
 
-a {
-    display: grid;
-    grid-template-rows: 200px;
+.a {
+    max-height: 500px;
+    overflow: auto;
 }
 
 .b {
@@ -23,6 +23,12 @@ a {
 
 .e {
     text-align: center;
+}
+
+.aeadelsuc {
+    display: grid;
+    grid-template-columns: 132px 65%;
+    gap: 3px;
 }
 
 .opts {

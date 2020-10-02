@@ -39,6 +39,8 @@ export class ComprasClientesComponent implements OnInit {
         dataInicio: [''],
         dataFim: [''],
       });
+
+    this.consultaPedidoCliente('periodo');
   }
 
   f5() {

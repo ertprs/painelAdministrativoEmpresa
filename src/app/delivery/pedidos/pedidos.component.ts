@@ -9,6 +9,8 @@ import { DialogPedidoComponent } from './../dialogs/dialog-pedido/dialog-pedido.
 import { Component, OnInit } from '@angular/core';
 import { DialoDelsucgComponent } from 'src/app/dialo-delsucg/dialo-delsucg.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SelecionarMotoboyComponent } from 'src/app/estoque/itens-estoque-detalhes/selecionar-motoboy/selecionar-motoboy.component';
+import { SelecionarMotoboyEntregaComponent } from './selecionar-motoboy-entrega/selecionar-motoboy-entrega.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -17,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PedidosComponent implements OnInit {
 
-  displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'formapagamento', 'total', 'info', 'statusmotoboy', 'origem', 'id'];
+  displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'total', 'info', 'statusmotoboy', 'origem', 'id'];
   pedidos = [];
   dialogDelsuc: any;
   statusLoadEntregas: boolean;
@@ -36,6 +38,19 @@ export class PedidosComponent implements OnInit {
     }, 600);
 
 
+  }
+
+  selecionarMotoboy(item) {
+    this.dialogDelsuc = this.dialog.open(SelecionarMotoboyEntregaComponent, {
+      width: '360px', data: this.servpedidos.getPedido()
+    });
+    this.dialogDelsuc.afterClosed().subscribe(result => {
+      console.log('The dialog was closed result');
+      console.log(result);
+      if (result) {
+         
+      }
+    });
   }
 
 

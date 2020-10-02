@@ -81,8 +81,8 @@
                 <ng-template matStepLabel>Metodos de pagamento</ng-template>
 
                 <div style="width: 100%;margin-bottom: 10px;" [formGroupName]="i" [formGroupName]="i" *ngFor="let item of formCadastro.get('metodosPagamento')['controls']; let i = index">
-                    <mat-slide-toggle formControlName="disponivel">
-                        <!--{{ item.value | json }}-->{{item.value.descricao}} </mat-slide-toggle>
+                    <mat-slide-toggle formControlName="disponivel" [matTooltip]="item.value.descricao">
+                        <!--{{ item.value | json }}-->{{item.value.nome}} </mat-slide-toggle>
 
                     <span formArrayName="itens">
           <span [formGroupName]="a" *ngFor="let cartao of item.controls.itens.controls; let a = index">

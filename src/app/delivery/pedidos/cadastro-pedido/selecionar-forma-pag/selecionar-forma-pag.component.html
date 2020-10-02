@@ -1,18 +1,18 @@
 <mat-nav-list *ngIf="servcard.getTipoSheet() === 'formapagamento'">
 
     <span *ngFor="let item of servico.getDadosEmpresa().formaspagamento">
-        <a mat-list-item (click)="servcard.onClickFp(item)" >
+        <a mat-list-item (click)="servcard.onClickFp(item)" *ngIf="item.disponivel">
             <span mat-line> {{ item.nome }} </span>
     <span mat-line> {{ item.descricao }} </span>
     </a>
 
     </span>
 
-    <a mat-list-item (click)="servcard.onclickFPCartao()">
+    <!--<a mat-list-item (click)="servcard.onclickFPCartao()">
         <span mat-line>Cartão</span>
         <span mat-line>Pagamento com cartão</span>
 
-    </a>
+    </a>-->
 
 </mat-nav-list>
 
@@ -27,7 +27,7 @@
 
 <mat-nav-list *ngIf="servcard.getTipoSheet()==='tipopedido' ">
 
-    <a mat-list-item (click)="servcard.setOrigemPedido('Whatsapp')" (click)="servcard.onclickEntregaTipo() ">
+    <a mat-list-item (click)="servcard.onclickEntregaTipo() ">
         <span mat-line>Entrega</span>
         <span mat-line>O cliente quer que envie o pedido</span>
     </a>

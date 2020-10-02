@@ -1,5 +1,21 @@
 <div [formGroup]="form" style="display: grid;">
 
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label> Centro de custo</mat-label>
+        <mat-select>
+            <mat-option>
+                Viagem
+            </mat-option>
+            <mat-option>
+                Transporte
+            </mat-option>
+            <mat-option>
+                Serviços adicionais
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
     <mat-form-field class="example-full-width">
         <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome da despesa" formControlName="nome">
@@ -22,6 +38,7 @@
 
     <div>
         <button mat-flat-button color="warn" [mat-dialog-close]="false"> Cancelar </button>
-        <button mat-flat-button color="primary" style="margin-left: 10px;" [mat-dialog-close]="form.value"> Adicionar </button>
+        <button mat-flat-button color="primary" style="margin-left: 10px;" [mat-dialog-close]="form.value"> Adicionar
+        </button>
     </div>
 </div>

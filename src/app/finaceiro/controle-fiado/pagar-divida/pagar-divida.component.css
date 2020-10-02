@@ -7,9 +7,37 @@
     border-top: 1px solid rgb(216, 216, 216);
     padding-bottom: 20px;
     padding-top: 15px;
+    color: #9c9c9c;
+    font-size: 10px;
 }
 
 .adel {
     font-size: 12px;
     font-weight: 500;
+}
+
+.g0 {
+    display: grid;
+    grid-template-columns: 65% 35%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 384px 12px;
+}
+
+.imgdoc {
+    background: gold;
+    background-position: center;
+    padding: 10px;
+    border-radius: 35px;
+    margin-left: 31px;
+    background-size: 48px;
+    background-repeat: no-repeat;
+    color: #2196F3;
+    height: 25px;
 }

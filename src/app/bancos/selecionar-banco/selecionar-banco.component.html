@@ -1,0 +1,22 @@
+<div class="guinho">
+    Selecione o banco que vai receber a transferência
+</div>
+
+<div style="height: 400px; overflow: auto;">
+    <mat-list>
+        <span *ngFor="let item of itens">
+        <mat-list-item class="item" [class.itemSelecionado]="item.selecionado" (click)="onClickItem(item)"> 
+           <a href="javascript:;">{{ item.nome }} </a> 
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </span>
+
+
+    </mat-list>
+</div>
+
+
+<div style="margin-top: 10px; text-align: center;">
+    <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>
+    <button mat-stroked-button style="margin-left: 5px;" (click)="onClickConfirmar()">Confirmar</button>
+</div>

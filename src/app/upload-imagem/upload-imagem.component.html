@@ -1,0 +1,22 @@
+<div class="delsuc">
+    <div *ngIf="preload" class="img" [lazyLoad]="imagem">
+
+    </div>
+
+    <div>
+        <button mat-stroked-button (click)="onClickImagemSelecionarCapa()">
+            {{ nomeBotao }}
+        </button>
+        <button style="margin-top: 2px;" mat-stroked-button (click)="enviarImagemServidor()">
+            Enviar
+            <mat-progress-bar *ngIf="!statusLoadConteudo"></mat-progress-bar>
+            <mat-progress-bar *ngIf="statusLoadConteudo" mode="indeterminate"></mat-progress-bar>
+        </button>
+    </div>
+
+</div>
+
+
+<form id="form1">
+    <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
+</form>

@@ -26,7 +26,7 @@ import { FormEstoqueComponent } from '../form-estoque/form-estoque.component';
 })
 export class ItensEstoqueComponent implements OnInit {
 
-  columnsToDisplay = ['nome', 'descricao', 'quantidade', 'valor', 'info', 'sub', 'remover', 'editar', 'adicionar'];
+  columnsToDisplay = ['c1', 'nome', 'descricao', 'quantidade', 'valor', 'info', 'sub', 'remover', 'editar', 'adicionar'];
   dataSource = [];
   expandedElement: any | null;
   dialogDelsuc: any;

@@ -1,3 +1,4 @@
+import { ConsolidacaoCartaoComponent } from './finaceiro/consolidacao-cartao/consolidacao-cartao.component';
 import { BancosComponent } from './bancos/bancos.component';
 import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/conciliacao-bancaria.component';
 import { ControleFiadoComponent } from './finaceiro/controle-fiado/controle-fiado.component';
@@ -77,6 +78,7 @@ const routes: Routes = [
      
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'consolidacao-cartao', component: ConsolidacaoCartaoComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'controle-fiado', component: ControleFiadoComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'conciliacao-bancaria', component: ConciliacaoBancariaComponent, canActivate: [GuardaAtenticacaoService] },
