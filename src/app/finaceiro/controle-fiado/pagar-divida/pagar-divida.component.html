@@ -58,8 +58,8 @@
 <div class="cv">Pagamentos</div>
 
 <div style="height: 270px; overflow: auto;">
-    <div class="itensPag" *ngFor="let item of data.item.pagamentos_fiado">
-        <div class="adel">Lançado por: {{ item.operador }} - {{ item.dia_pagamento }} </div>
+    <div class="itensPag" *ngFor="let item of pagamentos">
+        <div class="adel">#{{ item.id }} Lançado por: {{ item.operador }} - {{ item.dia_pagamento }} </div>
         <div>Forma de pagamento: {{ item.formapagamento }}</div>
         <div> Valor pago: {{ item.valor_pagamento | currency:'BRL':true }} </div>
 

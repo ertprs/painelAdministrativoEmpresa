@@ -1,9 +1,20 @@
 import { ServicoService } from './../../../servico.service';
 import { Injectable, EventEmitter } from '@angular/core';
 
+export interface ItemPagamento {
+  referencia: number;
+  id: number;
+  nome: string;
+  valor: string;
+  itens: string;
+  valorIn: [any];
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class CadastroPedidoService {
 
 
@@ -55,18 +66,22 @@ export class CadastroPedidoService {
   tiposheet: any;
   bottomSheet: any;
   cadastroClienteLista: any;
+  contaddFps = 0;
 
   constructor(private servico: ServicoService) { }
 
-  addFp(item) {
-    item.valor = '';
+  addFp(item: ItemPagamento) {
+    this.contaddFps++;
+    item.referencia = this.contaddFps;
+
     let statusadd = false;
     this.carrinho.formasPagamento.forEach(element => {
       if (element.id === item.id) {
         // statusadd = true;
       }
     });
-    if (!statusadd) { this.carrinho.formasPagamento.push(item); }
+    const fp = Object.assign({}, item);
+    if (!statusadd) { this.carrinho.formasPagamento.push(fp); }
     console.log(this.carrinho.formasPagamento);
   }
 
@@ -388,7 +403,7 @@ onclickFPCartao() {
 verificaFpsTotal() {
   let total = 0;
   this.carrinho.formasPagamento.forEach(element => {
-    total += element.valor;
+    total += parseFloat( element.valor );
   });
   return total;
 }
@@ -405,3 +420,6 @@ verificaFp() {
 
 
 }
+
+
+ 

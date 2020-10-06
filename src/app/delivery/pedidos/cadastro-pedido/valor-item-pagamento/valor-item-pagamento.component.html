@@ -1,0 +1,11 @@
+<div>
+    <mat-form-field class="example-full-width">
+        <mat-label> Valor a pagar </mat-label>
+        <input matInput placeholder="R$0,00" #valor type="number">
+    </mat-form-field>
+</div>
+
+
+<div style="text-align: center;">
+    <button mat-stroked-button color="accent" (click)="onClickConfirmar(valor.value)"> Confimar </button>
+</div>

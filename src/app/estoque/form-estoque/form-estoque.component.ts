@@ -37,7 +37,7 @@ export class FormEstoqueComponent implements OnInit {
       quantidade: [null],
       descricao: [null],
       valor: [null, Validators.required],
-
+      tipo_entrada: [null],
     });
   }
   formeditar() {
@@ -47,7 +47,7 @@ export class FormEstoqueComponent implements OnInit {
       quantidade: [this.data.item.nome, Validators.required],
       descricao: [this.data.item.descricao, Validators.required],
       valor: [this.data.item.valor, Validators.required],
-
+      tipo_entrada: [null],
     });
   }
  

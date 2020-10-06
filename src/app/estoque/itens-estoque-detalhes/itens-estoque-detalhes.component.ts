@@ -13,7 +13,7 @@ import { SelecionarMotoboyComponent } from './selecionar-motoboy/selecionar-moto
   styleUrls: ['./itens-estoque-detalhes.component.css']
 })
 export class ItensEstoqueDetalhesComponent implements OnInit {
-  columnsToDisplay = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7'];
+  columnsToDisplay = ['c0', 'c1', 'c3', 'c4', 'c5', 'c6', 'c7'];
   dataSource = [];
   motoboys = [];
   motoboySelecionado: any;

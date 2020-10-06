@@ -147,18 +147,22 @@
     grid-template-columns: 10% 28% 42% 20%;
     grid-template-rows: 79px;
     align-items: center;
+    background: #ffffff;
+    margin-bottom: 1px;
+    padding-right: 9px;
 }
 
 .biagod {
     font-size: 11px;
-    background: #efefef;
+    background: #fdfdfd;
     height: 49px;
-    margin-right: 1px;
+    /* margin-right: 1px; */
     display: grid;
     justify-items: center;
     align-items: center;
     border-radius: 3px;
-    margin-right: -2px;
+    /* margin-right: -2px; */
+    color: black;
 }
 
 .icdel {

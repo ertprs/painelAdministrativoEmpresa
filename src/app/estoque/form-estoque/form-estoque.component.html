@@ -12,21 +12,36 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Quantidade</mat-label>
-            <input matInput type="number" placeholder="Descrição item" formControlName="quantidade">
-        </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label> Tipo entrada </mat-label>
+            <mat-select formControlName="tipo_entrada">
+                <mat-option value="un">
+                    Unidades
+                </mat-option>
+                <mat-option value="ca">
+                    Caixas
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div style="display: flex;">
+            <mat-form-field style="width: 50%;">
+                <mat-label>Quantidade</mat-label>
+                <input matInput type="number" formControlName="quantidade">
+            </mat-form-field>
+
+            <!--<mat-form-field>
             <mat-label>Descrição</mat-label>
-            <input matInput type="name" placeholder="Descrição item" formControlName="descricao">
-        </mat-form-field>
+            <input matInput type="name" placeholder="Descrição do estoque" formControlName="descricao">
+        </mat-form-field>-->
 
 
-        <mat-form-field>
-            <mat-label>Valor únidade</mat-label>
-            <input matInput type="tel" placeholder="R$0,00" formControlName="valor" mask="separator.2" thousandSeparator=".">
-        </mat-form-field>
+            <mat-form-field style="width: 50%;">
+                <mat-label>Valor</mat-label>
+                <input matInput type="tel" placeholder="R$0,00" formControlName="valor" mask="separator.2" thousandSeparator=".">
+            </mat-form-field>
+        </div>
+
 
     </div>
 

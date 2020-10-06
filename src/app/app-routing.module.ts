@@ -1,3 +1,4 @@
+import { PaginaDefaultComponent } from './componentes/pagina-default/pagina-default.component';
 import { ConsolidacaoCartaoComponent } from './finaceiro/consolidacao-cartao/consolidacao-cartao.component';
 import { BancosComponent } from './bancos/bancos.component';
 import { ConciliacaoBancariaComponent } from './finaceiro/conciliacao-bancaria/conciliacao-bancaria.component';
@@ -90,6 +91,7 @@ const routes: Routes = [
     ] },
 
       { path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [
+            { path: '', component: PaginaDefaultComponent, canActivate: [GuardaConfigSistemaService] },
             { path: 'historico', component: HistoricoComponent, canActivate: [GuardaConfigSistemaService] },
             { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
             { path: 'estoque-motoboy', component: EstoqueMotoboyComponent, canActivate: [GuardaConfigSistemaService] },

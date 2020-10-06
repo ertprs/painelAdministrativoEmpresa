@@ -24,7 +24,7 @@ export class EditarItemCompletoComponent implements OnInit {
   diaselecionado: any;
   diasItem: any;
   diasLista: Array<any>;
-  catsEAdcs : any;
+  catsEAdcs: any;
   categoriasCatalogo: Array<any>;
 
   arquivo: any;
@@ -47,45 +47,50 @@ export class EditarItemCompletoComponent implements OnInit {
 
 
       this.crud.get_api('consulta_item_cardapio&id_empresa=' +
-      this.servapp.getDadosEmpresa().id +
-      '&id_item=' + this.servhome.getItem().id).subscribe(
-        (data: any) => {
-          console.log(data);
-          this.itemRequest = data.item;
-          this.imagem = data.item.imagem;
-          this.diasLista = data.item.disponibilidade;
-          this.catsEAdcs = data.item.categoriaadicional;
-          this.categoriasCatalogo = data.item.categoria;
+        this.servapp.getDadosEmpresa().id +
+        '&id_item=' + this.servhome.getItem().id).subscribe(
+          (data: any) => {
+            console.log(data);
+            this.itemRequest = data.item;
+            this.imagem = data.item.imagem;
+            this.diasLista = data.item.disponibilidade;
+            this.catsEAdcs = data.item.categoriaadicional;
+            this.categoriasCatalogo = data.item.categoria;
 
 
-          this.form = this.formBuilder.group({
-            id: [this.servhome.getItem().id],
-            idcategoria: [''],
-            nome: [this.itemRequest.nome],
-            descricao: [this.itemRequest.descricao],
-            esconder: [this.itemRequest.esconder],
-            esgotado: [this.itemRequest.esgotado],
-            preco: [this.itemRequest.preco],
-            id_empresa: [this.servapp.getDadosEmpresa().id],
-            id_categoria: [this.servhome.getCategoria().id],
-            categoria_nome: [''],
-            imagem: [this.imagem],
-            disponibilidade: this.buildDiasDisponiveis(),
-            categoriaadicional: this.buildCategoriasEAdicionais(),
-            status_promocao: [this.itemRequest.status_promocao],
-            desconto: [this.itemRequest.desconto],
-            categoria: this.buildCategoriasCardapio(),
+            this.form = this.formBuilder.group({
+              id: [this.servhome.getItem().id],
+              idcategoria: [''],
+              nome: [this.itemRequest.nome],
+              descricao: [this.itemRequest.descricao],
+              esconder: [this.itemRequest.esconder],
+              esgotado: [this.itemRequest.esgotado],
+              preco: [this.itemRequest.preco],
+              id_empresa: [this.servapp.getDadosEmpresa().id],
+              id_categoria: [this.servhome.getCategoria().id],
+              categoria_nome: [''],
+              imagem: [this.imagem],
+              disponibilidade: this.buildDiasDisponiveis(),
+              categoriaadicional: this.buildCategoriasEAdicionais(),
+              status_promocao: [this.itemRequest.status_promocao],
+              desconto: [this.itemRequest.desconto],
+              categoria: this.buildCategoriasCardapio(),
 
-          });
+              estoque_mim: [this.itemRequest.estoque_mim],
+              estoque_med: [this.itemRequest.estoque_med],
+              quantidade_retira: [this.itemRequest.quantidade_retira],
+              un_caixa: [this.itemRequest.un_caixa],
 
-          this.statusLoadConteudo = false;
+            });
+
+            this.statusLoadConteudo = false;
 
 
-        },
-        error => {
-          console.log(error);
-        }
-      );
+          },
+          error => {
+            console.log(error);
+          }
+        );
 
 
 
@@ -114,7 +119,13 @@ export class EditarItemCompletoComponent implements OnInit {
         categoriaadicional: this.buildCategoriasEAdicionais(),
         status_promocao: [''],
         desconto: [''],
-        categoria: this.buildCategoriasCardapio()
+        categoria: this.buildCategoriasCardapio(),
+
+        estoque_mim: [''],
+        estoque_med: [''],
+        quantidade_retira: [''],
+        un_caixa: [''],
+
       });
       //
       setTimeout(() => {
@@ -206,20 +217,20 @@ export class EditarItemCompletoComponent implements OnInit {
     } else {
       /*Add novo item*/
       this.crud.post_api('add_item_cardapio', loginres, this.valorSubmit);
-     }
+    }
 
 
   }
 
   buildDiasDisponiveis(): any {
     try {
-      const valores = this.diasLista.map((v) => new FormControl(v.status)  );
+      const valores = this.diasLista.map((v) => new FormControl(v.status));
       return this.formBuilder.array(valores);
     } catch (e) {
       this.diasLista = this.servhome.getItemModel().disponibilidade;
-      const valores = this.diasLista.map((v) => new FormControl(v.status)  );
+      const valores = this.diasLista.map((v) => new FormControl(v.status));
       return this.formBuilder.array(valores);
-     }
+    }
   }
 
 
@@ -240,7 +251,7 @@ export class EditarItemCompletoComponent implements OnInit {
     const fileRead = new FileReader();
     fileRead.onloadend = () => {
       this.imagem = fileRead.result;
-    }
+    };
     fileRead.readAsDataURL(this.arquivo);
   }
 

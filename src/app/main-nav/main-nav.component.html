@@ -34,7 +34,7 @@
             </a>
 
 
-            <a mat-list-item routerLink="/estoque">
+            <a mat-list-item routerLink="/estoque/itens-estoque">
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">book</mat-icon>
                 Estoque
@@ -42,12 +42,12 @@
 
 
 
-            <a mat-list-item routerLink="/relatorio" *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">
+            <a mat-list-item routerLink="/relatorio/historico-vendas" *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">
                 <mat-icon>assignment</mat-icon>
                 Relatórios
             </a>
 
-            <a mat-list-item routerLink="/financeiro">
+            <a mat-list-item routerLink="/financeiro/conciliacao-bancaria">
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">money</mat-icon>
                 Financeiro

@@ -138,21 +138,21 @@
                     <mat-chip (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
                 </mat-chip-list>
 
-                <div style="border-bottom: 1px solid #ececec;">
+                <div style="border-bottom: 1px solid #ececec;" [formGroup]="form">
                     <div class="qued">
                         <mat-chip (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
                     </div>
-                    <div class="boxfps" *ngFor="let item of servcard.getCarrinho().formasPagamento">
+                    <div class="boxfps" *ngFor="let item of servcard.getCarrinho().formasPagamento; let i = index;trackBy:trackByIdx">
 
                         <div class="icdel">
                             <button mat-icon-button color="accent" (click)=" servcard.removeItemFp(item)">
                                 <mat-icon>delete</mat-icon>
-                              </button>
+                            </button>
                         </div>
                         <div class="biagod"> {{ item.nome }} </div>
 
                         <div [formGroup]="formvalorFp">
-                            <mat-form-field appearance="fill" style="margin-top: 18px;">
+                            <mat-form-field appearance="fill" style="margin-top: 18px; width: 100%;" *ngIf="item.itens[0]">
                                 <mat-label> Item pagamento </mat-label>
                                 <mat-select [(ngModel)]="item.itemSelecionado" [ngModelOptions]="{standalone: true}">
                                     <mat-option *ngFor="let ipag of item.itens" [value]="ipag">
@@ -163,11 +163,17 @@
                         </div>
 
 
-                        <div [formGroup]="formvalorFp">
-                            <mat-form-field color="primary" class="fotmg" style="margin-top:20px;" appearance="outline">
-                                <mat-label>Valor</mat-label>
-                                <input [(ngModel)]="item.valor" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number">
-                            </mat-form-field>
+                        <div>
+
+                            <div style="    display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            align-items: center;">
+
+                                <button mat-icon-button (click)="onClickEditarvalorFp(item)">
+                                    <mat-icon>edit</mat-icon>
+                                </button> {{ item.valor | currency:'BRL':true }}
+                            </div>
+
                         </div>
 
 
@@ -266,7 +272,7 @@
                             </div>
                         </div>-->
 
-                        <div class="car12">
+                        <!--<div class="car12">
                             <div> Item de pagamento</div>
                             <div>
                                 <span *ngIf="servcard.getCarrinho().item_pagamento.status === false">
@@ -277,7 +283,7 @@
                                     {{ servcard.getCarrinho().item_pagamento.nome }}
                                 </span>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="car12">
                             <div>Subtotal</div>

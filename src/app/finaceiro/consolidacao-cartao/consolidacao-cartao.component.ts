@@ -57,7 +57,7 @@ export class ConsolidacaoCartaoComponent implements OnInit {
     });
   }
 
-  lancarFluxo(pedido, porcentagem) {
+  lancarFluxo(element, porcentagem) {
     const fcall = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
@@ -70,7 +70,7 @@ export class ConsolidacaoCartaoComponent implements OnInit {
       }
     };
     this.crud.post_api('lancarConsolidacaoCartao', fcall,
-{ idPedido: pedido.id, porc: porcentagem, operador: this.servico.getDadosEmpresa().operador.nome } );
+{ id_pagamento: element.id, porc: porcentagem, operador: this.servico.getDadosEmpresa().operador.nome } );
   }
 
 }

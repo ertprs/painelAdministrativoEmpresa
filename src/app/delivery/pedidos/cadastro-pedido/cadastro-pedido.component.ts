@@ -1,3 +1,4 @@
+import { ValorItemPagamentoComponent } from './valor-item-pagamento/valor-item-pagamento.component';
 import { SelecionarBancoComponent } from './../../../bancos/selecionar-banco/selecionar-banco.component';
 import { Router } from '@angular/router';
 import { SelecionarFormaPagComponent } from './selecionar-forma-pag/selecionar-forma-pag.component';
@@ -72,6 +73,7 @@ export class CadastroPedidoComponent implements OnInit {
       troco: ['', Validators.required],
       desconto: [''],
       taxaextra: [''],
+      valor: ['1'],
 
     });
 
@@ -95,6 +97,9 @@ export class CadastroPedidoComponent implements OnInit {
 
   }
 
+  trackByIdx(index: number, obj: any): any {
+    return index;
+  }
 
   carregaDadosUsuario() {
     this.servcard.iniciaFormCadastro.subscribe(
@@ -300,15 +305,16 @@ export class CadastroPedidoComponent implements OnInit {
 
   onClickFinalizarPedido() {
     // console.log(this.form.value);
+
     console.log(this.servcard.getCarrinho());
     // Verifica se as formas de pagamento o total esta maior que o valor do pedido em se
-    console.log(this.servcard.getTotalCarrinho());
     if (this.servcard.verificaFpsTotal() > this.servcard.getTotalCarrinho()) {
       this.servico.mostrarMensagem('Os valores das formas de pagamento estão maior que o valor total do pedido');
+      console.log(this.servcard.verificaFpsTotal())
       return;
     }
 
- 
+
 
     if (this.servcard.getQntItensCar() < 1) { this.servico.mostrarMensagem('O carrinho está vazio!'); return; }
     if (this.servcard.verificaFp() === false) {
@@ -476,6 +482,29 @@ export class CadastroPedidoComponent implements OnInit {
   this.servcard.setTipoPedido('entrega');
   // this.actionsheet.hide();
   // this.alertapp();
+}
+
+onClickEditarvalorFp(element) {
+  const dialogRef = this.dialog.open(ValorItemPagamentoComponent, {
+    width: '250px',
+    data: {element}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(result);
+
+    for (let x = 0; x < this.servcard.getCarrinho().formasPagamento.length; x++) {
+      console.log(this.servcard.getCarrinho().formasPagamento[x]);
+      console.log(result[0]);
+      if (this.servcard.getCarrinho().formasPagamento[x].referencia === result.element.referencia) {
+         console.log('OKKK!');
+         this.servcard.getCarrinho().formasPagamento[x].valor = result.valor;
+       }
+     }
+  }
+  );
+
 }
 
 

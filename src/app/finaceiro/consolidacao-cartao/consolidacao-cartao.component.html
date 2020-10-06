@@ -51,7 +51,7 @@
 
     <ng-container matColumnDef="c1">
         <th mat-header-cell *matHeaderCellDef> Referência Pedido</th>
-        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao"> #{{ element.id }} </td>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao"> #{{ element.id_pedido }} </td>
     </ng-container>
 
     <ng-container matColumnDef="c8">
@@ -61,7 +61,7 @@
 
     <ng-container matColumnDef="c9">
         <th mat-header-cell *matHeaderCellDef> Créd/Déb </th>
-        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao"> {{ element.formapagamento }} </td>
+        <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao"> {{ element.nome }} </td>
     </ng-container>
 
     <ng-container matColumnDef="c7">
@@ -78,7 +78,7 @@
     <ng-container matColumnDef="c3">
         <th mat-header-cell *matHeaderCellDef> Valor Pedido </th>
         <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
-            {{ element.total | currency:'BRL':true }}
+            {{ element.valor_pagamento | currency:'BRL':true }}
         </td>
     </ng-container>
     <span [formGroup]="form">

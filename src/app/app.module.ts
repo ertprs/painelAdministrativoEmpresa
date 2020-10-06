@@ -162,6 +162,8 @@ import { FormItemPagamentoComponent } from './itens-pagamento/form-item-pagament
 import { SelecionarCartaoPagamentoComponent } from './delivery/pedidos/cadastro-pedido/selecionar-cartao-pagamento/selecionar-cartao-pagamento.component';
 import { UploadImagemComponent } from './upload-imagem/upload-imagem.component';
 import { VerImagemComponent } from './upload-imagem/ver-imagem/ver-imagem.component';
+import { PaginaDefaultComponent } from './componentes/pagina-default/pagina-default.component';
+import { ValorItemPagamentoComponent } from './delivery/pedidos/cadastro-pedido/valor-item-pagamento/valor-item-pagamento.component';
 
 @NgModule({
   declarations: [
@@ -281,6 +283,8 @@ import { VerImagemComponent } from './upload-imagem/ver-imagem/ver-imagem.compon
     SelecionarCartaoPagamentoComponent,
     UploadImagemComponent,
     VerImagemComponent,
+    PaginaDefaultComponent,
+    ValorItemPagamentoComponent,
   ],
   imports: [
     BrowserModule,

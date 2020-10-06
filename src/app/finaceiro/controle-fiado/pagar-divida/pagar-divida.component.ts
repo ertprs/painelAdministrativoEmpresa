@@ -17,12 +17,14 @@ export class PagarDividaComponent implements OnInit {
   transf = false;
   cartao = false;
   itensPag: any;
+  pagamentos: any;
 
   constructor(public dialogRef: MatDialogRef<PagarDividaComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
               private servico: ServicoService, private crud: CrudServicoService, public upimgserv: UploadimagemService) { }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.form = this.fb.group({
       id_cliente: [this.data.item.dadoscliente.id],
       id_pedido: [this.data.item.id],
@@ -33,6 +35,7 @@ export class PagarDividaComponent implements OnInit {
       operador: [this.servico.getDadosEmpresa().operador.nome],
     });
     this.itensPagamento = this.servico.getDadosEmpresa().formaspagamento;
+    this.consultaPagamentosFiado();
   }
 
   onClickPagar() {
@@ -66,6 +69,20 @@ export class PagarDividaComponent implements OnInit {
     if (this.form.value.formapagamento.nome === 'Cartão de crédito' ||
     this.form.value.formapagamento.nome === 'Cartão de débito') { this.cartao = true; } else { this.cartao = false; }
 
+  }
+
+  consultaPagamentosFiado() {
+
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
+        // this.servico.mostrarMensagem(r.resultado.mensagem);
+        this.pagamentos = r.resultado.itens;
+      }
+      console.log(r);
+    };
+    this.crud.post_api('consultaPagamentosFiadoPorIdPedido', accallback, {idPedido: this.data.item.id});
   }
 
 }

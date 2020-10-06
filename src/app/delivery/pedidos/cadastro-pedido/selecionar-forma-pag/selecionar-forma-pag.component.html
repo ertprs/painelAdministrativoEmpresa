@@ -1,7 +1,7 @@
 <mat-nav-list *ngIf="servcard.getTipoSheet() === 'formapagamento'">
 
     <span *ngFor="let item of servico.getDadosEmpresa().formaspagamento">
-        <a mat-list-item (click)="servcard.onClickFp(item)" *ngIf="item.disponivel">
+        <a mat-list-item (click)="openDialog(item)" *ngIf="item.disponivel">
             <span mat-line> {{ item.nome }} </span>
     <span mat-line> {{ item.descricao }} </span>
     </a>
