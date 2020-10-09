@@ -164,6 +164,11 @@ import { UploadImagemComponent } from './upload-imagem/upload-imagem.component';
 import { VerImagemComponent } from './upload-imagem/ver-imagem/ver-imagem.component';
 import { PaginaDefaultComponent } from './componentes/pagina-default/pagina-default.component';
 import { ValorItemPagamentoComponent } from './delivery/pedidos/cadastro-pedido/valor-item-pagamento/valor-item-pagamento.component';
+import { ConsolidacaoDinheiroComponent } from './finaceiro/consolidacao-dinheiro/consolidacao-dinheiro.component';
+import { HistoricoCaixaComponent } from './painel2-relatorio/historico-caixa/historico-caixa.component';
+import { SenhaOperadorDesfazerComponent } from './senha-operador-desfazer/senha-operador-desfazer.component';
+import { InserirSenhaComponent } from './senha-operador-desfazer/inserir-senha/inserir-senha.component';
+import { DataRetroativaComponent } from './delivery/paineldelivery/data-retroativa/data-retroativa.component';
 
 @NgModule({
   declarations: [
@@ -285,6 +290,11 @@ import { ValorItemPagamentoComponent } from './delivery/pedidos/cadastro-pedido/
     VerImagemComponent,
     PaginaDefaultComponent,
     ValorItemPagamentoComponent,
+    ConsolidacaoDinheiroComponent,
+    HistoricoCaixaComponent,
+    SenhaOperadorDesfazerComponent,
+    InserirSenhaComponent,
+    DataRetroativaComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,22 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="c2">
         <th mat-header-cell *matHeaderCellDef> Forma de pagamento </th>
-        <td mat-cell *matCellDef="let element"> {{element.formapagamento}} </td>
+        <td mat-cell *matCellDef="let element">
+            <span *ngFor="let fp of element.formapagamento">
+                {{ fp.nome }} 
+            </span>
+        </td>
+    </ng-container>
+
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="valorpago">
+        <th mat-header-cell *matHeaderCellDef> Valor pago </th>
+        <td mat-cell *matCellDef="let element">
+            <span *ngFor="let fp of element.formapagamento">
+                {{ fp.valor | currency:'BRL':true }}
+            </span>
+        </td>
     </ng-container>
 
 

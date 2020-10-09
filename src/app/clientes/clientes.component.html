@@ -7,6 +7,7 @@
     <input matInput type="name" placeholder="Nome cliente">
 </mat-form-field>
 
+<a style="margin:5px" mat-stroked-button href="http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=&acao=gerarxsl&token={{ servico.getDadosEmpresa().token }}" target="_blank"> Baixa lista </a>
 
 <div style="padding: 5px;">
 
@@ -93,7 +94,12 @@
             <th mat-header-cell *matHeaderCellDef>
                 <button mat-icon-button color="accent" (click)="add()">
                     <mat-icon>add</mat-icon>
-                </button> </th>
+                </button>
+
+
+
+
+            </th>
             <td mat-cell *matCellDef="let element">
 
                 <button (click)="removerItem(element)" mat-icon-button color="accent">

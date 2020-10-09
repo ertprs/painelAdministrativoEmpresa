@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaComprasClientesComponent implements OnInit {
 
-  columnsToDisplay = ['c1', 'c2', 'c3', 'c4', 'c5'];
+  columnsToDisplay = ['c1', 'c2', 'valorpago', 'c3', 'c4', 'c5'];
 
   constructor(public servCompC: ComprasClienteService) { }
 

@@ -18,7 +18,7 @@ export class ClientesComponent implements OnInit {
   displayedColumns: string[] = ['op', 'nome', 'telefone', 'aniversario', 'tipo', 'info', 'add'];
   itens = [];
   itemSelecionado: any;
-  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog,
+  constructor(private crud: CrudServicoService, public servico: ServicoService, private dialog: MatDialog,
               private router: Router,  private sercard: CadastroPedidoService) { }
 
   ngOnInit(): void {

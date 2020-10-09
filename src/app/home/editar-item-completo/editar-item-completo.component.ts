@@ -80,6 +80,7 @@ export class EditarItemCompletoComponent implements OnInit {
               estoque_med: [this.itemRequest.estoque_med],
               quantidade_retira: [this.itemRequest.quantidade_retira],
               un_caixa: [this.itemRequest.un_caixa],
+              un_caixa_pacote: [this.itemRequest.un_caixa_pacote],
 
             });
 
@@ -125,6 +126,7 @@ export class EditarItemCompletoComponent implements OnInit {
         estoque_med: [''],
         quantidade_retira: [''],
         un_caixa: [''],
+        un_caixa_pacote: [''],
 
       });
       //

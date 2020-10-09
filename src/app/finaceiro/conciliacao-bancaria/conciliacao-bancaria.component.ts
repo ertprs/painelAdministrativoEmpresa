@@ -26,6 +26,11 @@ export class ConciliacaoBancariaComponent implements OnInit {
 
   }
 
+  onfcalldelsuc(evento) {
+    console.log(evento);
+    this.conciliacaoBancaria();
+  }
+
   conciliacaoBancaria() {
     const fcall = () => {
       console.log('callback');
@@ -79,6 +84,9 @@ export class ConciliacaoBancariaComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        if (result) {
+          this.conciliacaoBancaria();
+        }
       });
   }
 

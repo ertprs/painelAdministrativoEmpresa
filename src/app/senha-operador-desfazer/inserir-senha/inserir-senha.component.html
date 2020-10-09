@@ -1,0 +1,11 @@
+<div [formGroup]="form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="****" formControlName="senha" type="password">
+    </mat-form-field>
+</div>
+
+<div>
+    <button mat-stroked-button color="accent">Cancelar</button>
+    <button mat-stroked-button color="warn" style="margin-left: 5px;" (click)="onclick()">Confirmar</button>
+</div>

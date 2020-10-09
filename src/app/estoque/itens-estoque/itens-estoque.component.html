@@ -81,9 +81,10 @@
         <th mat-header-cell *matHeaderCellDef> Retirar </th>
         <td mat-cell *matCellDef="let element">
 
-            <button matTooltip="Remover estoque da loja" *ngIf="element.quantidade_total_unidades === '0'" mat-icon-button (click)="desabilitarEstoqueLoja(element)">
+            <!--<button matTooltip="Remover estoque da loja" *ngIf="element.quantidade_total_unidades === '0'" mat-icon-button (click)="desabilitarEstoqueLoja(element)">
                 <mat-icon class="mat-18">delete</mat-icon>
-            </button>
+            </button>-->
+
 
             <button matTooltip="Remover únidades de estoque" *ngIf="element.quantidade_total_unidades > 0" mat-icon-button (click)="retirarEstoqueLoja(element)">
                 <mat-icon class="mat-18">undo</mat-icon>

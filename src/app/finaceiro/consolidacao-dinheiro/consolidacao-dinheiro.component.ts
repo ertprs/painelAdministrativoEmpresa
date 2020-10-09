@@ -4,18 +4,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { AdicionarBancoComponent } from '../conciliacao-bancaria/adicionar-banco/adicionar-banco.component';
-import { AdicionarDespesaComponent } from '../consolidacao-financeira/adicionar-despesa/adicionar-despesa.component';
-import { DetalhesItemTabelaComponent } from '../consolidacao-financeira/detalhes-item-tabela/detalhes-item-tabela.component';
 
 @Component({
-  selector: 'app-consolidacao-cartao',
-  templateUrl: './consolidacao-cartao.component.html',
-  styleUrls: ['./consolidacao-cartao.component.css']
+  selector: 'app-consolidacao-dinheiro',
+  templateUrl: './consolidacao-dinheiro.component.html',
+  styleUrls: ['./consolidacao-dinheiro.component.css']
 })
-export class ConsolidacaoCartaoComponent implements OnInit {
+export class ConsolidacaoDinheiroComponent implements OnInit {
 
-
-  displayedColumns: string[] = ['c1', 'c8', 'c9', 'c7', 'c2', 'c3', 'c4', 'c5', 'c6'];
+  displayedColumns: string[] = ['c1', 'c8', 'c9', 'c2', 'c3', 'c5', 'c6'];
   dataSource: any;
   total: any;
   form: FormGroup;
@@ -48,7 +45,7 @@ export class ConsolidacaoCartaoComponent implements OnInit {
         this.totalDesc = r.resultado.itens.total_valor_conciliado;
       }
     };
-    this.crud.post_api('conciliacaoCartao', fcall, '' );
+    this.crud.post_api('conciliacaoDinheiro', fcall, '' );
   }
 
   adicionarbanco() {
@@ -74,8 +71,7 @@ export class ConsolidacaoCartaoComponent implements OnInit {
         this.conciliacaoCartao();
       }
     };
-    this.crud.post_api('lancarConsolidacaoCartao', fcall,
+    this.crud.post_api('lancarConsolidacaoDinheiro', fcall,
 { id_pagamento: element.id, porc: porcentagem, operador: this.servico.getDadosEmpresa().operador.nome } );
   }
-
 }

@@ -250,7 +250,7 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label>Qnt de retirada do estoque</mat-label>
-                            <input matInput placeholder="Quantidade" type="number" formControlName="quantidade_retira">
+                            <input title="Quantidade de unidades que será retirado por saida" matInput placeholder="Quantidade" type="number" formControlName="quantidade_retira">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
@@ -260,7 +260,17 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label> Unidades caixa </mat-label>
-                            <input matInput placeholder="Quantidade" type="number" formControlName="un_caixa">
+                            <input title="Quantidade de unidades que vem em uma caixa" matInput placeholder="Quantidade" type="number" formControlName="un_caixa">
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+
+                    </mat-list-item>
+
+                    <mat-list-item style="margin-top: 29px;">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label> Unidades pacote </mat-label>
+                            <input title="Quantidade de unidades de caixas quem vem em um pacote" matInput placeholder="Quantidade" type="number" formControlName="un_caixa_pacote">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 

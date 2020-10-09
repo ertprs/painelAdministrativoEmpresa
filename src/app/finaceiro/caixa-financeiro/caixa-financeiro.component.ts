@@ -17,17 +17,36 @@ export class CaixaFinanceiroComponent implements OnInit {
   columnsToDisplay2 = ['c0', 'c1', 'c2', 'c3', 'c4'];
   dataSource = [];
   dataSource2 = [];
+  totalPagamento = 0;
+  dataCaixa = '';
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
 
   ngOnInit(): void {
-    this.dataSource = this.servapp.getDadosEmpresa().formaspagamento;
-   // this.estoque();
+    this.statusCaixa();
   }
-  estoque() {
-    this.crud.get_api('itens_estoque_det').subscribe(data => {
-        this.dataSource = data;
+  statusCaixa() {
+    this.crud.get_api('statuscaixa').subscribe(data => {
+        this.dataSource = data.resultado.itens.fps;
+        this.totalPagamento = data.resultado.itens.total_pagamento;
+        this.dataCaixa = data.resultado.itens.dataCaixa;
     });
 }
+
+
+lancarCaixa() {
+  const fcall = () => {
+    console.log('callback');
+    const r = this.servapp.getRespostaApi();
+    console.log(r);
+    if (r.erro === true) {
+      this.servapp.mostrarMensagem(r.resultado.mensagem);
+    } else {
+      this.servapp.mostrarMensagem(r.resultado.mensagem);
+    }
+  };
+  this.crud.post_api('lancarCaixa', fcall, this.dataSource );
+}
+
 }
