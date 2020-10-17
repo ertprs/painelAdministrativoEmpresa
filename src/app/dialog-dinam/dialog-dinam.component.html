@@ -23,15 +23,25 @@
 
 
 
-<div *ngIf="data.nomeDialog === 'form_cidade'" [formGroup]="form">
+<div *ngIf="data.nomeDialog === 'form_cidade'" [formGroup]="form" style="display: grid;">
     <mat-form-field>
         <mat-label>Nome cidade</mat-label>
         <input matInput placeholder="Ex. Cidade" formControlName="cidade">
     </mat-form-field>
 
-    <mat-form-field>
+    <!--<mat-form-field>
         <mat-label>Id Cidade</mat-label>
         <input matInput placeholder="Ex. id cidade" formControlName="id_cidade">
+    </mat-form-field>-->
+
+    <mat-form-field>
+        <mat-label>Latitude</mat-label>
+        <input matInput placeholder="-999999999" formControlName="latitude">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Longetude</mat-label>
+        <input matInput placeholder="-999999999" formControlName="longetude">
     </mat-form-field>
 
     <mat-form-field>

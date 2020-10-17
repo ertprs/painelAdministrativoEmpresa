@@ -1,3 +1,4 @@
+import { EstoqueLogisticaComponent } from './estoque/estoque-logistica/estoque-logistica.component';
 import { DataRetroativaComponent } from './delivery/paineldelivery/data-retroativa/data-retroativa.component';
 import { HistoricoCaixaComponent } from './painel2-relatorio/historico-caixa/historico-caixa.component';
 import { ConsolidacaoDinheiroComponent } from './finaceiro/consolidacao-dinheiro/consolidacao-dinheiro.component';
@@ -101,6 +102,7 @@ const routes: Routes = [
             { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
             { path: 'estoque-motoboy', component: EstoqueMotoboyComponent, canActivate: [GuardaConfigSistemaService] },
             { path: 'lista-motoboys', component: ListaMotoboysComponent, canActivate: [GuardaConfigSistemaService] },
+            { path: 'logistica', component: EstoqueLogisticaComponent, canActivate: [GuardaConfigSistemaService] },
       ] },
 
 

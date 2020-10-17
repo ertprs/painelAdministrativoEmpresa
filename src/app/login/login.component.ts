@@ -53,7 +53,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.servico.setDadosLogin(r.resultado);
         this.crud.consultaSistema();
-        this.router.navigate(['/inicio']);
+        // this.router.navigate(['/inicio']);
+        this.router.navigate(['/painelpedidos/pedidos']);
         this.auth.mostrarMenu.emit(true);
       }
     };

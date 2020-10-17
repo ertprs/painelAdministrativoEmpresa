@@ -169,6 +169,11 @@ import { HistoricoCaixaComponent } from './painel2-relatorio/historico-caixa/his
 import { SenhaOperadorDesfazerComponent } from './senha-operador-desfazer/senha-operador-desfazer.component';
 import { InserirSenhaComponent } from './senha-operador-desfazer/inserir-senha/inserir-senha.component';
 import { DataRetroativaComponent } from './delivery/paineldelivery/data-retroativa/data-retroativa.component';
+import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
+import { EstoqueLogisticaComponent } from './estoque/estoque-logistica/estoque-logistica.component';
+import { TelaUmComponent } from './estoque/estoque-logistica/tela-um/tela-um.component';
+import { TelaDoisComponent } from './estoque/estoque-logistica/tela-dois/tela-dois.component';
+import { TabelaPedidosComponent } from './componentes/tabela-pedidos/tabela-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -295,6 +300,11 @@ import { DataRetroativaComponent } from './delivery/paineldelivery/data-retroati
     SenhaOperadorDesfazerComponent,
     InserirSenhaComponent,
     DataRetroativaComponent,
+    OrganizacaoEntregadorComponent,
+    EstoqueLogisticaComponent,
+    TelaUmComponent,
+    TelaDoisComponent,
+    TabelaPedidosComponent,
   ],
   imports: [
     BrowserModule,

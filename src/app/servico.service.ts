@@ -40,6 +40,7 @@ export class ServicoService {
   private cardapioDigtal = '0';
   private statusDelivery = false;
   private statusSistemaDelivery = false;
+  private fSistema = [];
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService) { }
@@ -295,5 +296,39 @@ export class ServicoService {
 
 
 
+  funcoesSistema() {
+    this.fSistema = [
+      {id: '1', nome: 'Pedidos', status: false},
+      {id: '2', nome: 'Meus clientes', status: false},
+      {id: '3', nome: 'Entregas', status: false},
+      {id: '4', nome: 'Mapa', status: false},
+      {id: '5', nome: 'Notificações', status: false},
+      {id: '6', nome: 'Estoque', status: false},
+      {id: '7', nome: 'Relatórios', status: false},
+      {id: '8', nome: 'Financeiro', status: false},
+      {id: '9', nome: 'Fechar caixa', status: false},
+
+      {id: '11', nome: 'Configurações', status: false},
+      {id: '12', nome: 'Configurações de cidades', status: false},
+      {id: '13', nome: 'Configurações de bairros', status: false},
+      {id: '14', nome: 'Configurações de galeria', status: false},
+      {id: '15', nome: 'Configurações de motoboy', status: false},
+      {id: '16', nome: 'Configurações de formas de pagamento', status: false},
+      {id: '17', nome: 'Configurações de itens de pagamento', status: false},
+      {id: '18', nome: 'Configurações de bancos', status: false},
+      {id: '19', nome: 'Configurações de usuários app', status: false},
+      {id: '20', nome: 'Configurações de usuários sistema', status: false},
+      {id: '21', nome: 'Configurações de cupons', status: false},
+      {id: '22', nome: 'Configurações de notificações', status: false},
+      {id: '23', nome: 'Configurações de pagamento online', status: false},
+
+      {id: '24', nome: 'Configurações de cardápio', status: false},
+      {id: '25', nome: 'Configurações de funcionamento delivery', status: false},
+      {id: '26', nome: 'Configurações de perfil', status: false},
+      {id: '27', nome: 'Relatórios em gráficos', status: false},
+      {id: '28', nome: 'Iniciar sistema com data retroativa', status: false},
+
+    ];
+  }
 
 }

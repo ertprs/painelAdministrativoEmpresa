@@ -1,3 +1,5 @@
+import { CrudServicoService } from 'src/app/crud-servico.service';
+import { ServicoService } from 'src/app/servico.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -10,24 +12,15 @@ export class SelecionarMotoboyEntregaComponent implements OnInit {
 
   itens: any;
   itemSelecionado: any;
-
+  pedido: any;
   constructor(public dialogRef: MatDialogRef<SelecionarMotoboyEntregaComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private servico: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
-    this.itens = [
-      {id: '1', nome: 'Entregador', selecionado: false},
-      {id: '2', nome: 'Entregador', selecionado: false},
-      {id: '3', nome: 'Entregador', selecionado: false},
-      {id: '4', nome: 'Entregador', selecionado: false},
-      {id: '5', nome: 'Entregador', selecionado: false},
-      {id: '6', nome: 'Entregador', selecionado: false},
-      {id: '7', nome: 'Entregador', selecionado: false},
-      {id: '8', nome: 'Entregador', selecionado: false},
-      {id: '9', nome: 'Entregador', selecionado: false},
-      {id: '10', nome: 'Entregador', selecionado: false},
-      {id: '11', nome: 'Entregador', selecionado: false},
-    ];
+    this.pedido = this.data;
+    this.itens = this.servico.getListaEntregador();
+    console.log(this.data );
+    /* PAREEEEI AQUI */
   }
 
   onClickItem(item) {
@@ -40,8 +33,14 @@ export class SelecionarMotoboyEntregaComponent implements OnInit {
 
   onClickConfirmar() {
     // Enviar a entrega ao motoboy
-    alert('Envia entrega ao motoboy');
-    this.dialogRef.close();
+    const accallback = () => {
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.dialogRef.close();
+      }
+    };
+    this.crud.post_api('enviaEntregaEntregador', accallback, {idEntregador: this.itemSelecionado, idPedido: this.pedido});
   }
 
 }

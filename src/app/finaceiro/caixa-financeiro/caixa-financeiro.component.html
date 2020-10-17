@@ -1,7 +1,12 @@
 <div class="gii">
-    <button mat-raised-button color="accent" style="margin: 10px;" (click)="lancarCaixa()">Fechar caixa</button>
+    <button [disabled]="statusCaixaFechado" mat-raised-button color="accent" style="margin: 10px;" (click)="lancarCaixa()">Fechar caixa</button>
 
-    <div>
+    <div style="display: grid;
+    align-items: center;
+    background: #4caf5052;
+    padding: 10px;
+    color: #2d6c2f;
+    font-size: 17px;">
         Data {{ dataCaixa }}
     </div>
 </div>

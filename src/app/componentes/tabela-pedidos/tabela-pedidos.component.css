@@ -1,0 +1,88 @@
+table {
+    width: 100%;
+}
+
+.spstatusdli {
+    padding: 9px;
+    border-radius: 11px;
+    color: white;
+}
+
+.bts {
+    font-size: 11px;
+}
+
+.op {
+    background-color: #8BC34A;
+}
+
+.cl {
+    background: #F44336;
+}
+
+.spanaceito {
+    background: #03a9f457;
+    padding: 4px;
+    border: 1px solid #03A9F4;
+    border-radius: 6px;
+    color: #3F51B5;
+    animation-name: example;
+}
+
+.spancaminho {
+    background: #4caf5000;
+    padding: 4px;
+    border: 1px solid #4CAF50;
+    border-radius: 6px;
+    color: #4CAF50;
+}
+
+.spancancelado {
+    background: #e91e632b;
+    padding: 4px;
+    border: 1px solid #fb0000;
+    border-radius: 6px;
+    color: #fb0000;
+}
+
+.spanentregue {
+    background: #4caf502e;
+    padding: 4px;
+    border: 1px solid #4CAF50;
+    border-radius: 6px;
+    color: #39843c;
+}
+
+.spanrejeitado {
+    background: #00000021;
+    padding: 4px;
+    border: 1px solid #0000008f;
+    border-radius: 6px;
+    color: #000000d1;
+}
+
+.spanpendente {
+    background: #f2f60449;
+    padding: 4px;
+    border: 1px solid #a29b0e;
+    border-radius: 6px;
+    color: #969214;
+    animation-name: example;
+}
+
+.spanpronto {
+    background: #4caf5000;
+    padding: 4px;
+    border: 1px solid #4CAF50;
+    border-radius: 6px;
+    color: #4CAF50;
+}
+
+@keyframes example {
+    from {
+        background-color: red;
+    }
+    to {
+        background-color: yellow;
+    }
+}

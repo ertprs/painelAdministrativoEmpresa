@@ -92,6 +92,8 @@ f1(form) {
 
 removerItem(item) {
 
+  item.idendereco = item.id;
+
   const accallback = () => {
     console.log('callback');
     const r = this.servico.getRespostaApi();
@@ -112,8 +114,8 @@ onClickBtMenu(element) {
 
 onClickCadastraPedido(item: any) {
   this.sercard.setCadastroClienteLista(item);
-  // this.router.navigate(['/painelpedidos/cadastro-pedido']);
-  this.router.navigate(['/inicio']);
+  this.router.navigate(['/painelpedidos/cadastro-pedido']);
+  // this.router.navigate(['/inicio']);
 }
 
 

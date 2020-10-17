@@ -75,10 +75,13 @@ export class PedidosService {
       });
   }
 
-  consultaTodosPedidos() {
+  consultaTodosPedidos(filtro: any) {
+    console.log(filtro);
     this.statusloadpedidos = true;
     console.log('#consultaTodosPedidos');
-    this.crud.get_api('consulta_todos_pedidos&id=' + this.servapp.getDadosEmpresa().id).subscribe(data => {
+    this.crud.get_api('consulta_todos_pedidos&id=' + this.servapp.getDadosEmpresa().id +
+    '&datai=' + filtro.datai +
+     '&dataf=' + filtro.dataf).subscribe(data => {
       console.log(data);
       this.qntPedidosEmaberto = data.qnt_pedidos_pendente;
       this.statusloadpedidos = false;
@@ -176,6 +179,7 @@ export class PedidosService {
   getPedidos() {
     return this.pedidos;
   }
+  
 
   setPedido(pedido: any) {
     this.pedido = pedido;

@@ -6,10 +6,7 @@
 
 
         <mat-nav-list>
-            <a mat-list-item [routerLink]="['/inicio']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                <mat-icon>public</mat-icon>
-                Início
-            </a>
+
 
             <a mat-list-item [routerLink]="['/painelpedidos/pedidos']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="O estabalecimento está fechado">info</mat-icon>
@@ -17,15 +14,22 @@
                 <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
             </a>
 
+            <a mat-list-item routerLink="/meusclientes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <mat-icon>perm_identity</mat-icon>
+                Meus clientes
+            </a>
+
             <a mat-list-item routerLink="/entregas" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>view_headline</mat-icon>
                 Entregas
             </a>
 
-            <a mat-list-item routerLink="/meusclientes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                <mat-icon>perm_identity</mat-icon>
-                Meus clientes
+
+            <a mat-list-item [routerLink]="['/inicio']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <mat-icon>public</mat-icon>
+                Mapa
             </a>
+
 
             <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>info</mat-icon>

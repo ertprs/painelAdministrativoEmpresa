@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
@@ -17,7 +18,8 @@ export class BairrosSistemaComponent implements OnInit {
   bairros: [];
   itemSelecionado: any;
 
-  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
+  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.f5();
@@ -73,7 +75,8 @@ editar(form) {
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
-      this.itens = r.resultado;
+      // this.itens = r.resultado;
+      this.route.navigate(['/painel']);
     }
     console.log(r);
   };
@@ -87,10 +90,14 @@ f1(form) {
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
-      this.itens = r.resultado;
+      // this.itens = r.resultado;
+      // this.itemSelecionado;
+      this.route.navigate(['/painel']);
     }
     console.log(r);
   };
+  console.log(this.itemSelecionado);
+  form.cidade_id = this.itemSelecionado.id;
   this.crud.post_api('add_bairro_sistema', accallback, form);
 }
 
@@ -107,6 +114,29 @@ removerItem(item) {
   };
   this.crud.post_api('rem_bairro_sistema', accallback, item);
 
+}
+
+getLocation(item) {
+  const accallback = () => {
+    console.log('callback');
+    const r = this.servico.getRespostaApi();
+    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+      this.servico.mostrarMensagem(r.detalhes);
+      console.log(this.itemSelecionado);
+      let cont = 0;
+      this.itemSelecionado.bairros.forEach(element => {
+          console.log(element);
+          if (element.id === item.id) {
+          this.itemSelecionado.bairros[cont].lat = r.resultado.itens.lat;
+          this.itemSelecionado.bairros[cont].lng = r.resultado.itens.lng;
+      }
+          cont++;
+
+      });
+
+    }
+  };
+  this.crud.post_api('get_coord_bairro', accallback, {cidade: this.itemSelecionado.nome, bairroid: item.id, bairro: item.nome});
 }
 
 

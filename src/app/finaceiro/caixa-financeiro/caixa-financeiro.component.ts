@@ -19,6 +19,7 @@ export class CaixaFinanceiroComponent implements OnInit {
   dataSource2 = [];
   totalPagamento = 0;
   dataCaixa = '';
+  statusCaixaFechado = '';
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
@@ -31,6 +32,7 @@ export class CaixaFinanceiroComponent implements OnInit {
         this.dataSource = data.resultado.itens.fps;
         this.totalPagamento = data.resultado.itens.total_pagamento;
         this.dataCaixa = data.resultado.itens.dataCaixa;
+        this.statusCaixaFechado = data.resultado.itens.status_caixa;
     });
 }
 

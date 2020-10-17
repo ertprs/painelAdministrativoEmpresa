@@ -12,17 +12,21 @@ mat-grid-tile {
 }
 
 .conteudo {
-    background: #0c0c0c;
-    height: 87vh;
-    padding-top: 5rem;
+    background: #3F51B5;
+    ;
+    height: 100vh;
+    display: grid;
 }
 
 .aform {
     text-align: -webkit-center;
-    background: #1a1a1b;
-    width: 420px;
+    background: #ffffff;
+    width: 320px;
     margin: auto;
-    color: #bdbcbc;
+    border-radius: 34px;
+    -webkit-box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+    -moz-box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+    box-shadow: 1px 2px 13px rgb(0 0 0 / 77%);
 }
 
 .bt1 {
@@ -55,19 +59,19 @@ a {
 
 mat-form-field.mat-form-field {
     font-size: 16px;
-    color: #bdbcbc;
+    color: #000000;
 }
 
 mat-label {
-    color: #bdbcbc;
+    color: #000000;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: rgb(97, 97, 97)!important;
+    color: rgb(0, 0, 0)!important;
 }
 
 ::placeholder {
-    color: rgb(66, 66, 66);
+    color: rgb(0, 0, 0);
     opacity: 1;
     /* Firefox */
 }
@@ -76,7 +80,7 @@ mat-label {
 /* Cor de fundo do autocomplete */
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #1a1a1b inset;
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset;
 }
 
 

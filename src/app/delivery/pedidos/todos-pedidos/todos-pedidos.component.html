@@ -1,114 +1,16 @@
-<div style="padding: 20px;">
-    <mat-form-field class="f-cli" style="margin-left: 15px;">
-        <mat-label>Filtro</mat-label>
-        <input matInput type="date">
+<div style="margin-left: 30px;margin-top: 5px;">
+    <mat-form-field class="example-full-width">
+        <mat-label> Data início </mat-label>
+        <input matInput type="date" #dfi>
     </mat-form-field>
-    <div style="height: 5px;">
+    <mat-form-field class="example-full-width">
+        <mat-label> Data final </mat-label>
+        <input matInput type="date" #dff>
+    </mat-form-field>
 
-        <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
-    </div>
-    <table mat-table [dataSource]="servpedidos.getTodosPedidos()" class="mat-elevation-z8">
-
-        <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="botoes">
-            <th mat-header-cell *matHeaderCellDef> Opções </th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" (click)="onClickPedido(element)">
-        <mat-icon>menu</mat-icon>
+    <button mat-icon-button color="primary" (click)="this.servpedidos.consultaTodosPedidos({datai: dfi.value, dataf: dff.value})">
+        <mat-icon>search</mat-icon>
       </button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="onClickverPedido()">Ver pedido</button>
-                    <button *ngIf="element.status_pedido == 0" (click)="servpedidos.onClickAttStatusPedido(1, element.id, element)" mat-menu-item>Aceitar pedido</button>
-                    <button *ngIf="element.status_pedido == 1 && element.tipopedido !== 'retirada'" (click)="servpedidos.onClickAttStatusPedido(2, element.id, element)" mat-menu-item>Pronto para sair</button>
-                    <button *ngIf="element.status_pedido == 1 && element.status_motoboy != '2'" (click)="servpedidos.onClickAttStatusPedido(3, element.id, element)" mat-menu-item>Pronto para retirada</button>
-
-                    <button *ngIf="element.status_pedido == 2 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>A Caminho</button>
-                    <button *ngIf="element.status_pedido == 4" (click)="servpedidos.onClickAttStatusPedido(5, element.id, element)" mat-menu-item>Entregue</button>
-                    <button *ngIf="element.status_pedido == 6" (click)="servpedidos.onClickAttStatusPedido(6, element.id, element)" mat-menu-item>Concluído</button>
-                </mat-menu>
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status. </th>
-            <td mat-cell *matCellDef="let element">
-                <span [ngClass]="{'spanpendente':element.status_pedido === '0','spanaceito':element.status_pedido === '1','spanpronto':element.status_pedido === '3','spancaminho':element.status_pedido === '4','spanentregue':element.status_pedido === '5','spancancelado':element.status_pedido === '10'}">
-              {{element.status_texto}}
-            </span>
-            </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="nome">
-            <th mat-header-cell *matHeaderCellDef> Nome cliente </th>
-            <td mat-cell *matCellDef="let element"> {{element.dadoscliente.nome}} </td>
-        </ng-container>
-
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="tipo">
-            <th mat-header-cell *matHeaderCellDef> Tipo </th>
-            <td mat-cell *matCellDef="let element"> {{element.tipopedido}} </td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="formapagamento">
-            <th mat-header-cell *matHeaderCellDef> Metodo pagamento </th>
-            <td mat-cell *matCellDef="let element"> {{element.formapagamento}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="total">
-            <th mat-header-cell *matHeaderCellDef> Total </th>
-            <td mat-cell *matCellDef="let element"> {{element.total | currency:'BRL':true}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="info">
-            <th mat-header-cell *matHeaderCellDef> Data </th>
-            <td mat-cell *matCellDef="let element"> {{element.info}} </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="statusmotoboy">
-            <th mat-header-cell *matHeaderCellDef> Status Motoboys </th>
-            <td mat-cell *matCellDef="let element">
-                <div style="width: 100%; display: flex;">
-
-                    <button mat-button color="primary" *ngIf="element.motoboy && element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: {{element.motoboy.telefone}}">
-                    <img [lazyLoad]="element.motoboy.imagem" width="40px">
-                    Entrega aceita
-              </button>
-
-                    <button class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="servpedidos.solicitaMotoboy(element.id)" mat-stroked-button>Solicitar motoboy</button>
-
-                    <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1" matTooltip="Aguardando motoboy aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
-
-                    <button (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id)" matTooltip="Cancelar solicitação de motoboy" mat-icon-button color="warn" *ngIf="element.status_motoboy == 1">
-      <mat-icon>cancel</mat-icon>
-    </button>
-
-                </div>
-            </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> Pedido </th>
-            <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
-        </ng-container>
-
-
-
-
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
 
 </div>
+<app-tabela-pedidos [pedidos]="servpedidos.getTodosPedidos()"></app-tabela-pedidos>

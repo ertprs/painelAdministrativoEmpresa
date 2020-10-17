@@ -29,6 +29,7 @@ export class FormBairroComponent implements OnInit {
     } else {
       console.log('Form editar');
       this.form = this.fb.group({
+        id: [this.data.item.id],
         bairro: [this.data.item.nome],
         longetude: [this.data.item.lng],
         latitude: [this.data.item.lat],

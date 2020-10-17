@@ -1,10 +1,10 @@
 <mat-tab-group [formGroup]="form" [selectedIndex]="indexTabGroup">
 
-    <mat-tab label="Clientes">
+    <!--<mat-tab label="Clientes">
         <div>
             <app-clientes-detalhes></app-clientes-detalhes>
         </div>
-    </mat-tab>
+    </mat-tab>-->
 
     <mat-tab label="Dados cliente">
 
@@ -82,7 +82,7 @@
         </div>
 
 
-    </mat-tab>
+    </mat-tab>-->
 
 
     <mat-tab label="Catálogo">
@@ -134,14 +134,12 @@
 
                 <mat-chip-list style="text-align: center;">
                     <mat-chip (click)="openBottomSheet('canalpedido')">Origem do pedido</mat-chip>
-
                     <mat-chip (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
+                    <mat-chip (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
                 </mat-chip-list>
 
                 <div style="border-bottom: 1px solid #ececec;" [formGroup]="form">
-                    <div class="qued">
-                        <mat-chip (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
-                    </div>
+
                     <div class="boxfps" *ngFor="let item of servcard.getCarrinho().formasPagamento; let i = index;trackBy:trackByIdx">
 
                         <div class="icdel">
@@ -184,17 +182,17 @@
                 <div class="vcb">
                     <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
                         <mat-label>Troco para</mat-label>
-                        <input formControlName="troco" matInput placeholder="R$0,00" type="name">
+                        <input formControlName="troco" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
                     </mat-form-field>
 
                     <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
                         <mat-label>Desconto</mat-label>
-                        <input formControlName="desconto" matInput placeholder="R$0,00" type="number">
+                        <input formControlName="desconto" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
                     </mat-form-field>
 
                     <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
                         <mat-label>Taxa extra</mat-label>
-                        <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number">
+                        <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number" mask="separator.2" thousandSeparator=".">
                     </mat-form-field>
                 </div>
 

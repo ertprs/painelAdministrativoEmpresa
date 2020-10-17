@@ -42,7 +42,7 @@ export class CadastroPedidoService {
     total: 0,
     total_pedido: 0,
     taxaentrega: 0,
-    taxaextra: 0,
+    taxaextra: '',
     tipopedido: 'false',
     endereco: {
       rua: '',

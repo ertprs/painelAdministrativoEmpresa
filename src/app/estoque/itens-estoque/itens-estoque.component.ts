@@ -72,7 +72,7 @@ editar(element): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-   
+
       const accallback = () => {
         console.log('callback');
         const r = this.servapp.getRespostaApi();
