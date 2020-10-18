@@ -1,1 +1,32 @@
-<p>organizacao-entregador works!</p>
+<div class="g">
+    <div class="c1">
+        <mat-calendar [selected]="selectedDate" [startAt]="startAt" (selectedChange)="onSelect($event)"></mat-calendar>
+    </div>
+
+    <div class="c2">
+        <div class="ev">
+            <div>Organização de entregadores</div>
+            <div>
+                <button mat-icon-button (click)="addEvento()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+
+
+        </div>
+        <div class="i" *ngFor="let item of itens">
+            <div>
+                <div> <b> {{ item.nome }} </b> </div>
+                <div> Hora início: {{ item.hora_inicio }} </div>
+                <div> Hora fim: {{ item.hora_fim }} </div>
+                <div> {{ item.descricao }} </div>
+            </div>
+            <div>
+                <button mat-icon-button (click)="removerItem(item)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+            </div>
+
+        </div>
+    </div>
+</div>

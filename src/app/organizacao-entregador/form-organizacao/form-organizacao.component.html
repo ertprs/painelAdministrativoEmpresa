@@ -1,0 +1,38 @@
+<div style="display: grid;" [formGroup]="form">
+
+    <mat-form-field appearance="fill">
+        <mat-label> Entregador </mat-label>
+        <mat-select formControlName="entregador">
+            <mat-option [value]="item.id" *ngFor="let item of entregadores">
+                {{ item.nome }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr;">
+
+
+
+        <mat-form-field>
+            <mat-label> Hora início </mat-label>
+            <input matInput type="time" formControlName="horai">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Hora fim </mat-label>
+            <input matInput type="time" formControlName="horaf">
+        </mat-form-field>
+
+    </div>
+
+    <mat-form-field>
+        <mat-label> Descrição </mat-label>
+        <input matInput type="text" formControlName="descricao">
+    </mat-form-field>
+
+</div>
+
+<div>
+    <button mat-button color="accent" mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" (click)="confirmar()">Confirmar</button>
+</div>

@@ -174,6 +174,8 @@ import { EstoqueLogisticaComponent } from './estoque/estoque-logistica/estoque-l
 import { TelaUmComponent } from './estoque/estoque-logistica/tela-um/tela-um.component';
 import { TelaDoisComponent } from './estoque/estoque-logistica/tela-dois/tela-dois.component';
 import { TabelaPedidosComponent } from './componentes/tabela-pedidos/tabela-pedidos.component';
+import { ApiCalendarioComponent } from './api-calendario/api-calendario.component';
+import { FormOrganizacaoComponent } from './organizacao-entregador/form-organizacao/form-organizacao.component';
 
 @NgModule({
   declarations: [
@@ -305,6 +307,8 @@ import { TabelaPedidosComponent } from './componentes/tabela-pedidos/tabela-pedi
     TelaUmComponent,
     TelaDoisComponent,
     TabelaPedidosComponent,
+    ApiCalendarioComponent,
+    FormOrganizacaoComponent,
   ],
   imports: [
     BrowserModule,

@@ -57,7 +57,7 @@
 
     <ng-container matColumnDef="c0">
         <th mat-header-cell *matHeaderCellDef> Cliente. </th>
-        <td mat-cell *matCellDef="let element"> {{element.dadoscliente.nome}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.cliente.nome}} </td>
     </ng-container>
 
     <ng-container matColumnDef="c1">
@@ -77,13 +77,13 @@
     <ng-container matColumnDef="c3">
         <th mat-header-cell *matHeaderCellDef> Dívida. </th>
         <td mat-cell *matCellDef="let element"> <span style="color: red;">
-                {{ element.valor_devedor | currency:'BRL':true }} </span> </td>
+                {{ element.pedido.valor_devedor | currency:'BRL':true }} </span> </td>
     </ng-container>
 
     <ng-container matColumnDef="c4">
         <th mat-header-cell *matHeaderCellDef> Valor pedido. </th>
         <td mat-cell *matCellDef="let element"> <span style="color: rgb(67, 67, 67);">
-                {{ element.total | currency:'BRL':true }} </span> </td>
+                {{ element.pedido.total | currency:'BRL':true }} </span> </td>
     </ng-container>
 
     <ng-container matColumnDef="c5">

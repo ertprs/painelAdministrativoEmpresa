@@ -26,8 +26,8 @@ export class PagarDividaComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);
     this.form = this.fb.group({
-      id_cliente: [this.data.item.dadoscliente.id],
-      id_pedido: [this.data.item.id],
+      id_cliente: [this.data.item.cliente.id],
+      id_pedido: [this.data.item.pedido.id],
       valor_pag: [null],
       formapagamento: [null],
       itemPagamento: [null],
@@ -82,7 +82,7 @@ export class PagarDividaComponent implements OnInit {
       }
       console.log(r);
     };
-    this.crud.post_api('consultaPagamentosFiadoPorIdPedido', accallback, {idPedido: this.data.item.id});
+    this.crud.post_api('consultaPagamentosFiadoPorIdPedido', accallback, {idPedido: this.data.item.pedido.id});
   }
 
 }

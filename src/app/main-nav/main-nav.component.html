@@ -38,6 +38,9 @@
             </a>
 
 
+
+
+
             <a mat-list-item routerLink="/estoque/itens-estoque">
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
                 <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">book</mat-icon>

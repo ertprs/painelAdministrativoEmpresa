@@ -1,0 +1,38 @@
+.g {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.c1 {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+.c2 {
+    height: 90vh;
+    overflow: auto;
+}
+
+.i {
+    background: #f1f1f1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #505050;
+    border: 1px solid #dddee0;
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+}
+
+.ev {
+    padding: 10px;
+    font-size: 20px;
+    border-bottom: 1px solid #dfdfdf;
+    background: #009688;
+    color: #ffffff;
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    align-items: center;
+}
