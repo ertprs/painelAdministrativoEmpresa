@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PedidosService } from '../pedidos.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicoService } from 'src/app/servico.service';
+import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-painel-pedidos',
@@ -15,7 +16,7 @@ export class PainelPedidosComponent implements OnInit {
 
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
-              public servapp: ServicoService) { }
+              public servapp: ServicoService, public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

@@ -1,8 +1,9 @@
+import { MatDialog } from '@angular/material/dialog';
 import { FormOrganizacaoComponent } from './form-organizacao/form-organizacao.component';
 import { CrudServicoService } from './../crud-servico.service';
 import { ServicoService } from './../servico.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-organizacao-entregador',
@@ -22,9 +23,15 @@ export class OrganizacaoEntregadorComponent implements OnInit {
 
   delsucData: any;
 
-  constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog) { }
+  btRem = true;
+  btAdd = true;
+
+  constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
+              private us: UsuariosAdmService ) { }
 
   ngOnInit(): void {
+    this.btAdd = this.us.getPermissoessuario()[9].children[9].status;
+    this.btRem = this.us.getPermissoessuario()[9].children[10].status;
     this.f1();
   }
 

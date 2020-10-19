@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ServicoService } from '../servico.service';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
               public servico: ServicoService,
               private router: Router,
               private auth: AuthService,
+              private us: UsuariosAdmService
               ) { }
 
   ngOnInit(): void {
@@ -55,6 +57,8 @@ export class LoginComponent implements OnInit {
         this.crud.consultaSistema();
         // this.router.navigate(['/inicio']);
         this.router.navigate(['/painelpedidos/pedidos']);
+        this.us.initPermissao(r.resultado.dados_conta.operador.permissoes_status_todas,
+          r.resultado.dados_conta.operador.permissoes);
         this.auth.mostrarMenu.emit(true);
       }
     };

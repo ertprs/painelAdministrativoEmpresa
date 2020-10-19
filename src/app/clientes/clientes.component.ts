@@ -7,6 +7,7 @@ import { DialogCadastroClienteComponent } from '../dialog-cadastro-cliente/dialo
 import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
 import { Router } from '@angular/router';
+import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-clientes',
@@ -18,12 +19,20 @@ export class ClientesComponent implements OnInit {
   displayedColumns: string[] = ['op', 'nome', 'telefone', 'aniversario', 'tipo', 'info', 'add'];
   itens = [];
   itemSelecionado: any;
+  btblista = false;
+  addCli = false;
+  btMenu = false;
+  btRemo = false;
   constructor(private crud: CrudServicoService, public servico: ServicoService, private dialog: MatDialog,
-              private router: Router,  private sercard: CadastroPedidoService) { }
+              private router: Router,  private sercard: CadastroPedidoService, public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
     setTimeout( () => { this.f5(); }, 600 );
-
+    console.log('Meus cliente...');
+    this.btblista = this.us.getPermissoessuario()[1].children[0].status;
+    this.addCli = this.us.getPermissoessuario()[1].children[3].status;
+    this.btMenu = this.us.getPermissoessuario()[1].children[2].status;
+    this.btRemo = this.us.getPermissoessuario()[1].children[1].status;
   }
 
   f5() {

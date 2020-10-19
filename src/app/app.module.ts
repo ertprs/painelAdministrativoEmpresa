@@ -111,6 +111,7 @@ import { RelatorioFpComponent } from './painel-relatorio/relatorio-fp/relatorio-
 import { RelatorioEntregasComponent } from './painel-relatorio/relatorio-entregas/relatorio-entregas.component';
 import { RelatorioFretesComponent } from './painel-relatorio/relatorio-fretes/relatorio-fretes.component';
 import { RelatorioFaturamentoComponent } from './painel-relatorio/relatorio-faturamento/relatorio-faturamento.component';
+// tslint:disable-next-line: max-line-length
 import { RelatorioPedidosCanceladosComponent } from './painel-relatorio/relatorio-faturamento/relatorio-pedidos-cancelados/relatorio-pedidos-cancelados.component';
 import { RelatorioClientesComponent } from './painel-relatorio/relatorio-clientes/relatorio-clientes.component';
 import { ChartsModule } from 'ng2-charts';
@@ -159,6 +160,7 @@ import { SelecionarBancoComponent } from './bancos/selecionar-banco/selecionar-b
 import { ConsolidacaoCartaoComponent } from './finaceiro/consolidacao-cartao/consolidacao-cartao.component';
 import { SelecionarMotoboyEntregaComponent } from './delivery/pedidos/selecionar-motoboy-entrega/selecionar-motoboy-entrega.component';
 import { FormItemPagamentoComponent } from './itens-pagamento/form-item-pagamento/form-item-pagamento.component';
+// tslint:disable-next-line: max-line-length
 import { SelecionarCartaoPagamentoComponent } from './delivery/pedidos/cadastro-pedido/selecionar-cartao-pagamento/selecionar-cartao-pagamento.component';
 import { UploadImagemComponent } from './upload-imagem/upload-imagem.component';
 import { VerImagemComponent } from './upload-imagem/ver-imagem/ver-imagem.component';
@@ -169,13 +171,14 @@ import { HistoricoCaixaComponent } from './painel2-relatorio/historico-caixa/his
 import { SenhaOperadorDesfazerComponent } from './senha-operador-desfazer/senha-operador-desfazer.component';
 import { InserirSenhaComponent } from './senha-operador-desfazer/inserir-senha/inserir-senha.component';
 import { DataRetroativaComponent } from './delivery/paineldelivery/data-retroativa/data-retroativa.component';
-import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 import { EstoqueLogisticaComponent } from './estoque/estoque-logistica/estoque-logistica.component';
 import { TelaUmComponent } from './estoque/estoque-logistica/tela-um/tela-um.component';
 import { TelaDoisComponent } from './estoque/estoque-logistica/tela-dois/tela-dois.component';
 import { TabelaPedidosComponent } from './componentes/tabela-pedidos/tabela-pedidos.component';
 import { ApiCalendarioComponent } from './api-calendario/api-calendario.component';
 import { FormOrganizacaoComponent } from './organizacao-entregador/form-organizacao/form-organizacao.component';
+import { UsuarioPermissoesComponent } from './usuarios/usuario-permissoes/usuario-permissoes.component';
+import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 
 @NgModule({
   declarations: [
@@ -309,6 +312,7 @@ import { FormOrganizacaoComponent } from './organizacao-entregador/form-organiza
     TabelaPedidosComponent,
     ApiCalendarioComponent,
     FormOrganizacaoComponent,
+    UsuarioPermissoesComponent,
   ],
   imports: [
     BrowserModule,

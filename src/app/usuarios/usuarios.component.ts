@@ -1,8 +1,10 @@
+import { Router } from '@angular/router';
 import { FormularioUsuarioComponent } from './formulario-usuario/formulario-usuario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ServicoService } from 'src/app/servico.service';
 import { CrudServicoService } from './../crud-servico.service';
 import { Component, OnInit } from '@angular/core';
+import { UsuariosAdmService } from './usuarios-adm.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,7 +16,8 @@ export class UsuariosComponent implements OnInit {
   displayedColumns: string[] = ['op', 'op2', 'email', 'nome', 'senha', 'tipo', 'ultimo_login', 'info', 'add'];
   itens = [];
 
-  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
+  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog, private route: Router,
+              private us: UsuariosAdmService) { }
 
   ngOnInit(): void {
     this.f5();
@@ -40,6 +43,11 @@ add(): void {
     this.f1(result) ;
     }
   });
+}
+
+confp(item) {
+  this.us.setUsuario(item);
+  this.route.navigate(['/painel/usuarios-permissoes']);
 }
 
 onClickEditar(item): void {

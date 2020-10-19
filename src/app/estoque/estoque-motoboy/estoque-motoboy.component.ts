@@ -9,6 +9,7 @@ import { CrudServicoService } from 'src/app/crud-servico.service';
 import { PedidosService } from 'src/app/delivery/pedidos/pedidos.service';
 import { DialogDinamComponent } from 'src/app/dialog-dinam/dialog-dinam.component';
 import { ServicoService } from 'src/app/servico.service';
+import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-estoque-motoboy',
@@ -25,10 +26,14 @@ export class EstoqueMotoboyComponent implements OnInit {
   form: FormGroup;
   sst = false;
 
+  btTranf = false;
+
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
-              public servapp: ServicoService, private crud: CrudServicoService, private router: Router, public servestm: EstoqueService) { }
+              public servapp: ServicoService, private crud: CrudServicoService, private router: Router, public servestm: EstoqueService, 
+              public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
+   this.btTranf = this.us.getPermissoessuario()[5].children[3].status;
    this.estoqueMotoboy();
   }
 

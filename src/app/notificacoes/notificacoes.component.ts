@@ -1,6 +1,7 @@
 import { CrudServicoService } from './../crud-servico.service';
 import { Component, OnInit } from '@angular/core';
 import { ServicoService } from '../servico.service';
+import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-notificacoes',
@@ -9,7 +10,8 @@ import { ServicoService } from '../servico.service';
 })
 export class NotificacoesComponent implements OnInit {
   notificacoesLista: any;
-  constructor(public crud: CrudServicoService, public servico: ServicoService) { }
+  btRem = true;
+  constructor(public crud: CrudServicoService, public servico: ServicoService, public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
     console.log('#notificações');
@@ -17,6 +19,7 @@ export class NotificacoesComponent implements OnInit {
     console.log(this.servico.getListaNotificacoes());
     this.notificacoesLista = this.servico.getListaNotificacoes();
     this.servico.setMostrarNost(true);
+    this.btRem = this.us.getPermissoessuario()[4].children[0].status;
   }
 
   onClickRem(item: any) {

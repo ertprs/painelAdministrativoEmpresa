@@ -1,4 +1,3 @@
-import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 import { EstoqueLogisticaComponent } from './estoque/estoque-logistica/estoque-logistica.component';
 import { DataRetroativaComponent } from './delivery/paineldelivery/data-retroativa/data-retroativa.component';
 import { HistoricoCaixaComponent } from './painel2-relatorio/historico-caixa/historico-caixa.component';
@@ -68,7 +67,8 @@ import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.co
 import { GuardaAtenticacaoService } from './guards/guarda-atenticacao.service';
 import { ConfigComponent } from './config/config.component';
 import { GuardaConfigSistemaService } from './guards/guarda-config-sistema.service';
-import { MatCalendar } from '@angular/material/datepicker';
+import { UsuarioPermissoesComponent } from './usuarios/usuario-permissoes/usuario-permissoes.component';
+import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 
 const routes: Routes = [
 
@@ -82,7 +82,6 @@ const routes: Routes = [
 
       { path: 'inicio', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
-      
 
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
@@ -124,6 +123,7 @@ const routes: Routes = [
           { path: 'avaliacoes', component: AvaliacoesComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'usuarios-permissoes', component: UsuarioPermissoesComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'bancos', component: BancosComponent, canActivate: [GuardaConfigSistemaService] },
 
           { path: 'galeria', component: GaleriaComponent, canActivate: [GuardaConfigSistemaService] },
@@ -139,7 +139,7 @@ const routes: Routes = [
           { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'data-retroativa', component: DataRetroativaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'calendario', component: OrganizacaoEntregadorComponent},
+          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent},
 
           {
             path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [

@@ -22,7 +22,7 @@
                 </mat-menu>
             </div>
 
-            <div>
+            <div *ngIf="btCardapio">
                 <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button [matMenuTriggerFor]="belowMenu" matTooltip="Configurações do cardápio"> 
                 <mat-icon aria-hidden="false">view_headline</mat-icon>  
             </button>
@@ -35,46 +35,46 @@
                 </mat-menu>
             </div>
 
-            <div>
+            <div *ngIf="btAvaliacoes">
                 <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button routerLink="/painel/avaliacoes" matTooltip="Avaliações"> 
                 <mat-icon aria-hidden="false">star</mat-icon>  
             </button>
             </div>
 
-            <div>
+            <div *ngIf="btConfigPainel">
                 <button mat-button routerLink="/painel/config" matTooltip="Configurações painel"> 
                 <mat-icon aria-hidden="false">settings</mat-icon>  
             </button>
             </div>
 
-            <div>
+            <div *ngIf="btFunDelivery">
                 <button mat-button routerLink="/painel/delivery" matTooltip="Configurações para funcionamento delivery"> 
                 <mat-icon aria-hidden="false">shopping</mat-icon> 
                  </button>
             </div>
 
-            <div>
+            <div *ngIf="btPerfil">
                 <button mat-button routerLink="/painel/perfil" matTooltip="Perfil">
                 <mat-icon>store</mat-icon>
             </button>
             </div>
 
-            <div routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
+            <div *ngIf="btrelato" routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
                 <button mat-button routerLink="/painel/painel-relatorio" matTooltip="Relatórios">
                     <mat-icon>assignment</mat-icon>
                 </button>
 
             </div>
 
-            <div routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
+            <div *ngIf="btDataret" routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
                 <button mat-button routerLink="/painel/data-retroativa" matTooltip="Iniciar sistema com data retroativa">
                     <mat-icon>timer</mat-icon>
                 </button>
 
             </div>
 
-            <div routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
-                <button mat-button routerLink="/painel/calendario" matTooltip="Organização Entregador">
+            <div *ngIf="btOrg" routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
+                <button mat-button routerLink="/painel/organizacao-entregador" matTooltip="Organização Entregador">
                     <mat-icon>calendar_today</mat-icon>
                 </button>
 

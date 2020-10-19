@@ -4,6 +4,7 @@ import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TelaDoisComponent } from './tela-dois/tela-dois.component';
+import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-estoque-logistica',
@@ -17,9 +18,15 @@ export class EstoqueLogisticaComponent implements OnInit {
   dataSource = [];
   dadosItemLogista: any;
 
-  constructor(public servapp: ServicoService, private crud: CrudServicoService, public dialog: MatDialog) { }
+  btAddLog = true;
+  btAdd = true;
+
+  constructor(public servapp: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
+              public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
+  this.btAdd = this.us.getPermissoessuario()[5].children[4].status;
+  this.btAddLog = this.us.getPermissoessuario()[5].children[5].status;
    this.f1();
   }
 

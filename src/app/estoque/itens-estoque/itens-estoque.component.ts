@@ -11,6 +11,7 @@ import { PedidosService } from 'src/app/delivery/pedidos/pedidos.service';
 import { DialogDinamComponent } from 'src/app/dialog-dinam/dialog-dinam.component';
 import { ServicoService } from 'src/app/servico.service';
 import { FormEstoqueComponent } from '../form-estoque/form-estoque.component';
+import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-itens-estoque',
@@ -34,10 +35,14 @@ export class ItensEstoqueComponent implements OnInit {
   form: FormGroup;
   sst = false;
 
+  btEnviar = true;
+  btAdd = true;
+
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
-              public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
+              public servapp: ServicoService, private crud: CrudServicoService, private router: Router, public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
+   this.btEnviar = this.us.getPermissoessuario()[5].children[0].status;
    this.estoque();
   }
   estoque() {

@@ -4,16 +4,17 @@
 
         <div style="display: flex;">
             <div style="margin-right: 30px;" [formGroup]="form">
-                <mat-slide-toggle [disabled]="!servapp.getStatusSistemaDelivery()" color="primary" style="margin-top: 5px;" (click)="onClickStatusDelivery()" formControlName="statusdelivery">
+
+                <mat-slide-toggle *ngIf="us.getPermissoessuario()[0].children[0].status" [disabled]="!servapp.getStatusSistemaDelivery()" color="primary" style="margin-top: 5px;" (click)="onClickStatusDelivery()" formControlName="statusdelivery">
                     <span class="spstatusdli op" *ngIf="form.value.statusdelivery"> Aberto </span>
                     <span class="spstatusdli cl" *ngIf="!form.value.statusdelivery"> Fechado </span>
                 </mat-slide-toggle>
             </div>
 
             <mat-chip-list aria-label="Fish selection">
-                <mat-chip color="accent" routerLink="/painelpedidos/pedidos" selected>
+                <mat-chip color="accent" routerLink="/painelpedidos/pedidos" selected *ngIf="us.getPermissoessuario()[0].children[1].status">
                     De hoje</mat-chip>
-                <mat-chip color="accent" matTooltip="Lista de todos os pedidos recebidos" routerLink="/painelpedidos/todospedidos">Todos pedidos</mat-chip>
+                <mat-chip color="accent" matTooltip="Lista de todos os pedidos recebidos" routerLink="/painelpedidos/todospedidos" *ngIf="us.getPermissoessuario()[0].children[2].status">Todos pedidos</mat-chip>
 
                 <!--<mat-chip color="primary" routerLink="/painelpedidos/cadastro-pedido" selected>
                     Cadastrar novo pedido

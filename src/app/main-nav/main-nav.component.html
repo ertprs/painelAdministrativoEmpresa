@@ -8,30 +8,30 @@
         <mat-nav-list>
 
 
-            <a mat-list-item [routerLink]="['/painelpedidos/pedidos']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <a *ngIf="us.getPermissoessuario()[0].status" mat-list-item [routerLink]="['/painelpedidos/pedidos']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="O estabalecimento está fechado">info</mat-icon>
                 <mat-icon>view_headline</mat-icon>
                 <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
             </a>
 
-            <a mat-list-item routerLink="/meusclientes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <a *ngIf="us.getPermissoessuario()[1].status" mat-list-item routerLink="/meusclientes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>perm_identity</mat-icon>
                 Meus clientes
             </a>
 
-            <a mat-list-item routerLink="/entregas" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <a *ngIf="us.getPermissoessuario()[2].status" mat-list-item routerLink="/entregas" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>view_headline</mat-icon>
                 Entregas
             </a>
 
 
-            <a mat-list-item [routerLink]="['/inicio']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <a *ngIf="us.getPermissoessuario()[3].status" mat-list-item [routerLink]="['/inicio']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>public</mat-icon>
                 Mapa
             </a>
 
 
-            <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <a *ngIf="us.getPermissoessuario()[4].status" mat-list-item routerLink="/notificacoes" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>info</mat-icon>
                 <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"> Notificações
                 </span>
@@ -41,44 +41,37 @@
 
 
 
-            <a mat-list-item routerLink="/estoque/itens-estoque">
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">book</mat-icon>
+            <a *ngIf="us.getPermissoessuario()[5].status" mat-list-item routerLink="/estoque/itens-estoque">
+                <mat-icon>book</mat-icon>
                 Estoque
             </a>
 
 
 
-            <a mat-list-item routerLink="/relatorio/historico-vendas" *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">
+            <a *ngIf="us.getPermissoessuario()[6].status" mat-list-item routerLink="/relatorio/historico-vendas">
                 <mat-icon>assignment</mat-icon>
                 Relatórios
             </a>
 
-            <a mat-list-item routerLink="/financeiro/conciliacao-bancaria">
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">money</mat-icon>
+            <a *ngIf="us.getPermissoessuario()[7].status" mat-list-item routerLink="/financeiro/conciliacao-bancaria">
+                <mat-icon>money</mat-icon>
                 Financeiro
             </a>
 
-            <a mat-list-item routerLink="/fechar-caixa">
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'" style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
-                <mat-icon *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'">archive</mat-icon>
+            <a *ngIf="us.getPermissoessuario()[8].status" mat-list-item routerLink="/fechar-caixa">
+                <mat-icon>archive</mat-icon>
                 Fechar caixa
             </a>
 
 
 
-            <a *ngIf="servico.getDadosEmpresa().operador.tipo === 'master'" mat-list-item routerLink="/painel" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+            <a *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon>settings</mat-icon>
                 Configurações
             </a>
 
 
 
-            <a mat-list-item *ngIf="servico.getDadosEmpresa().operador.tipo !== 'master'">
-                <mat-icon style="color: #E91E63;" matTooltip="Você não tem acesso as configurações">lock</mat-icon>
-                Configurações
-            </a>
 
 
             <!--<a mat-list-item routerLink="/config">

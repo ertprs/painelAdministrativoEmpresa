@@ -65,13 +65,13 @@
     <ng-container matColumnDef="adicionar">
         <th mat-header-cell *matHeaderCellDef>
 
-            <button mat-icon-button (click)="add()">
+            <button *ngIf="btAdd" mat-icon-button (click)="add()">
                 <mat-icon class="mat-18">add</mat-icon>
             </button>
 
         </th>
         <td mat-cell *matCellDef="let element">
-            <button mat-stroked-button color="primary" (click)="enviarNovoEstoque(element)"> Enviar estoque </button>
+            <button *ngIf="btEnviar" mat-stroked-button color="primary" (click)="enviarNovoEstoque(element)"> Enviar estoque </button>
 
         </td>
     </ng-container>

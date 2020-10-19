@@ -8,6 +8,7 @@ import { PedidosService } from '../delivery/pedidos/pedidos.service';
 import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
 import { ServicoService } from '../servico.service';
 import { EstoqueService } from './estoque.service';
+import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-estoque',
@@ -19,11 +20,14 @@ export class EstoqueComponent implements OnInit {
   columnsToDisplay = ['c1'];
   dataSource = [''];
 
+  btAuditoria = true;
+
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
-              public servapp: ServicoService, private crud: CrudServicoService, private router: Router, public servestm: EstoqueService) { }
+              public servapp: ServicoService, private crud: CrudServicoService, private router: Router, public servestm: EstoqueService,
+              public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
-   
+   this.btAuditoria = this.us.getPermissoessuario()[5].children[6].status;
   }
 
 

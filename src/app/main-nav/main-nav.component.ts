@@ -4,6 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ServicoService } from '../servico.service';
+import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -21,7 +22,7 @@ export class MainNavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, public servico: ServicoService,
-              public servpedidos: PedidosService) {}
+              public servpedidos: PedidosService, public us: UsuariosAdmService) {}
 
 
 }
