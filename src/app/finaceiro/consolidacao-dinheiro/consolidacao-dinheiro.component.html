@@ -4,18 +4,18 @@
     </span>
 </mat-toolbar>
 
-<div class="sep">
+<div class="sep" [formGroup]="form">
 
     <mat-form-field class="f-cli" style="margin-left: 15px;">
         <mat-label>Data início</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="datai">
     </mat-form-field>
     <mat-form-field class="f-cli" style="margin-left: 0px;">
         <mat-label>Data fim</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="dataf">
     </mat-form-field>
 
-    <button mat-icon-button color="primary">
+    <button mat-icon-button color="primary" (click)="conciliacaoDin()">
         <mat-icon>search</mat-icon>
     </button>
 

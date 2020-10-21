@@ -59,7 +59,7 @@ add(): void {
 
 onClickEditar(item): void {
   const dialogRef = this.dialog.open(DialogCadastroClienteComponent, {
-    width: '450px',
+    width: '650px',
     data: {acao: 'editar', usuario: item}
   });
 

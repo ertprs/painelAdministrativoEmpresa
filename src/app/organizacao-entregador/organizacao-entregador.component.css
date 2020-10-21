@@ -1,11 +1,12 @@
 .g {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
 }
 
 .c1 {
     background-color: rgb(255, 255, 255);
     width: 100%;
+    border-right: 1px solid #aeb7b6;
 }
 
 .c2 {
@@ -28,11 +29,30 @@
 
 .ev {
     padding: 10px;
-    font-size: 20px;
+    font-size: 14px;
     border-bottom: 1px solid #dfdfdf;
     background: #009688;
     color: #ffffff;
     display: grid;
     grid-template-columns: 8fr 1fr;
     align-items: center;
+}
+
+.special-date {
+    background-color: gold;
+}
+
+.item {
+    background: #3F51B5;
+    display: grid;
+    height: 56px;
+    width: 50px;
+    align-items: center;
+    text-align: center;
+    font-size: 23px;
+    color: white;
+    float: left;
+    margin: 1px;
+    /* margin-top: 0px; */
+    padding: 3px;
 }

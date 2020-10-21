@@ -1,13 +1,24 @@
 <div class="g">
     <div class="c1">
-        <mat-calendar [selected]="selectedDate" [startAt]="startAt" (selectedChange)="onSelect($event)"></mat-calendar>
+        <mat-calendar [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+        <div>
+            <div style="    padding: 10px;
+            background: #009688;
+            color: white;">
+                Dias agendados
+            </div>
+            <div class="item" *ngFor="let item of diasMark">
+                <mat-icon>sports_motorsports</mat-icon>
+                {{ item.dia_marcado }}
+            </div>
+        </div>
     </div>
 
     <div class="c2">
         <div class="ev">
             <div>Organização de entregadores</div>
             <div>
-                <button ngIf="btAdd" mat-icon-button (click)="addEvento()">
+                <button *ngIf="btAdd" mat-icon-button (click)="addEvento()">
                 <mat-icon>add</mat-icon>
               </button>
             </div>

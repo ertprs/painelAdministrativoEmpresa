@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { VerImagemComponent } from './../../upload-imagem/ver-imagem/ver-imagem.component';
 import { AdicionarBancoComponent } from './adicionar-banco/adicionar-banco.component';
 import { AdicionarDespesaComponent } from './../consolidacao-financeira/adicionar-despesa/adicionar-despesa.component';
@@ -16,11 +17,18 @@ export class ConciliacaoBancariaComponent implements OnInit {
   displayedColumns: string[] = ['c1', 'c7', 'c2', 'c3', 'c4', 'c5', 'c6'];
   dataSource: any;
   total: any;
-
-  constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog) { }
+  form: FormGroup;
+  bancos: Array<any>;
+  constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.dataSource = [];
+
+    this.form = this.fb.group({
+      idBanco: [''],
+      datai: [''],
+      dataf: [''],
+    });
 
     this.conciliacaoBancaria();
 
@@ -40,10 +48,11 @@ export class ConciliacaoBancariaComponent implements OnInit {
         this.servico.mostrarMensagem(r.detalhes.resultado.mensagem);
       } else {
         this.dataSource = r.resultado.itens.lista;
+        this.bancos = r.resultado.itens.bancos;
         this.total = r.resultado.itens.total;
       }
     };
-    this.crud.post_api('conciliacaoBancaria', fcall, '' );
+    this.crud.post_api('conciliacaoBancaria', fcall, this.form.value );
   }
 
   adicionarbanco() {

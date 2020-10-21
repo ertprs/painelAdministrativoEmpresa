@@ -32,7 +32,7 @@ export class FormOrganizacaoComponent implements OnInit {
       console.log('callback');
       const r = this.servico.getRespostaApi();
       if (r.erro === true) {  this.servico.mostrarMensagem(r.resultado.mensagem);  } else {
-        this.servico.mostrarMensagem(r.resultado.mensagem);
+        /*this.servico.mostrarMensagem(r.resultado.mensagem);*/
         if (r.resultado) {
           this.entregadores = r.resultado;
         }

@@ -39,6 +39,7 @@ var OrganizacaoEntregadorComponent = /** @class */ (function () {
             else {
                 if (r.resultado) {
                     _this.itens = r.resultado.itens.lista;
+                    _this.diasMark = r.resultado.itens.listaMes;
                     _this.iniciaCalendario(r.resultado.itens.data);
                 }
             }
@@ -55,6 +56,7 @@ var OrganizacaoEntregadorComponent = /** @class */ (function () {
                 if (r.resultado) {
                     _this.itens = r.resultado.itens.lista;
                     _this.delsucData = r.resultado.itens.info;
+                    _this.diasMark = r.resultado.itens.listaMes;
                 }
             }
         };
@@ -106,6 +108,29 @@ var OrganizacaoEntregadorComponent = /** @class */ (function () {
             }
         };
         this.crud.post_api('remOrgEnt', accallback, item.id);
+    };
+    OrganizacaoEntregadorComponent.prototype.dateClass = function () {
+        return function (date) {
+            console.log(date.getDay() + '/' + date.getMonth() + '/' + date.getUTCFullYear());
+            if (date.getDate() === 1) {
+                return 'special-date';
+            }
+            else {
+                return;
+            }
+        };
+    };
+    OrganizacaoEntregadorComponent.prototype.verificaDiasmark = function (dia) {
+        var r = false;
+        this.diasMark.forEach(function (element) {
+            if (element.dia_marcado === dia) {
+                r = true;
+            }
+            else {
+                r = false;
+            }
+        });
+        return r;
     };
     OrganizacaoEntregadorComponent = __decorate([
         core_1.Component({

@@ -21,18 +21,22 @@ export class ConsolidacaoDinheiroComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
-     this.conciliacaoCartao();
      this.form = this.fb.group({
        porcentagem: [''],
+       datai: [''],
+       dataf: [''],
      });
+
+     this.conciliacaoDin();
+
   }
 
   onfcalldelsuc(evento) {
     console.log(evento);
-    this.conciliacaoCartao();
+    this.conciliacaoDin();
   }
 
-  conciliacaoCartao() {
+  conciliacaoDin() {
     const fcall = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
@@ -45,7 +49,7 @@ export class ConsolidacaoDinheiroComponent implements OnInit {
         this.totalDesc = r.resultado.itens.total_valor_conciliado;
       }
     };
-    this.crud.post_api('conciliacaoDinheiro', fcall, '' );
+    this.crud.post_api('conciliacaoDinheiro', fcall, this.form.value );
   }
 
   adicionarbanco() {
@@ -68,7 +72,7 @@ export class ConsolidacaoDinheiroComponent implements OnInit {
         this.servico.mostrarMensagem(r.resultado.mensagem);
       } else {
         this.servico.mostrarMensagem(r.resultado.mensagem);
-        this.conciliacaoCartao();
+        this.conciliacaoDin();
       }
     };
     this.crud.post_api('lancarConsolidacaoDinheiro', fcall,

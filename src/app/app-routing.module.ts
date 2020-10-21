@@ -139,7 +139,7 @@ const routes: Routes = [
           { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'data-retroativa', component: DataRetroativaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent},
+          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService]},
 
           {
             path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [

@@ -4,24 +4,24 @@
     </span>
 </mat-toolbar>
 
-<div class="sep">
+<div class="sep" [formGroup]="form">
 
     <mat-form-field class="f-cli" style="margin-left: 15px;">
         <mat-label>Data início</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="datai">
     </mat-form-field>
     <mat-form-field class="f-cli" style="margin-left: 0px;">
         <mat-label>Data fim</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="dataf">
     </mat-form-field>
 
-    <button mat-icon-button color="primary">
+    <button mat-icon-button color="primary" (click)="conciliacaoCartao()">
         <mat-icon>search</mat-icon>
     </button>
 
-    <mat-form-field appearance="fill">
+    <!--<mat-form-field appearance="fill">
         <mat-label>Tipo</mat-label>
-        <mat-select>
+        <mat-select formControlName="tipoCartao">
             <mat-option>
                 Crédito
             </mat-option>
@@ -35,13 +35,13 @@
 
     <mat-form-field appearance="fill" style="margin-left: 10px;">
         <mat-label>Bandeira</mat-label>
-        <mat-select>
+        <mat-select formControlName="bandeiraCartao">
             <mat-option>
                 visa....
             </mat-option>
         </mat-select>
 
-    </mat-form-field>
+    </mat-form-field>-->
 
 
 

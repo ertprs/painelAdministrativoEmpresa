@@ -179,6 +179,7 @@ import { ApiCalendarioComponent } from './api-calendario/api-calendario.componen
 import { FormOrganizacaoComponent } from './organizacao-entregador/form-organizacao/form-organizacao.component';
 import { UsuarioPermissoesComponent } from './usuarios/usuario-permissoes/usuario-permissoes.component';
 import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
+import { Tela3Component } from './estoque/estoque-logistica/tela3/tela3.component';
 
 @NgModule({
   declarations: [
@@ -313,6 +314,7 @@ import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organiz
     ApiCalendarioComponent,
     FormOrganizacaoComponent,
     UsuarioPermissoesComponent,
+    Tela3Component,
   ],
   imports: [
     BrowserModule,

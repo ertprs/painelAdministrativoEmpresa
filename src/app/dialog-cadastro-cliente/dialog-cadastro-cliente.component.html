@@ -18,37 +18,55 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" style="width: 100%;">
+    <div style="    background: #eaeaea;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    color: #5a5a5a;">
+        Dados cliente
+    </div>
+
+    <mat-form-field class="example-full-width" style="width: 100%;margin-top: 12px;">
         <mat-label>Nome</mat-label>
         <input matInput placeholder="Ex. Nome Cliente..." value="" formControlName="nome">
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" style="width: 100%;">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Ex. Nome Cliente..." value="" formControlName="email">
-    </mat-form-field>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+        <mat-form-field class="example-full-width" style="width: 100%;">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Ex. Nome Cliente..." value="" formControlName="email">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width" style="width: 100%;">
-        <mat-label>Data aniversário</mat-label>
-        <input matInput placeholder="Ex. Nome Cliente..." value="" formControlName="data_aniversario">
-    </mat-form-field>
+        <mat-form-field class="example-full-width" style="width: 100%;">
+            <mat-label>Data aniversário</mat-label>
+            <input matInput placeholder="Ex. Nome Cliente..." value="" formControlName="data_aniversario">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Telefone</mat-label>
-        <input matInput placeholder="Ex. (99) 9 9999-9999" value="" formControlName="telefone">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Telefone</mat-label>
+            <input matInput placeholder="Ex. (99) 9 9999-9999" value="" formControlName="telefone">
+        </mat-form-field>
+    </div>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Rua</mat-label>
-        <input matInput placeholder="Ex. Rua Nome..." value="" formControlName="rua">
-    </mat-form-field>
+    <div style="    background: #eaeaea;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    color: #5a5a5a;">
+        Endereço
+    </div>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Número</mat-label>
-        <input matInput placeholder="Ex. 83" value="" formControlName="numero">
-    </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <div style="display: grid; grid-template-columns: 1fr;">
+        <mat-form-field class="example-full-width">
+            <mat-label>Rua</mat-label>
+            <input matInput placeholder="Ex. Rua Nome..." value="" formControlName="rua">
+        </mat-form-field>
+
+    </div>
+
+
+    <mat-form-field appearance="fill" style="width: 50%;">
         <mat-label>Cidade</mat-label>
         <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
             <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
@@ -57,7 +75,7 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" style="width: 50%;">
         <mat-label>Bairro
             <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
         </mat-label>
@@ -70,17 +88,23 @@
     </mat-form-field>
 
 
+    <div style="display: grid; grid-template-columns: 1fr 4fr 1fr;">
+        <mat-form-field class="example-full-width">
+            <mat-label>Uf</mat-label>
+            <input matInput placeholder="Ex. BA" value="" formControlName="uf">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Uf</mat-label>
-        <input matInput placeholder="Ex. BA" value="" formControlName="uf">
-    </mat-form-field>
 
+        <mat-form-field class="example-full-width">
+            <mat-label>Complemento</mat-label>
+            <input matInput placeholder="Ex. Casa em frente ao Delivery" value="" formControlName="complemento">
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Complemento</mat-label>
-        <input matInput placeholder="Ex. Casa em frente ao Delivery" value="" formControlName="complemento">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Número</mat-label>
+            <input matInput placeholder="Ex. 83" value="" formControlName="numero">
+        </mat-form-field>
+    </div>
 
     <div style="display: flex;">
         <button mat-button color="warn" [mat-dialog-close]="false">Cancelar</button>

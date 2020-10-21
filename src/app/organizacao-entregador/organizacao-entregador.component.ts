@@ -4,6 +4,7 @@ import { CrudServicoService } from './../crud-servico.service';
 import { ServicoService } from './../servico.service';
 import { Component, OnInit } from '@angular/core';
 import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
+import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-organizacao-entregador',
@@ -26,6 +27,8 @@ export class OrganizacaoEntregadorComponent implements OnInit {
   btRem = true;
   btAdd = true;
 
+  diasMark: Array<any>;
+
   constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
               private us: UsuariosAdmService ) { }
 
@@ -42,6 +45,7 @@ export class OrganizacaoEntregadorComponent implements OnInit {
       if (r.erro === true) { /* this.servico.mostrarMensagem(r.resultado.mensagem); */ } else {
         if (r.resultado) {
           this.itens = r.resultado.itens.lista;
+          this.diasMark = r.resultado.itens.listaMes;
           this.iniciaCalendario(r.resultado.itens.data);
         }
       }
@@ -57,6 +61,7 @@ export class OrganizacaoEntregadorComponent implements OnInit {
         if (r.resultado) {
           this.itens = r.resultado.itens.lista;
           this.delsucData = r.resultado.itens.info;
+          this.diasMark = r.resultado.itens.listaMes;
         }
       }
     };
@@ -118,6 +123,25 @@ export class OrganizacaoEntregadorComponent implements OnInit {
       }
     };
     this.crud.post_api('remOrgEnt', accallback, item.id);
+  }
+
+  dateClass() {
+    return (date: Date): MatCalendarCellCssClasses => {
+      console.log(date.getDay() + '/' + date.getMonth() + '/' + date.getUTCFullYear())
+      if ( date.getDate() === 1) {
+        return 'special-date';
+      } else {
+        return;
+      }
+    };
+  }
+
+  verificaDiasmark(dia: number) {
+    let r = false;
+    this.diasMark.forEach(element => {
+        if (element.dia_marcado === dia) { r = true; } else { r = false; }
+    });
+    return r;
   }
 
 }

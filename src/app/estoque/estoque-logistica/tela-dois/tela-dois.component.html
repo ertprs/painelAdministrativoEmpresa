@@ -1,45 +1,71 @@
-<div [formGroup]="form" style="display: grid;">
-    <mat-form-field>
-        <mat-label> Produto </mat-label>
-        <mat-select formControlName="produto">
-            <mat-option [value]="item.id" *ngFor="let item of itensCatalogo">
-                {{ item.nome }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="bbc" [formGroup]="form">
+    <div class="col1">
+        <mat-form-field>
+            <mat-label> Produto </mat-label>
+            <mat-select formControlName="produto">
+                <mat-option [value]="item" *ngFor="let item of itensCatalogo">
+                    Cod.:{{ item.id }} {{ item.nome }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Tipo entrada</mat-label>
-        <mat-select formControlName="tipoEntrada">
-            <mat-option value="un">
-                Unidades
-            </mat-option>
+        <mat-form-field>
+            <mat-label>Tipo entrada</mat-label>
+            <mat-select formControlName="tipoEntrada">
+                <mat-option value="un">
+                    Unidades
+                </mat-option>
 
-            <mat-option value="ca">
-                Caixa
-            </mat-option>
+                <mat-option value="ca">
+                    Caixa
+                </mat-option>
 
-            <mat-option value="pa">
-                Pacote
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-
-    <mat-form-field class="example-full-width">
-        <mat-label> preço compra </mat-label>
-        <input matInput type="number" formControlName="precoCompra">
-    </mat-form-field>
+                <mat-option value="pa">
+                    Pacote
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Quantidade</mat-label>
-        <input matInput type="number" formControlName="quantidade">
-    </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label> preço compra </mat-label>
+            <input matInput type="number" formControlName="precoCompra">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Quantidade</mat-label>
+            <input matInput type="number" formControlName="quantidade">
+        </mat-form-field>
+        <div style="margin-top: 10px; margin-bottom: 5px; text-align: center;">
+            <button mat-raised-button color="primary" (click)="addItem()"> Adicionar a lista </button>
+        </div>
+    </div>
+    <div class="col2">
+        <div class="itemA">
+            <div> Produto </div>
+            <div> Qnt. </div>
+            <div> Valor compra </div>
+            <div> Tipo entrada </div>
+            <div> Remover </div>
+        </div>
+
+        <div class="itemA itemB" *ngFor="let item of data.itens">
+            <div> {{ item.produto.id }} {{ item.produto.nome }} </div>
+            <div> {{ item.quantidade }} </div>
+            <div> {{ item.precoCompra | currency:'BRL':true }} </div>
+            <div> {{ item.tipoEntrada }} </div>
+            <div>
+                <button mat-icon-button color="primary" (click)="removeItemFp(data)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+        </div>
+    </div>
 
 </div>
 
-<div>
+<div style="margin-top: 50px;text-align: end;">
     <button mat-stroked-button color="warn" mat-dialog-close> Cancelar </button>
-    <button mat-stroked-button color="warn" (click)="prosseguir()" style="margin-left: 5px;"> Ok </button>
+    <button mat-stroked-button color="primary" (click)="prosseguir()" style="margin-left: 5px;"> Ok </button>
 </div>

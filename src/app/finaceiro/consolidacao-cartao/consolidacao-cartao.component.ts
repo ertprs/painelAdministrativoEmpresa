@@ -24,10 +24,17 @@ export class ConsolidacaoCartaoComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
-     this.conciliacaoCartao();
      this.form = this.fb.group({
        porcentagem: [''],
+       datai: [''],
+       dataf: [''],
+       tipoCartao: [''],
+       bandeiraCartao: [''],
      });
+
+     this.conciliacaoCartao();
+
+
   }
 
   onfcalldelsuc(evento) {
@@ -48,7 +55,7 @@ export class ConsolidacaoCartaoComponent implements OnInit {
         this.totalDesc = r.resultado.itens.total_valor_conciliado;
       }
     };
-    this.crud.post_api('conciliacaoCartao', fcall, '' );
+    this.crud.post_api('conciliacaoCartao', fcall, this.form.value );
   }
 
   adicionarbanco() {

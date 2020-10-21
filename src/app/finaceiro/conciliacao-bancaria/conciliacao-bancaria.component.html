@@ -4,14 +4,14 @@
     </span>
 </mat-toolbar>
 
-<div class="sep">
+<div class="sep" [formGroup]="form">
 
 
     <mat-form-field appearance="fill" class="example-full-width">
         <mat-label> Bancos </mat-label>
-        <mat-select>
-            <mat-option>
-                Lista dos banco aqui...
+        <mat-select formControlName="idBanco">
+            <mat-option [value]="item.id" *ngFor="let item of bancos">
+                {{ item.nome }}
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -19,19 +19,19 @@
 
     <mat-form-field class="f-cli" style="margin-left: 15px;">
         <mat-label>Data início</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="datai">
     </mat-form-field>
 
     <mat-form-field class="f-cli">
         <mat-label>Data fim</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="dataf">
     </mat-form-field>
 
-    <button mat-icon-button color="primary">
+    <button mat-icon-button color="primary" (click)="conciliacaoBancaria()">
         <mat-icon>search</mat-icon>
     </button>
 
-    <button mat-stroked-button color="primary"> Confirmados </button>
+    <button mat-stroked-button color="primary"> Exportar </button>
 
 
 

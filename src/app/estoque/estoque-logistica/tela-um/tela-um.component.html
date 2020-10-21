@@ -1,28 +1,28 @@
-<div [formGroup]="form" style="display: grid;">
+<div style="display: grid;">
 
     <mat-form-field class="example-full-width">
         <mat-label>Local saída</mat-label>
-        <input matInput placeholder="Ex.: São Paulo" formControlName="localSaida">
+        <input matInput placeholder="Ex.: São Paulo" [(ngModel)]="data.parametros.saida">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Local chegada</mat-label>
-        <input matInput placeholder="Ex.: Natal" formControlName="localChegada">
+        <input matInput placeholder="Ex.: Natal" [(ngModel)]="data.parametros.chegada">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label> Valor pedido </mat-label>
-        <input matInput type="number" formControlName="valorPedido">
+        <input matInput type="number" [(ngModel)]="data.parametros.valorPedido">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Previsão de entrega</mat-label>
-        <input matInput type="date" formControlName="previsaoEntrega">
+        <input matInput type="date" [(ngModel)]="data.parametros.previsaoEntrega">
     </mat-form-field>
 
 </div>
 
-<div>
+<div style="    text-align: end;">
     <button mat-stroked-button color="warn" mat-dialog-close> Cancelar  </button>
-    <button mat-stroked-button color="warn" (click)="prosseguir()" style="margin-left: 10px;">Prosseguir</button>
+    <button mat-stroked-button color="primary" (click)="prosseguir()" style="margin-left: 5px;">Prosseguir</button>
 </div>

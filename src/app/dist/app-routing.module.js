@@ -136,7 +136,7 @@ var routes = [
                     { path: 'notificacoes-usuarios', component: notificacoes_sistema_component_1.NotificacoesSistemaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
                     { path: 'usuarios-app', component: usuarios_finais_component_1.UsuariosFinaisComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
                     { path: 'data-retroativa', component: data_retroativa_component_1.DataRetroativaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
-                    { path: 'organizacao-entregador', component: organizacao_entregador_component_1.OrganizacaoEntregadorComponent },
+                    { path: 'organizacao-entregador', component: organizacao_entregador_component_1.OrganizacaoEntregadorComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
                     {
                         path: 'painel-relatorio', component: painel_relatorio_component_1.PainelRelatorioComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
                             { path: 'vendas', component: relatorios_component_1.RelatoriosComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },

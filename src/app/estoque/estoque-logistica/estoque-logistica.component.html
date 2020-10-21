@@ -34,20 +34,13 @@
 
 
 
-    <ng-container matColumnDef="tipo_entrada">
-        <th mat-header-cell *matHeaderCellDef> Tipo entrada </th>
-        <td mat-cell *matCellDef="let element"> {{element.tipo_entrada}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="quantidade">
-        <th mat-header-cell *matHeaderCellDef> Quantidade </th>
-        <td mat-cell *matCellDef="let element"> {{element.quantidade}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="produtos">
-        <th mat-header-cell *matHeaderCellDef> Produto </th>
+        <th mat-header-cell *matHeaderCellDef> Produtos </th>
         <td mat-cell *matCellDef="let element">
-            {{element.nome_prod}}
+            <button mat-icon-button color="primary" (click)="verProdutos(element)">
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+
         </td>
     </ng-container>
 

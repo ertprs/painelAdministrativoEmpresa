@@ -13,9 +13,11 @@ export class TelaDoisComponent implements OnInit {
 
   form: FormGroup;
   itensCatalogo: any;
+  itensLista: Array<any>;
 
   constructor(public dialogRef: MatDialogRef<TelaDoisComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private crud: CrudServicoService,
+              @Inject(MAT_DIALOG_DATA) public data: {saida: '', chagada: '', valorPedido: '', previsaoEntrega: '', itens: [any]},
+              private fb: FormBuilder, private crud: CrudServicoService,
               private servapp: ServicoService) { }
 
   ngOnInit(): void {
@@ -26,16 +28,12 @@ export class TelaDoisComponent implements OnInit {
       precoCompra: [''],
       tipoEntrada: [''],
     });
+
+    console.log(this.data);
   }
 
   prosseguir() {
-    this.data.produto = this.form.value.produto;
-    this.data.quantidade = this.form.value.quantidade;
-    this.data.precoCompra = this.form.value.precoCompra;
-    this.data.tipoEntrada = this.form.value.tipoEntrada;
-    console.log(this.data);
     this.f1(this.data);
-
   }
 
   f1(form) {
@@ -49,7 +47,7 @@ export class TelaDoisComponent implements OnInit {
       }
       console.log(r);
     };
-    this.crud.post_api('addItemLogistica', accallback, form);
+    this.crud.post_api('addItemLogistica', accallback, this.data);
   }
 
   f5() {
@@ -58,5 +56,25 @@ export class TelaDoisComponent implements OnInit {
       this.itensCatalogo = data.resultado;
    });
   }
+
+ addItem() {
+   if (!this.form.value.produto) { this.servapp.mostrarMensagem('Selecione o produto'); return; }
+   if (!this.form.value.quantidade) { this.servapp.mostrarMensagem('Informe a quantidade'); return; }
+   if (!this.form.value.precoCompra) { this.servapp.mostrarMensagem('Informe o preço de compra'); return; }
+   if (!this.form.value.tipoEntrada) { this.servapp.mostrarMensagem('Selecione o tipo de entrada'); return; }
+   this.data.itens.push(this.form.value);
+   console.log(this.data);
+   this.form.reset();
+ }
+
+ removeItemFp(item: any) {
+  let indeArray: any;
+  for (const x in this.data.itens) {
+    if (this.data.itens[x] === item) {
+      indeArray = x;
+    }
+  }
+  this.data.itens.splice(indeArray, 1);
+}
 
 }

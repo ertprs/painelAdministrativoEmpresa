@@ -45,3 +45,7 @@ body {
         size: landscape;
     }
 }
+
+.special-date {
+    background-color: gold;
+}

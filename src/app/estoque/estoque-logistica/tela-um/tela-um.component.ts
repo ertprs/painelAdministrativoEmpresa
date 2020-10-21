@@ -9,22 +9,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class TelaUmComponent implements OnInit {
 
-  form: FormGroup;
+  // form: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<TelaUmComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      valorPedido: [''],
-      localSaida: [''],
-      localChegada: [''],
-      previsaoEntrega: [''],
-    });
+     console.log(this.data);
   }
 
   prosseguir() {
-    this.dialogRef.close(this.form.value);
+    this.dialogRef.close(this.data.parametros);
   }
 
 }
