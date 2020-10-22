@@ -180,6 +180,7 @@ import { FormOrganizacaoComponent } from './organizacao-entregador/form-organiza
 import { UsuarioPermissoesComponent } from './usuarios/usuario-permissoes/usuario-permissoes.component';
 import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 import { Tela3Component } from './estoque/estoque-logistica/tela3/tela3.component';
+import { BtExportarComponent } from './componentes/bt-exportar/bt-exportar.component';
 
 @NgModule({
   declarations: [
@@ -315,6 +316,7 @@ import { Tela3Component } from './estoque/estoque-logistica/tela3/tela3.componen
     FormOrganizacaoComponent,
     UsuarioPermissoesComponent,
     Tela3Component,
+    BtExportarComponent,
   ],
   imports: [
     BrowserModule,
