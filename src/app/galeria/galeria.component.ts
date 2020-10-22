@@ -14,7 +14,7 @@ export class GaleriaComponent implements OnInit {
   itens = [];
 
 
-  constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
+  constructor(private crud: CrudServicoService, public servico: ServicoService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.f5();

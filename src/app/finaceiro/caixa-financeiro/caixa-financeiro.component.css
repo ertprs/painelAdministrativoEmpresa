@@ -5,3 +5,8 @@ table {
 .gii {
     display: flex;
 }
+
+.ccs {
+    background: #009688;
+    color: white;
+}

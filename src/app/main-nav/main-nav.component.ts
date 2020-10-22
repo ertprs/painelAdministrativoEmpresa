@@ -1,3 +1,4 @@
+import { MainNavService } from './main-nav.service';
 import { PedidosService } from './../delivery/pedidos/pedidos.service';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -22,7 +23,13 @@ export class MainNavComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver, public servico: ServicoService,
-              public servpedidos: PedidosService, public us: UsuariosAdmService) {}
+              public servpedidos: PedidosService, public us: UsuariosAdmService, public ms: MainNavService) {}
 
+              clickMenu(item) {
+                  this.ms.menuSelecionado.forEach(element => {
+                    console.log('loop');
+                      if (element === item) { console.log('OK');  item.selecionado = true; } else {   element.selecionado = false;  }
+                  });
+              }
 
 }

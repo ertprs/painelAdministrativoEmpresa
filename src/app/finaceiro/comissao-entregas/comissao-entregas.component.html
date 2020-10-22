@@ -36,6 +36,8 @@
 <button mat-stroked-button color="primary" (click)="onClickFPagos()" style="margin-left: 10px;"> Pagos </button>
 <button style="margin-left: 4px;" mat-stroked-button color="primary" (click)="onClickFNPagos()" style="margin-left: 10px;"> Não pagos </button>
 
+<app-bt-exportar [nomeArquivo]="'comissaoEntregas'" [lista]="dataSource"></app-bt-exportar>
+
 <table mat-table [dataSource]="dataSource">
 
 

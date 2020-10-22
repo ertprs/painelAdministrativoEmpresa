@@ -21,8 +21,8 @@
 }
 
 .mat-list-item:hover {
-    background-color: #36a0e1;
-    color: white;
+    background-color: rgb(214, 214, 214);
+    /*color: white;*/
 }
 
 .ddgui_ {
@@ -30,4 +30,20 @@
     color: white;
     font-weight: 100;
     margin-top: -10px;
+}
+
+.toolb {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.col2 {
+    text-align: end;
+    padding-right: 14px;
+}
+
+.mat-list-option:focus,
+.mat-nav-list .mat-list-item:focus,
+.mat-action-list .mat-list-item:focus {
+    background: gold;
 }

@@ -9,7 +9,7 @@
     <ng-container matColumnDef="c1">
         <th mat-header-cell *matHeaderCellDef> Imagem. </th>
         <td mat-cell *matCellDef="let element">
-            <img [defaultImage]="'assets/vultoroxonome.png'" [lazyLoad]="element.url" width="70px">
+            <img [defaultImage]="servico.getDefaultImage()" [lazyLoad]="element.url" width="70px">
         </td>
     </ng-container>
 

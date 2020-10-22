@@ -1,22 +1,8 @@
-<div class="gii">
-    <button [disabled]="statusCaixaFechado" mat-raised-button color="accent" style="margin: 10px;" (click)="lancarCaixa()">Fechar caixa</button>
-
-    <div style="display: grid;
-    align-items: center;
-    background: #4caf5052;
-    padding: 10px;
-    color: #2d6c2f;
-    font-size: 17px;">
-        Data {{ dataCaixa }}
-    </div>
-</div>
-
-
 <table mat-table [dataSource]="dataSource">
 
 
     <ng-container matColumnDef="c0">
-        <th mat-header-cell *matHeaderCellDef style="background: gold;"> Tipos de pagamentos </th>
+        <th mat-header-cell *matHeaderCellDef class="ccs"> Tipos de pagamentos </th>
         <td mat-cell *matCellDef="let element">
 
             {{ element.nome }}
@@ -25,7 +11,7 @@
     </ng-container>
 
     <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef style="background: gold;"> Total: {{ totalPagamento | currency:'BRL':true }} </th>
+        <th mat-header-cell *matHeaderCellDef class="ccs"> Total: {{ totalPagamento | currency:'BRL':true }} </th>
         <td mat-cell *matCellDef="let element">
 
             {{ element.total | currency:'BRL':true}}
@@ -34,12 +20,12 @@
     </ng-container>
 
     <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef style="background: gold;"> </th>
-        <td mat-cell *matCellDef="let element"> <span style="color: rgb(183 181 181);">Confirme o valor:</span> </td>
+        <th mat-header-cell *matHeaderCellDef class="ccs"> </th>
+        <td mat-cell *matCellDef="let element"> <span style="color:rgb(95 95 95);">Confirme o valor:</span> </td>
     </ng-container>
 
     <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef style="background: gold;"> Valor: {{ 0 | currency:'BRL':true }} </th>
+        <th mat-header-cell *matHeaderCellDef class="ccs"> Valor: {{ getTotalValores() | currency:'BRL':true }} </th>
         <td mat-cell *matCellDef="let element">
 
             <mat-form-field color="primary" appearance="outline" style="margin-top: 10px;">
@@ -51,8 +37,8 @@
     </ng-container>
 
     <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef style="background: gold;">
-            Diferença: {{ 150 | currency:'BRL':true }}
+        <th mat-header-cell *matHeaderCellDef class="ccs">
+            Diferença: {{ getTotalDiferenca() | currency:'BRL':true }}
         </th>
         <td mat-cell *matCellDef="let element">
             <span style="color:red"> {{ element.valor - element.total | currency:'BRL':true}} </span>
@@ -64,3 +50,19 @@
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
     <tr>?</tr>
 </table>
+
+<div class="gii">
+    <button [disabled]="statusCaixaFechado" mat-raised-button color="primary" style="margin: 10px;" (click)="lancarCaixa()">
+        <mat-icon>close_fullscreen</mat-icon> Fechar caixa
+    </button>
+
+    <div style="display: grid;
+    align-items: center;
+    background: #e0ecec;
+    padding: 10px;
+    color: #5d5d5d;
+    border-radius: 4px;
+    margin: 7px;">
+        Data {{ dataCaixa }}
+    </div>
+</div>

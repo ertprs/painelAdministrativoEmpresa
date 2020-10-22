@@ -10,7 +10,7 @@
         <div style="text-align: center;"> <b> {{ data.dadosempresa.telefone }} </b> </div>
         <div style="margin-top: 30px;"> <b> Detalhes do pedido #{{ data.id }} </b> </div>
         <div> Nome: {{ data.dadoscliente.nome }} </div>
-        <div> Telefone: {{ data.dadoscliente.telefone }} </div>
+        <div> Telefone: {{ data.dadoscliente.telefone | mask: '(00) 0000-0000' }} </div>
         <div> Horário: {{ data.info }} </div>
         <div> Tipo serviço: {{ data.tipopedido }} </div>
         <div> Pagamento: {{ data.formapagamento }} </div>

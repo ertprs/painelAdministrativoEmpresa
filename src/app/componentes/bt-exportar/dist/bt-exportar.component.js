@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.BtExportarComponent = void 0;
 var core_1 = require("@angular/core");
+var ts_xlsx_export_1 = require("ts-xlsx-export");
 var BtExportarComponent = /** @class */ (function () {
     function BtExportarComponent(servico, crud) {
         this.servico = servico;
@@ -17,25 +18,14 @@ var BtExportarComponent = /** @class */ (function () {
         console.log('app-bt-exportar');
     };
     BtExportarComponent.prototype.exportar = function () {
-        var _this = this;
-        var fcall = function () {
-            var r = _this.servico.getRespostaApi();
-            console.log(r);
-            if (r.erro === true) {
-                _this.servico.mostrarMensagem(r.resultado.mensagem);
-            }
-            else {
-                _this.servico.mostrarMensagem(r.resultado.mensagem);
-            }
-        };
-        this.crud.post_api(this.acao, fcall, this.lista);
+        ts_xlsx_export_1.tsXLXS().exportAsExcelFile(this.lista).saveAsExcelFile(this.nomeArquivo);
     };
     __decorate([
         core_1.Input()
     ], BtExportarComponent.prototype, "lista");
     __decorate([
         core_1.Input()
-    ], BtExportarComponent.prototype, "acao");
+    ], BtExportarComponent.prototype, "nomeArquivo");
     BtExportarComponent = __decorate([
         core_1.Component({
             selector: 'app-bt-exportar',

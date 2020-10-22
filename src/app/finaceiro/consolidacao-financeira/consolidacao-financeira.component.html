@@ -19,7 +19,12 @@
     <button mat-icon-button color="primary" (click)="consultaTabelaFiltro()">
         <mat-icon>search</mat-icon>
     </button>
+
+    <app-bt-exportar [nomeArquivo]="'consolidacaoFinanceira'" [lista]="dataSource"></app-bt-exportar>
+
 </div>
+
+
 
 <table mat-table [dataSource]="despesas" class="mat-elevation-z8">
 

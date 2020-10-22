@@ -18,6 +18,7 @@ export class CaixaFinanceiroComponent implements OnInit {
   dataSource = [];
   dataSource2 = [];
   totalPagamento = 0;
+  totalValores = 0;
   dataCaixa = '';
   statusCaixaFechado = '';
 
@@ -31,11 +32,27 @@ export class CaixaFinanceiroComponent implements OnInit {
     this.crud.get_api('statuscaixa').subscribe(data => {
         this.dataSource = data.resultado.itens.fps;
         this.totalPagamento = data.resultado.itens.total_pagamento;
+        this.totalValores = data.resultado.itens.total_valores;
         this.dataCaixa = data.resultado.itens.dataCaixa;
         this.statusCaixaFechado = data.resultado.itens.status_caixa;
     });
 }
 
+getTotalValores() {
+  let total = 0;
+  this.dataSource.forEach(element => {
+    total += element.valor;
+  });
+  return total;
+}
+
+getTotalDiferenca() {
+  let total = 0;
+  this.dataSource.forEach(element => {
+    total += element.valor - element.total;
+  });
+  return total;
+}
 
 lancarCaixa() {
   const fcall = () => {

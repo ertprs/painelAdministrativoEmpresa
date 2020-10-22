@@ -82,7 +82,7 @@
                 <div style="width: 100%; display: flex;">
 
 
-                    <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: {{element.motoboy.telefone}}">
+                    <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: {{ element.motoboy.telefone | mask: '(00) 0000-0000'}}">
                           <img [lazyLoad]="element.motoboy.imagem" width="40px">
                           Entrega aceita
                     </button>

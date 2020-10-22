@@ -181,6 +181,8 @@ import { UsuarioPermissoesComponent } from './usuarios/usuario-permissoes/usuari
 import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 import { Tela3Component } from './estoque/estoque-logistica/tela3/tela3.component';
 import { BtExportarComponent } from './componentes/bt-exportar/bt-exportar.component';
+import { FiltronomePipe } from './filtronome.pipe';
+import { NomesPipe } from './pipes/nomes.pipe';
 
 @NgModule({
   declarations: [
@@ -317,6 +319,8 @@ import { BtExportarComponent } from './componentes/bt-exportar/bt-exportar.compo
     UsuarioPermissoesComponent,
     Tela3Component,
     BtExportarComponent,
+    FiltronomePipe,
+    NomesPipe,
   ],
   imports: [
     BrowserModule,

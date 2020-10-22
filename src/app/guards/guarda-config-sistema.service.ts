@@ -12,6 +12,6 @@ export class GuardaConfigSistemaService {
   constructor(private servico: ServicoService, private route: Router, private authlogin: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if (this.authlogin.verificaTipoUsuario() === 'master') { return true; } else { return false; }
+    if (this.authlogin.verificaLogado()) { return true; } else { return false; }
   }
 }

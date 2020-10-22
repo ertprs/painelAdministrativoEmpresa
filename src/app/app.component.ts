@@ -9,6 +9,6 @@ import { ServicoService } from './servico.service';
 })
 export class AppComponent {
   constructor(public servico: ServicoService) { }
-  title = 'Vulto Empresas';
+  title = 'Dashboard';
   statusLogin = false;
 }

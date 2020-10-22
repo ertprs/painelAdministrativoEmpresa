@@ -87,12 +87,17 @@
 
     <mat-tab label="Catálogo">
 
+        <mat-form-field class="fotmg" style="margin:20px; width: 90%;" color="primary">
+            <mat-label> Filtro </mat-label>
+            <input matInput placeholder="Filtro item" #filtrop>
+        </mat-form-field>
+
         <div class="itemCat" *ngFor="let item of catalogo">
 
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel color="primary" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        {{ item.nome }}
+                        <mat-icon>keyboard_arrow_down</mat-icon> {{ item.nome }}
                     </mat-panel-title>
                     <mat-panel-description>
                         <!--This is a summary of the content-->
@@ -100,7 +105,10 @@
                 </mat-expansion-panel-header>
 
                 <mat-list role="list">
-                    <div class="itemCatalogo" *ngFor="let itemc of item.itens">
+
+
+
+                    <div class="itemCatalogo" *ngFor="let itemc of item.itens | nomes:filtrop.value">
                         <mat-list-item role="listitem">
 
                             <div>

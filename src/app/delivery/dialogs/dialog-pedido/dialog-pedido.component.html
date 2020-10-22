@@ -7,7 +7,7 @@
             <div class="c2">
                 <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}
                 </div>
-                <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone}}
+                <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 0000-0000'}}
                 </div>
                 <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}}, {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
                 </div>

@@ -193,6 +193,8 @@ formaddEnd() {
 }
 
 removerEndereco(item) {
+  item.idendereco = item.id;
+  console.log(item);
   const accallback = () => {
     console.log('callback');
     const r = this.servico.getRespostaApi();

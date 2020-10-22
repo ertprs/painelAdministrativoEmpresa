@@ -10,7 +10,8 @@ export class AuthService {
   constructor(private route: Router, private servico: ServicoService) { }
 
   verificaLogado() {
-    if (this.servico.getStatusLogado() === false) {
+
+      if (this.servico.getStatusLogado() === false) {
       console.log('ir pagina login');
       // document.getElementById('btnav').click();
       this.route.navigate(['/login']);
@@ -23,6 +24,6 @@ export class AuthService {
   }
 
   verificaTipoUsuario() {
-    return this.servico.getDadosEmpresa().operador.tipo;
+    return true;
   }
 }

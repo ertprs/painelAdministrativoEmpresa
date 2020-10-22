@@ -1,7 +1,7 @@
 import { CrudServicoService } from './../../crud-servico.service';
 import { ServicoService } from './../../servico.service';
 import { Component, Input, OnInit } from '@angular/core';
-
+import { tsXLXS } from 'ts-xlsx-export';
 @Component({
   selector: 'app-bt-exportar',
   templateUrl: './bt-exportar.component.html',
@@ -9,9 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BtExportarComponent implements OnInit {
 
-  nomeBt: 'Exportar';
   @Input() lista: Array<any>;
-  @Input() acao;
+  @Input() nomeArquivo;
   constructor(private servico: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
@@ -19,16 +18,7 @@ export class BtExportarComponent implements OnInit {
   }
 
   exportar() {
-    const fcall = () => {
-      const r = this.servico.getRespostaApi();
-      console.log(r);
-      if (r.erro === true) {
-        this.servico.mostrarMensagem(r.resultado.mensagem);
-      } else {
-        this.servico.mostrarMensagem(r.resultado.mensagem);
-      }
-    };
-    this.crud.post_api(this.acao, fcall, this.lista );
+    tsXLXS().exportAsExcelFile(this.lista).saveAsExcelFile(this.nomeArquivo);
   }
 
 }
