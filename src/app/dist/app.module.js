@@ -185,6 +185,10 @@ var api_calendario_component_1 = require("./api-calendario/api-calendario.compon
 var form_organizacao_component_1 = require("./organizacao-entregador/form-organizacao/form-organizacao.component");
 var usuario_permissoes_component_1 = require("./usuarios/usuario-permissoes/usuario-permissoes.component");
 var organizacao_entregador_component_1 = require("./organizacao-entregador/organizacao-entregador.component");
+var tela3_component_1 = require("./estoque/estoque-logistica/tela3/tela3.component");
+var bt_exportar_component_1 = require("./componentes/bt-exportar/bt-exportar.component");
+var filtronome_pipe_1 = require("./filtronome.pipe");
+var nomes_pipe_1 = require("./pipes/nomes.pipe");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -322,6 +326,10 @@ var AppModule = /** @class */ (function () {
                 api_calendario_component_1.ApiCalendarioComponent,
                 form_organizacao_component_1.FormOrganizacaoComponent,
                 usuario_permissoes_component_1.UsuarioPermissoesComponent,
+                tela3_component_1.Tela3Component,
+                bt_exportar_component_1.BtExportarComponent,
+                filtronome_pipe_1.FiltronomePipe,
+                nomes_pipe_1.NomesPipe,
             ],
             imports: [
                 platform_browser_1.BrowserModule,

@@ -1,0 +1,26 @@
+<div class="col2">
+    <div class="itemA">
+        <div> Produto </div>
+        <div> </div>
+        <div> </div>
+        <div> Qnt </div>
+        <!--<div> Remover </div>-->
+    </div>
+
+    <div class="itemA itemB" *ngFor="let item of data">
+        <div> {{ item.id_item_cardapio }} {{ item.nome }} </div>
+        <div> </div>
+        <div> </div>
+        <div> {{ item.quantidade }} </div>
+        <div>
+            <!--<button mat-icon-button color="primary">
+          <mat-icon>delete</mat-icon>
+        </button>-->
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-top: 50px;text-align: end;">
+    <button mat-stroked-button color="warn" mat-dialog-close> Fechar </button>
+</div>

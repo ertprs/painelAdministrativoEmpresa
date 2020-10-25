@@ -87,7 +87,7 @@
                     <span formArrayName="itens">
           <span [formGroupName]="a" *ngFor="let cartao of item.controls.itens.controls; let a = index">
             <div class="itensCard">
-              <!--{{ cartao.value | json }}--> <img width="40" [src]="cartao.value.imagem" alt="img"> {{ cartao.value.nome }} <mat-slide-toggle formControlName="disponivel"></mat-slide-toggle>
+              <!--{{ cartao.value | json }}--> <img width="40" [src]="cartao.value.imagem"> {{ cartao.value.nome }} <mat-slide-toggle formControlName="disponivel"></mat-slide-toggle>
             </div>
           </span>
                     </span>

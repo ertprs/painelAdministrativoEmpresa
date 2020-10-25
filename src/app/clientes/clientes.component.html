@@ -2,12 +2,11 @@
     <span>Clientes</span>
 </mat-toolbar>
 
-<mat-form-field class="f-cli" style="margin-left: 15px;">
+<mat-form-field class="f-cli" style="margin-left: 15px;" [formGroup]="form">
     <mat-label>Filtro</mat-label>
-    <input matInput type="name" placeholder="Nome cliente">
+    <input matInput type="name" formControlName="clienteNome" placeholder="Nome cliente" (keyup)="consultaClienteFiltro()">
 </mat-form-field>
 
-<a *ngIf="btblista" style="margin:5px" mat-stroked-button href="http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=&acao=gerarxsl&token={{ servico.getDadosEmpresa().token }}" target="_blank"> Exportar </a>
 
 <div style="padding: 5px;">
 
@@ -116,3 +115,5 @@
     </table>
 
 </div>
+
+<a *ngIf="btblista" style="margin:5px" mat-stroked-button href="http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=&acao=gerarxsl&token={{ servico.getDadosEmpresa().token }}" target="_blank"> Exportar </a>

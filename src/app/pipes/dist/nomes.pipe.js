@@ -19,7 +19,7 @@ var NomesPipe = /** @class */ (function () {
         console.log(items);
         console.log('filterBy');
         console.log(':' + filterBy + ':');
-        return items.filter(function (item) { return item.nome.indexOf(filterBy) !== -1; });
+        return items.filter(function (item) { return item.nome.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1; });
     };
     NomesPipe = __decorate([
         core_1.Pipe({

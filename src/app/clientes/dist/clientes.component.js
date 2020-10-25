@@ -11,14 +11,16 @@ var form_endereco_cliente_component_1 = require("./form-endereco-cliente/form-en
 var enderecos_cliente_component_1 = require("./enderecos-cliente/enderecos-cliente.component");
 var core_1 = require("@angular/core");
 var dialog_cadastro_cliente_component_1 = require("../dialog-cadastro-cliente/dialog-cadastro-cliente.component");
+var operators_1 = require("rxjs/operators");
 var ClientesComponent = /** @class */ (function () {
-    function ClientesComponent(crud, servico, dialog, router, sercard, us) {
+    function ClientesComponent(crud, servico, dialog, router, sercard, us, fb) {
         this.crud = crud;
         this.servico = servico;
         this.dialog = dialog;
         this.router = router;
         this.sercard = sercard;
         this.us = us;
+        this.fb = fb;
         this.displayedColumns = ['op', 'nome', 'telefone', 'aniversario', 'tipo', 'info', 'add'];
         this.itens = [];
         this.btblista = false;
@@ -34,6 +36,23 @@ var ClientesComponent = /** @class */ (function () {
         this.addCli = this.us.getPermissoessuario()[1].children[3].status;
         this.btMenu = this.us.getPermissoessuario()[1].children[2].status;
         this.btRemo = this.us.getPermissoessuario()[1].children[1].status;
+        this.form = this.fb.group({
+            clienteNome: ['']
+        });
+    };
+    ClientesComponent.prototype.consultaClienteFiltro = function () {
+        var _this = this;
+        operators_1.debounceTime(20000);
+        var accallback = function () {
+            console.log('callback');
+            var r = _this.servico.getRespostaApi();
+            if (r.erro === true) { }
+            else {
+                _this.itens = r.resultado;
+            }
+            console.log(r);
+        };
+        this.crud.post_api('consulta_cliente_filtro', accallback, this.form.value.clienteNome);
     };
     ClientesComponent.prototype.f5 = function () {
         var _this = this;

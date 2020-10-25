@@ -62,8 +62,9 @@ add(): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-    this.f1(result) ;
+    // this.f1(result) ;
     }
+    this.f1(result) ;
   });
 }
 

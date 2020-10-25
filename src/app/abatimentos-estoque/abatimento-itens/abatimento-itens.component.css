@@ -1,0 +1,33 @@
+.itemA {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background: #3F51B5;
+    padding: 10px;
+    border-bottom: 1px solid #7f7878;
+    color: white;
+}
+
+.itemB {
+    padding: 10px;
+    border-bottom: 1px solid #3f51b540;
+    color: #3F51B5;
+    background: #ffffff;
+    align-items: center;
+    font-size: 10px;
+}
+
+.bbc {
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+    gap: 10px;
+}
+
+.col2 {
+    height: 470px;
+    overflow: auto;
+}
+
+.col1 {
+    border-right: 1px solid #ead5d5;
+    padding-right: 13px;
+}

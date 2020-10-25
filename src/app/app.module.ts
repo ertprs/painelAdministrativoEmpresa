@@ -183,9 +183,11 @@ import { Tela3Component } from './estoque/estoque-logistica/tela3/tela3.componen
 import { BtExportarComponent } from './componentes/bt-exportar/bt-exportar.component';
 import { FiltronomePipe } from './filtronome.pipe';
 import { NomesPipe } from './pipes/nomes.pipe';
+import { AbatimentosEstoqueComponent } from './abatimentos-estoque/abatimentos-estoque.component';
+import { AbatimentoItensComponent } from './abatimentos-estoque/abatimento-itens/abatimento-itens.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     InicioComponent,
     MainNavComponent,
@@ -321,7 +323,9 @@ import { NomesPipe } from './pipes/nomes.pipe';
     BtExportarComponent,
     FiltronomePipe,
     NomesPipe,
-  ],
+      AbatimentosEstoqueComponent,
+      AbatimentoItensComponent
+   ],
   imports: [
     BrowserModule,
     LazyLoadImageModule,

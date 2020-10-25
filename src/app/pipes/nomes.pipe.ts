@@ -11,7 +11,7 @@ export class NomesPipe implements PipeTransform {
     console.log(items);
     console.log('filterBy');
     console.log(':' + filterBy + ':');
-    return items.filter(item => item.nome.indexOf(filterBy) !== -1);
+    return items.filter(item => item.nome.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1);
 }
 
 }

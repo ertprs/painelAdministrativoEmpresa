@@ -11,9 +11,9 @@ export class ServicoService {
   private dadosEntregador = false;
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
-  private urlapi = 'http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
-  // private urlapi = 'http://192.168.0.108/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
-  private dir = '&acao=';
+  // private urlapi = 'http://192.168.0.112/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
+  private urlapi = 'HOST DEFINIDO NO ARQUIVO JSON EM ASSETS';
+  private API = 'DEFINIDO NO ARQUIVO JSON EM ASSETS';
   private statusLogado = false;
   private dadosLogin: any;
   private respApi: any;
@@ -44,7 +44,15 @@ export class ServicoService {
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService) { }
+  getApiAcao(acao: string) {
+    console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
+    return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
+  }
 
+  setHost(host: string, api: string) {
+    this.urlapi = host;
+    this.API = api;
+  }
 
   getDefaultImage() {
     return this.defaultImg;
@@ -64,9 +72,6 @@ export class ServicoService {
     this.dadosCliente = cliente;
   }
 
-  getApiAcao(acao: string) {
-    return this.urlapi + '' + this.dir + '' + acao + '&token=' + this.token;
-  }
 
   getStatusLogado() {
     return this.statusLogado;
@@ -82,7 +87,7 @@ export class ServicoService {
     this.cardapioDigtal = this.dadosEmpresa.cardapio_digital;
     // this.listaBairros = dados;
     if (this.statusLogado === false) {
-      //document.getElementById('btnav').click();
+      // document.getElementById('btnav').click();
     }
     this.statusLogado = true;
     this.config.iniciarConfig();

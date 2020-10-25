@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.AppRoutingModule = void 0;
+var abatimentos_estoque_component_1 = require("./abatimentos-estoque/abatimentos-estoque.component");
 var estoque_logistica_component_1 = require("./estoque/estoque-logistica/estoque-logistica.component");
 var data_retroativa_component_1 = require("./delivery/paineldelivery/data-retroativa/data-retroativa.component");
 var historico_caixa_component_1 = require("./painel2-relatorio/historico-caixa/historico-caixa.component");
@@ -106,6 +107,7 @@ var routes = [
                     { path: 'estoque-motoboy', component: estoque_motoboy_component_1.EstoqueMotoboyComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
                     { path: 'lista-motoboys', component: lista_motoboys_component_1.ListaMotoboysComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
                     { path: 'logistica', component: estoque_logistica_component_1.EstoqueLogisticaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'batimentos-estoque', component: abatimentos_estoque_component_1.AbatimentosEstoqueComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
                 ] },
             { path: 'meusclientes', component: clientes_component_1.ClientesComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
             { path: 'editar-cliente', component: editar_cliente_component_1.EditarClienteComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },

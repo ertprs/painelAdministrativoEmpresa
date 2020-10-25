@@ -13,15 +13,21 @@ export class CrudServicoService {
 
   constructor(private http: HttpClient, private servico: ServicoService) { }
 
+  public pegaHost(): Observable<any> {
+    return this.http.get('./assets/config/configuracoes.json');
+  }
+
   public get_api(acao: string): Observable<any> {
     return this.http.get(this.servico.getApiAcao(acao));
   }
 
   public post_api(acao: string, acaoCallBack, param: any): Observable<any> {
-    return $.post(this.servico.getApiAcao(acao), { obj: param, },
+    return $.post(this.servico.getApiAcao(acao), { obj: param },
       (data, status) => {
-        this.servico.setRespostaApi(JSON.parse(data));
-        acaoCallBack();
+        /*  console.log(data); */
+         this.servico.setRespostaApi(JSON.parse(data));
+        // this.servico.setRespostaApi(data);
+         acaoCallBack();
       });
   }
 

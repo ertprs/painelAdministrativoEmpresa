@@ -1,4 +1,4 @@
-<mat-tab-group [formGroup]="form" [selectedIndex]="indexTabGroup">
+<mat-tab-group color="primary" [formGroup]="form" [selectedIndex]="indexTabGroup">
 
     <!--<mat-tab label="Clientes">
         <div>
@@ -89,7 +89,7 @@
 
         <mat-form-field class="fotmg" style="margin:20px; width: 90%;" color="primary">
             <mat-label> Filtro </mat-label>
-            <input matInput placeholder="Filtro item" #filtrop>
+            <input matInput placeholder="Filtrar de item do catálogo" #filtrop>
         </mat-form-field>
 
         <div class="itemCat" *ngFor="let item of catalogo">

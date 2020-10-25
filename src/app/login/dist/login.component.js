@@ -11,6 +11,7 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(crud, formBuilder, servico, router, auth, us) {
+        var _this = this;
         this.crud = crud;
         this.formBuilder = formBuilder;
         this.servico = servico;
@@ -18,6 +19,10 @@ var LoginComponent = /** @class */ (function () {
         this.auth = auth;
         this.us = us;
         this.logo = 'assets/vultoroxonome.png';
+        this.crud.pegaHost().subscribe(function (data) {
+            console.log(data[0].host);
+            _this.servico.setHost(data[0].host, data[0].api);
+        }, function (error) { alert('Erro ao carregar o host'); });
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.btloginstatus = false;

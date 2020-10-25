@@ -22,7 +22,12 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private auth: AuthService,
               private us: UsuariosAdmService
-              ) { }
+              ) {
+                this.crud.pegaHost().subscribe( data => {
+                  console.log(data[0].host);
+                  this.servico.setHost(data[0].host, data[0].api);
+                 }, error => { alert('Erro ao carregar o host'); } );
+               }
 
   ngOnInit(): void {
     this.btloginstatus = false;

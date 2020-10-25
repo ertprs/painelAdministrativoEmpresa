@@ -18,9 +18,9 @@ var ServicoService = /** @class */ (function () {
         this.dadosEntregador = false;
         this.dadosCliente = false;
         this.defaultImg = '/assets/semImg.png';
-        this.urlapi = 'http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
-        // private urlapi = 'http://192.168.0.108/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
-        this.dir = '&acao=';
+        // private urlapi = 'http://192.168.0.112/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
+        this.urlapi = 'HOST DEFINIDO NO ARQUIVO JSON EM ASSETS';
+        this.API = 'DEFINIDO NO ARQUIVO JSON EM ASSETS';
         this.statusLogado = false;
         this.token = '';
         this.listaEntregadores = [];
@@ -35,6 +35,14 @@ var ServicoService = /** @class */ (function () {
         this.statusSistemaDelivery = false;
         this.fSistema = [];
     }
+    ServicoService.prototype.getApiAcao = function (acao) {
+        console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
+        return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
+    };
+    ServicoService.prototype.setHost = function (host, api) {
+        this.urlapi = host;
+        this.API = api;
+    };
     ServicoService.prototype.getDefaultImage = function () {
         return this.defaultImg;
     };
@@ -50,9 +58,6 @@ var ServicoService = /** @class */ (function () {
     ServicoService.prototype.setClienteSelecionado = function (cliente) {
         this.dadosCliente = cliente;
     };
-    ServicoService.prototype.getApiAcao = function (acao) {
-        return this.urlapi + '' + this.dir + '' + acao + '&token=' + this.token;
-    };
     ServicoService.prototype.getStatusLogado = function () {
         return this.statusLogado;
     };
@@ -66,7 +71,7 @@ var ServicoService = /** @class */ (function () {
         this.cardapioDigtal = this.dadosEmpresa.cardapio_digital;
         // this.listaBairros = dados;
         if (this.statusLogado === false) {
-            //document.getElementById('btnav').click();
+            // document.getElementById('btnav').click();
         }
         this.statusLogado = true;
         this.config.iniciarConfig();
