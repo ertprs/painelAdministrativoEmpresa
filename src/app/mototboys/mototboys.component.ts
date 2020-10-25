@@ -11,7 +11,7 @@ import { CrudServicoService } from '../crud-servico.service';
 })
 export class MototboysComponent implements OnInit {
 
-  displayedColumns: string[] = ['op', 'op2', 'c1', 'c2', 'c3', 'add'];
+  displayedColumns: string[] = ['op', 'c1', 'c2', 'c3', 'add'];
   itens = [];
 
 
@@ -38,7 +38,7 @@ add(): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-    this.f1(result) ;
+    this.f5() ;
     }
   });
 }
@@ -53,23 +53,11 @@ onClickEditar(item): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-    this.editar(result) ;
+    this.f5() ;
     }
   });
 }
 
-editar(form) {
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servico.getRespostaApi();
-    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
-      this.servico.mostrarMensagem(r.detalhes);
-      this.f5();
-    }
-    console.log(r);
-  };
-  this.crud.post_api('editarPerfilEntregador', accallback, form);
-}
 
 f1(form) {
 

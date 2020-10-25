@@ -1,8 +1,10 @@
+import { UploadimagemService } from './../upload-imagem/uploadimagem.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { ServicoService } from '../servico.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CrudServicoService } from '../crud-servico.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { truncate } from 'lodash';
 
 @Component({
   selector: 'app-dialog-add-mototboy',
@@ -12,15 +14,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DialogAddMototboyComponent implements OnInit {
 
   form: FormGroup;
-
+  acao: any;
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<DialogAddMototboyComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private crud: CrudServicoService, private servico: ServicoService,
+              public upimg: UploadimagemService) { }
 
   ngOnInit(): void {
-
+    console.log(this.data);
     if (this.data.acao === 'add') {
+      this.acao = 'cadatrar_motoboy';
       this.form = this.fb.group({
         nome: [null, Validators.required],
+        imagem: [this.upimg.getImagem()],
         email: [null, Validators.required],
         telefone: [null, Validators.required],
         senha: [null, Validators.required],
@@ -36,8 +41,10 @@ export class DialogAddMototboyComponent implements OnInit {
       });
 
     } else {
+      this.acao = 'editarPerfilEntregador';
       this.form = this.fb.group({
         id: [this.data.usuario.id, Validators.required],
+        imagem: [this.data.usuario.imagem],
         nome: [this.data.usuario.nome, Validators.required],
         email: [this.data.usuario.email, Validators.required],
         telefone: [this.data.usuario.telefone, Validators.required],
@@ -58,5 +65,23 @@ export class DialogAddMototboyComponent implements OnInit {
 
 
   }
+
+  salvar() {
+    if (this.upimg.getImagem()) {
+        this.form.value.imagem = this.upimg.getImagem();
+    }
+
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
+        this.servico.mostrarMensagem(r.mensagem);
+        this.dialogRef.close(truncate);
+      }
+      console.log(r);
+    };
+    this.crud.post_api(this.acao, accallback, this.form.value);
+  }
+
 }
 

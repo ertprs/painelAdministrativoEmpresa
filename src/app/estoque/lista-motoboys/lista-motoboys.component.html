@@ -6,9 +6,7 @@
             <input matInput type="name" #nomeEnt>
         </mat-form-field>
 
-        <button mat-icon-button color="primary">
-            <mat-icon>search</mat-icon>
-          </button>
+
 
         <table mat-table [dataSource]="dataSource | nomes:nomeEnt.value">
 

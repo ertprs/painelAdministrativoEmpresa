@@ -1,5 +1,7 @@
 <div class="row" [formGroup]="form">
-
+    <div>
+        <app-upload-imagem [preload]="true" [nomeBotao]="'Imagem motoboy'"></app-upload-imagem>
+    </div>
 
     <mat-form-field class="example-full-width">
         <mat-label>Nome</mat-label>
@@ -72,5 +74,5 @@
 
 <div style="margin-top: 10px;">
     <button mat-stroked-button color="warn" [mat-dialog-close]="false">Cancelar</button>
-    <button style="margin-left: 10px;" mat-stroked-button color="primary" [mat-dialog-close]="form.value">Salvar</button>
+    <button style="margin-left: 10px;" mat-stroked-button color="primary" (click)="salvar()">Salvar</button>
 </div>

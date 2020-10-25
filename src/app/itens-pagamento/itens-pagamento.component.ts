@@ -41,7 +41,7 @@ add() {
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     console.log(result);
-    this.f1(result);
+    this.f5();
   });
 }
 
@@ -56,38 +56,13 @@ onClickEditar(i): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-    this.editar(result) ;
+    this.f5() ;
     }
   });
 }
 
-editar(form) {
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servico.getRespostaApi();
-    if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
-      this.servico.mostrarMensagem(r.mensagem);
-      this.f5();
-    }
-    console.log(r);
-  };
-  this.crud.post_api('attItenFormaspagamento', accallback, form);
-}
 
-f1(form) {
 
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servico.getRespostaApi();
-    if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
-      this.servico.mostrarMensagem(r.mensagem);
-      this.itens = r.mensagem;
-      this.f5();
-    }
-    console.log(r);
-  };
-  this.crud.post_api('addItensFormaspagamento', accallback, form);
-}
 
 removerItem(item) {
 
@@ -98,7 +73,6 @@ removerItem(item) {
       this.servico.mostrarMensagem('Item removido');
       this.f5();
     }
-    console.log(r);
   };
   this.crud.post_api('removerItenFormaspagamento', accallback, item);
 

@@ -1,10 +1,9 @@
 <div [formGroup]="form" style="display: grid;">
 
 
-    <!--<mat-form-field>
-        <mat-label>Id forma pag.</mat-label>
-        <input matInput placeholder="Id forma de pagamento" formControlName="id_formapagamento">
-    </mat-form-field>-->
+    <div>
+        <app-upload-imagem [preload]="true" [nomeBotao]="'Imagem item pagamento'"></app-upload-imagem>
+    </div>
 
     <mat-form-field appearance="fill">
         <mat-label>Forma de pagamento</mat-label>
@@ -33,6 +32,6 @@
 
     <div>
         <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
-        <button style="margin-left: 3px;" mat-flat-button color="warn" [mat-dialog-close]="form.value">Salvar</button>
+        <button style="margin-left: 3px;" mat-flat-button color="warn" (click)="salvar()">Salvar</button>
     </div>
 </div>
