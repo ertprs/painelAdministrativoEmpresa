@@ -41,6 +41,8 @@ export class CadastroPedidoComponent implements OnInit {
   indexTabGroup = 0;
   cataoSelecionado: any;
 
+  statusBtenviar = false;
+
 
   constructor(public servico: ServicoService, private crud: CrudServicoService, private dialog: MatDialog,
               public servcard: CadastroPedidoService, private fb: FormBuilder,
@@ -356,6 +358,11 @@ export class CadastroPedidoComponent implements OnInit {
       return;
     }
 
+    if (this.servcard.getCarrinho().origempedido === false) {
+      this.servico.mostrarMensagem('Selecione a origem deste pedido');
+      return;
+    }
+
     if (this.servcard.verificaFpsTotal() !== this.servcard.getTotalCarrinho()) {
       this.servico.mostrarMensagem
         ('Os total da forma de pagamento esta menor que o total do pedido. o total das formas de pagamento está: R$' +
@@ -430,18 +437,24 @@ export class CadastroPedidoComponent implements OnInit {
     console.log(this.servcard.getCarrinho());
 
 
+    this.statusBtenviar = true;
     const accallback = () => {
+      
       console.log('callback');
       this.statusLoaderEnviaPedido = false;
       const r = this.servico.getRespostaApi();
-      if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
+      if (r.erro === true) { 
+        this.servico.mostrarMensagem(r.detalhes);
+        this.statusBtenviar = false;
+      } else {
         this.router.navigate(['/painelpedidos/pedidos']);
         this.servico.mostrarMensagem('Pedido finalizado');
         this.servcard.limparCarrinho();
+
       }
       console.log(r);
     };
-    this.crud.post_api('adicionar_pedido', accallback, this.servcard.getCarrinho());
+    this.crud.post_api('adicionar_pedido', accallback, this.servcard.getCarrinho(), true);
 
 
 

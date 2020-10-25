@@ -1,15 +1,18 @@
 <div class="box">
     <h2>Endereço</h2>
-    <div> {{ data.item.nome }} {{ data.item.sobrenome }} </div>
+
     <table mat-table [dataSource]="itens">
 
 
         <ng-container matColumnDef="c0">
-            <th mat-header-cell *matHeaderCellDef> </th>
+            <th mat-header-cell *matHeaderCellDef>
+
+                <mat-icon>supervised_user_circle</mat-icon>
+                <b>{{ data.item.nome }} {{ data.item.sobrenome }}</b>
+
+            </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-icon-button color="accent" [mat-dialog-close]="element">
-                    <mat-icon>send</mat-icon>
-                </button>
+                <button mat-flat-button color="primary" [mat-dialog-close]="element"> Cadastrar pedido </button>
             </td>
         </ng-container>
 

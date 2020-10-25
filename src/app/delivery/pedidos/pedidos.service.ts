@@ -119,7 +119,7 @@ export class PedidosService {
       }, 1000);
     };
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id };
-    console.log(this.crud.post_api('solicita_motoboy_pedido', loginres, data));
+    this.crud.post_api('solicita_motoboy_pedido', loginres, data, true);
   }
 
   cacelarSolicitacaoMotoboy(idPedido) {
@@ -135,7 +135,7 @@ export class PedidosService {
       }
     };
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id };
-    console.log(this.crud.post_api('cancelar_solicitacao_motoboy', loginres, data));
+    this.crud.post_api('cancelar_solicitacao_motoboy', loginres, data, true);
   }
 
   onClickAttStatusPedido(statusPedido, idPedido, params) {
@@ -156,7 +156,7 @@ export class PedidosService {
 
 
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido, params };
-    this.crud.post_api('att_status_pedido', loginres, data);
+    this.crud.post_api('att_status_pedido', loginres, data, true);
 
   }
 
@@ -173,7 +173,7 @@ export class PedidosService {
       }
     };
     const data = { id_empresa: this.servapp.getDadosEmpresa().id, status: statusDelivery };
-    this.crud.post_api('att_status_delivery', loginres, data);
+    this.crud.post_api('att_status_delivery', loginres, data, true);
   }
 
   getPedidos() {

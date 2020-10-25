@@ -1,3 +1,4 @@
+import { ProgressSistemaService } from './componentes/progress-sistema/progress-sistema.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,7 +12,7 @@ export class CrudServicoService {
   private setIntervalConsultaSis: any;
   public resp: any;
 
-  constructor(private http: HttpClient, private servico: ServicoService) { }
+  constructor(private http: HttpClient, private servico: ServicoService, private progServ: ProgressSistemaService) { }
 
   public pegaHost(): Observable<any> {
     return this.http.get('./assets/config/configuracoes.json');
@@ -21,13 +22,14 @@ export class CrudServicoService {
     return this.http.get(this.servico.getApiAcao(acao));
   }
 
-  public post_api(acao: string, acaoCallBack, param: any): Observable<any> {
-    return $.post(this.servico.getApiAcao(acao), { obj: param },
+  public post_api(acao: string, acaoCallBack, param: any, mostrarProgesso?: boolean): Observable<any> {
+    return $.post(this.servico.getApiAcao(acao, mostrarProgesso), { obj: param },
       (data, status) => {
         /*  console.log(data); */
          this.servico.setRespostaApi(JSON.parse(data));
         // this.servico.setRespostaApi(data);
          acaoCallBack();
+         if (mostrarProgesso) { this.progServ.showProgress.emit(false); }
       });
   }
 

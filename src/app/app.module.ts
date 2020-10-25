@@ -185,6 +185,8 @@ import { FiltronomePipe } from './filtronome.pipe';
 import { NomesPipe } from './pipes/nomes.pipe';
 import { AbatimentosEstoqueComponent } from './abatimentos-estoque/abatimentos-estoque.component';
 import { AbatimentoItensComponent } from './abatimentos-estoque/abatimento-itens/abatimento-itens.component';
+import { ProgressSistemaComponent } from './componentes/progress-sistema/progress-sistema.component';
+import { ProgressoComponent } from './componentes/progress-sistema/progresso/progresso.component';
 
 @NgModule({
   declarations: [	
@@ -324,7 +326,9 @@ import { AbatimentoItensComponent } from './abatimentos-estoque/abatimento-itens
     FiltronomePipe,
     NomesPipe,
       AbatimentosEstoqueComponent,
-      AbatimentoItensComponent
+      AbatimentoItensComponent,
+      ProgressSistemaComponent,
+      ProgressoComponent
    ],
   imports: [
     BrowserModule,

@@ -90,7 +90,7 @@
             </button>-->
 
 
-            <button matTooltip="Remover únidades de estoque" *ngIf="element.quantidade_total_unidades > 0" mat-icon-button (click)="retirarEstoqueLoja(element)">
+            <button matTooltip="Remover únidades de estoque" [disabled]="element.quantidade_total_unidades === 0 || element.quantidade_total_unidades === '0'" mat-icon-button (click)="retirarEstoqueLoja(element)">
                 <mat-icon class="mat-18">undo</mat-icon>
             </button>
 

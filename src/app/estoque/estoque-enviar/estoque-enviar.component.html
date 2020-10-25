@@ -1,12 +1,19 @@
 <div [formGroup]="form">
     <div>Enviar estoque</div>
 
+    <div>
+        <mat-form-field style="width: 100%;">
+            <mat-label> Filtro entregador </mat-label>
+            <input matInput type="name" placeholder="Digite aqui o nome do entregador" #nomeEnt>
+        </mat-form-field>
+    </div>
+
     <div class="delsuc">
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Motoboys</mat-label>
                 <mat-select formControlName="propriedade">
-                    <mat-option *ngFor="let item of motoboys" [value]="item.id">
+                    <mat-option *ngFor="let item of motoboys | nomes:nomeEnt.value" [value]="item.id">
                         {{ item.nome }}
                     </mat-option>
                 </mat-select>

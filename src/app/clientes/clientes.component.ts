@@ -73,7 +73,7 @@ add(): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-    this.f1(result) ;
+    this.f5();
     }
   });
 }
@@ -106,19 +106,6 @@ editar(form) {
   this.crud.post_api('att_cliente_lista_emp', accallback, form);
 }
 
-f1(form) {
-
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servico.getRespostaApi();
-    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
-      this.servico.mostrarMensagem(r.detalhes);
-      this.f5();
-    }
-    console.log(r);
-  };
-  this.crud.post_api('add_cliente_lista_emp', accallback, form);
-}
 
 removerItem(item) {
 
@@ -198,16 +185,7 @@ formaddEnd() {
     console.log(result);
     if (result) {
 
-      const accallback = () => {
-        console.log('callback');
-        const r = this.servico.getRespostaApi();
-        if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
-          this.servico.mostrarMensagem(r.detalhes);
-          this.f5();
-        }
-        console.log(r);
-      };
-      this.crud.post_api('add_end_usuario', accallback, result);
+      this.f5();
 
     }
   });

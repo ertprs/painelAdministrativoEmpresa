@@ -10,6 +10,8 @@ table {
 
 .bts {
     font-size: 11px;
+    height: 40px;
+    margin: auto;
 }
 
 .op {
@@ -85,4 +87,18 @@ table {
     to {
         background-color: yellow;
     }
+}
+
+.ggUi {
+    text-align: center;
+    border-left: 1px solid #dcdcdc;
+    padding-left: 23px;
+}
+
+.guid2 {
+    display: grid;
+    justify-content: center;
+    height: 48px;
+    align-items: center;
+    grid-template-columns: 1fr 0fr;
 }

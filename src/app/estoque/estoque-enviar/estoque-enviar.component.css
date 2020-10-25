@@ -2,5 +2,5 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: self-end;
-    margin-top: 40px;
+    margin-top: 15px;
 }

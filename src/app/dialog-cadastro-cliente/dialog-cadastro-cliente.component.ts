@@ -110,5 +110,19 @@ export class DialogCadastroClienteComponent implements OnInit {
 }
 
 
+salvar() {
+
+  const accallback = () => {
+    console.log('callback');
+    const r = this.servico.getRespostaApi();
+    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+      this.servico.mostrarMensagem(r.detalhes);
+      this.dialogRef.close(true);
+    }
+    console.log(r);
+  };
+  this.crud.post_api('add_cliente_lista_emp', accallback, this.form.value);
+}
+
 
 }

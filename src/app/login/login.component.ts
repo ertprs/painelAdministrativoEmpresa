@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         this.auth.mostrarMenu.emit(true);
       }
     };
-    console.log( this.crud.post_api('login_emrpesa', loginres, this.formLogin.value ) );
+    console.log( this.crud.post_api('login_emrpesa', loginres, this.formLogin.value, true ) );
   }
 
 }

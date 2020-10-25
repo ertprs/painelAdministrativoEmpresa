@@ -1,271 +1,266 @@
-<mat-tab-group color="primary" [formGroup]="form" [selectedIndex]="indexTabGroup">
+<div style="padding: 50px;">
+    <mat-tab-group color="primary" [formGroup]="form" [selectedIndex]="indexTabGroup">
 
-    <!--<mat-tab label="Clientes">
-        <div>
-            <app-clientes-detalhes></app-clientes-detalhes>
-        </div>
-    </mat-tab>-->
+        <mat-tab label="Dados cliente">
 
-    <mat-tab label="Dados cliente">
+            <div class="dados1">
+                <div class="dados2">
 
-        <div class="dados1">
-            <div class="dados2">
+                    <mat-form-field color="primary" appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input formControlName="nome" matInput placeholder="" type="name">
+                    </mat-form-field>
+
+                    <mat-form-field color="primary" appearance="outline">
+                        <mat-label>Telefone</mat-label>
+                        <input formControlName="telefone" matInput placeholder="" type="tel">
+                    </mat-form-field>
+
+                </div>
+
 
                 <mat-form-field color="primary" appearance="outline">
-                    <mat-label>Nome</mat-label>
-                    <input formControlName="nome" matInput placeholder="" type="name">
+                    <mat-label>Complemento</mat-label>
+                    <input formControlName="complemento" matInput placeholder="" type="name">
                 </mat-form-field>
 
-                <mat-form-field color="primary" appearance="outline">
-                    <mat-label>Telefone</mat-label>
-                    <input formControlName="telefone" matInput placeholder="" type="tel">
-                </mat-form-field>
+                <div class="dados3">
+                    <mat-form-field color="primary" appearance="outline">
+                        <mat-label>Logradouro</mat-label>
+                        <input formControlName="rua" matInput placeholder="Rua nome" type="name">
+                    </mat-form-field>
+
+                    <mat-form-field color="primary" appearance="outline">
+                        <mat-label>Numero</mat-label>
+                        <input formControlName="numero" matInput placeholder="Apt/Casa" type="name">
+                    </mat-form-field>
+                </div>
+
+
+                <div class="dados4">
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cidade</mat-label>
+                        <mat-select formControlName="cidade" (selectionChange)="selecionaCidadeSelect(itemCidade.value)" #itemCidade>
+                            <mat-option *ngFor="let item of listaCidades" [value]="item">
+                                {{item.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Bairro
+                            <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
+                        </mat-label>
+                        <mat-select formControlName="bairro" (selectionChange)="formTaxa(itemBairro.value)" #itemBairro>
+                            <!--#bairroClienteSelecionada-->
+                            <mat-option *ngFor="let item of listaBairros" [value]="item">
+                                {{item.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field color="primary" appearance="outline">
+
+                        <mat-label>Taxa de entrega
+                            <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderTaxa"></mat-progress-bar>
+                        </mat-label>
+                        <input [(ngModel)]="servcard.getCarrinho().taxaentrega" formControlName="taxaentrega" matInput placeholder="R$17,50" type="tel" mask="separator.2" thousandSeparator=".">
+                    </mat-form-field>
+
+
+                </div>
+
+
+
 
             </div>
 
 
-            <mat-form-field color="primary" appearance="outline">
-                <mat-label>Complemento</mat-label>
-                <input formControlName="complemento" matInput placeholder="" type="name">
+        </mat-tab>
+
+
+        <mat-tab label="Catálogo">
+
+            <mat-form-field class="fotmg" style="margin:20px; width: 90%;" color="primary">
+                <mat-label> Filtro </mat-label>
+                <input matInput placeholder="Filtrar de item do catálogo" #filtrop>
             </mat-form-field>
 
-            <div class="dados3">
-                <mat-form-field color="primary" appearance="outline">
-                    <mat-label>Logradouro</mat-label>
-                    <input formControlName="rua" matInput placeholder="Rua nome" type="name">
-                </mat-form-field>
+            <div class="itemCat" *ngFor="let item of catalogo">
 
-                <mat-form-field color="primary" appearance="outline">
-                    <mat-label>Numero</mat-label>
-                    <input formControlName="numero" matInput placeholder="Apt/Casa" type="name">
-                </mat-form-field>
-            </div>
+                <mat-expansion-panel color="primary" hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>keyboard_arrow_down</mat-icon> {{ item.nome }}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!--This is a summary of the content-->
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-
-            <div class="dados4">
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Cidade</mat-label>
-                    <mat-select formControlName="cidade" (selectionChange)="selecionaCidadeSelect(itemCidade.value)" #itemCidade>
-                        <mat-option *ngFor="let item of listaCidades" [value]="item">
-                            {{item.nome}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Bairro
-                        <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
-                    </mat-label>
-                    <mat-select formControlName="bairro" (selectionChange)="formTaxa(itemBairro.value)" #itemBairro>
-                        <!--#bairroClienteSelecionada-->
-                        <mat-option *ngFor="let item of listaBairros" [value]="item">
-                            {{item.nome}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field color="primary" appearance="outline">
-
-                    <mat-label>Taxa de entrega
-                        <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderTaxa"></mat-progress-bar>
-                    </mat-label>
-                    <input formControlName="taxaentrega" matInput placeholder="R$17,50" type="tel" mask="separator.2" thousandSeparator=".">
-                </mat-form-field>
-
-
-            </div>
+                    <mat-list role="list">
 
 
 
+                        <div class="itemCatalogo" *ngFor="let itemc of item.itens | nomes:filtrop.value">
+                            <mat-list-item role="listitem">
 
-        </div>
+                                <div>
 
-
-    </mat-tab>-->
-
-
-    <mat-tab label="Catálogo">
-
-        <mat-form-field class="fotmg" style="margin:20px; width: 90%;" color="primary">
-            <mat-label> Filtro </mat-label>
-            <input matInput placeholder="Filtrar de item do catálogo" #filtrop>
-        </mat-form-field>
-
-        <div class="itemCat" *ngFor="let item of catalogo">
-
-            <mat-expansion-panel color="primary" hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <mat-icon>keyboard_arrow_down</mat-icon> {{ item.nome }}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        <!--This is a summary of the content-->
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-
-                <mat-list role="list">
-
-
-
-                    <div class="itemCatalogo" *ngFor="let itemc of item.itens | nomes:filtrop.value">
-                        <mat-list-item role="listitem">
-
-                            <div>
-
-                                <button (click)="onClickItem(itemc)" color="primary" mat-icon-button>
+                                    <button (click)="onClickItem(itemc)" color="primary" mat-icon-button>
                                     <mat-icon>add</mat-icon>
                                 </button>
 
-                            </div>
-                            <div> <img width="80px" [src]="itemc.imagem" alt="" srcset=""> </div>
-                            <div style="margin-left: 10px;">
-                                <div> {{ itemc.id }} {{ itemc.nome }} </div>
-                                <div style="font-size: 13px; color: rgb(90, 89, 89);"> {{ itemc.descricao }} </div>
-                                <div> {{ itemc.preco | currency }} </div>
-                            </div>
-                        </mat-list-item>
-                    </div>
-                </mat-list>
-
-            </mat-expansion-panel>
-
-        </div>
-
-    </mat-tab>
-
-
-    <mat-tab label="Carrinho">
-        <div class="acar">
-            <div class="Carrinho">
-
-
-                <mat-chip-list style="text-align: center;">
-                    <mat-chip (click)="openBottomSheet('canalpedido')">Origem do pedido</mat-chip>
-                    <mat-chip (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
-                    <mat-chip (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
-                </mat-chip-list>
-
-                <div style="border-bottom: 1px solid #ececec;" [formGroup]="form">
-
-                    <div class="boxfps" *ngFor="let item of servcard.getCarrinho().formasPagamento; let i = index;trackBy:trackByIdx">
-
-                        <div class="icdel">
-                            <button mat-icon-button color="accent" (click)=" servcard.removeItemFp(item)">
-                                <mat-icon>delete</mat-icon>
-                            </button>
+                                </div>
+                                <div> <img width="80px" [src]="itemc.imagem" alt="" srcset=""> </div>
+                                <div style="margin-left: 10px;">
+                                    <div> {{ itemc.id }} {{ itemc.nome }} </div>
+                                    <div style="font-size: 13px; color: rgb(90, 89, 89);"> {{ itemc.descricao }} </div>
+                                    <div> {{ itemc.preco | currency }} </div>
+                                </div>
+                            </mat-list-item>
                         </div>
-                        <div class="biagod"> {{ item.nome }} </div>
+                    </mat-list>
 
-                        <div [formGroup]="formvalorFp">
-                            <mat-form-field appearance="fill" style="margin-top: 18px; width: 100%;" *ngIf="item.itens[0]">
-                                <mat-label> Item pagamento </mat-label>
-                                <mat-select [(ngModel)]="item.itemSelecionado" [ngModelOptions]="{standalone: true}">
-                                    <mat-option *ngFor="let ipag of item.itens" [value]="ipag">
-                                        {{ ipag.nome }}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-
-
-                        <div>
-
-                            <div style="    display: grid;
-                            grid-template-columns: 1fr 1fr;
-                            align-items: center;">
-
-                                <button mat-icon-button (click)="onClickEditarvalorFp(item)">
-                                    <mat-icon>edit</mat-icon>
-                                </button> {{ item.valor | currency:'BRL':true }}
-                            </div>
-
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-                <div class="vcb">
-                    <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
-                        <mat-label>Troco para</mat-label>
-                        <input formControlName="troco" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
-                    </mat-form-field>
-
-                    <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
-                        <mat-label>Desconto</mat-label>
-                        <input formControlName="desconto" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
-                    </mat-form-field>
-
-                    <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
-                        <mat-label>Taxa extra</mat-label>
-                        <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number" mask="separator.2" thousandSeparator=".">
-                    </mat-form-field>
-                </div>
-
-
+                </mat-expansion-panel>
 
             </div>
 
-            <div class="car">
+        </mat-tab>
 
 
-                <div class="car1">
+        <mat-tab label="Carrinho">
+            <div class="acar">
+                <div class="Carrinho">
 
-                    <div>
-                        <div class="isac" *ngFor="let item of servcard.getItensCarrinho()">
 
-                            <div>
-                                <button mat-icon-button color="warn" aria-label="Example icon button with a menu icon" (click)="servcard.removeItemCar(item)">
-                                    <mat-icon style="color: black">delete</mat-icon>
-                                </button>
+                    <mat-chip-list style="text-align: center;">
+                        <mat-chip style="background-color: orange;" (click)="openBottomSheet('canalpedido')">Origem do pedido</mat-chip>
+                        <mat-chip style="background-color: orange;" (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
+                        <mat-chip style="background-color: orange;" (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
+                    </mat-chip-list>
+
+                    <div style="border-bottom: 1px solid #ececec;" [formGroup]="form">
+
+                        <div class="boxfps" *ngFor="let item of servcard.getCarrinho().formasPagamento; let i = index;trackBy:trackByIdx">
+
+                            <div class="icdel">
+                                <button mat-icon-button color="accent" (click)=" servcard.removeItemFp(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            </div>
+                            <div class="biagod"> {{ item.nome }} </div>
+
+                            <div [formGroup]="formvalorFp">
+                                <mat-form-field appearance="fill" style="margin-top: 18px; width: 100%;" *ngIf="item.itens[0]">
+                                    <mat-label> Item pagamento </mat-label>
+                                    <mat-select [(ngModel)]="item.itemSelecionado" [ngModelOptions]="{standalone: true}">
+                                        <mat-option *ngFor="let ipag of item.itens" [value]="ipag">
+                                            {{ ipag.nome }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
                             </div>
 
+
                             <div>
-                                <div class="isacT">
-                                    <div> {{ item.qnt }}x {{ item.nome }} </div>
-                                    <div> Preço: {{ item.preco | currency:'BRL':true }} </div>
-                                </div>
-                                <div class="obsbuinho">Observação: {{ item.observacao }} </div>
-                                <div> <span style="font-size: 11px;">Adicionais:</span>
-                                    <div *ngFor="let adc of item.adicionais" class="isacAdcs">
 
-                                        <div> {{ adc.qnt }}x {{ adc.nome }} </div>
-                                        <div class="linhaadd"></div>
-                                        <div> {{ adc.qnt*adc.preco | currency:'BRL':true}} </div>
+                                <div style="    display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            align-items: center;">
 
-                                    </div>
+                                    <button mat-icon-button (click)="onClickEditarvalorFp(item)">
+                                    <mat-icon>edit</mat-icon>
+                                </button> {{ item.valor | currency:'BRL':true }}
                                 </div>
-                                <div class="isacT">Total: {{ item.total | currency }}</div>
+
                             </div>
+
 
 
                         </div>
                     </div>
 
-                    <div>
+                    <div class="vcb">
+                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                            <mat-label>Troco para</mat-label>
+                            <input formControlName="troco" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
+                        </mat-form-field>
 
-                        <div class="car12">
-                            <div>Origem do pedido</div>
-                            <div>
+                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                            <mat-label>Desconto</mat-label>
+                            <input formControlName="desconto" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
+                        </mat-form-field>
 
-                                <span *ngIf="servcard.getCarrinho().origempedido === false">Não selecionado</span>
-                                <span *ngIf="servcard.getCarrinho().origempedido !== false">
+                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                            <mat-label>Taxa extra</mat-label>
+                            <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number" mask="separator.2" thousandSeparator=".">
+                        </mat-form-field>
+                    </div>
+
+
+
+                </div>
+
+                <div class="car">
+
+
+                    <div class="car1">
+
+                        <div>
+                            <div class="isac" *ngFor="let item of servcard.getItensCarrinho()">
+
+                                <div>
+                                    <button mat-icon-button color="warn" aria-label="Example icon button with a menu icon" (click)="servcard.removeItemCar(item)">
+                                    <mat-icon style="color: black">delete</mat-icon>
+                                </button>
+                                </div>
+
+                                <div>
+                                    <div class="isacT">
+                                        <div> {{ item.qnt }}x {{ item.nome }} </div>
+                                        <div> Preço: {{ item.preco | currency:'BRL':true }} </div>
+                                    </div>
+                                    <div class="obsbuinho">Observação: {{ item.observacao }} </div>
+                                    <div> <span style="font-size: 11px;">Adicionais:</span>
+                                        <div *ngFor="let adc of item.adicionais" class="isacAdcs">
+
+                                            <div> {{ adc.qnt }}x {{ adc.nome }} </div>
+                                            <div class="linhaadd"></div>
+                                            <div> {{ adc.qnt*adc.preco | currency:'BRL':true}} </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="isacT">Total: {{ item.total | currency }}</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <div class="car12">
+                                <div>Origem do pedido</div>
+                                <div>
+
+                                    <span *ngIf="servcard.getCarrinho().origempedido === false">Não selecionado</span>
+                                    <span *ngIf="servcard.getCarrinho().origempedido !== false">
                                     {{ servcard.getCarrinho().origempedido }} </span>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="car12">
-                            <div>Tipo do pedido</div>
-                            <div>
+                            <div class="car12">
+                                <div>Tipo do pedido</div>
+                                <div>
 
-                                <span *ngIf="servcard.getCarrinho().tipopedido === 'false'">Não selecionado</span>
-                                <span *ngIf="servcard.getCarrinho().tipopedido !== 'false'">
+                                    <span *ngIf="servcard.getCarrinho().tipopedido === 'false'">Não selecionado</span>
+                                    <span *ngIf="servcard.getCarrinho().tipopedido !== 'false'">
                                     {{ servcard.getCarrinho().tipopedido }} </span>
+                                </div>
                             </div>
-                        </div>
-                        <!--<div class="car12">
+                            <!--<div class="car12">
                             <div>Forma de pagamento</div>
                             <div>
                                 <span *ngIf="servcard.getCarrinho().formapagamento.nome === 'false'">
@@ -278,7 +273,7 @@
                             </div>
                         </div>-->
 
-                        <!--<div class="car12">
+                            <!--<div class="car12">
                             <div> Item de pagamento</div>
                             <div>
                                 <span *ngIf="servcard.getCarrinho().item_pagamento.status === false">
@@ -291,46 +286,49 @@
                             </div>
                         </div>-->
 
-                        <div class="car12">
-                            <div>Subtotal</div>
-                            <div>{{ servcard.getSubTotalCarrinho() | currency:'BRL':true }}</div>
-                        </div>
+                            <div class="car12">
+                                <div>Subtotal</div>
+                                <div>{{ servcard.getSubTotalCarrinho() | currency:'BRL':true }}</div>
+                            </div>
 
-                        <div class="car12">
-                            <div> Desconto </div>
-                            <div>
-                                <span *ngIf="!form.controls.desconto.value"> {{ 0 | currency:'BRL':true}} </span>
-                                <span *ngIf="form.controls.desconto.value">
+                            <div class="car12">
+                                <div> Desconto </div>
+                                <div>
+                                    <span *ngIf="!form.controls.desconto.value"> {{ 0 | currency:'BRL':true}} </span>
+                                    <span *ngIf="form.controls.desconto.value">
                                     {{ form.controls.desconto.value | currency:'BRL':true}} </span>
 
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="car12">
-                            <div> Taxa de entrega</div>
-                            <div>{{ servcard.getTaxaEntrega() | currency:'BRL':true }}</div>
-                        </div>
-
-                        <div class="car11 car12">
-                            <div>Total </div>
-                            <div> {{ servcard.getTotalCarrinho() - form.controls.desconto.value | currency:'BRL':true }}
+                            <div class="car12">
+                                <div> Taxa de entrega</div>
+                                <div>{{ servcard.getTaxaEntrega() | currency:'BRL':true }}</div>
                             </div>
+
+                            <div class="car11 car12">
+                                <div>Total </div>
+                                <div> {{ servcard.getTotalCarrinho() - form.controls.desconto.value | currency:'BRL':true }}
+                                </div>
+                            </div>
+
                         </div>
 
-                    </div>
-
-                    <div>
-                        <button class="car11bt" mat-raised-button color="primary" (click)="onClickFinalizarPedido()">
+                        <div>
+                            <button [disabled]="statusBtenviar" class="car11bt" mat-raised-button color="primary" (click)="onClickFinalizarPedido()">
                             Concluir pedido <mat-icon>check</mat-icon>
                         </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-    </mat-tab>
-</mat-tab-group>
+        </mat-tab>
+
+    </mat-tab-group>
+</div>
+
 
 
 

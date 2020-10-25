@@ -2,7 +2,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-form-endereco-cliente',
@@ -16,7 +16,7 @@ export class FormEnderecoClienteComponent implements OnInit {
   form: FormGroup;
 
   constructor(public servico: ServicoService, private crud: CrudServicoService, private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any,  public dialogRef: MatDialogRef<FormEnderecoClienteComponent>) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -48,6 +48,19 @@ export class FormEnderecoClienteComponent implements OnInit {
     };
     this.crud.post_api('bairros', accallback, this.cidadeClienteSelecionada);
 
+  }
+
+  addEndereco() {
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      if (r.resultado.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
+        this.servico.mostrarMensagem(r.resultado.mensagem);
+        this.dialogRef.close(true);
+      }
+      console.log(r);
+    };
+    this.crud.post_api('add_end_usuario', accallback, this.form.value);
   }
 
 }

@@ -40,7 +40,7 @@ export class SelecionarMotoboyEntregaComponent implements OnInit {
         this.dialogRef.close();
       }
     };
-    this.crud.post_api('enviaEntregaEntregador', accallback, {idEntregador: this.itemSelecionado, idPedido: this.pedido});
+    this.crud.post_api('enviaEntregaEntregador', accallback, {idEntregador: this.itemSelecionado, idPedido: this.pedido}, true);
   }
 
 }

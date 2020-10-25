@@ -62,9 +62,8 @@ add(): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-    // this.f1(result) ;
+      this.f1(result) ;
     }
-    this.f1(result) ;
   });
 }
 
@@ -101,7 +100,7 @@ f1(form) {
     const r = this.servapp.getRespostaApi();
     if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
       this.servapp.mostrarMensagem(r.detalhes);
-      this.dataSource = r.resultado;
+      this.estoque();
     }
     console.log(r);
   };

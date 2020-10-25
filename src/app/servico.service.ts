@@ -1,3 +1,4 @@
+import { ProgressSistemaService } from './componentes/progress-sistema/progress-sistema.service';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InicioService } from './inicio/inicio.service';
@@ -43,8 +44,10 @@ export class ServicoService {
   private fSistema = [];
 
   // tslint:disable-next-line: max-line-length
-  constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService) { }
-  getApiAcao(acao: string) {
+  constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
+  getApiAcao(acao: string, mostrarProgresso?: boolean) {
+    if (mostrarProgresso) { this.servProg.showProgress.emit(mostrarProgresso); }
+    
     console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
     return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
   }

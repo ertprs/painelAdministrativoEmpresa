@@ -20,7 +20,7 @@ import { ServicoService } from 'src/app/servico.service';
 export class TabelaPedidosComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'total', 'info', 'statusmotoboy', 'origem', 'id'];
+  displayedColumns: string[] = ['botoes', 'status', 'nome', 'tipo', 'total', 'info', 'origem', 'id', 'statusmotoboy'];
   @Input() pedidos = [];
   dialogDelsuc: any;
   statusLoadEntregas: boolean;
@@ -125,7 +125,7 @@ export class TabelaPedidosComponent implements OnInit {
             const callb = () => {
               this.servpedidos.solicitaMotoboy(item.id);
             };
-            this.crud.post_api('attTaxaMotoboy', callb, { idPedido: item.id, taxaEntrega: r.taxa_entrega  });
+            this.crud.post_api('attTaxaMotoboy', callb, { idPedido: item.id, taxaEntrega: r.taxa_entrega  }, true);
          }
         });
 

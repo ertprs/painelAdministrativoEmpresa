@@ -156,10 +156,12 @@ removerEstoqueMotoboy(element) {
 }
 
 estoqueMotoboy() {
+  try {
   this.crud.get_api('estoque_motoboy&id=' + this.servestm.getMotoboySelecionado().id).subscribe(data => {
       console.log(data);
       this.servestm.setListaMotoboys( data );
   });
+} catch (e) { console.warn('Nenhum ID foi informado.'); }
 }
 
 
