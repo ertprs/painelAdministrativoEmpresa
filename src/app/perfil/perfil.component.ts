@@ -55,7 +55,7 @@ export class PerfilComponent implements OnInit {
       }
       console.log(r);
     };
-    this.crud.post_api('atualizar_perfil_empresa', accallback, this.formPerfil.value);
+    this.crud.post_api('atualizar_perfil_empresa', accallback, this.formPerfil.value, true);
   }
 
   onClickImagemSelecionarCapa() {

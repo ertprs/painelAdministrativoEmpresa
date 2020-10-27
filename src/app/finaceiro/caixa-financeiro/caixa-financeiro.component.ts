@@ -65,7 +65,7 @@ lancarCaixa() {
       this.servapp.mostrarMensagem(r.resultado.mensagem);
     }
   };
-  this.crud.post_api('lancarCaixa', fcall, this.dataSource );
+  this.crud.post_api('lancarCaixa', fcall, this.dataSource, true );
 }
 
 }

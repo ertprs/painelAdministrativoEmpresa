@@ -38,7 +38,7 @@ export class CrudServicoService {
 
     setInterval(() => {
       this.cc();
-    }, 5000);
+    }, 15000);
 
   }
 

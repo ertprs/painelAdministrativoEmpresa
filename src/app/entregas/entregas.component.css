@@ -1,35 +1,35 @@
 .example-card {
-  max-width: 192px;
-  float: left;
-  margin: 2px;
+    max-width: 192px;
+    float: left;
+    margin: 2px;
 }
 
 .example-header-image {
-  background-image: url('https://www.xdelssy.com.br/sis_entregas/php/imagens/race-flag.gif');
-  background-size: cover;
-  background-position: center;
-  background-size: 125%;
-  background-repeat: no-repeat;
+    /* background-image: url('');*/
+    background-size: cover;
+    background-position: center;
+    background-size: 125%;
+    background-repeat: no-repeat;
 }
 
-.badate{
-  background-color: #3f51b5;
-  padding: 4px;
-  color: white;
-  border-radius: 6px;
+.badate {
+    background-color: #3f51b5;
+    padding: 4px;
+    color: white;
+    border-radius: 6px;
 }
 
-.mat-card-image{
-  width: 90%;
-  margin: auto;
+.mat-card-image {
+    width: 90%;
+    margin: auto;
 }
 
-.imgEnt{
-  background-color: #b5b5b500;
-  background-image: url(https://www.xdelssy.com.br/sis_entregas/php/imagens/im1.png);
-  height: 150px;
-  width: 100%;
-  background-position: center;
-  background-size: 85% 90%;
-  background-repeat: no-repeat;
+.imgEnt {
+    background-color: #b5b5b500;
+    /*background-image: url('../../assets/casa.gif');*/
+    height: 150px;
+    width: 100%;
+    background-position: center;
+    background-size: 85% 90%;
+    background-repeat: no-repeat;
 }

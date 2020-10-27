@@ -53,7 +53,7 @@ export class PedidosService {
       if (this.servapp.getDadosEmpresa().status_delivery) {
         this.consultaPedidos();
       }
-    }, 4000);
+    }, 10000);
   }
 
   consultaPedidos() {

@@ -242,5 +242,22 @@ export class InicioDeliveryComponent implements OnInit {
     this.cidadeSelecionada = item.id;
   }
 
+  salvarBairro() {
+    const loginres = () => {
+      const r = this.servico.getRespostaApi();
+      console.log(r);
+      if (r.erro === true) {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.btCstatus = false;
+      } else {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.formcadastroStatus = true;
+        this.router.navigate(['/login']);
+        setTimeout(() => { location.reload(); }, 700);
+      }
+    };
+    console.log( this.crud.post_api('salvarBairrosEmpresa', loginres, this.formCadastro.value.locaisEntrega ) );
+  }
+
 
 }

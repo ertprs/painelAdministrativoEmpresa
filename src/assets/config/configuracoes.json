@@ -1,3 +1,4 @@
 [
-    { "host": "http://localhost/sistema_zecarlos/apiVulto/index.php", "api": "apiEstabelecimento" }
+    { "host": "http://localhost/sistema_zecarlos/apiVulto/index.php", "api": "apiEstabelecimento" },
+    { "host": "http://api.vulto.site/index.php", "api": "apiEstabelecimento" }
 ]
