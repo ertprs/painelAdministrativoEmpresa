@@ -111,7 +111,7 @@ export class HomeComponent implements OnInit {
         this.servico.consultaCardapio();
       }
     };
-    this.crud.post_api('cardapio&acmenu=removerCategoria', accallback, categoria);
+    this.crud.post_api('cardapio&acmenu=removerCategoria', accallback, categoria, true);
   }
 
   removerItem(item: any) {
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
         this.servico.consultaCardapio();
       }
     };
-    this.crud.post_api('cardapio&acmenu=removerItem', accallback, item);
+    this.crud.post_api('cardapio&acmenu=removerItem', accallback, item, true);
   }
 
   onClickConfigurarItem(item, categoria) {

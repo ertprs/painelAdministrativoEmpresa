@@ -131,7 +131,7 @@ export class UsuariosSistemaService {
 
   setUsuario(usuario: any) { this.usuarioSelecionado = usuario; }
   getUsuario() { return this.usuarioSelecionado; }
-  
+
   getTEste() { return 'this.usuarioSelecionado'; }
 
   setPermissoes(permissoes: any) { this.permissoes = permissoes; }

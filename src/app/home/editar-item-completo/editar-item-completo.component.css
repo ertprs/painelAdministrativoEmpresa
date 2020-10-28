@@ -49,12 +49,12 @@
 }
 
 .loader {
-    width: 100%;
-    height: 91%;
-    background: #267fbd;
+    width: 93%;
+    height: 90.4vh;
+    background: #3f51b53d;
     position: absolute;
     z-index: 1;
-    background-image: url('../../../assets/loading.gif');
+    /* background-image: url(loading.gif); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100px;

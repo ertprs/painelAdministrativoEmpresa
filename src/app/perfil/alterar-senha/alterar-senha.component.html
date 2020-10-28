@@ -1,0 +1,24 @@
+<div [formGroup]="form">
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Senha antiga </mat-label>
+        <input matInput placeholder="******" formControlName="senha" type="password">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label> Nova senha </mat-label>
+        <input matInput placeholder="******" formControlName="nvSenha" type="password">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label> Confirmar nova senha </mat-label>
+        <input matInput placeholder="******" formControlName="cSenha" type="password">
+    </mat-form-field>
+
+
+
+    <div style="text-align: center; margin-top:20px;">
+        <button mat-button color="warn" style="margin-left: 3px;" mat-dialog-close> Cancelar </button>
+        <button mat-button color="primary" style="margin-left: 3px;" (click)="confirmar()"> Confirmar </button>
+    </div>
+</div>

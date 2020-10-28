@@ -1,8 +1,10 @@
+import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ServicoService } from '../servico.service';
 import { CrudServicoService } from '../crud-servico.service';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-perfil',
@@ -23,7 +25,7 @@ export class PerfilComponent implements OnInit {
   statusMudarCapa = false;
 
   constructor(private formBuilder: FormBuilder, public servico: ServicoService, private crud: CrudServicoService,
-              private http: HttpClient) { }
+              private http: HttpClient, public dialog: MatDialog) { }
 
   private ini() {
     console.log( this.servico.getDadosEmpresa() );
@@ -41,10 +43,11 @@ export class PerfilComponent implements OnInit {
       cnpj: [this.servico.getDadosEmpresa().cnpj],
       imagem: [this.servico.getDadosEmpresa().imagem],
       politica: [this.servico.getDadosEmpresa().politica],
+      descricao: [this.servico.getDadosEmpresa().descricao],
     });
     this.imagemEmpresa = this.servico.getDadosEmpresa().imagem;
     this.imagemEmpresaCapa = this.servico.getDadosEmpresa().capa;
-  }
+  } 
 
   onclickSalvar() {
     const accallback = () => {
@@ -150,7 +153,17 @@ export class PerfilComponent implements OnInit {
 
   }
 
+  alterarSenha(): void {
+    const dialogRef = this.dialog.open(AlterarSenhaComponent, {
+      width: '350px',
+      data: {}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
 
   ngOnInit(): void {
     this.ini();

@@ -27,6 +27,11 @@ export class LoginComponent implements OnInit {
                   console.log(data[0].host);
                   this.servico.setHost(data[0].host, data[0].api);
                  }, error => { alert('Erro ao carregar o host'); } );
+
+                this.crud.pegaMenu().subscribe( data => {
+                  console.log(data);
+                  this.us.setPermissoes(data);
+                 }, error => { alert('Erro ao carregar o host'); } );
                }
 
   ngOnInit(): void {
@@ -42,11 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   oncllickEntrar() {
-
     // append your data
-
-    console.log('#oncllickEntrar');
-    console.log(this.formLogin.value);
     this.btloginstatus = true;
     const loginres = () => {
       console.log('callback');
@@ -67,7 +68,7 @@ export class LoginComponent implements OnInit {
         this.auth.mostrarMenu.emit(true);
       }
     };
-    console.log( this.crud.post_api('login_emrpesa', loginres, this.formLogin.value, true ) );
+    this.crud.post_api('login_emrpesa', loginres, this.formLogin.value, true );
   }
 
 }

@@ -187,6 +187,7 @@ import { AbatimentosEstoqueComponent } from './abatimentos-estoque/abatimentos-e
 import { AbatimentoItensComponent } from './abatimentos-estoque/abatimento-itens/abatimento-itens.component';
 import { ProgressSistemaComponent } from './componentes/progress-sistema/progress-sistema.component';
 import { ProgressoComponent } from './componentes/progress-sistema/progresso/progresso.component';
+import { AlterarSenhaComponent } from './perfil/alterar-senha/alterar-senha.component';
 
 @NgModule({
   declarations: [	
@@ -328,7 +329,8 @@ import { ProgressoComponent } from './componentes/progress-sistema/progresso/pro
       AbatimentosEstoqueComponent,
       AbatimentoItensComponent,
       ProgressSistemaComponent,
-      ProgressoComponent
+      ProgressoComponent,
+      AlterarSenhaComponent
    ],
   imports: [
     BrowserModule,

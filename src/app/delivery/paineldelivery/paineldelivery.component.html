@@ -22,12 +22,18 @@
                 </mat-menu>
             </div>
 
+            <div *ngIf="btAvaliacoes">
+                <button mat-button routerLink="/painel/usuarios" matTooltip="Usuários administrativos"> 
+                <mat-icon aria-hidden="false">recent_actors</mat-icon>  
+            </button>
+            </div>
+
             <div *ngIf="btCardapio">
-                <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button [matMenuTriggerFor]="belowMenu" matTooltip="Configurações do cardápio"> 
+                <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button [matMenuTriggerFor]="belowMenu" matTooltip="Configurações do catálogo"> 
                 <mat-icon aria-hidden="false">view_headline</mat-icon>  
             </button>
                 <mat-menu #belowMenu="matMenu" yPosition="below">
-                    <button mat-menu-item routerLink="/painel/cardapio">Cardápio</button>
+                    <button mat-menu-item routerLink="/painel/cardapio"> Catálogo </button>
                     <button mat-menu-item [matMenuTriggerFor]="itensadicionais" routerLink="/painel/categoriasadicionais">Categorias adicionais</button>
                 </mat-menu>
                 <mat-menu #itensadicionais="matMenu">
@@ -54,7 +60,7 @@
             </div>
 
             <div *ngIf="btPerfil">
-                <button mat-button routerLink="/painel/perfil" matTooltip="Perfil">
+                <button mat-button routerLink="/painel/perfil" matTooltip="Perfil da loja">
                 <mat-icon>store</mat-icon>
             </button>
             </div>

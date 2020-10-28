@@ -18,6 +18,10 @@ export class CrudServicoService {
     return this.http.get('./assets/config/configuracoes.json');
   }
 
+  public pegaMenu(): Observable<any> {
+    return this.http.get('./assets/config/menu.json');
+  }
+
   public get_api(acao: string): Observable<any> {
     return this.http.get(this.servico.getApiAcao(acao));
   }

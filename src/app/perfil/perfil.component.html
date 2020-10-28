@@ -86,8 +86,18 @@
                 <mat-label>Política de entrega</mat-label>
                 <textarea matInput placeholder="Ex. Em casos de entrega canceladas..." formControlName="politica" type="text"></textarea>
             </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Descrição da empresa</mat-label>
+                <textarea matInput placeholder="" formControlName="descricao" type="name"></textarea>
+            </mat-form-field>
+
+
+            <div style="margin-top: 10px;text-align: left;">
+                <button mat-raised-button (click)="alterarSenha()">Alterar senha</button>
+            </div>
         </form>
 
-        <button mat-raised-button color="primary" (click)="onClickSav()">Salvar</button>
+        <button style="margin-top: 10px;" mat-raised-button color="primary" (click)="onClickSav()">Salvar configurações</button>
     </div>
 </div>
