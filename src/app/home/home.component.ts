@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   dialogDelsuc: any;
   public formCategoria: any;
   itemRequest: any;
+  statusloader = false;
 
   constructor(public dialog: MatDialog, private formBuilder: FormBuilder, public servico: HomeService,
               private crud: CrudServicoService, public servicoapp: ServicoService, private route: Router) { }
@@ -30,6 +31,9 @@ export class HomeComponent implements OnInit {
 
     this.consultaCardapio();
     this.servico.consultaModelItem();
+
+    setTimeout( () => { this.statusloader = true; } , 900);
+     
   }
 
 

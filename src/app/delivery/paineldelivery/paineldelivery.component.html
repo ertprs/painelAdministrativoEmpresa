@@ -10,7 +10,7 @@
                     <button mat-menu-item routerLink="/painel/cidades-sistema"><mat-icon>view_headline</mat-icon> Cidades</button>
                     <button mat-menu-item routerLink="/painel/bairros-sistema"><mat-icon>view_headline</mat-icon> Bairros</button>
                     <button mat-menu-item routerLink="/painel/galeria"><mat-icon>image</mat-icon> Galeria</button>
-                    <button mat-menu-item routerLink="/painel/motoboys"><mat-icon>sports_motorsports</mat-icon> Motoboys</button>
+                    <button mat-menu-item routerLink="/painel/motoboys"><mat-icon>sports_motorsports</mat-icon> Entregador </button>
                     <button mat-menu-item routerLink="/painel/formas-pagamento"><mat-icon>money</mat-icon> Formas de pagamento</button>
                     <button mat-menu-item routerLink="/painel/itens-pagamento"><mat-icon>view_headline</mat-icon> Itens de pagamento</button>
                     <button mat-menu-item routerLink="/painel/bancos"><mat-icon>view_headline</mat-icon> Bancos </button>
@@ -55,7 +55,7 @@
 
             <div *ngIf="btFunDelivery">
                 <button mat-button routerLink="/painel/delivery" matTooltip="Configurações para funcionamento delivery"> 
-                <mat-icon aria-hidden="false">shopping</mat-icon> 
+                <mat-icon >shopping_cart</mat-icon> 
                  </button>
             </div>
 
@@ -66,8 +66,8 @@
             </div>
 
             <div *ngIf="btrelato" routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
-                <button mat-button routerLink="/painel/painel-relatorio" matTooltip="Relatórios">
-                    <mat-icon>assignment</mat-icon>
+                <button mat-button routerLink="/painel/painel-relatorio" matTooltip="Estatísticas">
+                    <mat-icon>analytics</mat-icon>
                 </button>
 
             </div>

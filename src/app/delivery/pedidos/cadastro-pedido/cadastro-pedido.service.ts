@@ -74,7 +74,7 @@ export class CadastroPedidoService {
     this.contaddFps++;
     item.referencia = this.contaddFps;
 
-    let statusadd = false;
+    const statusadd = false;
     this.carrinho.formasPagamento.forEach(element => {
       if (element.id === item.id) {
         // statusadd = true;
@@ -142,6 +142,16 @@ export class CadastroPedidoService {
 
   limparCarrinho() {
     this.carrinho.itens = [];
+    this.carrinho.formasPagamento = [];
+    this.carrinho.taxaextra = '';
+    this.carrinho.taxaentrega = 0;
+    this.carrinho.origempedido = false;
+    this.carrinho.total = 0;
+    this.carrinho.total_pedido = 0;
+    this.carrinho.subtotal = '';
+    this.carrinho.desconto = 0;
+    this.carrinho.cliente = '';
+    this.carrinho.tipopedido = 'false';
   }
 
   getTipoPedido() {
@@ -422,4 +432,4 @@ verificaFp() {
 }
 
 
- 
+

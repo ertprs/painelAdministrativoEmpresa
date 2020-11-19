@@ -25,7 +25,7 @@ export class EnderecosClienteComponent implements OnInit {
   }
 
   f5() {
-    this.crud.get_api('end_usuario&email_usuario=' + this.data.item.email).subscribe(data => {
+    this.crud.get_api('end_usuario&email_usuario=' + this.data.item.email + '&telefone=' + this.data.item.telefone).subscribe(data => {
        console.log(data);
        this.itens = data.resultado;
     });

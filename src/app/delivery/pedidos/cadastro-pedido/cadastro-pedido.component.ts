@@ -365,8 +365,7 @@ export class CadastroPedidoComponent implements OnInit {
 
     if (this.servcard.verificaFpsTotal() !== this.servcard.getTotalCarrinho()) {
       this.servico.mostrarMensagem
-        ('Os total da forma de pagamento esta menor que o total do pedido. o total das formas de pagamento está: R$' +
-          this.servcard.verificaFpsTotal() + ',00');
+        ('Os total da forma de pagamento está menor que o total do pedido.');
       return;
     }
 
@@ -439,11 +438,11 @@ export class CadastroPedidoComponent implements OnInit {
 
     this.statusBtenviar = true;
     const accallback = () => {
-      
+
       console.log('callback');
       this.statusLoaderEnviaPedido = false;
       const r = this.servico.getRespostaApi();
-      if (r.erro === true) { 
+      if (r.erro === true) {
         this.servico.mostrarMensagem(r.detalhes);
         this.statusBtenviar = false;
       } else {

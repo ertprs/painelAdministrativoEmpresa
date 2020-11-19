@@ -73,7 +73,7 @@ export class TabelaPedidosComponent implements OnInit {
 
   onClickverPedido(): void {
     this.dialogDelsuc = this.dialog.open(DialogPedidoComponent, {
-      width: '800px',
+      width: '900px',
     });
 
     this.servapp.setDialogapp(this.dialogDelsuc);

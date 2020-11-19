@@ -18,7 +18,7 @@ export class UsuariosAdmService {
     console.log(permissoes);
 
     if (status) {} else {
-        console.log('Permissões de usuário consedidas');
+        console.log('Permissões de usuário');
         this.permissoes = permissoes;
       }
    }

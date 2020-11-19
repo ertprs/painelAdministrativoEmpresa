@@ -7,7 +7,7 @@
             <mat-label>Itens</mat-label>
             <mat-select formControlName="id_item_estoque">
                 <mat-option *ngFor="let item of itensCatalogo" [value]="item.id">
-                    {{ item.nome }}
+                    #{{ item.id }} {{ item.nome }}
                 </mat-option>
             </mat-select>
         </mat-form-field>

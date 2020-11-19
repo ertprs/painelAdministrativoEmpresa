@@ -2,9 +2,10 @@ import { ItensService } from './../../itens-adicionais/itens.service';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CategoriaAdicionalService } from '../../categorias-adicionais/categoria-adicional.service';
 import { of } from 'rxjs';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-item-adicional',
@@ -18,14 +19,15 @@ export class DialogAddItemAdicionalComponent implements OnInit {
   categoriasItem: any;
   categoriaLista: any;
   tipoacao: boolean;
+  adiPersona = false;
 
   constructor(public servcadc: CategoriaAdicionalService, private formBuilder: FormBuilder, private servapp: ServicoService,
-              private crud: CrudServicoService, public itensServ: ItensService) {
-
-
-              }
+              private crud: CrudServicoService, public itensServ: ItensService,
+              public dialogRef: MatDialogRef<DialogAddItemAdicionalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.categoriaLista = this.servcadc.getCategoriasAdicional();
 
     console.log(this.categoriaLista);
@@ -40,7 +42,8 @@ export class DialogAddItemAdicionalComponent implements OnInit {
       nome: [''],
       disponivel: [false],
       categoria: [''],
-      preco: ['']
+      preco: [''],
+      id_item_catalogo: [''],
     });
 
   } else {
@@ -48,8 +51,12 @@ export class DialogAddItemAdicionalComponent implements OnInit {
 
     // editar item
 
-                   console.log(this.itensServ.getItemAdicional().categoria);
+                   console.log(this.itensServ.getItemAdicional().id_item_catalogo);
                    this.categoriasItem = this.itensServ.getItemAdicional().categoria;
+
+                   if (this.itensServ.getItemAdicional().id_item_catalogo === '0') {
+                    this.adiPersona = true;
+                  }
 
                    this.form = this.formBuilder.group({
                     id_empresa: [this.servapp.getDadosEmpresa().id],
@@ -57,6 +64,7 @@ export class DialogAddItemAdicionalComponent implements OnInit {
                     nome: [this.itensServ.getItemAdicional().nome],
                     disponivel: [this.itensServ.getItemAdicional().disponivel],
                     categoria: [''],
+                    id_item_catalogo: [this.itensServ.getItemAdicional().id_item_catalogo],
                     preco: [this.itensServ.getItemAdicional().preco]
                    });
 
@@ -66,10 +74,16 @@ export class DialogAddItemAdicionalComponent implements OnInit {
                       this.form.controls.categoria.patchValue(this.categoriaLista[0]);
                     });
 
+                   
 
   }
 
 
+  }
+
+
+  selecionarOpt(item) {
+    this.form.controls.id_item_catalogo.setValue(item.id);
   }
 
   onClickDis(evento, item) {

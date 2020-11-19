@@ -1,12 +1,29 @@
+<div>
+    <mat-slide-toggle color="primary" [(ngModel)]="adiPersona"> Adicional personalizado </mat-slide-toggle>
+</div>
+
 <div class="conteudo" [formGroup]="form">
 
 
+
     <div class="c1" style="width: 68%; float: left;">
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field *ngIf="adiPersona" appearance="outline" style="width: 100%;">
             <mat-label>Nome do adicional</mat-label>
             <input formControlName="nome" matInput placeholder="Ex. item 1" type="text">
             <mat-hint></mat-hint>
         </mat-form-field>
+
+        <mat-form-field *ngIf="!adiPersona" appearance="fill" style="width: 100%;">
+            <mat-label> Catálogo </mat-label>
+            <mat-select formControlName="nome">
+                <mat-optgroup *ngFor="let categoria of this.data; let i = index" [label]="categoria.nome">
+                    <mat-option *ngFor="let produto of categoria.itens" [value]="produto.nome" (click)="selecionarOpt(produto)">
+                        #{{produto.id}} {{produto.nome}}
+                    </mat-option>
+                </mat-optgroup>
+            </mat-select>
+        </mat-form-field>
+
     </div>
 
     <div class="c1" style="width: 30%; float: left;margin-left: 3px;">
@@ -33,7 +50,7 @@
 
     </div>
     <div class="c1" style="margin-top: 25px;">
-        <mat-slide-toggle formControlName="disponivel">Disponibilidade do adicional</mat-slide-toggle>
+        <mat-slide-toggle color="warn" formControlName="disponivel">Disponibilidade do adicional</mat-slide-toggle>
     </div>
 
 

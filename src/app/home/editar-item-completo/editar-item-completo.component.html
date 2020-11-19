@@ -116,7 +116,7 @@
 
                         <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
                             <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])" [checked]="diasLista[i].status">
-                                {{ diasLista[i].nome }}
+                                {{ diasLista[i].nome }} <!--{{ diasLista[i] | json }}-->
                                 <!--:: {{ diasLista[i].status }}-->
                             </mat-slide-toggle>
                         </mat-list-item>
@@ -134,13 +134,13 @@
             <h2>Adicionais</h2>
             <span formArrayName="categoriaadicional" *ngFor="let item of form.get('categoriaadicional')['controls']; let i = index">
 
-        <mat-accordion>
-          <mat-expansion-panel style="margin-top: 2px;" (opened)="panelOpenState = true"
-            (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{ catsEAdcs[i].nome }}
-                <span *ngIf="!catsEAdcs[i].disponivel"  class="spanDispo">INDISPONIVEL</span>
+                <mat-accordion>
+                    <mat-expansion-panel style="margin-top: 2px;" (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{ catsEAdcs[i].nome }}
+                                <span *ngIf="!catsEAdcs[i].disponivel" class="spanDispo">INDISPONIVEL</span>
             </mat-panel-title>
 
             <mat-panel-description>
@@ -150,25 +150,40 @@
 
             <mat-list>
                 <mat-list-item>
-                    Obrigatório
+
                     <!-- {{ catsEAdcs[i].obrigatorio }} -->
-                    <mat-slide-toggle style="margin-left: 10px;" [checked]="catsEAdcs[i].obrigatorio" (change)="onClickObrigatorio($event, catsEAdcs[i])">
+                    <mat-slide-toggle color="primary" [checked]="catsEAdcs[i].obrigatorio" (change)="onClickObrigatorio($event, catsEAdcs[i])">
+                        Obrigatório
+                    </mat-slide-toggle>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+
+                    <mat-slide-toggle color="primary" [checked]="catsEAdcs[i].prevalecer_preco" (change)="onClickPrevPreco($event, catsEAdcs[i])">
+                        Prevalecer maior preço
+                        <!--{{ catsEAdcs[i].prevalecer_preco }}-->
                     </mat-slide-toggle>
                 </mat-list-item>
             </mat-list>
-
+            <mat-divider></mat-divider>
 
             <mat-list>
                 <span>
-                <mat-list-item *ngFor="let adicional of catsEAdcs[i].itens; let x = index">
-                  <mat-slide-toggle  (change)="onClickAdicional($event, adicional)" [checked]="adicional.status"> {{ adicional.nome }} <!--{{ adicional.status }}--> </mat-slide-toggle>
-                </mat-list-item>
-              </span>
+                                <mat-list-item *ngFor="let adicional of catsEAdcs[i].itens; let x = index">
+                                    <mat-slide-toggle color="warn" (change)="onClickAdicional($event, adicional)"
+                                        [checked]="adicional.status">
+                                        <div> {{ adicional.nome }} </div>
+                                        <div style="font-size: 12px;"> {{ adicional.preco | currency:'BRL':true }} </div>
+                                        <!--{{ adicional.status }}-->
+                                    </mat-slide-toggle>
+                                    <mat-divider></mat-divider>
+                                </mat-list-item>
+                            </span>
                 <span>
-                <!--<mat-list-item>
+                                <!--<mat-list-item>
                     Nenhum adicional desta categoria foi criado
                 </mat-list-item>-->
-              </span>
+                            </span>
 
             </mat-list>
 
@@ -190,7 +205,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Itens catalogo
+                        Categoria catálogo
                     </mat-panel-title>
                     <mat-panel-description>
 

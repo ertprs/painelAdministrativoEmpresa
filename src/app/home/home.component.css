@@ -43,7 +43,8 @@
     margin-bottom: 25px;
     display: flex;
     background-color: rgb(255, 255, 255);
-    border-bottom: 1px solid #c1c1c1;
+    border-top: 1px solid #c1c1c1;
+    padding-top: 11px;
 }
 
 .item-imagem {

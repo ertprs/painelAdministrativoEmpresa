@@ -48,13 +48,17 @@ export class ItemCatalogoComponent implements OnInit {
   onclickAltQntADD() {
     console.log('onclickAltQntADD');
     this.itemCatalogo.qnt += 1;
-    this.itemCatalogo.total = this.itemCatalogo.preco * this.itemCatalogo.qnt;
+    let res = 0;
+    res = this.itemCatalogo.preco + this.getTotalAdicionais();
+    res = res * this.itemCatalogo.qnt;
+    this.itemCatalogo.total = res;
   }
   onclickAltQntSUB() {
     if (this.itemCatalogo.qnt === 1) { return; }
-
     this.itemCatalogo.qnt -= 1;
-    this.itemCatalogo.total = this.itemCatalogo.preco * this.itemCatalogo.qnt;
+    let res = 0;
+    res = this.itemCatalogo.preco + this.getTotalAdicionais();
+    this.itemCatalogo.total = res * this.itemCatalogo.qnt;
   }
   onclickAddAdc(item: any, categoria: any) {
 
@@ -86,8 +90,66 @@ export class ItemCatalogoComponent implements OnInit {
       categoriaItem.qntadd ++;
 
     }
-    this.itemCatalogo.total += item.preco;
+
+    // Se o adicional for da categoria de PREVALECER por MAIOR PRECO nao soma os preço,
+    // mas verifica qual o adicional mais caro esta selecionado
+    console.log(categoriaItem);
+    if (categoriaItem.prevalecer_preco) {
+      // Verifica na lista de adicionais e adiciona o que tem o preço maior
+      console.log('Verifica na lista de adicionais e adiciona o que tem o preço maior');
+      this.itemCatalogo.adicionais.forEach(element => {
+        console.log('entra no loop');
+        if (item.preco > element.preco && item.preco > this.itemCatalogo.total) {
+          this.itemCatalogo.total = item.preco;
+        // tslint:disable-next-line: radix
+        } else {
+          console.log('Verifica 01');
+          if ( this.itemCatalogo.total < item.preco) { this.itemCatalogo.total = item.preco; }
+        }
+      });
+    } else {
+      console.log('Verifica 02');
+      this.itemCatalogo.total += item.preco;
+    }
+
   }
+
+  onclickRemoveAdc(item: any, categoria: any) {
+    if (item.qnt === 0) { return; }
+    const categoriaItem = this.procuraItemArray(this.itemCatalogo.categoriaadicional, categoria, 'id');
+    const itemarray = this.procuraItemArray(this.itemCatalogo.adicionais, item, 'id');
+    itemarray.qnt --;
+    categoriaItem.qntadd --;
+    // this.itemCatalogo.total -= item.preco;
+
+    // remove o item da array
+    for (const x in this.itemCatalogo.adicionais) {
+      if (this.itemCatalogo.adicionais[x] === itemarray && itemarray.qnt === 0) {
+        // console.log('Remove este item!');
+        this.itemCatalogo.adicionais.splice(x, 1); // remove do array
+      }
+    }
+
+     // Verifica os precos dos adicionais
+    if (categoriaItem.prevalecer_preco) {
+      let adicionaPreco = 0;
+      this.itemCatalogo.adicionais.forEach(element => {
+        if (element.preco > adicionaPreco) { adicionaPreco = element.preco; }
+      });
+      this.itemCatalogo.total = adicionaPreco;
+      if (adicionaPreco < this.itemCatalogo.preco) {  this.itemCatalogo.total = this.itemCatalogo.preco; }
+      console.log(adicionaPreco);
+    } else {
+      this.itemCatalogo.total -= item.preco;
+    }
+
+  }
+
+
+
+
+
+
 
   vericaCatObrigatorio() {
     let status = false;
@@ -125,22 +187,7 @@ export class ItemCatalogoComponent implements OnInit {
   }
 
 
-  onclickRemoveAdc(item: any, categoria: any) {
-    if (item.qnt === 0) { return; }
-    const categoriaItem = this.procuraItemArray(this.itemCatalogo.categoriaadicional, categoria, 'id');
-    const itemarray = this.procuraItemArray(this.itemCatalogo.adicionais, item, 'id');
-    itemarray.qnt --;
-    categoriaItem.qntadd --;
-    this.itemCatalogo.total -= item.preco;
-
-    // remove o item da array
-    for (const x in this.itemCatalogo.adicionais) {
-      if (this.itemCatalogo.adicionais[x] === itemarray && itemarray.qnt === 0) {
-        // console.log('Remove este item!');
-        this.itemCatalogo.adicionais.splice(x, 1); // remove do array
-      }
-    }
-  }
+  
 
   onclickAddCar(obs) {
     if (this.statusAdd === true) { return; }
@@ -155,7 +202,7 @@ export class ItemCatalogoComponent implements OnInit {
     this.itemCatalogo.observacao = obs;
     // console.log(this.item);
     const r = this.servcard.addItemCarrinho(this.itemCatalogo);
-    if (r) { 
+    if (r) {
       this.servico.mostrarMensagem('Item adicionado ao carrinho!');
       this.dialogRef.close();
   }
@@ -170,6 +217,15 @@ export class ItemCatalogoComponent implements OnInit {
       });
       return itemretorno;
     } catch (e) { console.log('Item não encontrado na array...'); }
+  }
+
+  getTotalAdicionais(): number {
+    let total = 0;
+    this.itemCatalogo.adicionais.forEach(element => {
+      console.log(element);
+      total += element.preco;
+    });
+    return total;
   }
 
 }

@@ -104,7 +104,7 @@ export class EditarItemCompletoComponent implements OnInit {
       this.catsEAdcs = this.servhome.getItemModel().categoriaadicional;
       this.categoriasCatalogo = this.servhome.getItemModel().categoria;
 
-
+      console.log(this.diasLista);
       this.form = this.formBuilder.group({
         id: [''],
         nome: [''],
@@ -263,6 +263,11 @@ export class EditarItemCompletoComponent implements OnInit {
 
   onClickObrigatorio(event, item) {
     item.obrigatorio = event.checked;
+    console.log(item);
+  }
+
+  onClickPrevPreco(event, item) {
+    item.prevalecer_preco = event.checked;
     console.log(item);
   }
 

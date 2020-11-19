@@ -61,6 +61,12 @@
                         <input matInput placeholder="Ex. 45 a 75 minutos" type="text" formControlName="tempoentrega">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                        <mat-label>Tempo para retirada</mat-label>
+                        <input matInput placeholder="Ex. 45 a 75 minutos" type="text" formControlName="temporetirada">
+                        <mat-icon matSuffix>time</mat-icon>
+                    </mat-form-field>
                 </div>
             </mat-step>
 
@@ -80,14 +86,19 @@
             <mat-step formArrayName="metodosPagamento">
                 <ng-template matStepLabel>Metodos de pagamento</ng-template>
 
-                <div style="width: 100%;margin-bottom: 10px;" [formGroupName]="i" [formGroupName]="i" *ngFor="let item of formCadastro.get('metodosPagamento')['controls']; let i = index">
-                    <mat-slide-toggle formControlName="disponivel" [matTooltip]="item.value.descricao">
+                <div style="width: 100%;
+                margin-bottom: 10px;
+                background: #efefef;
+                border: 1px solid #d4d4d4;
+                border-radius: 10px;
+                padding: 10px;" [formGroupName]="i" [formGroupName]="i" *ngFor="let item of formCadastro.get('metodosPagamento')['controls']; let i = index">
+                    <mat-slide-toggle color="primary" formControlName="disponivel" [matTooltip]="item.value.descricao">
                         <!--{{ item.value | json }}-->{{item.value.nome}} </mat-slide-toggle>
 
                     <span formArrayName="itens">
           <span [formGroupName]="a" *ngFor="let cartao of item.controls.itens.controls; let a = index">
             <div class="itensCard">
-              <!--{{ cartao.value | json }}--> <img width="40" [src]="cartao.value.imagem"> {{ cartao.value.nome }} <mat-slide-toggle formControlName="disponivel"></mat-slide-toggle>
+              <!--{{ cartao.value | json }}--> <img width="40" [src]="cartao.value.imagem"> {{ cartao.value.nome }} <mat-slide-toggle color="primary" formControlName="disponivel"></mat-slide-toggle>
             </div>
           </span>
                     </span>
@@ -104,7 +115,7 @@
                     <div [formGroupName]="i">
                         <div class="nomed" style="width: 400px;">
                             <!--{{ item.value | json }}-->
-                            <mat-slide-toggle formControlName="status"> {{ item.value.nome }} </mat-slide-toggle>
+                            <mat-slide-toggle color="primary" formControlName="status"> {{ item.value.nome }} </mat-slide-toggle>
                         </div>
 
 
@@ -131,7 +142,7 @@
                 <span [formGroupName]="i" *ngFor="let item of formCadastro.get('locaisEntrega')['controls']; let i = index">
 
           <div class="" style="width: 100%;margin-bottom: 10px;">
-            <mat-slide-toggle formControlName="disponivel"> {{ item.value.nome }} </mat-slide-toggle>
+            <mat-slide-toggle color="primary" formControlName="disponivel"> {{ item.value.nome }} </mat-slide-toggle>
           </div>
 
         </span>
@@ -160,7 +171,7 @@
 
                 <div class="" style="width: 100%;" *ngIf="bairro.value.cidade_id === cidadeSelecionada">
                   <!--{{ bairro.value | json }}-->
-                  <mat-slide-toggle style="width: 300px;" formControlName="disponivel"
+                  <mat-slide-toggle color="primary" style="width: 300px;" formControlName="disponivel"
                     matTooltip="{{bairro.value.nome}} - Taxa de entrega {{bairro.value.taxa | currency:'BRL':true}}">
                     {{ bairro.value.nome }}
                   </mat-slide-toggle>
@@ -178,7 +189,6 @@
 
 </div>
 </span>
-<button style="width: 100%;" mat-raised-button color="primary" (click)="salvarBairro()">Salvar</button>
 
 </mat-step>
 
@@ -186,7 +196,7 @@
 
 <mat-step>
     <ng-template matStepLabel>Salvar configurações</ng-template>
-    <button style="width: 100%;" mat-raised-button color="accent" (click)="onclickCadastrar()">Salvar</button>
+    <button style="width: 100%;" mat-raised-button color="warn" (click)="onclickCadastrar()">Salvar</button>
 </mat-step>
 
 

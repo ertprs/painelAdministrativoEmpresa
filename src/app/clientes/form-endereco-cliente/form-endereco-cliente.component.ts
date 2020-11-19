@@ -27,6 +27,7 @@ export class FormEnderecoClienteComponent implements OnInit {
       complemento: [null],
       cidade: [null],
       bairro: [null],
+      telefone: [this.data.item.telefone],
     });
   }
 

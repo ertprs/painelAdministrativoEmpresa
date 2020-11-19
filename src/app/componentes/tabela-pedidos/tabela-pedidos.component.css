@@ -102,3 +102,15 @@ table {
     align-items: center;
     grid-template-columns: 1fr 0fr;
 }
+
+.mat-menu-panel {
+    background: #2196F3;
+}
+
+.mat-menu-item {
+    color: rgb(70, 65, 65);
+}
+
+.mat-menu-item .mat-icon {
+    color: #777677;
+}

@@ -75,7 +75,7 @@
 
         </th>
         <td mat-cell *matCellDef="let element">
-            <button *ngIf="btEnviar" mat-stroked-button color="primary" (click)="enviarNovoEstoque(element)"> Enviar estoque </button>
+            <button *ngIf="btEnviar" mat-stroked-button color="primary" (click)="enviarNovoEstoque(element)" [disabled]="element.quantidade_total_unidades === 0 || element.quantidade_total_unidades === '0'"> Enviar estoque </button>
 
         </td>
     </ng-container>

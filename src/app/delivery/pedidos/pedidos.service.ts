@@ -27,7 +27,8 @@ export class PedidosService {
     },
     historico: [],
     itens: [],
-    tipopedido: '',
+    observacoes: [],
+    tipopedido: string,
     endereco: any,
     formapagamento: '',
     desconto: '',
@@ -147,7 +148,7 @@ export class PedidosService {
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.mensagem);
       } else {
-        this.servapp.mostrarMensagem(r.detalhes);
+        this.servapp.mostrarMensagem(r.resultado.itens.detalhes);
         this.consultaPedidos();
 
       }
@@ -179,7 +180,7 @@ export class PedidosService {
   getPedidos() {
     return this.pedidos;
   }
-  
+
 
   setPedido(pedido: any) {
     this.pedido = pedido;

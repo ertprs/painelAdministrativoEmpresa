@@ -1,9 +1,48 @@
 <div class="conteudo">
-    <div class="c1">Pedido #{{servpedidos.getPedido().id}}</div>
-    <mat-vertical-stepper [linear]="false" #stepper>
+
+    <div class="c1">
+        <div> Pedido #{{servpedidos.getPedido().id}} </div>
+        <div>
+            <button mat-icon-button mat-dialog-close>
+                <mat-icon>close</mat-icon>
+              </button>
+        </div>
+    </div>
+
+    <div class="arbts">
+        <div style="padding: 6px;">
+
+            <mat-chip-list aria-label="Fish selection">
+
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(1)" style="background-color: rgb(92, 177, 6); color: white;" color="accent">Aceitar</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" [mat-dialog-close]="'cancelar_pedido'" style="background-color:  rgb(168, 14, 40);color: white;" color="accent" matTooltip="Obs! Se rejeitar este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">
+                    Rejeitar</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1 && servpedidos.getPedido().tipopedido === 'entrega'" (click)="onClickAttStatusPedido(2)" color="accent">
+                    <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1 && servpedidos.getPedido().tipopedido === 'retirada'" (click)="onClickAttStatusPedido(3)" color="accent">
+                    <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 || servpedidos.getPedido().status_pedido == 3" (click)="onClickAttStatusPedido(4)" color="accent">
+                    <mat-icon>edit_road</mat-icon> A caminho</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 4" (click)="onClickAttStatusPedido(5)" color="accent">Entregue</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido != 0" [mat-dialog-close]="'cancelar_pedido'" color="accent">
+                    <mat-icon>cancel</mat-icon> Cancelar pedido </mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 5 || servpedidos.getPedido().status_pedido == 7" (click)="onClickAttStatusPedido(6)" color="accent">
+                    <mat-icon>check</mat-icon> Concluído</mat-chip>
+            </mat-chip-list>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <mat-horizontal-stepper [linear]="false" #stepper>
 
         <mat-step>
-            <ng-template matStepLabel>Informações do cliente</ng-template>
+            <ng-template matStepLabel state="phone">Informações do cliente</ng-template>
+
             <div class="c2">
                 <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}
                 </div>
@@ -18,24 +57,55 @@
             </div>
         </mat-step>
 
-        <mat-step>
-            <ng-template matStepLabel>Tipo de serviço</ng-template>
-            <mat-card>
-                {{servpedidos.getPedido().tipopedido}}
-            </mat-card>
-        </mat-step>
+
+
 
         <mat-step>
             <ng-template matStepLabel>Metodo de pagamento</ng-template>
-            <div class="" *ngFor="let item of servpedidos.getPedido().formaspagamento">
-                {{ item.nome }} <span *ngIf="item.itemSelecionado"> - {{ item.itemSelecionado.nome }} - </span> Valor:{{ item.valor | currency:'BRL':true }}
+
+            <div class="" *ngFor="let item of servpedidos.getPedido().formaspagamento" style="padding: 10px;
+            background: gold;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 1px;
+            display: flex;
+            justify-content: center;
+            justify-content: space-between;">
+                <mat-icon class="mat-18">payments</mat-icon>
+                {{ item.nome }} <span *ngIf="item.itemSelecionado"> - {{ item.itemSelecionado.nome }} - </span> Valor: {{ item.valor | currency:'BRL':true }}
             </div>
         </mat-step>
 
         <mat-step>
             <ng-template matStepLabel>Detalhes do pedido</ng-template>
 
-            <div class="" style="width: 100%;">
+            <div style="    margin-top: 10px;
+            margin-bottom: 10px;
+            background: gold;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            border-radius: 7px;
+            font-weight: 500;">
+                Pedido para {{servpedidos.getPedido().tipopedido}}
+            </div>
+
+            <div *ngFor="let item of servpedidos.getPedido().observacoes" style="    margin-top: 10px;
+            margin-bottom: 10px;
+            background: red;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            color: white;
+            border-radius: 4px;">
+                {{ item.observacao }}
+            </div>
+
+            <div class="" style="    width: 100%;
+            height: 252px;
+            overflow: auto;
+            border: 1px solid #d8d8d8;
+            background: #f2f3f3;">
                 <table mat-table [dataSource]="servpedidos.getPedido().itens">
 
 
@@ -174,32 +244,15 @@
         </span>
 
 
-    </mat-vertical-stepper>
+        <ng-template matStepperIcon="phone">
+            <mat-icon>call_end</mat-icon>
+        </ng-template>
+
+    </mat-horizontal-stepper>
 
 
 
-    <div class="arbts">
-        <div style="padding: 6px;">
 
-            <mat-chip-list aria-label="Fish selection">
-
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(1)" style="background-color: rgb(92, 177, 6); color: white;" color="accent">Aceitar</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" [mat-dialog-close]="'cancelar_pedido'" style="background-color:  rgb(168, 14, 40);color: white;" color="accent" matTooltip="Obs! Se rejeitar este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">
-                    Rejeitar</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1" (click)="onClickAttStatusPedido(2)" color="accent">Pronto para sair</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1" (click)="onClickAttStatusPedido(3)" color="accent">Pronto para retirada</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 || servpedidos.getPedido().status_pedido == 3" (click)="onClickAttStatusPedido(4)" color="accent">A caminho</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 4" (click)="onClickAttStatusPedido(5)" color="accent">Entregue</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido != 0" [mat-dialog-close]="'cancelar_pedido'" color="accent">Cancelar</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 5 || servpedidos.getPedido().status_pedido == 7" (click)="onClickAttStatusPedido(6)" color="accent">Concluído</mat-chip>
-            </mat-chip-list>
-
-
-        </div>
-
-
-
-    </div>
 
 
 </div>

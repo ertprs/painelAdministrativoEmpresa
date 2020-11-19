@@ -7,7 +7,7 @@
     <span *ngFor="let item of servico.getListaNotificacoes()">
     <mat-card style="margin-top: 2px;">
       <div style="width: 100%;font-size: 11px;color: rgb(151, 148, 148);">
-       <button mat-icon-button (click)="onClickRem(item)">
+       <button mat-icon-button color="primary" (click)="onClickRem(item)">
            <mat-icon class="mat-18">delete</mat-icon>
        </button> 
        {{item.info}}

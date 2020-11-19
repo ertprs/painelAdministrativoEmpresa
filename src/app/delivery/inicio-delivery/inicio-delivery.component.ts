@@ -40,12 +40,14 @@ export class InicioDeliveryComponent implements OnInit {
       pedidomax: [''],
       entrega_gratis: [''],
       seguimento: [''],
-      formasfuncionamento: [''],
+      formasfuncionamento: [],
       tempoentrega: [''],
-      hrfun: [''],
+      locaisEntrega: [],
+      hrfun: [],
       metodosPagamento: [''],
+      temporetirada: [''],
     });
-
+     
     console.log('#CadastroEmpresaComponent');
     this.consultaCidades();
     this.formcadastroStatus = false; // => false
@@ -54,9 +56,7 @@ export class InicioDeliveryComponent implements OnInit {
     this.metodosPagamento = this.servdelivery.getFormaspagamento();
     this.locaisEntrega = this.servdelivery.getLocaisEntrega();
     this.dadosEmpresa = this.servico.getDadosEmpresa();
-
     this.getHrfun = this.dadosEmpresa.hrfun;
-
     this.tipoServico = [
       { nome: 'Somente entrega', tipo: '1' },
       { nome: 'Somente retirada', tipo: '2' },
@@ -105,6 +105,7 @@ export class InicioDeliveryComponent implements OnInit {
       seguimento: [this.dadosEmpresa.seguimento, Validators.required],
       formasfuncionamento: [''],
       tempoentrega: [this.dadosEmpresa.tempoentrega, Validators.required],
+      temporetirada: [this.dadosEmpresa.temporetirada],
       hrfun: this.buildDiasForm(),
       locaisEntrega: this.buildLocaisEntregaForm(),
       metodosPagamento: this.buildFp(),
@@ -180,6 +181,8 @@ export class InicioDeliveryComponent implements OnInit {
   }
 
   createItemFp(data: any): FormGroup {
+    console.log("data");
+    console.log(data);
     return new FormGroup({
       id: new FormControl(data.id),
       nome: new FormControl(data.nome),
@@ -220,10 +223,10 @@ export class InicioDeliveryComponent implements OnInit {
       const r = this.servico.getRespostaApi();
       console.log(r);
       if (r.erro === true) {
-        this.servico.mostrarMensagem(r.detalhes);
+        this.servico.mostrarMensagem(r.mensagem);
         this.btCstatus = false;
       } else {
-        this.servico.mostrarMensagem(r.detalhes);
+        this.servico.mostrarMensagem(r.mensagem);
         this.formcadastroStatus = true;
         this.router.navigate(['/login']);
         setTimeout(() => { location.reload(); }, 700);
@@ -242,22 +245,7 @@ export class InicioDeliveryComponent implements OnInit {
     this.cidadeSelecionada = item.id;
   }
 
-  salvarBairro() {
-    const loginres = () => {
-      const r = this.servico.getRespostaApi();
-      console.log(r);
-      if (r.erro === true) {
-        this.servico.mostrarMensagem(r.detalhes);
-        this.btCstatus = false;
-      } else {
-        this.servico.mostrarMensagem(r.detalhes);
-        this.formcadastroStatus = true;
-        this.router.navigate(['/login']);
-        setTimeout(() => { location.reload(); }, 700);
-      }
-    };
-    console.log( this.crud.post_api('salvarBairrosEmpresa', loginres, this.formCadastro.value.locaisEntrega ) );
-  }
+  
 
 
 }

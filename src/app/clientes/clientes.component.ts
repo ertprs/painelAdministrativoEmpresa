@@ -138,7 +138,7 @@ onClickCadastraPedido(item: any) {
 
 enderecoCliente(element): void {
   const dialogRef = this.dialog.open(EnderecosClienteComponent, {
-    width: '750px',
+    width: '950px',
     data: {item: element}
   });
 

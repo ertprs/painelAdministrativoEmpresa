@@ -13,7 +13,7 @@
 .mat-toolbar.mat-primary {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 10;
 }
 
 .mat-list-item {
@@ -34,7 +34,8 @@
 
 .toolb {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0fr 2fr 1fr;
+    gap: 5px;
 }
 
 .col2 {
@@ -46,4 +47,19 @@
 .mat-nav-list .mat-list-item:focus,
 .mat-action-list .mat-list-item:focus {
     background: gold;
+}
+
+.logoEmpresatoolbar {
+    height: 60px;
+    width: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    margin-left: -12px;
+}
+
+@media(max-width:600px) {
+    .logoEmpresatoolbar {
+        display: none;
+    }
 }

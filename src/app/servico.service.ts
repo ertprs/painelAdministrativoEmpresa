@@ -12,9 +12,10 @@ export class ServicoService {
   private dadosEntregador = false;
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
+  private logoEmpresa = '/assets/logoEmpresa.png';
   // private urlapi = 'http://192.168.0.112/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
-  private urlapi = 'HOST DEFINIDO NO ARQUIVO JSON EM ASSETS';
-  private API = 'DEFINIDO NO ARQUIVO JSON EM ASSETS';
+  private urlapi = 'https://api.ecig.app/index.php';
+  private API = 'apiCliente';
   private statusLogado = false;
   private dadosLogin: any;
   private respApi: any;
@@ -56,9 +57,13 @@ export class ServicoService {
     this.urlapi = host;
     this.API = api;
   }
-
+   
   getDefaultImage() {
     return this.defaultImg;
+  }
+
+  getLogoEmpresa() {
+    return this.logoEmpresa;
   }
 
   getEntregadoeSelecionado() {
@@ -85,8 +90,13 @@ export class ServicoService {
     this.token = dados.dados_conta.token;
     this.dadosEmpresa = dados.dados_conta;
     this.dadosLogin = dados.dados_conta;
-    this.listaCidades = dados.cidade.lista_cidades;
-    this.listaCidadesEntrega = dados.cidade.lista_cidades_entrega;
+    try {
+    this.listaCidades = dados.cidade;
+  } catch (e) { console.warn('Cidades não configuradas'); }
+    try {
+      this.listaCidadesEntrega = dados.cidade;
+    } catch (e) { console.warn('Cidades não configuradas'); }
+
     this.cardapioDigtal = this.dadosEmpresa.cardapio_digital;
     // this.listaBairros = dados;
     if (this.statusLogado === false) {

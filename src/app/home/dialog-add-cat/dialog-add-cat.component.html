@@ -1,14 +1,14 @@
 <form [formGroup]="formCategoria">
-  <div class="c" style="padding: 1px;">
-    <mat-form-field appearance="outline" style="width: 100%; margin-left: 1px;">
-      <mat-label>Nome da categoria</mat-label>
-      <input matInput placeholder="Ex. Pizza" type="text" formControlName="nome">
-      <mat-hint></mat-hint>
-    </mat-form-field>
+    <div class="c" style="padding: 1px;">
+        <mat-form-field appearance="outline" style="width: 100%; margin-left: 1px;">
+            <mat-label>Nome da categoria</mat-label>
+            <input matInput placeholder="Informe aqui o nome da categoria" type="text" formControlName="nome">
+            <mat-hint></mat-hint>
+        </mat-form-field>
 
-    <button mat-flat-button color="warn" (click)="servico.getDialogapp().close()">Cancelar</button>
-    <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="onclickAddCat()" disabled="{{statusbt}}">Adicionar</button>
+        <button mat-flat-button color="warn" (click)="servico.getDialogapp().close()">Cancelar</button>
+        <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="onclickAddCat()" disabled="{{statusbt}}">Adicionar</button>
 
-  </div>
+    </div>
 
 </form>

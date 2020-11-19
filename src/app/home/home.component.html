@@ -15,10 +15,18 @@
 
 <div class="c">
     <button mat-raised-button color="primary" (click)="dialogAddCat()">
-    <mat-icon>add</mat-icon> Adicionar categoria
+    <mat-icon>add</mat-icon> Nova categoria
   </button>
 </div>
 
+<mat-form-field class="fotmg" style="margin:20px; width: 90%;" color="primary">
+    <mat-label> Filtro </mat-label>
+    <input matInput placeholder="Filtrar item do catálogo" #filtrop>
+</mat-form-field>
+
+<div *ngIf="!statusloader">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 
 
 <span *ngFor="let categoria of servico.getCardapio()">
@@ -43,22 +51,33 @@
     <mat-list role="list">
         <mat-list-item role="listitem">
             <div class="cc_">
-                <div style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-                    <button mat-button [matMenuTriggerFor]="menu">
-                  <mat-icon color="primary">settings</mat-icon>
-                </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="dialogEditarCar(categoria)">
-                    <mat-icon>edit</mat-icon> Editar categoria
-                  </button>
-                        <button mat-menu-item (click)="removerCat(categoria)">
-                    <mat-icon>restore_from_trash</mat-icon> Remover categoria
-                  </button>
-                    </mat-menu>
+                <div style="    width: 100%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                display: grid;
+                grid-template-columns: 0fr 1fr;">
 
-                    <button mat-raised-button color="accent" matTooltip="Adicionar novo item" (click)="dialogAddItem(categoria)">
-                  <mat-icon>add</mat-icon> Adicionar item
-                </button>
+                    <div>
+                        <button mat-button [matMenuTriggerFor]="menu">
+                      <mat-icon color="primary">settings</mat-icon>
+                    </button>
+
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="dialogEditarCar(categoria)">
+                        <mat-icon>edit</mat-icon> Editar categoria
+                      </button>
+                            <button mat-menu-item (click)="removerCat(categoria)">
+                        <mat-icon>restore_from_trash</mat-icon> Remover categoria
+                      </button>
+                        </mat-menu>
+
+                    </div>
+
+                    <div>
+                        <button mat-raised-button color="warn" matTooltip="Adicionar novo item" (click)="dialogAddItem(categoria)">
+                      <mat-icon>add</mat-icon> Novo item
+                    </button>
+                    </div>
 
                 </div>
                 <div style="width: 100%; font-size: 14px;">
@@ -70,7 +89,7 @@
 </div>
 
 
-<span *ngFor="let item of categoria.itens">
+<span *ngFor="let item of categoria.itens | nomes:filtrop.value">
 
 
         <div class="item-cat">
@@ -82,7 +101,7 @@
 
 
               <button mat-button [matMenuTriggerFor]="menu">
-                <mat-icon color="accent">settings</mat-icon>
+                <mat-icon color="warn">settings</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="dialogEditarItem(item, categoria)">

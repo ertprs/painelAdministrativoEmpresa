@@ -31,7 +31,7 @@ agm-map {
 .customMarker {
     position: absolute;
     cursor: pointer;
-    background: #00000054;
+    background: white;
     width: 36px;
     height: 35px;
     margin-left: -9px;
@@ -73,7 +73,7 @@ agm-map {
 }
 
 .customMarker-inter {
-    background-image: url('../../assets/chatb.gif');
+    background-image: url('../../assets/bandeiraanim.gif');
     width: 30px;
     height: 28px;
     border-radius: 50px;

@@ -37,7 +37,8 @@ export class UsuarioPermissoesComponent implements OnInit {
     }
   }
 
-  onClickSalvar() {
+  onClickSalvar(dataSource) {
+    console.log(dataSource._data._value);
     const accallback = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
@@ -47,7 +48,7 @@ export class UsuarioPermissoesComponent implements OnInit {
       }
       console.log(r);
     };
-    this.crud.post_api('attPermissoesUsuarioSistema', accallback, {id: this.us.getUsuario().id, perm: this.us.getPermissoessuario()});
+    this.crud.post_api('attPermissoesUsuarioSistema', accallback, {id: this.us.getUsuario().id, perm: dataSource._data._value});
  
   }
   hasChild = (_: number, node: any) => !!node.children && node.children.length > 0;

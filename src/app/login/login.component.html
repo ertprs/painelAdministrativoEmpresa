@@ -1,8 +1,9 @@
 <div class="conteudo">
 
     <div class="aform" defa [formGroup]="formLogin">
-        <div style="height: 80px;">
-            <img class="imglogo" [src]="servico.getDefaultImage()" offset="10000">
+        <div style="height: 80px;
+        margin-top: 31px;">
+            <img class="imglogo" [src]="servico.getLogoEmpresa()" offset="10000">
         </div>
         <!--<div class="aform2">
             <img class="imglogo" [src]="servico.getDefaultImage()" offset="10000">
@@ -29,7 +30,7 @@
 
                 <div class="example-button-row" style="text-align: center;">
                     <button class="bt1" mat-raised-button color="primary" (click)="oncllickEntrar()" disabled="{{btloginstatus}}">Entrar</button>
-                    <button class="bt2" mat-stroked-button color="primary" style="margin-left: 10px;" routerLink="/recuperar"> Recuperar conta </button>
+                    <!--<button class="bt2" mat-stroked-button color="primary" style="margin-left: 10px;" routerLink="/recuperar"> Recuperar conta </button>-->
                 </div>
             </section>
 

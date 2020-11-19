@@ -61,11 +61,10 @@ mat-tab-group {
 }
 
 .spanob {
-    color: #E91E63;
-    /* background: antiquewhite; */
-    border: 1px solid #E91E63;
-    border-radius: 2px;
+    color: #FFEB3B;
+    background: #3F51B5;
     padding: 2px;
+    padding: 5px;
 }
 
 .panel-header-cat {

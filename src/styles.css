@@ -53,3 +53,16 @@ body {
 .menuSelecionado {
     background-color: gold;
 }
+
+.ng-lazyloaded {
+    animation: fadeinimg 3s;
+}
+
+@keyframes fadeinimg {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

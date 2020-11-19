@@ -13,7 +13,7 @@ import { FormCupomComponent } from '../cupons/form-cupom/form-cupom.component';
 })
 export class UsuariosFinaisComponent implements OnInit {
 
-  displayedColumns: string[] = ['op', 'op2', 'c1', 'c2', 'c3', 'add'];
+  displayedColumns: string[] = ['op', 'op2', 'tipo', 'c1', 'c2', 'c3', 'add'];
   itens = [];
   dadosCupomAdd: any;
   acao: string;
@@ -176,7 +176,21 @@ removerItem(item) {
 }
 
 onClickItem(element) {
-  alert('configurar');
+  // alert('configurar');
+}
+
+classificar(usuario, tipo): void {
+  const accallback = () => {
+    console.log('callback');
+    const r = this.servico.getRespostaApi();
+    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+      this.servico.mostrarMensagem(r.detalhes);
+      this.f5();
+      usuario.tipo = tipo;
+    }
+    console.log(r);
+  };
+  this.crud.post_api('classificarUsuario', accallback, {user: usuario.id, type: tipo});
 }
 
 }

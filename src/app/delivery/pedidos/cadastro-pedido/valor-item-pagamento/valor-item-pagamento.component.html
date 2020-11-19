@@ -1,4 +1,11 @@
 <div>
+    <div style="    padding: 8px;
+    background: #3F51B5;
+    text-align: center;
+    color: white;
+    font-size: 19px;
+    border-radius: 2px;
+    margin-bottom: 16px;">Total pedido: {{ servcard.getTotalCarrinho() | currency:'BRL':true }} </div>
     <mat-form-field class="example-full-width">
         <mat-label> Valor a pagar </mat-label>
         <input matInput placeholder="R$0,00" #valor type="number">
@@ -7,5 +14,5 @@
 
 
 <div style="text-align: center;">
-    <button mat-stroked-button color="accent" (click)="onClickConfirmar(valor.value)"> Confimar </button>
+    <button mat-stroked-button color="primary" (click)="onClickConfirmar(valor.value)"> Confimar </button>
 </div>
