@@ -188,6 +188,7 @@ import { AbatimentoItensComponent } from './abatimentos-estoque/abatimento-itens
 import { ProgressSistemaComponent } from './componentes/progress-sistema/progress-sistema.component';
 import { ProgressoComponent } from './componentes/progress-sistema/progresso/progresso.component';
 import { AlterarSenhaComponent } from './perfil/alterar-senha/alterar-senha.component';
+import { InserirMotivoEntregadorComponent } from './mototboys/inserir-motivo-entregador/inserir-motivo-entregador.component';
 
 @NgModule({
   declarations: [	
@@ -330,7 +331,8 @@ import { AlterarSenhaComponent } from './perfil/alterar-senha/alterar-senha.comp
       AbatimentoItensComponent,
       ProgressSistemaComponent,
       ProgressoComponent,
-      AlterarSenhaComponent
+      AlterarSenhaComponent,
+      InserirMotivoEntregadorComponent
    ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+<mat-form-field style="width: 100%; max-height: 300px;">
+    <mat-label> Motivo </mat-label>
+    <textarea #motivo style="max-height: 300px;" matInput placeholder="Informe o motivo que o entregador está desativado"></textarea>
+</mat-form-field>
+
+<div style="margin-top: 30px; text-align: center;">
+    <button mat-button color="warn" mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" (click)="onClickConfirmar(motivo.value)">Confirmar</button>
+</div>
