@@ -5,7 +5,7 @@
 <div style="height: 400px; overflow: auto;">
     <mat-list>
         <span *ngFor="let item of itens">
-        <mat-list-item class="item" [class.itemSelecionado]="item.selecionado" (click)="onClickItem(item)"> {{ item.nome }} </mat-list-item>
+        <a href="javascript:;" style="text-decoration: none;"><mat-list-item class="item" [class.itemSelecionado]="item.selecionado" (click)="onClickItem(item)"> {{ item.nome }} </mat-list-item></a>
         <mat-divider></mat-divider>
     </span>
 

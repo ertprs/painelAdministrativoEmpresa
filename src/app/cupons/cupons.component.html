@@ -20,15 +20,14 @@
         <ng-container matColumnDef="c0">
             <th mat-header-cell *matHeaderCellDef> Titulo. </th>
             <td mat-cell *matCellDef="let element">
-                {{ element.titulo }}
+                {{ element.titulo }} <span *ngIf="element.var_tipo === 'ticket'">({{ element.qnt_usu + "/"+ element.qnt_max_usu }})</span>
             </td>
         </ng-container>
 
         <ng-container matColumnDef="c1">
-            <th mat-header-cell *matHeaderCellDef> Texto. </th>
+            <th mat-header-cell *matHeaderCellDef> Tipo. </th>
             <td mat-cell *matCellDef="let element">
-                <span style="font-size: 12px;">{{ element.texto }}
-                <br> {{ element.regras }}</span>
+                {{ element.tipo }}
             </td>
         </ng-container>
 

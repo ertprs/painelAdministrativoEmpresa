@@ -20,6 +20,19 @@ export class PaineldeliveryComponent implements OnInit {
   btrelato = true;
   btDataret = true;
   btOrg = true;
+  btUsuariosAdm = true;
+
+  btCidade = true;
+  btBairro = true;
+  btGaleria = true;
+  btEntregador = true;
+  btFp = true;
+  btBancos = true;
+  btUsuApp = true;
+  btCupom = true;
+  btNot = true;
+  btPagOnline = true;
+
 
   constructor(public servapp: ServicoService, private us: UsuariosAdmService) { }
 
@@ -35,6 +48,19 @@ export class PaineldeliveryComponent implements OnInit {
     this.btrelato = this.us.getPermissoessuario()[9].children[6].status;
     this.btDataret = this.us.getPermissoessuario()[9].children[7].status;
     this.btOrg = this.us.getPermissoessuario()[9].children[8].status;
+    this.btUsuariosAdm = this.us.getPermissoessuario()[10].children[9].status;
+
+    this.btCidade = this.us.getPermissoessuario()[10].children[0].status;
+    this.btBairro = this.us.getPermissoessuario()[10].children[1].status;
+    this.btGaleria = this.us.getPermissoessuario()[10].children[2].status;
+    this.btEntregador = this.us.getPermissoessuario()[10].children[3].status;
+    this.btFp = this.us.getPermissoessuario()[10].children[4].status;
+    this.btBancos = this.us.getPermissoessuario()[10].children[6].status;
+    this.btUsuApp = this.us.getPermissoessuario()[10].children[7].status;
+    this.btCupom = this.us.getPermissoessuario()[10].children[9].status;
+    this.btNot = this.us.getPermissoessuario()[10].children[10].status;
+    this.btPagOnline = this.us.getPermissoessuario()[10].children[11].status;
+
   }
 
 }

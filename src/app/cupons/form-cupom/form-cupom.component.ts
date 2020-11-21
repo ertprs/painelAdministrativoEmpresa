@@ -12,7 +12,7 @@ export class FormCupomComponent implements OnInit {
 
   form: FormGroup;
   iddes: any;
-
+  isChecked = false;
 
   constructor(public dialogRef: MatDialogRef<FormCupomComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder) { }
@@ -36,11 +36,16 @@ export class FormCupomComponent implements OnInit {
         valor: [null, Validators.required],
         datafim: [null, Validators.required],
         pedido_min: [null, Validators.required],
-
+        tipo: [null],
+        codigo: [null],
+        quantidade_max: [null],
       });
     } else {
       console.log('Form editar');
       console.log(this.data.item);
+      if (this.data.item.tipo === 'ticket') {
+        this.isChecked = true;
+      }
       this.form = this.fb.group({
         id: [this.data.item.id, Validators.required],
         id_destino: [this.data.item.id_destino, Validators.required],
@@ -50,10 +55,23 @@ export class FormCupomComponent implements OnInit {
         valor: [this.data.item.valor, Validators.required],
         datafim: [this.data.item.datafim, Validators.required],
         pedido_min: [this.data.item.pedido_min, Validators.required],
+        tipo: [this.data.item.tipo],
+        codigo: [this.data.item.codigo],
+        quantidade_max: [this.data.item.quantidade_max],
       });
     }
 
 
+  }
+
+
+  onClickTipo() {
+    console.log(this.isChecked);
+    if (this.isChecked) {
+      this.form.controls.tipo.setValue('cupom');
+    } else {
+      this.form.controls.tipo.setValue('ticket');
+    }
   }
 
 }

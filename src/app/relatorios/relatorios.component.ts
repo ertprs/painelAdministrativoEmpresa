@@ -159,7 +159,7 @@ export class RelatoriosComponent implements OnInit {
 
         this.servrelat.setTotalFat(r.faturamento_total);
         this.servrelat.setQntPedido(r.qnt_pedidos);
-        this.servrelat.setCupom(r.total_cupons);
+        this.servrelat.setCupom(r.qnt_cupom_usado);
         this.servrelat.setTicketMedio(r.ticket_medio);
 
         r.itens.forEach(element => {

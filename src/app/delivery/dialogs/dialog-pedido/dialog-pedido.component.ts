@@ -38,8 +38,9 @@ export class DialogPedidoComponent implements OnInit {
         this.servapp.mostrarMensagem(r.detalhes);
         this.btCstatus = false;
       } else {
-        this.servapp.mostrarMensagem(r.detalhes);
+        // this.servapp.mostrarMensagem(r.detalhes);
         this.servpedidos.consultaPedidos();
+        this.dialog.closeAll();
       }
     };
     const data = { id_pedido: this.servpedidos.getPedido().id, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido};

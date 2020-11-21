@@ -1,10 +1,27 @@
+<mat-slide-toggle color="warn" [(ngModel)]="isChecked" (click)="onClickTipo()"> Ticket </mat-slide-toggle>
+
 <div [formGroup]="form">
 
 
     <div class="delsuc">
 
+        <mat-form-field style="display: none;">
+            <mat-label>tipo</mat-label>
+            <input matInput placeholder="ticket/cupom" formControlName="tipo">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="isChecked">
+            <mat-label>Código do cupom</mat-label>
+            <input matInput placeholder="*****" formControlName="codigo">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="isChecked">
+            <mat-label> Quantidade </mat-label>
+            <input matInput placeholder="1" formControlName="quantidade_max">
+        </mat-form-field>
+
         <mat-form-field>
-            <mat-label>Titulo</mat-label>
+            <mat-label>Título</mat-label>
             <input matInput placeholder="Ex. Cupom de boa vindas" formControlName="titulo">
         </mat-form-field>
 

@@ -17,6 +17,7 @@ export class UsuariosFinaisComponent implements OnInit {
   itens = [];
   dadosCupomAdd: any;
   acao: string;
+  qntusuarios: number;
 
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
@@ -28,7 +29,8 @@ export class UsuariosFinaisComponent implements OnInit {
   f5() {
     this.crud.get_api('usuarios_app').subscribe(data => {
        console.log(data);
-       this.itens = data;
+       this.itens = data.resultado.lista;
+       this.qntusuarios = data.resultado.quantidade;
     });
 }
 

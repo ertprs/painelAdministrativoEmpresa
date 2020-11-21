@@ -125,21 +125,21 @@
         "name": "Configurações especiais",
         "children": [
             { "id": 0, "status": true, "name": "Cidades" },
-            { "id": 0, "status": true, "name": "Bairros" },
-            { "id": 0, "status": true, "name": "Galeria" },
-            { "id": 0, "status": true, "name": "Motoboys" },
-            { "id": 0, "status": true, "name": "Formas de pagamento" },
-            { "id": 0, "status": true, "name": "Itens de pagamento" },
-            { "id": 0, "status": true, "name": "Bancos" },
-            { "id": 0, "status": true, "name": "Usuários app" },
+            { "id": 1, "status": true, "name": "Bairros" },
+            { "id": 2, "status": true, "name": "Galeria" },
+            { "id": 3, "status": true, "name": "Motoboys" },
+            { "id": 4, "status": true, "name": "Formas de pagamento" },
+            { "id": 5, "status": true, "name": "Itens de pagamento" },
+            { "id": 6, "status": true, "name": "Bancos" },
+            { "id": 7, "status": true, "name": "Usuários app" },
             {
-                "id": 0,
-                "status": true,
+                "id": 8,
+                "status": false,
                 "name": "Usuários administrativos do sistema"
             },
-            { "id": 0, "status": true, "name": "Cupons" },
-            { "id": 0, "status": true, "name": "Notificações" },
-            { "id": 0, "status": true, "name": "Pagamento online" }
+            { "id": 9, "status": true, "name": "Cupons" },
+            { "id": 10, "status": true, "name": "Notificações" },
+            { "id": 11, "status": true, "name": "Pagamento online" }
         ]
     }
 ]
