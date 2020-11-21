@@ -13,7 +13,7 @@ import { UsuariosAdmService } from './usuarios-adm.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  displayedColumns: string[] = ['op', 'op2', 'email', 'nome', 'senha', 'tipo', 'ultimo_login', 'info', 'add'];
+  displayedColumns: string[] = ['op', 'email', 'nome', 'senha', 'tipo', 'ultimo_login', 'info', 'add'];
   itens = [];
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog, private route: Router,

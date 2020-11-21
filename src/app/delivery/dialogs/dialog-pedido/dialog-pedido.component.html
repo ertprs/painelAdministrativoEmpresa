@@ -72,7 +72,10 @@
             justify-content: center;
             justify-content: space-between;">
                 <mat-icon class="mat-18">payments</mat-icon>
-                {{ item.nome }} <span *ngIf="item.itemSelecionado"> - {{ item.itemSelecionado.nome }} - </span> Valor: {{ item.valor | currency:'BRL':true }}
+                {{ item.nome }} <span *ngIf="item.itemSelecionado"> 
+                <span *ngIf="item.itemSelecionado.nome" >-</span> {{ item.itemSelecionado.nome }}
+                <span *ngIf="item.itemSelecionado.nome">-</span>
+                </span> Valor: {{ item.valor | currency:'BRL':true }} Troco: {{ item.troco | currency:'BRL':true }}
             </div>
         </mat-step>
 
@@ -135,7 +138,13 @@
                         <th mat-header-cell *matHeaderCellDef> Adicionais. </th>
                         <td mat-cell *matCellDef="let element">
                             <div class="itmadc" *ngFor="let adc of element.adicionais">
-                                {{adc.qnt}}<strong>x</strong> {{adc.nome}}
+                                <div> {{adc.qnt}}x {{adc.nome}}</div>
+                                <div></div>
+                                <div> {{adc.preco * adc.qnt | currency:'BRL':true }}</div>
+
+
+
+
                             </div>
                         </td>
                     </ng-container>

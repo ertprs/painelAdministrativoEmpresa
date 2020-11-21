@@ -55,7 +55,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 60px 60px;
-    margin-left: -12px;
+    margin-left: -13px;
+    border-radius: 3px;
+    box-shadow: -2px -2px 7px #0c0c0cc2;
 }
 
 @media(max-width:600px) {

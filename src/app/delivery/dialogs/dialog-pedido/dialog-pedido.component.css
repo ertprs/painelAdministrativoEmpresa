@@ -26,12 +26,17 @@ table {
 }
 
 .itmadc {
-    background: #FFEB3B;
+    background: #3F51B5;
     border-radius: 4px;
     padding: 2px;
     width: 90%;
     margin-bottom: 1px;
     font-size: 11px;
+    color: white;
+    justify-content: space-between;
+    display: flex;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .itmnome {

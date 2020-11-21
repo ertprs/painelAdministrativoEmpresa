@@ -46,7 +46,7 @@ export class ServicoService {
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
-  getApiAcao(acao: string, mostrarProgresso?: boolean) {
+  getApiAcao(acao: string, mostrarProgresso?: boolean): string {
     if (mostrarProgresso) { this.servProg.showProgress.emit(mostrarProgresso); }
     
     console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);

@@ -14,7 +14,9 @@
 
 
         <ng-container matColumnDef="op">
-            <th mat-header-cell *matHeaderCellDef> Menu. </th>
+            <th mat-header-cell *matHeaderCellDef>
+                <app-bt-exportar *ngIf="btblista" [lista]="itens" [nomeArquivo]="'listaCLientes'"></app-bt-exportar>
+            </th>
             <td mat-cell *matCellDef="let element">
 
                 <button *ngIf="btMenu" mat-icon-button color="accent" [matMenuTriggerFor]="menu" (click)="onClickBtMenu(element)">
@@ -115,5 +117,3 @@
     </table>
 
 </div>
-
-<a *ngIf="btblista" style="margin:5px" mat-stroked-button href="http://localhost/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=&acao=gerarxsl&token={{ servico.getDadosEmpresa().token }}" target="_blank"> Exportar </a>
