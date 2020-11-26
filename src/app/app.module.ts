@@ -189,6 +189,9 @@ import { ProgressSistemaComponent } from './componentes/progress-sistema/progres
 import { ProgressoComponent } from './componentes/progress-sistema/progresso/progresso.component';
 import { AlterarSenhaComponent } from './perfil/alterar-senha/alterar-senha.component';
 import { InserirMotivoEntregadorComponent } from './mototboys/inserir-motivo-entregador/inserir-motivo-entregador.component';
+import { MainNavMasterComponent } from './main-nav-master/main-nav-master.component';
+import { PainelMasterComponent } from './main-nav-master/painel-master/painel-master.component';
+import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas.component';
 
 @NgModule({
   declarations: [	
@@ -332,7 +335,10 @@ import { InserirMotivoEntregadorComponent } from './mototboys/inserir-motivo-ent
       ProgressSistemaComponent,
       ProgressoComponent,
       AlterarSenhaComponent,
-      InserirMotivoEntregadorComponent
+      InserirMotivoEntregadorComponent,
+      MainNavMasterComponent,
+      PainelMasterComponent,
+      ListaEmpresasComponent
    ],
   imports: [
     BrowserModule,

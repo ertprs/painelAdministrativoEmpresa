@@ -14,8 +14,9 @@ export class ServicoService {
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
   // private urlapi = 'http://192.168.0.112/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
-  private urlapi = 'https://api.ecig.app/index.php';
-  private API = 'apiCliente';
+  //private urlapi = 'https://jfortalapi.ecig.app/index.php';
+  private urlapi = 'https://api.vulto.site/index.php';
+  private API = 'apiEstabelecimento';
   private statusLogado = false;
   private dadosLogin: any;
   private respApi: any;

@@ -15,7 +15,7 @@ mat-grid-tile {
     background: #673AB7;
     height: 100vh;
     display: grid;
-    background-image: linear-gradient(to top, #2e1133, #673AB7);
+    background-image: linear-gradient(to top, #FF5722, #FF9800);
 }
 
 .aform {

@@ -68,9 +68,9 @@ export class CadastroEmpresaComponent implements OnInit {
     });
   }
 
-  onclickCadastrar(bairro: any) {
+  onclickCadastrar() {
     console.log(this.formCadastro.value);
-
+/*
     try {
       this.formCadastro.value.cidade = this.cidadeClienteSelecionada.nome;
       this.formCadastro.value.cidade_id = this.cidadeClienteSelecionada.id;
@@ -78,6 +78,7 @@ export class CadastroEmpresaComponent implements OnInit {
     try {
       this.formCadastro.value.bairro = bairro.nome;
     } catch (e) { this.servico.mostrarMensagem('Selecione o bairro de sua empresa'); return; }
+    */
     if (this.formCadastro.value.email !== this.formCadastro.value.emailconfirmar) {
       this.servico.mostrarMensagem('O email de confirmação não confere com o email inserido em DADOS PARA ACESSO');
       return;
@@ -96,6 +97,7 @@ export class CadastroEmpresaComponent implements OnInit {
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.mensagem);
         this.btCstatus = false;
+        this.router.navigate(['/admin/lojas']);
       } else {
         this.servico.mostrarMensagem(r.mensagem);
         this.formcadastroStatus = true;

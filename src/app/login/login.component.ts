@@ -62,7 +62,9 @@ export class LoginComponent implements OnInit {
         this.servico.setDadosLogin(r.resultado);
         this.crud.consultaSistema();
         // this.router.navigate(['/inicio']);
-        this.router.navigate(['/painelpedidos/pedidos']);
+        if (r.resultado.dados_conta.operador.tipo === 'super') { this.router.navigate(['/admin']); } else {
+           this.router.navigate(['/painelpedidos/pedidos']);
+        }
         this.us.initPermissao(r.resultado.dados_conta.operador.permissoes_status_todas,
           r.resultado.dados_conta.operador.permissoes);
         this.auth.mostrarMenu.emit(true);

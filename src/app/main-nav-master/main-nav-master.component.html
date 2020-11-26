@@ -1,0 +1,149 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
+        <mat-toolbar style="background-color: 36A0E1; color: #e13636;display: flex;justify-content: space-around;">
+
+
+            <span matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="warn">
+                <mat-icon matTooltip="Entregadores online">sports_motorsports</mat-icon>
+            </span>
+
+        </mat-toolbar>
+
+        <button mat-button style="display: none;" (click)="drawer.toggle()" id="btnav">sidenav.toggle()</button>
+
+
+        <mat-nav-list>
+
+
+            <a [class.menuSelecionado]="ms.menuSelecionado[0].selecionado" *ngIf="us.getPermissoessuario()[0].status" mat-list-item [routerLink]="['./painelpedidos/pedidos']">
+                <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="O estabalecimento está fechado">info</mat-icon>
+                <mat-icon>description</mat-icon>
+                <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
+            </a>
+
+            <!--<a (click)="clickMenu(ms.menuSelecionado[1])" [class.menuSelecionado]="ms.menuSelecionado[1].selecionado" *ngIf="us.getPermissoessuario()[1].status" mat-list-item routerLink="/.meusclientes">
+                <mat-icon>perm_identity</mat-icon>
+                Meus clientes
+            </a>-->
+
+            <a [class.menuSelecionado]="ms.menuSelecionado[2].selecionado" mat-list-item routerLink="./entregas">
+                <mat-icon>view_headline</mat-icon>
+                Entregas
+            </a>
+
+
+            <a [class.menuSelecionado]="ms.menuSelecionado[3].selecionado" mat-list-item [routerLink]="['./inicio']">
+                <mat-icon>map</mat-icon>
+                Mapa
+            </a>
+
+
+            <!--<a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[4].status" mat-list-item routerLink="/.notificacoes">
+                <mat-icon>info</mat-icon>
+                <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"> Notificações
+                </span>
+            </a>-->
+
+
+
+
+
+            <!--<a (click)="clickMenu(ms.menuSelecionado[5])" [class.menuSelecionado]="ms.menuSelecionado[5].selecionado" *ngIf="us.getPermissoessuario()[5].status" mat-list-item routerLink="/.estoque/itens-estoque">
+                <mat-icon>book</mat-icon>
+                Estoque
+            </a>-->
+
+
+
+            <!--<a (click)="clickMenu(ms.menuSelecionado[6])" [class.menuSelecionado]="ms.menuSelecionado[6].selecionado" *ngIf="us.getPermissoessuario()[6].status" mat-list-item routerLink="./relatorio/historico-vendas">
+                <mat-icon>assignment</mat-icon>
+                Relatórios
+            </a>-->
+
+            <!--<a (click)="clickMenu(ms.menuSelecionado[7])" [class.menuSelecionado]="ms.menuSelecionado[7].selecionado" *ngIf="us.getPermissoessuario()[7].status" mat-list-item routerLink="/.financeiro/conciliacao-bancaria">
+                <mat-icon>money</mat-icon>
+                Financeiro
+            </a>-->
+
+            <!--<a (click)="clickMenu(ms.menuSelecionado[8])" [class.menuSelecionado]="ms.menuSelecionado[8].selecionado" *ngIf="us.getPermissoessuario()[8].status" mat-list-item routerLink="/.fechar-caixa">
+                <mat-icon>archive</mat-icon>
+                Fechar caixa
+            </a>-->
+
+
+            <!--<a routerLink="/admin/painel/usuarios" (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item>
+                <mat-icon>settings</mat-icon>
+                Usuários administrativos
+            </a>-->
+
+            <!--<a routerLink="/admin/painel/perfil" (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item>
+                <mat-icon>store</mat-icon>
+                Usuários adm.
+            </a>-->
+
+            <a routerLink="/admin/painel/painel-relatorio" mat-list-item>
+                <mat-icon>article</mat-icon>
+                Estatísticas
+            </a>
+
+            <a routerLink="/admin/painel/cidades-sistema" mat-list-item>
+                <mat-icon>place</mat-icon>
+                Cidades
+            </a>
+
+            <a routerLink="/admin/painel/bairros-sistema" mat-list-item>
+                <mat-icon>place</mat-icon>
+                Bairros
+            </a>
+
+            <a routerLink="/admin/painel/motoboys" mat-list-item>
+                <mat-icon>sports_motorsports</mat-icon>
+                Entregador
+            </a>
+
+            <a routerLink="./lojas" mat-list-item>
+                <mat-icon>view_headline</mat-icon>
+                Lojas
+            </a>
+
+
+
+            <a (click)="clickMenu(ms.menuSelecionado[9])" mat-list-item routerLink="./painel">
+                <mat-icon>settings</mat-icon>
+                Configurações
+            </a>
+
+
+
+
+
+            <!--<a mat-list-item routerLink="/.config">
+                <mat-icon>settings</mat-icon>
+                <span> Configurações </span>
+            </a>-->
+            <!--<a mat-list-item routerLink="/.login">
+        <mat-icon>input</mat-icon>
+        Sair
+      </a>-->
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="warn" class="toolb">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <div>
+                <div class="logoEmpresatoolbar" [lazyLoad]="servico.getDadosEmpresa().imagem"></div>
+            </div>
+            <span>
+                <div>Dashboard Master</div>
+                <div class="ddgui_"> {{ this.servico.getDadosEmpresa().operador.nome }} </div>
+
+            </span>
+
+
+        </mat-toolbar>
+        <!-- Add Content Here -->
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

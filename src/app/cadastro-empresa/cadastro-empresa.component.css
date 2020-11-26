@@ -25,7 +25,8 @@
 }
 
 .allc {
-    width: 60%;
+    /* 
+   width: 60%;
     background-color: #181819;
     float: left;
     height: 94.6%;
@@ -35,6 +36,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    */
 }
 
 mat-icon {

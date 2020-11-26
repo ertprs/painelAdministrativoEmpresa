@@ -21,7 +21,7 @@
                     <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1 && servpedidos.getPedido().tipopedido === 'retirada'" (click)="onClickAttStatusPedido(3)" color="accent">
                     <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 || servpedidos.getPedido().status_pedido != 3" (click)="onClickAttStatusPedido(4)" color="accent">
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 && servpedidos.getPedido().status_pedido != 3" (click)="onClickAttStatusPedido(4)" color="accent">
                     <mat-icon>edit_road</mat-icon> A caminho</mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 4 || servpedidos.getPedido().status_pedido == 3" (click)="onClickAttStatusPedido(5)" color="accent">Entregue</mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido != 0" [mat-dialog-close]="'cancelar_pedido'" color="accent">
@@ -61,21 +61,28 @@
 
 
         <mat-step>
-            <ng-template matStepLabel>Metodo de pagamento</ng-template>
+            <ng-template matStepLabel>Método de pagamento</ng-template>
 
             <div class="" *ngFor="let item of servpedidos.getPedido().formaspagamento" style="padding: 10px;
-            background: gold;
-            font-weight: 500;
+            background: #504743;
             text-align: center;
             margin-bottom: 1px;
             display: flex;
-            justify-content: center;
-            justify-content: space-between;">
-                <mat-icon class="mat-18">payments</mat-icon>
-                {{ item.nome }} <span *ngIf="item.itemSelecionado"> 
-                <span *ngIf="item.itemSelecionado.nome" >-</span> {{ item.itemSelecionado.nome }}
-                <span *ngIf="item.itemSelecionado.nome">-</span>
-                </span> Valor: {{ item.valor | currency:'BRL':true }} Troco: {{ item.troco | currency:'BRL':true }}
+            justify-content: space-between;
+            color: white;">
+                <div style="    display: flex;
+                align-items: center;
+                gap: 9px;">
+
+                    <mat-icon class="mat-18">payments</mat-icon>
+                    {{ item.nome }} <span *ngIf="item.itemSelecionado"> 
+                <span *ngIf="item.itemSelecionado.nome" >/</span> {{ item.itemSelecionado.nome }}
+                    </span>
+                    {{ item.valor | currency:'BRL':true }}
+                </div>
+                <div></div>
+                <div></div>
+                <span *ngIf="item.troco !== '0' || item.troco !== 0">Troco: {{ item.troco | currency:'BRL':true }}</span>
             </div>
         </mat-step>
 

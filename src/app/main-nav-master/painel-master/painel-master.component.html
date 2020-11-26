@@ -1,0 +1,90 @@
+<div class="g">
+    <div class="c1">
+        <div class="c11">
+            <div>
+                <button mat-button [matMenuTriggerFor]="csis" matTooltip="Configurações do sistema da loja">
+                <mat-icon>settings</mat-icon>
+            </button>
+
+                <mat-menu #csis="matMenu" yPosition="above">
+                    <!--<button *ngIf="btCidade" mat-menu-item routerLink="/admin/painel/cidades-sistema"><mat-icon>view_headline</mat-icon> Cidades</button>-->
+                    <!--<button *ngIf="btBairro" mat-menu-item routerLink="/admin/painel/bairros-sistema"><mat-icon>view_headline</mat-icon> Bairros</button>-->
+                    <button *ngIf="btGaleria" mat-menu-item routerLink="/admin/painel/galeria"><mat-icon>image</mat-icon> Galeria</button>
+                    <!--<button *ngIf="btEntregador" mat-menu-item routerLink="/admin/painel/motoboys"><mat-icon>sports_motorsports</mat-icon> Entregador </button>-->
+                    <button *ngIf="btFp" mat-menu-item routerLink="/admin/painel/formas-pagamento"><mat-icon>money</mat-icon> Formas de pagamento</button>
+                    <button *ngIf="btFp" mat-menu-item routerLink="/admin/painel/itens-pagamento"><mat-icon>view_headline</mat-icon> Itens de pagamento</button>
+                    <button *ngIf="btBancos" mat-menu-item routerLink="/admin/painel/bancos"><mat-icon>view_headline</mat-icon> Bancos </button>
+                    <button *ngIf="btUsuApp" mat-menu-item routerLink="/admin/painel/usuarios-app"><mat-icon>view_headline</mat-icon> Usuários app</button>
+                    <!--<button mat-menu-item routerLink="/admin/painel/usuarios"> <mat-icon>view_headline</mat-icon>Usuários sistema</button>-->
+                    <button *ngIf="btCupom" utton mat-menu-item routerLink="/admin/painel/cupons"><mat-icon>view_headline</mat-icon> Cupons</button>
+                    <button *ngIf="btNot" mat-menu-item routerLink="/admin/painel/notificacoes-usuarios"><mat-icon>view_headline</mat-icon> Notificações</button>
+                    <button *ngIf="btPagOnline" mat-menu-item><mat-icon>view_headline</mat-icon> Pagamento online</button>
+                </mat-menu>
+            </div>
+
+            <!--<div *ngIf="btUsuariosAdm">
+                <button mat-button routerLink="/admin/painel/usuarios" matTooltip="Usuários administrativos"> 
+                <mat-icon aria-hidden="false">recent_actors</mat-icon>  
+            </button>
+            </div>-->
+
+            <!--<div *ngIf="btConfigPainel">
+                <button mat-button routerLink="/admin/painel/config" matTooltip="Configurações painel"> 
+                <mat-icon aria-hidden="false">settings</mat-icon>  
+            </button>
+            </div>-->
+
+            <!--<div *ngIf="btPerfil">
+                <button mat-button routerLink="/admin/painel/perfil" matTooltip="Perfil da loja">
+                <mat-icon>store</mat-icon>
+            </button>
+            </div>-->
+
+            <!--<div *ngIf="btrelato" routerLinkActive="active-button" [routerLinkActiveOptions]="{exact: true}">
+                <button mat-button routerLink="/admin/painel/painel-relatorio" matTooltip="Estatísticas">
+                    <mat-icon>analytics</mat-icon>
+                </button>
+
+            </div>-->
+
+
+
+        </div>
+    </div>
+
+    <div class="c2">
+        <router-outlet> </router-outlet>
+    </div>
+
+</div>
+<!--
+
+<mat-card style="margin: 5px;">
+
+
+    <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button [matMenuTriggerFor]="belowMenu"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações do cardápio</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item routerLink="/admin/painel/cardapio">Cardápio</button>
+        <button mat-menu-item [matMenuTriggerFor]="itensadicionais" routerLink="/admin/painel/categoriasadicionais">Categorias adicionais</button>
+    </mat-menu>
+
+
+
+    <mat-menu #itensadicionais="matMenu">
+        <button mat-menu-item routerLink="/admin/painel/itensadicionais"> Itens adicionais</button>
+    </mat-menu>
+
+
+    <button [disabled]="!servapp.getStatusSistemaDelivery()" mat-button routerLink="/admin/painel/avaliacoes"> <mat-icon aria-hidden="false">star</mat-icon> Avaliações</button>
+
+
+    <button mat-button routerLink="/admin/config"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações painel</button>
+
+    <button mat-button routerLink="/admin/painel/delivery"> <mat-icon aria-hidden="false">settings</mat-icon> Configurações para funcionamento delivery</button>
+
+
+</mat-card>
+
+<router-outlet> </router-outlet>
+
+-->

@@ -1,0 +1,67 @@
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 200px;
+}
+
+.sidenav .mat-toolbar {
+    background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.mat-list-item {
+    color: rgb(7, 81, 125);
+}
+
+.mat-list-item:hover {
+    background-color: rgb(214, 214, 214);
+    /*color: white;*/
+}
+
+.ddgui_ {
+    font-size: 11px;
+    color: white;
+    font-weight: 100;
+    margin-top: -10px;
+}
+
+.toolb {
+    display: grid;
+    grid-template-columns: 0fr 2fr 1fr;
+    gap: 5px;
+}
+
+.col2 {
+    text-align: end;
+    padding-right: 14px;
+}
+
+.mat-list-option:focus,
+.mat-nav-list .mat-list-item:focus,
+.mat-action-list .mat-list-item:focus {
+    background: gold;
+}
+
+.logoEmpresatoolbar {
+    height: 60px;
+    width: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    margin-left: -13px;
+    border-radius: 3px;
+    box-shadow: -2px -2px 7px #0c0c0cc2;
+}
+
+@media(max-width:600px) {
+    .logoEmpresatoolbar {
+        display: none;
+    }
+}

@@ -1,8 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
-        <mat-toolbar style="background-color: 36A0E1; color: #36a0e1;">
 
-            <span matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="accent">
+
+        <mat-toolbar style="background-color: 36A0E1; color: #e13636;display: flex;justify-content: space-around;">
+
+
+
+            <span matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="warn">
                 <mat-icon matTooltip="Entregadores online">sports_motorsports</mat-icon>
             </span>
 
@@ -99,7 +103,7 @@
                 <div class="logoEmpresatoolbar" [lazyLoad]="servico.getDadosEmpresa().imagem"></div>
             </div>
             <span>
-                <div>Dashboard lojista</div>
+                <div routerLink="/admin">Dashboard lojista</div>
                 <div class="ddgui_"> {{ this.servico.getDadosEmpresa().operador.nome }} </div>
 
             </span>

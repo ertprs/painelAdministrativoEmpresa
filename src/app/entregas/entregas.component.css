@@ -33,3 +33,8 @@
     background-size: 85% 90%;
     background-repeat: no-repeat;
 }
+
+.tEntSel:focus {
+    background: #3F51B5;
+    color: yellow;
+}
