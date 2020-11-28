@@ -15,7 +15,7 @@ mat-grid-tile {
     background: #673AB7;
     height: 100vh;
     display: grid;
-    background-image: linear-gradient(to top, #FF5722, #FF9800);
+    background-image: linear-gradient(to top, #dcdcdc, #e2e2e2);
 }
 
 .aform {
@@ -24,9 +24,7 @@ mat-grid-tile {
     width: 320px;
     margin: auto;
     border-radius: 34px;
-    -webkit-box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
-    -moz-box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
-    box-shadow: 1px 2px 13px rgb(0 0 0 / 77%);
+    box-shadow: 1px 2px 13px rgb(183 168 168 / 77%);
 }
 
 .bt1 {

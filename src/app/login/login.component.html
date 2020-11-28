@@ -18,12 +18,12 @@
         <div class="aform1">
             <mat-form-field color="primary" appearance="outline" class="example-full-width">
                 <mat-label color="primary">Entre com seu email</mat-label>
-                <input matInput placeholder="Ex. @email" type="email" formControlName="email">
+                <input matInput placeholder="Ex. @email" type="email" formControlName="email" (keydown.enter)="oncllickEntrar()">
             </mat-form-field>
 
             <mat-form-field color="accent" appearance="outline" class="example-full-width">
                 <mat-label>Senha</mat-label>
-                <input matInput placeholder="****" type="password" formControlName="senha">
+                <input matInput placeholder="****" type="password" formControlName="senha" (keydown.enter)="oncllickEntrar()">
             </mat-form-field>
 
             <section>

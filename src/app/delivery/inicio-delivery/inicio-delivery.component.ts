@@ -226,7 +226,7 @@ export class InicioDeliveryComponent implements OnInit {
         this.servico.mostrarMensagem(r.mensagem);
         this.btCstatus = false;
       } else {
-        this.servico.mostrarMensagem(r.mensagem);
+       /* this.servico.mostrarMensagem(r.mensagem); */
         this.formcadastroStatus = true;
         this.router.navigate(['/login']);
         setTimeout(() => { location.reload(); }, 700);

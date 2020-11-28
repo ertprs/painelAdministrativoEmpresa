@@ -1,0 +1,208 @@
+<mat-toolbar>
+    <span>Perfil da loja</span>
+</mat-toolbar>
+<div class="conteudo" [formGroup]="form">
+    <div>
+        <img [src]="dadosLoja.imagem" alt="logo" width="70px">
+        <img [src]="dadosLoja.capa" alt="capa" width="250px" height="70px">
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Nome </mat-label>
+            <input matInput placeholder="Nome" formControlName="nome">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Email </mat-label>
+            <input disabled matInput placeholder="email" formControlName="email">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Senha </mat-label>
+            <input matInput placeholder="senha" formControlName="senha">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Telefone </mat-label>
+            <input matInput placeholder="telefone" formControlName="telefone">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> CNPJ </mat-label>
+            <input matInput placeholder="CNPJ" formControlName="cnpj">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> CPF </mat-label>
+            <input matInput placeholder="CPF" formControlName="cpf">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Rua </mat-label>
+            <input matInput placeholder="Rua" formControlName="rua">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Número </mat-label>
+            <input matInput placeholder="numero" formControlName="numero">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Bairro </mat-label>
+            <input matInput placeholder="Bairro" formControlName="bairro">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Cidade </mat-label>
+            <input matInput placeholder="Cidade" formControlName="cidade">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Coordenadas </mat-label>
+            <input matInput placeholder="Ex.: -9999999, -9999999" formControlName="coordenadas">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Política de entrega </mat-label>
+            <input matInput placeholder="Política de entrega" formControlName="politica">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Url capa </mat-label>
+            <input matInput placeholder="url capa empresas" formControlName="capa">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl">
+            <mat-label> Descrição </mat-label>
+            <input matInput placeholder="Descrição" formControlName="descricao">
+        </mat-form-field>
+    </div>
+
+
+</div>
+
+<div style="text-align: center;">
+    <button style="margin:5px" mat-raised-button color="primary" (click)="onClickSalvar()"> Salvar dados perfil </button>
+</div>
+
+
+<mat-toolbar>
+    <span>Permissões da loja</span>
+</mat-toolbar>
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <li class="mat-tree-node">
+            <!-- use a disabled button to provide padding for tree leaf -->
+            <button mat-icon-button disabled></button>
+            <mat-checkbox [(ngModel)]="node.status" [checked]="node.status" color="primary"></mat-checkbox>
+            <span style="margin-left: 10px;">{{node.name}} </span>
+        </li>
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+        <li>
+            <div class="mat-tree-node">
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+                <mat-checkbox [(ngModel)]="node.status" [checked]="node.status" color="primary"></mat-checkbox>
+                <span style="margin-left: 10px;">{{node.name}}</span>
+            </div>
+            <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+                <ng-container matTreeNodeOutlet></ng-container>
+            </ul>
+        </li>
+    </mat-nested-tree-node>
+</mat-tree>
+
+<div style="text-align: center;">
+    <button (click)="onClickSalvarPerm(dataSource)" mat-raised-button color="primary" style="margin-left: 5px; margin-top: 10px;"> Salvar </button>
+</div>
+
+<mat-toolbar>
+    <span> Locais entrega </span>
+</mat-toolbar>
+
+<mat-tree [dataSource]="locaisEntrega" [treeControl]="treeControlL" class="example-tree">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <li class="mat-tree-node">
+            <!-- use a disabled button to provide padding for tree leaf -->
+            <button mat-icon-button disabled></button>
+            <mat-icon *ngIf="node.disponivel === 'true'">check</mat-icon>
+            <span style="margin-left: 10px;">{{node.nome}} {{node.taxa | currency:'BRL':true}} </span>
+        </li>
+    </mat-tree-node>
+
+
+
+
+
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-nested-tree-node *matTreeNodeDef="let cidade; when: hasChildL">
+        <li>
+            <div class="mat-tree-node">
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + cidade.nome">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControlL.isExpanded(cidade) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+                <span style="margin-left: 10px;">{{cidade.nome}}  <mat-icon *ngIf="cidade.disponivel === 'true'">check</mat-icon></span>
+            </div>
+            <ul [class.example-tree-invisible]="!treeControlL.isExpanded(cidade)">
+                <ng-container matTreeNodeOutlet></ng-container>
+            </ul>
+        </li>
+    </mat-nested-tree-node>
+</mat-tree>
+
+
+
+
+
+
+<mat-toolbar>
+    <span>Remover loja</span>
+</mat-toolbar>
+
+<div style="padding-left: 10px;">
+    <mat-form-field>
+        <mat-label> Senha </mat-label>
+        <input matInput placeholder="*****" type="password" #senhaRemover>
+    </mat-form-field>
+
+    <button color="warn" mat-icon-button (click)="removerLoja(senhaRemover.value)">
+        <mat-icon>delete</mat-icon>
+      </button>
+</div>

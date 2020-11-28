@@ -192,6 +192,7 @@ import { InserirMotivoEntregadorComponent } from './mototboys/inserir-motivo-ent
 import { MainNavMasterComponent } from './main-nav-master/main-nav-master.component';
 import { PainelMasterComponent } from './main-nav-master/painel-master/painel-master.component';
 import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas.component';
+import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.component';
 
 @NgModule({
   declarations: [	
@@ -338,7 +339,8 @@ import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas
       InserirMotivoEntregadorComponent,
       MainNavMasterComponent,
       PainelMasterComponent,
-      ListaEmpresasComponent
+      ListaEmpresasComponent,
+      VerEmpresaComponent
    ],
   imports: [
     BrowserModule,

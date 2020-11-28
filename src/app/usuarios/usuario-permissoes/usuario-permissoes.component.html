@@ -11,24 +11,24 @@ color: white;">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
         <li class="mat-tree-node">
             <!-- use a disabled button to provide padding for tree leaf -->
-            <button mat-icon-button disabled></button>
-            <mat-checkbox [(ngModel)]="node.status" [checked]="node.status" color="primary"></mat-checkbox>
-            <span style="margin-left: 10px;">{{node.name}} </span>
+            <button mat-icon-button [disabled]="!node.status"></button>
+            <mat-checkbox [(ngModel)]="node.status" [checked]="node.status" color="primary" [disabled]="!node.status"></mat-checkbox>
+            <span style="margin-left: 10px;">{{node.name}} {{ node.status }} </span>
         </li>
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
-    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <mat-nested-tree-node *matTreeNodeDef="let pai; when: hasChild">
         <li>
             <div class="mat-tree-node">
-                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + pai.name" [disabled]="!pai.status && pai.sempre_falso">
+            <mat-icon class="mat-icon-rtl-mirror"> 
+              {{treeControl.isExpanded(pai) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-                <mat-checkbox [(ngModel)]="node.status" [checked]="node.status" color="primary"></mat-checkbox>
-                <span style="margin-left: 10px;">{{node.name}}</span>
+                <mat-checkbox [(ngModel)]="pai.status" [checked]="pai.status" color="primary" [disabled]="!pai.status && pai.sempre_falso"></mat-checkbox>
+                <span style="margin-left: 10px;">{{pai.name}}</span>
             </div>
-            <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+            <ul [class.example-tree-invisible]="!treeControl.isExpanded(pai)">
                 <ng-container matTreeNodeOutlet></ng-container>
             </ul>
         </li>

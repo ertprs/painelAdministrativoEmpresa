@@ -41,7 +41,7 @@ export class ListaEmpresasComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         if (result) {
-          this.crud.get_api('att_status_entregador&id=' + item.id + '&status=' + statusC + '&motivo=' + result).subscribe(data => {
+          this.crud.get_api('att_status_empresa&id=' + item.id + '&status=' + statusC + '&motivo=' + result).subscribe(data => {
             item.status_conta = false;
             statusConta._checked = false;
           });
@@ -54,7 +54,7 @@ export class ListaEmpresasComponent implements OnInit {
 
 
     if (statusC) {
-      this.crud.get_api('att_status_entregador&id=' + item.id + '&status=' + statusC).subscribe(data => {
+      this.crud.get_api('att_status_empresa&id=' + item.id + '&status=' + statusC).subscribe(data => {
       });
     } else {
 
@@ -116,6 +116,10 @@ export class ListaEmpresasComponent implements OnInit {
     };
     this.crud.post_api('remover_motoboy', accallback, item);
 
+  }
+
+  verEmpresa(item: any) {
+    this.router.navigate(['./admin/ver-empresa', item]);
   }
 
 }

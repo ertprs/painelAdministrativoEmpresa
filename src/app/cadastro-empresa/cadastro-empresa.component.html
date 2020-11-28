@@ -5,7 +5,7 @@
 <div class="allc">
 
     <form class="example-form" [formGroup]="formCadastro" style="margin-top: 20px;" *ngIf="formcadastroStatus === false">
-        <mat-horizontal-stepper [linear]="false" #stepper>
+        <mat-vertical-stepper [linear]="false" #stepper>
 
             <mat-step>
                 <ng-template matStepLabel>Dados empresa</ng-template>
@@ -132,7 +132,7 @@
 
 
 
-        </mat-horizontal-stepper>
+        </mat-vertical-stepper>
 
         <!--<div style="text-align: center; margin-top: 32px;">
       <button mat-flat-button color="primary" routerLink="/login">Entrar com uma conta existente</button>

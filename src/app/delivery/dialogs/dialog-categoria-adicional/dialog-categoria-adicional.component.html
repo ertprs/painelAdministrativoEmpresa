@@ -23,6 +23,18 @@
 
     <div class="c1">
         <div class="">
+            Quantidade de mínima de cada item que o cliente tem que adicionar
+        </div>
+        <div class="" style="display: flex;">
+            <mat-slider class="mat-slider-guin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min" [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()" [(ngModel)]="qntMinAdcItem" [vertical]="vertical">
+            </mat-slider>
+            <div class="styleqnt"> {{qntMinAdcItem}} </div>
+        </div>
+
+    </div>
+
+    <div class="c1">
+        <div class="">
             Quantidade de adicionais de cada item que o cliente pode adicionar
         </div>
         <div class="" style="display: flex;">
@@ -46,10 +58,10 @@
 
     <div class="c1" style="text-align: right;">
         <span *ngIf="servDCadc.getTipoacao()">
-        <button [disabled]="btstatus" mat-flat-button color="dark" (click)="onSalvarItem(disponivel, quantidade, qntAdcItem)">Salvar</button>
+        <button [disabled]="btstatus" mat-flat-button color="dark" (click)="onSalvarItem(disponivel, quantidade, qntAdcItem, qntMinAdcItem)">Salvar</button>
       </span>
         <span *ngIf="!servDCadc.getTipoacao()">
-        <button [disabled]="btstatus" mat-flat-button color="primary" (click)="onClickAdd(disponivel, quantidade, qntAdcItem)">Adicionar</button>
+        <button [disabled]="btstatus" mat-flat-button color="primary" (click)="onClickAdd(disponivel, quantidade, qntAdcItem, qntMinAdcItem)">Adicionar</button>
       </span>
 
     </div>

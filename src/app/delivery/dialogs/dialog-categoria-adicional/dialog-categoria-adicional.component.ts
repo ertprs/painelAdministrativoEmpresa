@@ -22,6 +22,7 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
   thumbLabel = true;
   qntAdcItem = 1;
   quantidade = 1;
+  qntMinAdcItem = 0;
   vertical = false;
   tickInterval = 0;
 
@@ -36,9 +37,10 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
     this.iniciaForm();
   }
 
-  onClickAdd(disponivel: any, quantidade: any, qntAdcItem: any) {
+  onClickAdd(disponivel: any, quantidade: any, qntAdcItem: any, qntMinAdcItem: any) {
     this.formCadastro.value.disponivel = disponivel;
     this.formCadastro.value.maxsele = quantidade;
+    this.formCadastro.value.minsele = qntMinAdcItem;
     this.formCadastro.value.qntAdcItem = qntAdcItem;
     console.log(this.formCadastro.value);
 
@@ -61,9 +63,10 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
     console.log( this.crud.post_api('cadastro_categoria_adicional', callbfun, this.formCadastro.value ) );
   }
 
-  onSalvarItem(disponivel: any, quantidade: any, qntAdcItem: any) {
+  onSalvarItem(disponivel: any, quantidade: any, qntAdcItem: any, qntMinAdcItem: any) {
     this.formCadastro.value.disponivel = disponivel;
     this.formCadastro.value.maxsele = quantidade;
+    this.formCadastro.value.minsele = qntMinAdcItem;
     this.formCadastro.value.qntAdcItem = qntAdcItem;
     console.log(this.formCadastro.value);
 
@@ -94,6 +97,7 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
         nome: [this.servDCadc.getCategoriaAdicional().nome, Validators.required],
         descricao: [this.servDCadc.getCategoriaAdicional().descricao],
         disponivel: [this.servDCadc.getCategoriaAdicional().disponivel],
+        minsele: [this.servDCadc.getCategoriaAdicional().minsele],
         maxsele: [this.servDCadc.getCategoriaAdicional().maxsele],
         qntAdcItem: [this.servDCadc.getCategoriaAdicional().qnt_adc_item],
       });
@@ -106,6 +110,7 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
       descricao: [''],
       disponivel: [null],
       maxsele: [null],
+      minsele: [null],
       qntAdcItem: [1],
     });
   }

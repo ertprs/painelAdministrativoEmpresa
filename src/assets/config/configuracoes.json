@@ -1,4 +1,5 @@
 [
+    { "host": "https://api.dinp.com.br/index.php", "api": "apiEstabelecimento" },
     { "host": "http://localhost/sistema_zecarlos/apiVulto/index.php", "api": "apiEstabelecimento" },
     { "host": "https://api.vulto.site/index.php", "api": "apiEstabelecimento" }
 

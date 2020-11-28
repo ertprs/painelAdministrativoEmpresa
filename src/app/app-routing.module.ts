@@ -1,3 +1,4 @@
+import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.component';
 import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas.component';
 import { PainelMasterComponent } from './main-nav-master/painel-master/painel-master.component';
 import { AbatimentosEstoqueComponent } from './abatimentos-estoque/abatimentos-estoque.component';
@@ -183,6 +184,7 @@ const routes: Routes = [
       { path: 'inicio', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'lojas', component: ListaEmpresasComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'ver-empresa', component: VerEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'cadastro-loja', component: CadastroEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
       
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
