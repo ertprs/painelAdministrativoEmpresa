@@ -44,14 +44,26 @@ export class ServicoService {
   private cardapioDigtal = '0';
   private statusDelivery = false;
   private statusSistemaDelivery = false;
+  private statusFatura = false;
   private fSistema = [];
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
+
+
+  setStatusfatura(status: boolean) {
+    this.statusFatura = status;
+  }
+
+  getStatusfatura(): boolean {
+    return this.statusFatura;
+  }
+
+
   getApiAcao(acao: string, mostrarProgresso?: boolean): string {
     if (mostrarProgresso) { this.servProg.showProgress.emit(mostrarProgresso); }
-    
-    console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
+
+    // console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
     return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
   }
 
@@ -59,7 +71,7 @@ export class ServicoService {
     this.urlapi = host;
     this.API = api;
   }
-   
+
   getDefaultImage() {
     return this.defaultImg;
   }

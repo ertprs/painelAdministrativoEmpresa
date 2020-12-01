@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
         // this.router.navigate(['/inicio']);
         if (r.resultado.dados_conta.operador.tipo === 'super') { this.router.navigate(['/admin']); } else {
            this.router.navigate(['/painelpedidos/pedidos']);
+           this.servico.setStatusfatura(r.resultado.status_fatura);
         }
         this.us.initPermissao(
           r.resultado.dados_conta.operador.permissoes_status_todas,

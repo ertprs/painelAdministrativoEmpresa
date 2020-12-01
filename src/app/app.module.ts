@@ -193,6 +193,7 @@ import { MainNavMasterComponent } from './main-nav-master/main-nav-master.compon
 import { PainelMasterComponent } from './main-nav-master/painel-master/painel-master.component';
 import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas.component';
 import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.component';
+import { FaturasComponent } from './faturas/faturas.component';
 
 @NgModule({
   declarations: [	
@@ -340,7 +341,8 @@ import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.c
       MainNavMasterComponent,
       PainelMasterComponent,
       ListaEmpresasComponent,
-      VerEmpresaComponent
+      VerEmpresaComponent,
+      FaturasComponent
    ],
   imports: [
     BrowserModule,

@@ -27,6 +27,9 @@ export class PainelPedidosComponent implements OnInit {
   onClickStatusDelivery() {
     let status = this.form.value.statusdelivery;
     if (status) { status = false; } else { status = true; }
+    if (this.servapp.getStatusfatura()) { 
+      return;
+     }
     this.servapp.getDadosEmpresa().status_delivery = status;
     this.servpedidos.onClickAttStatusDelivery(status);
   }

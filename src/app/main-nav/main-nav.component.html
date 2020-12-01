@@ -74,6 +74,12 @@
             </a>
 
 
+            <a (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
+                <mat-icon>description</mat-icon>
+                Faturas
+                <mat-icon matTooltip="Existe faturas pendentes" *ngIf="servico.getStatusfatura()" style="color: red;">notification_important</mat-icon>
+            </a>
+
 
             <a (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel">
                 <mat-icon>settings</mat-icon>
