@@ -1,6 +1,8 @@
 <mat-toolbar>
-    <span>
-        Estoque do motoboy <b>{{ servestm.getNomeMS() }}</b>
+    <span style="    display: flex;
+    align-items: center;
+    gap: 12px;">
+      <img style="border-radius: 10px;" width="50px" [src]="servestm.getImagemMS()">  Estoque do entregador <b>{{ servestm.getNomeMS() }}</b>
     </span>
 </mat-toolbar>
 

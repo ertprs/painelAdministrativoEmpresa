@@ -194,9 +194,10 @@ import { PainelMasterComponent } from './main-nav-master/painel-master/painel-ma
 import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas.component';
 import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.component';
 import { FaturasComponent } from './faturas/faturas.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     InicioComponent,
     MainNavComponent,
@@ -395,7 +396,7 @@ import { FaturasComponent } from './faturas/faturas.component';
   entryComponents: [
     DialoDelsucgComponent
   ],
-  providers: [AuthService, MatDatepickerModule],
+  providers: [AuthService, MatDatepickerModule, CookieService ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

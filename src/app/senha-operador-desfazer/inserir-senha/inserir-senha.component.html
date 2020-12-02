@@ -1,7 +1,7 @@
 <div [formGroup]="form">
     <mat-form-field class="example-full-width">
         <mat-label>Senha</mat-label>
-        <input matInput placeholder="****" formControlName="senha" type="password">
+        <input matInput placeholder="****" formControlName="senha" type="password" (keydown.enter)="onclick()">
     </mat-form-field>
 </div>
 

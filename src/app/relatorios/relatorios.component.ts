@@ -90,7 +90,7 @@ export class RelatoriosComponent implements OnInit {
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
   };
-  public barChartTypeTipoPedido: ChartType = 'line';
+  public barChartTypeTipoPedido: ChartType = 'bar';
   public barChartLegendTipoPedido = true;
   public barChartLabelsTipoPedido: Label[] = []; // Label
   public barChartDataTipoPedido: ChartDataSets[] = [

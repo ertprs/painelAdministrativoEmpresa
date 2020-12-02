@@ -60,6 +60,13 @@
     box-shadow: -2px -2px 7px #0c0c0cc2;
 }
 
+.ttodelsuc {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    background-color: #3F51B5;
+}
+
 @media(max-width:600px) {
     .logoEmpresatoolbar {
         display: none;

@@ -2,6 +2,13 @@
     <span> Loja </span>
 </mat-toolbar>
 
+<mat-toolbar>
+    <button mat-flat-button>Gerar fatura</button>
+    <button style="margin-left: 10px;" mat-flat-button> Concluir pedidos </button>
+
+</mat-toolbar>
+
+
 <div>
 
     <table mat-table [dataSource]="itens">
@@ -59,13 +66,7 @@
           </button> </th>
             <td mat-cell *matCellDef="let element">
 
-                <button matTooltip="Gerar fatura" (click)="gerarFatura(element)" mat-icon-button color="accent">
-                    <mat-icon>description
-                    </mat-icon>
-                  </button>
-
-
-                <button matTooltip="Ver loja" (click)="verEmpresa(element)" mat-icon-button color="accent">
+                <button matTooltip="Ver loja" (click)="verEmpresa(element)" mat-icon-button color="primary">
                     <mat-icon>remove_red_eye
                     </mat-icon>
                   </button>

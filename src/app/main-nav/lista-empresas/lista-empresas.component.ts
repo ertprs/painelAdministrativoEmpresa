@@ -121,14 +121,8 @@ export class ListaEmpresasComponent implements OnInit {
   verEmpresa(item: any) {
     this.router.navigate(['./admin/ver-empresa', item]);
   }
-  gerarFatura(empresa) {
-    this.crud.get_api('gerarFatura&id_empresa=' + empresa.id).subscribe(data => {
-        if (data.erro) {
-          this.servico.mostrarMensagem(data.detalhes);
-        } else {
-          this.servico.mostrarMensagem(data.detalhes);
-        }
-    });
-  }
+  
+
+  
 
 }

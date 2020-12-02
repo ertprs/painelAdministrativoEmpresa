@@ -3,70 +3,72 @@
         <app-upload-imagem [preload]="true" [nomeBotao]="'Imagem entregador'"></app-upload-imagem>
     </div>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Nome</mat-label>
-        <input formControlName="nome" matInput placeholder="Ex. nome do entregador">
+    <mat-form-field class="example-full-width" style="margin-top: 10px;">
+        <mat-label>Email</mat-label>
+        <input [value]="form.controls.email.value" matInput placeholder="Ex. email do entregador" disabled>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input formControlName="email" matInput placeholder="Ex. email do entregador">
+        <mat-label>Nome</mat-label>
+        <input (keydown.enter)="salvar()" formControlName="nome" matInput placeholder="Ex. nome do entregador">
     </mat-form-field>
+
+
 
     <mat-form-field class="example-full-width">
         <mat-label>Senha</mat-label>
-        <input formControlName="senha" matInput placeholder="Ex. Senha do entregador">
+        <input (keydown.enter)="salvar()" formControlName="senha" matInput placeholder="Ex. Senha do entregador">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Telefone</mat-label>
-        <input formControlName="telefone" matInput placeholder="">
+        <input (keydown.enter)="salvar()" formControlName="telefone" matInput placeholder="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>CPF</mat-label>
-        <input formControlName="cpf" matInput placeholder="Ex. CPF do entregador">
+        <input (keydown.enter)="salvar()" formControlName="cpf" matInput placeholder="Ex. CPF do entregador">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>RG</mat-label>
-        <input formControlName="rg" matInput placeholder="Ex. Rg do entregador">
+        <input (keydown.enter)="salvar()" formControlName="rg" matInput placeholder="Ex. Rg do entregador">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>CNH</mat-label>
-        <input formControlName="cnh" matInput placeholder="Ex. CNH do entregador">
+        <input (keydown.enter)="salvar()" formControlName="cnh" matInput placeholder="Ex. CNH do entregador">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Placa</mat-label>
-        <input formControlName="placa" matInput placeholder="Ex. Placa do entregador">
+        <input (keydown.enter)="salvar()" formControlName="placa" matInput placeholder="Ex. Placa do entregador">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Rua</mat-label>
-        <input formControlName="rua" matInput placeholder="">
+        <input (keydown.enter)="salvar()" formControlName="rua" matInput placeholder="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Número</mat-label>
-        <input formControlName="numero" matInput placeholder="">
+        <input (keydown.enter)="salvar()" formControlName="numero" matInput placeholder="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Bairro</mat-label>
-        <input formControlName="bairro" matInput placeholder="">
+        <input (keydown.enter)="salvar()" formControlName="bairro" matInput placeholder="">
     </mat-form-field>
 
 
     <mat-form-field class="example-full-width">
         <mat-label>Cidade</mat-label>
-        <input formControlName="cidade" matInput placeholder="">
+        <input (keydown.enter)="salvar()" formControlName="cidade" matInput placeholder="">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Cep</mat-label>
-        <input formControlName="cep" matInput placeholder="">
+        <input formControlName="cep" matInput placeholder="" (keydown.enter)="salvar()">
     </mat-form-field>
 
 

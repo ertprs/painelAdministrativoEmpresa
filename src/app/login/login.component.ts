@@ -5,6 +5,7 @@ import { ServicoService } from '../servico.service';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,15 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   btloginstatus: any;
   logo = 'assets/vultoroxonome.png';
+  tipoLogin = false;
 
   constructor(private crud: CrudServicoService,
               private formBuilder: FormBuilder,
               public servico: ServicoService,
               private router: Router,
               private auth: AuthService,
-              private us: UsuariosAdmService
+              private us: UsuariosAdmService,
+              private cookieService: CookieService
               ) {
                 this.crud.pegaHost().subscribe( data => {
                   console.log(data[0].host);
@@ -32,6 +35,8 @@ export class LoginComponent implements OnInit {
                   console.log(data);
                   this.us.setPermissoes(data);
                  }, error => { alert('Erro ao carregar o host'); } );
+
+
                }
 
   ngOnInit(): void {
@@ -43,6 +48,12 @@ export class LoginComponent implements OnInit {
       email: [null, Validators.required],
       senha: [null, Validators.required],
     });
+    // Se existit COOKIES tenta fazer o LOGIN
+    if (this.cookieService.check('lgn') && this.cookieService.check('sha')) {
+      console.warn('Tenta fazer o login automático');
+      this.tipoLogin = true;
+      this.oncllickEntrar();
+     }
 
   }
 
@@ -55,10 +66,16 @@ export class LoginComponent implements OnInit {
       console.log(r);
       setTimeout( () => {  this.btloginstatus = false; } , 1500 );
       if (r.erro === true) {
+        // Se o login for auto. e der erro, nao mostra a msg
+        if (this.tipoLogin) {  this.tipoLogin = false; return; }
         this.servico.mostrarMensagem(r.mensagem);
         this.auth.mostrarMenu.emit(false);
         this.btloginstatus = false;
       } else {
+        if (!this.tipoLogin) {
+        this.cookieService.set('lgn', this.formLogin.value.email);
+        this.cookieService.set('sha', this.formLogin.value.senha);
+        }
         this.servico.setDadosLogin(r.resultado);
         this.crud.consultaSistema();
         // this.router.navigate(['/inicio']);
@@ -73,7 +90,11 @@ export class LoginComponent implements OnInit {
         this.auth.mostrarMenu.emit(true);
       }
     };
+    if (this.tipoLogin) {
+    this.crud.post_api('login_emrpesa', loginres, {email: this.cookieService.get('lgn'), senha: this.cookieService.get('sha')}, true );
+    } else {
     this.crud.post_api('login_emrpesa', loginres, this.formLogin.value, true );
+    }
   }
 
 }

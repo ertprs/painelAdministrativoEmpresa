@@ -29,6 +29,7 @@
     "lodash": "^4.17.15",
     "ng-lazyload-image": "^9.0.0",
     "ng2-charts": "^2.4.1",
+    "ngx-cookie-service": "^11.0.2",
     "ngx-mask": "^9.0.2",
     "ngx-socket-io": "^3.2.0",
     "rxjs": "~6.5.4",

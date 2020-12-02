@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CrudServicoService } from 'src/app/crud-servico.service';
+import { ServicoService } from 'src/app/servico.service';
 
 @Component({
   selector: 'app-form-estoque',
@@ -15,7 +16,7 @@ export class FormEstoqueComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<FormEstoqueComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder,
-              private crud: CrudServicoService) { }
+              private crud: CrudServicoService, private servapp: ServicoService) { }
 
   ngOnInit(): void {
 
@@ -50,5 +51,17 @@ export class FormEstoqueComponent implements OnInit {
       tipo_entrada: [null],
     });
   }
- 
+
+  f1() {
+
+    const accallback = () => {
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
+          this.dialogRef.close(true);
+      }
+      console.log(r);
+    };
+    this.crud.post_api('addEstoque', accallback, this.form.value);
+  }
+
 }

@@ -6,9 +6,10 @@ import { Injectable } from '@angular/core';
 export class EstoqueService {
 
   private listaMotoboys: any;
-  private motoboySelecionado: {nome: '', id: ''};
+  private motoboySelecionado: {imagem: '', nome: '', id: ''};
   private nomeMotoboy = '';
   private idMotoboy = '';
+  private imagemMt = '';
   constructor() { }
 
 
@@ -24,6 +25,9 @@ export class EstoqueService {
     this.motoboySelecionado = element;
     this.nomeMotoboy = element.nome;
     this.idMotoboy = element.id;
+    if (element.imagem) {
+      this.imagemMt = element.imagem;
+    }
   }
 
   getMotoboySelecionado() {
@@ -33,11 +37,15 @@ export class EstoqueService {
   getNomeMS() {
     return this.nomeMotoboy ;
   }
+  
+  getImagemMS() {
+    return this.imagemMt;
+  }
 
   getIdMotoboy() {
     return this.idMotoboy ;
   }
-  
+
 
 
 }

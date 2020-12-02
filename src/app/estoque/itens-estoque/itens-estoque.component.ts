@@ -62,7 +62,8 @@ add(): void {
     console.log('The dialog was closed');
     console.log(result);
     if (result) {
-      this.f1(result) ;
+      // this.f1(result) ;
+      this.estoque();
     }
   });
 }
@@ -104,7 +105,7 @@ f1(form) {
     }
     console.log(r);
   };
-  this.crud.post_api('addEstoque', accallback, form);
+ //  this.crud.post_api('addEstoque', accallback, form);
 }
 
 enviarNovoEstoque(element): void {
@@ -114,22 +115,8 @@ enviarNovoEstoque(element): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
     if (result) {
-
-      const accallback = () => {
-        console.log('callback');
-        const r = this.servapp.getRespostaApi();
-        if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
-          this.servapp.mostrarMensagem(r.detalhes.mensagem);
-          this.estoque();
-        }
-        console.log(r);
-      };
-      this.crud.post_api('enviaEstoque', accallback, result);
-
-
+      this.estoque();
     }
   });
 }
@@ -141,12 +128,9 @@ retirarEstoqueLoja(element) {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
     if (result) {
 
       const accallback = () => {
-        console.log('callback');
         const r = this.servapp.getRespostaApi();
         if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
           this.servapp.mostrarMensagem(r.detalhes);

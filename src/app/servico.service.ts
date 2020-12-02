@@ -13,10 +13,10 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-  // private urlapi = 'http://192.168.0.112/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
+  private urlapi = 'http://10.0.0.103/sistema_zecarlos/apiVulto/';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   // private urlapi = 'https://api.vulto.site/index.php';
-  private urlapi = 'https://api.dinp.com.br/index.php';
+  // private urlapi = 'https://api.dinp.com.br/index.php';
   private API = 'apiEstabelecimento';
   private statusLogado = false;
   private dadosLogin: any;
@@ -68,8 +68,8 @@ export class ServicoService {
   }
 
   setHost(host: string, api: string) {
-    this.urlapi = host;
-    this.API = api;
+    // this.urlapi = host;
+    // this.API = api;
   }
 
   getDefaultImage() {

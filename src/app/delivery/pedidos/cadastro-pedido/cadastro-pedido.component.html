@@ -117,7 +117,7 @@
                                 <div style="margin-left: 10px;">
                                     <div> {{ itemc.id }} {{ itemc.nome }} </div>
                                     <div style="font-size: 13px; color: rgb(90, 89, 89);"> {{ itemc.descricao }} </div>
-                                    <div> {{ itemc.preco | currency }} </div>
+                                    <div> {{ itemc.preco | currency:'BRL':true }} </div>
                                 </div>
                             </mat-list-item>
                         </div>
@@ -232,7 +232,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="isacT">Total: {{ item.total | currency }}</div>
+                                    <div class="isacT">Total: {{ item.total | currency:'BRL':true }}</div>
                                 </div>
 
 

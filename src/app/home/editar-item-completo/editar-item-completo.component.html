@@ -116,7 +116,8 @@
 
                         <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
                             <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])" [checked]="diasLista[i].status">
-                                {{ diasLista[i].nome }} <!--{{ diasLista[i] | json }}-->
+                                {{ diasLista[i].nome }}
+                                <!--{{ diasLista[i] | json }}-->
                                 <!--:: {{ diasLista[i].status }}-->
                             </mat-slide-toggle>
                         </mat-list-item>
@@ -228,10 +229,15 @@
 
         <!--Tabela-->
         <mat-accordion style="margin-top: 10px;">
+
+
+
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="margin-top: 10px;">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Controle de estoque
+
+
                     </mat-panel-title>
                     <mat-panel-description>
 
@@ -239,7 +245,28 @@
                 </mat-expansion-panel-header>
 
                 <mat-list>
+
                     <mat-list-item>
+                        <mat-slide-toggle (change)="onClickItemRelacionado($event, form.controls.statusEstoqueRelacionado.value)" [checked]="form.controls.statusEstoqueRelacionado.value"> Estoque relacionado </mat-slide-toggle>
+                    </mat-list-item>
+
+                    <mat-list-item style="margin-top: 10px;" *ngIf="form.controls.itemEstoqueRelacionado.value">
+                        <mat-form-field appearance="fill">
+                            <mat-label> Catálogo </mat-label>
+                            <mat-select>
+                                <mat-optgroup *ngFor="let categoria of this.servhome.getCardapio(); let i = index" [label]="categoria.nome">
+                                    <mat-option *ngFor="let produto of categoria.itens" [value]="produto.nome" (click)="selecionarOpt(produto)">
+                                        #{{produto.id}} {{produto.nome}}
+                                    </mat-option>
+                                </mat-optgroup>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-list-item>
+
+                    <mat-list-item style="margin-top: 30px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
+
+
+
                         <mat-form-field appearance="outline">
                             <mat-label>Estoque mínimo</mat-label>
                             <input matInput placeholder="Ex. Quantidade mínimo estoque" type="number" formControlName="estoque_mim">
@@ -249,7 +276,7 @@
 
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 29px;">
+                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
 
 
                         <mat-form-field appearance="outline">
@@ -271,7 +298,7 @@
 
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 29px;">
+                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
 
                         <mat-form-field appearance="outline">
                             <mat-label> Unidades caixa </mat-label>
@@ -281,7 +308,7 @@
 
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 29px;">
+                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
 
                         <mat-form-field appearance="outline">
                             <mat-label> Unidades pacote </mat-label>

@@ -13,7 +13,7 @@ import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
 export class PainelPedidosComponent implements OnInit {
 
   form: FormGroup;
-
+  btsp = [{ selecionado: true}, { selecionado: false}];
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, public us: UsuariosAdmService) { }
@@ -27,11 +27,18 @@ export class PainelPedidosComponent implements OnInit {
   onClickStatusDelivery() {
     let status = this.form.value.statusdelivery;
     if (status) { status = false; } else { status = true; }
-    if (this.servapp.getStatusfatura()) { 
+    if (this.servapp.getStatusfatura()) {
       return;
      }
     this.servapp.getDadosEmpresa().status_delivery = status;
     this.servpedidos.onClickAttStatusDelivery(status);
+  }
+
+  onclickBtPainel(bt) {
+    this.btsp.forEach(element => {
+      element.selecionado = false;
+    });
+    this.btsp[bt].selecionado = true;
   }
 
 }

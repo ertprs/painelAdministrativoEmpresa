@@ -31,6 +31,7 @@ export class EditarItemCompletoComponent implements OnInit {
   itemRequest: any;
   statusLoadConteudo = true;
 
+
   constructor(private formBuilder: FormBuilder, public servhome: HomeService, public servapp: ServicoService,
               private crud: CrudServicoService, private http: HttpClient, private route: Router) { }
 
@@ -65,6 +66,8 @@ export class EditarItemCompletoComponent implements OnInit {
               descricao: [this.itemRequest.descricao],
               esconder: [this.itemRequest.esconder],
               esgotado: [this.itemRequest.esgotado],
+              itemEstoqueRelacionado: [this.itemRequest.itemEstoqueRelacionado],
+              statusEstoqueRelacionado: [this.itemRequest.statusEstoqueRelacionado],
               preco: [this.itemRequest.preco],
               id_empresa: [this.servapp.getDadosEmpresa().id],
               id_categoria: [this.servhome.getCategoria().id],
@@ -111,6 +114,8 @@ export class EditarItemCompletoComponent implements OnInit {
         descricao: [''],
         esconder: [false],
         esgotado: [false],
+        itemEstoqueRelacionado: [false],
+        statusEstoqueRelacionado: [false],
         preco: [''],
         id_empresa: [this.servapp.getDadosEmpresa().id],
         id_categoria: [this.servhome.getCategoria().id],
@@ -137,6 +142,12 @@ export class EditarItemCompletoComponent implements OnInit {
     }
 
   }
+
+  selecionarOpt(item) {
+    console.log(item);
+    this.form.controls.itemEstoqueRelacionado.setValue(item.id);
+  }
+
 
   onClickAddItem() {
     this.valorSubmit = Object.assign({}, this.form.value);
@@ -283,6 +294,11 @@ export class EditarItemCompletoComponent implements OnInit {
 
   onClickCategoria(event, item) {
     item.status = event.checked;
+    console.log(item);
+  }
+
+  onClickItemRelacionado(event, item) {
+    this.form.controls.statusEstoqueRelacionado.setValue(event.checked);
     console.log(item);
   }
 

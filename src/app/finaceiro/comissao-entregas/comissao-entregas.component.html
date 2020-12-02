@@ -11,7 +11,7 @@
 
 
 <mat-form-field class="example-full-width" style="margin-left: 20px;">
-    <input type="text" formControlName="nome" placeholder="Filtrar por cliente" aria-label="Number" matInput (keyup)="consultaMNome()" [matAutocomplete]="auto">
+    <input type="text" formControlName="nome" placeholder="Filtrar por entregador" aria-label="Number" matInput (keyup)="consultaMNome()" [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
         <mat-option *ngFor="let option of itensOptions" [value]="option.nome">
             {{option.nome}}

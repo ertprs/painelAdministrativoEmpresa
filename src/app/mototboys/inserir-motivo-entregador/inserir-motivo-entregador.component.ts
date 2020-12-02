@@ -1,3 +1,4 @@
+import { ServicoService } from 'src/app/servico.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -8,12 +9,16 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class InserirMotivoEntregadorComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<InserirMotivoEntregadorComponent>) { }
+  constructor(public dialogRef: MatDialogRef<InserirMotivoEntregadorComponent>, private servicoApp: ServicoService) { }
 
   ngOnInit(): void {
   }
 
   onClickConfirmar(motivo: string) {
+    if (!motivo) {
+      this.servicoApp.mostrarMensagem('Informe o motivo');
+      return;
+    }
     this.dialogRef.close(motivo);
   }
 

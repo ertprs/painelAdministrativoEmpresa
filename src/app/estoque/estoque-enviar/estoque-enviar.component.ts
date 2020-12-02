@@ -16,7 +16,8 @@ export class EstoqueEnviarComponent implements OnInit {
   motoboys: any;
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, public dialogRef: MatDialogRef<EstoqueEnviarComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder) { }
+              @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder,
+              private servapp: ServicoService) { }
 
          ngOnInit(): void {
            this.consultaMotoboys();
@@ -35,6 +36,17 @@ export class EstoqueEnviarComponent implements OnInit {
       console.log(data);
       this.motoboys = data.resultado;
    });
+  }
+
+  enviarNovoEstoque(): void {
+    const accallback = () => {
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
+        this.servapp.mostrarMensagem(r.detalhes.mensagem);
+        this.dialogRef.close(true);
+      }
+    };
+    this.crud.post_api('enviaEstoque', accallback, this.form.value);
   }
 
 }

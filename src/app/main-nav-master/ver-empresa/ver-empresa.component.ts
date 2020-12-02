@@ -31,6 +31,10 @@ export class VerEmpresaComponent implements OnInit {
   treeControl = new NestedTreeControl<any>(node => node.children);
   dataSource = new MatTreeNestedDataSource<any>();
 
+  columnsToDisplay = ['id', 'status', 'termos', 'periodo', 'total', 'pdf', 'boleto'];
+  faturas = [];
+  token = '';
+
 constructor(private route: ActivatedRoute, private fb: FormBuilder, private servico: ServicoService, private crud: CrudServicoService,
             public us: UsuariosAdmService, private router: Router) { }
 
@@ -38,6 +42,7 @@ ngOnInit(): void {
     this.route.params.subscribe( params => {
       this.dadosLoja = params;
       console.log(params);
+      this.token = this.servico.getToken();
 
       this.form = this.fb.group({
         id: [this.dadosLoja.id],
@@ -80,6 +85,9 @@ ngOnInit(): void {
         this.dataSource.data = this.us.getPermissoessuario();
 
       }
+
+      this.faturas = r.resultado.faturas;
+
     };
     this.crud.post_api('consulta_empresa', accallback, this.dadosLoja.id);
 
@@ -119,6 +127,28 @@ ngOnInit(): void {
       }
     };
     this.crud.post_api('removerLoja', accallback, {id: this.dadosLoja.id, senha: senhaR});
+  }
+
+  removerFatura(fatura) {
+    this.crud.get_api('removerfatura&id_empresa=' + fatura.id_empresa + '&id=' + fatura.id).subscribe(data => {
+      if (data.erro) {
+        this.servico.mostrarMensagem(data.detalhes);
+      } else {
+        this.servico.mostrarMensagem(data.detalhes);
+        this.consultaEmpresa();
+      }
+  });
+  }
+
+  gerarFatura(dbi, dbf) {
+    this.crud.get_api('gerarFatura&id_empresa=' + this.dadosLoja.id + '&di=' + dbi + '&df=' + dbf).subscribe(data => {
+        if (data.erro) {
+          this.servico.mostrarMensagem(data.detalhes);
+        } else {
+          this.servico.mostrarMensagem(data.detalhes);
+          this.consultaEmpresa();
+        }
+    });
   }
 
   hasChild = (_: number, node: any) => !!node.children && node.children.length > 0;

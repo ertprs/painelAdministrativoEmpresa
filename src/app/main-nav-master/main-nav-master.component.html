@@ -15,8 +15,7 @@
         <mat-nav-list>
 
 
-            <a [class.menuSelecionado]="ms.menuSelecionado[0].selecionado" *ngIf="us.getPermissoessuario()[0].status" mat-list-item [routerLink]="['./painelpedidos/pedidos']">
-                <mat-icon *ngIf="!servico.getStatusDelivery() && this.servico.getDadosEmpresa().operador.tipo !== 'super'" style="color: #E91E63;" matTooltip="O estabalecimento está fechado">info</mat-icon>
+            <a [class.menuSelecionado]="ms.menuSelecionado[0].selecionado" mat-list-item [routerLink]="['./painelpedidos/pedidos']">
                 <mat-icon>description</mat-icon>
                 <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
             </a>

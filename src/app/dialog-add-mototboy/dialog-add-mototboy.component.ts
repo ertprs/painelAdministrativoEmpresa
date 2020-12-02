@@ -74,9 +74,9 @@ export class DialogAddMototboyComponent implements OnInit {
     const accallback = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
-      if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
-        this.servico.mostrarMensagem(r.mensagem);
-        this.dialogRef.close(truncate);
+      if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.dialogRef.close(true);
       }
       console.log(r);
     };

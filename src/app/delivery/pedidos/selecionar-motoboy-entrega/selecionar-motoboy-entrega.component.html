@@ -1,5 +1,9 @@
-<div class="guinho">
+<div *ngIf="this.pedido" class="guinho">
     Selecione o entregador que vai receber a entrega
+</div>
+
+<div *ngIf="!this.pedido" class="guinho">
+    Entregadores disponíveis
 </div>
 
 <div style="height: 400px; overflow: auto;">
@@ -14,7 +18,7 @@
 </div>
 
 
-<div style="margin-top: 10px; text-align: center;">
+<div *ngIf="this.pedido" style="margin-top: 10px; text-align: center;">
     <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>
     <button mat-stroked-button style="margin-left: 5px;" (click)="onClickConfirmar()">Confirmar</button>
 </div>

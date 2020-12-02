@@ -2,13 +2,20 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
 
 
-        <mat-toolbar style="background-color: 36A0E1; color: #e13636;display: flex;justify-content: space-around;">
+        <mat-toolbar class="ttodelsuc" style="background-color: #3F51B5;">
+            <!--matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="warn"-->
+            <button matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="warn" color="warn" (click)="selecionarMotoboy()" *ngIf="us.getPermissoessuario()[4].status" mat-icon-button>
+                <mat-icon style="color: white;" matTooltip="Entregadores online">sports_motorsports</mat-icon>
+              </button>
 
+            <button *ngIf="us.getPermissoessuario()[4].status" color="warn" (click)="clickMenu(ms.menuSelecionado[4])" routerLink="/notificacoes" mat-icon-button>
+                <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"></span>
+                <mat-icon style="color: white;" matTooltip="Notificações" matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent">mail_outline</mat-icon>
+                </button>
 
-
-            <span matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="warn">
-                <mat-icon matTooltip="Entregadores online">sports_motorsports</mat-icon>
-            </span>
+            <button color="warn" (click)="sair()" mat-icon-button>
+                    <mat-icon style="color: white;" matTooltip="Sair" matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent">power_settings_new</mat-icon>
+            </button>
 
         </mat-toolbar>
 
@@ -19,7 +26,7 @@
 
 
             <a (click)="clickMenu(ms.menuSelecionado[0])" [class.menuSelecionado]="ms.menuSelecionado[0].selecionado" *ngIf="us.getPermissoessuario()[0].status" mat-list-item [routerLink]="['/painelpedidos/pedidos']">
-                <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="O estabalecimento está fechado">info</mat-icon>
+                <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="Loja fechada">info</mat-icon>
                 <mat-icon>description</mat-icon>
                 <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
             </a>
@@ -40,12 +47,18 @@
                 Mapa
             </a>
 
+            <a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[3].selecionado" *ngIf="us.getPermissoessuario()[9].children[0].status" mat-list-item [routerLink]="['/painel/cardapio']">
+                <mat-icon>import_contacts</mat-icon>
+                Catálogo
+            </a>
 
-            <a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[4].status" mat-list-item routerLink="/notificacoes">
+
+
+            <!--<a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[4].status" mat-list-item routerLink="/notificacoes">
                 <mat-icon>info</mat-icon>
                 <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"> Notificações
                 </span>
-            </a>
+            </a>-->
 
 
 
@@ -74,11 +87,11 @@
             </a>
 
 
-            <a (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
+            <!--<a (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
                 <mat-icon>description</mat-icon>
                 Faturas
                 <mat-icon matTooltip="Existe faturas pendentes" *ngIf="servico.getStatusfatura()" style="color: red;">notification_important</mat-icon>
-            </a>
+            </a>-->
 
 
             <a (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel">
