@@ -18,7 +18,7 @@ import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
 })
 export class EstoqueMotoboyComponent implements OnInit {
 
-  columnsToDisplay = ['nome', 'quantidade', 'sub', 'adicionar'];
+  columnsToDisplay = ['nome', 'qtd_caixa' , 'quantidade', 'sub', 'adicionar'];
   dataSource = [];
   expandedElement: any | null;
   dialogDelsuc: any;

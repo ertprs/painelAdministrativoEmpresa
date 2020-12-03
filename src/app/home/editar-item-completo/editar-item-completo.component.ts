@@ -298,7 +298,11 @@ export class EditarItemCompletoComponent implements OnInit {
   }
 
   onClickItemRelacionado(event, item) {
+    console.log(event.checked);
     this.form.controls.statusEstoqueRelacionado.setValue(event.checked);
+    if (!event.checked) {
+      this.form.controls.itemEstoqueRelacionado.setValue(0);
+    }
     console.log(item);
   }
 

@@ -114,7 +114,9 @@
                   <mat-icon>restore_from_trash</mat-icon> Remover item
                 </button>
               </mat-menu>
-              #{{item.id}} - {{item.nome}} <span class="dels" *ngIf="item.esgotado === true" >Este item está esgotado</span> <span class="dels" *ngIf="item.esconder === true"> Este item não está disponível</span>
+              #{{item.id}} - {{item.nome}} <span *ngIf="item.itemEstoqueRelacionado !== '0'" > <mat-icon  matTooltip="Item relacionado">compare_arrows</mat-icon> {{item.itemEstoqueRelacionado}} </span>
+<br><span class="dels" *ngIf="item.esgotado === true">Este item está esgotado</span>
+<span class="dels" *ngIf="item.esconder === true"> Este item não está disponível</span>
 </div>
 <div class="item-descricao">{{item.descricao}}</div>
 <div class="item-preco">{{item.preco | currency:'BRL':true}}</div>

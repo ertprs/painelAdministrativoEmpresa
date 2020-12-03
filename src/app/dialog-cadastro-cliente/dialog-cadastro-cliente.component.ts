@@ -24,7 +24,7 @@ export class DialogCadastroClienteComponent implements OnInit {
     if (this.data.acao === 'add') {
       this.form = this.fb.group({
         tipo: [null, Validators.required],
-        email: [null, Validators.required],
+        email: [null],
         nome: [null, Validators.required],
         telefone: [null, Validators.required],
         rua: [null, Validators.required],
@@ -33,7 +33,7 @@ export class DialogCadastroClienteComponent implements OnInit {
         cidade: [null, Validators.required],
         uf: [null, Validators.required],
         data_aniversario: [null, Validators.required],
-        complemento: [null, Validators.required],
+        complemento: [null],
       });
 
     } else {
@@ -122,6 +122,19 @@ salvar() {
     console.log(r);
   };
   this.crud.post_api('add_cliente_lista_emp', accallback, this.form.value);
+}
+
+editar() {
+  const accallback = () => {
+    console.log('callback');
+    const r = this.servico.getRespostaApi();
+    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+      this.servico.mostrarMensagem(r.detalhes);
+      this.dialogRef.close(true);
+    }
+    console.log(r);
+  };
+  this.crud.post_api('att_cliente_lista_emp', accallback, this.form.value);
 }
 
 

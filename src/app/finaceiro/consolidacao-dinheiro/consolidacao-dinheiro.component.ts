@@ -12,7 +12,7 @@ import { AdicionarBancoComponent } from '../conciliacao-bancaria/adicionar-banco
 })
 export class ConsolidacaoDinheiroComponent implements OnInit {
 
-  displayedColumns: string[] = ['c1', 'c8', 'c9', 'c2', 'c3', 'c5', 'c6'];
+  displayedColumns: string[] = ['c1', 'entregador', 'c8', 'c9', 'c2', 'c3', 'c5', 'c6'];
   dataSource: any;
   total: any;
   form: FormGroup;

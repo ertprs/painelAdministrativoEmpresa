@@ -37,7 +37,7 @@ export class TabelaPedidosComponent implements OnInit {
 
   selecionarMotoboy(item) {
     this.dialogDelsuc = this.dialog.open(SelecionarMotoboyEntregaComponent, {
-      width: '460px', data: item.id
+      width: '560px', data: item.id
     });
     this.dialogDelsuc.afterClosed().subscribe(result => {
       console.log('The dialog was closed result');

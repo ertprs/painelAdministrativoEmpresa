@@ -250,9 +250,12 @@
                         <mat-slide-toggle (change)="onClickItemRelacionado($event, form.controls.statusEstoqueRelacionado.value)" [checked]="form.controls.statusEstoqueRelacionado.value"> Estoque relacionado </mat-slide-toggle>
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 10px;" *ngIf="form.controls.itemEstoqueRelacionado.value">
+                    <mat-list-item style="margin-top: 10px;" *ngIf="form.controls.statusEstoqueRelacionado.value">
                         <mat-form-field appearance="fill">
-                            <mat-label> Catálogo </mat-label>
+                            <mat-label>
+                                <span *ngIf="form.controls.itemEstoqueRelacionado.value"> Relacionado com: {{ form.controls.itemEstoqueRelacionado.value }} </span>
+                                <span *ngIf="!form.controls.itemEstoqueRelacionado.value"> Relacionar </span>
+                            </mat-label>
                             <mat-select>
                                 <mat-optgroup *ngFor="let categoria of this.servhome.getCardapio(); let i = index" [label]="categoria.nome">
                                     <mat-option *ngFor="let produto of categoria.itens" [value]="produto.nome" (click)="selecionarOpt(produto)">
@@ -263,7 +266,7 @@
                         </mat-form-field>
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 30px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
+                    <mat-list-item style="margin-top: 30px;" *ngIf="!form.controls.statusEstoqueRelacionado.value">
 
 
 
@@ -276,7 +279,7 @@
 
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
+                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.statusEstoqueRelacionado.value">
 
 
                         <mat-form-field appearance="outline">
@@ -298,7 +301,7 @@
 
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
+                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.statusEstoqueRelacionado.value">
 
                         <mat-form-field appearance="outline">
                             <mat-label> Unidades caixa </mat-label>
@@ -308,7 +311,7 @@
 
                     </mat-list-item>
 
-                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.itemEstoqueRelacionado.value">
+                    <mat-list-item style="margin-top: 29px;" *ngIf="!form.controls.statusEstoqueRelacionado.value">
 
                         <mat-form-field appearance="outline">
                             <mat-label> Unidades pacote </mat-label>

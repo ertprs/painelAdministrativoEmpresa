@@ -17,7 +17,7 @@
             <th mat-header-cell *matHeaderCellDef> Editar. </th>
             <td mat-cell *matCellDef="let element">
 
-                <button mat-icon-button color="accent" (click)="onClickEditar(element)">
+                <button mat-icon-button color="primary" (click)="onClickEditar(element)">
           <mat-icon>edit</mat-icon>
         </button>
 
@@ -32,10 +32,10 @@
                 <div style="display: flex;">
                     <div class="imgMot" [lazyLoad]="element.imagem"></div>
 
-                    <div style="font-size: 13px;">
-                        {{element.email}} - {{element.nome}}
-                        <br> {{element.telefone}} - {{element.cpf}}
-                        <br> {{element.rg}}
+                    <div style="font-size: 12px;">
+                        {{element.email}}
+                        <br>Nome: {{element.nome}}
+                        <br>Telefone {{element.telefone}}
                     </div>
                 </div>
 
@@ -45,13 +45,17 @@
         <ng-container matColumnDef="c2">
             <th mat-header-cell *matHeaderCellDef> Endereço. </th>
             <td mat-cell *matCellDef="let element">
-                {{element.rua}}, {{element.numero}}, {{element.bairro}} - {{element.cidade}}
-                <br> {{element.cep}}
+                <div style="font-size: 12px;">
+                    {{element.rua}}, {{element.numero}}, {{element.bairro}} - {{element.cidade}}
+                    <br> {{element.cep}}
+                </div>
+
+
             </td>
         </ng-container>
 
         <ng-container matColumnDef="c3">
-            <th mat-header-cell *matHeaderCellDef> Data criado. </th>
+            <th mat-header-cell *matHeaderCellDef> Data cadastro. </th>
             <td mat-cell *matCellDef="let element">
                 {{element.data_cadastro}}
             </td>
@@ -61,12 +65,12 @@
 
         <ng-container matColumnDef="add">
             <th mat-header-cell *matHeaderCellDef>
-                <button mat-icon-button color="accent" (click)="add()">
+                <button mat-icon-button color="primary" (click)="add()">
             <mat-icon>add</mat-icon>
           </button> </th>
             <td mat-cell *matCellDef="let element">
 
-                <button (click)="removerItem(element)" mat-icon-button color="accent">
+                <button (click)="removerItem(element)" mat-icon-button color="primary">
                     <mat-icon>delete</mat-icon>
                   </button>
 

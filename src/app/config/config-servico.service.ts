@@ -19,8 +19,8 @@ getStatusRotas() {
 }
 
 iniciarConfig() {
-  this.statusRotas = true;
-  this.statusRotasEntregador = false;
+  this.statusRotas = false;
+  this.statusRotasEntregador = true;
 }
 setStatusRotasEntregador(status: any) {
   console.log(status);

@@ -27,7 +27,7 @@ import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
 })
 export class ItensEstoqueComponent implements OnInit {
 
-  columnsToDisplay = ['c1', 'nome', 'descricao', 'quantidade', 'valor', 'info', 'sub', 'remover', 'editar', 'adicionar'];
+  columnsToDisplay = ['c1', 'nome', 'descricao', 'caixa', 'quantidade', 'valor', 'info', 'sub', 'remover', 'editar', 'adicionar'];
   dataSource = [];
   expandedElement: any | null;
   dialogDelsuc: any;

@@ -20,7 +20,7 @@ export class SelecionarMotoboyEntregaComponent implements OnInit {
     this.pedido = this.data;
     this.itens = this.servico.getListaEntregador();
     console.log(this.data );
-    /* PAREEEEI AQUI */
+    console.log(this.itens);
   }
 
   onClickItem(item) {

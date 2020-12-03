@@ -283,7 +283,7 @@ export class CadastroPedidoComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(ItemCatalogoComponent, {
-      width: '550px',
+      width: '650px',
       data: item
     });
 

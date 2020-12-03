@@ -115,7 +115,8 @@
 
     <div style="display: flex;">
         <button mat-button color="warn" [mat-dialog-close]="false">Cancelar</button>
-        <button style="margin-left: 10px;" mat-button color="primary" (click)="salvar()">Salvar</button>
+        <button style="margin-left: 10px;" mat-button color="primary" (click)="salvar()" *ngIf="this.data.acao === 'add'"> Adicionar </button>
+        <button style="margin-left: 10px;" mat-button color="primary" (click)="editar()" *ngIf="this.data.acao !== 'add'"> Salvar </button>
     </div>
 
 </div>

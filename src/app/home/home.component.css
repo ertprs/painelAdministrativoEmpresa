@@ -69,6 +69,7 @@
 .item-descricao {
     font-size: 11px;
     color: rgb(114, 114, 114);
+    margin-top: 8px;
 }
 
 .item-preco {

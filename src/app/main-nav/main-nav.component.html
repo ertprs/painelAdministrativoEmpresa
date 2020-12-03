@@ -3,18 +3,16 @@
 
 
         <mat-toolbar class="ttodelsuc" style="background-color: #3F51B5;">
-            <!--matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="warn"-->
-            <button matBadge="{{servico.getsetQntEntOn()}}" matBadgeOverlap="false" matBadgeColor="warn" color="warn" (click)="selecionarMotoboy()" *ngIf="us.getPermissoessuario()[4].status" mat-icon-button>
-                <mat-icon style="color: white;" matTooltip="Entregadores online">sports_motorsports</mat-icon>
+            <button color="warn" (click)="selecionarMotoboy()" *ngIf="us.getPermissoessuario()[4].status" mat-icon-button>
+                <mat-icon  matBadgeColor="accent" [matBadge]="servico.getsetQntEntOn()" style="color: white;" matTooltip="Entregadores online">sports_motorsports</mat-icon>
               </button>
 
             <button *ngIf="us.getPermissoessuario()[4].status" color="warn" (click)="clickMenu(ms.menuSelecionado[4])" routerLink="/notificacoes" mat-icon-button>
-                <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"></span>
-                <mat-icon style="color: white;" matTooltip="Notificações" matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent">mail_outline</mat-icon>
+                <mat-icon  matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" style="color: white;" matTooltip="Notificações" matBadgeColor="accent">mail_outline</mat-icon>
                 </button>
 
             <button color="warn" (click)="sair()" mat-icon-button>
-                    <mat-icon style="color: white;" matTooltip="Sair" matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent">power_settings_new</mat-icon>
+                    <mat-icon style="color: white;" matTooltip="Sair"  matBadgeColor="accent">power_settings_new</mat-icon>
             </button>
 
         </mat-toolbar>
@@ -47,10 +45,10 @@
                 Mapa
             </a>
 
-            <a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[3].selecionado" *ngIf="us.getPermissoessuario()[9].children[0].status" mat-list-item [routerLink]="['/painel/cardapio']">
+            <!--<a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[9].children[0].status" mat-list-item [routerLink]="['/painel/cardapio']">
                 <mat-icon>import_contacts</mat-icon>
                 Catálogo
-            </a>
+            </a>-->
 
 
 

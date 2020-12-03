@@ -14,6 +14,7 @@ export class FormEnderecoClienteComponent implements OnInit {
   cidadeClienteSelecionada: any;
   statusLoaderBairros = false;
   form: FormGroup;
+  statusBt = false;
 
   constructor(public servico: ServicoService, private crud: CrudServicoService, private fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: any,  public dialogRef: MatDialogRef<FormEnderecoClienteComponent>) { }
@@ -52,10 +53,11 @@ export class FormEnderecoClienteComponent implements OnInit {
   }
 
   addEndereco() {
+    this.statusBt = true;
     const accallback = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
-      if (r.resultado.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
+      if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); this.statusBt = false; } else {
         this.servico.mostrarMensagem(r.resultado.mensagem);
         this.dialogRef.close(true);
       }

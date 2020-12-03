@@ -70,7 +70,7 @@ add(): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
+    console.log('The dialog was closed add');
     console.log(result);
     if (result) {
     this.f5();
@@ -85,10 +85,10 @@ onClickEditar(item): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
+    console.log('onClickEditar');
     console.log(result);
     if (result) {
-    this.editar(result) ;
+    this.f5() ;
     }
   });
 }

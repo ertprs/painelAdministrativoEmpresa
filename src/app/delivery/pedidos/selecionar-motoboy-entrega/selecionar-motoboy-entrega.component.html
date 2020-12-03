@@ -3,15 +3,24 @@
 </div>
 
 <div *ngIf="!this.pedido" class="guinho">
-    Entregadores disponíveis
+    Entregadores online
 </div>
 
 <div style="height: 400px; overflow: auto;">
     <mat-list>
         <span *ngFor="let item of itens">
-        <a href="javascript:;" style="text-decoration: none;"><mat-list-item class="item" [class.itemSelecionado]="item.selecionado" (click)="onClickItem(item)"> {{ item.nome }} </mat-list-item></a>
-        <mat-divider></mat-divider>
-    </span>
+            <a href="javascript:;" style="text-decoration: none;">
+                <mat-list-item class="item" [class.itemSelecionado]="item.selecionado" (click)="onClickItem(item)">
+                    <div class="dsd">
+                        <div class="imgEntregador" [lazyLoad]="item.imagem"></div>
+                        <div>{{ item.nome }}</div>
+                    </div>
+
+                     
+                </mat-list-item>
+            </a>
+            <mat-divider></mat-divider>
+        </span>
 
 
     </mat-list>

@@ -195,6 +195,7 @@ import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas
 import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.component';
 import { FaturasComponent } from './faturas/faturas.component';
 import { CookieService } from 'ngx-cookie-service';
+import { FiltronomedinamPipe } from './pipes/filtronomedinam.pipe';
 
 @NgModule({
   declarations: [
@@ -343,7 +344,8 @@ import { CookieService } from 'ngx-cookie-service';
       PainelMasterComponent,
       ListaEmpresasComponent,
       VerEmpresaComponent,
-      FaturasComponent
+      FaturasComponent,
+      FiltronomedinamPipe
    ],
   imports: [
     BrowserModule,

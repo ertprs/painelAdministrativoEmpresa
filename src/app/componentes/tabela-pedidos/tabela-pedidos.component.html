@@ -135,11 +135,14 @@
             <td mat-cell *matCellDef="let element" class="ggUi">
                 <div class="guid2">
 
-
-                    <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: {{ element.motoboy.telefone | mask: '(00) 0000-0000'}}">
+                    <span *ngIf="element.status_motoboy == '2' && !element.motoboy"> <mat-icon matTooltip="Não foi possível identificar o entregador que aceitou este pedido. Talvez a versão do aplicativo que ele usa está desatualizado!" color="warn">warning</mat-icon> </span>
+                    <span *ngIf="element.status_motoboy == '2' && element.motoboy"> 
+                    <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: 
+                    {{ element.motoboy.telefone | mask: '(00) 0000-0000'}}">
                         <img [lazyLoad]="element.motoboy.imagem" width="40px">
                         Entrega aceita
                     </button>
+                 </span>
 
                     <button color="primary" class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="servpedidos.solicitaMotoboy(element.id)" mat-flat-button matTooltip="Envie esta entrega a todos o motoboys que estão online">Solicitar motoboy</button>
 
