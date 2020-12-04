@@ -14,6 +14,7 @@ export class EstoqueEnviarComponent implements OnInit {
   form: FormGroup;
   iddes: any;
   motoboys: any;
+  statusbt = false;
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, public dialogRef: MatDialogRef<EstoqueEnviarComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder,
@@ -39,9 +40,10 @@ export class EstoqueEnviarComponent implements OnInit {
   }
 
   enviarNovoEstoque(): void {
+    this.statusbt = true;
     const accallback = () => {
       const r = this.servapp.getRespostaApi();
-      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); this.statusbt = false; } else {
         this.servapp.mostrarMensagem(r.detalhes.mensagem);
         this.dialogRef.close(true);
       }

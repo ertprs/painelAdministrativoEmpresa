@@ -55,11 +55,10 @@
                         </button>
 
 
-
-
-                    <button *ngIf="element.status_pedido == 2 && element.status_pedido != 3 && element.status_pedido != 4 && element.tipopedido == 'entrega'" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
+                    <!--<button *ngIf="element.status_pedido == 2 && element.status_pedido != 3 && element.status_pedido != 4 && element.tipopedido == 'entrega'" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
                             <mat-icon>check</mat-icon> A Caminho
-                        </button>
+                        </button>-->
+
                     <button *ngIf="element.status_pedido == 4 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(5, element.id, element)" mat-menu-item>
                             <mat-icon>check</mat-icon> Entregue
                         </button>

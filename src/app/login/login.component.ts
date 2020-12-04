@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   btloginstatus: any;
   logo = 'assets/vultoroxonome.png';
   tipoLogin = false;
+  checked = false;
 
   constructor(private crud: CrudServicoService,
               private formBuilder: FormBuilder,
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit {
         this.auth.mostrarMenu.emit(false);
         this.btloginstatus = false;
       } else {
-        if (!this.tipoLogin) {
+        if (!this.tipoLogin && this.checked) {
         this.cookieService.set('lgn', this.formLogin.value.email);
         this.cookieService.set('sha', this.formLogin.value.senha);
         }

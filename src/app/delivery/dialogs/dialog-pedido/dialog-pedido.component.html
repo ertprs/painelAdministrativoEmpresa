@@ -21,8 +21,8 @@
                     <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1 && servpedidos.getPedido().tipopedido === 'retirada'" (click)="onClickAttStatusPedido(3)" color="accent">
                     <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 && servpedidos.getPedido().status_pedido != 3" (click)="onClickAttStatusPedido(4)" color="accent">
-                    <mat-icon>edit_road</mat-icon> A caminho</mat-chip>
+                <!--<mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 && servpedidos.getPedido().status_pedido != 3" (click)="onClickAttStatusPedido(4)" color="accent">
+                    <mat-icon>edit_road</mat-icon> A caminho</mat-chip>-->
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 4 || servpedidos.getPedido().status_pedido == 3" (click)="onClickAttStatusPedido(5)" color="accent">Entregue</mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido != 0" [mat-dialog-close]="'cancelar_pedido'" color="accent">
                     <mat-icon>cancel</mat-icon> Cancelar pedido </mat-chip>

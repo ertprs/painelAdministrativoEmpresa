@@ -32,6 +32,6 @@
 
     <div>
         <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
-        <button style="margin-left: 3px;" mat-flat-button color="warn" (click)="enviarNovoEstoque()">Confirmar</button>
+        <button [disabled]="statusbt" style="margin-left: 3px;" mat-flat-button color="warn" (click)="enviarNovoEstoque()">Confirmar</button>
     </div>
 </div>

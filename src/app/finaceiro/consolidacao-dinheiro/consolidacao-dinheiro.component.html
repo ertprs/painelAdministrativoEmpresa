@@ -31,7 +31,7 @@
 
 
 </div>
-<table mat-table [dataSource]="dataSource" class="">
+<table mat-table [dataSource]="dataSource | filtronomedinam:{filtro: ffnomeent.value, indexArray: 'entregador'}" class="">
 
     <ng-container matColumnDef="c1">
         <th mat-header-cell *matHeaderCellDef> Referência Pedido</th>

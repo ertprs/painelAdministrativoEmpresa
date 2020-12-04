@@ -60,7 +60,21 @@
     </div>
 
 
+
+
     <div style="display: grid; grid-template-columns: 1fr;">
+
+
+        <mat-google-maps-autocomplete [addressLabelText]="'Buscar endereço'" [country]="'br'" [appearance]="appearance.LEGACY" (onAutocompleteSelected)="onAutocompleteSelected($event)" (onLocationSelected)="onLocationSelected($event)">
+        </mat-google-maps-autocomplete>
+
+
+
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr;">
+
+
         <mat-form-field class="example-full-width">
             <mat-label>Rua</mat-label>
             <input matInput placeholder="Ex. Rua Nome..." value="" formControlName="rua">
@@ -86,7 +100,7 @@
         </mat-label>
         <mat-select formControlName="bairro" (selectionChange)="carregaTaxa(itemBairro.value)" #itemBairro>
             <!--#bairroClienteSelecionada-->
-            <mat-option *ngFor="let item of servico.getListaBairros()" [value]="item">
+            <mat-option *ngFor="let item of bairros" [value]="item">
                 {{item.nome}}
             </mat-option>
         </mat-select>

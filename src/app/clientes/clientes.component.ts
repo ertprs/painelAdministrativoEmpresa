@@ -43,6 +43,8 @@ export class ClientesComponent implements OnInit {
     });
   }
 
+
+
   consultaClienteFiltro() {
     debounceTime(20000);
     const accallback = () => {

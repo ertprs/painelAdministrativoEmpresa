@@ -4,6 +4,8 @@ import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormularioUsuarioComponent } from '../usuarios/formulario-usuario/formulario-usuario.component';
+import {Appearance, GermanAddress, Location} from '@angular-material-extensions/google-maps-autocomplete';
+import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
   selector: 'app-dialog-cadastro-cliente',
@@ -16,10 +18,20 @@ export class DialogCadastroClienteComponent implements OnInit {
   cidadeClienteSelecionada: any;
   statusLoaderBairros = false;
   statusLoaderTaxa = false;
+
+  public appearance = Appearance;
+  public zoom: number;
+  public latitude: number;
+  public longitude: number;
+  public selectedAddress: PlaceResult;
+  public cidades: [];
+  public bairros: [];
+  public bairroGoogleApi: string;
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<DialogCadastroClienteComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public servico: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
+    this.cidades = this.servico.getListaCidades();
 
     if (this.data.acao === 'add') {
       this.form = this.fb.group({
@@ -53,6 +65,36 @@ export class DialogCadastroClienteComponent implements OnInit {
       });
 
     }
+
+    this.form.controls.cidade.statusChanges.subscribe( (data) => {
+      this.selectionChangeCidade(this.form.controls.cidade.value);
+    });
+
+  }
+
+  onAutocompleteSelected(result: PlaceResult) {
+    console.log('onAutocompleteSelected: ', result);
+    this.form.controls.rua.setValue(result.address_components[0].long_name);
+    this.cidades.forEach((element: { nome: string, id: string }) => {
+       if (element.nome === result.address_components[2].long_name) {
+        this.form.controls.cidade.setValue(element);
+        this.bairroGoogleApi = result.address_components[1].long_name;
+        this.form.controls.uf.setValue(result.address_components[3].short_name);
+
+       }
+    });
+   // this.form.controls.rua.setValue(result[0].long_name);
+  }
+
+  onLocationSelected(location: Location) {
+    console.log('onLocationSelected: ', location);
+    this.latitude = location.latitude;
+    this.longitude = location.longitude;
+  }
+
+ 
+  onGermanAddressMapped($event: GermanAddress) {
+    console.log('onGermanAddressMapped', $event);
   }
 
 
@@ -68,7 +110,15 @@ export class DialogCadastroClienteComponent implements OnInit {
       this.statusLoaderBairros = false;
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
-        this.servico.setListaBairros(r);
+
+        this.bairros = r;
+
+        this.bairros.forEach((element: { nome: string, id: string }) => {
+          if (element.nome === this.bairroGoogleApi) {
+           this.form.controls.bairro.setValue(element);
+          }
+       });
+
       }
       console.log(r);
     };

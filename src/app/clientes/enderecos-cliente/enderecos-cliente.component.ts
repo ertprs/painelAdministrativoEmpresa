@@ -12,7 +12,8 @@ export class EnderecosClienteComponent implements OnInit {
 
   itens: any;
   endereco: any;
-  displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+  //displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+  displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c6'];
 
 
   constructor( public dialogRef: MatDialogRef<EnderecosClienteComponent>,

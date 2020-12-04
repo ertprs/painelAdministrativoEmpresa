@@ -165,6 +165,14 @@
     color: black;
 }
 
+.imagcard {
+    border-radius: 10px;
+}
+
+.imagcardOFF {
+    filter: grayscale(100%);
+}
+
 .icdel {
     text-align: center;
     color: #F44336;

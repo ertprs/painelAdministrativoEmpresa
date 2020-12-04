@@ -196,6 +196,7 @@ import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.c
 import { FaturasComponent } from './faturas/faturas.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FiltronomedinamPipe } from './pipes/filtronomedinam.pipe';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 @NgModule({
   declarations: [
@@ -376,9 +377,6 @@ import { FiltronomedinamPipe } from './pipes/filtronomedinam.pipe';
     MatAutocompleteModule,
     MatMenuModule,
     MatBadgeModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAwli4wwHOdbNUazzdQOOzswiWry5gUo9c'
-    }),
     NgxMaskModule.forRoot(),
     MatStepperModule,
     MatProgressSpinnerModule,
@@ -394,6 +392,14 @@ import { FiltronomedinamPipe } from './pipes/filtronomedinam.pipe';
     MatTabsModule,
     MatPaginatorModule,
     ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAwli4wwHOdbNUazzdQOOzswiWry5gUo9c'
+    }),
+    MatGoogleMapsAutocompleteModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAwli4wwHOdbNUazzdQOOzswiWry5gUo9c',
+    }),
+    AgmCoreModule.forRoot(),
   ],
   entryComponents: [
     DialoDelsucgComponent

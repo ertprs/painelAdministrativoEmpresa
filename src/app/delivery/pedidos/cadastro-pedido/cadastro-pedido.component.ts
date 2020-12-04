@@ -281,6 +281,12 @@ export class CadastroPedidoComponent implements OnInit {
 
   onClickItem(item): void {
 
+    // console.log(item);
+
+    if (item.esgotado === true) {
+      this.servico.mostrarMensagem('Item esgotado');
+      return;
+    }
 
     const dialogRef = this.dialog.open(ItemCatalogoComponent, {
       width: '650px',

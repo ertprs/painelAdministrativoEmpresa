@@ -5,13 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltronomedinamPipe implements PipeTransform {
 
-  transform(items: any[], filterBy: string): any {
-    if (!filterBy || filterBy === '') { return items; }
-    console.log('items');
+  transform(items: any[], filterBy: {filtro: string, indexArray: string}): any {
+    if (!filterBy.filtro || filterBy.filtro === '') { return items; }
     console.log(items);
-    console.log('filterBy');
     console.log(':' + filterBy + ':');
-    return items.filter(item => item.nome.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1);
+    return items.filter(item => item[filterBy.indexArray].toLowerCase().indexOf(filterBy.filtro.toLowerCase()) !== -1);
 }
 
 }
