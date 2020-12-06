@@ -113,9 +113,13 @@
                                 </button>
 
                                 </div>
-                                <div> <img [class.imagcardOFF]="itemc.esgotado" class="imagcard" width="80px" [src]="itemc.imagem" alt="" srcset=""> </div>
+                                <div> <img [class.imagcardOFF]="itemc.esgotado" class="imagcard" width="80px" [src]="itemc.imagem"> </div>
                                 <div style="margin-left: 10px;">
-                                    <div> #{{ itemc.id }} {{ itemc.nome }} </div>
+                                    <div> # {{ itemc.id }} {{ itemc.nome }}
+                                        <span class="dels" *ngIf="item.esgotado === true">
+                                            <mat-icon class="mat-18"  matTooltip="Este item está esgotado">warning</mat-icon>
+                                            </span>
+                                    </div>
                                     <div style="font-size: 13px; color: rgb(90, 89, 89);"> {{ itemc.descricao }} </div>
                                     <div> {{ itemc.preco | currency:'BRL':true }} </div>
                                 </div>
@@ -135,10 +139,17 @@
                 <div class="Carrinho">
 
 
+                    <div style="margin-bottom: 10px;">
+                        <mat-slide-toggle color="primary" (click)="onClickStandBy(fpsty)" #fpsty> Pagamento Stand-by </mat-slide-toggle>
+                    </div>
+
                     <mat-chip-list style="text-align: center;">
-                        <mat-chip style="background-color: orange;" (click)="openBottomSheet('canalpedido')">Origem do pedido</mat-chip>
-                        <mat-chip style="background-color: orange;" (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
-                        <mat-chip style="background-color: orange;" (click)="openBottomSheet('formapagamento')">Forma pagamento</mat-chip>
+                        <mat-chip style="background-color: #3F51B5;
+    color: white;" (click)="openBottomSheet('canalpedido')">Origem do pedido</mat-chip>
+                        <mat-chip style="background-color: #3F51B5;
+    color: white;" (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
+                        <mat-chip style="background-color: #3F51B5;
+    color: white;" (click)="openBottomSheet('formapagamento')" [disabled]="stand">Forma pagamento</mat-chip>
                     </mat-chip-list>
 
                     <div style="border-bottom: 1px solid #ececec;" [formGroup]="form">
@@ -315,8 +326,12 @@
                         </div>
 
                         <div>
-                            <button [disabled]="statusBtenviar" class="car11bt" mat-raised-button color="primary" (click)="onClickFinalizarPedido()">
-                            Concluir pedido <mat-icon>check</mat-icon>
+                            <button *ngIf="!servcard.getStatusAcaoPedido();" [disabled]="statusBtenviar" class="car11bt" mat-raised-button color="primary" (click)="onClickFinalizarPedido()">
+                            Lançar pedido <mat-icon>check</mat-icon>
+                        </button>
+
+                            <button *ngIf="servcard.getStatusAcaoPedido();" [disabled]="statusBtenviar" class="car11bt" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">
+                            Salvar pedido <mat-icon>edit</mat-icon>
                         </button>
                         </div>
                     </div>

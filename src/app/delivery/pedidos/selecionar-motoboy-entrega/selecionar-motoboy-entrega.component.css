@@ -26,10 +26,17 @@
     margin-bottom: 7px;
     border: 1px solid #d8cccc;
     background-size: 100%;
+    margin-left: -16px;
 }
 
 .dsd {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.item {
+    padding-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 13px;
 }

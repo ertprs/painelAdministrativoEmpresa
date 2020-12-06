@@ -26,9 +26,10 @@ export class CadastroPedidoService {
 
   private tipoPedido = {entrega: 'entrega', retirada: 'retirada'};
   private formadepagamento = {dinheiro: 'dinheiro', cartao: {nome: 'cartao', cartoes: []}};
-
   private carrinho = {
+    id_pedido: 0,
     id_empresa: false,
+    statusAcaoPedido: false, // false = ADD PEDIDO , TRUE == Editar pedido
     cliente: '',
     itens: [],
     subtotal: '',
@@ -95,6 +96,18 @@ export class CadastroPedidoService {
     this.carrinho.formasPagamento.splice(indeArray, 1);
   }
 
+  setIdPedido(idPedido: number) {
+    this.carrinho.id_pedido = idPedido;
+  }
+
+  setStatusAcaoPedido(status: boolean) {
+    this.carrinho.statusAcaoPedido = status;
+  }
+  getStatusAcaoPedido(): boolean {
+    return this.carrinho.statusAcaoPedido;
+  }
+
+
   setSelectedIndex(index) { this.selectedIndex = index;  }
   getSelectedIndex() { return this.selectedIndex;  }
 
@@ -111,8 +124,18 @@ export class CadastroPedidoService {
     this.carrinho.empresa.telefone = empresa.telefone;
   }
 
-  setOrigemPedido(origem) { this.carrinho.origempedido = origem; this.bottomSheet.dismiss(); }
-  getOrigemPedido() { this.bottomSheet.dismiss(); return this.carrinho.origempedido;  }
+  setOrigemPedido(origem) { 
+    this.carrinho.origempedido = origem;
+    try {
+      this.bottomSheet.dismiss();
+      } catch (e) {  }
+  }
+  getOrigemPedido() {
+    try {
+    this.bottomSheet.dismiss();
+    } catch (e) {  }
+    return this.carrinho.origempedido;
+  }
 
   setIdEmpresaCar(id) {
     this.carrinho.id_empresa = id;
@@ -141,6 +164,7 @@ export class CadastroPedidoService {
   }
 
   limparCarrinho() {
+    console.log('Limpa carrinho');
     this.carrinho.itens = [];
     this.carrinho.formasPagamento = [];
     this.carrinho.taxaextra = '';
@@ -254,18 +278,22 @@ export class CadastroPedidoService {
 
   getSubTotalCarrinho(): number {
     let total = 0;
+    try {
     this.carrinho.itens.forEach(element => {
       total += element.total;
     });
+    } catch(e) { console.log(e); }
     return total;
   }
 
   getTotalCarrinho(): number {
     let total = 0;
     let res = 0;
+    try {
     this.carrinho.itens.forEach(element => {
       total += element.total;
     });
+    } catch(e) { console.log(e);  console.log(this.carrinho); }
     // Calcular com desconto
     total = total - this.carrinho.desconto;
     // Calcular com taxa de entrega

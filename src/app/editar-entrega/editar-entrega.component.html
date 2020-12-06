@@ -6,7 +6,7 @@ padding-left: 161px;
 padding-right: 170px;
 ">
     <mat-card>
-        #{{servico.getEntrega().id}}
+        Entrega #{{servico.getEntrega().id}}
         <form class="example-form" style="width: 100%;margin-top: 20px;" [formGroup]="formCadastroEntrega">
 
             <mat-form-field class="example-full-width form-field-60">
@@ -73,21 +73,21 @@ padding-right: 170px;
                 <input matInput placeholder="Ex. R$59,00" formControlName="valor_pedido_cliente">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width form-field-60">
+            <!--<mat-form-field class="example-full-width form-field-60">
                 <mat-label>Forma de pagamento</mat-label>
                 <input matInput placeholder="Ex. Dinheito/Cartão/Online" formControlName="forma_pag_cliente">
-            </mat-form-field>
+            </mat-form-field>-->
 
-            <mat-form-field class="example-full-width form-field-40">
+            <!--<mat-form-field class="example-full-width form-field-40">
                 <mat-label>Taxa entrega</mat-label>
                 <input matInput placeholder="Valor taxa de entrega">
-            </mat-form-field>
+            </mat-form-field>-->
 
 
 
 
         </form>
 
-        <button style="margin-left: 2px;" mat-stroked-button color="primary" (click)="onclickSalvarEntrega(bairroClienteSelecionada.value)">Salvar</button>
+        <button style="margin-left: 2px;" mat-flat-button color="primary" (click)="onclickSalvarEntrega(bairroClienteSelecionada.value)">Salvar</button>
     </mat-card>
 </div>

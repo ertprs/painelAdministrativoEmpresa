@@ -86,6 +86,7 @@ export class ConciliacaoBancariaComponent implements OnInit {
 
 
   verComprovante(element) {
+      if (!element) { this.servico.mostrarMensagem('Comprovante não encontrado'); }
       const dialogRef = this.dialog.open(VerImagemComponent, {
         width: '450px',
         data: element

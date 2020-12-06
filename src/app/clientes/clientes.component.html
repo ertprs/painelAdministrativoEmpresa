@@ -5,7 +5,8 @@
 
 <mat-form-field class="f-cli" style="margin-left: 15px;" [formGroup]="form">
     <mat-label>Filtro</mat-label>
-    <input matInput type="name" formControlName="clienteNome" placeholder="Nome cliente" (keyup)="consultaClienteFiltro()">
+    <input matInput type="name" formControlName="clienteNome" placeholder="Nome cliente" (keydown.enter)="consultaClienteFiltro()">
+    <mat-hint> Digite o nome e aperte enter para pesquisar </mat-hint>
 </mat-form-field>
 
 

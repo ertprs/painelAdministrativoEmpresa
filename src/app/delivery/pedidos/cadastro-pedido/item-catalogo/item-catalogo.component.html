@@ -1,3 +1,5 @@
+ 
+<mat-progress-bar *ngIf="!statusLoadItem" mode="query"></mat-progress-bar>
 <div class="a" *ngIf="statusLoadItem">
     <div class="aeadelsuc">
         <div class="e">
@@ -64,7 +66,7 @@
 
     <mat-form-field>
         <mat-label>Observação</mat-label>
-        <input #observacaoUsuario matInput placeholder="Ex. Retirar item não desejado">
+        <input #observacaoUsuario matInput placeholder="Observação para este item">
     </mat-form-field>
 
 </div>
@@ -87,7 +89,7 @@
 
 
     <button mat-flat-button color="warn" (click)="onclickAddCar(observacaoUsuario.value)">
-      Adicionar {{ itemCatalogo.total | currency }}
+      Adicionar {{ itemCatalogo.total | currency:'BRL':true }}
     </button>
 
 

@@ -5,6 +5,8 @@ import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { CancelarPedidoComponent } from '../../pedidos/cancelar-pedido/cancelar-pedido.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { CadastroPedidoService } from '../../pedidos/cadastro-pedido/cadastro-pedido.service';
 
 @Component({
   selector: 'app-dialog-pedido',
@@ -20,10 +22,13 @@ export class DialogPedidoComponent implements OnInit {
   btCstatus = false;
 
   constructor(public servpedidos: PedidosService, private servapp: ServicoService, private crud: CrudServicoService,
-              private dialog: MatDialog, public upimgServ: UploadimagemService) { }
+              private dialog: MatDialog, public upimgServ: UploadimagemService, private sercard: CadastroPedidoService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
+    console.log('[[[[[[[[[[[[[Carrinho]]]]]]]]]]]]]');
+    console.log(this.sercard.getCarrinho());
 
   }
 
@@ -31,9 +36,7 @@ export class DialogPedidoComponent implements OnInit {
   onClickAttStatusPedido(statusPedido) {
     this.btCstatus = true;
     const loginres = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
-      console.log(r);
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.detalhes);
         this.btCstatus = false;
@@ -45,6 +48,53 @@ export class DialogPedidoComponent implements OnInit {
     };
     const data = { id_pedido: this.servpedidos.getPedido().id, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido};
     console.log( this.crud.post_api('att_status_pedido', loginres, data ) );
+  }
+
+  onClickEditarPedido(item: any) {
+    console.log(item);
+    const enderecoCliente = { rua: '', numero: '', bairro: '', cidade: '', complemento: '', tiporesidencia: '' };
+    enderecoCliente.rua = item.endereco.rua;
+    enderecoCliente.numero = item.endereco.numero;
+    enderecoCliente.bairro = item.endereco.bairro;
+    enderecoCliente.cidade = item.endereco.cidade;
+    enderecoCliente.complemento = item.endereco.complemento;
+    enderecoCliente.tiporesidencia = item.endereco.tiporesidencia;
+
+    // this.sercard.iniciaFormCadastro.emit(enderecoCliente);
+    this.sercard.limparCarrinho();
+
+    const pedido = {
+      id: item.dadoscliente.id,
+      nome: item.dadoscliente.nome,
+      telefone: item.dadoscliente.telefone,
+      rua: item.endereco.rua,
+      numero: item.endereco.numero,
+      complemento: item.endereco.tiporesidencia,
+      tiporesidencia: item.endereco.complemento,
+      bairro: item.endereco.bairro,
+      cidade: item.endereco.cidade,
+      formapagamento: item.endereco.formapagamento,
+      canalpedido: '',
+      tipopedido: item.endereco.tipopedido,
+      troco: item.endereco.troco,
+      desconto: item.endereco.desconto,
+      taxaentrega: '',
+      itens: item.itens
+    };
+
+    item.itens.forEach(element => {
+    element.total = parseFloat(element.total);
+    element.preco = parseFloat(element.preco);
+    this.sercard.addItemCarrinho(element);
+    });
+
+    this.sercard.setIdPedido(item.id);
+    this.sercard.setOrigemPedido(item.origem);
+    this.sercard.setStatusAcaoPedido(true);
+
+    this.sercard.setCadastroClienteLista(pedido);
+    this.router.navigate(['/painelpedidos/cadastro-pedido']);
+    this.dialog.closeAll();
   }
 
 

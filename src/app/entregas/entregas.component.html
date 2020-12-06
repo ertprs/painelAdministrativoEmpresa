@@ -29,16 +29,15 @@
       <mat-icon *ngIf="item.status === '1'" style="color: rgb(69, 0, 245);"  matTooltip="Pronta para retirada">done</mat-icon>
       <mat-icon *ngIf="item.status === '0'" style="color: rgb(245, 0, 0);"  matTooltip="Esta entrega ainda não está pronta para retirada.">announcement</mat-icon>
 
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>#{{item.id}}</mat-card-title>
-      <mat-card-subtitle style="font-size: 10px;">{{item.status_pedido_texto}}</mat-card-subtitle>
-    </mat-card-header>
-    <div style="color: #9e9c99;font-size: 10px;">
-      <span *ngIf="item.entregador"> {{item.entregador.nome}} </span>
-<span *ngIf="!item.entregador"> Sem entregador </span>
+      <mat-card-title>Entrega #{{item.id}} <span *ngIf="item.id_pedido" matTooltip="Referência do pedido"> <mat-icon>trending_flat</mat-icon > {{item.id_pedido}} </span></mat-card-title>
+<mat-card-subtitle style="font-size: 10px;">{{item.status_pedido_texto}}</mat-card-subtitle>
+</mat-card-header>
+<div style="color: #9e9c99;font-size: 10px;">
+    <span *ngIf="item.entregador"> {{item.entregador.nome}} </span>
+    <span *ngIf="!item.entregador"> Sem entregador </span>
 </div>
 <span *ngIf="item.entregador">
-      <div class="imgEnt" style="background-image: url({{item.entregador.imagem}});"></div>
+      <div class="imgEnt" [lazyLoad]="item.entregador.imagem"></div>
     </span>
 <span *ngIf="!item.entregador">
       <div class="imgEnt"></div>

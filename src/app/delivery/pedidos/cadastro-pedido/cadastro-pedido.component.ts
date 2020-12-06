@@ -40,7 +40,7 @@ export class CadastroPedidoComponent implements OnInit {
   listaBairros: any;
   indexTabGroup = 0;
   cataoSelecionado: any;
-
+  stand = false;
   statusBtenviar = false;
 
 
@@ -89,6 +89,14 @@ export class CadastroPedidoComponent implements OnInit {
       this.selecionarCartao(data);
     });
 
+  }
+
+  onClickStandBy(status) {
+    if (status.checked) { 
+      this.stand = false;
+     } else {
+      this.stand = true;
+     }
   }
 
   trackByIdx(index: number, obj: any): any {
@@ -240,7 +248,6 @@ export class CadastroPedidoComponent implements OnInit {
       this.listaCidades = data.empresa.locais_entrega;
 
       setTimeout(() => {
-        console.log('kkkkkkkkkk');
         this.iniciaFormDados();
       }, 400);
 
@@ -359,7 +366,7 @@ export class CadastroPedidoComponent implements OnInit {
 
 
     if (this.servcard.getQntItensCar() < 1) { this.servico.mostrarMensagem('O carrinho está vazio!'); return; }
-    if (this.servcard.verificaFp() === false) {
+    if (this.servcard.verificaFp() === false && !this.stand) {
       this.servico.mostrarMensagem('Selecione a forma de pagamento deste pedido');
       return;
     }
@@ -369,7 +376,7 @@ export class CadastroPedidoComponent implements OnInit {
       return;
     }
 
-    if (this.servcard.verificaFpsTotal() !== this.servcard.getTotalCarrinho()) {
+    if (this.servcard.verificaFpsTotal() !== this.servcard.getTotalCarrinho() && !this.stand) {
       this.servico.mostrarMensagem
         ('Os total da forma de pagamento está menor que o total do pedido.');
       return;
@@ -562,6 +569,11 @@ export class CadastroPedidoComponent implements OnInit {
 
 
   openBottomSheet(tipo): void {
+    if (tipo === 'formapagamento' && this.stand) {
+      this.servico.mostrarMensagem('O tipo de pagamento está stand-by');
+      return;
+    }
+
     this.servcard.setTipoSheet(tipo, this.bottomSheet);
     this.bottomSheet.open(SelecionarFormaPagComponent);
   }

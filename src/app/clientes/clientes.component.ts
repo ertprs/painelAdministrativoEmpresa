@@ -31,8 +31,6 @@ export class ClientesComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    setTimeout( () => { this.f5(); }, 600 );
-    console.log('Meus cliente...');
     this.btblista = this.us.getPermissoessuario()[1].children[0].status;
     this.addCli = this.us.getPermissoessuario()[1].children[3].status;
     this.btMenu = this.us.getPermissoessuario()[1].children[2].status;
@@ -41,25 +39,24 @@ export class ClientesComponent implements OnInit {
     this.form = this.fb.group({
       clienteNome: ['']
     });
+    this.f5();
   }
 
 
 
   consultaClienteFiltro() {
-    debounceTime(20000);
     const accallback = () => {
     console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { } else {
       this.itens = r.resultado;
     }
-    console.log(r);
   };
-    this.crud.post_api('consulta_cliente_filtro', accallback, this.form.value.clienteNome);
+    this.crud.post_api('consulta_cliente_filtro', accallback, {nome: this.form.value.clienteNome});
   }
 
   f5() {
-    this.crud.get_api('cons_cliente_lista_emp').subscribe(data => {
+    this.crud.get_api('cons_cliente_lista_emp&limit=30').subscribe(data => {
        console.log(data);
        this.itens = data;
     });
@@ -132,6 +129,7 @@ onClickBtMenu(element) {
 }
 
 onClickCadastraPedido(item: any) {
+  console.log(item);
   this.sercard.setCadastroClienteLista(item);
   this.router.navigate(['/painelpedidos/cadastro-pedido']);
   // this.router.navigate(['/inicio']);

@@ -26,12 +26,11 @@
 
 .imgEnt {
     background-color: #b5b5b500;
-    /*background-image: url('../../assets/casa.gif');*/
-    height: 150px;
+    height: 120px;
     width: 100%;
     background-position: center;
-    background-size: 85% 90%;
-    background-repeat: no-repeat;
+    background-size: 73% 90%;
+    background-repeat: no-repeat
 }
 
 .tEntSel:focus {

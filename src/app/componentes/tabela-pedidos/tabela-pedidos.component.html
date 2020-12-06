@@ -5,22 +5,18 @@
     </div>
     <table mat-table [dataSource]="pedidos" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="botoes">
             <th mat-header-cell *matHeaderCellDef> Opções </th>
             <td mat-cell *matCellDef="let element">
 
-                <button *ngIf="element.status_pedido != 6 && element.status_pedido != 5" mat-icon-button color="primary" [matMenuTriggerFor]="menu" (click)="onClickPedido(element)">
+                <button *ngIf="element.status_pedido != 6 && element.status_pedido != 5 && element.status_pedido != 7" mat-icon-button color="primary" [matMenuTriggerFor]="menu" (click)="onClickPedido(element)">
                     <mat-icon>menu</mat-icon>
                 </button>
 
-                <button *ngIf="element.status_pedido == '5' || element.status_pedido == '6'" mat-icon-button color="warn" [matMenuTriggerFor]="menu2" (click)="onClickPedido(element)">
-                    <mat-icon>menu</mat-icon>
+                <button *ngIf="element.status_pedido == '5' || element.status_pedido == '6' || element.status_pedido == '7'" mat-icon-button color="warn" [matMenuTriggerFor]="menu2" (click)="onClickPedido(element)">
+                    <mat-icon [class.menuConc]="element.status_pedido === '6'">menu</mat-icon>
                 </button>
 
                 <mat-menu #menu2="matMenu">
@@ -138,7 +134,7 @@
                     <span *ngIf="element.status_motoboy == '2' && element.motoboy"> 
                     <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: 
                     {{ element.motoboy.telefone | mask: '(00) 0000-0000'}}">
-                        <img [lazyLoad]="element.motoboy.imagem" width="40px">
+                        <img [lazyLoad]="element.motoboy.imagem" width="40px" style="height: 40px;border-radius: 7px;">
                         Entrega aceita
                     </button>
                  </span>
