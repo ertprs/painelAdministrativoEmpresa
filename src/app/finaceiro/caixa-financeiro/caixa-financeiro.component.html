@@ -1,3 +1,35 @@
+<div class="gii">
+
+    <button [disabled]="statusCaixaFechado" mat-raised-button color="primary" style="margin: 10px;" (click)="abrirCaixa()">
+        <mat-icon>all_inbox</mat-icon> Abrir caixa
+    </button>
+
+    <button [disabled]="!statusCaixaFechado" mat-raised-button color="warn" style="margin: 10px;" (click)="lancarCaixa()">
+        <mat-icon>close_fullscreen</mat-icon> Fechar caixa
+    </button>
+
+    <div *ngIf="statusCaixaFechado" style="display: grid;
+    align-items: center;
+    background: #e0ecec;
+    padding: 10px;
+    color: #5d5d5d;
+    border-radius: 4px;
+    margin: 7px;">
+        Caixa aberto por {{ operador }} {{ dataCaixaAberto }} às {{ horaCaixaAberto }}
+    </div>
+
+    <!--<div *ngIf="!statusCaixaFechado" style="display: grid;
+    align-items: center;
+    background: #e0ecec;
+    padding: 10px;
+    color: #5d5d5d;
+    border-radius: 4px;
+    margin: 7px;">
+        Caixa fechado {{ operadorFechou }} {{ dataCaixaFechado }} às {{ horaCaixaFechado }}
+    </div>-->
+
+</div>
+
 <table mat-table [dataSource]="dataSource">
 
 
@@ -50,19 +82,3 @@
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
     <tr>?</tr>
 </table>
-
-<div class="gii">
-    <button [disabled]="statusCaixaFechado" mat-raised-button color="primary" style="margin: 10px;" (click)="lancarCaixa()">
-        <mat-icon>close_fullscreen</mat-icon> Fechar caixa
-    </button>
-
-    <div style="display: grid;
-    align-items: center;
-    background: #e0ecec;
-    padding: 10px;
-    color: #5d5d5d;
-    border-radius: 4px;
-    margin: 7px;">
-        Data {{ dataCaixa }}
-    </div>
-</div>

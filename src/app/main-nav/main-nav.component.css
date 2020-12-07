@@ -67,6 +67,10 @@
     background-color: #3F51B5;
 }
 
+.statusCaixa {
+    color: green;
+}
+
 @media(max-width:600px) {
     .logoEmpresatoolbar {
         display: none;

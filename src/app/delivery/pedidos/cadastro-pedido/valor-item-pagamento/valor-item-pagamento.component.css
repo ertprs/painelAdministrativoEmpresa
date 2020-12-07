@@ -1,0 +1,22 @@
+.i {
+    padding: 8px;
+    background: #3F51B5;
+    text-align: center;
+    color: white;
+    font-size: 19px;
+    border-radius: 16px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0;
+}
+
+.u {
+    padding: 8px;
+    background: #e60808;
+    text-align: center;
+    color: white;
+    font-size: 19px;
+    border-radius: 16px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0;
+    margin-bottom: 35px;
+}

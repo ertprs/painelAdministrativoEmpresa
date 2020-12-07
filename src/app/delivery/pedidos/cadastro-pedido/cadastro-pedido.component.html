@@ -116,7 +116,7 @@
                                 <div> <img [class.imagcardOFF]="itemc.esgotado" class="imagcard" width="80px" [src]="itemc.imagem"> </div>
                                 <div style="margin-left: 10px;">
                                     <div> # {{ itemc.id }} {{ itemc.nome }}
-                                        <span class="dels" *ngIf="item.esgotado === true">
+                                        <span class="dels" *ngIf="itemc.esgotado === true">
                                             <mat-icon class="mat-18"  matTooltip="Este item está esgotado">warning</mat-icon>
                                             </span>
                                     </div>
@@ -172,6 +172,12 @@
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
+
+                                <mat-form-field *ngIf="item.nome === 'Dinheiro' || item.nome === 'dinheiro'" class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                                    <mat-label>Troco</mat-label>
+                                    <input matInput placeholder="R$0,00" mask="separator.2" thousandSeparator="." [(ngModel)]="item.troco" [ngModelOptions]="{standalone: true}">
+                                </mat-form-field>
+
                             </div>
 
 
@@ -194,20 +200,20 @@
                     </div>
 
                     <div class="vcb">
-                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                        <!--<mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
                             <mat-label>Troco para</mat-label>
                             <input formControlName="troco" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
-                        </mat-form-field>
+                        </mat-form-field>-->
 
                         <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
                             <mat-label>Desconto</mat-label>
-                            <input formControlName="desconto" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
+                            <input formControlName="desconto" type="tel" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
                         </mat-form-field>
 
-                        <!--<mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
                             <mat-label>Taxa extra</mat-label>
-                            <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="number" mask="separator.2" thousandSeparator=".">
-                        </mat-form-field>-->
+                            <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="tel" mask="separator.2" thousandSeparator=".">
+                        </mat-form-field>
                     </div>
 
 

@@ -26,6 +26,7 @@ export class ClientesComponent implements OnInit {
   btMenu = false;
   btRemo = false;
   form: FormGroup;
+  statusCons = false;
   constructor(private crud: CrudServicoService, public servico: ServicoService, private dialog: MatDialog,
               private router: Router,  private sercard: CadastroPedidoService, public us: UsuariosAdmService,
               private fb: FormBuilder) { }
@@ -45,9 +46,10 @@ export class ClientesComponent implements OnInit {
 
 
   consultaClienteFiltro() {
+    this.statusCons = true;
     const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
+    this.statusCons = false;
     if (r.erro === true) { } else {
       this.itens = r.resultado;
     }
@@ -56,8 +58,9 @@ export class ClientesComponent implements OnInit {
   }
 
   f5() {
+    this.statusCons = true;
     this.crud.get_api('cons_cliente_lista_emp&limit=30').subscribe(data => {
-       console.log(data);
+       this.statusCons = false;
        this.itens = data;
     });
 }
@@ -69,8 +72,6 @@ add(): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed add');
-    console.log(result);
     if (result) {
     this.f5();
     }
@@ -84,23 +85,19 @@ onClickEditar(item): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('onClickEditar');
-    console.log(result);
     if (result) {
-    this.f5() ;
+    this.consultaClienteFiltro() ;
     }
   });
 }
 
 editar(form) {
   const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
       this.f5();
     }
-    console.log(r);
   };
   this.crud.post_api('att_cliente_lista_emp', accallback, form);
 }
@@ -111,13 +108,11 @@ removerItem(item) {
   item.idendereco = item.id;
 
   const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
       this.f5();
     }
-    console.log(r);
   };
   this.crud.post_api('remove_cliente_lista_emp', accallback, item);
 
@@ -129,7 +124,6 @@ onClickBtMenu(element) {
 }
 
 onClickCadastraPedido(item: any) {
-  console.log(item);
   this.sercard.setCadastroClienteLista(item);
   this.router.navigate(['/painelpedidos/cadastro-pedido']);
   // this.router.navigate(['/inicio']);
@@ -144,8 +138,6 @@ enderecoCliente(element): void {
 
   dialogRef.afterClosed().subscribe(result => {
 
-    console.log(result);
-
 
     if (!result) { return; }
     if (result === 'add_endereco') {
@@ -158,7 +150,6 @@ enderecoCliente(element): void {
       return;
     }
 
-    console.log('The dialog was closed');
     // this.itemSelecionado.id = result.id;
     this.itemSelecionado.rua = result.rua;
     this.itemSelecionado.numero = result.numero;
@@ -170,7 +161,6 @@ enderecoCliente(element): void {
     this.sercard.iniciaFormCadastro.emit(this.itemSelecionado);
 
     this.onClickCadastraPedido(this.itemSelecionado);
-    console.log(this.itemSelecionado);
   });
 }
 
@@ -181,8 +171,6 @@ formaddEnd() {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
     if (result) {
 
       this.f5();
@@ -193,14 +181,11 @@ formaddEnd() {
 
 removerEndereco(item) {
   item.idendereco = item.id;
-  console.log(item);
   const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
     }
-    console.log(r);
   };
   this.crud.post_api('removerEndereco', accallback, item);
 }

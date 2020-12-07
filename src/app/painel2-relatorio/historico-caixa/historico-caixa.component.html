@@ -1,48 +1,64 @@
-<div class="sep">
+<div class="sep" [formGroup]="form">
 
     <mat-form-field class="f-cli" style="margin-left: 15px;">
         <mat-label>Data início</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="di">
     </mat-form-field>
     <mat-form-field class="f-cli" style="margin-left: 0px;">
         <mat-label>Data fim</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" formControlName="df">
     </mat-form-field>
 
-    <button mat-icon-button color="primary">
+    <button mat-icon-button color="primary" (click)="histCaixa()">
         <mat-icon>search</mat-icon>
     </button>
 
 
 </div>
 
-<table mat-table [dataSource]="dataSource" class="">
+<div class="tabela-conetudo">
+    <mat-progress-bar *ngIf="statosHist" mode="query"></mat-progress-bar>
+    <div class="tabela t-header">
 
-    <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Operador</th>
-        <td mat-cell *matCellDef="let element"> #{{ element.operador }} </td>
-    </ng-container>
+        <div>Ver</div>
 
-    <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> Total faturado </th>
-        <td mat-cell *matCellDef="let element"> {{ element.total | currency:'BRL':true }} </td>
-    </ng-container>
+        <div>Total faturado</div>
+        <div>Total diferença</div>
 
-    <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> Total diferança </th>
-        <td mat-cell *matCellDef="let element"> {{ element.total_dif | currency:'BRL':true }} </td>
-    </ng-container>
+        <div>Aberto por</div>
+        <div>Data aberto</div>
+
+        <div>Fechado por</div>
+        <div>Data fechado</div>
+
+    </div>
+
+    <div *ngFor="let element of dataSource" class="t-header-item" [class.nhiddel]="!element.hidden">
+        <div class="tabela">
+            <div>
+                <button mat-icon-button color="primary" (click)="onclickItensTb(element)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                      </button>
+            </div>
+            <div> {{element.total | currency:'BRL':true }} </div>
+            <div> {{element.total_dif | currency:'BRL':true }} </div>
+            <div> {{element.operador}} </div>
+            <div> {{ element.info }} às {{ element.horario }} </div>
+
+            <div> {{element.operador_fechou}} </div>
+            <div> {{ element.data_fechou }} às {{ element.hora_fechou }} </div>
+        </div>
+
+        <div class="area-itens-dataSource">
+            <mat-progress-bar mode="query" *ngIf="element.carregandoQuery"></mat-progress-bar>
+            <app-tabela-pedidos [pedidos]="element.itens" *ngIf="element.hidden"></app-tabela-pedidos>
+        </div>
+
+    </div>
+
+    <app-barra-total [nome]="'Total'" [valor]="total"></app-barra-total>
 
 
-    <ng-container matColumnDef="c4">
-        <th mat-header-cell *matHeaderCellDef> Info </th>
-        <td mat-cell *matCellDef="let element"> {{ element.info }} às {{ element.horario }} </td>
-    </ng-container>
 
 
-
-
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+</div>

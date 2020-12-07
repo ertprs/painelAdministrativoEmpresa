@@ -459,10 +459,10 @@ export class CadastroPedidoComponent implements OnInit {
         this.servico.mostrarMensagem(r.detalhes);
         this.statusBtenviar = false;
       } else {
-        this.router.navigate(['/painelpedidos/pedidos']);
+
         this.servico.mostrarMensagem('Pedido finalizado');
         this.servcard.limparCarrinho();
-
+        this.router.navigate(['/painelpedidos/pedidos']);
       }
       console.log(r);
     };

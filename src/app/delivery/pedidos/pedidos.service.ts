@@ -12,6 +12,7 @@ export class PedidosService {
   private pedido: {
     id: '',
     status_pedido: any,
+    taxaextra: '',
     formaspagamento: '',
     comprovante: '',
     dadoscliente: {
@@ -36,7 +37,7 @@ export class PedidosService {
     troco: '',
     total: '',
     subtotal: '',
-    taxaentrega: '',
+    taxaentrega: number,
     cupom: any,
     detalhes: {}
   };
@@ -55,6 +56,14 @@ export class PedidosService {
         this.consultaPedidos();
       }
     }, 10000);
+  }
+
+  getTotalPedido(): number {
+    return parseFloat( this.pedido.total );
+  }
+
+  getTaxaExtra(): number {
+    return parseFloat( this.pedido.taxaextra );
   }
 
   consultaPedidos() {
@@ -146,7 +155,7 @@ export class PedidosService {
       const r = this.servapp.getRespostaApi();
       console.log(r);
       if (r.erro === true) {
-        this.servapp.mostrarMensagem(r.mensagem);
+        this.servapp.mostrarMensagem(r.detalhes);
       } else {
         this.servapp.mostrarMensagem(r.resultado.itens.detalhes);
         this.consultaPedidos();

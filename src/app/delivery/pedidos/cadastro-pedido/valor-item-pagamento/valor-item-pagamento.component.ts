@@ -19,6 +19,7 @@ export class ValorItemPagamentoComponent implements OnInit {
   }
 
   onClickConfirmar(valor) {
+   if (!valor) { return; };
    if (valor > this.servcard.getTotalCarrinho()) {
      return this.servico.mostrarMensagem('Você informou o valor maior que o total do pedido');
     }

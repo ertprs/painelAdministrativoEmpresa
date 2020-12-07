@@ -195,14 +195,19 @@
                         <div>{{servpedidos.getPedido().desconto | currency:'BRL':true}}</div>
                     </div>
 
-                    <div class="ccde1 gff">
+                    <!--<div class="ccde1 gff">
                         <div class="ccde11">Total</div>
                         <div>{{servpedidos.getPedido().total | currency:'BRL':true}}</div>
+                    </div>-->
+
+                    <div class="ccde1">
+                        <div class="ccde11">Taxa extra</div>
+                        <div>{{servpedidos.getPedido().taxaextra | currency:'BRL':true}}</div>
                     </div>
 
                     <div class="ccde1">
-                        <div class="ccde11">Troco para</div>
-                        <div>{{servpedidos.getPedido().troco | currency:'BRL':true}}</div>
+                        <div class="ccde11"> Total </div>
+                        <div>{{servpedidos.getTotalPedido() + servpedidos.getTaxaExtra()| currency:'BRL':true}}</div>
                     </div>
 
                 </div>

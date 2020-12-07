@@ -80,8 +80,10 @@
             </a>
 
             <a (click)="clickMenu(ms.menuSelecionado[8])" [class.menuSelecionado]="ms.menuSelecionado[8].selecionado" *ngIf="us.getPermissoessuario()[8].status" mat-list-item routerLink="/fechar-caixa">
+                <mat-icon *ngIf="servico.getStatusCaixa()" class="iconc" [class.statusCaixa]="true" matTooltip="Caixa aberto">info</mat-icon>
+
                 <mat-icon>archive</mat-icon>
-                Fechar caixa
+                Caixa
             </a>
 
 

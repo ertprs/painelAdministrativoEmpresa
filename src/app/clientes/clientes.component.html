@@ -1,6 +1,9 @@
 <mat-toolbar>
     <span>Clientes</span>
 </mat-toolbar>
+<div style="height: 5px;">
+    <mat-progress-bar mode="query" *ngIf="statusCons"></mat-progress-bar>
+</div>
 
 
 <mat-form-field class="f-cli" style="margin-left: 15px;" [formGroup]="form">

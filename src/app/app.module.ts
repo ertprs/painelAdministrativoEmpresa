@@ -197,6 +197,7 @@ import { FaturasComponent } from './faturas/faturas.component';
 import { CookieService } from 'ngx-cookie-service';
 import { FiltronomedinamPipe } from './pipes/filtronomedinam.pipe';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { LoadercompComponent } from './componentes/loadercomp/loadercomp.component';
 
 @NgModule({
   declarations: [
@@ -346,7 +347,8 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
       ListaEmpresasComponent,
       VerEmpresaComponent,
       FaturasComponent,
-      FiltronomedinamPipe
+      FiltronomedinamPipe,
+      LoadercompComponent
    ],
   imports: [
     BrowserModule,

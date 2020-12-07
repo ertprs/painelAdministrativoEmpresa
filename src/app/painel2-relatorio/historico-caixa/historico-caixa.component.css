@@ -1,3 +1,38 @@
 table {
     width: 100%;
 }
+
+.t-header {
+    font-weight: 600;
+}
+
+.t-header-item :hover {
+    background-color: gold;
+    color: black;
+}
+
+.tabela {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    background: white;
+    align-items: center;
+    align-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.area-itens-dataSource {
+    width: 100%;
+    background-color: rgb(247, 241, 241);
+}
+
+.nhiddel {
+    background: #eaeaea;
+    color: #afafaf;
+}
+
+.sep {
+    margin-top: 10px;
+}

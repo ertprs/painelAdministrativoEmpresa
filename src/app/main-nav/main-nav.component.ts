@@ -19,6 +19,7 @@ export class MainNavComponent {
 
   opened: boolean;
   dialogDelsuc: any;
+  statusCaixa: any;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -27,7 +28,8 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, public servico: ServicoService,
               public servpedidos: PedidosService, public us: UsuariosAdmService, public ms: MainNavService,
-              private dialog: MatDialog, private cookieService: CookieService) {}
+              private dialog: MatDialog, private cookieService: CookieService) {
+              }
 
               clickMenu(item) {
                   this.ms.menuSelecionado.forEach(element => {

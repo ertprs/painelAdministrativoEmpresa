@@ -176,6 +176,8 @@ export class CadastroPedidoService {
     this.carrinho.desconto = 0;
     this.carrinho.cliente = '';
     this.carrinho.tipopedido = 'false';
+    this.carrinho.statusAcaoPedido = false;
+    this.carrinho.id_pedido = 0;
   }
 
   getTipoPedido() {
@@ -223,6 +225,14 @@ export class CadastroPedidoService {
   }
   getFP() {
     return this.formadepagamento;
+  }
+
+  getTotalFP() {
+    let total = 0;
+    this.carrinho.formasPagamento.forEach(element => {
+      total += parseFloat( element.valor );
+    });
+    return total;
   }
 
   getFPUsuario() {
