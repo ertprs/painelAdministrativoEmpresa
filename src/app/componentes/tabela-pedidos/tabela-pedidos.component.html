@@ -139,11 +139,11 @@
                     </button>
                  </span>
 
-                    <button color="primary" class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="servpedidos.solicitaMotoboy(element.id)" mat-flat-button matTooltip="Envie esta entrega a todos o motoboys que estão online">Solicitar motoboy</button>
+                    <button color="primary" class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="servpedidos.solicitaMotoboy(element.id)" mat-flat-button matTooltip="Envie esta entrega a todos o entregadores que estão online">Solicitar entregador</button>
 
-                    <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1" matTooltip="Aguardando motoboy aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
+                    <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1" matTooltip="Aguardando entregador aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
 
-                    <button style="margin-top: 11px;" (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id)" matTooltip="Cancelar solicitação de motoboy" mat-icon-button color="warn" *ngIf="element.status_motoboy == 1">
+                    <button style="margin-top: 11px;" (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id)" matTooltip="Cancelar solicitação de entregador" mat-icon-button color="warn" *ngIf="element.status_motoboy == 1">
                         <mat-icon>cancel</mat-icon>
                     </button>
 

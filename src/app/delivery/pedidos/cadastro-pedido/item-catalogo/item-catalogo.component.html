@@ -1,9 +1,9 @@
- 
-<mat-progress-bar *ngIf="!statusLoadItem" mode="query"></mat-progress-bar>
+<mat-progress-bar *ngIf="!statusLoadItem" mode="query">
+</mat-progress-bar>
 <div class="a" *ngIf="statusLoadItem">
     <div class="aeadelsuc">
         <div class="e">
-            <img *ngIf="itemCatalogo.imagem" [lazyLoad]="itemCatalogo.imagem" alt="">
+            <img [defaultImage]="servico.getDefaultImage()" [lazyLoad]="itemCatalogo.imagem" alt="">
         </div>
         <div>
             <div class="b">{{itemCatalogo.nome}}</div>
@@ -39,6 +39,7 @@
                       <span *ngIf="catadc.qnt_adc_item !== 1">{{ adc.qnt }}</span>
 
             </span>
+            <span *ngIf="!adc.qnt">0</span>
 
     </div>
 

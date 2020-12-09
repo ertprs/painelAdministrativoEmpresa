@@ -55,7 +55,7 @@ export class PedidosService {
       if (this.servapp.getDadosEmpresa().status_delivery) {
         this.consultaPedidos();
       }
-    }, 10000);
+    }, 35000);
   }
 
   getTotalPedido(): number {
@@ -96,9 +96,9 @@ export class PedidosService {
       this.qntPedidosEmaberto = data.qnt_pedidos_pendente;
       this.statusloadpedidos = false;
 
-      if (isEqual(this.pedidos, data.lista_pedidos) === false) {
-        this.todospedidos = data.lista_pedidos;
-      }
+      // if (isEqual(this.pedidos, data.lista_pedidos) === false) {
+      this.todospedidos = data.lista_pedidos;
+      // }
 
       this.statusNotificar = data.notificar;
     });

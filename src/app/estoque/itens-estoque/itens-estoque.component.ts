@@ -34,7 +34,7 @@ export class ItensEstoqueComponent implements OnInit {
   statusLoadEntregas: boolean;
   form: FormGroup;
   sst = false;
-
+  statosprog = false;
   btEnviar = true;
   btAdd = true;
 
@@ -46,8 +46,10 @@ export class ItensEstoqueComponent implements OnInit {
    this.estoque();
   }
   estoque() {
+    this.statosprog = true;
     this.crud.get_api('estoque').subscribe(data => {
-        this.dataSource = data;
+       this.statosprog = false;
+       this.dataSource = data;
     });
 }
 

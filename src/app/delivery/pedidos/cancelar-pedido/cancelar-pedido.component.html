@@ -4,7 +4,7 @@
 
         <mat-form-field>
             <mat-label>Digite o motivo do cancelamento</mat-label>
-            <input matInput formControlName="motivo" placeholder="Digite aqui o motivo...">
+            <input matInput formControlName="motivo" placeholder="Digite aqui o motivo..." (keydown.enter)="onNoClickCC(form.value)">
         </mat-form-field>
     </div>
     <div mat-dialog-actions>

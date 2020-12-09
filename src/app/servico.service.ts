@@ -13,8 +13,8 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-  // private urlapi = 'http://10.0.0.103/sistema_zecarlos/apiVulto/';
-   private urlapi = 'https://jfortalapi.ecig.app/index.php';
+   private urlapi = 'http://10.0.0.103/sistema_zecarlos/apiVulto/';
+  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   // private urlapi = 'https://api.vulto.site/index.php';
   // private urlapi = 'https://api.dinp.com.br/index.php';
   private API = 'apiEstabelecimento';
@@ -47,9 +47,17 @@ export class ServicoService {
   private statusFatura = false;
   private fSistema = [];
   private statusCaixa = false;
+  private dataRetroativa = false;
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
+
+  setStatusDR(status: boolean) {
+    this.dataRetroativa = status;
+  }
+  getStatusDR(): boolean {
+    return this.dataRetroativa;
+  }
 
   setStatusCaixa(status: boolean) {
     this.statusCaixa = status;
@@ -112,6 +120,7 @@ export class ServicoService {
     this.token = dados.dados_conta.token;
     this.dadosEmpresa = dados.dados_conta;
     this.dadosLogin = dados.dados_conta;
+    this.setStatusDR(dados.status_data_r);
     try {
     this.listaCidades = dados.cidade;
   } catch (e) { console.warn('Cidades não configuradas'); }

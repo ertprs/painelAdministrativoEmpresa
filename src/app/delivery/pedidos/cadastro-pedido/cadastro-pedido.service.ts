@@ -163,6 +163,13 @@ export class CadastroPedidoService {
     return this.carrinho.desconto;
   }
 
+  getFalta(): number {
+    let total = 0;
+    total = this.getTotalFP() - this.getTotalCarrinho();
+    if (total > 0) { total = 0; }
+    return total;
+  }
+
   limparCarrinho() {
     console.log('Limpa carrinho');
     this.carrinho.itens = [];
@@ -292,7 +299,7 @@ export class CadastroPedidoService {
     this.carrinho.itens.forEach(element => {
       total += element.total;
     });
-    } catch(e) { console.log(e); }
+    } catch (e) { console.log(e); }
     return total;
   }
 
@@ -307,7 +314,7 @@ export class CadastroPedidoService {
     // Calcular com desconto
     total = total - this.carrinho.desconto;
     // Calcular com taxa de entrega
-    res =  total + this.carrinho.taxaentrega;
+    res =  total + this.getTaxaEntrega();
     if (res < 0) { res = 0; }
     return res;
   }

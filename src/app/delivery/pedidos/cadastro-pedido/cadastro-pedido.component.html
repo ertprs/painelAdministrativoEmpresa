@@ -1,3 +1,5 @@
+<mat-progress-bar *ngIf="statusLoad" mode="query">
+</mat-progress-bar>
 <div style="padding: 50px;">
     <mat-tab-group color="primary" [formGroup]="form" [selectedIndex]="indexTabGroup">
 
@@ -139,6 +141,19 @@
                 <div class="Carrinho">
 
 
+                    <div class="vcb">
+
+                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                            <mat-label>Desconto</mat-label>
+                            <input [(ngModel)]="servcard.getCarrinho().desconto" [ngModelOptions]="{standalone: true}" type="tel" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
+                        </mat-form-field>
+
+                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
+                            <mat-label>Taxa extra</mat-label>
+                            <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="tel" mask="separator.2" thousandSeparator=".">
+                        </mat-form-field>
+                    </div>
+
                     <div style="margin-bottom: 10px;">
                         <mat-slide-toggle color="primary" (click)="onClickStandBy(fpsty)" #fpsty> Pagamento Stand-by </mat-slide-toggle>
                     </div>
@@ -151,6 +166,8 @@
                         <mat-chip style="background-color: #3F51B5;
     color: white;" (click)="openBottomSheet('formapagamento')" [disabled]="stand">Forma pagamento</mat-chip>
                     </mat-chip-list>
+
+
 
                     <div style="border-bottom: 1px solid #ececec;" [formGroup]="form">
 
@@ -199,22 +216,7 @@
                         </div>
                     </div>
 
-                    <div class="vcb">
-                        <!--<mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
-                            <mat-label>Troco para</mat-label>
-                            <input formControlName="troco" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
-                        </mat-form-field>-->
 
-                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
-                            <mat-label>Desconto</mat-label>
-                            <input formControlName="desconto" type="tel" matInput placeholder="R$0,00" mask="separator.2" thousandSeparator=".">
-                        </mat-form-field>
-
-                        <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
-                            <mat-label>Taxa extra</mat-label>
-                            <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="tel" mask="separator.2" thousandSeparator=".">
-                        </mat-form-field>
-                    </div>
 
 
 
@@ -256,7 +258,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div style="margin-top: 10px;">
 
                             <div class="car12">
                                 <div>Origem do pedido</div>
@@ -311,9 +313,8 @@
                             <div class="car12">
                                 <div> Desconto </div>
                                 <div>
-                                    <span *ngIf="!form.controls.desconto.value"> {{ 0 | currency:'BRL':true}} </span>
-                                    <span *ngIf="form.controls.desconto.value">
-                                    {{ form.controls.desconto.value | currency:'BRL':true}} </span>
+                                    <span *ngIf="!servcard.getCarrinho().desconto"> {{ 0 | currency:'BRL':true}}  </span>
+                                    <span *ngIf="servcard.getCarrinho().desconto">{{ servcard.getCarrinho().desconto | currency:'BRL':true}}</span>
 
                                 </div>
                             </div>
@@ -325,7 +326,7 @@
 
                             <div class="car11 car12">
                                 <div>Total </div>
-                                <div> {{ servcard.getTotalCarrinho() - form.controls.desconto.value | currency:'BRL':true }}
+                                <div> {{ servcard.getTotalCarrinho() | currency:'BRL':true }}
                                 </div>
                             </div>
 

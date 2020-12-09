@@ -92,7 +92,7 @@ export class CadastroPedidoComponent implements OnInit {
   }
 
   onClickStandBy(status) {
-    if (status.checked) { 
+    if (status.checked) {
       this.stand = false;
      } else {
       this.stand = true;
@@ -431,7 +431,7 @@ export class CadastroPedidoComponent implements OnInit {
     this.servcard.getCarrinho().endereco.bairro = this.form.value.bairro;
     this.servcard.setItensEndereco(this.form.value);
     this.servcard.atualizaTotalComTaxa();
-    this.servcard.setDescontoCarrinho(this.form.value.desconto);
+    // this.servcard.setDescontoCarrinho(this.form.value.desconto);
     this.statusbt = true;
 
 

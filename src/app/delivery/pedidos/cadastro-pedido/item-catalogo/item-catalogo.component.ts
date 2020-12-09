@@ -20,7 +20,7 @@ export class ItemCatalogoComponent implements OnInit {
   statusAdd = false;
   observacaoUsuario: string;
 
-  constructor(private servico: ServicoService, private crud: CrudServicoService, public dialogRef: MatDialogRef<DialogAddMototboyComponent>,
+  constructor(public servico: ServicoService, private crud: CrudServicoService, public dialogRef: MatDialogRef<DialogAddMototboyComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private servcard: CadastroPedidoService) { }
 
   ngOnInit(): void {

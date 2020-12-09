@@ -31,6 +31,7 @@ export class DataRetroativaComponent implements OnInit {
         this.servico.mostrarMensagem(r.detalhes);
         this.statusR = r.resultado.status;
         console.log(r.resultado.status);
+        this.servico.setStatusDR(r.resultado.status);
       }
       console.log(r);
     };

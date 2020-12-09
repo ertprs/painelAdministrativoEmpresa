@@ -2,7 +2,7 @@
 <button mat-icon-button color="primary">
     <mat-icon>search</mat-icon>
   </button>-->
-
+<mat-progress-bar *ngIf="statosprog" mode="query"></mat-progress-bar>
 <table mat-table [dataSource]="dataSource">
 
     <!-- Name Column -->

@@ -130,6 +130,13 @@
 
         </mat-toolbar>
         <!-- Add Content Here -->
+        <div class="afab" *ngIf="this.servico.getStatusDR()">
+            <button mat-mini-fab color="warn" matTooltip="Data retroativa ativada" routerLink="/painel/data-retroativa">
+            <mat-icon>av_timer</mat-icon>
+          </button>
+        </div>
         <router-outlet></router-outlet>
+
+
     </mat-sidenav-content>
 </mat-sidenav-container>

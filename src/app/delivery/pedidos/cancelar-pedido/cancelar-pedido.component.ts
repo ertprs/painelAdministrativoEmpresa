@@ -31,4 +31,8 @@ export class CancelarPedidoComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onNoClickCC(motivo: string) {
+    this.dialogRef.close(motivo);
+  }
+
 }

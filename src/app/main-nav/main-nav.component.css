@@ -71,6 +71,16 @@
     color: green;
 }
 
+.afab {
+    height: 44px;
+    width: 4%;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    text-align: end;
+    position: fixed;
+}
+
 @media(max-width:600px) {
     .logoEmpresatoolbar {
         display: none;
