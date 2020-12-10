@@ -15,6 +15,7 @@ export class PedidosService {
     taxaextra: '',
     formaspagamento: '',
     comprovante: '',
+    dadosempresa: any,
     dadoscliente: {
       nome: '',
       sobrenome: '',
@@ -55,7 +56,7 @@ export class PedidosService {
       if (this.servapp.getDadosEmpresa().status_delivery) {
         this.consultaPedidos();
       }
-    }, 35000);
+    }, 9000);
   }
 
   getTotalPedido(): number {
@@ -73,7 +74,7 @@ export class PedidosService {
         // console.log(data);
         this.qntPedidosEmaberto = data.qnt_pedidos_pendente;
         this.statusloadpedidos = false;
-        this.servapp.setStatusDelivery(data.status_loja.status_empresa);
+        // this.servapp.setStatusDelivery(data.status_loja.status_empresa);
         if (isEqual(this.pedidos, data.lista_pedidos) === false) {
           this.pedidos = data.lista_pedidos;
         }

@@ -2,6 +2,7 @@ import { CrudServicoService } from './../../../crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PedidosService } from '../pedidos.service';
 
 @Component({
   selector: 'app-impressao-pedido',
@@ -13,10 +14,9 @@ export class ImpressaoPedidoComponent implements OnInit {
   dataDia: string;
 
   constructor(public dialogRef: MatDialogRef<ImpressaoPedidoComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-              public servapp: ServicoService, private crud: CrudServicoService) { }
+              public servapp: ServicoService, private crud: CrudServicoService, public servpedidos: PedidosService) { }
 
   ngOnInit(): void {
-    this.f1();
   }
 
   onClickImprimir() {
@@ -48,18 +48,6 @@ export class ImpressaoPedidoComponent implements OnInit {
   }
 
 
-  f1() {
-    const accallback = () => {
-      console.log('callback');
-      const r = this.servapp.getRespostaApi();
-      if (r.erro === true) { /* this.servico.mostrarMensagem(r.resultado.mensagem); */ } else {
-        // this.servapp.mostrarMensagem(r.resultado.mensagem);
-        if (r.resultado) {
-          this.data = r.resultado.itens;
-        }
-      }
-    };
-    this.crud.post_api('consultaPedido', accallback, {idPedido: this.data.id_pedido});
-  }
+
 
 }

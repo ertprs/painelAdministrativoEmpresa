@@ -59,14 +59,12 @@ export class PedidosFiadoComponent implements OnInit {
    this.tipof = '';
 
    const accallback = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
         // this.servico.mostrarMensagem(r.resultado.mensagem);
         this.dataSource = r.resultado.itens.lista;
         this.total = r.resultado.itens.total;
       }
-      console.log(r);
     };
    this.crud.post_api('consulta_pedido_fiado', accallback,
     {tipoFiltro: this.tipof, dinicio:  '', dfim: '', nome: ''});
@@ -75,14 +73,12 @@ export class PedidosFiadoComponent implements OnInit {
   consultaPedidosFiado() {
 
     const accallback = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
         // this.servico.mostrarMensagem(r.resultado.mensagem);
         this.dataSource = r.resultado.itens.lista;
         this.total = r.resultado.itens.total;
       }
-      console.log(r);
     };
     this.crud.post_api('consulta_pedido_fiado', accallback,
     {tipoFiltro: this.tipof, dinicio:  this.form.value.di, dfim: this.form.value.df, nome: this.form.value.nome});
@@ -95,27 +91,42 @@ export class PedidosFiadoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.consultaPedidosFiado();
     });
   }
 
   onClickImprimir(pedido) {
+     
+    const loginres = () => {
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) {
+        this.servico.mostrarMensagem(r.detalhes);
+      } else {
+        this.servpedidos.setPedido(r.resultado.itens);
+        setTimeout(()=>{
+          this.abrirjanela();
+        } ,500);
+         
+      }
+    };
+    const data = { idPedido: pedido.id_pedido, id_empresa: this.servico.getDadosEmpresa().id};
+    this.crud.post_api('consultaPedido', loginres, data ,true);
+  
+  }
+
+
+  abrirjanela() {
     this.dialogDelsuc = this.dialog.open(ImpressaoPedidoComponent, {
-      width: '360px', data: pedido
+      width: '360px'
     });
     this.dialogDelsuc.afterClosed().subscribe(result => {
-      console.log('The dialog was closed result');
-      console.log(result);
       if (result) {
-        alert('ok');
       }
     });
   }
 
   consultaMNome() {
     const accallback = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { /* this.servico.mostrarMensagem(r.resultado.mensagem); */ } else {
         // this.servapp.mostrarMensagem(r.resultado.mensagem);

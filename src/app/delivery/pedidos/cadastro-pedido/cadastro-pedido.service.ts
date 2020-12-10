@@ -43,7 +43,7 @@ export class CadastroPedidoService {
     total: 0,
     total_pedido: 0,
     taxaentrega: 0,
-    taxaextra: '',
+    taxaextra: 0,
     tipopedido: 'false',
     endereco: {
       rua: '',
@@ -68,10 +68,12 @@ export class CadastroPedidoService {
   bottomSheet: any;
   cadastroClienteLista: any;
   contaddFps = 0;
+  taxaEntregaAltManual = 0;
 
   constructor(private servico: ServicoService) { }
 
   addFp(item: ItemPagamento) {
+    try {
     this.contaddFps++;
     item.referencia = this.contaddFps;
 
@@ -84,6 +86,14 @@ export class CadastroPedidoService {
     const fp = Object.assign({}, item);
     if (!statusadd) { this.carrinho.formasPagamento.push(fp); }
     console.log(this.carrinho.formasPagamento);
+  } catch (e) {
+    console.log(e);
+    console.log('Não foi possível calcular as fps.');
+  }
+  }
+
+  setTaxaManual(taxa: number) {
+    this.taxaEntregaAltManual = taxa;
   }
 
   removeItemFp(item: any) {
@@ -174,7 +184,7 @@ export class CadastroPedidoService {
     console.log('Limpa carrinho');
     this.carrinho.itens = [];
     this.carrinho.formasPagamento = [];
-    this.carrinho.taxaextra = '';
+    this.carrinho.taxaextra = 0;
     this.carrinho.taxaentrega = 0;
     this.carrinho.origempedido = false;
     this.carrinho.total = 0;
@@ -185,6 +195,7 @@ export class CadastroPedidoService {
     this.carrinho.tipopedido = 'false';
     this.carrinho.statusAcaoPedido = false;
     this.carrinho.id_pedido = 0;
+    this.taxaEntregaAltManual = 0;
   }
 
   getTipoPedido() {
@@ -260,6 +271,13 @@ export class CadastroPedidoService {
     return this.carrinho;
   }
 
+  getTaxaExtra(): number {
+    const taxa = this.carrinho.taxaextra.toString();
+    let te = parseFloat(taxa);
+    if (!te) { te =  0; }
+    return te;
+  }
+
   getQntItensCar(): number {
     return this.carrinho.itens.length;
   }
@@ -315,6 +333,8 @@ export class CadastroPedidoService {
     total = total - this.carrinho.desconto;
     // Calcular com taxa de entrega
     res =  total + this.getTaxaEntrega();
+     // Calcula com taxa extra
+    res += this.getTaxaExtra();
     if (res < 0) { res = 0; }
     return res;
   }
@@ -374,7 +394,13 @@ export class CadastroPedidoService {
       this.servico.mostrarMensagem('O estabelecimento só aceita pedidos para retirada');
       return;
     }
-    this.setTaxaEntrega(this.servico.getDadosEmpresa().taxa_entrega);
+
+    // Se a taxa de entrega foi alterada manualmente nao altera pela taxa do bairro
+    if (!this.taxaEntregaAltManual) {
+      this.setTaxaEntrega(this.servico.getDadosEmpresa().taxa_entrega);
+    } else {
+      this.setTaxaEntrega(this.taxaEntregaAltManual);
+    }
     this.setTipoPedido(this.getConfigTipoPedido().entrega);
 
     this.bottomSheet.dismiss();

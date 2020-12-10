@@ -1,26 +1,27 @@
-<div class="c" id="impressao">
+<mat-spinner style="margin: auto;" *ngIf="!servpedidos.getPedido().id"></mat-spinner>
+<div class="c" id="impressao" *ngIf="servpedidos.getPedido().id">
     <style>
         .jj {
             text-align-last: justify;
         }
     </style>
     <div style="width: 240px; font-size: 11pt;    margin: auto;">
-        <div style="text-align: center;"> <b> {{ data.dadosempresa.nome }} </b> </div>
+        <div style="text-align: center;"> <b> {{ servpedidos.getPedido().dadosempresa.nome }} </b> </div>
         <div style="text-align: center;"> Obrigado pela preferência, volte sempre </div>
-        <div style="text-align: center;"> <b> {{ data.dadosempresa.telefone }} </b> </div>
-        <div style="margin-top: 30px;"> <b> Detalhes do pedido #{{ data.id }} </b> </div>
-        <div> Nome: {{ data.dadoscliente.nome }} </div>
-        <div> Telefone: {{ data.dadoscliente.telefone | mask: '(00) 0000-0000' }} </div>
-        <div> Horário: {{ data.info }} </div>
-        <div> Tipo serviço: {{ data.tipopedido }} </div>
-        <div> Pagamento: {{ data.formapagamento }} </div>
-        <div> Endereço: {{ data.endereco.rua }}, {{ data.endereco.numero }} </div>
-        <div> Bairro/Cidade: {{ data.endereco.bairro.nome }}/{{ data.endereco.cidade.nome }} </div>
-        <div> Complemento: {{ data.endereco.complemento }} </div>
-        <div> Referência: {{ data.endereco.tiporesidencia }} </div>
+        <div style="text-align: center;"> <b> {{ servpedidos.getPedido().dadosempresa.telefone }} </b> </div>
+        <div style="margin-top: 30px;"> <b> Detalhes do pedido #{{ servpedidos.getPedido().id }} </b> </div>
+        <div> Nome: {{ servpedidos.getPedido().dadoscliente.nome }} </div>
+        <div> Telefone: {{ servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 0000-0000' }} </div>
+        <div> Horário: {{ servpedidos.getPedido().info }} </div>
+        <div> Tipo serviço: {{ servpedidos.getPedido().tipopedido }} </div>
+        <div> Pagamento: {{ servpedidos.getPedido().formapagamento }} </div>
+        <div> Endereço: {{ servpedidos.getPedido().endereco.rua }}, {{ servpedidos.getPedido().endereco.numero }} </div>
+        <div> Bairro/Cidade: {{ servpedidos.getPedido().endereco.bairro.nome }}/{{ servpedidos.getPedido().endereco.cidade.nome }} </div>
+        <div> Complemento: {{ servpedidos.getPedido().endereco.complemento }} </div>
+        <div> Referência: {{ servpedidos.getPedido().endereco.tiporesidencia }} </div>
         <hr>
         <div> Itens: </div>
-        <div *ngFor="let produto of data.itens">
+        <div *ngFor="let produto of servpedidos.getPedido().itens">
             <div style="    display: grid;
     grid-template-columns: 12fr 1fr;">
                 <div> <b> {{ produto.qnt }}x </b> {{ produto.nome }} </div>
@@ -38,23 +39,23 @@
         <div style="    display: grid;
     grid-template-columns: 12fr 1fr;">
             <div>Desconto:</div>
-            <div>{{ data.desconto | currency:'BRL':true }}</div>
+            <div>{{ servpedidos.getPedido().desconto | currency:'BRL':true }}</div>
         </div>
         <div style="    display: grid;
     grid-template-columns: 12fr 1fr;">
             <div>Subtotal:</div>
-            <div>{{ data.subtotal | currency:'BRL':true }}</div>
+            <div>{{ servpedidos.getPedido().subtotal | currency:'BRL':true }}</div>
         </div>
         <div style="    display: grid;
     grid-template-columns: 12fr 1fr;">
             <div>Taxa de entrega:</div>
-            <div>{{ data.taxaentrega | currency:'BRL':true }}</div>
+            <div>{{ servpedidos.getPedido().taxaentrega | currency:'BRL':true }}</div>
         </div>
         <div style="    display: grid;
     grid-template-columns: 12fr 1fr;">
 
             <div><b> Total: </b></div>
-            <div><b>{{ data.total | currency:'BRL':true }}</b></div>
+            <div><b>{{ servpedidos.getPedido().total | currency:'BRL':true }}</b></div>
 
         </div>
     </div>

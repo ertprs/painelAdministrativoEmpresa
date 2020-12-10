@@ -46,7 +46,7 @@
             <div> {{ element.info }} às {{ element.horario }} </div>
 
             <div> {{element.operador_fechou}} </div>
-            <div> {{ element.data_fechou }} às {{ element.hora_fechou }} </div>
+            <div> <span *ngIf="element.data_fechou"> {{ element.data_fechou }} às {{ element.hora_fechou }}</span> </div>
         </div>
 
         <div class="area-itens-dataSource">

@@ -12,6 +12,7 @@ export class EnderecosClienteComponent implements OnInit {
 
   itens: any;
   endereco: any;
+  statusLoad = false;
   //displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
   displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c6'];
 
@@ -26,9 +27,11 @@ export class EnderecosClienteComponent implements OnInit {
   }
 
   f5() {
+    this.statusLoad = true;
     this.crud.get_api('end_usuario&email_usuario=' + this.data.item.email + '&telefone=' + this.data.item.telefone).subscribe(data => {
-       console.log(data);
        this.itens = data.resultado;
+    this.statusLoad = false;
+
     });
 }
 selecionarEndereco(element) {

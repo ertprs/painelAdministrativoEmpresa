@@ -4,9 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { CancelarPedidoComponent } from '../../pedidos/cancelar-pedido/cancelar-pedido.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CadastroPedidoService } from '../../pedidos/cadastro-pedido/cadastro-pedido.service';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-dialog-pedido',
@@ -16,22 +17,22 @@ import { CadastroPedidoService } from '../../pedidos/cadastro-pedido/cadastro-pe
 export class DialogPedidoComponent implements OnInit {
 
   displayedColumns: string[] = ['status', 'info'];
-  detalhespedido: string[] = ['quantidade', 'item', 'observacao', 'adicionais', 'desconto', 'preco', 'total'];
+  detalhespedido: string[] = ['quantidade', 'item', 'observacao', 'adicionais', 'preco', 'total'];/* removi: desconto */
   historico: any;
   produtosPedido: any;
   btCstatus = false;
+  loaderPedido = false;
 
   constructor(public servpedidos: PedidosService, private servapp: ServicoService, private crud: CrudServicoService,
               private dialog: MatDialog, public upimgServ: UploadimagemService, private sercard: CadastroPedidoService,
-              private router: Router) { }
+              private router: Router, public dialogRef: MatDialogRef<DialogPedidoComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-
-    console.log('[[[[[[[[[[[[[Carrinho]]]]]]]]]]]]]');
-    console.log(this.sercard.getCarrinho());
-
+   
   }
 
+  
 
   onClickAttStatusPedido(statusPedido) {
     this.btCstatus = true;

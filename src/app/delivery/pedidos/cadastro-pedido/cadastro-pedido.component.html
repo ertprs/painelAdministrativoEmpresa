@@ -67,7 +67,7 @@
                         <mat-label>Taxa de entrega
                             <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderTaxa"></mat-progress-bar>
                         </mat-label>
-                        <input [(ngModel)]="servcard.getCarrinho().taxaentrega" formControlName="taxaentrega" matInput placeholder="R$17,50" type="tel" mask="separator.2" thousandSeparator=".">
+                        <input (keyup)="trocarTaxa()" [(ngModel)]="servcard.getCarrinho().taxaentrega" formControlName="taxaentrega" matInput placeholder="R$17,50" type="tel" mask="separator.2" thousandSeparator=".">
                     </mat-form-field>
 
 
@@ -322,6 +322,11 @@
                             <div class="car12">
                                 <div> Taxa de entrega</div>
                                 <div>{{ servcard.getTaxaEntrega() | currency:'BRL':true }}</div>
+                            </div>
+
+                            <div class="car12">
+                                <div> Taxa extra</div>
+                                <div>{{ servcard.getTaxaExtra() | currency:'BRL':true }}</div>
                             </div>
 
                             <div class="car11 car12">

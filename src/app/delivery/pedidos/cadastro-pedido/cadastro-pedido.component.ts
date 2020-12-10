@@ -89,6 +89,18 @@ export class CadastroPedidoComponent implements OnInit {
       this.selecionarCartao(data);
     });
 
+  
+
+  }
+
+  trocarTaxa() {
+    console.log(this.servcard.getCarrinho().taxaentrega);
+    const taxa = this.servcard.getCarrinho().taxaentrega;
+    let taxaEntregaFloat = taxa;
+    if (!taxaEntregaFloat) { taxaEntregaFloat = 0; }
+    taxaEntregaFloat =  parseFloat(taxaEntregaFloat.toString());
+    this.servcard.setTaxaEntrega(taxaEntregaFloat);
+    this.servcard.setTaxaManual(taxaEntregaFloat);
   }
 
   onClickStandBy(status) {

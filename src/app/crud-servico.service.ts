@@ -42,7 +42,7 @@ export class CrudServicoService {
 
     setInterval(() => {
       this.cc();
-    }, 25000);
+    }, 15000);
 
   }
 
@@ -57,7 +57,7 @@ export class CrudServicoService {
         this.servico.setQntEntOn(this.resp.api.quantidade_entregador_online);
         this.servico.setListaNotificacoes(this.resp.api.notificacoes.lista);
       },
-      error => { console.log('Erro'); });
+      error => { console.error('Erro#consulta_entregador_on!*'); console.log(console); });
   }
 
 

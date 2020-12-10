@@ -31,8 +31,6 @@ export class TabelaPedidosComponent implements OnInit {
               public servapp: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
-    console.log('Pedidos');
-    console.log(this.pedidos);
   }
 
   selecionarMotoboy(item) {
@@ -40,8 +38,6 @@ export class TabelaPedidosComponent implements OnInit {
       width: '560px', data: item.id
     });
     this.dialogDelsuc.afterClosed().subscribe(result => {
-      console.log('The dialog was closed result');
-      console.log(result);
       if (result) {
 
       }
@@ -54,8 +50,6 @@ export class TabelaPedidosComponent implements OnInit {
       width: '360px', data: this.servpedidos.getPedido()
     });
     this.dialogDelsuc.afterClosed().subscribe(result => {
-      console.log('The dialog was closed result');
-      console.log(result);
       if (result) {
         alert('ok');
       }
@@ -65,24 +59,46 @@ export class TabelaPedidosComponent implements OnInit {
 
 
   onClickPedido(item: any) {
-    this.servpedidos.setPedido(item);
-    console.log(item);
+
+    try{
+
+    if (item.id === this.servpedidos.getPedido().id && item.status_pedido === this.servpedidos.getPedido().status_pedido) {
+      return;
+    }
+
+  } catch (e) { console.log('Pedido ainda nao carregado'); }
+    
+    this.servpedidos.setPedido({});
+
+    const loginres = () => {
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) {
+        this.servapp.mostrarMensagem(r.detalhes);
+      } else {
+        this.servpedidos.setPedido(r.resultado.itens);
+      }
+    };
+    const data = { idPedido: item.id, id_empresa: this.servapp.getDadosEmpresa().id};
+    this.crud.post_api('consultaPedido', loginres, data );
   }
 
+  
 
 
-  onClickverPedido(): void {
+
+  onClickverPedido(element): void {
     this.dialogDelsuc = this.dialog.open(DialogPedidoComponent, {
       width: '1000px',
+      data: element
     });
 
     this.servapp.setDialogapp(this.dialogDelsuc);
 
     this.dialogDelsuc.afterClosed().subscribe(result => {
-      console.log('The dialog was closed result');
-      console.log(result);
       if (result === 'cancelar_pedido') {
         setTimeout(() => { this.onClickCancelarPedido(this.servpedidos.getPedido()); }, 600);
+      } else {
+       // this.servpedidos.setPedido({});
       }
     });
 
@@ -96,8 +112,6 @@ export class TabelaPedidosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed cancelar pedido');
-      console.log(result);
       this.servpedidos.onClickAttStatusPedido(7, result.idPedido, result);
     });
   }
@@ -105,9 +119,7 @@ export class TabelaPedidosComponent implements OnInit {
   dialogAvisoTaxa(item): void {
 
     const loginres = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
-      console.log(r);
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.mensagem);
       } else {
@@ -118,8 +130,6 @@ export class TabelaPedidosComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed cancelar pedido');
-          console.log(result);
           if (result) {
             // Atualiza a taxa de entrega do motoboy
             const callb = () => {

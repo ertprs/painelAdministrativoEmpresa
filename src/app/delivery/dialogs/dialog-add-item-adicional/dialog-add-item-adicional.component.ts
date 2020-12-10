@@ -84,6 +84,7 @@ export class DialogAddItemAdicionalComponent implements OnInit {
 
   selecionarOpt(item) {
     this.form.controls.id_item_catalogo.setValue(item.id);
+    this.form.controls.preco.setValue(item.preco);
   }
 
   onClickDis(evento, item) {
