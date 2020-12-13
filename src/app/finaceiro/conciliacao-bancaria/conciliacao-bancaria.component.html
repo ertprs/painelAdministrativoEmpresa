@@ -79,7 +79,7 @@
     <ng-container matColumnDef="c5">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
-            <button (click)="verComprovante(element.comprovante)" mat-stroked-button color="primary"> Comprovante </button>
+            <button (click)="verComprovante(element)" mat-stroked-button color="primary"> Comprovante </button>
         </td>
     </ng-container>
 

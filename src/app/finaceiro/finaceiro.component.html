@@ -1,12 +1,12 @@
 <div class="g">
     <div class="col1">
 
-        <button mat-button routerLinkActive="active-link" routerLink="conciliacao-bancaria"> Conciliação bancária </button>
-        <button mat-button routerLinkActive="active-link" routerLink="consolidacao-cartao"> Consolidação de cartões </button>
-        <button mat-button routerLinkActive="active-link" routerLink="consolidacao-dinheiro"> Consolidação de dinheiro </button>
-        <button mat-button routerLinkActive="active-link" routerLink="controle-fiado"> Controle de fiado </button>
-        <button mat-button routerLinkActive="active-link" routerLink="/financeiro/comissao-entregas"> Comissão por entrega </button>
-        <button mat-button routerLinkActive="active-link" routerLink="consolidacao-financeira"> Consolidação financeira </button>
+        <button *ngIf="btConcbancaria" mat-button routerLinkActive="active-link" routerLink="conciliacao-bancaria"> Conciliação bancária </button>
+        <button *ngIf="btCartao" mat-button routerLinkActive="active-link" routerLink="consolidacao-cartao"> Consolidação de cartões </button>
+        <button *ngIf="btDin" mat-button routerLinkActive="active-link" routerLink="consolidacao-dinheiro"> Consolidação de dinheiro </button>
+        <button *ngIf="btFiado" mat-button routerLinkActive="active-link" routerLink="controle-fiado"> Controle de fiado </button>
+        <button *ngIf="btEntrega" mat-button routerLinkActive="active-link" routerLink="/financeiro/comissao-entregas"> Comissão por entrega </button>
+        <button *ngIf="btFinan" mat-button routerLinkActive="active-link" routerLink="consolidacao-financeira"> Consolidação financeira </button>
 
 
 

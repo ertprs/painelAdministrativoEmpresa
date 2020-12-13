@@ -1,9 +1,20 @@
 <div style="height: 500px; text-align: center;">
-    <img width="265" [lazyLoad]="data" alt="">
+  <h2>Comprovante</h2>
+    <img width="265" [lazyLoad]="data.comprovante">
+
+    <div style="margin-left: 20%;">
+        <app-upload-imagem *ngIf="!data.comprovante"
+                        [mensagem]="'O comprovante foi anexado ao pedido'" [nomeBotao]="'Selecionar comprovante'"
+                        [coluna]="'comprovante'" [preload]="true" [tabela]="'pagamentos_financeiro'" [idItem]="data.id">
+                    </app-upload-imagem>
+    </div>
 
 </div>
 
 
 <div style="margin-top: 10px;">
-    <button mat-flat-button color="primary" [mat-dialog-close]> Fechar </button>
+    <button mat-flat-button color="primary" [mat-dialog-close]="true"> Fechar </button>
+    
+     
+
 </div>

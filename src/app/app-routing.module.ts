@@ -1,3 +1,4 @@
+import { CategoriasEmpresasComponent } from './categorias-empresas/categorias-empresas.component';
 import { FaturasComponent } from './faturas/faturas.component';
 import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.component';
 import { ListaEmpresasComponent } from './main-nav/lista-empresas/lista-empresas.component';
@@ -188,6 +189,8 @@ const routes: Routes = [
       { path: 'lojas', component: ListaEmpresasComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'ver-empresa', component: VerEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'cadastro-loja', component: CadastroEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'categorias-empresa', component: CategoriasEmpresasComponent, canActivate: [GuardaAtenticacaoService] },
+
       
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },

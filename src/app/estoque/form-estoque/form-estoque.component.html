@@ -50,6 +50,6 @@
 
     <div>
         <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
-        <button style="margin-left: 3px;" mat-flat-button color="warn" (click)="f1()"> Confirmar </button>
+        <button [disabled]="statusBT" style="margin-left: 3px;" mat-flat-button color="warn" (click)="f1()"> Confirmar </button>
     </div>
 </div>

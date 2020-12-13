@@ -48,7 +48,7 @@ export class PaineldeliveryComponent implements OnInit {
     this.btrelato = this.us.getPermissoessuario()[9].children[6].status;
     this.btDataret = this.us.getPermissoessuario()[9].children[7].status;
     this.btOrg = this.us.getPermissoessuario()[9].children[8].status;
-    this.btUsuariosAdm = this.us.getPermissoessuario()[10].children[9].status;
+    this.btUsuariosAdm = this.us.getPermissoessuario()[10].children[8].status;
 
     this.btCidade = this.us.getPermissoessuario()[10].children[0].status;
     this.btBairro = this.us.getPermissoessuario()[10].children[1].status;

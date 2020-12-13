@@ -24,10 +24,12 @@ export class UsuarioPermissoesComponent implements OnInit {
   treeControl = new NestedTreeControl<any>(node => node.children);
   dataSource = new MatTreeNestedDataSource<any>();
   TREE_DATA: FoodNode[] = [];
-  constructor(private servico: ServicoService, private crud: CrudServicoService, private router: Router,
+  tipoOperador: string;
+  constructor(public servico: ServicoService, private crud: CrudServicoService, private router: Router,
               public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
+    this.tipoOperador = this.servico.getDadosEmpresa().operador.tipo;
     console.log(this.us.getUsuario().nome);
     console.log(this.us.getPermissoessuario());
     if (this.us.getUsuario().permissoes) {

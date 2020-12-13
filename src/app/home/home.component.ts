@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit {
   removerCat(categoria: any) {
     const accallback = () => {
       const r = this.servicoapp.getRespostaApi();
-      if (r.erro === true) { this.servicoapp.mostrarMensagem(r.detalhes); } else {
+      if (r.erro === true) { this.servicoapp.mostrarMensagem(r.mensagem); } else {
         this.servicoapp.mostrarMensagem(r.mensagem);
         this.servico.consultaCardapio();
       }
@@ -121,7 +121,7 @@ export class HomeComponent implements OnInit {
   removerItem(item: any) {
     const accallback = () => {
       const r = this.servicoapp.getRespostaApi();
-      if (r.erro === true) { this.servicoapp.mostrarMensagem(r.detalhes); } else {
+      if (r.erro === true) { this.servicoapp.mostrarMensagem(r.mensagem); } else {
         this.servicoapp.mostrarMensagem(r.mensagem);
         this.servico.consultaCardapio();
       }

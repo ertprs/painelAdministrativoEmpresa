@@ -1,4 +1,7 @@
 <div class="t1">
     <div class="t2"> {{ nome }} </div>
-    <div class="t3"> {{ valor | currency:'BRL':true }} </div>
+    <div class="t3">
+        <span *ngIf="!naomostrarReal">{{ valor | currency:'BRL':true }} </span>
+        <span *ngIf="naomostrarReal">{{ valor }} </span>
+    </div>
 </div>

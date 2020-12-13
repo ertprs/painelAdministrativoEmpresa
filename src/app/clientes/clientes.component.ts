@@ -124,6 +124,7 @@ onClickBtMenu(element) {
 }
 
 onClickCadastraPedido(item: any) {
+  this.sercard.limparCarrinho();
   this.sercard.setCadastroClienteLista(item);
   this.router.navigate(['/painelpedidos/cadastro-pedido']);
   // this.router.navigate(['/inicio']);

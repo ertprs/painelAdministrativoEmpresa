@@ -55,7 +55,10 @@
             { "id": 3, "status": true, "name": "Transferir estoque" },
             { "id": 4, "status": true, "name": "Adicionar nova logística" },
             { "id": 5, "status": true, "name": "Adicionar estoque de logística" },
-            { "id": 6, "status": true, "name": "Acessar auditoria" }
+            { "id": 6, "status": true, "name": "Acessar auditoria" },
+            { "id": 7, "status": true, "name": "Estoque entregador" },
+            { "id": 8, "status": true, "name": "Logística" },
+            { "id": 9, "status": true, "name": "Batimentos de estoque" }
         ]
     },
 

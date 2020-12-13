@@ -13,6 +13,7 @@ export class FormEstoqueComponent implements OnInit {
 
   form: FormGroup;
   itensCatalogo: any;
+  statusBT = false;
 
   constructor(public dialogRef: MatDialogRef<FormEstoqueComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder,
@@ -53,10 +54,13 @@ export class FormEstoqueComponent implements OnInit {
   }
 
   f1() {
-
+    this.statusBT = true;
     const accallback = () => {
       const r = this.servapp.getRespostaApi();
-      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
+      if (r.erro === true) { 
+        this.servapp.mostrarMensagem(r.detalhes);
+        this.statusBT = false;
+       } else {
           this.dialogRef.close(true);
       }
       console.log(r);

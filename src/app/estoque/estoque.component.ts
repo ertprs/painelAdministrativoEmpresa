@@ -22,12 +22,22 @@ export class EstoqueComponent implements OnInit {
 
   btAuditoria = true;
 
+  estoqueLoja = true;
+  estoqueE = true;
+  logistica = true;
+  batimentoE = true;
+
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService, private router: Router, public servestm: EstoqueService,
               public us: UsuariosAdmService) { }
 
   ngOnInit(): void {
+
+   this.estoqueE = this.us.getPermissoessuario()[5].children[7].status;
    this.btAuditoria = this.us.getPermissoessuario()[5].children[6].status;
+   this.batimentoE = this.us.getPermissoessuario()[5].children[9].status;
+   this.logistica = this.us.getPermissoessuario()[5].children[8].status;
+
   }
 
 

@@ -9,6 +9,7 @@ export class BarraTotalComponent implements OnInit {
 
   @Input() valor  = 0;
   @Input() nome  = '';
+  @Input() naomostrarReal  = false;
 
   constructor() { }
 

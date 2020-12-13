@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="this.servCompC.getListaPedidos()">
+<table mat-table [dataSource]="this.servCompC.getListaPedidos().lista">
 
     <!-- Name Column -->
     <ng-container matColumnDef="c1">
@@ -8,11 +8,38 @@
             <span *ngIf="element.quantidade_pedidos"> Quantidade de pedidos </span>
 
             <span *ngIf="element.total_gasto"> Total </span>
-            <span *ngIf="!element.total_gasto && !element.quantidade_pedidos">  #{{element.id}}  </span>
+            <span *ngIf="!element.total_gasto && !element.quantidade_pedidos">  
+                #{{element.id}}  
+
+        
+            </span>
         </td>
     </ng-container>
 
+    <!-- Weight Column -->
+    <ng-container matColumnDef="status_pedido">
+        <th mat-header-cell *matHeaderCellDef> Forma de pagamento </th>
+        <td mat-cell *matCellDef="let element">
+            <div *ngFor="let fp of element.formapagamento" style="    border-bottom: 1px dotted;">
+                {{ fp.nome }}
+            </div>
+        </td>
+    </ng-container>
 
+    <!-- Weight Column -->
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status pedido </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon matTooltip="Cancelado" class="mat-18" *ngIf="element.status_pedido === '7'">close</mat-icon>
+            <mat-icon matTooltip="Concluído" class="mat-18" *ngIf="element.status_pedido === '6'">check_circle</mat-icon>
+            <mat-icon matTooltip="Entregue" class="mat-18" *ngIf="element.status_pedido === '5'">check</mat-icon>
+            <mat-icon matTooltip="Em andamento" class="mat-18" *ngIf="element.status_pedido === '4'">autorenew</mat-icon>
+            <mat-icon matTooltip="Em andamento" class="mat-18" *ngIf="element.status_pedido === '3'">autorenew</mat-icon>
+            <mat-icon matTooltip="Em andamento" class="mat-18" *ngIf="element.status_pedido === '2'">autorenew</mat-icon>
+            <mat-icon matTooltip="Aceito" class="mat-18" *ngIf="element.status_pedido === '1'">autorenew</mat-icon>
+            <mat-icon matTooltip="Pendente" class="mat-18" *ngIf="element.status_pedido === '0'">assignment_late</mat-icon>
+        </td>
+    </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="c2">
@@ -71,3 +98,7 @@
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
 </table>
+
+<app-barra-total [naomostrarReal]="true" [nome]="'Qtd. de pedidos concluídos'" [valor]="this.servCompC.getListaPedidos().quantidade_pedidos_concluidos"></app-barra-total>
+<app-barra-total [naomostrarReal]="true" [nome]="'Qtd. de pedidos'" [valor]="this.servCompC.getListaPedidos().quantidade_pedidos"></app-barra-total>
+<app-barra-total [nome]="'Total'" [valor]="this.servCompC.getListaPedidos().total_gasto"></app-barra-total>

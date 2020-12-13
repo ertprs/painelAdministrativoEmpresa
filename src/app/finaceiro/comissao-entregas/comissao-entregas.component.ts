@@ -43,6 +43,8 @@ export class ComissaoEntregasComponent implements OnInit {
       datafim: [''],
     });
 
+    this.filtroPagos = 'todos-hoje';
+
     this.consulta();
 
   }

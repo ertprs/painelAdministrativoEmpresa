@@ -59,15 +59,14 @@ export class PagarDividaComponent implements OnInit {
     this.itensPag = this.form.value.formapagamento.itens;
 
 
-    if (this.form.value.formapagamento.nome === 'Transferência bancária') {
+    if (this.form.value.formapagamento.nome.indexOf('Transferência') > -1 || this.form.value.formapagamento.nome.indexOf('Transferencia') > -1) {
        this.transf = true;
        this.cartao = true;
        return;
       } else {
           this.transf = false;
         }
-    if (this.form.value.formapagamento.nome === 'Cartão de crédito' ||
-    this.form.value.formapagamento.nome === 'Cartão de débito') { this.cartao = true; } else { this.cartao = false; }
+    if (this.form.value.formapagamento.nome.indexOf('Cartão') > -1 || this.form.value.formapagamento.nome.indexOf('Cartao') > -1) { this.cartao = true; } else { this.cartao = false; }
 
   }
 

@@ -198,6 +198,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { FiltronomedinamPipe } from './pipes/filtronomedinam.pipe';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { LoadercompComponent } from './componentes/loadercomp/loadercomp.component';
+import { CategoriasEmpresasComponent } from './categorias-empresas/categorias-empresas.component';
+import { FormCategoriasEmpresaComponent } from './categorias-empresas/form-categorias-empresa/form-categorias-empresa.component';
+import { LoaderDelsucComponent } from './componentes/loader-delsuc/loader-delsuc.component';
 
 @NgModule({
   declarations: [
@@ -348,7 +351,10 @@ import { LoadercompComponent } from './componentes/loadercomp/loadercomp.compone
       VerEmpresaComponent,
       FaturasComponent,
       FiltronomedinamPipe,
-      LoadercompComponent
+      LoadercompComponent,
+      CategoriasEmpresasComponent,
+      FormCategoriasEmpresaComponent,
+      LoaderDelsucComponent
    ],
   imports: [
     BrowserModule,
