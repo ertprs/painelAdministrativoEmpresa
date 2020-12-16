@@ -5,3 +5,25 @@ table {
 .faturaOK {
     color: "green";
 }
+
+.fatuErro {
+    background: #FFEB3B;
+    padding: 6px;
+    color: black;
+    border-radius: 9px;
+}
+
+.fatuErroToken {
+    padding: 10px;
+    background: #00000069;
+    margin-top: 7px;
+    border-radius: 6px;
+}
+
+.fatu {
+    background: #1d1c1f;
+    padding: 10px;
+    color: white;
+    font-size: 13px;
+    border-bottom: 1px solid #0000002e;
+}

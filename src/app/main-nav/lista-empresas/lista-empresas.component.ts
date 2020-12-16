@@ -15,12 +15,26 @@ export class ListaEmpresasComponent implements OnInit {
 
   displayedColumns: string[] = ['status_conta', 'op', 'c1', 'c2', 'c3', 'add'];
   itens = [];
-
-
+  ggf = false;
+  acoes: Array<any>;
+  
   constructor(private crud: CrudServicoService, public servico: ServicoService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.f5();
+  }
+
+  gerarFaturas(dbi, dbf) {
+    this.ggf = true;
+    this.crud.get_api('gerarFatura&tipo=all&di=' + dbi + '&df=' + dbf).subscribe(data => {
+        if (data.erro) {
+          this.servico.mostrarMensagem(data.detalhes);
+        } else {
+          this.servico.mostrarMensagem(data.detalhes);
+          this.acoes = data.resultado;
+        }
+        this.ggf = false;
+    });
   }
 
   attStatusEnt(item, statusConta) {

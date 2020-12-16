@@ -245,28 +245,7 @@
                 </table>
             </div>
         </mat-step>
-        <span *ngFor="let item of servpedidos.getPedido().formaspagamento">
-            <mat-step *ngIf="item.nome === 'Transferência bancária'">
 
-                <ng-template matStepLabel>Comprovante</ng-template>
-
-                <div class="" style="    width: 100%;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            display: grid;">
-                    <app-upload-imagem *ngIf="!servpedidos.getPedido().comprovante"
-                        [mensagem]="'O comprovante foi anexado ao pedido'" [nomeBotao]="'Selecionar comprovante'"
-                        [coluna]="'comprovante'" [tabela]="'pedidos'" [idItem]="servpedidos.getPedido().id">
-                    </app-upload-imagem>
-                    <img *ngIf="upimgServ.getImagem() && !servpedidos.getPedido().comprovante" width="365"
-                        [lazyLoad]="upimgServ.getImagem()" alt="Sem imagem de comprovate">
-                    <img *ngIf="servpedidos.getPedido().comprovante" width="365"
-                        [src]="servpedidos.getPedido().comprovante" alt="Sem imagem de comprovate">
-
-                </div>
-            </mat-step>
-        </span>
 
 
         <ng-template matStepperIcon="phone">

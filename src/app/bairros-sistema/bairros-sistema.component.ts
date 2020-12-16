@@ -76,7 +76,7 @@ editar(form) {
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
       // this.itens = r.resultado;
-      this.route.navigate(['/painel']);
+      this.route.navigate(['./painel']);
     }
     console.log(r);
   };
@@ -92,7 +92,7 @@ f1(form) {
       this.servico.mostrarMensagem(r.detalhes);
       // this.itens = r.resultado;
       // this.itemSelecionado;
-      this.route.navigate(['/painel']);
+      this.route.navigate(['./painel']);
     }
     console.log(r);
   };

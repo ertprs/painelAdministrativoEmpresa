@@ -34,6 +34,11 @@ export class VerEmpresaComponent implements OnInit {
   columnsToDisplay = ['id', 'status', 'termos', 'periodo', 'total', 'pdf', 'boleto'];
   faturas = [];
   token = '';
+  
+
+  sistema_delivery = false;
+  status_delivery = false;
+  auto_estoque = false;
 
 constructor(private route: ActivatedRoute, private fb: FormBuilder, private servico: ServicoService, private crud: CrudServicoService,
             public us: UsuariosAdmService, private router: Router) { }
@@ -61,13 +66,41 @@ ngOnInit(): void {
         coordenadas: [this.dadosLoja.coordenadas],
         politica: [this.dadosLoja.politica],
         descricao: [this.dadosLoja.descricao],
+        sistema_delivery: [],
+        status_delivery: [],
+        auto_estoque: [],
       });
 
       this.consultaEmpresa();
     } );
 
   }
+  
+  autoestoque(status: any) {
+    if (status) {
+      status = false;
+    } else {
+      status = true;
+    }
+    setTimeout( () => { this.auto_estoque = status; }, 300);
+  }
 
+  statusDelivery(status: any) {
+    if (status) {
+      status = false;
+    } else {
+      status = true;
+    }
+    setTimeout( () => { this.status_delivery = status; }, 300);
+  }
+  sistemaDelivery(status: any) {
+    if (status) {
+      status = false;
+    } else {
+      status = true;
+    }
+    setTimeout( () => { this.sistema_delivery = status; }, 300);
+  }
   consultaEmpresa() {
     const accallback = () => {
 
@@ -80,6 +113,7 @@ ngOnInit(): void {
         console.log(r.resultado);
         this.dataSource.data = r.resultado.permissoes;
         this.locaisEntrega  = r.resultado.locais_entrega;
+        
       } else {
 
         this.dataSource.data = this.us.getPermissoessuario();
@@ -87,6 +121,10 @@ ngOnInit(): void {
       }
 
       this.faturas = r.resultado.faturas;
+     
+      this.sistema_delivery  = r.resultado.sistema_delivery;
+      this.status_delivery  = r.resultado.status_delivery;
+      this.auto_estoque  = r.resultado.auto_estoque;
 
     };
     this.crud.post_api('consulta_empresa', accallback, this.dadosLoja.id);
@@ -94,6 +132,13 @@ ngOnInit(): void {
   }
 
   onClickSalvar() {
+
+    this.form.controls.sistema_delivery.setValue(this.sistema_delivery);
+    this.form.controls.status_delivery.setValue(this.status_delivery);
+    this.form.controls.auto_estoque.setValue(this.auto_estoque);
+
+    console.log(this.form.value)
+
     const accallback = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
