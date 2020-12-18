@@ -9,7 +9,7 @@
 <mat-form-field class="f-cli" style="margin-left: 15px;" [formGroup]="form">
     <mat-label>Filtro</mat-label>
     <input matInput type="name" formControlName="clienteNome" placeholder="Nome cliente" (keydown.enter)="consultaClienteFiltro()">
-    <mat-hint> Digite o nome e aperte enter para pesquisar </mat-hint>
+    <mat-hint> Digite o nome ou telefone e aperte enter para pesquisar </mat-hint>
 </mat-form-field>
 
 
@@ -60,7 +60,7 @@
         <ng-container matColumnDef="telefone">
             <th mat-header-cell *matHeaderCellDef> Telefone. </th>
             <td mat-cell *matCellDef="let element">
-                {{element.telefone | mask: '(00) 0000-0000'}}
+                {{element.telefone | mask: '(00) 00000-000000'}}
             </td>
         </ng-container>
 

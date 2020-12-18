@@ -28,7 +28,7 @@ export class CaixaFinanceiroComponent implements OnInit {
   horaCaixaFechado = '';
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
-              public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
+    public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
 
   ngOnInit(): void {
     this.statusCaixa();
@@ -44,9 +44,22 @@ export class CaixaFinanceiroComponent implements OnInit {
         this.servapp.setStatusCaixa(true);
         this.statusCaixaFechado = true;
         this.servapp.mostrarMensagem(r.resultado.mensagem);
+        /*  */
+        this.dataSource = r.resultado.itens.caixa.itens.fps;
+        this.totalPagamento = r.resultado.itens.caixa.itens.total_pagamento;
+        this.totalValores = r.resultado.itens.caixa.itens.total_valores;
+
+        this.dataCaixaAberto = r.resultado.itens.caixa.itens.itens.info;
+        this.horaCaixaAberto = r.resultado.itens.caixa.itens.itens.horario;
+        this.operador = r.resultado.itens.caixa.itens.itens.operador;
+
+        this.dataCaixaFechado = r.resultado.itens.caixa.itens.itens.data_fechou;
+        this.horaCaixaFechado = r.resultado.itens.caixa.itens.itens.hora_fechou;
+        this.operadorFechou = r.resultado.itens.caixa.itens.itens.operador_fechou;
+
       }
     };
-    this.crud.post_api('abrirCaixa', fcall, this.dataSource, true );
+    this.crud.post_api('abrirCaixa', fcall, this.dataSource, true);
   }
 
   statusCaixa() {
@@ -71,37 +84,37 @@ export class CaixaFinanceiroComponent implements OnInit {
 
       this.statusCaixaFechado = data.resultado.itens.status_caixa;
     });
-}
+  }
 
-getTotalValores() {
-  let total = 0;
-  this.dataSource.forEach(element => {
-    total += element.valor;
-  });
-  return total;
-}
+  getTotalValores() {
+    let total = 0;
+    this.dataSource.forEach(element => {
+      total += element.valor;
+    });
+    return total;
+  }
 
-getTotalDiferenca() {
-  let total = 0;
-  this.dataSource.forEach(element => {
-    total += element.valor - element.total;
-  });
-  return total;
-}
+  getTotalDiferenca() {
+    let total = 0;
+    this.dataSource.forEach(element => {
+      total += element.valor - element.total;
+    });
+    return total;
+  }
 
-lancarCaixa() {
-  const fcall = () => {
-    const r = this.servapp.getRespostaApi();
-    console.log(r);
-    if (r.erro === true) {
-      this.servapp.mostrarMensagem(r.resultado.mensagem);
-    } else {
-      this.servapp.mostrarMensagem(r.resultado.mensagem);
-      this.servapp.setStatusCaixa(false);
-      this.statusCaixaFechado = false;
-    }
-  };
-  this.crud.post_api('fecharCaixa', fcall, this.dataSource, true );
-}
+  lancarCaixa() {
+    const fcall = () => {
+      const r = this.servapp.getRespostaApi();
+      console.log(r);
+      if (r.erro === true) {
+        this.servapp.mostrarMensagem(r.resultado.mensagem);
+      } else {
+        this.servapp.mostrarMensagem(r.resultado.mensagem);
+        this.servapp.setStatusCaixa(false);
+        this.statusCaixaFechado = false;
+      }
+    };
+    this.crud.post_api('fecharCaixa', fcall, this.dataSource, true);
+  }
 
 }

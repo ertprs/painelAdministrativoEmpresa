@@ -32,6 +32,9 @@ export class DataRetroativaComponent implements OnInit {
         this.statusR = r.resultado.status;
         console.log(r.resultado.status);
         this.servico.setStatusDR(r.resultado.status);
+        setTimeout( () => {
+          window.location.reload();
+        }, 500);
       }
       console.log(r);
     };

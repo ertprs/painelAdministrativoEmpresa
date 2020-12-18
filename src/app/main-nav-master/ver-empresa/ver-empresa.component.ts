@@ -39,6 +39,8 @@ export class VerEmpresaComponent implements OnInit {
   sistema_delivery = false;
   status_delivery = false;
   auto_estoque = false;
+  estoqueRetirada = false;
+  estoqueEntrega = false;
 
 constructor(private route: ActivatedRoute, private fb: FormBuilder, private servico: ServicoService, private crud: CrudServicoService,
             public us: UsuariosAdmService, private router: Router) { }
@@ -69,11 +71,30 @@ ngOnInit(): void {
         sistema_delivery: [],
         status_delivery: [],
         auto_estoque: [],
-      });
+        estoqueEntrega: [],
+        estoqueRetirada: [],
+      }); 
 
       this.consultaEmpresa();
     } );
 
+  }
+  togglePedidoEntrega(status: any) {
+    if (status) {
+      status = false;
+    } else {
+      status = true;
+    }
+    setTimeout( () => { this.estoqueEntrega = status; }, 300);
+  }
+
+  togglePedidoRetirada(status: any) {
+    if (status) {
+      status = false;
+    } else {
+      status = true;
+    }
+    setTimeout( () => { this.estoqueRetirada = status; }, 300);
   }
   
   autoestoque(status: any) {
@@ -125,6 +146,8 @@ ngOnInit(): void {
       this.sistema_delivery  = r.resultado.sistema_delivery;
       this.status_delivery  = r.resultado.status_delivery;
       this.auto_estoque  = r.resultado.auto_estoque;
+      this.estoqueEntrega  = r.resultado.auto_estoque_entrega;
+      this.estoqueRetirada  = r.resultado.auto_estoque_retirada;
 
     };
     this.crud.post_api('consulta_empresa', accallback, this.dadosLoja.id);
@@ -136,6 +159,8 @@ ngOnInit(): void {
     this.form.controls.sistema_delivery.setValue(this.sistema_delivery);
     this.form.controls.status_delivery.setValue(this.status_delivery);
     this.form.controls.auto_estoque.setValue(this.auto_estoque);
+    this.form.controls.estoqueEntrega.setValue(this.estoqueEntrega);
+    this.form.controls.estoqueRetirada.setValue(this.estoqueRetirada);
 
     console.log(this.form.value)
 

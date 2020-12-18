@@ -32,6 +32,7 @@
     "lodash": "^4.17.15",
     "ng-lazyload-image": "^9.0.0",
     "ng2-charts": "^2.4.1",
+    "ng2-currency-mask": "^9.0.2",
     "ngx-cookie-service": "^11.0.2",
     "ngx-google-places-autocomplete": "^2.0.5",
     "ngx-mask": "^9.0.2",

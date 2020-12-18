@@ -51,9 +51,8 @@
 
                     <mat-form-field appearance="outline" style="width: 22%;margin-left: 9px;">
                         <mat-label>Preço</mat-label>
-                        <input formControlName="preco" matInput placeholder="0.00" type="text" matInput mask="separator.2" thousandSeparator=",">
-                        <span matPrefix>R$&nbsp;</span>
-                        <mat-hint></mat-hint>
+                        <input formControlName="preco" matInput placeholder="R$0.00" currencyMask type="tel">
+
                     </mat-form-field>
 
                     <div class="area-form">

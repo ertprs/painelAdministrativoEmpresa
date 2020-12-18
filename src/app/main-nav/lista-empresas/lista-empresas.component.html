@@ -21,8 +21,6 @@
     </div>
 
 
-    <button style="margin-left: 10px;" mat-flat-button> Concluir pedidos </button>
-
 </mat-toolbar>
 
 <mat-toolbar>
@@ -46,7 +44,7 @@
 
         <ng-container matColumnDef="status_conta">
             <th mat-header-cell *matHeaderCellDef> Status Delivery </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 <div style="display: flex; align-items: center; justify-content: space-evenly;">
                     <img style="border-radius: 10px;" width="40px" [defaultImage]="servico.getDefaultImage()" [lazyLoad]="element.imagem" alt="Logo da loja">
                     <mat-slide-toggle [(ngModel)]="element.status" #statusConta (click)="attStatusEnt(element, statusConta)" color="primary" [checked]="element.status === '1'">
@@ -57,7 +55,7 @@
 
         <ng-container matColumnDef="op">
             <th mat-header-cell *matHeaderCellDef> Aberto/Fechado </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 <span *ngIf="element.status_delivery === '1'"> Aberto </span>
                 <span *ngIf="element.status_delivery === '0'"> Fechado </span>
 
@@ -68,7 +66,7 @@
 
         <ng-container matColumnDef="c1">
             <th mat-header-cell *matHeaderCellDef> Nome </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
 
                 {{ element.nome }}
 
@@ -77,15 +75,22 @@
 
         <ng-container matColumnDef="c2">
             <th mat-header-cell *matHeaderCellDef> Bairro - Cidade </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 {{ element.bairro }} - {{ element.cidade }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="c3">
             <th mat-header-cell *matHeaderCellDef> Pedidos Concluídos/Cancelados/Total </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 {{ element.qnt_conc }}/{{ element.qnt_canc }}/{{ element.qnt_pedidos }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="c4">
+            <th mat-header-cell *matHeaderCellDef> Data cadastro </th>
+            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+                {{ element.data_cadastro }}
             </td>
         </ng-container>
 
@@ -97,7 +102,7 @@
                     <mat-icon>add</mat-icon>
                 </button>
             </th>
-            <td mat-cell *matCellDef="let element">
+            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
 
                 <button matTooltip="Ver loja" (click)="verEmpresa(element)" mat-icon-button color="primary">
                     <mat-icon>remove_red_eye

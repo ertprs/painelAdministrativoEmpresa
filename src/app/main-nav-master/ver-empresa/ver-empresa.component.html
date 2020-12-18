@@ -117,9 +117,17 @@
         <mat-slide-toggle [(ngModel)]="auto_estoque" (click)="autoestoque(this.auto_estoque)" [checked]="auto_estoque"> Auto estoque </mat-slide-toggle>
     </div>
     <div>
-        <mat-slide-toggle [(ngModel)]="sistema_delivery" (click)="sistemaDelivery(sistema_delivery)" [checked]="sistema_delivery"> Funcionamento delivery </mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="sistema_delivery" (click)="sistemaDelivery(sistema_delivery)" [checked]="sistema_delivery"> Habilitar funcionamento delivery </mat-slide-toggle>
         <div>
-            <mat-slide-toggle [(ngModel)]="status_delivery" (click)="statusDelivery(status_delivery)" [checked]="status_delivery"> Status Delivery delivery </mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)]="status_delivery" (click)="statusDelivery(status_delivery)" [checked]="status_delivery"> Habilitar status Delivery </mat-slide-toggle>
+        </div>
+        <div>
+            <mat-slide-toggle [(ngModel)]="status_delivery" (click)="statusDelivery(status_delivery)" [checked]="status_delivery"> Desabilitar retirar estoque para pedidos com tipo RETIRADA </mat-slide-toggle>
+            <p style="font-size: 12;"> Quando habilitado o sistema irá retira o estoque da loja quando o pedido for para retirada </p>
+        </div>
+        <div>
+            <mat-slide-toggle [(ngModel)]="status_delivery" (click)="statusDelivery(status_delivery)" [checked]="status_delivery"> Desabilitar retirar estoque para pedidos com tipo ENTREGA </mat-slide-toggle>
+            <p style="font-size: 12;"> Quando habilitado o sistema irá retira o estoque da loja quando o pedido for para entrega </p>
         </div>
     </div>
 

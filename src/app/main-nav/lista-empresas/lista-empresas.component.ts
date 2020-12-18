@@ -13,7 +13,7 @@ import { ServicoService } from 'src/app/servico.service';
 })
 export class ListaEmpresasComponent implements OnInit {
 
-  displayedColumns: string[] = ['status_conta', 'op', 'c1', 'c2', 'c3', 'add'];
+  displayedColumns: string[] = ['status_conta', 'op', 'c1', 'c2', 'c3', 'c4', 'add'];
   itens = [];
   ggf = false;
   acoes: Array<any>;

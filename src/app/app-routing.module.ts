@@ -1,3 +1,5 @@
+import { CadastroEmpresaLojistaComponent } from './cadastro-empresa-lojista/cadastro-empresa-lojista.component';
+import { CategoriasDestaqueComponent } from './categorias-destaque/categorias-destaque.component';
 import { CategoriasEmpresasComponent } from './categorias-empresas/categorias-empresas.component';
 import { FaturasComponent } from './faturas/faturas.component';
 import { VerEmpresaComponent } from './main-nav-master/ver-empresa/ver-empresa.component';
@@ -82,8 +84,14 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'recuperar', component: RecuperarContaComponent },
-  { path: 'cadastro', component: CadastroEmpresaComponent, /*canActivate: [GuardaAtenticacaoService]*/ },
 
+  /* SITE - Local de acesso nas paginas do SITE */
+  { path: 'inicio', component: CadastroEmpresaLojistaComponent, children: [
+    { path: 'cadastro', component: CadastroEmpresaLojistaComponent, /*canActivate: [GuardaAtenticacaoService]*/ },
+  ] },
+  /* FIM LINHA SITE -- Local de acesso nas paginas do SITE */
+
+  /* DASH LOJISTA */
   {
     path: '', component: DashboardComponent, canActivate: [GuardaAtenticacaoService], children: [
 
@@ -190,6 +198,7 @@ const routes: Routes = [
       { path: 'ver-empresa', component: VerEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'cadastro-loja', component: CadastroEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'categorias-empresa', component: CategoriasEmpresasComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'destaques', component: CategoriasDestaqueComponent, canActivate: [GuardaAtenticacaoService] },
 
       
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [

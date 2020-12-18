@@ -1,3 +1,4 @@
+import { UsuariosSistemaService } from './../usuarios/usuario-permissoes/usuarios-sistema.service';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicoService } from '../servico.service';
@@ -7,7 +8,7 @@ import { ServicoService } from '../servico.service';
 })
 export class AuthService {
   public mostrarMenu = new EventEmitter<boolean>();
-  constructor(private route: Router, private servico: ServicoService) { }
+  constructor(private route: Router, private servico: ServicoService, private permUsuario: UsuariosSistemaService) { }
 
   verificaLogado() {
 
@@ -19,6 +20,7 @@ export class AuthService {
 
     } else {
       console.log('ir pagina inicio');
+      console.log(this.permUsuario.getPermissoessuario());
       return true;
     }
   }

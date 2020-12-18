@@ -1,13 +1,13 @@
 <div>
     <div class="i">Total pedido: {{ servcard.getTotalCarrinho() | currency:'BRL':true }} </div>
     <div class="u">Falta: {{ servcard.getFalta() | currency:'BRL':true }} </div>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" [formGroup]="form">
         <mat-label> Valor a pagar </mat-label>
-        <input matInput placeholder="R$0,00" #valor type="number" (keydown.enter)="onClickConfirmar(valor.value)">
+        <input matInput placeholder="R$0,00" #valor type="tel" currencyMask (keydown.enter)="onClickConfirmar()" formControlName="valor">
     </mat-form-field>
 </div>
 
 
 <div style="text-align: center;">
-    <button mat-flat-button color="warn" (click)="onClickConfirmar(valor.value)"> Confimar </button>
+    <button mat-flat-button color="warn" (click)="onClickConfirmar()"> Confimar </button>
 </div>

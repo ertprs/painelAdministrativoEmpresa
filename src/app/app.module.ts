@@ -201,6 +201,20 @@ import { LoadercompComponent } from './componentes/loadercomp/loadercomp.compone
 import { CategoriasEmpresasComponent } from './categorias-empresas/categorias-empresas.component';
 import { FormCategoriasEmpresaComponent } from './categorias-empresas/form-categorias-empresa/form-categorias-empresa.component';
 import { LoaderDelsucComponent } from './componentes/loader-delsuc/loader-delsuc.component';
+import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+import { CategoriasDestaqueComponent } from './categorias-destaque/categorias-destaque.component';
+import { FormCategoriaDestaqueComponent } from './categorias-destaque/form-categoria-destaque/form-categoria-destaque.component';
+import { CadastroEmpresaLojistaComponent } from './cadastro-empresa-lojista/cadastro-empresa-lojista.component';
+import { InicioSiteComponent } from './site/inicio-site/inicio-site.component';
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "right",
+  allowNegative: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
 
 @NgModule({
   declarations: [
@@ -354,7 +368,11 @@ import { LoaderDelsucComponent } from './componentes/loader-delsuc/loader-delsuc
       LoadercompComponent,
       CategoriasEmpresasComponent,
       FormCategoriasEmpresaComponent,
-      LoaderDelsucComponent
+      LoaderDelsucComponent,
+      CategoriasDestaqueComponent,
+      FormCategoriaDestaqueComponent,
+      CadastroEmpresaLojistaComponent,
+      InicioSiteComponent
    ],
   imports: [
     BrowserModule,
@@ -408,11 +426,12 @@ import { LoaderDelsucComponent } from './componentes/loader-delsuc/loader-delsuc
       apiKey: 'AIzaSyAwli4wwHOdbNUazzdQOOzswiWry5gUo9c',
     }),
     AgmCoreModule.forRoot(),
+    CurrencyMaskModule,
   ],
   entryComponents: [
     DialoDelsucgComponent
   ],
-  providers: [AuthService, MatDatepickerModule, CookieService ],
+  providers: [AuthService, MatDatepickerModule, CookieService, { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig } ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

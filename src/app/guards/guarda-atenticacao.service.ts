@@ -13,8 +13,7 @@ export class GuardaAtenticacaoService implements CanActivate {
   constructor(private servico: ServicoService, private route: Router, private authlogin: AuthService, private cookies: CookieService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    console.log(this.servico.getStatusLogado());
-    setTimeout( () =>  { this.cookies.set('router_exi', this.route.url); }, 500);
+    // setTimeout( () =>  { this.cookies.set('router_exi', this.route.url); }, 500);
     return this.authlogin.verificaLogado();
   }
 

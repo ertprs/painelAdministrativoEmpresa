@@ -1,0 +1,30 @@
+<app-upload-imagem [nomeBotao]="'Imagem'" [preload]="true"></app-upload-imagem>
+
+<div [formGroup]="form">
+
+    <mat-form-field class="example-full-width">
+        <mat-label> Status </mat-label>
+        <input matInput formControlName="status">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label> Título </mat-label>
+        <input matInput formControlName="titulo">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label> Texto </mat-label>
+        <input matInput formControlName="texto">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label> Link Imagem </mat-label>
+        <input matInput disabled [value]="upimgserv.getImagem()">
+    </mat-form-field>
+
+</div>
+
+<div>
+    <button mat-flat-button color="warn" [mat-dialog-close]>Cancelar</button>
+    <button [disabled]="statusBt" mat-flat-button color="primary" style="margin-left: 5px;" (click)="confirmar()">Salvar</button>
+</div>

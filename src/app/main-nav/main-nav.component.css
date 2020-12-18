@@ -81,6 +81,44 @@
     position: fixed;
 }
 
+.ccpendente {
+    display: grid;
+    height: 100vh;
+    background: blueviolet;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    color: white;
+}
+
+.btsi {
+    margin: auto;
+    margin-top: 13px;
+    background: #3c3c3c;
+}
+
+.ccs {
+    background-image: url('/assets/gif/computer-settings.gif');
+    height: 260px;
+    width: 348px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: auto;
+    border-radius: 235px;
+}
+
+.cc3 {
+    font-size: 30px;
+    background: #FFEB3B;
+    color: blueviolet;
+    padding: 20px;
+    width: 380px;
+    margin: auto;
+    margin-top: 9px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
 @media(max-width:600px) {
     .logoEmpresatoolbar {
         display: none;
