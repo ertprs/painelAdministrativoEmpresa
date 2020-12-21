@@ -46,7 +46,7 @@
     <ng-container matColumnDef="pdf">
         <th mat-header-cell *matHeaderCellDef> Detalhes fatura </th>
         <td mat-cell *matCellDef="let element">
-            <a color="primary" mat-raised-button [href]="element.pdf" target="_blank">Ver</a>
+            <a color="primary" mat-raised-button [href]="element.pdf+ '&token=' + token" target="_blank">Ver</a>
         </td>
     </ng-container>
     <!-- Column -->

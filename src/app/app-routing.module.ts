@@ -1,3 +1,4 @@
+import { PagamentoOnlineComponent } from './pagamento-online/pagamento-online.component';
 import { CadastroEmpresaLojistaComponent } from './cadastro-empresa-lojista/cadastro-empresa-lojista.component';
 import { CategoriasDestaqueComponent } from './categorias-destaque/categorias-destaque.component';
 import { CategoriasEmpresasComponent } from './categorias-empresas/categorias-empresas.component';
@@ -95,7 +96,7 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, canActivate: [GuardaAtenticacaoService], children: [
 
-      { path: 'inicio', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'mapa', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'faturas', component: FaturasComponent, canActivate: [GuardaAtenticacaoService] },
 
@@ -192,7 +193,7 @@ const routes: Routes = [
   {
     path: 'admin', component: MainNavMasterComponent, canActivate: [GuardaAtenticacaoService], children: [
 
-      { path: 'inicio', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'mapa', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'lojas', component: ListaEmpresasComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'ver-empresa', component: VerEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
@@ -259,6 +260,9 @@ const routes: Routes = [
           { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'data-retroativa', component: DataRetroativaComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService]},
+          
+          { path: 'pagamento-online', component: PagamentoOnlineComponent },
+
 
           {
             path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [

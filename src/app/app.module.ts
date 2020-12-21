@@ -206,6 +206,7 @@ import { CategoriasDestaqueComponent } from './categorias-destaque/categorias-de
 import { FormCategoriaDestaqueComponent } from './categorias-destaque/form-categoria-destaque/form-categoria-destaque.component';
 import { CadastroEmpresaLojistaComponent } from './cadastro-empresa-lojista/cadastro-empresa-lojista.component';
 import { InicioSiteComponent } from './site/inicio-site/inicio-site.component';
+import { PagamentoOnlineComponent } from './pagamento-online/pagamento-online.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -372,7 +373,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       CategoriasDestaqueComponent,
       FormCategoriaDestaqueComponent,
       CadastroEmpresaLojistaComponent,
-      InicioSiteComponent
+      InicioSiteComponent,
+      PagamentoOnlineComponent
    ],
   imports: [
     BrowserModule,

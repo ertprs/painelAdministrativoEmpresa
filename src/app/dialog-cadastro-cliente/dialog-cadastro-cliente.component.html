@@ -35,13 +35,13 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
         <mat-form-field class="example-full-width" style="width: 100%;">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Ex. Nome Cliente..." value="" formControlName="email">
+            <input matInput placeholder="Ex. email@..." value="" formControlName="email">
 
         </mat-form-field>
 
         <mat-form-field class="example-full-width" style="width: 100%;">
             <mat-label>Data aniversário</mat-label>
-            <input matInput placeholder="Ex. 00/00/00" value="" formControlName="data_aniversario" type="date">
+            <input matInput placeholder="Ex. 00/00/0000" value="" formControlName="data_aniversario" type="date">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -51,81 +51,89 @@
         </mat-form-field>
     </div>
 
-    <div style="    background: #ffffff;
+    <span *ngIf="this.data.acao === 'add'">
+
+        <div style="    background: #ffffff;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 5px;
     color: #5a5a5a;">
-        Endereço
-    </div>
+            Endereço
+        </div>
 
 
 
 
-    <div style="display: grid; grid-template-columns: 1fr;">
+        <div style="display: grid; grid-template-columns: 1fr;">
 
 
-        <mat-google-maps-autocomplete [addressLabelText]="'Buscar endereço'" [country]="'br'" [appearance]="appearance.LEGACY" (onAutocompleteSelected)="onAutocompleteSelected($event)" (onLocationSelected)="onLocationSelected($event)">
-        </mat-google-maps-autocomplete>
+            <mat-google-maps-autocomplete [addressLabelText]="'Buscar endereço'" [country]="'br'"
+                [appearance]="appearance.LEGACY" (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                (onLocationSelected)="onLocationSelected($event)">
+            </mat-google-maps-autocomplete>
 
 
 
-    </div>
+        </div>
 
-    <div style="display: grid; grid-template-columns: 1fr;">
+        <div style="display: grid; grid-template-columns: 1fr;">
 
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Rua</mat-label>
-            <input matInput placeholder="Ex. Rua Nome..." value="" formControlName="rua">
+            <mat-form-field class="example-full-width">
+                <mat-label>Rua</mat-label>
+                <input matInput placeholder="Ex. Rua Nome..." value="" formControlName="rua">
+                <mat-hint> Obrigatório </mat-hint>
+            </mat-form-field>
+
+        </div>
+
+
+        <mat-form-field appearance="fill" style="width: 50%;">
+            <mat-label>Cidade</mat-label>
+            <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)"
+                #itemCidade>
+                <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
+                    {{item.nome}}
+                </mat-option>
+            </mat-select>
             <mat-hint> Obrigatório </mat-hint>
         </mat-form-field>
 
-    </div>
-
-
-    <mat-form-field appearance="fill" style="width: 50%;">
-        <mat-label>Cidade</mat-label>
-        <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
-            <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
-                {{item.nome}}
-            </mat-option>
-        </mat-select>
-        <mat-hint> Obrigatório </mat-hint>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" style="width: 50%;">
-        <mat-label>Bairro
-            <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
-        </mat-label>
-        <mat-select formControlName="bairro" (selectionChange)="carregaTaxa(itemBairro.value)" #itemBairro>
-            <!--#bairroClienteSelecionada-->
-            <mat-option *ngFor="let item of bairros" [value]="item">
-                {{item.nome}}
-            </mat-option>
-        </mat-select>
-        <mat-hint> Obrigatório </mat-hint>
-    </mat-form-field>
-
-
-    <div style="display: grid; grid-template-columns: 1fr 4fr 1fr;">
-        <mat-form-field class="example-full-width">
-            <mat-label>Uf</mat-label>
-            <input matInput placeholder="Ex. BA" value="" formControlName="uf">
+        <mat-form-field appearance="fill" style="width: 50%;">
+            <mat-label>Bairro
+                <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
+            </mat-label>
+            <mat-select formControlName="bairro" (selectionChange)="carregaTaxa(itemBairro.value)" #itemBairro>
+                <!--#bairroClienteSelecionada-->
+                <mat-option *ngFor="let item of bairros" [value]="item">
+                    {{item.nome}}
+                </mat-option>
+            </mat-select>
             <mat-hint> Obrigatório </mat-hint>
         </mat-form-field>
 
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Complemento</mat-label>
-            <input matInput placeholder="Ex. Casa em frente ao Delivery" value="" formControlName="complemento">
-        </mat-form-field>
+        <div style="display: grid; grid-template-columns: 1fr 4fr 1fr;">
+            <mat-form-field class="example-full-width">
+                <mat-label>Uf</mat-label>
+                <input matInput placeholder="Ex. BA" value="" formControlName="uf">
+                <mat-hint> Obrigatório </mat-hint>
+            </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Número</mat-label>
-            <input matInput placeholder="Ex. 83" value="" formControlName="numero">
-        </mat-form-field>
-    </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Complemento</mat-label>
+                <input matInput placeholder="Ex. Casa em frente ao Delivery" value="" formControlName="complemento">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Número</mat-label>
+                <input matInput placeholder="Ex. 83" value="" formControlName="numero">
+            </mat-form-field>
+        </div>
+
+    </span>
+
 
     <div style="display: flex;">
         <button mat-button color="warn" [mat-dialog-close]="false">Cancelar</button>

@@ -1,0 +1,197 @@
+<div class="c">
+    <mat-form-field class="">
+        <mat-label> Chave aleatória </mat-label>
+        <input matInput placeholder="*******" #chave>
+    </mat-form-field>
+
+    <button class="btspa" mat-raised-button color="warn" (click)="addnc(chave.value)"> Gerar </button>
+</div>
+
+
+<mat-toolbar>
+    <span> Chaves </span>
+</mat-toolbar>
+
+
+<table mat-table [dataSource]="chaves">
+
+    <ng-container matColumnDef="data_criado">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Data. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.data_criado}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_pix">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> id_pix. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.id_pix}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pix_key">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> pix_key. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.pix_key}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDateTime">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> creationDateTime. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.creationDateTime}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ownershipDateTime">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> ownershipDateTime. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.ownershipDateTime}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="claimRequestDateTime">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> claimRequestDateTime. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.claimRequestDateTime}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="href">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> href. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.href}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipo_chave">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> tipo_chave. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.tipo_chave}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+<mat-toolbar>
+    <span> Pagamentos online </span>
+</mat-toolbar>
+
+
+<div [formGroup]="form" style="margin-left: 30px;margin-top: 5px;">
+
+    <mat-form-field appearance="fill" style="margin-top: 10px;">
+        <mat-label> Modo de transferência </mat-label>
+        <mat-select formControlName="modotransf">
+
+            <mat-option [value]="'avulso'">
+                Avulso
+            </mat-option>
+            <mat-option [value]="'acumulativo'">
+                Acumulativo
+            </mat-option>
+
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <mat-label> Data início </mat-label>
+        <input matInput type="date" formControlName="datai">
+    </mat-form-field>
+    <mat-form-field style="margin-left: 15px;">
+        <mat-label> Data final </mat-label>
+        <input matInput type="date" formControlName="dataf">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" (click)="consultaPagsOn()">
+      <mat-icon>search</mat-icon>
+    </button>
+
+</div>
+
+<table mat-table [dataSource]="pagson">
+
+    <ng-container matColumnDef="che">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Transferir. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;">
+            <section class="example-section">
+                <mat-checkbox (click)="transf(element.id)" class="example-margin" [checked]="false"></mat-checkbox>
+            </section>
+        </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="id_pedido">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Referência pedido. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;">
+            #{{element.id_pedido}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_empresa">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Loja. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;">
+            {{element.info}}
+            <br>{{element.nome_empresa}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_formapagamento">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Pag. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.nome }} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="dt_alterado">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Data alt. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.dt_alterado}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="info">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Valor pag. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.valor | currency:'BRL':true}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="data_compensa">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Data disponível </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;">
+            {{element.data_disp}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_cliente">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Cliente. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> #{{element.id_cliente}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cod_pag_online">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Cód. pag. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.cod_pag_online}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="taxa_servico">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Taxa serviço. </th>
+        <td mat-cell *matCellDef="let element">
+
+            {{element.fee}}
+
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comissao_servico">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Comissão serviço. </th>
+        <td mat-cell *matCellDef="let element">
+
+            {{element.valor | currency:'BRL':true }}
+
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Status pag. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.status_pagamento_online}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total_lojista">
+        <th mat-header-cell *matHeaderCellDef style="font-size: 11px;"> Total lojista. </th>
+        <td mat-cell *matCellDef="let element" style="font-size: 11px;"> {{element.valor | currency:'BRL':true }} </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+</table>
+
+<app-barra-total [nome]="'Total comissão serviço'" [valor]="totalComissao"></app-barra-total>
+<app-barra-total [nome]="'Total'" [valor]="total"></app-barra-total>

@@ -12,11 +12,12 @@ export class FaturasComponent implements OnInit {
   columnsToDisplay = ['id', 'status', 'termos', 'periodo', 'total', 'pdf', 'boleto'];
   dataSource = [];
   sst = false;
-
+  token = '';
   constructor(private crud: CrudServicoService, public servico: ServicoService) { }
 
   ngOnInit(): void {
     this.f5();
+    this.token = this.servico.getToken();
   }
 
   f5() {
