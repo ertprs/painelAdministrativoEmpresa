@@ -22,10 +22,13 @@ export class FormBancoComponent implements OnInit {
 
   formAdd() {
     this.form = this.fb.group({
-      nome: [''],
-      conta: [''],
-      operacao: [''],
-      descricao: [''],
+      nome: [null],
+      conta: [null],
+      operacao: [null],
+      agencia: [null],
+      descricao: [null],
+      documento: [null],
+      tipo_conta: [null],
     });
   }
 
@@ -35,7 +38,10 @@ export class FormBancoComponent implements OnInit {
       nome: [this.data.item.nome],
       conta: [this.data.item.conta],
       operacao: [this.data.item.operacao],
+      agencia: [this.data.item.agencia],
       descricao: [this.data.item.descricao],
+      documento: [this.data.item.documento],
+      tipo_conta: [this.data.item.tipo_conta],
     });
   }
 

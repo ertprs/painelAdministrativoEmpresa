@@ -1,0 +1,39 @@
+.c {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background: white;
+    text-align: center;
+    justify-items: flex-start;
+    padding-left: 12px;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dadada;
+    color: black;
+    font-size: 14px;
+    align-items: center;
+    align-content: center;
+}
+
+.c2g {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    background: gold;
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+
+.c2gh {
+    background: #4CAF50;
+    color: white;
+}
+
+.cOFF {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status1 {
+    background-color: green;
+    color: white;
+}

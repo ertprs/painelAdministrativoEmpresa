@@ -1,0 +1,114 @@
+<mat-toolbar>
+    Empresa pagamentos online
+</mat-toolbar>
+
+<div [formGroup]="form" style="margin-left: 30px;margin-top: 5px;">
+
+    <mat-form-field>
+        <mat-label> Data início </mat-label>
+        <input matInput type="date" formControlName="datai">
+    </mat-form-field>
+    <mat-form-field style="margin-left: 15px;">
+        <mat-label> Data final </mat-label>
+        <input matInput type="date" formControlName="dataf">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" (click)="consultaPagsOnPeriodo()">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <mat-form-field style="margin-left: 15px;">
+        <mat-label> Data de recebimento </mat-label>
+        <input matInput type="date" formControlName="datar">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" (click)="clickDataRecebimento()">
+      <mat-icon>search</mat-icon>
+    </button>
+
+</div>
+
+
+<div>
+    <div class="c">
+
+        <div> Ver </div>
+        <div> Loja </div>
+        <div> </div>
+        <div> Total sem taxas</div>
+        <div> Transferir </div>
+
+    </div>
+    <span *ngFor="let item of lista">
+        <mat-progress-bar *ngIf="item.statusLoaderT"  mode="indeterminate"></mat-progress-bar>
+        <div class="c" [class.cOFF]="item.mostrarpags">
+
+            <div>
+
+                <button (click)="clickMPags(item)" mat-icon-button >
+                    <mat-icon *ngIf="!item.mostrarpags">keyboard_arrow_right</mat-icon>
+                    <mat-icon *ngIf="item.mostrarpags">keyboard_arrow_down</mat-icon>
+                </button>
+                 
+            </div>
+
+            <div> {{ item.nome }} </div>
+            <div>  </div>
+            <div> {{ item.total_valor | currency:'BRL':true }} </div>
+            <div>
+                {{ item.total_lojista | currency:'BRL':true }} 
+                <button *ngIf="!item.statusLoaderT" (click)="tranferir(item)" [disabled]="!item.mostrarpags" mat-icon-button >
+                    <mat-icon>outbond</mat-icon>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="itens" *ngIf="item.mostrarpags" >
+
+
+            <div class="c c2g c2gh">
+
+                <div> </div>
+                <div> Data </div>
+                <div> Data de recebimento </div>
+                <div> Valor pagamento </div>
+                <div> Comissão serviço </div>
+                <div> Comissão sistema </div>
+                <div> Total com taxas </div>
+                <div> Status pagamento </div>
+
+            </div>
+
+            <div class="c c2g" [class.status1]="subi.status_transferido === '1'" *ngFor="let subi of item.itens">
+
+                <div>
+
+                    <button mat-icon-button >
+                        <mat-icon>arrow_right_alt</mat-icon>
+                    </button>
+
+                </div>
+
+                <div> {{ subi.info }} </div>
+                <div> {{ subi.data_recebimento }} </div>
+                <div> {{ subi.valor | currency:'BRL':true}} </div>
+                <div> {{ subi.fee }}% </div>
+                <div> {{ subi.comissao_sistema }}% </div>
+                <div> {{ subi.total_lojista | currency:'BRL':true }} </div>
+                <div>
+
+                    <button mat-icon-button >
+                        <mat-icon *ngIf="subi.status_transferido === '1'" >check</mat-icon>
+                        <mat-icon *ngIf="subi.status_transferido === '0'" >info</mat-icon>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </span>
+</div>

@@ -1,4 +1,11 @@
 <div class="c">
+    <button class="btspa" mat-raised-button color="warn"> Chaves </button>
+    <button class="btspa" mat-raised-button color="warn"> Pagamentos online </button>
+    <button class="btspa" mat-raised-button color="warn" [routerLink]="['/admin/painel/empresa-pags-on']"> Loja pagamentos online </button>
+</div>
+
+
+<div class="c">
     <mat-form-field class="">
         <mat-label> Chave aleatória </mat-label>
         <input matInput placeholder="*******" #chave>
@@ -81,6 +88,9 @@
             </mat-option>
 
         </mat-select>
+
+
+
     </mat-form-field>
 
 

@@ -11,7 +11,7 @@ import { FormBancoComponent } from './form-banco/form-banco.component';
 })
 export class BancosComponent implements OnInit {
 
-  displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
+  displayedColumns: string[] = ['c0', 'c1', 'c2', 'c4', 'c3', 'numerobanco', 'documento', 'tipo_conta', 'c6'];
   dataSource: any;
 
   constructor(public dialog: MatDialog, private servico: ServicoService, private crud: CrudServicoService) { }

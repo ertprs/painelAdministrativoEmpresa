@@ -1,3 +1,4 @@
+import { EmpresaPagamentosOnlineComponent } from './empresa-pagamentos-online/empresa-pagamentos-online.component';
 import { PagamentoOnlineComponent } from './pagamento-online/pagamento-online.component';
 import { CadastroEmpresaLojistaComponent } from './cadastro-empresa-lojista/cadastro-empresa-lojista.component';
 import { CategoriasDestaqueComponent } from './categorias-destaque/categorias-destaque.component';
@@ -261,7 +262,10 @@ const routes: Routes = [
           { path: 'data-retroativa', component: DataRetroativaComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService]},
           
-          { path: 'pagamento-online', component: PagamentoOnlineComponent },
+          { path: 'chaves', component: PagamentoOnlineComponent , canActivate: [GuardaConfigSistemaService]},
+          { path: 'pagamento-online', component: PagamentoOnlineComponent , canActivate: [GuardaConfigSistemaService]},
+          { path: 'empresa-pags-on', component: EmpresaPagamentosOnlineComponent, canActivate: [GuardaConfigSistemaService] },
+
 
 
           {

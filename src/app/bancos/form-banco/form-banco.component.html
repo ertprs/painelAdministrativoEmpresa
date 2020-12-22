@@ -4,22 +4,41 @@
         <input matInput placeholder=" Nome banco" formControlName="nome">
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-        <mat-label>Conta</mat-label>
-        <input matInput placeholder="***** **" formControlName="conta">
-    </mat-form-field>
+
 
 
     <mat-form-field class="example-full-width">
         <mat-label>Agência</mat-label>
-        <input matInput placeholder="*****-*" formControlName="operacao">
+        <input matInput placeholder="0000" formControlName="agencia">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <mat-label>Descrição</mat-label>
-        <input matInput placeholder="Descrição" formControlName="descricao">
+        <mat-label>Conta</mat-label>
+        <input matInput placeholder="00000" formControlName="conta">
     </mat-form-field>
 
+    <mat-form-field class="example-full-width">
+        <mat-label>Número do banco</mat-label>
+        <input matInput placeholder="Número do banco" formControlName="descricao">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>CPF</mat-label>
+        <input matInput placeholder="000.000.000-00" mask="000.000.000-00" formControlName="documento">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin-top: 10px;">
+        <mat-label>Tipo conta</mat-label>
+        <mat-select formControlName="tipo_conta">
+            <mat-option [value]="'CHECKING'">
+                Conta corrente
+            </mat-option>
+
+            <mat-option [value]="'SAVINGS'">
+                Conta poupança
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
     <div>
         <button mat-stroked-button color="accent" [mat-dialog-close]="false">Cancelar</button>
