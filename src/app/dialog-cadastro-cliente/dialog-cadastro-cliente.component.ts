@@ -31,6 +31,7 @@ export class DialogCadastroClienteComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any, public servico: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.cidades = this.servico.getListaCidades();
 
     if (this.data.acao === 'add') {

@@ -28,7 +28,7 @@ export class ValorItemPagamentoComponent implements OnInit {
 
   onClickConfirmar() {
     console.log(this.form.value.valor);
-   if (!this.form.value.valor) { return; };
+   if (!this.form.value.valor) { this.form.value.valor = 0; };
    if (this.form.value.valor > this.servcard.getTotalCarrinho()) {
      return this.servico.mostrarMensagem('Você informou o valor maior que o total do pedido');
     }

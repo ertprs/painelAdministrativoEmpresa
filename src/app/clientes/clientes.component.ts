@@ -167,7 +167,7 @@ enderecoCliente(element): void {
 
 formaddEnd() {
   const dialogRef = this.dialog.open(FormEnderecoClienteComponent, {
-    width: '450px',
+    width: '750px',
     data: {acao: 'editar', item: this.itemSelecionado}
   });
 

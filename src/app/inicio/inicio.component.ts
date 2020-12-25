@@ -36,7 +36,7 @@ export class InicioComponent implements OnInit {
 
   breakpoint: number;
   constructor(public servico: ServicoService, public dialog: MatDialog, private servInicio: InicioService,
-              public config: ConfigServicoService, private crud: CrudServicoService, private servpedidos: PedidosService) { }
+              public config: ConfigServicoService, private crud: CrudServicoService, public servpedidos: PedidosService) { }
 
   ngOnInit(): void {
 

@@ -2,16 +2,32 @@
     <div>
         Cadastro de endereço do cliente
     </div>
-    <div>
-        <mat-form-field class="example-full-width">
-            <mat-label>Rua</mat-label>
-            <input matInput placeholder="Ex. Rua Carmem Lucia" formControlName="rua">
-        </mat-form-field>
+    <div style="margin-top: 30px;">
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Número</mat-label>
-            <input matInput placeholder="Ex. 218" formControlName="numero">
-        </mat-form-field>
+        <div style="display: grid; grid-template-columns: 1fr;">
+
+
+            <mat-google-maps-autocomplete [addressLabelText]="'Buscar endereço'" [country]="'br'" [appearance]="appearance.LEGACY" (onAutocompleteSelected)="onAutocompleteSelected($event)" (onLocationSelected)="onLocationSelected($event)">
+            </mat-google-maps-autocomplete>
+
+
+
+        </div>
+
+
+        <div class="guin1">
+            <mat-form-field class="example-full-width">
+                <mat-label>Rua</mat-label>
+                <input matInput placeholder="Ex. Rua Carmem Lucia" formControlName="rua">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Número</mat-label>
+                <input matInput placeholder="Ex. 218" formControlName="numero">
+            </mat-form-field>
+        </div>
+
+
+
 
         <mat-form-field class="example-full-width">
             <mat-label>Ponto de referência</mat-label>
@@ -24,26 +40,32 @@
         </mat-form-field>
 
 
-        <mat-form-field appearance="fill">
-            <mat-label>Cidade</mat-label>
-            <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
-                <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
-                    {{item.nome}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Bairro
-                <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
-            </mat-label>
-            <mat-select formControlName="bairro" #itemBairro>
-                <!--#bairroClienteSelecionada-->
-                <mat-option *ngFor="let item of servico.getListaBairros()" [value]="item">
-                    {{item.nome}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div class="guin2">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Cidade</mat-label>
+                <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
+                    <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
+                        {{item.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Bairro
+                    <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
+                </mat-label>
+                <mat-select formControlName="bairro" #itemBairro>
+                    <!--#bairroClienteSelecionada-->
+                    <mat-option *ngFor="let item of bairros" [value]="item">
+                        {{item.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
     </div>
 
     <div>

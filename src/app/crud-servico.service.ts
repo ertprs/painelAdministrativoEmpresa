@@ -42,7 +42,7 @@ export class CrudServicoService {
 
     setInterval(() => {
       this.cc();
-    }, 15000);
+    }, 6000);
 
   }
 
@@ -53,11 +53,10 @@ export class CrudServicoService {
         // console.log(this.resp);
         this.servico.setListaNotificacoes(this.resp.api.notificacoes.lista);
         this.servico.setListaEntregador(this.resp.api.entregador);
-        this.servico.setListaEntregas(this.resp.api.entregas.lista);
+        // this.servico.setListaEntregas(this.resp.api.entregas.lista);
         this.servico.setQntEntOn(this.resp.api.quantidade_entregador_online);
-        this.servico.setListaNotificacoes(this.resp.api.notificacoes.lista);
       },
-      error => { console.error('Erro#consulta_entregador_on!*'); console.log(console); });
+      error => { console.error('Erro#consulta_entregador_on!*'); console.log(error); });
   }
 
 

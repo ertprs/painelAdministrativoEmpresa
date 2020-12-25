@@ -3,7 +3,7 @@
         <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
 
 
-            <mat-toolbar class="ttodelsuc" style="background-color: #3F51B5;">
+            <mat-toolbar class="ttodelsuc" style="background-color: #353535;">
                 <button color="warn" (click)="selecionarMotoboy()" *ngIf="us.getPermissoessuario()[4].status" mat-icon-button>
                     <mat-icon  matBadgeColor="accent" [matBadge]="servico.getsetQntEntOn()" style="color: white;" matTooltip="Entregadores online">sports_motorsports</mat-icon>
                 </button>
@@ -88,11 +88,11 @@
 </a>
 
 
-<a (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
+<!--<a (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
     <mat-icon>description</mat-icon>
     Faturas
     <mat-icon matTooltip="Existe faturas pendentes" *ngIf="servico.getStatusfatura()" style="color: red;">notification_important</mat-icon>
-</a>
+</a>-->
 
 
 <a (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel">
@@ -115,7 +115,7 @@
 </mat-nav-list>
 </mat-sidenav>
 <mat-sidenav-content>
-    <mat-toolbar color="primary" class="toolb">
+    <mat-toolbar color="primary" class="toolb" style="background-color: #353535;">
         <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>

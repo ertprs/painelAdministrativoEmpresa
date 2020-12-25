@@ -56,7 +56,7 @@ export class PedidosService {
       if (this.servapp.getDadosEmpresa().status_delivery) {
         this.consultaPedidos();
       }
-    }, 9000);
+    }, 25000);
   }
 
   getTotalPedido(): number {
@@ -69,20 +69,23 @@ export class PedidosService {
 
   consultaPedidos() {
       this.statusloadpedidos = true;
-      // console.log('#consultaEntregas');
+      // console.log('#consultaPEDIDOS');
       this.crud.get_api('pedidos&id=' + this.servapp.getDadosEmpresa().id).subscribe(data => {
-        // console.log(data);
-        this.qntPedidosEmaberto = data.qnt_pedidos_pendente;
+       
+        this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
         this.statusloadpedidos = false;
         // this.servapp.setStatusDelivery(data.status_loja.status_empresa);
-        if (isEqual(this.pedidos, data.lista_pedidos) === false) {
-          this.pedidos = data.lista_pedidos;
+        if (isEqual(this.pedidos, data.resultado.pedidos.lista_pedidos) === false) {
+          this.pedidos = data.resultado.pedidos.lista_pedidos;
         }
 
         this.statusNotificar = data.notificar;
         if (this.statusNotificar === true) {
           this.playAudio1();
         }
+
+       this.servapp.setListaEntregas(data.resultado.entregas);
+
       });
   }
 
@@ -94,11 +97,11 @@ export class PedidosService {
     '&datai=' + filtro.datai +
      '&dataf=' + filtro.dataf).subscribe(data => {
       console.log(data);
-      this.qntPedidosEmaberto = data.qnt_pedidos_pendente;
+      this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
       this.statusloadpedidos = false;
 
       // if (isEqual(this.pedidos, data.lista_pedidos) === false) {
-      this.todospedidos = data.lista_pedidos;
+      this.todospedidos = data.resultado.pedidos.lista_pedidos;
       // }
 
       this.statusNotificar = data.notificar;

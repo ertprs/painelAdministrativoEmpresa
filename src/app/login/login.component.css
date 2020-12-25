@@ -12,10 +12,12 @@ mat-grid-tile {
 }
 
 .conteudo {
-    background: #673AB7;
+    background: #00000061;
     height: 100vh;
     display: grid;
-    /*background-image: linear-gradient(to top, #dcdcdc, #e2e2e2);*/
+    position: absolute;
+    z-index: 1;
+    width: 100%;
 }
 
 .aform {
@@ -23,8 +25,8 @@ mat-grid-tile {
     background: #ffffff;
     width: 320px;
     margin: auto;
-    border-radius: 34px;
-    box-shadow: 1px 2px 13px rgb(183 168 168 / 77%);
+    border-radius: 12px;
+    /*  box-shadow: 1px 2px 13px rgb(183 168 168 / 77%);*/
 }
 
 .bt1 {
@@ -86,4 +88,99 @@ input:-webkit-autofill {
 
 input:-webkit-autofill {
     -webkit-text-fill-color: #0289ff !important;
+}
+
+HTML CSSResult Skip Results Iframe EDIT ON body {
+    margin: 0;
+}
+
+
+/* ====================
+    Background
+=======================*/
+
+.background {
+    width: 100vw;
+    height: 100vh;
+    animation: pulse 5s infinite;
+    overflow: hidden;
+}
+
+@keyframes pulse {
+    0% {
+        background: #3F51B5;
+    }
+    50% {
+        background: #3F51B5;
+    }
+    100% {
+        background: #3F51B5;
+    }
+}
+
+.background p {
+    z-index: 999;
+    margin: 0;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: lato;
+    font-size: 70px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+}
+
+.elements {
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* ====================
+      Squares
+=======================*/
+
+.square {
+    /* border: 10px dashed #db0f60;*/
+    border: 10px dashed #2196f31f;
+}
+
+.sq2 {
+    animation: move1 180s infinite;
+    animation-timing-function: linear;
+    width: 1110px;
+    height: 1110px;
+}
+
+@keyframes move1 {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0.5;
+    }
+    50% {
+        width: 1000px;
+        height: 1000px;
+    }
+    100% {
+        transform: rotate(1000deg);
+        opacity: 1;
+    }
+}
+
+.sq3 {
+    width: 600px;
+    height: 600px;
+    animation: move1 120s infinite;
+    animation-timing-function: linear;
+}
+
+.sq1 {
+    width: 500px;
+    height: 500px;
+    animation: move1 100s infinite;
+    animation-timing-function: linear;
 }

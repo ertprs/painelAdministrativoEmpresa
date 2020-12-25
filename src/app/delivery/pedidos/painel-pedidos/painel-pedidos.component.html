@@ -32,7 +32,7 @@
     <mat-card *ngIf="servapp.getStatusfatura()" style="    margin-top: 5px;
     background:rgb(255 222 62);
     color: rgb(0, 0, 0);">
-        A loja está fechada por falta de pagamento de fatura(s). <a mat-button href="javascript:;" routerLink="/faturas"> Ver fatura(s) </a>
+        A loja está fechada por falta de pagamento de fatura. <a mat-button href="javascript:;" routerLink="/faturas"> Ver fatura(s) </a>
     </mat-card>
 
     <mat-card *ngIf="!servapp.getStatusSistemaDelivery()" style="    margin-top: 5px;

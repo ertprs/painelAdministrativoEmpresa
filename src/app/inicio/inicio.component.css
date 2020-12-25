@@ -18,7 +18,7 @@
 
 .delsuc-1 {
     background-color: rgb(255, 255, 255);
-    background-image: url('../../assets/mapa-google.jpg');
+    background-image: url('/assets/mapa-google.jpg');
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -50,6 +50,41 @@ agm-map {
     border-radius: 50%;
 }
 
+.customMarkerEntregaRED {
+    position: absolute;
+    cursor: pointer;
+    background: red;
+    width: 36px;
+    height: 35px;
+    margin-left: -9px;
+    margin-top: 1px;
+    border-radius: 100%;
+    padding: 0px;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.customMarker-linhaRED {
+    width: 31px;
+    background: red;
+    position: absolute;
+    margin-top: -17px;
+    margin-left: 33px;
+    height: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.customMarkerEntrega-pontaRED {
+    background: red;
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+    height: 10px;
+    width: 5px;
+    margin-left: 16px;
+}
+
 .customMarkerEntrega {
     position: absolute;
     cursor: pointer;
@@ -73,7 +108,7 @@ agm-map {
 }
 
 .customMarker-inter {
-    background-image: url('../../assets/bandeiraanim.gif');
+    background-image: url('/assets/bandeiraanim.gif');
     width: 30px;
     height: 28px;
     border-radius: 50px;
@@ -101,7 +136,7 @@ agm-map {
     width: 30px;
     margin-top: -21px;
     border-radius: 16%;
-    background-image: url('../../assets/loader001.gif');
+    background-image: url('/assets/loader001.gif');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -128,7 +163,7 @@ agm-map {
 .divnocord {
     background-color: black;
     height: 91.3%;
-    background-image: url('../../assets/galax.gif');
+    background-image: url('/assets/galax.gif');
 }
 
 .csscard {
