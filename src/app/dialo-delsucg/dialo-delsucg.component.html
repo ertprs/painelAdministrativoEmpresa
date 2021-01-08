@@ -1,30 +1,30 @@
 <div style="width: 100%; font-size: 11px; color: rgb(183, 182, 182);">#{{servico.getEntrega().id}}</div>
 <div style="width: 100%; font-size: 11px; color: rgb(183, 182, 182);">#{{servico.getEntrega().nome_cliente}}</div>
 
-<div style="width: 100%; margin-top: 10px;">
+<!--<div style="width: 100%; margin-top: 10px;">
   <button style="width: 100%;" mat-stroked-button color="primary" (click)="attStatus(1)">Pronto para retirada</button>
 </div>
 
 <div style="width: 100%; margin-top: 10px;">
   <button style="width: 100%;" mat-stroked-button color="primary" (click)="attStatusEntrega(0)">Publicar</button>
+</div>-->
+
+<div style="width: 100%; margin-top: 10px;">
+    <button style="width: 100%;" mat-stroked-button color="primary" (click)="attStatus(2)">Concluir entrega</button>
 </div>
 
 <div style="width: 100%; margin-top: 10px;">
-  <button style="width: 100%;" mat-stroked-button color="primary" (click)="attStatus(2)">Concluir entrega</button>
+    <button style="width: 100%;" mat-stroked-button color="warn" (click)="attStatusEntrega(4)">Cancelar entrega</button>
 </div>
 
-<div style="width: 100%; margin-top: 10px;">
-  <button style="width: 100%;" mat-stroked-button color="warn" (click)="attStatusEntrega(4)">Cancelar entrega</button>
-</div>
-
-<div style="width: 100%; margin-top: 10px;">
+<!--<div style="width: 100%; margin-top: 10px;">
   <button style="width: 100%;" mat-stroked-button color="link" (click)="attStatusEntrega(5)">Rascunho</button>
-</div>
+</div>-->
 
 <div style="width: 100%; margin-top: 10px;">
-  <button style="width: 100%;" mat-stroked-button color="link" (click)="onclickEditarEntrega()">Editar</button>
+    <button style="width: 100%;" mat-stroked-button color="link" (click)="onclickEditarEntrega()">Editar</button>
 </div>
 
-<div style="width: 100%; margin-top: 10px;">
+<!--<div style="width: 100%; margin-top: 10px;">
   <button style="width: 100%;" mat-stroked-button color="warn"  (click)="removerEntrega()">Remover entrega</button>
-</div>
+</div>-->

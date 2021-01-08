@@ -1,4 +1,5 @@
 <div *ngIf="this.pedido" class="guinho">
+    <mat-progress-bar mode="indeterminate" *ngIf="statusConsultaEnt"></mat-progress-bar>
     Selecione o entregador que vai receber a entrega
 </div>
 
@@ -10,18 +11,23 @@
     <mat-list>
         <span *ngFor="let item of itens">
             <a href="javascript:;" style="text-decoration: none;">
-                <mat-list-item class="item" [class.itemSelecionado]="item.selecionado" (click)="onClickItem(item)">
-                    <div class="dsd">
+                <mat-list-item class="item" (click)="onClickItem(item)">
+                    <div class="dsd" [class.entStatus]="pedido && !item.status_estoque">
+
                         <div class="imgEntregador" [lazyLoad]="item.imagem"></div>
+
                         <div>
-                           <div> {{ item.nome }}</div>
-                           <div style="font-size: 11px;"> 
-                            {{ item.telefone | mask:"(99)99999-9999999" }}
-                           </div>
+                            <div *ngIf="item.selecionado === true" [class.itemSelecionado]="item.selecionado === true">
+                                <mat-icon class="mat-18">check</mat-icon>
+                            </div>
+                            <div> {{ item.nome }} </div>
+                            <div style="font-size: 11px;">
+                                {{ item.telefone | mask:"(99)99999-9999999" }}
+                            </div>
                         </div>
                     </div>
 
-                     
+
                 </mat-list-item>
             </a>
             <mat-divider></mat-divider>
@@ -29,8 +35,65 @@
 
 
     </mat-list>
+
+
+    <div *ngIf="gerarRota" [formGroup]="form">
+        <div style="display: grid; grid-template-columns: 10fr 1fr;">
+
+            <mat-form-field>
+                <mat-label>Rua</mat-label>
+                <input formControlName="rua" matInput placeholder="">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Número</mat-label>
+                <input formControlName="numero" matInput placeholder="">
+            </mat-form-field>
+
+        </div>
+
+
+        <div class="guin2">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Cidade</mat-label>
+                <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
+                    <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
+                        {{item.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Bairro
+                    <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderBairros"></mat-progress-bar>
+                </mat-label>
+                <mat-select formControlName="bairro" #itemBairro>
+                    <!--#bairroClienteSelecionada-->
+                    <mat-option *ngFor="let item of bairros" [value]="item">
+                        {{item.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div style="margin-top:10px;margin-bottom: 10px;">
+            <mat-form-field>
+                <mat-label>Descrição</mat-label>
+                <input formControlName="descricao" matInput placeholder="">
+            </mat-form-field>
+        </div>
+
+        <button [disabled]="statusAddRota" mat-raised-button color="warn" (click)="enviarRota()">Enviar rota</button>
+
+    </div>
+
 </div>
 
+
+<div *ngIf="!this.pedido" style="margin-top: 10px; text-align: center;">
+    <button [disabled]="gerarRota" mat-stroked-button (click)="criarRota()">Criar rota</button>
+</div>
 
 <div *ngIf="this.pedido" style="margin-top: 10px; text-align: center;">
     <button mat-stroked-button color="warn" mat-dialog-close>Cancelar</button>

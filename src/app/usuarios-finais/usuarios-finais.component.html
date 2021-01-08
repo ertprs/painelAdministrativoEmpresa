@@ -2,10 +2,15 @@
     <span>Usuários app</span>
 </mat-toolbar>
 
+
+<app-barra-total [nome]="'Qtd. clientes loja'" [valor]="qntusuariosLOJA" [naomostrarReal]="true"></app-barra-total>
+<app-barra-total [nome]="'Qtd. clientes site'" [valor]="qntusuarios" [naomostrarReal]="true"></app-barra-total>
+<app-barra-total [nome]="'Total'" [valor]="qntusuariostotal" [naomostrarReal]="true"></app-barra-total>
+
 <div style="padding: 10px;">
     <mat-form-field class="example-full-width">
-        <mat-label> Filtro usuários cadastrados </mat-label>
-        <input matInput placeholder="Ex. Iago" #nomeus>
+        <mat-label> Filtrar usuários cadastrados pelo site </mat-label>
+        <input matInput placeholder="Nome do usuário" #nomeus>
     </mat-form-field>
 
 </div>
@@ -16,7 +21,7 @@
 
 
         <ng-container matColumnDef="op">
-            <th mat-header-cell *matHeaderCellDef> Qnt. {{ qntusuarios }} </th>
+            <th mat-header-cell *matHeaderCellDef> Clientes site </th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" (click)="onClickItem(element)">
                     <mat-icon>menu</mat-icon>
@@ -37,7 +42,9 @@
             <th mat-header-cell *matHeaderCellDef> Nome. </th>
             <td mat-cell *matCellDef="let element">
 
-                {{element.nome}} {{element.sobrenome}} ( {{element.status_conta}} )
+                {{element.nome}} {{element.sobrenome}}
+                <mat-icon *ngIf="element.status_conta === 'pendente_confirmacao'" class="mat-18">info</mat-icon>
+                <mat-icon *ngIf="element.status_conta === 'ativo'" class="mat-18">check</mat-icon>
 
             </td>
         </ng-container>

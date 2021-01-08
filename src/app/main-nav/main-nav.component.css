@@ -1,3 +1,9 @@
+.cvers {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 100;
+}
+
 .sidenav-container {
     height: 100%;
 }

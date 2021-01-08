@@ -1,11 +1,17 @@
 <mat-list>
 
-    <span *ngIf="!entrega.entregador.historico"></span>
-    <mat-progress-bar mode="indeterminate" *ngIf="!entrega.entregador.historico"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" *ngIf="statusLoader"></mat-progress-bar>
 
-    <span *ngFor="let item of entrega.entregador.historico">
-        <span style="font-size: 13px; color: rgb(136, 134, 134);"> {{item.info}} </span>
+    <span *ngIf="entrega.entregador">
+        <span *ngFor="let item of entrega.entregador.historico">
+            <span style="font-size: 13px; color: rgb(136, 134, 134);"> {{item.info}} </span>
     <mat-list-item style="font-size: 12px;">
-        <mat-icon>done</mat-icon> {{item.descricao}} </mat-list-item>
+        <mat-icon>done</mat-icon> {{item.descricao}}
+    </mat-list-item>
     </span>
+    </span>
+
 </mat-list>
+
+
+<div *ngIf="!entrega.entregador.historico" style="text-align:center; color: rgb(117, 117, 117);"> Entrega sem histórico </div>

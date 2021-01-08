@@ -16,7 +16,7 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class ComissaoEntregasComponent implements OnInit {
 
-  columnsToDisplay = ['c0', 'c66', 'c1', 'c3', 'c5', 'c6', 'c4'];
+  columnsToDisplay = ['c0', 'c66', 'c1', 'vp', 'c3', 'c5', 'c6', 'c4'];
   dataSource: any;
   total = 0;
   filtroPagos: any;

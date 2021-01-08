@@ -1,3 +1,4 @@
+import { AddObservacaoPedidoComponent } from './../../add-observacao-pedido/add-observacao-pedido.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -113,6 +114,17 @@ export class TabelaPedidosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.servpedidos.onClickAttStatusPedido(7, result.idPedido, result);
+    });
+  }
+
+  onClickAddObservacao(item): void {
+    const dialogRef = this.dialog.open(AddObservacaoPedidoComponent, {
+      width: '450px',
+      data:  item 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
     });
   }
 

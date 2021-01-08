@@ -18,8 +18,10 @@ export class UsuariosFinaisComponent implements OnInit {
   dadosCupomAdd: any;
   acao: string;
   qntusuarios: number;
+  qntusuariosLOJA: number;
+  qntusuariostotal: number;
 
-
+   
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -31,6 +33,8 @@ export class UsuariosFinaisComponent implements OnInit {
        console.log(data);
        this.itens = data.resultado.lista;
        this.qntusuarios = data.resultado.quantidade;
+       this.qntusuariosLOJA = data.resultado.quantidade_clientes_empresa;
+       this.qntusuariostotal = data.resultado.qntusuariostotal;
     });
 }
 

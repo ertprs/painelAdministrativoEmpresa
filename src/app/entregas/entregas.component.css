@@ -1,3 +1,7 @@
+table {
+    width: 100%;
+}
+
 .example-card {
     max-width: 192px;
     float: left;
@@ -31,6 +35,15 @@
     background-position: center;
     background-size: 73% 90%;
     background-repeat: no-repeat
+}
+
+.imgEntTB {
+    background-color: #b5b5b500;
+    height: 60px;
+    width: 60px;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .tEntSel:focus {

@@ -20,6 +20,7 @@ export class EstoqueLogisticaComponent implements OnInit {
 
   btAddLog = true;
   btAdd = true;
+  statusLoader = false;
 
   params = {
     saida: '', chegada: '', valorPedido: '', previsaoEntrega: '',
@@ -52,14 +53,17 @@ export class EstoqueLogisticaComponent implements OnInit {
   }
 
   f1() {
+    this.statusLoader = true;
 
     const accallback = () => {
-      console.log('callback');
+       
       const r = this.servapp.getRespostaApi();
       if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
         this.dataSource = r.resultado.itens;
+    this.statusLoader = false;
+
       }
-      console.log(r);
+    
     };
     this.crud.post_api('logistica', accallback, '');
   }

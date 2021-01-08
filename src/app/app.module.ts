@@ -208,6 +208,8 @@ import { CadastroEmpresaLojistaComponent } from './cadastro-empresa-lojista/cada
 import { InicioSiteComponent } from './site/inicio-site/inicio-site.component';
 import { PagamentoOnlineComponent } from './pagamento-online/pagamento-online.component';
 import { EmpresaPagamentosOnlineComponent } from './empresa-pagamentos-online/empresa-pagamentos-online.component';
+import { AddObservacaoPedidoComponent } from './add-observacao-pedido/add-observacao-pedido.component';
+import { RotasEntregadorComponent } from './rotas-entregador/rotas-entregador.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -376,7 +378,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       CadastroEmpresaLojistaComponent,
       InicioSiteComponent,
       PagamentoOnlineComponent,
-      EmpresaPagamentosOnlineComponent
+      EmpresaPagamentosOnlineComponent,
+      AddObservacaoPedidoComponent,
+      RotasEntregadorComponent
    ],
   imports: [
     BrowserModule,

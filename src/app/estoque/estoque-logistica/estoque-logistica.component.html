@@ -3,6 +3,7 @@
         Logística
     </span>
 </mat-toolbar>
+<mat-progress-bar mode="indeterminate" *ngIf="statusLoader"></mat-progress-bar>
 
 <table mat-table [dataSource]="dataSource">
 

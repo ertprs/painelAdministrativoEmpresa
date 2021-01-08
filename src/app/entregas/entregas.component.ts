@@ -23,9 +23,12 @@ export class EntregasComponent implements OnInit {
   private dialogDelsuc: any;
   public btCadastroEntrega: any;
 
+  displayedColumns: string[] = ['entregador', 'status_entrega', 'nome_entregador', 'taxa_entrega', 'info', 'id', 'id_pedido', 'bts'];
+
   constructor(public dialog: MatDialog, public servico: ServicoService, private crud: CrudServicoService, private router: Router,
               private antServico: ServicoEntregaService) { }
 
+              
   ver_entregadorSelecionado() {
     this.entSele = this.servico.getEntregadoeSelecionado();
     if (this.entSele !== false) {

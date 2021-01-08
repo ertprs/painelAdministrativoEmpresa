@@ -17,6 +17,7 @@ export class ComprasClientesComponent implements OnInit {
   columnsToDisplay = ['motoboy'];
   dataSource = [];
   clientes = [];
+  statusLoader = false;
 
   myControl = new FormControl();
   form: FormGroup;
@@ -70,9 +71,8 @@ export class ComprasClientesComponent implements OnInit {
   }
 
   consultaPedidoCliente(tipo) {
-    console.log('#consultaPedidoCliente');
-    console.log(this.form.value.clienteNome);
-    // tslint:disable-next-line: max-line-length
+ 
+    this.statusLoader = true;
 
     this.crud.get_api('consulta_pedidos_cliente_filtro&nome=' +
       this.form.value.clienteNome +
@@ -81,7 +81,7 @@ export class ComprasClientesComponent implements OnInit {
       '&dataFim=' + this.form.value.dataFim
 
     ).subscribe(data => {
-      console.log(data);
+      this.statusLoader = false;
       this.servComp.setListaPedidos(data.resultado);
     });
   }

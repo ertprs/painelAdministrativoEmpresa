@@ -10,15 +10,17 @@ import { CrudServicoService } from 'src/app/crud-servico.service';
 })
 export class DialogHistEntregaComponent implements OnInit {
 
-  entrega: any;
+  entrega = {entregador: {historico: []}};
+  statusLoader = true;
   constructor(private servicoEnt: ServicoEntregaService, private servico: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
+
     console.log(this.servicoEnt.getentHist());
     const loginres = () => {
-      console.log('callback');
+      this.statusLoader = false;
       const r = this.servico.getRespostaApi();
-      console.log(r);
+       
       if (r.erro === true) { alert(r.mensagem); } else {
         this.entrega = r;
       }

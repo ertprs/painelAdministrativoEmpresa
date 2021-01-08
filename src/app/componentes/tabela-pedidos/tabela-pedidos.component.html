@@ -26,6 +26,11 @@
                     <button mat-menu-item (click)="onClickImprimir()">
                         <mat-icon>print</mat-icon> Imprimir
                     </button>
+
+                    <button mat-menu-item (click)="onClickAddObservacao(element)">
+                        <mat-icon>info</mat-icon> Adicionar observação
+                    </button>
+
                 </mat-menu>
 
                 <mat-menu #menu="matMenu">
@@ -71,6 +76,10 @@
 
                     <button mat-menu-item (click)="onClickImprimir()">
                         <mat-icon>print</mat-icon> Imprimir
+                    </button>
+
+                    <button mat-menu-item (click)="onClickAddObservacao(element)">
+                        <mat-icon>info</mat-icon> Adicionar observação
                     </button>
 
 

@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="servico.getListaEntregas()">
+
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="imagem">
+        <th mat-header-cell *matHeaderCellDef> Imagem. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.imagem}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome_entregador">
+        <th mat-header-cell *matHeaderCellDef> Entregador. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.entregador_nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endereco">
+        <th mat-header-cell *matHeaderCellDef> Entregador. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.entregador_nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef> Descrição. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.descricao}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bts">
+        <th mat-header-cell *matHeaderCellDef> * </th>
+        <td mat-cell *matCellDef="let element"> </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

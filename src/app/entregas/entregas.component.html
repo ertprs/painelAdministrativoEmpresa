@@ -7,21 +7,133 @@
                <mat-icon>add</mat-icon> Nova Entrega
             </mat-chip>-->
 
-            <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(0)" matTooltip="Entregas que ainda não foram aceitas por motoboys">Pendentes</mat-chip>
+            <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(0)" matTooltip="Entregas que ainda não foram aceitas por motoboys"> Todas </mat-chip>
             <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(8)" matTooltip="Entregas enviadas diretamente aos motoboys de sua lista">Diretas Pendentes</mat-chip>
             <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(1)" matTooltip="Entregas que já foram aceitas por motoboys">Aceitas</mat-chip>
             <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(2)" matTooltip="Entregas que estão a caminho do cliente">A caminho</mat-chip>
             <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(3)" matTooltip="Entregas que já foram entregues">Entregues</mat-chip>
             <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(4)" matTooltip="Entregas canceladas pelos motoboys ou pela empresa">Canceladas</mat-chip>
             <!--<mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(5)" matTooltip="Entregas com formulário pronto para serem publicadas">Rascunho</mat-chip>-->
-            <mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(9)" matTooltip="Entregas concluídas">Concluídas</mat-chip>
+            <!--<mat-chip class="tEntSel" (click)="onclickFiltroStatusEnt(9)" matTooltip="Entregas concluídas">Concluídas</mat-chip>-->
         </mat-chip-list>
 
 
     </mat-card>
 </div>
 
-<span *ngFor="let item of servico.getListaEntregas()">
+
+
+<table mat-table [dataSource]="servico.getListaEntregas() | filtronomedinam:{filtro: statusEnt, indexArray: 'status_pedido'}">
+
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_pedido">
+        <th mat-header-cell *matHeaderCellDef> Referência pedido. </th>
+        <td mat-cell *matCellDef="let element"> #{{element.id_pedido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="taxa_entrega">
+        <th mat-header-cell *matHeaderCellDef> Taxa entrega </th>
+        <td mat-cell *matCellDef="let element"> {{element.taxa_entrega | currency:'BRL':true}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status_entrega">
+        <th mat-header-cell *matHeaderCellDef> Status entrega </th>
+        <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.status_pedido == 0">
+                Pendente
+            </span>
+
+            <span *ngIf="element.status_pedido == 8">
+                Pendente
+            </span>
+
+            <span *ngIf="element.status_pedido == 12">
+                Pausada
+            </span>
+
+
+            <span *ngIf="element.status_pedido == 1">
+                Aceita pelo entregador
+            </span>
+
+            <span *ngIf="element.status_pedido == 2">
+                A caminho
+            </span>
+
+            <span *ngIf="element.status_pedido == 3">
+                Entregue
+            </span>
+
+            <span *ngIf="element.status_pedido == 4">
+                Cancelada
+            </span>
+
+            <span *ngIf="element.status_pedido == 4">
+                Cancelada
+            </span>
+
+            <span *ngIf="element.status_pedido == 9">
+                Finalizada
+            </span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="entregador">
+        <th mat-header-cell *matHeaderCellDef> Entregador </th>
+        <td mat-cell *matCellDef="let element">
+
+            <div *ngIf="element.entregador && element.entregador.imagem">
+                <div class="imgEntTB" [lazyLoad]="element.entregador.imagem"></div>
+            </div>
+            <div *ngIf="!element.entregador">
+                <mat-icon>trending_flat</mat-icon>
+            </div>
+
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome_entregador">
+        <th mat-header-cell *matHeaderCellDef> Nome entregador </th>
+        <td mat-cell *matCellDef="let element">
+
+            <div *ngIf="element.entregador">
+                {{ element.entregador.nome }}
+            </div>
+
+            <div *ngIf="!element.entregador">
+                --
+            </div>
+
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="info">
+        <th mat-header-cell *matHeaderCellDef> Info </th>
+        <td mat-cell *matCellDef="let element"> {{ element.info }} às {{ element.horario }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bts">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <button color="warn" mat-raised-button (click)="onclickEntrega(element)">Opções</button>
+            <button color="warn" mat-raised-button (click)="onclickVerHist(element)" style="margin-left:2px">Histórico</button>
+        </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+<!--<span *ngFor="let item of servico.getListaEntregas()">
   <mat-card class="example-card" *ngIf="item.status_pedido == statusEnt">
     <mat-card-header>
 
@@ -71,4 +183,4 @@
 </mat-card-actions>
 </mat-card>
 
-</span>
+</span>-->

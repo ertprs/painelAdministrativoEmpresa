@@ -56,7 +56,7 @@ export class PedidosService {
       if (this.servapp.getDadosEmpresa().status_delivery) {
         this.consultaPedidos();
       }
-    }, 25000);
+    }, this.servapp.getInterPedidos());
   }
 
   getTotalPedido(): number {

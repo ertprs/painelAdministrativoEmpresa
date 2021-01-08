@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Observação pedido</h1>
+<div [formGroup]="form">
+    <div mat-dialog-content>
+
+        <mat-form-field>
+            <mat-label>Observação</mat-label>
+            <input matInput formControlName="observacao" placeholder="Digite aqui a observação" (keydown.enter)="onClickconfirmar()">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="form.value">Fechar</button>
+        <button mat-raised-button color="primary" (click)="onClickconfirmar()" [disabled]="statusBT">Confirmar</button>
+    </div>
+</div>

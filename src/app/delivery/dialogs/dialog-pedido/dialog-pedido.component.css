@@ -87,3 +87,12 @@ table {
     color: white;
     background: #4CAF50;
 }
+
+.ccd {
+    padding: 14px;
+    text-align: center;
+    border: 1px solid #d4cfda;
+    border-radius: 5px;
+    background: #f7f4f4;
+    color: #7b7373;
+}

@@ -42,7 +42,7 @@ export class TelaDoisComponent implements OnInit {
       console.log('callback');
       const r = this.servapp.getRespostaApi();
       if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
-        this.servapp.mostrarMensagem(r.detalhes);
+        this.servapp.mostrarMensagem(r.resultado.mensagem);
         this.dialogRef.close(this.form.value);
       }
       console.log(r);
