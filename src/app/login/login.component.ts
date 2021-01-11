@@ -28,12 +28,10 @@ export class LoginComponent implements OnInit {
               private cookieService: CookieService
               ) {
                 this.crud.pegaHost().subscribe( data => {
-                  console.log(data[0].host);
                   this.servico.setHost(data[0].host, data[0].api);
                  }, error => { alert('Erro ao carregar o host'); } );
 
                 this.crud.pegaMenu().subscribe( data => {
-                  console.log(data);
                   this.us.setPermissoes(data);
                  }, error => { alert('Erro ao carregar o host'); } );
 
@@ -42,7 +40,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.btloginstatus = false;
-    console.log('Aguarda canal chat');
 
 
     this.formLogin = this.formBuilder.group({
@@ -51,7 +48,6 @@ export class LoginComponent implements OnInit {
     });
     // Se existit COOKIES tenta fazer o LOGIN
     if (this.cookieService.check('lgn') && this.cookieService.check('sha')) {
-      console.warn('Tenta fazer o login automático');
       this.tipoLogin = true;
       this.oncllickEntrar();
      }
@@ -62,9 +58,7 @@ export class LoginComponent implements OnInit {
     // append your data
     this.btloginstatus = true;
     const loginres = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
-      console.log(r);
       setTimeout( () => {  this.btloginstatus = false; } , 1500 );
       if (r.erro === true) {
         // Se o login for auto. e der erro, nao mostra a msg

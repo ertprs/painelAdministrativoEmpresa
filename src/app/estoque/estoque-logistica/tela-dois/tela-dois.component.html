@@ -67,5 +67,5 @@
 
 <div style="margin-top: 50px;text-align: end;">
     <button mat-stroked-button color="warn" mat-dialog-close> Cancelar </button>
-    <button mat-stroked-button color="primary" (click)="prosseguir()" style="margin-left: 5px;"> Ok </button>
+    <button [disabled]="statusBT" mat-stroked-button color="primary" (click)="prosseguir()" style="margin-left: 5px;"> Ok </button>
 </div>

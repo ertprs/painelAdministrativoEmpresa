@@ -33,8 +33,7 @@ export class MainNavComponent {
 
               clickMenu(item) {
                   this.ms.menuSelecionado.forEach(element => {
-                    console.log('loop');
-                    if (element === item) { console.log('OK');  item.selecionado = true; } else {   element.selecionado = false;  }
+                    if (element === item) {   item.selecionado = true; } else {   element.selecionado = false;  }
                   });
               }
 
@@ -43,8 +42,6 @@ export class MainNavComponent {
                   width: '560px', data: false
                 });
                 this.dialogDelsuc.afterClosed().subscribe(result => {
-                  console.log('The dialog was closed result');
-                  console.log(result);
                   if (result) {
 
                   }
@@ -52,16 +49,12 @@ export class MainNavComponent {
               }
 
               sair() {
-                console.log('#SAIR');
                 const pin = setInterval(() => {
                   if (this.cookieService.check('lgn')) {
                     this.cookieService.deleteAll();
-                    console.log('Ainda existe cook..');
-                    console.log(this.cookieService.getAll());
                   } else {
                     location.reload();
                     clearInterval(pin);
-                    console.log('coo.. removidos.');
                   }
                 }, 900);
               }

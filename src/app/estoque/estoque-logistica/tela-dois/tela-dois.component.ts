@@ -14,6 +14,7 @@ export class TelaDoisComponent implements OnInit {
   form: FormGroup;
   itensCatalogo: any;
   itensLista: Array<any>;
+  statusBT = false;
 
   constructor(public dialogRef: MatDialogRef<TelaDoisComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {saida: '', chagada: '', valorPedido: '', previsaoEntrega: '', itens: [any]},
@@ -37,12 +38,12 @@ export class TelaDoisComponent implements OnInit {
   }
 
   f1(form) {
-
+    this.statusBT = true;
     const accallback = () => {
       console.log('callback');
       const r = this.servapp.getRespostaApi();
-      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
-        this.servapp.mostrarMensagem(r.resultado.mensagem);
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.mensagem); this.statusBT = false; } else {
+        this.servapp.mostrarMensagem(r.mensagem);
         this.dialogRef.close(this.form.value);
       }
       console.log(r);

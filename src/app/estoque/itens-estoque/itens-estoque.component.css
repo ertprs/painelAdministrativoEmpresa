@@ -13,3 +13,16 @@ table {
 .bandeiraMim {
     color: red;
 }
+
+.ggfON {
+    display: none;
+}
+
+@media(max-width:600px) {
+    .ggf {
+        display: none;
+    }
+    .ggfON {
+        display: block;
+    }
+}

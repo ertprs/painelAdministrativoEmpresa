@@ -33,10 +33,14 @@ export class EstoqueComponent implements OnInit {
 
   ngOnInit(): void {
 
+    try {
+
    this.estoqueE = this.us.getPermissoessuario()[5].children[7].status;
    this.btAuditoria = this.us.getPermissoessuario()[5].children[6].status;
    this.batimentoE = this.us.getPermissoessuario()[5].children[9].status;
    this.logistica = this.us.getPermissoessuario()[5].children[8].status;
+
+    } catch (e) { console.log(e); }
 
   }
 

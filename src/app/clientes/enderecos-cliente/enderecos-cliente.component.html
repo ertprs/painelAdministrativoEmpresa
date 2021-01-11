@@ -76,3 +76,27 @@
     </table>
 
 </div>
+
+
+<div class="aitens">
+    <div class="iteme" *ngFor="let element of itens">
+        <div>Rua/Número: {{element.rua}}, {{element.numero}}</div>
+        <div>Bairro: {{element.bairro.nome}} </div>
+        <div>Cidade: {{element.cidade.nome}} </div>
+        <div class="abts">
+            <div>
+                <button mat-flat-button color="primary" [mat-dialog-close]="element"> Pedido </button>
+            </div>
+            <div style="text-align: end;">
+                <button mat-icon-button color="accent" (click)="onClickAddEndereco()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <div style="text-align: end;">
+                <button mat-icon-button color="accent" (click)="rem_endereco(element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,26 @@
 table {
     width: 100%;
 }
+
+.abts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 5px;
+}
+
+.iteme {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.aitens {
+    display: none;
+}
+
+@media(max-width:600px) {
+    table {
+        display: none;
+    }
+    .aitens {
+        display: block;
+    }
+}

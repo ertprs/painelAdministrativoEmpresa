@@ -2,7 +2,7 @@
 
     <mat-card>
 
-        <div style="display: flex;">
+        <div class="modphone">
             <div style="margin-right: 30px;" [formGroup]="form">
 
                 <mat-slide-toggle *ngIf="us.getPermissoessuario()[0].children[0].status" [disabled]="!servapp.getStatusSistemaDelivery()" color="primary" style="margin-top: 5px;" (click)="onClickStatusDelivery()" formControlName="statusdelivery">

@@ -101,6 +101,10 @@ export class DialogCategoriaAdicionalComponent implements OnInit {
         maxsele: [this.servDCadc.getCategoriaAdicional().maxsele],
         qntAdcItem: [this.servDCadc.getCategoriaAdicional().qnt_adc_item],
       });
+
+      this.qntMinAdcItem = this.servDCadc.getCategoriaAdicional().minsele;
+      this.qntAdcItem = this.servDCadc.getCategoriaAdicional().qnt_adc_item;
+       
       return;
     }
     this.disponivel = false;

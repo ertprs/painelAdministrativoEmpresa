@@ -22,3 +22,11 @@
 .c2 {
     overflow: auto;
 }
+
+@media(max-width:600px) {
+    .c1 {
+        border-right: 1px solid gainsboro;
+        background: #f7f7f7;
+        width: 64px;
+    }
+}

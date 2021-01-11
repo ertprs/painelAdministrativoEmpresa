@@ -13,13 +13,11 @@ export class AuthService {
   verificaLogado() {
 
       if (this.servico.getStatusLogado() === false) {
-      console.log('ir pagina login');
       // document.getElementById('btnav').click();
       this.route.navigate(['/login']);
       return true;
 
     } else {
-      console.log('ir pagina inicio');
       console.log(this.permUsuario.getPermissoessuario());
       return true;
     }

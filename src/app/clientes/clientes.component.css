@@ -9,3 +9,29 @@ table {
 mat-form-field {
     width: 94%;
 }
+
+.itensClientes {
+    display: none;
+}
+
+.itemCliente {
+    padding: 6px;
+    border-bottom: 1px solid #d2caca;
+    background: white;
+    padding-bottom: 9px;
+    padding-top: 16px;
+}
+
+.abts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media(max-width:600px) {
+    .itensClientes {
+        display: block;
+    }
+    table {
+        display: none;
+    }
+}

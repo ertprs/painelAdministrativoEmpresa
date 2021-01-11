@@ -26,6 +26,7 @@ export class EstoqueLogisticaComponent implements OnInit {
     saida: '', chegada: '', valorPedido: '', previsaoEntrega: '',
     itens: [],
   };
+  statusBT = false;
 
   constructor(public servapp: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
               public us: UsuariosAdmService) { }
@@ -102,7 +103,6 @@ export class EstoqueLogisticaComponent implements OnInit {
     lacarEstoque(item) {
 
     const accallback = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
       if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
         this.f1();
@@ -111,6 +111,19 @@ export class EstoqueLogisticaComponent implements OnInit {
       console.log(r);
     };
     this.crud.post_api('addEstoqueItemLogistica', accallback, item.id);
+  }
+
+  remItemLog(item) {
+    this.statusBT = true;
+    const accallback = () => {
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes); } else {
+        this.statusBT = false;
+        this.f1();
+        this.servapp.mostrarMensagem(r.detalhes);
+      }
+    };
+    this.crud.post_api('remItemLogistica', accallback, item.id);
   }
 
 }

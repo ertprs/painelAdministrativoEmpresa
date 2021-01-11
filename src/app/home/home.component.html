@@ -115,13 +115,18 @@
                 </button>
               </mat-menu>
               #{{item.id}} - {{item.nome}} <span *ngIf="item.itemEstoqueRelacionado !== '0'" > <mat-icon  matTooltip="Item relacionado">compare_arrows</mat-icon> {{item.itemEstoqueRelacionado}} </span>
-<span class="dels" *ngIf="item.esgotado === true">
-<mat-icon class="mat-18"  matTooltip="Este item está esgotado">warning</mat-icon>
+<span class="dels" *ngIf="item.esgotado === true && item.tipo_acao !== 'esg_estoque'">
+<mat-icon class="mat-18"  matTooltip="Item esgotado">warning</mat-icon>
  
 </span>
 <span class="dels2" *ngIf="item.esconder === true">  
-<mat-icon class="mat-18"  matTooltip="Este item está oculto para os clientes">warning</mat-icon>
+<mat-icon class="mat-18"  matTooltip="Item oculto para os clientes">warning</mat-icon>
 </span>
+
+<span class="" *ngIf="item.tipo_acao === 'esg_estoque'">  
+  <mat-icon class="mat-18" color="warn" matTooltip="Item esgotado por falta de estoque">transit_enterexit</mat-icon>
+  </span>
+
 </div>
 <div class="item-descricao">{{item.descricao}}</div>
 <div class="item-preco">{{item.preco | currency:'BRL':true}}</div>

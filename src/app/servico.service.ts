@@ -13,7 +13,7 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-  private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
+   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   // private urlapi = 'https://api.vulto.site/index.php';
   // private urlapi = 'https://api.dinp.com.br/index.php';
@@ -50,7 +50,8 @@ export class ServicoService {
   private dataRetroativa = false;
   private intervalPedidos = 25000;
   private intervalEntregadores = 7000;
-  public versao = "1.0.1";
+  public versao = '1.0.2';
+
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
 

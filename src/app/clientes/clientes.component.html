@@ -29,8 +29,10 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-                    <button [disabled]="element.id == 'NOT'" (click)="onClickEditar(element)" mat-menu-item> Editar dados do cliente</button>
-                    <button [disabled]="element.id == 'NOT'" (click)="formaddEnd()" mat-menu-item> Adicionar novo endereço </button>
+                    <button [disabled]="element.id == 'NOT'" (click)="onClickEditar(element)" mat-menu-item> Editar
+                        dados do cliente</button>
+                    <button [disabled]="element.id == 'NOT'" (click)="formaddEnd()" mat-menu-item> Adicionar novo
+                        endereço </button>
                     <button (click)="enderecoCliente(element)" mat-menu-item> Novo pedido </button>
                 </mat-menu>
 
@@ -121,5 +123,51 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+
+    <div class="itensClientes">
+
+        <button *ngIf="addCli" mat-icon-button color="warn" (click)="add()">
+            <mat-icon>add</mat-icon>
+        </button>
+
+        <div *ngFor="let element of itens" class="itemCliente">
+            <div> </div>
+            <div> Nome: {{element.nome}} </div>
+            <div> Telefone: {{element.telefone | mask: '(00) 00000-000000'}} </div>
+            <div> Data aniversário: {{element.data_aniversario}} </div>
+            <div> Tipo cliente: {{element.tipo}} </div>
+            <div> Data cadastro: {{element.info}}</div>
+            <div class="abts">
+                <div>
+
+                    <button *ngIf="btMenu" mat-icon-button color="warn" [matMenuTriggerFor]="menu" (click)="onClickBtMenu(element)">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+
+                    <mat-menu #menu="matMenu">
+                        <button [disabled]="element.id == 'NOT'" (click)="onClickEditar(element)" mat-menu-item> Editar
+                            dados do cliente</button>
+                        <button [disabled]="element.id == 'NOT'" (click)="formaddEnd()" mat-menu-item> Adicionar novo
+                            endereço </button>
+                        <button (click)="enderecoCliente(element)" mat-menu-item> Novo pedido </button>
+                    </mat-menu>
+
+                </div>
+
+                <div>
+
+                </div>
+
+                <div style="text-align: end;">
+                    <button [disabled]="element.id == 'NOT'" *ngIf="btRemo" (click)="removerItem(element)" mat-icon-button color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>

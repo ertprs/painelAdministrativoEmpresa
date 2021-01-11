@@ -118,3 +118,33 @@ table {
 .menuConc {
     color: green;
 }
+
+.mocel {
+    display: none;
+}
+
+.telag {
+    display: block;
+}
+
+.itemPedido {
+    padding: 10px;
+    border-bottom: solid 1px #cec5c5;
+    background: white;
+    display: grid;
+    gap: 5px;
+}
+
+.btmm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media(max-width:600px) {
+    .mocel {
+        display: block;
+    }
+    .telag {
+        display: none;
+    }
+}

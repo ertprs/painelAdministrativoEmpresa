@@ -1,4 +1,9 @@
 <div class="item" *ngFor="let item of itens" style="margin: 5px;">
-    <div> {{item.info}} </div>
+    <div>
+
+        <button [disabled]="statusBT" mat-icon-button color="warn" (click)="remItemLog(item)">
+            <mat-icon>delete</mat-icon>
+          </button> {{item.info}}
+    </div>
     <div> {{item.descricao}} </div>
 </div>

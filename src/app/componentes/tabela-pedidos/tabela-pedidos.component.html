@@ -1,4 +1,4 @@
-<div style="padding: 20px;">
+<div class="telag" style="padding: 20px;">
     <div style="height: 5px;">
 
         <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
@@ -40,20 +40,20 @@
 
 
                     <button *ngIf="element.status_pedido == 0" (click)="servpedidos.onClickAttStatusPedido(1, element.id, element)" mat-menu-item>
-                            <mat-icon>check</mat-icon> Aceitar pedido
-                        </button>
+                        <mat-icon>check</mat-icon> Aceitar pedido
+                    </button>
 
 
                     <button *ngIf="element.status_pedido == 1 && element.tipopedido !== 'retirada'" (click)="servpedidos.onClickAttStatusPedido(2, element.id, element)" mat-menu-item>
-                            <mat-icon>check</mat-icon> Pronto
-                        </button>
+                        <mat-icon>check</mat-icon> Pronto
+                    </button>
 
 
 
 
                     <button *ngIf="element.status_pedido == 1 && element.status_motoboy != '2' && element.tipopedido !== 'entrega'" (click)="servpedidos.onClickAttStatusPedido(3, element.id, element)" mat-menu-item>
-                            <mat-icon>check</mat-icon> Pronto
-                        </button>
+                        <mat-icon>check</mat-icon> Pronto
+                    </button>
 
 
                     <!--<button *ngIf="element.status_pedido == 2 && element.status_pedido != 3 && element.status_pedido != 4 && element.tipopedido == 'entrega'" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
@@ -61,17 +61,17 @@
                         </button>-->
 
                     <button *ngIf="element.status_pedido == 4 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(5, element.id, element)" mat-menu-item>
-                            <mat-icon>check</mat-icon> Entregue
-                        </button>
+                        <mat-icon>check</mat-icon> Entregue
+                    </button>
 
 
                     <button *ngIf="element.status_pedido == 6" (click)="servpedidos.onClickAttStatusPedido(6, element.id, element)" mat-menu-item>
-                            <mat-icon>check</mat-icon> Concluído
-                        </button>
+                        <mat-icon>check</mat-icon> Concluído
+                    </button>
 
                     <button mat-menu-item matTooltip="Selecione o entregador que está online e envie a entrega diretamente a ele" (click)="selecionarMotoboy(element)">
-                            <mat-icon>sports_motorsports</mat-icon> Selecionar entregador
-                        </button>
+                        <mat-icon>sports_motorsports</mat-icon> Selecionar entregador
+                    </button>
 
 
                     <button mat-menu-item (click)="onClickImprimir()">
@@ -95,7 +95,8 @@
                 <mat-icon *ngIf="element.status_pedido === '7'" color="warn" class="mat-18">info</mat-icon>
                 <mat-icon *ngIf="element.status_pedido === '6'" color="primary" class="mat-18">done_all</mat-icon>
                 <mat-icon *ngIf="element.status_pedido === '5'" color="primary" class="mat-18">done</mat-icon>
-                <mat-icon *ngIf="element.status_entrega === '12'" color="primary" class="mat-18">pause_circle_outline</mat-icon>
+                <mat-icon *ngIf="element.status_entrega === '12'" color="primary" class="mat-18">pause_circle_outline
+                </mat-icon>
             </td>
         </ng-container>
 
@@ -143,16 +144,22 @@
             <td mat-cell *matCellDef="let element" class="ggUi">
                 <div class="guid2">
 
-                    <span *ngIf="element.status_motoboy == '2' && !element.motoboy"> <mat-icon matTooltip="Não foi possível identificar o entregador que aceitou este pedido. Talvez a versão do aplicativo que ele usa está desatualizado!" color="warn">warning</mat-icon> </span>
-                    <span *ngIf="element.status_motoboy == '2' && element.motoboy"> 
-                    <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: 
+                    <span *ngIf="element.status_motoboy == '2' && !element.motoboy">
+                        <mat-icon
+                            matTooltip="Não foi possível identificar o entregador que aceitou este pedido. Talvez a versão do aplicativo que ele usa está desatualizado!"
+                            color="warn">warning</mat-icon>
+                    </span>
+                    <span *ngIf="element.status_motoboy == '2' && element.motoboy">
+                        <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: 
                     {{ element.motoboy.telefone | mask: '(00) 0000-0000'}}">
-                        <img [lazyLoad]="element.motoboy.imagem" width="40px" style="height: 40px;border-radius: 7px;">
-                        Entrega aceita
-                    </button>
-                 </span>
+                            <img [lazyLoad]="element.motoboy.imagem" width="40px"
+                                style="height: 40px;border-radius: 7px;">
+                            Entrega aceita
+                        </button>
+                    </span>
 
-                    <button color="primary" class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="servpedidos.solicitaMotoboy(element.id)" mat-flat-button matTooltip="Envie esta entrega a todos o entregadores que estão online">Solicitar entregador</button>
+                    <button color="primary" class="bts" *ngIf="element.status_motoboy == 0" [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" (click)="servpedidos.solicitaMotoboy(element.id)" mat-flat-button matTooltip="Envie esta entrega a todos o entregadores que estão online">Solicitar
+                        entregador</button>
 
                     <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1" matTooltip="Aguardando entregador aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
 
@@ -185,4 +192,93 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
+</div>
+
+<!-- TELA P -->
+<div class="mocel">
+    <div class="itemPedido" *ngFor="let element of servpedidos.getPedidos()">
+        <div>#{{element.id}} {{element.status_texto}} - {{element.info}} às {{element.horario}}</div>
+        <div>Nome: {{element.dadoscliente.nome}}</div>
+        <div>Entrega/Retirada: {{element.tipopedido}}</div>
+        <div>Total: {{element.total | currency:'BRL':true}} </div>
+        <div>Origem: {{element.origem}}</div>
+        <div class="btmm">
+
+            <div class="">
+                <button *ngIf="element.status_pedido != 6 && element.status_pedido != 5 && element.status_pedido != 7" mat-icon-button color="primary" [matMenuTriggerFor]="menu" (click)="onClickPedido(element)">
+                    <mat-icon>menu</mat-icon>
+                </button>
+
+                <button *ngIf="element.status_pedido == '5' || element.status_pedido == '6' || element.status_pedido == '7'" mat-icon-button color="warn" [matMenuTriggerFor]="menu2" (click)="onClickPedido(element)">
+                    <mat-icon [class.menuConc]="element.status_pedido === '6'">menu</mat-icon>
+                </button>
+
+                <mat-menu #menu2="matMenu">
+                    <button mat-menu-item (click)="onClickverPedido(element)" matTooltip="Ver detalhes do pedido">
+                        <mat-icon>remove_red_eye</mat-icon> Ver pedido
+                    </button>
+                    <button mat-menu-item (click)="onClickImprimir()">
+                        <mat-icon>print</mat-icon> Imprimir
+                    </button>
+
+                    <button mat-menu-item (click)="onClickAddObservacao(element)">
+                        <mat-icon>info</mat-icon> Adicionar observação
+                    </button>
+
+                </mat-menu>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="onClickverPedido(element)" matTooltip="Ver detalhes do pedido">
+                        <mat-icon>remove_red_eye</mat-icon> Ver pedido
+                    </button>
+
+
+                    <button *ngIf="element.status_pedido == 0" (click)="servpedidos.onClickAttStatusPedido(1, element.id, element)" mat-menu-item>
+                        <mat-icon>check</mat-icon> Aceitar pedido
+                    </button>
+
+
+                    <button *ngIf="element.status_pedido == 1 && element.tipopedido !== 'retirada'" (click)="servpedidos.onClickAttStatusPedido(2, element.id, element)" mat-menu-item>
+                        <mat-icon>check</mat-icon> Pronto
+                    </button>
+
+
+
+
+                    <button *ngIf="element.status_pedido == 1 && element.status_motoboy != '2' && element.tipopedido !== 'entrega'" (click)="servpedidos.onClickAttStatusPedido(3, element.id, element)" mat-menu-item>
+                        <mat-icon>check</mat-icon> Pronto
+                    </button>
+
+
+                    <!--<button *ngIf="element.status_pedido == 2 && element.status_pedido != 3 && element.status_pedido != 4 && element.tipopedido == 'entrega'" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
+                        <mat-icon>check</mat-icon> A Caminho
+                    </button>-->
+
+                    <button *ngIf="element.status_pedido == 4 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(5, element.id, element)" mat-menu-item>
+                        <mat-icon>check</mat-icon> Entregue
+                    </button>
+
+
+                    <button *ngIf="element.status_pedido == 6" (click)="servpedidos.onClickAttStatusPedido(6, element.id, element)" mat-menu-item>
+                        <mat-icon>check</mat-icon> Concluído
+                    </button>
+
+                    <button mat-menu-item matTooltip="Selecione o entregador que está online e envie a entrega diretamente a ele" (click)="selecionarMotoboy(element)">
+                        <mat-icon>sports_motorsports</mat-icon> Selecionar entregador
+                    </button>
+
+
+                    <button mat-menu-item (click)="onClickImprimir()">
+                        <mat-icon>print</mat-icon> Imprimir
+                    </button>
+
+                    <button mat-menu-item (click)="onClickAddObservacao(element)">
+                        <mat-icon>info</mat-icon> Adicionar observação
+                    </button>
+                </mat-menu>
+            </div>
+
+            <button color="primary" class="bts" mat-flat-button matTooltip="Envie esta entrega a todos o entregadores que estão online">Solicitar entregador</button>
+        </div>
+    </div>
 </div>

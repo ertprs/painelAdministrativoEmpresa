@@ -2,3 +2,18 @@
     background-color: #E91E63;
     color: white;
 }
+
+.modphone {
+    display: grid;
+    grid-template-columns: 0fr 1fr 1fr;
+}
+
+@media(max-width:600px) {
+    .modphone {
+        display: flex;
+        gap: 10px;
+    }
+    .spstatusdli {
+        display: none;
+    }
+}
