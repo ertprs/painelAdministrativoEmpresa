@@ -28,7 +28,7 @@
 
                 <div class="dados3">
                     <mat-form-field color="primary" appearance="outline">
-                        <mat-label>Logradouro</mat-label>
+                        <mat-label>Rua</mat-label>
                         <input formControlName="rua" matInput placeholder="Rua nome" type="name">
                     </mat-form-field>
 
@@ -62,14 +62,18 @@
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field color="primary" appearance="outline">
-
+                    <!--<mat-form-field color="primary" appearance="outline">
                         <mat-label>Taxa de entrega
                             <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderTaxa"></mat-progress-bar>
                         </mat-label>
                         <input (keyup)="trocarTaxa()" [(ngModel)]="servcard.getCarrinho().taxaentrega" formControlName="taxaentrega" matInput placeholder="R$17,50" type="tel" currencyMask>
-                    </mat-form-field>
+                    </mat-form-field>-->
 
+
+                    <div class="cxata">
+                        <div> Taxa de entrega </div>
+                        <div> {{ servcard.getCarrinho().taxaentrega | currency:'BRL':true }} </div>
+                    </div>
 
                 </div>
 
@@ -151,6 +155,13 @@
                         <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
                             <mat-label>Taxa extra</mat-label>
                             <input [(ngModel)]="servcard.getCarrinho().taxaextra" [ngModelOptions]="{standalone: true}" matInput placeholder="R$0,00" type="tel" currencyMask>
+                        </mat-form-field>
+
+                        <mat-form-field color="primary" appearance="outline" class="fotmg" style="margin-top:20px;">
+                            <mat-label>Taxa de entrega
+                                <mat-progress-bar mode="indeterminate" *ngIf="statusLoaderTaxa"></mat-progress-bar>
+                            </mat-label>
+                            <input (keyup)="trocarTaxa()" [(ngModel)]="servcard.getCarrinho().taxaentrega" formControlName="taxaentrega" matInput placeholder="R$17,50" type="tel" currencyMask>
                         </mat-form-field>
                     </div>
 

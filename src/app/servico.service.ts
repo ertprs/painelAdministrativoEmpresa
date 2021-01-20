@@ -13,7 +13,7 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
+  private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   // private urlapi = 'https://api.vulto.site/index.php';
   // private urlapi = 'https://api.dinp.com.br/index.php';
@@ -51,6 +51,26 @@ export class ServicoService {
   private intervalPedidos = 25000;
   private intervalEntregadores = 7000;
   public versao = '1.0.2';
+  public faturas = false;
+  public subimgs = false;
+  public fidelidade = false;
+  public dataRetro = false;
+  public altoCalcTxEnt = false;
+  public orgEnt = false;
+  public configMaster = false;
+  public estEnt = false;
+  public batEstoque = false;
+
+  public concBanc = false;
+  public concCartao = false;
+  public concDinheiro = false;
+  public contFiado = false;
+  public comissaoEntrega = false;
+  public concFinanceira = false;
+  public financeiro = false;
+  public alterarPedido = false;
+  public posEstEnt = false;
+  public criarRota = false;
 
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
@@ -127,7 +147,6 @@ export class ServicoService {
   }
 
   setDadosLogin(dados: any) {
-    console.log(dados);
     this.token = dados.dados_conta.token;
     this.dadosEmpresa = dados.dados_conta;
     this.dadosLogin = dados.dados_conta;
@@ -149,8 +168,26 @@ export class ServicoService {
     this.setStatusDelivery(this.dadosEmpresa.status_delivery);
     this.setStatusSistemaDelivery(this.dadosEmpresa.sistema_delivery);
 
+    this.faturas =  dados.config_dash.faturas;
+    this.subimgs =  dados.config_dash.sub_imgs;
+    this.fidelidade =  dados.config_dash.fidelidade;
+    this.dataRetro =  dados.config_dash.data_retro;
+    this.altoCalcTxEnt =  dados.config_dash.alto_calc_tx_ent;
+    this.orgEnt =  dados.config_dash.org_ent;
+    this.configMaster =  dados.config_dash.config_master;
+    this.estEnt =  dados.config_dash.est_ent;
+    this.batEstoque =  dados.config_dash.bat_estoque;
 
-
+    this.concBanc =  dados.config_dash.conc_banc;
+    this.concCartao =  dados.config_dash.conc_cartao;
+    this.concDinheiro =  dados.config_dash.conc_din;
+    this.contFiado =  dados.config_dash.cont_fiado;
+    this.comissaoEntrega =  dados.config_dash.com_entrega;
+    this.concFinanceira =  dados.config_dash.conc_fin;
+    this.financeiro =  dados.config_dash.financeiro;
+    this.alterarPedido =  dados.config_dash.alt_pedido;
+    this.posEstEnt =  dados.config_dash.pos_est_ent;
+    this.criarRota =  dados.config_dash.criar_rota;
   }
 
   retornaDataHoraAtual() {

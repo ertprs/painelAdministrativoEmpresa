@@ -27,18 +27,14 @@ export class HomeService {
   getCardapio() { return this.cardapio; }
 
   consultaCardapio() {
-    console.log('#consultaMotoboys');
     this.crud.get_api('cardapio&acmenu=listar').subscribe(data => {
-      console.log(data);
       this.cardapio = data.catalogo ;
       this.consultaModelItem();
     });
   }
 
   consultaModelItem() {
-    console.log('#get_model_item');
     this.crud.get_api('get_model_item').subscribe(data => {
-      console.log(data.nome);
       this.modelitem = data;
       this.statusloaderpage = true;
     });

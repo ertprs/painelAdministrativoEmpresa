@@ -1,0 +1,3 @@
+<div class='bb'>
+    <div *ngFor="let item of itens" [lazyLoad]="item.url" class="item" (click)="selecionarImagem(item)"></div>
+</div>

@@ -1,9 +1,17 @@
 <div class="loader" *ngIf="statusLoadConteudo"></div>
 
 <div class="all" *ngIf="!statusLoadConteudo" [formGroup]="form">
+    <div *ngIf="mostrarJanelaG">
+        <app-galeriaimagens (fcallb)="onfcalldelsuc($event)" [item]="itemGaleriaSub"></app-galeriaimagens>
+    </div>
+
     <div class="conteudo2">
 
         <mat-card class="imagem-card">
+
+            <button *ngIf="servapp.subimgs" color="warn" mat-icon-button style="position: absolute;" (click)="addCaixaSubImg()">
+                <mat-icon>add</mat-icon>
+            </button>
 
             <img mat-card-image [defaultImage]="servapp.getDefaultImage()" [lazyLoad]="imagem" offset="100">
             <mat-card-content>
@@ -11,17 +19,18 @@
             </mat-card-content>
             <mat-card-actions>
                 <form id="form1">
-                    <input style="display: none;" type='file' id="imgInp" (change)="inputFile($event)" />
+                    <input style="display: none;" type='file' id="imgInpPROD" (change)="inputFile($event)" />
                     <button color="primary" mat-button (click)="onClickImagemSelecionar()">Selecionar imagem</button>
 
                 </form>
             </mat-card-actions>
         </mat-card>
 
-        <mat-card class="example-card" style="margin-top: 10px; text-align: center;">
-            <button (click)="onClickCancelar()" color="warn" mat-button>Cancelar</button>
-            <button (click)="onClickAddItem()" mat-flat-button color="primary">Salvar</button>
-        </mat-card>
+        <button mat-raised-button (click)="removerItem(this.servhome.getItem().id)" *ngIf="this.servhome.getTipoAcao()">
+            <mat-icon color="warn">restore_from_trash</mat-icon> Remover item
+          </button>
+
+
 
     </div>
 
@@ -173,7 +182,8 @@
                                     <mat-slide-toggle color="warn" (change)="onClickAdicional($event, adicional)"
                                         [checked]="adicional.status">
                                         <div> {{ adicional.nome }} </div>
-                                        <div style="font-size: 12px;"> {{ adicional.preco | currency:'BRL':true }} </div>
+                                        <div style="font-size: 12px;"> {{ adicional.preco | currency:'BRL':true }}
+                                        </div>
                                         <!--{{ adicional.status }}-->
                                     </mat-slide-toggle>
                                     <mat-divider></mat-divider>
@@ -246,13 +256,15 @@
                 <mat-list>
 
                     <mat-list-item>
-                        <mat-slide-toggle (change)="onClickItemRelacionado($event, form.controls.statusEstoqueRelacionado.value)" [checked]="form.controls.statusEstoqueRelacionado.value"> Estoque relacionado </mat-slide-toggle>
+                        <mat-slide-toggle (change)="onClickItemRelacionado($event, form.controls.statusEstoqueRelacionado.value)" [checked]="form.controls.statusEstoqueRelacionado.value"> Estoque relacionado
+                        </mat-slide-toggle>
                     </mat-list-item>
 
                     <mat-list-item style="margin-top: 10px;" *ngIf="form.controls.statusEstoqueRelacionado.value">
                         <mat-form-field appearance="fill">
                             <mat-label>
-                                <span *ngIf="form.controls.itemEstoqueRelacionado.value"> Relacionado com: {{ form.controls.itemEstoqueRelacionado.value }} </span>
+                                <span *ngIf="form.controls.itemEstoqueRelacionado.value"> Relacionado com: {{
+                                    form.controls.itemEstoqueRelacionado.value }} </span>
                                 <span *ngIf="!form.controls.itemEstoqueRelacionado.value"> Relacionar </span>
                             </mat-label>
                             <mat-select>
@@ -326,6 +338,22 @@
 
         </mat-accordion>
         <!--Tabela-->
+
+        <div class="csubim" *ngFor="let subimg of imagensProduto">
+
+            <button (click)="selecionarSUBIMG(subimg)" color="primary" mat-button>Selecionar subimagem</button>
+
+            <button color="warn" mat-icon-button (click)="rmCaixaimg(subimg)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            <div class="imgsuvitensItem" [lazyLoad]="subimg.imagem"></div>
+        </div>
+
     </div>
 
+</div>
+
+<div class="barraOpcs" *ngIf="!statusLoadConteudo">
+    <button (click)="onClickCancelar()" color="warn" mat-button>Cancelar</button>
+    <button (click)="onClickAddItem()" mat-flat-button color="primary" style="margin-right: 20px;">Salvar</button>
 </div>

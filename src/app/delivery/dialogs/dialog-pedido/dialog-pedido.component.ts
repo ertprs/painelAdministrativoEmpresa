@@ -23,7 +23,7 @@ export class DialogPedidoComponent implements OnInit {
   btCstatus = false;
   loaderPedido = false;
 
-  constructor(public servpedidos: PedidosService, private servapp: ServicoService, private crud: CrudServicoService,
+  constructor(public servpedidos: PedidosService, public servapp: ServicoService, private crud: CrudServicoService,
               private dialog: MatDialog, public upimgServ: UploadimagemService, private sercard: CadastroPedidoService,
               private router: Router, public dialogRef: MatDialogRef<DialogPedidoComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }

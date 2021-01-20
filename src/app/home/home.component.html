@@ -110,9 +110,9 @@
                 <button mat-menu-item (click)="onClickConfigurarItem(item, categoria)">
                   <mat-icon>settings</mat-icon> Configurar item
                 </button>
-                <button mat-menu-item (click)="removerItem(item)">
+                <!--<button mat-menu-item (click)="removerItem(item)">
                   <mat-icon>restore_from_trash</mat-icon> Remover item
-                </button>
+                </button>-->
               </mat-menu>
               #{{item.id}} - {{item.nome}} <span *ngIf="item.itemEstoqueRelacionado !== '0'" > <mat-icon  matTooltip="Item relacionado">compare_arrows</mat-icon> {{item.itemEstoqueRelacionado}} </span>
 <span class="dels" *ngIf="item.esgotado === true && item.tipo_acao !== 'esg_estoque'">

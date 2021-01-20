@@ -1,3 +1,4 @@
+import { ServicoService } from 'src/app/servico.service';
 import { Component, OnInit } from '@angular/core';
 import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 
@@ -15,7 +16,7 @@ export class FinaceiroComponent implements OnInit {
   btEntrega = true;
   btFinan = true;
 
-  constructor(private us: UsuariosAdmService) { }
+  constructor(private us: UsuariosAdmService, public servico: ServicoService) { }
 
   ngOnInit(): void {
     this.btConcbancaria = this.us.getPermissoessuario()[7].children[0].status;

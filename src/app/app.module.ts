@@ -210,6 +210,8 @@ import { PagamentoOnlineComponent } from './pagamento-online/pagamento-online.co
 import { EmpresaPagamentosOnlineComponent } from './empresa-pagamentos-online/empresa-pagamentos-online.component';
 import { AddObservacaoPedidoComponent } from './add-observacao-pedido/add-observacao-pedido.component';
 import { RotasEntregadorComponent } from './rotas-entregador/rotas-entregador.component';
+import { GaleriaimagensComponent } from './componentes/galeriaimagens/galeriaimagens.component';
+import { FidelidadeComponent } from './fidelidade/fidelidade.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -380,7 +382,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       PagamentoOnlineComponent,
       EmpresaPagamentosOnlineComponent,
       AddObservacaoPedidoComponent,
-      RotasEntregadorComponent
+      RotasEntregadorComponent,
+      GaleriaimagensComponent,
+      FidelidadeComponent
    ],
   imports: [
     BrowserModule,

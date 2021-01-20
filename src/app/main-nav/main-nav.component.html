@@ -75,7 +75,7 @@
     Relatórios
 </a>
 
-<a (click)="clickMenu(ms.menuSelecionado[7])" [class.menuSelecionado]="ms.menuSelecionado[7].selecionado" *ngIf="us.getPermissoessuario()[7].status" mat-list-item routerLink="/financeiro/conciliacao-bancaria">
+<a (click)="clickMenu(ms.menuSelecionado[7])" [class.menuSelecionado]="ms.menuSelecionado[7].selecionado" *ngIf="us.getPermissoessuario()[7].status && servico.financeiro" mat-list-item routerLink="/financeiro/conciliacao-bancaria">
     <mat-icon>money</mat-icon>
     Financeiro
 </a>
@@ -88,12 +88,17 @@
 </a>
 
 
-<!--<a (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
+<a *ngIf="servico.faturas" (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
     <mat-icon>description</mat-icon>
     Faturas
     <mat-icon matTooltip="Existe faturas pendentes" *ngIf="servico.getStatusfatura()" style="color: red;">notification_important</mat-icon>
-</a>-->
+</a>
 
+
+<a mat-list-item routerLink="/fidelidade">
+    <mat-icon>settings</mat-icon>
+    Fidelidade
+</a>
 
 <a (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel">
     <mat-icon>settings</mat-icon>

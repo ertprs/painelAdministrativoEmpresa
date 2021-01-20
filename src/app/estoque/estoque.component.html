@@ -2,10 +2,10 @@
     <div class="c1">
 
         <button *ngIf="estoqueLoja" mat-button routerLinkActive="active-link" routerLink="/estoque/itens-estoque"> Estoque Loja </button>
-        <button *ngIf="estoqueE" mat-button routerLinkActive="active-link" routerLink="/estoque/lista-motoboys"> Estoque Entregador </button>
+        <button *ngIf="estoqueE && servapp.estEnt" mat-button routerLinkActive="active-link" routerLink="/estoque/lista-motoboys"> Estoque Entregador </button>
         <button *ngIf="logistica" mat-button routerLinkActive="active-link" routerLink="/estoque/logistica"> Logística </button>
         <button *ngIf="btAuditoria" mat-button routerLinkActive="active-link" routerLink="/estoque/historico"> Auditoria </button>
-        <button *ngIf="batimentoE" mat-button routerLinkActive="active-link" routerLink="/estoque/batimentos-estoque"> Batimentos de Estoque </button>
+        <button *ngIf="batimentoE && servapp.batEstoque" mat-button routerLinkActive="active-link" routerLink="/estoque/batimentos-estoque"> Batimentos de Estoque </button>
 
     </div>
     <div class="c2">

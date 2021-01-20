@@ -103,6 +103,10 @@
     background: #3c3c3c;
 }
 
+.mat-list-base {
+    padding-top: 1px;
+}
+
 .ccs {
     background-image: url('/assets/gif/computer-settings.gif');
     height: 260px;

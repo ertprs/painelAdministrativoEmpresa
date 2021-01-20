@@ -1,0 +1,36 @@
+.c {
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.c1 {
+    height: 100%;
+}
+
+.c2 {
+    height: 100%;
+}
+
+.cc {
+    background: #f9f6df;
+    margin: 5px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #e2d7d7;
+    border-radius: 4px;
+    padding: 23px;
+}
+
+table {
+    width: 100%;
+}
+
+.cinpu {
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}

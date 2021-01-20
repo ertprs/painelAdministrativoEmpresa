@@ -81,7 +81,7 @@
 
         </th>
         <td mat-cell *matCellDef="let element">
-            <button class="ggf" *ngIf="btEnviar" mat-stroked-button color="primary" (click)="enviarNovoEstoque(element)" [disabled]="element.quantidade_total_unidades === 0 || element.quantidade_total_unidades === '0'"> Enviar estoque </button>
+            <button class="ggf" *ngIf="btEnviar && servapp.estEnt" mat-stroked-button color="primary" (click)="enviarNovoEstoque(element)" [disabled]="element.quantidade_total_unidades === 0 || element.quantidade_total_unidades === '0'"> Enviar estoque </button>
             <button class="ggfON" *ngIf="btEnviar" mat-icon-button (click)="enviarNovoEstoque(element)">
                 <mat-icon class="mat-18">send</mat-icon>
             </button>

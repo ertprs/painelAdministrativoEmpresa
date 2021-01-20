@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { HomeService } from './../home.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 declare var $: any;
 
@@ -26,10 +26,14 @@ export class EditarItemCompletoComponent implements OnInit {
   diasLista: Array<any>;
   catsEAdcs: any;
   categoriasCatalogo: Array<any>;
+  imagensProduto: Array<any>;
 
   arquivo: any;
   itemRequest: any;
   statusLoadConteudo = true;
+
+  mostrarJanelaG = false;
+  itemGaleriaSub: any;
 
 
   constructor(private formBuilder: FormBuilder, public servhome: HomeService, public servapp: ServicoService,
@@ -41,23 +45,24 @@ export class EditarItemCompletoComponent implements OnInit {
 
     this.imagem = this.servapp.getDadosEmpresa().imagem;
 
-
     if (this.servhome.getTipoAcao()) {
       // editar item
-      console.log(' ~~~~~~~~ EDITAR ITEM ~~~~~~~~');
-
-
+      // console.log(' ~~~~~~~~ EDITAR ITEM ~~~~~~~~');
+      
       this.crud.get_api('consulta_item_cardapio&id_empresa=' +
         this.servapp.getDadosEmpresa().id +
         '&id_item=' + this.servhome.getItem().id).subscribe(
           (data: any) => {
-            console.log(data);
+            // console.log(data);
             this.itemRequest = data.item;
             this.imagem = data.item.imagem;
             this.diasLista = data.item.disponibilidade;
             this.catsEAdcs = data.item.categoriaadicional;
             this.categoriasCatalogo = data.item.categoria;
 
+            if (data.item.categoria_nome) {
+              this.imagensProduto = data.item.categoria_nome;
+            }
 
             this.form = this.formBuilder.group({
               id: [this.servhome.getItem().id],
@@ -98,10 +103,8 @@ export class EditarItemCompletoComponent implements OnInit {
 
 
 
-
     } else {
       // novo item
-      console.log(' ~~~~~~~~ NOVO ITEM ~~~~~~~~');
 
       this.diasLista = this.servhome.getItemModel().disponibilidade;
       this.catsEAdcs = this.servhome.getItemModel().categoriaadicional;
@@ -143,8 +146,51 @@ export class EditarItemCompletoComponent implements OnInit {
 
   }
 
+  removerItem(item: any) {
+    const accallback = () => {
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.mensagem); } else {
+        this.servapp.mostrarMensagem(r.mensagem);
+        this.route.navigate(['/painel/cardapio']);
+      }
+    };
+    this.crud.post_api('cardapio&acmenu=removerItem', accallback, item, true);
+  }
+
+  onfcalldelsuc(evento) {
+    console.log(evento);
+    this.mostrarJanelaG = false;
+    this.imagensProduto.forEach(element => {
+      if (element.id === evento.id) {
+        element.imagem = evento.imagem;
+      }
+    });
+  }
+  selecionarSUBIMG(item: any) {
+    this.mostrarJanelaG = true;
+    this.itemGaleriaSub = item;
+  }
+
+  addCaixaSubImg() {
+    let idItem = 1;
+    try {  idItem = this.imagensProduto.length + 1; } catch (e) { idItem = 1; }
+    const c = {id:  idItem, imagem: this.servapp.getDefaultImage(), status: true};
+
+    try { this.imagensProduto.push(c); } catch (e) { this.imagensProduto = [c]; }
+
+  }
+
+  rmCaixaimg(item: any) {
+    let indeArray: any;
+    for (const x in this.imagensProduto) {
+      if (this.imagensProduto[x] === item) {
+        indeArray = x;
+      }
+    }
+    this.imagensProduto.splice(indeArray, 1);
+  }
+
   selecionarOpt(item) {
-    console.log(item);
     this.form.controls.itemEstoqueRelacionado.setValue(item.id);
   }
 
@@ -207,7 +253,10 @@ export class EditarItemCompletoComponent implements OnInit {
   salvaItemBanco() {
 
     console.log('#salvaItemBanco');
+    this.valorSubmit.categoria_nome = this.imagensProduto;
     console.log(this.valorSubmit);
+
+    console.log('#------------#');
 
     this.statusLoadConteudo = true;
     const loginres = () => {
@@ -269,7 +318,7 @@ export class EditarItemCompletoComponent implements OnInit {
   }
 
   onClickImagemSelecionar() {
-    document.getElementById('imgInp').click();
+    document.getElementById('imgInpPROD').click();
   }
 
   onClickObrigatorio(event, item) {

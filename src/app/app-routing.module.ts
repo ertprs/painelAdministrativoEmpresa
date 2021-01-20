@@ -1,3 +1,4 @@
+import { FidelidadeComponent } from './fidelidade/fidelidade.component';
 import { EmpresaPagamentosOnlineComponent } from './empresa-pagamentos-online/empresa-pagamentos-online.component';
 import { PagamentoOnlineComponent } from './pagamento-online/pagamento-online.component';
 import { CadastroEmpresaLojistaComponent } from './cadastro-empresa-lojista/cadastro-empresa-lojista.component';
@@ -100,6 +101,7 @@ const routes: Routes = [
       { path: 'mapa', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'faturas', component: FaturasComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'fidelidade', component: FidelidadeComponent, canActivate: [GuardaAtenticacaoService] },
 
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },

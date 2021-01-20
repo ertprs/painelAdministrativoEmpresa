@@ -8,7 +8,7 @@
             <mat-option value="loja">
                 Loja
             </mat-option>
-            <mat-option value="motoboy" (click)="this.selecionarMotoboy()">
+            <mat-option value="motoboy" (click)="this.selecionarMotoboy()" *ngIf="servapp.posEstEnt" >
                 Motoboy
             </mat-option>
         </mat-select>

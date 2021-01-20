@@ -91,7 +91,7 @@
 </div>
 
 
-<div *ngIf="!this.pedido" style="margin-top: 10px; text-align: center;">
+<div *ngIf="!this.pedido && servico.criarRota" style="margin-top: 10px; text-align: center;">
     <button [disabled]="gerarRota" mat-stroked-button (click)="criarRota()">Criar rota</button>
 </div>
 

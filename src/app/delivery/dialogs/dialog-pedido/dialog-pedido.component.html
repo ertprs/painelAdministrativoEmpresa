@@ -49,7 +49,7 @@
                 </span>
 
 
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido > 0 && servpedidos.getPedido().status_pedido <= 5" (click)="onClickEditarPedido(servpedidos.getPedido())">
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido > 0 && servpedidos.getPedido().status_pedido <= 5 && servapp.alterarPedido" (click)="onClickEditarPedido(servpedidos.getPedido())">
                     <mat-icon>edit</mat-icon> Alterar pedido
                 </mat-chip>
             </mat-chip-list>
