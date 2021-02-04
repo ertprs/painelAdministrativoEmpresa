@@ -11,16 +11,20 @@ var core_1 = require("@angular/core");
 var lodash_1 = require("lodash");
 var ServicoService = /** @class */ (function () {
     // tslint:disable-next-line: max-line-length
-    function ServicoService(snackBar, inicioServico, config) {
+    function ServicoService(snackBar, inicioServico, config, servProg) {
         this.snackBar = snackBar;
         this.inicioServico = inicioServico;
         this.config = config;
+        this.servProg = servProg;
         this.dadosEntregador = false;
         this.dadosCliente = false;
         this.defaultImg = '/assets/semImg.png';
-        // private urlapi = 'http://192.168.0.112/sistema_zecarlos/apiVulto/?api=apiEstabelecimento&acao=';
-        this.urlapi = 'HOST DEFINIDO NO ARQUIVO JSON EM ASSETS';
-        this.API = 'DEFINIDO NO ARQUIVO JSON EM ASSETS';
+        this.logoEmpresa = '/assets/logoEmpresa.png';
+        this.urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
+        // private urlapi = 'https://jfortalapi.ecig.app/index.php';
+        // private urlapi = 'https://api.vulto.site/index.php';
+        // private urlapi = 'https://api.dinp.com.br/index.php';
+        this.API = 'apiEstabelecimento';
         this.statusLogado = false;
         this.token = '';
         this.listaEntregadores = [];
@@ -33,18 +37,75 @@ var ServicoService = /** @class */ (function () {
         this.cardapioDigtal = '0';
         this.statusDelivery = false;
         this.statusSistemaDelivery = false;
+        this.statusFatura = false;
         this.fSistema = [];
+        this.statusCaixa = false;
+        this.dataRetroativa = false;
+        this.intervalPedidos = 25000;
+        this.intervalEntregadores = 7000;
+        this.versao = '1.0.3';
+        this.faturas = false;
+        this.subimgs = false;
+        this.fidelidade = false;
+        this.promocao = false;
+        this.dataRetro = false;
+        this.altoCalcTxEnt = false;
+        this.orgEnt = false;
+        this.configMaster = false;
+        this.estEnt = false;
+        this.batEstoque = false;
+        this.concBanc = false;
+        this.concCartao = false;
+        this.concDinheiro = false;
+        this.contFiado = false;
+        this.comissaoEntrega = false;
+        this.concFinanceira = false;
+        this.financeiro = false;
+        this.alterarPedido = false;
+        this.posEstEnt = false;
+        this.criarRota = false;
+        this.urlAudio = '';
     }
-    ServicoService.prototype.getApiAcao = function (acao) {
-        console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
+    ServicoService.prototype.getInterEntregadores = function () {
+        return this.intervalEntregadores;
+    };
+    ServicoService.prototype.getInterPedidos = function () {
+        return this.intervalPedidos;
+    };
+    ServicoService.prototype.setStatusDR = function (status) {
+        this.dataRetroativa = status;
+    };
+    ServicoService.prototype.getStatusDR = function () {
+        return this.dataRetroativa;
+    };
+    ServicoService.prototype.setStatusCaixa = function (status) {
+        this.statusCaixa = status;
+    };
+    ServicoService.prototype.getStatusCaixa = function () {
+        return this.statusCaixa;
+    };
+    ServicoService.prototype.setStatusfatura = function (status) {
+        this.statusFatura = status;
+    };
+    ServicoService.prototype.getStatusfatura = function () {
+        return this.statusFatura;
+    };
+    ServicoService.prototype.getApiAcao = function (acao, mostrarProgresso) {
+        if (mostrarProgresso) {
+            this.servProg.showProgress.emit(mostrarProgresso);
+        }
+        // console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
         return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
     };
     ServicoService.prototype.setHost = function (host, api) {
-        this.urlapi = host;
-        this.API = api;
+        // this.urlapi = host;
+        // this.API = api;
     };
     ServicoService.prototype.getDefaultImage = function () {
         return this.defaultImg;
+    };
+    ServicoService.prototype.getLogoEmpresa = function () {
+        return this.logoEmpresa;
     };
     ServicoService.prototype.getEntregadoeSelecionado = function () {
         return this.dadosEntregador;
@@ -62,12 +123,22 @@ var ServicoService = /** @class */ (function () {
         return this.statusLogado;
     };
     ServicoService.prototype.setDadosLogin = function (dados) {
-        console.log(dados);
         this.token = dados.dados_conta.token;
         this.dadosEmpresa = dados.dados_conta;
         this.dadosLogin = dados.dados_conta;
-        this.listaCidades = dados.cidade.lista_cidades;
-        this.listaCidadesEntrega = dados.cidade.lista_cidades_entrega;
+        this.setStatusDR(dados.status_data_r);
+        try {
+            this.listaCidades = dados.cidade;
+        }
+        catch (e) {
+            console.warn('Cidades não configuradas');
+        }
+        try {
+            this.listaCidadesEntrega = dados.cidade;
+        }
+        catch (e) {
+            console.warn('Cidades não configuradas');
+        }
         this.cardapioDigtal = this.dadosEmpresa.cardapio_digital;
         // this.listaBairros = dados;
         if (this.statusLogado === false) {
@@ -77,6 +148,27 @@ var ServicoService = /** @class */ (function () {
         this.config.iniciarConfig();
         this.setStatusDelivery(this.dadosEmpresa.status_delivery);
         this.setStatusSistemaDelivery(this.dadosEmpresa.sistema_delivery);
+        this.faturas = dados.config_dash.faturas;
+        this.subimgs = dados.config_dash.sub_imgs;
+        this.fidelidade = dados.config_dash.fidelidade;
+        this.promocao = dados.config_dash.promocao;
+        this.dataRetro = dados.config_dash.data_retro;
+        this.altoCalcTxEnt = dados.config_dash.alto_calc_tx_ent;
+        this.orgEnt = dados.config_dash.org_ent;
+        this.configMaster = dados.config_dash.config_master;
+        this.estEnt = dados.config_dash.est_ent;
+        this.batEstoque = dados.config_dash.bat_estoque;
+        this.concBanc = dados.config_dash.conc_banc;
+        this.concCartao = dados.config_dash.conc_cartao;
+        this.concDinheiro = dados.config_dash.conc_din;
+        this.contFiado = dados.config_dash.cont_fiado;
+        this.comissaoEntrega = dados.config_dash.com_entrega;
+        this.concFinanceira = dados.config_dash.conc_fin;
+        this.financeiro = dados.config_dash.financeiro;
+        this.alterarPedido = dados.config_dash.alt_pedido;
+        this.posEstEnt = dados.config_dash.pos_est_ent;
+        this.criarRota = dados.config_dash.criar_rota;
+        this.urlAudio = dados.config_dash.urlAudio;
     };
     ServicoService.prototype.retornaDataHoraAtual = function () {
         var dNow = new Date();
@@ -208,7 +300,7 @@ var ServicoService = /** @class */ (function () {
     ServicoService.prototype.getClientesEmpresa = function () { return this.clientesEmpresa; };
     ServicoService.prototype.playAudio = function () {
         var audio = new Audio();
-        audio.src = 'https://www.xdelssy.com.br/sis_entregas/php/audio/notification.mp3';
+        audio.src = this.urlAudio;
         audio.load();
         audio.play();
     };

@@ -29,6 +29,7 @@ export class CadastroPedidoService {
   private carrinho = {
     id_pedido: 0,
     id_empresa: false,
+    observacao: '',
     statusAcaoPedido: false, // false = ADD PEDIDO , TRUE == Editar pedido
     cliente: '',
     itens: [],
@@ -43,7 +44,7 @@ export class CadastroPedidoService {
     total: 0,
     total_pedido: 0,
     taxaentrega: 0,
-    taxaextra: 0,
+    taxaextra: '',
     tipopedido: 'false',
     endereco: {
       rua: '',
@@ -184,7 +185,7 @@ export class CadastroPedidoService {
     console.log('Limpa carrinho');
     this.carrinho.itens = [];
     this.carrinho.formasPagamento = [];
-    this.carrinho.taxaextra = 0;
+    this.carrinho.taxaextra = '';
     this.carrinho.taxaentrega = 0;
     this.carrinho.origempedido = false;
     this.carrinho.total = 0;
@@ -195,6 +196,7 @@ export class CadastroPedidoService {
     this.carrinho.tipopedido = 'false';
     this.carrinho.statusAcaoPedido = false;
     this.carrinho.id_pedido = 0;
+    this.carrinho.observacao = '';
     this.taxaEntregaAltManual = 0;
   }
 
@@ -272,7 +274,7 @@ export class CadastroPedidoService {
   }
 
   getTaxaExtra(): number {
-    const taxa = this.carrinho.taxaextra.toString();
+    const taxa = this.carrinho.taxaextra;
     let te = parseFloat(taxa);
     if (!te) { te =  0; }
     return te;
@@ -283,6 +285,8 @@ export class CadastroPedidoService {
   }
 
   setTaxaEntrega(valor: number) {
+    // console.log('setTaxaEntrega');
+    // console.log(valor);
     if (!valor) { valor = 0; }
     this.carrinho.taxaentrega = valor;
   }
@@ -311,6 +315,10 @@ export class CadastroPedidoService {
     return this.carrinho.itens;
   }
 
+  getQtdItensCarrinho(): number {
+    return this.carrinho.itens.length;
+  }
+
   getSubTotalCarrinho(): number {
     let total = 0;
     try {
@@ -323,20 +331,20 @@ export class CadastroPedidoService {
 
   getTotalCarrinho(): number {
     let total = 0;
-    let res = 0;
     try {
     this.carrinho.itens.forEach(element => {
       total += element.total;
     });
     } catch(e) { console.log(e);  console.log(this.carrinho); }
     // Calcular com desconto
-    total = total - this.carrinho.desconto;
-    // Calcular com taxa de entrega
-    res =  total + this.getTaxaEntrega();
+    if (!this.carrinho.desconto) { this.carrinho.desconto = 0; }
+    // total -= this.carrinho.desconto;
+
      // Calcula com taxa extra
-    res += this.getTaxaExtra();
-    if (res < 0) { res = 0; }
-    return res;
+    total += this.getTaxaExtra();
+    total += this.getTaxaEntrega();
+    if (total < 0) { total = 0; }
+    return total;
   }
 
 

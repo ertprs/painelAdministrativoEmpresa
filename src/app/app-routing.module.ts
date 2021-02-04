@@ -1,3 +1,4 @@
+import { PromocaoComponent } from './promocao/promocao.component';
 import { FidelidadeComponent } from './fidelidade/fidelidade.component';
 import { EmpresaPagamentosOnlineComponent } from './empresa-pagamentos-online/empresa-pagamentos-online.component';
 import { PagamentoOnlineComponent } from './pagamento-online/pagamento-online.component';
@@ -89,10 +90,10 @@ const routes: Routes = [
   { path: 'recuperar', component: RecuperarContaComponent },
 
   /* SITE - Local de acesso nas paginas do SITE */
-  { path: 'inicio', component: CadastroEmpresaLojistaComponent, children: [
     { path: 'cadastro', component: CadastroEmpresaLojistaComponent, /*canActivate: [GuardaAtenticacaoService]*/ },
-  ] },
   /* FIM LINHA SITE -- Local de acesso nas paginas do SITE */
+
+
 
   /* DASH LOJISTA */
   {
@@ -102,6 +103,7 @@ const routes: Routes = [
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'faturas', component: FaturasComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fidelidade', component: FidelidadeComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'promocao', component: PromocaoComponent},
 
       { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
@@ -293,12 +295,15 @@ const routes: Routes = [
         ]
       },
 
+  
       
 
 
     ]
+
   },
 
+  { path: '**', redirectTo: '/login' },
 
 ];
 

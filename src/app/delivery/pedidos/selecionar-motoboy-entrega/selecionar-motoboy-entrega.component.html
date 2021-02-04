@@ -38,7 +38,20 @@
 
 
     <div *ngIf="gerarRota" [formGroup]="form">
+
+        <div class="boc1">
+
+
+            <mat-google-maps-autocomplete [addressLabelText]="'Buscar endereço'" [country]="'br'" [appearance]="appearance.LEGACY" (onAutocompleteSelected)="onAutocompleteSelected($event)" (onLocationSelected)="onLocationSelected($event)">
+            </mat-google-maps-autocomplete>
+
+
+
+        </div>
+
         <div style="display: grid; grid-template-columns: 10fr 1fr;">
+
+
 
             <mat-form-field>
                 <mat-label>Rua</mat-label>
@@ -55,10 +68,12 @@
 
         <div class="guin2">
 
+
+
             <mat-form-field appearance="fill">
                 <mat-label>Cidade</mat-label>
                 <mat-select formControlName="cidade" (selectionChange)="selectionChangeCidade(itemCidade.value)" #itemCidade>
-                    <mat-option *ngFor="let item of servico.getListaCidades()" [value]="item">
+                    <mat-option *ngFor="let item of cidades" [value]="item">
                         {{item.nome}}
                     </mat-option>
                 </mat-select>

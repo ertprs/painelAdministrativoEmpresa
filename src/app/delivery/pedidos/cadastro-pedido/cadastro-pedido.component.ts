@@ -149,6 +149,18 @@ export class CadastroPedidoComponent implements OnInit {
 
   iniciaFormDados() {
     console.log(this.servcard.getCadastroClienteLista());
+
+    if (this.servcard.getCadastroClienteLista().taxaextra > 0) {
+    this.servcard.getCarrinho().taxaextra = this.servcard.getCadastroClienteLista().taxaextra;
+    }
+    if (this.servcard.getCadastroClienteLista().desconto > 0) {
+    this.servcard.getCarrinho().desconto = this.servcard.getCadastroClienteLista().desconto;
+    }
+
+    /*this.servcard.getCadastroClienteLista().formaspagamento.forEach(element => {
+          this.servcard.addFp(element);
+        });*/
+
     this.form = this.fb.group({
       id: [this.servcard.getCadastroClienteLista().id],
       nome: [this.servcard.getCadastroClienteLista().nome, Validators.required],
@@ -169,6 +181,8 @@ export class CadastroPedidoComponent implements OnInit {
     });
 
     this.selecionarCidadeAuto(this.servcard.getCadastroClienteLista().cidade.nome, this.servcard.getCadastroClienteLista().bairro.nome);
+     
+    
   }
 
   selecionaCidadeSelect(item) {
@@ -379,12 +393,14 @@ export class CadastroPedidoComponent implements OnInit {
 
     if (this.servcard.getQntItensCar() < 1) { this.servico.mostrarMensagem('O carrinho está vazio!'); return; }
     if (this.servcard.verificaFp() === false && !this.stand) {
-      this.servico.mostrarMensagem('Selecione a forma de pagamento deste pedido');
+      // this.servico.mostrarMensagem('Selecione a forma de pagamento deste pedido');
+      this.openBottomSheet('formapagamento');
       return;
     }
 
     if (this.servcard.getCarrinho().origempedido === false) {
-      this.servico.mostrarMensagem('Selecione a origem deste pedido');
+      // this.servico.mostrarMensagem('Selecione a origem deste pedido');
+      this.openBottomSheet('canalpedido');
       return;
     }
 
@@ -418,7 +434,8 @@ export class CadastroPedidoComponent implements OnInit {
 
 
     if (this.servcard.getCarrinho().tipopedido === 'false') {
-      this.servico.mostrarMensagem('Selecione a opção do pedido, se é para entrega ou para retirada');
+      // this.servico.mostrarMensagem('Selecione a opção do pedido, se é para entrega ou para retirada');
+      this.openBottomSheet('tipopedido');
       return;
     }
     if (this.form.value.rua === '' || !this.form.value.rua) { this.servico.mostrarMensagem('Informe a rua do pedido'); return; }

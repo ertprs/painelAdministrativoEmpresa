@@ -95,9 +95,14 @@
 </a>
 
 
-<a mat-list-item routerLink="/fidelidade">
+<a *ngIf="servico.fidelidade" mat-list-item routerLink="/fidelidade">
     <mat-icon>settings</mat-icon>
     Fidelidade
+</a>
+
+<a *ngIf="servico.promocao" mat-list-item routerLink="/promocao">
+    <mat-icon>price_change</mat-icon>
+    Promoção
 </a>
 
 <a (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel">

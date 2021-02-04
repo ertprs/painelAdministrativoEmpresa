@@ -64,7 +64,7 @@ export class TabelaPedidosComponent implements OnInit {
     try{
 
     if (item.id === this.servpedidos.getPedido().id && item.status_pedido === this.servpedidos.getPedido().status_pedido) {
-      return;
+     //  return;
     }
 
   } catch (e) { console.log('Pedido ainda nao carregado'); }

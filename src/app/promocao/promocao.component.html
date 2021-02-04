@@ -1,0 +1,30 @@
+<div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+</div>
+
+
+
+<div class="b" [formGroup]="form">
+    <div class="a">
+        <mat-slide-toggle color="primary" formControlName="desconto" formControlName="statusPromocao"></mat-slide-toggle>
+
+        <mat-form-field color="primary" appearance="outline" class="example-full-width" style="margin-top: 10px;">
+            <mat-label color="primary">Desconto %</mat-label>
+            <input formControlName="desconto" matInput placeholder="Ex. 10%" type="number">
+        </mat-form-field>
+
+        <mat-form-field color="primary" appearance="outline" class="example-full-width">
+            <mat-label color="primary">Válido a partir de</mat-label>
+            <input matInput formControlName="di" type="date">
+        </mat-form-field>
+
+        <mat-form-field color="primary" appearance="outline" class="example-full-width">
+            <mat-label color="primary">Válido até</mat-label>
+            <input matInput formControlName="df" type="date">
+        </mat-form-field>
+
+        <button [disabled]="statusBt" mat-raised-button color="warn" (click)="onClickSalvar()">Salvar</button>
+    </div>
+</div>

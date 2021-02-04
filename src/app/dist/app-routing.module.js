@@ -7,6 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.AppRoutingModule = void 0;
+var promocao_component_1 = require("./promocao/promocao.component");
+var fidelidade_component_1 = require("./fidelidade/fidelidade.component");
+var empresa_pagamentos_online_component_1 = require("./empresa-pagamentos-online/empresa-pagamentos-online.component");
+var pagamento_online_component_1 = require("./pagamento-online/pagamento-online.component");
+var cadastro_empresa_lojista_component_1 = require("./cadastro-empresa-lojista/cadastro-empresa-lojista.component");
+var categorias_destaque_component_1 = require("./categorias-destaque/categorias-destaque.component");
+var categorias_empresas_component_1 = require("./categorias-empresas/categorias-empresas.component");
+var faturas_component_1 = require("./faturas/faturas.component");
+var ver_empresa_component_1 = require("./main-nav-master/ver-empresa/ver-empresa.component");
+var lista_empresas_component_1 = require("./main-nav/lista-empresas/lista-empresas.component");
+var painel_master_component_1 = require("./main-nav-master/painel-master/painel-master.component");
 var abatimentos_estoque_component_1 = require("./abatimentos-estoque/abatimentos-estoque.component");
 var estoque_logistica_component_1 = require("./estoque/estoque-logistica/estoque-logistica.component");
 var data_retroativa_component_1 = require("./delivery/paineldelivery/data-retroativa/data-retroativa.component");
@@ -79,14 +90,21 @@ var config_component_1 = require("./config/config.component");
 var guarda_config_sistema_service_1 = require("./guards/guarda-config-sistema.service");
 var usuario_permissoes_component_1 = require("./usuarios/usuario-permissoes/usuario-permissoes.component");
 var organizacao_entregador_component_1 = require("./organizacao-entregador/organizacao-entregador.component");
+var main_nav_master_component_1 = require("./main-nav-master/main-nav-master.component");
 var routes = [
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'recuperar', component: recuperar_conta_component_1.RecuperarContaComponent },
-    { path: 'cadastro', component: cadastro_empresa_component_1.CadastroEmpresaComponent },
+    /* SITE - Local de acesso nas paginas do SITE */
+    { path: 'cadastro', component: cadastro_empresa_lojista_component_1.CadastroEmpresaLojistaComponent },
+    /* FIM LINHA SITE -- Local de acesso nas paginas do SITE */
+    /* DASH LOJISTA */
     {
         path: '', component: dashboard_component_1.DashboardComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
-            { path: 'inicio', component: inicio_component_1.InicioComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'mapa', component: inicio_component_1.InicioComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
             { path: 'fechar-caixa', component: caixa_financeiro_component_1.CaixaFinanceiroComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'faturas', component: faturas_component_1.FaturasComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'fidelidade', component: fidelidade_component_1.FidelidadeComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'promocao', component: promocao_component_1.PromocaoComponent },
             { path: 'financeiro', component: finaceiro_component_1.FinaceiroComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
                     { path: 'consolidacao-financeira', component: consolidacao_financeira_component_1.ConsolidacaoFinanceiraComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
                     { path: 'consolidacao-cartao', component: consolidacao_cartao_component_1.ConsolidacaoCartaoComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
@@ -162,6 +180,95 @@ var routes = [
             },
         ]
     },
+    /* DASH MASTER */
+    {
+        path: 'admin', component: main_nav_master_component_1.MainNavMasterComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
+            { path: 'mapa', component: inicio_component_1.InicioComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'fechar-caixa', component: caixa_financeiro_component_1.CaixaFinanceiroComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'lojas', component: lista_empresas_component_1.ListaEmpresasComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'ver-empresa', component: ver_empresa_component_1.VerEmpresaComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'cadastro-loja', component: cadastro_empresa_component_1.CadastroEmpresaComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'categorias-empresa', component: categorias_empresas_component_1.CategoriasEmpresasComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'destaques', component: categorias_destaque_component_1.CategoriasDestaqueComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'financeiro', component: finaceiro_component_1.FinaceiroComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
+                    { path: 'consolidacao-financeira', component: consolidacao_financeira_component_1.ConsolidacaoFinanceiraComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'consolidacao-cartao', component: consolidacao_cartao_component_1.ConsolidacaoCartaoComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'consolidacao-dinheiro', component: consolidacao_dinheiro_component_1.ConsolidacaoDinheiroComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'comissao-entregas', component: comissao_entregas_component_1.ComissaoEntregasComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'controle-fiado', component: controle_fiado_component_1.ControleFiadoComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'conciliacao-bancaria', component: conciliacao_bancaria_component_1.ConciliacaoBancariaComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                ] },
+            { path: 'relatorio', component: painel2_relatorio_component_1.Painel2RelatorioComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
+                    { path: 'posicao-estoque', component: itens_estoque_detalhes_component_1.ItensEstoqueDetalhesComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'historico-vendas', component: compras_clientes_component_1.ComprasClientesComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'historico-caixa', component: historico_caixa_component_1.HistoricoCaixaComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                ] },
+            { path: 'estoque', component: estoque_component_1.EstoqueComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService], children: [
+                    { path: '', component: pagina_default_component_1.PaginaDefaultComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'historico', component: historico_component_1.HistoricoComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'itens-estoque', component: itens_estoque_component_1.ItensEstoqueComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'estoque-motoboy', component: estoque_motoboy_component_1.EstoqueMotoboyComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'lista-motoboys', component: lista_motoboys_component_1.ListaMotoboysComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'logistica', component: estoque_logistica_component_1.EstoqueLogisticaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'batimentos-estoque', component: abatimentos_estoque_component_1.AbatimentosEstoqueComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                ] },
+            { path: 'meusclientes', component: clientes_component_1.ClientesComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'editar-cliente', component: editar_cliente_component_1.EditarClienteComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'entregas', component: entregas_component_1.EntregasComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'editar-entrega', component: editar_entrega_component_1.EditarEntregaComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'notificacoes', component: notificacoes_component_1.NotificacoesComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            { path: 'cadastro-entrega', component: dialog_cadastro_entrega_component_1.DialogCadastroEntregaComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+            {
+                path: 'painel', component: painel_master_component_1.PainelMasterComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService], children: [
+                    { path: 'cardapio', component: home_component_1.HomeComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'categoriasadicionais', component: categorias_adicionais_component_1.CategoriasAdicionaisComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'itensadicionais', component: itens_adicionais_component_1.ItensAdicionaisComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'avaliacoes', component: avaliacoes_component_1.AvaliacoesComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'delivery', component: inicio_delivery_component_1.InicioDeliveryComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'usuarios', component: usuarios_component_1.UsuariosComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'usuarios-permissoes', component: usuario_permissoes_component_1.UsuarioPermissoesComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'bancos', component: bancos_component_1.BancosComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'galeria', component: galeria_component_1.GaleriaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'bairros-sistema', component: bairros_sistema_component_1.BairrosSistemaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'cidades-sistema', component: cidades_sistema_component_1.CidadesSistemaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'formas-pagamento', component: formas_pagamento_component_1.FormasPagamentoComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'itens-pagamento', component: itens_pagamento_component_1.ItensPagamentoComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'cupons', component: cupons_component_1.CuponsComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'perfil', component: perfil_component_1.PerfilComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'config', component: config_component_1.ConfigComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'configitem', component: editar_item_completo_component_1.EditarItemCompletoComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'motoboys', component: mototboys_component_1.MototboysComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'notificacoes-usuarios', component: notificacoes_sistema_component_1.NotificacoesSistemaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'usuarios-app', component: usuarios_finais_component_1.UsuariosFinaisComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'data-retroativa', component: data_retroativa_component_1.DataRetroativaComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'organizacao-entregador', component: organizacao_entregador_component_1.OrganizacaoEntregadorComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'chaves', component: pagamento_online_component_1.PagamentoOnlineComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'pagamento-online', component: pagamento_online_component_1.PagamentoOnlineComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    { path: 'empresa-pags-on', component: empresa_pagamentos_online_component_1.EmpresaPagamentosOnlineComponent, canActivate: [guarda_config_sistema_service_1.GuardaConfigSistemaService] },
+                    {
+                        path: 'painel-relatorio', component: painel_relatorio_component_1.PainelRelatorioComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
+                            { path: 'vendas', component: relatorios_component_1.RelatoriosComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                            { path: 'itens', component: relatorio_itens_component_1.RelatorioItensComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                            { path: 'formas-pagamento', component: relatorio_fp_component_1.RelatorioFpComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                            { path: 'entregas', component: relatorio_entregas_component_1.RelatorioEntregasComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                            { path: 'total-fretes', component: relatorio_fretes_component_1.RelatorioFretesComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                            { path: 'faturamento', component: relatorio_faturamento_component_1.RelatorioFaturamentoComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                            { path: 'pedidos-cancelados', component: relatorio_pedidos_cancelados_component_1.RelatorioPedidosCanceladosComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                            { path: 'clientes', component: relatorio_clientes_component_1.RelatorioClientesComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                        ]
+                    },
+                ]
+            },
+            {
+                path: 'painelpedidos', component: painel_pedidos_component_1.PainelPedidosComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService], children: [
+                    { path: 'pedidos', component: pedidos_component_1.PedidosComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'todospedidos', component: todos_pedidos_component_1.TodosPedidosComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                    { path: 'cadastro-pedido', component: cadastro_pedido_component_1.CadastroPedidoComponent, canActivate: [guarda_atenticacao_service_1.GuardaAtenticacaoService] },
+                ]
+            },
+        ]
+    },
+    { path: '**', redirectTo: '/login' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

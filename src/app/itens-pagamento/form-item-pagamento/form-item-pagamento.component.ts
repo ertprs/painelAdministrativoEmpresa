@@ -47,7 +47,6 @@ export class FormItemPagamentoComponent implements OnInit {
 
   f5() {
     this.crud.get_api('formas_pag').subscribe(data => {
-      console.log(data);
       this.formaspagamento = data;
     });
   }

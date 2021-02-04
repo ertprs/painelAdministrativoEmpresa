@@ -47,7 +47,7 @@ export class InicioDeliveryComponent implements OnInit {
       metodosPagamento: [''],
       temporetirada: [''],
     });
-     
+
     console.log('#CadastroEmpresaComponent');
     this.consultaCidades();
     this.formcadastroStatus = false; // => false
@@ -181,7 +181,7 @@ export class InicioDeliveryComponent implements OnInit {
   }
 
   createItemFp(data: any): FormGroup {
-    console.log("data");
+    console.log('data');
     console.log(data);
     return new FormGroup({
       id: new FormControl(data.id),
@@ -213,10 +213,18 @@ export class InicioDeliveryComponent implements OnInit {
   onclickCadastrar() {
     console.log('#onclickCadastrar');
 
+    let arrayLE: any;
+    const arrayLocaisEntrega = [];
+    arrayLE = this.formCadastro.controls.locaisEntrega.value;
+    // tslint:disable-next-line: forin
+    for (const a in arrayLE) {
+      if (arrayLE[a].disponivel === true) {
+        arrayLocaisEntrega.push(arrayLE[a]);
+      }
 
-    console.log(this.formCadastro);
+    }
+    this.formCadastro.value.locais_entrega = arrayLocaisEntrega;
     console.log(this.formCadastro.value);
-
     this.btCstatus = true;
     const loginres = () => {
       console.log('callback');
@@ -232,7 +240,7 @@ export class InicioDeliveryComponent implements OnInit {
         setTimeout(() => { location.reload(); }, 700);
       }
     };
-    console.log( this.crud.post_api('salva_config_delivery_empresa', loginres, this.formCadastro.value ) );
+    this.crud.post_api('salva_config_delivery_empresa', loginres, this.formCadastro.value );
   }
 
   cadatroFeito() {
@@ -245,7 +253,7 @@ export class InicioDeliveryComponent implements OnInit {
     this.cidadeSelecionada = item.id;
   }
 
-  
+
 
 
 }

@@ -212,6 +212,7 @@ import { AddObservacaoPedidoComponent } from './add-observacao-pedido/add-observ
 import { RotasEntregadorComponent } from './rotas-entregador/rotas-entregador.component';
 import { GaleriaimagensComponent } from './componentes/galeriaimagens/galeriaimagens.component';
 import { FidelidadeComponent } from './fidelidade/fidelidade.component';
+import { PromocaoComponent } from './promocao/promocao.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -384,7 +385,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       AddObservacaoPedidoComponent,
       RotasEntregadorComponent,
       GaleriaimagensComponent,
-      FidelidadeComponent
+      FidelidadeComponent,
+      PromocaoComponent
    ],
   imports: [
     BrowserModule,

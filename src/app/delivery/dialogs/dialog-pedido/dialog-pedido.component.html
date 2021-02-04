@@ -21,7 +21,7 @@
                 <!--<mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1 && servpedidos.getPedido().tipopedido === 'entrega'" (click)="onClickAttStatusPedido(2)">
                     <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
                 <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1 && servpedidos.getPedido().tipopedido === 'retirada'" (click)="onClickAttStatusPedido(3)">
-                    <mat-icon>done</mat-icon> Pedido pronto </mat-chip>-->
+                    <mat-icon "EMPRESA"con>done</mat-icon> Pedido pronto </mat-chip>-->
                 <!--<mat-chip *ngIf="servpedidos.getPedido().status_pedido == 2 && servpedidos.getPedido().status_pedido != 3" (click)="onClickAttStatusPedido(4)">
                     <mat-icon>edit_road</mat-icon> A caminho</mat-chip>-->
                 <span *ngIf="servpedidos.getPedido().status_pedido != 4">
@@ -40,9 +40,17 @@
                     
                 </span>
 
-                <span *ngIf="servpedidos.getPedido().status_pedido != 7 && servpedidos.getPedido().status_pedido != 1">
+                <span *ngIf="
+                servpedidos.getPedido().status_pedido != 7 && 
+                servpedidos.getPedido().status_pedido != 2 && 
+                servpedidos.getPedido().status_pedido != 1 && 
+                servpedidos.getPedido().status_pedido != 0
+                ">
                     <mat-chip
-                        *ngIf="servpedidos.getPedido().status_pedido == 5 || servpedidos.getPedido().status_pedido != 4"
+                        *ngIf="
+                        servpedidos.getPedido().status_pedido == 5 || 
+                        servpedidos.getPedido().status_pedido != 4
+                        "
                         (click)="onClickAttStatusPedido(6)">
                         <mat-icon>check</mat-icon> Concluído
                     </mat-chip>
@@ -127,6 +135,12 @@
                 Pedido para {{servpedidos.getPedido().tipopedido}}
             </div>
 
+            <mat-card class="ccupom" *ngIf="servpedidos.getPedido().cupom">
+                <div style="text-align: center;"> O cliente usou um cupom no valor de {{servpedidos.getPedido().cupom.valor | currency:'BRL':true}} para este pedido</div>
+                <div style="font-size: 12px;text-align: center;"> {{ servpedidos.getPedido().cupom.descricao }} </div>
+            </mat-card>
+
+
             <div *ngFor="let item of servpedidos.getPedido().observacoes" style="    margin-top: 10px;
             margin-bottom: 10px;
             background: red;
@@ -143,6 +157,8 @@
             overflow: auto;
             border: 1px solid #d8d8d8;
             background: #f2f3f3;">
+
+
                 <table mat-table [dataSource]="servpedidos.getPedido().itens">
 
 
@@ -236,10 +252,6 @@
 
                 </div>
 
-                <mat-card class="ccupom" *ngIf="servpedidos.getPedido().cupom">
-                    <div> O cliente usou um cupom no valor {{servpedidos.getPedido().cupom.valor | currency:'BRL':true}} de para este pedido</div>
-                    <div style="font-size: 12px;"> {{ servpedidos.getPedido().cupom.descricao }} </div>
-                </mat-card>
 
             </div>
         </mat-step>

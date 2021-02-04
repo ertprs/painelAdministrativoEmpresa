@@ -199,7 +199,6 @@ export class ItemCatalogoComponent implements OnInit {
   }
 
 
-  
 
   onclickAddCar(obs) {
     if (this.statusAdd === true) { return; }

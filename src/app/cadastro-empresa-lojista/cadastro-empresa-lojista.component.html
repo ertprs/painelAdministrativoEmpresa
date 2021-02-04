@@ -29,20 +29,20 @@
                     <mat-step>
                         <ng-template matStepLabel>Dados empresa</ng-template>
 
-                        <mat-form-field style="width: 70%;">
+                        <mat-form-field appearance="outline" style="width: 70%;">
                             <mat-label>Nome empresa</mat-label>
                             <input matInput placeholder="Ex. Nome da Empresa" type="text" formControlName="nome">
                             <mat-icon matSuffix>home_work</mat-icon>
                         </mat-form-field>
 
-                        <mat-form-field style="width: 29%;margin-left: 1px;">
+                        <mat-form-field appearance="outline" style="width: 29%;margin-left: 1px;">
                             <mat-label>Telefone</mat-label>
                             <input matInput placeholder="Ex. (00)00000-0000" mask="(00)00000-0000" type="tel" formControlName="telefone">
                             <mat-icon matSuffix>contact_phone</mat-icon>
                             <mat-hint>Telefone comercial.</mat-hint>
                         </mat-form-field>
 
-                        <mat-form-field style="width: 100%;">
+                        <mat-form-field appearance="outline" style="width: 100%;">
                             <mat-label>Cnpj/Cpf</mat-label>
                             <input matInput placeholder="Ex. 00000000000000" type="tel" formControlName="cnpj">
                             <mat-hint>Infome o CNPJ da empresa ou o CPF do responsável.</mat-hint>
@@ -53,14 +53,14 @@
                     <mat-step>
                         <ng-template matStepLabel>Dados para acesso</ng-template>
 
-                        <mat-form-field style="width: 70%;">
+                        <mat-form-field appearance="outline" style="width: 70%;">
                             <mat-label>Email</mat-label>
                             <input matInput placeholder="Ex. ***" type="email" formControlName="email">
                             <mat-icon matSuffix>alternate_email</mat-icon>
                             <mat-hint>Digite aqui o email para acessar o sistema.</mat-hint>
                         </mat-form-field>
 
-                        <mat-form-field style="width: 29%; margin-left: 1px;">
+                        <mat-form-field appearance="outline" style="width: 29%; margin-left: 1px;">
                             <mat-label>Senha</mat-label>
                             <input matInput placeholder="Ex. ***" type="password" formControlName="senha">
                             <mat-icon matSuffix>vpn_key</mat-icon>
@@ -74,19 +74,19 @@
                         <ng-template matStepLabel>Endereço</ng-template>
 
                         <div style="width: 100%;"></div>
-                        <mat-form-field style="width: 80%;">
+                        <mat-form-field appearance="outline" style="width: 80%;">
                             <mat-label>CEP</mat-label>
                             <input matInput placeholder="Ex. 000.000-000" mask="00.000-000" type="text" formControlName="cep">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
-                        <mat-form-field style="width: 19%; margin-left: 1px;">
+                        <mat-form-field appearance="outline" style="width: 19%; margin-left: 1px;">
                             <mat-label>número</mat-label>
                             <input matInput placeholder="Ex. 83" type="text" formControlName="numero">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
-                        <mat-form-field style="width: 40%;">
+                        <mat-form-field appearance="outline" style="width: 39%;">
                             <mat-label>Rua</mat-label>
                             <input matInput placeholder="Ex. Rua nome..." type="text" formControlName="rua">
                             <mat-hint></mat-hint>
@@ -102,7 +102,7 @@
                             <mat-hint></mat-hint>
                         </mat-form-field>-->
 
-                        <mat-form-field #itemCidade style="width: 30%;margin-left: 1px;">
+                        <mat-form-field appearance="outline" #itemCidade style="width: 30%;margin-left: 1px;">
                             <mat-label> Cidade </mat-label>
                             <input matInput placeholder="Nome da cidade" type="name" formControlName="cidade">
                             <mat-hint></mat-hint>
@@ -118,7 +118,7 @@
                             <mat-hint></mat-hint>
                         </mat-form-field>-->
 
-                        <mat-form-field #itemCidade style="width: 30%;margin-left: 1px;">
+                        <mat-form-field appearance="outline" #itemCidade style="width: 30%;margin-left: 1px;">
                             <mat-label> Bairro </mat-label>
                             <input matInput placeholder="Nome do bairro" type="name" formControlName="bairro">
                             <mat-hint></mat-hint>
@@ -129,13 +129,13 @@
                     <mat-step>
                         <ng-template matStepLabel>Confirmar</ng-template>
 
-                        <mat-form-field style="width: 70%;">
+                        <mat-form-field appearance="outline" style="width: 70%;">
                             <mat-label>Confimar Email</mat-label>
                             <input matInput placeholder="Ex. Informe novamente o email para acesso" type="email" formControlName="emailconfirmar">
                             <mat-icon matSuffix>alternate_email</mat-icon>
                         </mat-form-field>
 
-                        <mat-form-field style="width: 29%; margin-left: 1px;">
+                        <mat-form-field appearance="outline" style="width: 29%; margin-left: 1px;">
                             <mat-label>Confimar senha</mat-label>
                             <input matInput placeholder="Ex. ***" type="password" formControlName="senhaconfirmar">
                             <mat-icon matSuffix>vpn_key</mat-icon>

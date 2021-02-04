@@ -13,7 +13,7 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-  private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
+   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   // private urlapi = 'https://api.vulto.site/index.php';
   // private urlapi = 'https://api.dinp.com.br/index.php';
@@ -50,10 +50,11 @@ export class ServicoService {
   private dataRetroativa = false;
   private intervalPedidos = 25000;
   private intervalEntregadores = 7000;
-  public versao = '1.0.2';
+  public versao = '1.0.3';
   public faturas = false;
   public subimgs = false;
   public fidelidade = false;
+  public promocao = false;
   public dataRetro = false;
   public altoCalcTxEnt = false;
   public orgEnt = false;
@@ -71,7 +72,7 @@ export class ServicoService {
   public alterarPedido = false;
   public posEstEnt = false;
   public criarRota = false;
-
+  public urlAudio = '';
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
 
@@ -171,6 +172,7 @@ export class ServicoService {
     this.faturas =  dados.config_dash.faturas;
     this.subimgs =  dados.config_dash.sub_imgs;
     this.fidelidade =  dados.config_dash.fidelidade;
+    this.promocao =  dados.config_dash.promocao;
     this.dataRetro =  dados.config_dash.data_retro;
     this.altoCalcTxEnt =  dados.config_dash.alto_calc_tx_ent;
     this.orgEnt =  dados.config_dash.org_ent;
@@ -188,7 +190,8 @@ export class ServicoService {
     this.alterarPedido =  dados.config_dash.alt_pedido;
     this.posEstEnt =  dados.config_dash.pos_est_ent;
     this.criarRota =  dados.config_dash.criar_rota;
-  }
+    this.urlAudio =  dados.config_dash.urlAudio;
+  } 
 
   retornaDataHoraAtual() {
     const dNow = new Date();
@@ -341,7 +344,7 @@ export class ServicoService {
 
   playAudio() {
     const audio = new Audio();
-    audio.src = 'https://www.xdelssy.com.br/sis_entregas/php/audio/notification.mp3';
+    audio.src = this.urlAudio;
     audio.load();
     audio.play();
   }

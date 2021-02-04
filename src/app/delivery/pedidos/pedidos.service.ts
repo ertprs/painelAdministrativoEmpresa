@@ -79,7 +79,7 @@ export class PedidosService {
           this.pedidos = data.resultado.pedidos.lista_pedidos;
         }
 
-        this.statusNotificar = data.notificar;
+        this.statusNotificar = data.resultado.pedidos.notificar;
         if (this.statusNotificar === true) {
           this.playAudio1();
         }

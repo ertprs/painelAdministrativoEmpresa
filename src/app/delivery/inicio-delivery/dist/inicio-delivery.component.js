@@ -22,11 +22,14 @@ var InicioDeliveryComponent = /** @class */ (function () {
             tags: [''],
             pedidomin: [''],
             pedidomax: [''],
+            entrega_gratis: [''],
             seguimento: [''],
-            formasfuncionamento: [''],
+            formasfuncionamento: [],
             tempoentrega: [''],
-            hrfun: [''],
-            metodosPagamento: ['']
+            locaisEntrega: [],
+            hrfun: [],
+            metodosPagamento: [''],
+            temporetirada: ['']
         });
         console.log('#CadastroEmpresaComponent');
         this.consultaCidades();
@@ -80,9 +83,11 @@ var InicioDeliveryComponent = /** @class */ (function () {
             tags: [this.dadosEmpresa.tags, forms_1.Validators.required],
             pedidomin: [this.dadosEmpresa.pedidomin, forms_1.Validators.required],
             pedidomax: [this.dadosEmpresa.pedidomax, forms_1.Validators.required],
+            entrega_gratis: [this.dadosEmpresa.entrega_gratis],
             seguimento: [this.dadosEmpresa.seguimento, forms_1.Validators.required],
             formasfuncionamento: [''],
             tempoentrega: [this.dadosEmpresa.tempoentrega, forms_1.Validators.required],
+            temporetirada: [this.dadosEmpresa.temporetirada],
             hrfun: this.buildDiasForm(),
             locaisEntrega: this.buildLocaisEntregaForm(),
             metodosPagamento: this.buildFp()
@@ -152,6 +157,8 @@ var InicioDeliveryComponent = /** @class */ (function () {
         return this.formBuilder.array(valores);
     };
     InicioDeliveryComponent.prototype.createItemFp = function (data) {
+        console.log('data');
+        console.log(data);
         return new forms_1.FormGroup({
             id: new forms_1.FormControl(data.id),
             nome: new forms_1.FormControl(data.nome),
@@ -182,7 +189,16 @@ var InicioDeliveryComponent = /** @class */ (function () {
     InicioDeliveryComponent.prototype.onclickCadastrar = function () {
         var _this = this;
         console.log('#onclickCadastrar');
-        console.log(this.formCadastro);
+        var arrayLE;
+        var arrayLocaisEntrega = [];
+        arrayLE = this.formCadastro.controls.locaisEntrega.value;
+        // tslint:disable-next-line: forin
+        for (var a in arrayLE) {
+            if (arrayLE[a].disponivel === true) {
+                arrayLocaisEntrega.push(arrayLE[a]);
+            }
+        }
+        this.formCadastro.value.locais_entrega = arrayLocaisEntrega;
         console.log(this.formCadastro.value);
         this.btCstatus = true;
         var loginres = function () {
@@ -190,16 +206,17 @@ var InicioDeliveryComponent = /** @class */ (function () {
             var r = _this.servico.getRespostaApi();
             console.log(r);
             if (r.erro === true) {
-                _this.servico.mostrarMensagem(r.detalhes);
+                _this.servico.mostrarMensagem(r.mensagem);
                 _this.btCstatus = false;
             }
             else {
-                _this.servico.mostrarMensagem(r.detalhes);
+                /* this.servico.mostrarMensagem(r.mensagem); */
                 _this.formcadastroStatus = true;
                 _this.router.navigate(['/login']);
+                setTimeout(function () { location.reload(); }, 700);
             }
         };
-        console.log(this.crud.post_api('salva_config_delivery_empresa', loginres, this.formCadastro.value));
+        this.crud.post_api('salva_config_delivery_empresa', loginres, this.formCadastro.value);
     };
     InicioDeliveryComponent.prototype.cadatroFeito = function () {
         this.formcadastroStatus = true;

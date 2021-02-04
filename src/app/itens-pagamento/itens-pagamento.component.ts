@@ -13,7 +13,7 @@ import { DialogDinamComponent } from '../dialog-dinam/dialog-dinam.component';
 export class ItensPagamentoComponent implements OnInit {
 
 
-  displayedColumns: string[] = [ 'c00', 'c0', 'c1', 'c2', 'c3', 'c5', 'c4'];
+  displayedColumns: string[] = [ 'c00', 'c0', 'c2', 'c1',  'c4'];
   itens = [];
 
 

@@ -64,6 +64,7 @@
      border-bottom: 1px dotted #c1c1c1;
      margin-bottom: 9px;
      padding-bottom: 7px;
+     font-size: 12px;
  }
  
  .isacT {
@@ -100,11 +101,11 @@
  }
  
  .car1 {
-     border-radius: 10px;
+     border-radius: 4px;
      background: #fdfcfc;
      padding: 4px;
      border: 1px solid #cacaca;
-     background: #f5f5f5;
+     background: #ffffff;
      margin-top: 12px;
  }
  
@@ -122,8 +123,9 @@
  .car12 {
      justify-content: space-between;
      display: flex;
-     border-bottom: 1px dotted #000000;
+     border-bottom: 1px dotted #d2d2d2;
      margin-bottom: 10px;
+     color: #795548;
  }
  
  .itemCatalogo {
@@ -133,7 +135,14 @@
  }
  
  .acar {
-     padding: 20px;
+     display: grid;
+     grid-template-columns: 0fr 1fr;
+ }
+ 
+ .styleic {
+     font-size: 77px;
+     margin-top: 20px;
+     color: #3f51b5;
  }
  
  .itemCat {
@@ -209,6 +218,7 @@
      margin-right: 2px;
      margin-left: 20px;
  }
+ /* Border */
  
  @media(max-width:600px) {
      .bciago {

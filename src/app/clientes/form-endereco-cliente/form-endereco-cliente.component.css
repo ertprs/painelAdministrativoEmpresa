@@ -17,6 +17,7 @@
 .boc1 {
     display: grid;
     grid-template-columns: 1fr;
+    margin-top: 10px;
 }
 
 @media(max-width:600px) {

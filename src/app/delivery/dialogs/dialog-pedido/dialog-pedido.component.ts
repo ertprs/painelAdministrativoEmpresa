@@ -74,13 +74,14 @@ export class DialogPedidoComponent implements OnInit {
       tiporesidencia: item.endereco.tiporesidencia,
       bairro: item.endereco.bairro,
       cidade: item.endereco.cidade,
-      formapagamento: item.endereco.formapagamento,
+      formaspagamento: item.formaspagamento,
       canalpedido: '',
-      tipopedido: item.endereco.tipopedido,
-      troco: item.endereco.troco,
-      desconto: item.endereco.desconto,
+      tipopedido: item.tipopedido,
+      troco: item.troco,
+      desconto: item.desconto,
       taxaentrega: '',
-      itens: item.itens
+      itens: item.itens,
+      taxaextra: item.taxaextra,
     };
 
     item.itens.forEach(element => {
