@@ -35,9 +35,12 @@ export class EditarItemCompletoComponent implements OnInit {
   mostrarJanelaG = false;
   itemGaleriaSub: any;
 
+  statusjanela = false;
+
+  urlqr = '';
 
   constructor(private formBuilder: FormBuilder, public servhome: HomeService, public servapp: ServicoService,
-              private crud: CrudServicoService, private http: HttpClient, private route: Router) { }
+    private crud: CrudServicoService, private http: HttpClient, private route: Router) { }
 
 
 
@@ -48,7 +51,7 @@ export class EditarItemCompletoComponent implements OnInit {
     if (this.servhome.getTipoAcao()) {
       // editar item
       // console.log(' ~~~~~~~~ EDITAR ITEM ~~~~~~~~');
-      
+
       this.crud.get_api('consulta_item_cardapio&id_empresa=' +
         this.servapp.getDadosEmpresa().id +
         '&id_item=' + this.servhome.getItem().id).subscribe(
@@ -144,6 +147,24 @@ export class EditarItemCompletoComponent implements OnInit {
 
     }
 
+
+     
+
+  }
+
+  buttonShowQR() {
+    try {
+      if (!this.itemRequest.id) {
+        this.servapp.mostrarMensagem('O Código ainda não foi gerado');
+        return;
+      }
+    } catch (e) {
+      this.servapp.mostrarMensagem('O Código ainda não foi gerado');
+      return;
+    }
+    this.urlqr = this.servapp.urlQrcode;
+    this.urlqr += '?item=' + this.itemRequest.id;
+    if (!this.statusjanela) { this.statusjanela = true; } else { this.statusjanela = false; }
   }
 
   removerItem(item: any) {
@@ -173,8 +194,8 @@ export class EditarItemCompletoComponent implements OnInit {
 
   addCaixaSubImg() {
     let idItem = 1;
-    try {  idItem = this.imagensProduto.length + 1; } catch (e) { idItem = 1; }
-    const c = {id:  idItem, imagem: this.servapp.getDefaultImage(), status: true};
+    try { idItem = this.imagensProduto.length + 1; } catch (e) { idItem = 1; }
+    const c = { id: idItem, imagem: this.servapp.getDefaultImage(), status: true };
 
     try { this.imagensProduto.push(c); } catch (e) { this.imagensProduto = [c]; }
 

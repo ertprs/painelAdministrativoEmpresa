@@ -26,9 +26,9 @@
             </mat-card-actions>
         </mat-card>
 
-        <button mat-raised-button (click)="removerItem(this.servhome.getItem().id)" *ngIf="this.servhome.getTipoAcao()">
+        <button style="width: 99%;" mat-raised-button (click)="removerItem(this.servhome.getItem().id)" *ngIf="this.servhome.getTipoAcao()">
             <mat-icon color="warn">restore_from_trash</mat-icon> Remover item
-          </button>
+        </button>
 
 
 
@@ -52,13 +52,13 @@
                     </mat-expansion-panel-header>
 
 
-                    <mat-form-field appearance="outline" style="width: 75%;">
+                    <mat-form-field appearance="outline" class="snome">
                         <mat-label>Nome do item</mat-label>
                         <input formControlName="nome" matInput placeholder="Ex. Nome do item" type="text">
                         <mat-hint></mat-hint>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" style="width: 22%;margin-left: 9px;">
+                    <mat-form-field appearance="outline" class="spreco">
                         <mat-label>Preço</mat-label>
                         <input formControlName="preco" matInput placeholder="R$0.00" currencyMask type="tel">
 
@@ -78,64 +78,64 @@
         <!--Tabela-->
 
 
+        <div class="iagod">
+            <!--Tabela-->
+            <div class="area-form disparea">
+                <!--<h2>Extras</h2>-->
+                <mat-accordion>
+                    <mat-expansion-panel (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Esgotar/Esconder
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-list role="list">
+                            <mat-list-item role="listitem">
+                                <mat-slide-toggle formControlName="esconder">Esconder</mat-slide-toggle>
+                            </mat-list-item>
+                            <mat-list-item role="listitem">
+                                <mat-slide-toggle formControlName="esgotado">Esgotado</mat-slide-toggle>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <!--Tabela-->
 
-        <!--Tabela-->
+            <!--Tabela-->
+            <div class="area-form disparea">
+                <!--h2>Disponibilidade</h2>-->
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Disponibilidade
+                            </mat-panel-title>
+                            <mat-panel-description>
 
-        <div class="area-form">
-            <h2>Extras</h2>
-            <mat-accordion>
-                <mat-expansion-panel (closed)="panelOpenState = false">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Configurações do item
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            <!--Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <mat-list role="list">
-                        <mat-list-item role="listitem">
-                            <mat-slide-toggle formControlName="esconder">Esconder</mat-slide-toggle>
-                        </mat-list-item>
-                        <mat-list-item role="listitem">
-                            <mat-slide-toggle formControlName="esgotado">Esgotado</mat-slide-toggle>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-expansion-panel>
-            </mat-accordion>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <mat-list>
+
+                            <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
+                                <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])" [checked]="diasLista[i].status">
+                                    {{ diasLista[i].nome }}
+                                    <!--{{ diasLista[i] | json }}-->
+                                    <!--:: {{ diasLista[i].status }}-->
+                                </mat-slide-toggle>
+                            </mat-list-item>
+                        </mat-list>
+
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+            </div>
+            <!--Tabela-->
         </div>
-        <!--Tabela-->
-
-        <!--Tabela-->
-        <div class="area-form">
-            <h2>Disponibilidade</h2>
-            <mat-accordion>
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Dias
-                        </mat-panel-title>
-                        <mat-panel-description>
-
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-
-                    <mat-list>
-
-                        <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
-                            <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])" [checked]="diasLista[i].status">
-                                {{ diasLista[i].nome }}
-                                <!--{{ diasLista[i] | json }}-->
-                                <!--:: {{ diasLista[i].status }}-->
-                            </mat-slide-toggle>
-                        </mat-list-item>
-                    </mat-list>
-
-                </mat-expansion-panel>
-
-            </mat-accordion>
-        </div>
-        <!--Tabela-->
 
 
         <!--Tabela-->
@@ -344,8 +344,8 @@
             <button (click)="selecionarSUBIMG(subimg)" color="primary" mat-button>Selecionar subimagem</button>
 
             <button color="warn" mat-icon-button (click)="rmCaixaimg(subimg)">
-                    <mat-icon>delete</mat-icon>
-                </button>
+                <mat-icon>delete</mat-icon>
+            </button>
             <div class="imgsuvitensItem" [lazyLoad]="subimg.imagem"></div>
         </div>
 
@@ -353,7 +353,28 @@
 
 </div>
 
+<div *ngIf="statusjanela" class="areaqr">
+    <div class="fgds">
+        <button class="bbbclos" (click)="buttonShowQR()" mat-icon-button>
+            <mat-icon style="color: white;">close</mat-icon>
+        </button>
+    </div>
+    <qrcode [qrdata]="urlqr" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
+</div>
+
 <div class="barraOpcs" *ngIf="!statusLoadConteudo">
-    <button (click)="onClickCancelar()" color="warn" mat-button>Cancelar</button>
-    <button (click)="onClickAddItem()" mat-flat-button color="primary" style="margin-right: 20px;">Salvar</button>
+    <div>
+
+    </div>
+    <div style="text-align: right;" *ngIf="servapp.btQrcode">
+        <button color="primary" mat-icon-button style="position: absolute;" (click)="buttonShowQR()">
+            <mat-icon>qr_code_scanner</mat-icon>
+        </button>
+    </div>
+    <div>
+        <button (click)="onClickCancelar()" color="warn" mat-button style="margin-right: 5px;">Cancelar</button>
+        <button (click)="onClickAddItem()" mat-flat-button color="primary" style="margin-right: 20px;">Salvar</button>
+    </div>
+
+
 </div>

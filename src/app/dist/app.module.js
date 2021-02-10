@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.AppModule = void 0;
+exports.AppModule = exports.CustomCurrencyMaskConfig = void 0;
 var ng_lazyload_image_1 = require("ng-lazyload-image");
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
@@ -189,6 +189,46 @@ var tela3_component_1 = require("./estoque/estoque-logistica/tela3/tela3.compone
 var bt_exportar_component_1 = require("./componentes/bt-exportar/bt-exportar.component");
 var filtronome_pipe_1 = require("./filtronome.pipe");
 var nomes_pipe_1 = require("./pipes/nomes.pipe");
+var abatimentos_estoque_component_1 = require("./abatimentos-estoque/abatimentos-estoque.component");
+var abatimento_itens_component_1 = require("./abatimentos-estoque/abatimento-itens/abatimento-itens.component");
+var progress_sistema_component_1 = require("./componentes/progress-sistema/progress-sistema.component");
+var progresso_component_1 = require("./componentes/progress-sistema/progresso/progresso.component");
+var alterar_senha_component_1 = require("./perfil/alterar-senha/alterar-senha.component");
+var inserir_motivo_entregador_component_1 = require("./mototboys/inserir-motivo-entregador/inserir-motivo-entregador.component");
+var main_nav_master_component_1 = require("./main-nav-master/main-nav-master.component");
+var painel_master_component_1 = require("./main-nav-master/painel-master/painel-master.component");
+var lista_empresas_component_1 = require("./main-nav/lista-empresas/lista-empresas.component");
+var ver_empresa_component_1 = require("./main-nav-master/ver-empresa/ver-empresa.component");
+var faturas_component_1 = require("./faturas/faturas.component");
+var ngx_cookie_service_1 = require("ngx-cookie-service");
+var filtronomedinam_pipe_1 = require("./pipes/filtronomedinam.pipe");
+var google_maps_autocomplete_1 = require("@angular-material-extensions/google-maps-autocomplete");
+var loadercomp_component_1 = require("./componentes/loadercomp/loadercomp.component");
+var categorias_empresas_component_1 = require("./categorias-empresas/categorias-empresas.component");
+var form_categorias_empresa_component_1 = require("./categorias-empresas/form-categorias-empresa/form-categorias-empresa.component");
+var loader_delsuc_component_1 = require("./componentes/loader-delsuc/loader-delsuc.component");
+var ng2_currency_mask_1 = require("ng2-currency-mask");
+var categorias_destaque_component_1 = require("./categorias-destaque/categorias-destaque.component");
+var form_categoria_destaque_component_1 = require("./categorias-destaque/form-categoria-destaque/form-categoria-destaque.component");
+var cadastro_empresa_lojista_component_1 = require("./cadastro-empresa-lojista/cadastro-empresa-lojista.component");
+var inicio_site_component_1 = require("./site/inicio-site/inicio-site.component");
+var pagamento_online_component_1 = require("./pagamento-online/pagamento-online.component");
+var empresa_pagamentos_online_component_1 = require("./empresa-pagamentos-online/empresa-pagamentos-online.component");
+var add_observacao_pedido_component_1 = require("./add-observacao-pedido/add-observacao-pedido.component");
+var rotas_entregador_component_1 = require("./rotas-entregador/rotas-entregador.component");
+var galeriaimagens_component_1 = require("./componentes/galeriaimagens/galeriaimagens.component");
+var fidelidade_component_1 = require("./fidelidade/fidelidade.component");
+var promocao_component_1 = require("./promocao/promocao.component");
+var angularx_qrcode_1 = require("angularx-qrcode");
+exports.CustomCurrencyMaskConfig = {
+    align: "right",
+    allowNegative: true,
+    decimal: ",",
+    precision: 2,
+    prefix: "R$ ",
+    suffix: "",
+    thousands: "."
+};
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -330,6 +370,33 @@ var AppModule = /** @class */ (function () {
                 bt_exportar_component_1.BtExportarComponent,
                 filtronome_pipe_1.FiltronomePipe,
                 nomes_pipe_1.NomesPipe,
+                abatimentos_estoque_component_1.AbatimentosEstoqueComponent,
+                abatimento_itens_component_1.AbatimentoItensComponent,
+                progress_sistema_component_1.ProgressSistemaComponent,
+                progresso_component_1.ProgressoComponent,
+                alterar_senha_component_1.AlterarSenhaComponent,
+                inserir_motivo_entregador_component_1.InserirMotivoEntregadorComponent,
+                main_nav_master_component_1.MainNavMasterComponent,
+                painel_master_component_1.PainelMasterComponent,
+                lista_empresas_component_1.ListaEmpresasComponent,
+                ver_empresa_component_1.VerEmpresaComponent,
+                faturas_component_1.FaturasComponent,
+                filtronomedinam_pipe_1.FiltronomedinamPipe,
+                loadercomp_component_1.LoadercompComponent,
+                categorias_empresas_component_1.CategoriasEmpresasComponent,
+                form_categorias_empresa_component_1.FormCategoriasEmpresaComponent,
+                loader_delsuc_component_1.LoaderDelsucComponent,
+                categorias_destaque_component_1.CategoriasDestaqueComponent,
+                form_categoria_destaque_component_1.FormCategoriaDestaqueComponent,
+                cadastro_empresa_lojista_component_1.CadastroEmpresaLojistaComponent,
+                inicio_site_component_1.InicioSiteComponent,
+                pagamento_online_component_1.PagamentoOnlineComponent,
+                empresa_pagamentos_online_component_1.EmpresaPagamentosOnlineComponent,
+                add_observacao_pedido_component_1.AddObservacaoPedidoComponent,
+                rotas_entregador_component_1.RotasEntregadorComponent,
+                galeriaimagens_component_1.GaleriaimagensComponent,
+                fidelidade_component_1.FidelidadeComponent,
+                promocao_component_1.PromocaoComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -360,9 +427,6 @@ var AppModule = /** @class */ (function () {
                 autocomplete_1.MatAutocompleteModule,
                 menu_1.MatMenuModule,
                 badge_1.MatBadgeModule,
-                core_2.AgmCoreModule.forRoot({
-                    apiKey: 'AIzaSyAwli4wwHOdbNUazzdQOOzswiWry5gUo9c'
-                }),
                 ngx_mask_1.NgxMaskModule.forRoot(),
                 stepper_1.MatStepperModule,
                 progress_spinner_1.MatProgressSpinnerModule,
@@ -378,11 +442,21 @@ var AppModule = /** @class */ (function () {
                 tabs_1.MatTabsModule,
                 paginator_1.MatPaginatorModule,
                 ng2_charts_1.ChartsModule,
+                core_2.AgmCoreModule.forRoot({
+                    apiKey: 'AIzaSyAwli4wwHOdbNUazzdQOOzswiWry5gUo9c'
+                }),
+                google_maps_autocomplete_1.MatGoogleMapsAutocompleteModule,
+                core_2.AgmCoreModule.forRoot({
+                    apiKey: 'AIzaSyAwli4wwHOdbNUazzdQOOzswiWry5gUo9c'
+                }),
+                core_2.AgmCoreModule.forRoot(),
+                ng2_currency_mask_1.CurrencyMaskModule,
+                angularx_qrcode_1.QRCodeModule
             ],
             entryComponents: [
                 dialo_delsucg_component_1.DialoDelsucgComponent
             ],
-            providers: [auth_service_1.AuthService, datepicker_1.MatDatepickerModule],
+            providers: [auth_service_1.AuthService, datepicker_1.MatDatepickerModule, ngx_cookie_service_1.CookieService, { provide: ng2_currency_mask_1.CURRENCY_MASK_CONFIG, useValue: exports.CustomCurrencyMaskConfig }],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

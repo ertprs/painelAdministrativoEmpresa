@@ -51,6 +51,8 @@ export class ServicoService {
   private intervalPedidos = 25000;
   private intervalEntregadores = 7000;
   public versao = '1.0.3';
+  public urlQrcode = '';
+  public btQrcode = false;
   public faturas = false;
   public subimgs = false;
   public fidelidade = false;
@@ -61,6 +63,7 @@ export class ServicoService {
   public configMaster = false;
   public estEnt = false;
   public batEstoque = false;
+  public altCaminhoSemEnt = false;
 
   public concBanc = false;
   public concCartao = false;
@@ -191,13 +194,21 @@ export class ServicoService {
     this.posEstEnt =  dados.config_dash.pos_est_ent;
     this.criarRota =  dados.config_dash.criar_rota;
     this.urlAudio =  dados.config_dash.urlAudio;
-  } 
+    this.urlQrcode =  dados.config_dash.urlQrcode;
+    this.btQrcode =  dados.config_dash.btQrcode;
+    this.altCaminhoSemEnt =  dados.config_dash.alt_status_caminho;
+     
+  }
 
   retornaDataHoraAtual() {
     const dNow = new Date();
     // tslint:disable-next-line: max-line-length
     const localdate = dNow.getDate() + '/' + (dNow.getMonth() + 1) + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes();
     return localdate;
+  }
+
+  getURLCODE() {
+    return this.urlQrcode +=  this.getDadosEmpresa().tagnome + '';
   }
 
   getDadosLogin() {

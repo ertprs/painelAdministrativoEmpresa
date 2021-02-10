@@ -1,4 +1,8 @@
-<div style="padding: 10px; text-align: center;">
+<div id="areaqr" *ngIf="statusShowQr" class="qrcode" (click)="clickshowqr()">
+    <qrcode [qrdata]="urlqr" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+</div>
+
+<div *ngIf="!statusShowQr" style="padding: 10px; text-align: center;">
     <div style="margin-top: 2px;">
 
         <form id="form1">
@@ -23,23 +27,12 @@
             </div>
         </form>
 
-        <form class="example-form" style="margin:auto;" [formGroup]="formPerfil">
+        <div class="example-form" style="margin:auto;" [formGroup]="formPerfil">
 
             <mat-form-field class="example-full-width">
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="Ex. @email" formControlName="email" type="email" disabled>
             </mat-form-field>
-            <!--
-      <mat-form-field class="example-full-width">
-        <mat-label>Senha</mat-label>
-        <input matInput placeholder="Ex. ***" formControlName="senha" type="password" disabled>
-      </mat-form-field>
-    -->
-
-            <!--<mat-form-field class="example-full-width">
-                <mat-label>Imagem empresa</mat-label>
-                <input matInput placeholder="Ex. url logo" formControlName="imagem">
-            </mat-form-field>-->
 
             <mat-form-field class="example-full-width">
                 <mat-label>Nome empresa</mat-label>
@@ -95,9 +88,11 @@
 
             <div style="margin-top: 10px;text-align: left;">
                 <button mat-raised-button (click)="alterarSenha()">Alterar senha</button>
+                <button *ngIf="servico.btQrcode" color="warn" style="margin-left: 10px;" mat-raised-button (click)="clickshowqr()"> QR Code </button>
             </div>
-        </form>
+        </div>
 
         <button style="margin-top: 10px;" mat-raised-button color="primary" (click)="onClickSav()">Salvar configurações</button>
+
     </div>
 </div>

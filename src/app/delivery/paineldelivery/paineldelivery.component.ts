@@ -32,23 +32,25 @@ export class PaineldeliveryComponent implements OnInit {
   btCupom = true;
   btNot = true;
   btPagOnline = true;
-
+  btConfigMaster = true;
+   
 
   constructor(public servapp: ServicoService, private us: UsuariosAdmService) { }
 
   ngOnInit(): void {
+    this.btConfigMaster = this.us.getPermissoessuario()[10].status;
     this.btCardapio = this.us.getPermissoessuario()[9].children[0].status;
     this.btItemCardapio = this.us.getPermissoessuario()[9].children[1].status;
     this.btCatAdc = this.us.getPermissoessuario()[9].children[2].status;
     this.btItemAdc = this.us.getPermissoessuario()[9].children[3].status;
     this.btAvaliacoes = this.us.getPermissoessuario()[9].children[4].status;
-    // this.btConfigPainel = this.us.getPermissoessuario()[9].children[5].status;
+    this.btConfigPainel = this.us.getPermissoessuario()[9].children[12].status;
     this.btFunDelivery = this.us.getPermissoessuario()[9].children[5].status;
     this.btPerfil = this.us.getPermissoessuario()[9].children[11].status;
     this.btrelato = this.us.getPermissoessuario()[9].children[6].status;
     this.btDataret = this.us.getPermissoessuario()[9].children[7].status;
     this.btOrg = this.us.getPermissoessuario()[9].children[8].status;
-    this.btUsuariosAdm = this.us.getPermissoessuario()[10].children[8].status;
+    this.btUsuariosAdm = this.us.getPermissoessuario()[9].children[13].status;
 
     this.btCidade = this.us.getPermissoessuario()[10].children[0].status;
     this.btBairro = this.us.getPermissoessuario()[10].children[1].status;
@@ -59,7 +61,7 @@ export class PaineldeliveryComponent implements OnInit {
     this.btUsuApp = this.us.getPermissoessuario()[10].children[7].status;
     this.btCupom = this.us.getPermissoessuario()[10].children[9].status;
     this.btNot = this.us.getPermissoessuario()[10].children[10].status;
-    this.btPagOnline = this.us.getPermissoessuario()[10].children[11].status;
+    this.btPagOnline = this.us.getPermissoessuario()[10].children[10].status;
 
   }
 

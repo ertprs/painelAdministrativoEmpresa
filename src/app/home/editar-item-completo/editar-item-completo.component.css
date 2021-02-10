@@ -1,3 +1,10 @@
+.fgds {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: end;
+}
+
 .barraOpcs {
     background-color: white;
     float: left;
@@ -6,6 +13,14 @@
     padding-top: 13px;
     border-top: 1px solid #e0dcdc;
     text-align: end;
+    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    justify-items: end;
+}
+
+.bbbclos {
+    background: #3F51B5;
+    margin: 14px;
 }
 
 .area-form {
@@ -50,6 +65,7 @@
     float: left;
     height: 77vh;
     overflow: auto;
+    width: 97%;
 }
 
 .imagemItem {
@@ -99,4 +115,70 @@
     background-repeat: no-repeat;
     background-size: 100%;
     margin: auto;
+}
+
+.spreco {
+    width: 100%;
+    width: 24%;
+    margin-left: 4px;
+}
+
+.snome {
+    width: 75%;
+}
+
+.areaqr {
+    background: #000000f2;
+    z-index: 1;
+    position: absolute;
+    width: 93%;
+    height: 82vh;
+    display: grid;
+    align-content: center;
+    align-items: center;
+    text-align: -webkit-center;
+}
+
+.disparea {
+    width: 100%;
+}
+
+.iagod {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+}
+
+@media(max-width:600px) {
+    .iagod {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1px;
+    }
+    .snome {
+        width: 100%;
+    }
+    .spreco {
+        width: 100%;
+        margin-left: 0px;
+    }
+    .conteudo2 {
+        width: 100%;
+        float: none;
+        margin-left: 0px;
+    }
+    .conteudo {
+        width: 100%;
+        margin: auto;
+        float: none;
+        margin-left: 0px;
+        margin-top: 15px;
+    }
+    .conteudo3 {
+        width: 100%;
+        margin: auto;
+        float: none;
+        margin-left: 0px;
+        margin-top: 20px;
+    }
 }

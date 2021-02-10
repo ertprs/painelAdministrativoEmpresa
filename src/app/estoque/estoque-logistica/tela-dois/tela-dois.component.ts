@@ -52,7 +52,7 @@ export class TelaDoisComponent implements OnInit {
   }
 
   f5() {
-    this.crud.get_api('itens_cardapio').subscribe(data => {
+    this.crud.get_api('itens_cardapio&tipo=estoque').subscribe(data => {
       console.log(data);
       this.itensCatalogo = data.resultado;
    });

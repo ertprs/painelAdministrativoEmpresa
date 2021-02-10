@@ -24,11 +24,13 @@ export class PerfilComponent implements OnInit {
   statusMudarLogo = false;
   statusMudarCapa = false;
 
+  statusShowQr = false;
+  urlqr: string;
+
   constructor(private formBuilder: FormBuilder, public servico: ServicoService, private crud: CrudServicoService,
               private http: HttpClient, public dialog: MatDialog) { }
 
   private ini() {
-    console.log( this.servico.getDadosEmpresa() );
     this.formPerfil = this.formBuilder.group({
       nome: [this.servico.getDadosEmpresa().nome],
       capa: [this.servico.getDadosEmpresa().capa],
@@ -47,7 +49,19 @@ export class PerfilComponent implements OnInit {
     });
     this.imagemEmpresa = this.servico.getDadosEmpresa().imagem;
     this.imagemEmpresaCapa = this.servico.getDadosEmpresa().capa;
-  } 
+  }
+  clickshowqr() {
+     
+    if (this.statusShowQr) { this.statusShowQr = false; } else { this.statusShowQr = true; }
+  }
+
+  imprimirQR() {
+    const divContents = document.getElementById('areaqr').innerHTML;
+    const a = window.open('', '', 'height=500, width=640');
+    a.document.write(divContents);
+    a.document.close();
+    a.print();
+  }
 
   onclickSalvar() {
     const accallback = () => {
@@ -166,6 +180,10 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.urlqr = this.servico.urlQrcode + this.servico.getDadosEmpresa().tagnome ;
+
+    console.log(this.urlqr);
+
     this.ini();
   }
 

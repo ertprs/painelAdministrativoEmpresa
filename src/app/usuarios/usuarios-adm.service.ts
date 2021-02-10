@@ -14,9 +14,6 @@ export class UsuariosAdmService {
   getUsuario() { return this.usuarioSelecionado; }
 
   initPermissao(status, permissoes) {
-    console.log('#initPermissao');
-    console.log(status);
-    console.log(permissoes);
     // se status for VERDADEIRO que dizer que a loja é admin master e nao tem restrisções de perimissões
     if (status) {} else {
         console.log('Permissões de usuário');

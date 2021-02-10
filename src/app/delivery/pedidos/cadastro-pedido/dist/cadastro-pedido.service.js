@@ -315,7 +315,7 @@ var CadastroPedidoService = /** @class */ (function () {
         if (!this.carrinho.desconto) {
             this.carrinho.desconto = 0;
         }
-        // total -= this.carrinho.desconto;
+        total -= this.carrinho.desconto;
         // Calcula com taxa extra
         total += this.getTaxaExtra();
         total += this.getTaxaEntrega();

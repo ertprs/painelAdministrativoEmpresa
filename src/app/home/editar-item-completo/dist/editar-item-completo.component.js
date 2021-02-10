@@ -20,22 +20,28 @@ var EditarItemCompletoComponent = /** @class */ (function () {
         this.tb1 = ['opcoes', 'status', 'nome', 'nomecategoria', 'preco', 'info', 'datamodificado', 'remover'];
         this.item = { imagem: '', disponibilidade: [], categoriaadicional: [] };
         this.statusLoadConteudo = true;
+        this.mostrarJanelaG = false;
+        this.statusjanela = false;
+        this.urlqr = '';
     }
     EditarItemCompletoComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.imagem = this.servapp.getDadosEmpresa().imagem;
         if (this.servhome.getTipoAcao()) {
             // editar item
-            console.log(' ~~~~~~~~ EDITAR ITEM ~~~~~~~~');
+            // console.log(' ~~~~~~~~ EDITAR ITEM ~~~~~~~~');
             this.crud.get_api('consulta_item_cardapio&id_empresa=' +
                 this.servapp.getDadosEmpresa().id +
                 '&id_item=' + this.servhome.getItem().id).subscribe(function (data) {
-                console.log(data);
+                // console.log(data);
                 _this.itemRequest = data.item;
                 _this.imagem = data.item.imagem;
                 _this.diasLista = data.item.disponibilidade;
                 _this.catsEAdcs = data.item.categoriaadicional;
                 _this.categoriasCatalogo = data.item.categoria;
+                if (data.item.categoria_nome) {
+                    _this.imagensProduto = data.item.categoria_nome;
+                }
                 _this.form = _this.formBuilder.group({
                     id: [_this.servhome.getItem().id],
                     idcategoria: [''],
@@ -43,6 +49,8 @@ var EditarItemCompletoComponent = /** @class */ (function () {
                     descricao: [_this.itemRequest.descricao],
                     esconder: [_this.itemRequest.esconder],
                     esgotado: [_this.itemRequest.esgotado],
+                    itemEstoqueRelacionado: [_this.itemRequest.itemEstoqueRelacionado],
+                    statusEstoqueRelacionado: [_this.itemRequest.statusEstoqueRelacionado],
                     preco: [_this.itemRequest.preco],
                     id_empresa: [_this.servapp.getDadosEmpresa().id],
                     id_categoria: [_this.servhome.getCategoria().id],
@@ -52,7 +60,12 @@ var EditarItemCompletoComponent = /** @class */ (function () {
                     categoriaadicional: _this.buildCategoriasEAdicionais(),
                     status_promocao: [_this.itemRequest.status_promocao],
                     desconto: [_this.itemRequest.desconto],
-                    categoria: _this.buildCategoriasCardapio()
+                    categoria: _this.buildCategoriasCardapio(),
+                    estoque_mim: [_this.itemRequest.estoque_mim],
+                    estoque_med: [_this.itemRequest.estoque_med],
+                    quantidade_retira: [_this.itemRequest.quantidade_retira],
+                    un_caixa: [_this.itemRequest.un_caixa],
+                    un_caixa_pacote: [_this.itemRequest.un_caixa_pacote]
                 });
                 _this.statusLoadConteudo = false;
             }, function (error) {
@@ -61,16 +74,18 @@ var EditarItemCompletoComponent = /** @class */ (function () {
         }
         else {
             // novo item
-            console.log(' ~~~~~~~~ NOVO ITEM ~~~~~~~~');
             this.diasLista = this.servhome.getItemModel().disponibilidade;
             this.catsEAdcs = this.servhome.getItemModel().categoriaadicional;
             this.categoriasCatalogo = this.servhome.getItemModel().categoria;
+            console.log(this.diasLista);
             this.form = this.formBuilder.group({
                 id: [''],
                 nome: [''],
                 descricao: [''],
                 esconder: [false],
                 esgotado: [false],
+                itemEstoqueRelacionado: [false],
+                statusEstoqueRelacionado: [false],
                 preco: [''],
                 id_empresa: [this.servapp.getDadosEmpresa().id],
                 id_categoria: [this.servhome.getCategoria().id],
@@ -80,13 +95,93 @@ var EditarItemCompletoComponent = /** @class */ (function () {
                 categoriaadicional: this.buildCategoriasEAdicionais(),
                 status_promocao: [''],
                 desconto: [''],
-                categoria: this.buildCategoriasCardapio()
+                categoria: this.buildCategoriasCardapio(),
+                estoque_mim: [''],
+                estoque_med: [''],
+                quantidade_retira: [''],
+                un_caixa: [''],
+                un_caixa_pacote: ['']
             });
             //
             setTimeout(function () {
                 _this.statusLoadConteudo = false;
             }, 600);
         }
+    };
+    EditarItemCompletoComponent.prototype.buttonShowQR = function () {
+        try {
+            if (!this.itemRequest.id) {
+                this.servapp.mostrarMensagem('O Código ainda não foi gerado');
+                return;
+            }
+        }
+        catch (e) {
+            this.servapp.mostrarMensagem('O Código ainda não foi gerado');
+            return;
+        }
+        this.urlqr = this.servapp.urlQrcode;
+        this.urlqr += '?item=' + this.itemRequest.id;
+        if (!this.statusjanela) {
+            this.statusjanela = true;
+        }
+        else {
+            this.statusjanela = false;
+        }
+    };
+    EditarItemCompletoComponent.prototype.removerItem = function (item) {
+        var _this = this;
+        var accallback = function () {
+            var r = _this.servapp.getRespostaApi();
+            if (r.erro === true) {
+                _this.servapp.mostrarMensagem(r.mensagem);
+            }
+            else {
+                _this.servapp.mostrarMensagem(r.mensagem);
+                _this.route.navigate(['/painel/cardapio']);
+            }
+        };
+        this.crud.post_api('cardapio&acmenu=removerItem', accallback, item, true);
+    };
+    EditarItemCompletoComponent.prototype.onfcalldelsuc = function (evento) {
+        console.log(evento);
+        this.mostrarJanelaG = false;
+        this.imagensProduto.forEach(function (element) {
+            if (element.id === evento.id) {
+                element.imagem = evento.imagem;
+            }
+        });
+    };
+    EditarItemCompletoComponent.prototype.selecionarSUBIMG = function (item) {
+        this.mostrarJanelaG = true;
+        this.itemGaleriaSub = item;
+    };
+    EditarItemCompletoComponent.prototype.addCaixaSubImg = function () {
+        var idItem = 1;
+        try {
+            idItem = this.imagensProduto.length + 1;
+        }
+        catch (e) {
+            idItem = 1;
+        }
+        var c = { id: idItem, imagem: this.servapp.getDefaultImage(), status: true };
+        try {
+            this.imagensProduto.push(c);
+        }
+        catch (e) {
+            this.imagensProduto = [c];
+        }
+    };
+    EditarItemCompletoComponent.prototype.rmCaixaimg = function (item) {
+        var indeArray;
+        for (var x in this.imagensProduto) {
+            if (this.imagensProduto[x] === item) {
+                indeArray = x;
+            }
+        }
+        this.imagensProduto.splice(indeArray, 1);
+    };
+    EditarItemCompletoComponent.prototype.selecionarOpt = function (item) {
+        this.form.controls.itemEstoqueRelacionado.setValue(item.id);
     };
     EditarItemCompletoComponent.prototype.onClickAddItem = function () {
         var _this = this;
@@ -140,7 +235,9 @@ var EditarItemCompletoComponent = /** @class */ (function () {
     EditarItemCompletoComponent.prototype.salvaItemBanco = function () {
         var _this = this;
         console.log('#salvaItemBanco');
+        this.valorSubmit.categoria_nome = this.imagensProduto;
         console.log(this.valorSubmit);
+        console.log('#------------#');
         this.statusLoadConteudo = true;
         var loginres = function () {
             console.log('callback');
@@ -196,10 +293,14 @@ var EditarItemCompletoComponent = /** @class */ (function () {
         fileRead.readAsDataURL(this.arquivo);
     };
     EditarItemCompletoComponent.prototype.onClickImagemSelecionar = function () {
-        document.getElementById('imgInp').click();
+        document.getElementById('imgInpPROD').click();
     };
     EditarItemCompletoComponent.prototype.onClickObrigatorio = function (event, item) {
         item.obrigatorio = event.checked;
+        console.log(item);
+    };
+    EditarItemCompletoComponent.prototype.onClickPrevPreco = function (event, item) {
+        item.prevalecer_preco = event.checked;
         console.log(item);
     };
     EditarItemCompletoComponent.prototype.onClickAdicional = function (event, item) {
@@ -214,8 +315,16 @@ var EditarItemCompletoComponent = /** @class */ (function () {
         item.status = event.checked;
         console.log(item);
     };
+    EditarItemCompletoComponent.prototype.onClickItemRelacionado = function (event, item) {
+        console.log(event.checked);
+        this.form.controls.statusEstoqueRelacionado.setValue(event.checked);
+        if (!event.checked) {
+            this.form.controls.itemEstoqueRelacionado.setValue(0);
+        }
+        console.log(item);
+    };
     EditarItemCompletoComponent.prototype.onClickCancelar = function () {
-        this.route.navigate(['painel']);
+        this.route.navigate(['painel/cardapio']);
     };
     EditarItemCompletoComponent = __decorate([
         core_1.Component({

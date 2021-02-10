@@ -2,7 +2,7 @@
     <div class="c1">
         <div class="c11">
             <div>
-                <button *ngIf="servapp.configMaster" mat-button [matMenuTriggerFor]="csis" matTooltip="Configurações do sistema">
+                <button *ngIf="btConfigMaster && servapp.configMaster" mat-button [matMenuTriggerFor]="csis" matTooltip="Configurações do sistema">
                 <mat-icon>settings</mat-icon>
             </button>
 

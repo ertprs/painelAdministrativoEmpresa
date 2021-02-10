@@ -337,8 +337,10 @@ export class CadastroPedidoService {
     });
     } catch(e) { console.log(e);  console.log(this.carrinho); }
     // Calcular com desconto
-    if (!this.carrinho.desconto) { this.carrinho.desconto = 0; }
-    // total -= this.carrinho.desconto;
+    if (!this.carrinho.desconto) {
+      this.carrinho.desconto = 0;
+    }
+    total -= this.carrinho.desconto;
 
      // Calcula com taxa extra
     total += this.getTaxaExtra();

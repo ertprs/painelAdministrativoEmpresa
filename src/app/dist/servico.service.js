@@ -44,6 +44,8 @@ var ServicoService = /** @class */ (function () {
         this.intervalPedidos = 25000;
         this.intervalEntregadores = 7000;
         this.versao = '1.0.3';
+        this.urlQrcode = '';
+        this.btQrcode = false;
         this.faturas = false;
         this.subimgs = false;
         this.fidelidade = false;
@@ -54,6 +56,7 @@ var ServicoService = /** @class */ (function () {
         this.configMaster = false;
         this.estEnt = false;
         this.batEstoque = false;
+        this.altCaminhoSemEnt = false;
         this.concBanc = false;
         this.concCartao = false;
         this.concDinheiro = false;
@@ -169,12 +172,18 @@ var ServicoService = /** @class */ (function () {
         this.posEstEnt = dados.config_dash.pos_est_ent;
         this.criarRota = dados.config_dash.criar_rota;
         this.urlAudio = dados.config_dash.urlAudio;
+        this.urlQrcode = dados.config_dash.urlQrcode;
+        this.btQrcode = dados.config_dash.btQrcode;
+        this.altCaminhoSemEnt = dados.config_dash.alt_status_caminho;
     };
     ServicoService.prototype.retornaDataHoraAtual = function () {
         var dNow = new Date();
         // tslint:disable-next-line: max-line-length
         var localdate = dNow.getDate() + '/' + (dNow.getMonth() + 1) + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes();
         return localdate;
+    };
+    ServicoService.prototype.getURLCODE = function () {
+        return this.urlQrcode += this.getDadosEmpresa().tagnome + '';
     };
     ServicoService.prototype.getDadosLogin = function () {
         return this.dadosLogin;

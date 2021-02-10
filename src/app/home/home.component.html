@@ -36,7 +36,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{ categoria.nome }}
-          <span *ngIf="!categoria.esconder"  class="sptrue">Disponível</span>
+          <span *ngIf="!categoria.esconder" class="sptrue">Disponível</span>
 <span *ngIf="categoria.esconder" class="spfalse">Indisponível</span>
 
 <span *ngIf="!categoria.esgotado" class="sptrue">Ativo</span>
@@ -59,24 +59,24 @@
 
                     <div>
                         <button mat-button [matMenuTriggerFor]="menu">
-                      <mat-icon color="primary">settings</mat-icon>
-                    </button>
+                    <mat-icon color="primary">settings</mat-icon>
+                  </button>
 
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="dialogEditarCar(categoria)">
-                        <mat-icon>edit</mat-icon> Editar categoria
-                      </button>
+                      <mat-icon>edit</mat-icon> Editar categoria
+                    </button>
                             <button mat-menu-item (click)="removerCat(categoria)">
-                        <mat-icon>restore_from_trash</mat-icon> Remover categoria
-                      </button>
+                      <mat-icon>restore_from_trash</mat-icon> Remover categoria
+                    </button>
                         </mat-menu>
 
                     </div>
 
                     <div>
                         <button mat-raised-button color="warn" matTooltip="Adicionar novo item" (click)="dialogAddItem(categoria)">
-                      <mat-icon>add</mat-icon> Novo item
-                    </button>
+                    <mat-icon>add</mat-icon> Novo item
+                  </button>
                     </div>
 
                 </div>
@@ -92,45 +92,54 @@
 <span *ngFor="let item of categoria.itens | nomes:filtrop.value">
 
 
-        <div class="item-cat">
-          <div class="item-imagem" [defaultImage]="servicoapp.getDefaultImage()" [lazyLoad]="item.imagem" offset="100">
+        <div class="guinh">
+          <div class="item-cat">
+            <div class="item-imagem" [defaultImage]="servicoapp.getDefaultImage()" [lazyLoad]="item.imagem"
+              offset="100">
 
-          </div>
-          <div class="area-dados-item">
-            <div class="-item-nome">
+            </div>
+            <div class="area-dados-item">
+              <div class="-item-nome">
 
 
-              <button mat-button [matMenuTriggerFor]="menu">
-                <mat-icon color="warn">settings</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="dialogEditarItem(item, categoria)">
-                  <mat-icon>edit</mat-icon> Editar item
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <mat-icon color="warn">settings</mat-icon>
                 </button>
-                <button mat-menu-item (click)="onClickConfigurarItem(item, categoria)">
-                  <mat-icon>settings</mat-icon> Configurar item
-                </button>
-                <!--<button mat-menu-item (click)="removerItem(item)">
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="dialogEditarItem(item, categoria)">
+                    <mat-icon>edit</mat-icon> Editar item
+                  </button>
+                  <button mat-menu-item (click)="onClickConfigurarItem(item, categoria)">
+                    <mat-icon>settings</mat-icon> Configurar item
+                  </button>
+                  <!--<button mat-menu-item (click)="removerItem(item)">
                   <mat-icon>restore_from_trash</mat-icon> Remover item
                 </button>-->
-              </mat-menu>
-              #{{item.id}} - {{item.nome}} <span *ngIf="item.itemEstoqueRelacionado !== '0'" > <mat-icon  matTooltip="Item relacionado">compare_arrows</mat-icon> {{item.itemEstoqueRelacionado}} </span>
+                </mat-menu>
+                #{{item.id}} - {{item.nome}} <span *ngIf="item.itemEstoqueRelacionado !== '0'">
+                  <mat-icon matTooltip="Item relacionado">compare_arrows</mat-icon> {{item.itemEstoqueRelacionado}}
+                </span>
 <span class="dels" *ngIf="item.esgotado === true && item.tipo_acao !== 'esg_estoque'">
-<mat-icon class="mat-18"  matTooltip="Item esgotado">warning</mat-icon>
- 
-</span>
-<span class="dels2" *ngIf="item.esconder === true">  
-<mat-icon class="mat-18"  matTooltip="Item oculto para os clientes">warning</mat-icon>
-</span>
+                  <mat-icon class="mat-18" matTooltip="Item esgotado">warning</mat-icon>
 
-<span class="" *ngIf="item.tipo_acao === 'esg_estoque'">  
-  <mat-icon class="mat-18" color="warn" matTooltip="Item esgotado por falta de estoque">transit_enterexit</mat-icon>
-  </span>
+                </span>
+<span class="dels2" *ngIf="item.esconder === true">
+                  <mat-icon class="mat-18" matTooltip="Item oculto para os clientes">warning</mat-icon>
+                </span>
+
+<span class="" *ngIf="item.tipo_acao === 'esg_estoque'">
+                  <mat-icon class="mat-18" color="warn" matTooltip="Item esgotado por falta de estoque">
+                    transit_enterexit</mat-icon>
+                </span>
 
 </div>
 <div class="item-descricao">{{item.descricao}}</div>
 <div class="item-preco">{{item.preco | currency:'BRL':true}}</div>
 </div>
+</div>
+<!--
+<qrcode [qrdata]="this.urlQR + '&item=' + item.id" [width]="102" [errorCorrectionLevel]="'M'"></qrcode>
+-->
 </div>
 
 </span>

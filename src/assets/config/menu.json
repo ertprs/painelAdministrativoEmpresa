@@ -118,7 +118,9 @@
             { "id": 8, "status": true, "name": "Organização entregador" },
             { "id": 9, "status": true, "name": "Organização - Adicionar item" },
             { "id": 10, "status": true, "name": "Organização - remover item" },
-            { "id": 11, "status": true, "name": "Perfil logísta" }
+            { "id": 11, "status": true, "name": "Perfil logísta" },
+            { "id": 13, "status": true, "name": "Configurações mapa" },
+            { "id": 14, "status": true, "name": "Usuários administrativos" }
         ]
     },
 
@@ -135,11 +137,6 @@
             { "id": 5, "status": true, "name": "Itens de pagamento" },
             { "id": 6, "status": true, "name": "Bancos" },
             { "id": 7, "status": true, "name": "Usuários app" },
-            {
-                "id": 8,
-                "status": false,
-                "name": "Usuários administrativos do sistema"
-            },
             { "id": 9, "status": true, "name": "Cupons" },
             { "id": 10, "status": true, "name": "Notificações" },
             { "id": 11, "status": true, "name": "Pagamento online" }

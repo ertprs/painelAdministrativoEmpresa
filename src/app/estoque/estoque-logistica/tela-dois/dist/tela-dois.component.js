@@ -19,6 +19,7 @@ var TelaDoisComponent = /** @class */ (function () {
         this.fb = fb;
         this.crud = crud;
         this.servapp = servapp;
+        this.statusBT = false;
     }
     TelaDoisComponent.prototype.ngOnInit = function () {
         this.f5();
@@ -35,14 +36,16 @@ var TelaDoisComponent = /** @class */ (function () {
     };
     TelaDoisComponent.prototype.f1 = function (form) {
         var _this = this;
+        this.statusBT = true;
         var accallback = function () {
             console.log('callback');
             var r = _this.servapp.getRespostaApi();
             if (r.erro === true) {
-                _this.servapp.mostrarMensagem(r.detalhes);
+                _this.servapp.mostrarMensagem(r.mensagem);
+                _this.statusBT = false;
             }
             else {
-                _this.servapp.mostrarMensagem(r.detalhes);
+                _this.servapp.mostrarMensagem(r.mensagem);
                 _this.dialogRef.close(_this.form.value);
             }
             console.log(r);
@@ -51,7 +54,7 @@ var TelaDoisComponent = /** @class */ (function () {
     };
     TelaDoisComponent.prototype.f5 = function () {
         var _this = this;
-        this.crud.get_api('itens_cardapio').subscribe(function (data) {
+        this.crud.get_api('itens_cardapio&tipo=estoque').subscribe(function (data) {
             console.log(data);
             _this.itensCatalogo = data.resultado;
         });

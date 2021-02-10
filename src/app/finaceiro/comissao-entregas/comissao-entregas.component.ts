@@ -52,14 +52,12 @@ export class ComissaoEntregasComponent implements OnInit {
   consulta() {
 
     const accallback = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
       if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
         // this.servapp.mostrarMensagem(r.resultado.mensagem);
         this.dataSource = r.resultado.itens.itens;
         this.total = r.resultado.itens.total;
       }
-      console.log(r);
     };
     this.crud.post_api('comissao_entregas', accallback,
      {filtropag: this.filtroPagos, filtroNome: this.form.value.nome, dataInicio: this.form.value.datainicio,
@@ -91,7 +89,6 @@ onClickPagar(element) {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
     if (dialogRef) {
       this.consulta();
     }
@@ -106,16 +103,13 @@ filter(value: string): string[] {
 
 consultaMNome() {
   const accallback = () => {
-    console.log('callback');
     const r = this.servapp.getRespostaApi();
     if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
       // this.servapp.mostrarMensagem(r.resultado.mensagem);
       if (r.resultado) {
-        console.log('okkkk');
         this.itensOptions = r.resultado;
       }
     }
-    console.log(r);
   };
   this.crud.post_api('consulta_motoboy_nome', accallback, {});
 }

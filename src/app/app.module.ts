@@ -213,6 +213,7 @@ import { RotasEntregadorComponent } from './rotas-entregador/rotas-entregador.co
 import { GaleriaimagensComponent } from './componentes/galeriaimagens/galeriaimagens.component';
 import { FidelidadeComponent } from './fidelidade/fidelidade.component';
 import { PromocaoComponent } from './promocao/promocao.component';
+import { QRCodeModule } from 'angularx-qrcode';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -441,6 +442,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     }),
     AgmCoreModule.forRoot(),
     CurrencyMaskModule,
+    QRCodeModule
   ],
   entryComponents: [
     DialoDelsucgComponent

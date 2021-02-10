@@ -56,9 +56,9 @@
                     </button>
 
 
-                    <!--<button *ngIf="element.status_pedido == 2 && element.status_pedido != 3 && element.status_pedido != 4 && element.tipopedido == 'entrega'" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
+                    <button *ngIf="element.status_pedido == 2 && element.tipopedido == 'entrega' && element.status_motoboy != 2 && servapp.altCaminhoSemEnt === true" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
                             <mat-icon>check</mat-icon> A Caminho
-                        </button>-->
+                        </button>
 
                     <button *ngIf="element.status_pedido == 4 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(5, element.id, element)" mat-menu-item>
                         <mat-icon>check</mat-icon> Entregue
@@ -255,9 +255,9 @@
                     </button>
 
 
-                    <!--<button *ngIf="element.status_pedido == 2 && element.status_pedido != 3 && element.status_pedido != 4 && element.tipopedido == 'entrega'" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
+                    <button *ngIf="element.status_pedido == 2 &&  element.tipopedido == 'entrega'" (click)="servpedidos.onClickAttStatusPedido(4, element.id, element)" mat-menu-item>
                         <mat-icon>check</mat-icon> A Caminho
-                    </button>-->
+                    </button>
 
                     <button *ngIf="element.status_pedido == 4 || element.status_pedido == 3" (click)="servpedidos.onClickAttStatusPedido(5, element.id, element)" mat-menu-item>
                         <mat-icon>check</mat-icon> Entregue
@@ -283,7 +283,15 @@
                 </mat-menu>
             </div>
 
-            <button color="primary" class="bts" mat-flat-button matTooltip="Envie esta entrega a todos o entregadores que estão online">Solicitar entregador</button>
+            <button color="primary" class="bts" mat-flat-button [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'" *ngIf="element.status_motoboy == 0" (click)="servpedidos.solicitaMotoboy(element.id)">Solicitar entregador</button>
+            <div style="display: flex;    align-items: baseline;">
+                <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1" matTooltip="Aguardando entregador aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
+                <button style="margin-top: 11px;" (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id)" mat-icon-button color="warn" *ngIf="element.status_motoboy == 1">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </div>
+
+
         </div>
     </div>
 </div>
