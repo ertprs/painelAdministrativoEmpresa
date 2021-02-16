@@ -26,9 +26,9 @@
                     <mat-icon>edit_road</mat-icon> A caminho</mat-chip>-->
                 <span *ngIf="servpedidos.getPedido().status_pedido != 4">
 
-                <mat-chip
-                    *ngIf="servpedidos.getPedido().status_pedido == 4 || servpedidos.getPedido().status_pedido == 3"
-                    (click)="onClickAttStatusPedido(5)">Entregue</mat-chip>
+                    <mat-chip
+                        *ngIf="servpedidos.getPedido().status_pedido == 4 || servpedidos.getPedido().status_pedido == 3"
+                        (click)="onClickAttStatusPedido(5)">Entregue</mat-chip>
 
                 </span>
 
@@ -37,7 +37,7 @@
                     <mat-chip *ngIf="servpedidos.getPedido().status_pedido != 0" [mat-dialog-close]="'cancelar_pedido'">
                         Cancelar pedido
                     </mat-chip>
-                    
+
                 </span>
 
                 <span *ngIf="
@@ -46,12 +46,10 @@
                 servpedidos.getPedido().status_pedido != 1 && 
                 servpedidos.getPedido().status_pedido != 0
                 ">
-                    <mat-chip
-                        *ngIf="
+                    <mat-chip *ngIf="
                         servpedidos.getPedido().status_pedido == 5 || 
                         servpedidos.getPedido().status_pedido != 4
-                        "
-                        (click)="onClickAttStatusPedido(6)">
+                        " (click)="onClickAttStatusPedido(6)">
                         <mat-icon>check</mat-icon> Concluído
                     </mat-chip>
                 </span>
@@ -76,16 +74,24 @@
             <ng-template matStepLabel state="phone">Informações do cliente</ng-template>
 
             <div class="c2">
-                <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}
+                <div>
+                    <div class="imagemusu" [defaultImage]="servapp.getDefaultImage()" [lazyLoad]="servpedidos.getPedido().dadoscliente.imagem">
+
+                    </div>
                 </div>
-                <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 0000-0000'}}
+                <div>
+                    <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}
+                    </div>
+                    <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 0000-0000'}}
+                    </div>
+                    <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}}, {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
+                    </div>
+                    <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().endereco.complemento}}
+                    </div>
+                    <div class="c22"><span class="ddc">Ponto de referência:</span> {{servpedidos.getPedido().endereco.tiporesidencia}}
+                    </div>
                 </div>
-                <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}}, {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
-                </div>
-                <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().endereco.complemento}}
-                </div>
-                <div class="c22"><span class="ddc">Ponto de referência:</span> {{servpedidos.getPedido().endereco.tiporesidencia}}
-                </div>
+
             </div>
         </mat-step>
 

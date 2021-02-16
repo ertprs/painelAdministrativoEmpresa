@@ -1,3 +1,24 @@
 <div class='bb'>
-    <div *ngFor="let item of itens" [lazyLoad]="item.url" class="item" (click)="selecionarImagem(item)"></div>
+    <div class="fdfr">
+
+        <div style="margin-left: 0px;">
+            <app-upload-imagem (statusUPload)="statusUPIMagem($event)" [mensagem]="'Imagem enviada a galeria'" [nomeBotao]="'Selecionar para galeria'" [coluna]="'comprovante'" [preload]="true">
+            </app-upload-imagem>
+        </div>
+
+
+        <button class="bbbclos" (click)="ff(false)" mat-icon-button>
+        <mat-icon style="color: rgb(0, 0, 0);">close</mat-icon>
+    </button>
+    </div>
+    <div>
+        <div *ngFor="let item of itens" [lazyLoad]="item.url" class="item">
+            <button class="bbbclos" (click)="rmImagem(item)" mat-icon-button>
+                <mat-icon style="color: rgb(0, 0, 0);">delete</mat-icon>
+            </button>
+            <a style="text-decoration: none;" href="javascript:;" class="pixa" (click)="selecionarImagem(item)">
+                Selecionar
+            </a>
+        </div>
+    </div>
 </div>

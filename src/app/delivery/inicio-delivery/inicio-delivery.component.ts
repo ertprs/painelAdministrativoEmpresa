@@ -126,6 +126,9 @@ export class InicioDeliveryComponent implements OnInit {
     });
   }
 
+  console.log('PICA');
+  console.log(this.buildFp());
+
   }
 
   buildDiasForm() {
@@ -182,7 +185,9 @@ export class InicioDeliveryComponent implements OnInit {
 
   createItemFp(data: any): FormGroup {
     console.log('data');
+    if (!data.itens) { data.itens = []; }
     console.log(data);
+
     return new FormGroup({
       id: new FormControl(data.id),
       nome: new FormControl(data.nome),

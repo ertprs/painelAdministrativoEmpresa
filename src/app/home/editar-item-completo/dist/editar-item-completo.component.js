@@ -119,8 +119,7 @@ var EditarItemCompletoComponent = /** @class */ (function () {
             this.servapp.mostrarMensagem('O Código ainda não foi gerado');
             return;
         }
-        this.urlqr = this.servapp.urlQrcode;
-        this.urlqr += '?item=' + this.itemRequest.id;
+        this.urlqr = this.servapp.urlQrcode + '?item=' + this.itemRequest.id;
         if (!this.statusjanela) {
             this.statusjanela = true;
         }
@@ -150,6 +149,9 @@ var EditarItemCompletoComponent = /** @class */ (function () {
                 element.imagem = evento.imagem;
             }
         });
+    };
+    EditarItemCompletoComponent.prototype.fecharGaleria = function (event) {
+        this.mostrarJanelaG = false;
     };
     EditarItemCompletoComponent.prototype.selecionarSUBIMG = function (item) {
         this.mostrarJanelaG = true;

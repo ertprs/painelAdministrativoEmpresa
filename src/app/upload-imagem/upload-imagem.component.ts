@@ -2,7 +2,7 @@ import { CrudServicoService } from 'src/app/crud-servico.service';
 import { UploadimagemService } from './uploadimagem.service';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ServicoService } from '../servico.service';
 
 @Component({
@@ -25,6 +25,7 @@ export class UploadImagemComponent implements OnInit {
   @Input() mensagem: string;
   @Input() preload: boolean;
   @Input() btEnviar: boolean;
+  @Output() statusUPload = new EventEmitter();
 
   constructor(public servico: ServicoService, private http: HttpClient, private upimg: UploadimagemService,
               private crud: CrudServicoService) { }
@@ -65,6 +66,7 @@ export class UploadImagemComponent implements OnInit {
         this.upimg.setImagem(data.mensagem);
         this.upimg.setstatusUpImagem(data.erro);
         this.anexarImagem();
+        this.statusUPload.emit(data);
       },
       error => {
         this.statusLoadConteudo = false;

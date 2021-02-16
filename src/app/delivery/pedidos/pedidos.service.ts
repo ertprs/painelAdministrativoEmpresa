@@ -17,6 +17,7 @@ export class PedidosService {
     comprovante: '',
     dadosempresa: any,
     dadoscliente: {
+      imagem: '',
       nome: '',
       sobrenome: '',
       tiporesidencia: '',
@@ -42,7 +43,7 @@ export class PedidosService {
     cupom: any,
     detalhes: {}
   };
-  private audio1 = new Audio('assets/audio/pedido.mp3');
+  private audio1 = new Audio(this.servapp.urlAudio);
   public statusloadpedidos = false;
   private qntPedidosEmaberto = 0;
   private statusNotificar = false;

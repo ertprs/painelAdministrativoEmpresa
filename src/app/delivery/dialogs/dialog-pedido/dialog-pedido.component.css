@@ -96,3 +96,21 @@ table {
     background: #f7f4f4;
     color: #7b7373;
 }
+
+.c2 {
+    display: grid;
+    FONT-WEIGHT: 100;
+    FONT-WEIGHT: 100;
+    grid-template-columns: 0fr 1fr;
+    gap: 10px;
+}
+
+.imagemusu {
+    height: 125px;
+    width: 125px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}

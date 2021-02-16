@@ -106,6 +106,8 @@ var InicioDeliveryComponent = /** @class */ (function () {
                 }
             });
         }
+        console.log('PICA');
+        console.log(this.buildFp());
     };
     InicioDeliveryComponent.prototype.buildDiasForm = function () {
         var _this = this;
@@ -158,6 +160,9 @@ var InicioDeliveryComponent = /** @class */ (function () {
     };
     InicioDeliveryComponent.prototype.createItemFp = function (data) {
         console.log('data');
+        if (!data.itens) {
+            data.itens = [];
+        }
         console.log(data);
         return new forms_1.FormGroup({
             id: new forms_1.FormControl(data.id),

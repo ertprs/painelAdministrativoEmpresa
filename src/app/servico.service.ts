@@ -13,9 +13,9 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
+  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
-  // private urlapi = 'https://api.vulto.site/index.php';
+   private urlapi = 'https://api.vulto.site/index.php';
   // private urlapi = 'https://api.dinp.com.br/index.php';
   private API = 'apiEstabelecimento';
   private statusLogado = false;

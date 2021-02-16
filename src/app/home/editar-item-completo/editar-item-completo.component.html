@@ -1,9 +1,7 @@
 <div class="loader" *ngIf="statusLoadConteudo"></div>
 
 <div class="all" *ngIf="!statusLoadConteudo" [formGroup]="form">
-    <div *ngIf="mostrarJanelaG">
-        <app-galeriaimagens (fcallb)="onfcalldelsuc($event)" [item]="itemGaleriaSub"></app-galeriaimagens>
-    </div>
+
 
     <div class="conteudo2">
 
@@ -353,6 +351,9 @@
 
 </div>
 
+<div *ngIf="mostrarJanelaG">
+    <app-galeriaimagens (fechar)="fecharGaleria($event)" (fcallb)="onfcalldelsuc($event)" [item]="itemGaleriaSub"></app-galeriaimagens>
+</div>
 <div *ngIf="statusjanela" class="areaqr">
     <div class="fgds">
         <button class="bbbclos" (click)="buttonShowQR()" mat-icon-button>

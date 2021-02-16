@@ -150,6 +150,10 @@
 }
 
 @media(max-width:600px) {
+    .barraOpcs {
+        grid-template-columns: 1fr;
+        width: 69%;
+    }
     .iagod {
         display: grid;
         grid-template-columns: 1fr;
@@ -180,5 +184,16 @@
         float: none;
         margin-left: 0px;
         margin-top: 20px;
+    }
+    .all {
+        padding: 0px;
+        height: 82vh;
+    }
+    .areaqr {
+        width: 83%;
+    }
+    .qrcode {
+        height: 300px;
+        width: 274px;
     }
 }

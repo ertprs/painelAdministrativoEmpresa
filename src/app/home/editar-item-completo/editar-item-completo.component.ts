@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { HomeService } from './../home.service';
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 declare var $: any;
 
@@ -162,9 +162,13 @@ export class EditarItemCompletoComponent implements OnInit {
       this.servapp.mostrarMensagem('O Código ainda não foi gerado');
       return;
     }
-    this.urlqr = this.servapp.urlQrcode;
-    this.urlqr += '?item=' + this.itemRequest.id;
-    if (!this.statusjanela) { this.statusjanela = true; } else { this.statusjanela = false; }
+    
+    this.urlqr = this.servapp.urlQrcode + '?item=' + this.itemRequest.id;
+    if (!this.statusjanela) { 
+      this.statusjanela = true; 
+    } else { 
+      this.statusjanela = false; 
+    }
   }
 
   removerItem(item: any) {
@@ -186,6 +190,10 @@ export class EditarItemCompletoComponent implements OnInit {
         element.imagem = evento.imagem;
       }
     });
+  }
+
+  fecharGaleria(event: any) {
+    this.mostrarJanelaG = false;
   }
   selecionarSUBIMG(item: any) {
     this.mostrarJanelaG = true;
