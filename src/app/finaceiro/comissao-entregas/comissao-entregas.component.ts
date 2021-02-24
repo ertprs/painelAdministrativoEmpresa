@@ -16,25 +16,29 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class ComissaoEntregasComponent implements OnInit {
 
-  columnsToDisplay = ['c0', 'c66', 'c1', 'vp', 'c3', 'c5', 'c6', 'c4'];
+  columnsToDisplay = ['c0', 'c66', 'c1', 'vp', 'valorrec', 'sdd', 'c3', 'c5', 'c6', 'c4'];
   dataSource: any;
   total = 0;
+  totalfp = 0;
+  totaldindev = 0;
   filtroPagos: any;
   filtroNome = '';
   form: FormGroup;
+  statusProg = false;
+  statusConsulEntNome = false;
 
   myControl = new FormControl();
   filteredOptions: Observable<any>;
   itensOptions = [];
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private fb: FormBuilder,
-              public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
+    public servapp: ServicoService, private crud: CrudServicoService, private router: Router) { }
 
   ngOnInit(): void {
 
     this.filteredOptions = this.myControl.valueChanges.pipe(startWith(''),
-    map(value => this.filter(value))
-  );
+      map(value => this.filter(value))
+    );
 
     this.dataSource = [];
     this.form = this.fb.group({
@@ -50,19 +54,25 @@ export class ComissaoEntregasComponent implements OnInit {
   }
 
   consulta() {
-
+    this.statusProg = true;
     const accallback = () => {
+      this.statusProg = false;
+
       const r = this.servapp.getRespostaApi();
       if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
         // this.servapp.mostrarMensagem(r.resultado.mensagem);
         this.dataSource = r.resultado.itens.itens;
         this.total = r.resultado.itens.total;
+        this.totalfp = r.resultado.itens.totalfp;
+        this.totaldindev = r.resultado.itens.total_pag_din;
       }
     };
     this.crud.post_api('comissao_entregas', accallback,
-     {filtropag: this.filtroPagos, filtroNome: this.form.value.nome, dataInicio: this.form.value.datainicio,
-      dataFim: this.form.value.datafim}
-     );
+      {
+        filtropag: this.filtroPagos, filtroNome: this.form.value.nome, dataInicio: this.form.value.datainicio,
+        dataFim: this.form.value.datafim
+      }
+    );
   }
 
   onClickTodos() {
@@ -82,36 +92,54 @@ export class ComissaoEntregasComponent implements OnInit {
 
 
 
-onClickPagar(element) {
-  const dialogRef = this.dialog.open(AdicionarPagamentoComponent, {
-    width: '250px',
-    data: {item: element}
-  });
+  onClickPagar(element) {
+    const dialogRef = this.dialog.open(AdicionarPagamentoComponent, {
+      width: '250px',
+      data: { item: element }
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (dialogRef) {
-      this.consulta();
-    }
-  });
-}
-
-filter(value: string): string[] {
-  const filterValue = value.toLowerCase();
-
-  return this.itensOptions.filter(option => option.toLowerCase().includes(filterValue));
-}
-
-consultaMNome() {
-  const accallback = () => {
-    const r = this.servapp.getRespostaApi();
-    if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
-      // this.servapp.mostrarMensagem(r.resultado.mensagem);
-      if (r.resultado) {
-        this.itensOptions = r.resultado;
+    dialogRef.afterClosed().subscribe(result => {
+      if (dialogRef) {
+        this.consulta();
       }
-    }
-  };
-  this.crud.post_api('consulta_motoboy_nome', accallback, {});
-}
+    });
+  }
 
+  filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.itensOptions.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  consultaMNome() {
+    this.statusProg = true;
+    const accallback = () => {
+      this.statusProg = false;
+
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.resultado.mensagem); } else {
+        // this.servapp.mostrarMensagem(r.resultado.mensagem);
+        if (r.resultado) {
+          this.itensOptions = r.resultado;
+        }
+      }
+    };
+    this.crud.post_api('consulta_motoboy_nome', accallback, {});
+  }
+
+  confirmarDevolucao(item: any) {
+    this.statusProg = true;
+    const accallback = () => {
+      this.statusProg = false;
+
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { 
+        this.servapp.mostrarMensagem(r.detalhes);
+      } else {
+        this.servapp.mostrarMensagem(r.detalhes);
+        item.status_pag_din = 'pago';
+      }
+    };
+    this.crud.post_api('confirmarDevolucao', accallback, item.id);
+  }
 }

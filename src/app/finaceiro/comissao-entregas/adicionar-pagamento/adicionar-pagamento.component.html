@@ -1,16 +1,17 @@
-<div [formGroup]="form">
+<div [formGroup]="form" style="text-align: center;">
 
-    <mat-form-field class="example-full-width">
+    <!--<mat-form-field class="example-full-width">
         <mat-label>Data</mat-label>
         <input matInput type="date" formControlName="data">
-    </mat-form-field>
+    </mat-form-field>-->
 
-    <mat-form-field class="example-full-width">
+    <!--<mat-form-field class="example-full-width">
         <mat-label>Pago por quem</mat-label>
-        <input matInput placeholder="Ex. Nome" formControlName="operador">
-    </mat-form-field>
+        <input matInput placeholder="Nome" formControlName="operador">
+    </mat-form-field>-->
+    Deseja confirmar o pagamento?
 
-    <div>
+    <div style="margin-top: 20px;">
         <button mat-button [mat-dialog-close]="false">Cancelar</button>
         <button mat-flat-button color="warn" style="margin-left: 10px;" (click)="onClickPagar()">Confirmar</button>
     </div>

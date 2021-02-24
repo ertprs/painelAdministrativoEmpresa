@@ -19,9 +19,13 @@ var ComissaoEntregasComponent = /** @class */ (function () {
         this.servapp = servapp;
         this.crud = crud;
         this.router = router;
-        this.columnsToDisplay = ['c0', 'c66', 'c1', 'vp', 'c3', 'c5', 'c6', 'c4'];
+        this.columnsToDisplay = ['c0', 'c66', 'c1', 'vp', 'valorrec', 'sdd', 'c3', 'c5', 'c6', 'c4'];
         this.total = 0;
+        this.totalfp = 0;
+        this.totaldindev = 0;
         this.filtroNome = '';
+        this.statusProg = false;
+        this.statusConsulEntNome = false;
         this.myControl = new forms_1.FormControl();
         this.itensOptions = [];
     }
@@ -39,7 +43,9 @@ var ComissaoEntregasComponent = /** @class */ (function () {
     };
     ComissaoEntregasComponent.prototype.consulta = function () {
         var _this = this;
+        this.statusProg = true;
         var accallback = function () {
+            _this.statusProg = false;
             var r = _this.servapp.getRespostaApi();
             if (r.erro === true) {
                 _this.servapp.mostrarMensagem(r.resultado.mensagem);
@@ -48,10 +54,14 @@ var ComissaoEntregasComponent = /** @class */ (function () {
                 // this.servapp.mostrarMensagem(r.resultado.mensagem);
                 _this.dataSource = r.resultado.itens.itens;
                 _this.total = r.resultado.itens.total;
+                _this.totalfp = r.resultado.itens.totalfp;
+                _this.totaldindev = r.resultado.itens.total_pag_din;
             }
         };
-        this.crud.post_api('comissao_entregas', accallback, { filtropag: this.filtroPagos, filtroNome: this.form.value.nome, dataInicio: this.form.value.datainicio,
-            dataFim: this.form.value.datafim });
+        this.crud.post_api('comissao_entregas', accallback, {
+            filtropag: this.filtroPagos, filtroNome: this.form.value.nome, dataInicio: this.form.value.datainicio,
+            dataFim: this.form.value.datafim
+        });
     };
     ComissaoEntregasComponent.prototype.onClickTodos = function () {
         this.filtroPagos = 'todos';
@@ -83,7 +93,9 @@ var ComissaoEntregasComponent = /** @class */ (function () {
     };
     ComissaoEntregasComponent.prototype.consultaMNome = function () {
         var _this = this;
+        this.statusProg = true;
         var accallback = function () {
+            _this.statusProg = false;
             var r = _this.servapp.getRespostaApi();
             if (r.erro === true) {
                 _this.servapp.mostrarMensagem(r.resultado.mensagem);
@@ -96,6 +108,22 @@ var ComissaoEntregasComponent = /** @class */ (function () {
             }
         };
         this.crud.post_api('consulta_motoboy_nome', accallback, {});
+    };
+    ComissaoEntregasComponent.prototype.confirmarDevolucao = function (item) {
+        var _this = this;
+        this.statusProg = true;
+        var accallback = function () {
+            _this.statusProg = false;
+            var r = _this.servapp.getRespostaApi();
+            if (r.erro === true) {
+                _this.servapp.mostrarMensagem(r.detalhes);
+            }
+            else {
+                _this.servapp.mostrarMensagem(r.detalhes);
+                item.status_pag_din = 'pago';
+            }
+        };
+        this.crud.post_api('confirmarDevolucao', accallback, item.id);
     };
     ComissaoEntregasComponent = __decorate([
         core_1.Component({
