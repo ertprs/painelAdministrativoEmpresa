@@ -239,7 +239,7 @@
 
 
 
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="margin-top: 10px;">
+            <mat-expansion-panel *ngIf="servapp.estoque" (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="margin-top: 10px;">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Controle de estoque

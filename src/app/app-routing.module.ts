@@ -82,6 +82,7 @@ import { GuardaConfigSistemaService } from './guards/guarda-config-sistema.servi
 import { UsuarioPermissoesComponent } from './usuarios/usuario-permissoes/usuario-permissoes.component';
 import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 import { MainNavMasterComponent } from './main-nav-master/main-nav-master.component';
+import { WhatsappComponent } from './whatsapp/whatsapp.component';
 
 const routes: Routes = [
 
@@ -90,7 +91,7 @@ const routes: Routes = [
   { path: 'recuperar', component: RecuperarContaComponent },
 
   /* SITE - Local de acesso nas paginas do SITE */
-    { path: 'cadastro', component: CadastroEmpresaLojistaComponent, /*canActivate: [GuardaAtenticacaoService]*/ },
+  { path: 'cadastro', component: CadastroEmpresaLojistaComponent, /*canActivate: [GuardaAtenticacaoService]*/ },
   /* FIM LINHA SITE -- Local de acesso nas paginas do SITE */
 
 
@@ -103,32 +104,39 @@ const routes: Routes = [
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'faturas', component: FaturasComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fidelidade', component: FidelidadeComponent, canActivate: [GuardaAtenticacaoService] },
-      { path: 'promocao', component: PromocaoComponent},
+      { path: 'promocao', component: PromocaoComponent },
+      { path: 'whatsapp', component: WhatsappComponent },
 
-      { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
+      {
+        path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'consolidacao-cartao', component: ConsolidacaoCartaoComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'consolidacao-dinheiro', component: ConsolidacaoDinheiroComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'controle-fiado', component: ControleFiadoComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'conciliacao-bancaria', component: ConciliacaoBancariaComponent, canActivate: [GuardaAtenticacaoService] },
-      ] },
+        ]
+      },
 
-      { path: 'relatorio', component: Painel2RelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
-        { path: 'posicao-estoque', component: ItensEstoqueDetalhesComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'historico-vendas', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'historico-caixa', component: HistoricoCaixaComponent, canActivate: [GuardaAtenticacaoService] },
-    ] },
+      {
+        path: 'relatorio', component: Painel2RelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
+          { path: 'posicao-estoque', component: ItensEstoqueDetalhesComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'historico-vendas', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'historico-caixa', component: HistoricoCaixaComponent, canActivate: [GuardaAtenticacaoService] },
+        ]
+      },
 
-      { path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [
-            { path: '', component: PaginaDefaultComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'historico', component: HistoricoComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'estoque-motoboy', component: EstoqueMotoboyComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'lista-motoboys', component: ListaMotoboysComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'logistica', component: EstoqueLogisticaComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'batimentos-estoque', component: AbatimentosEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
-      ] },
+      {
+        path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [
+          { path: '', component: PaginaDefaultComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'historico', component: HistoricoComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'estoque-motoboy', component: EstoqueMotoboyComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'lista-motoboys', component: ListaMotoboysComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'logistica', component: EstoqueLogisticaComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'batimentos-estoque', component: AbatimentosEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
+        ]
+      },
 
 
       { path: 'meusclientes', component: ClientesComponent, canActivate: [GuardaAtenticacaoService] },
@@ -162,7 +170,7 @@ const routes: Routes = [
           { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'data-retroativa', component: DataRetroativaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService]},
+          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService] },
 
           {
             path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
@@ -187,7 +195,7 @@ const routes: Routes = [
         ]
       },
 
-      
+
 
 
     ]
@@ -198,7 +206,7 @@ const routes: Routes = [
   {
     path: 'admin', component: MainNavMasterComponent, canActivate: [GuardaAtenticacaoService], children: [
 
-      { path: 'mapa', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
+      { path: 'mapa', component: InicioComponent },
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'lojas', component: ListaEmpresasComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'ver-empresa', component: VerEmpresaComponent, canActivate: [GuardaAtenticacaoService] },
@@ -206,31 +214,37 @@ const routes: Routes = [
       { path: 'categorias-empresa', component: CategoriasEmpresasComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'destaques', component: CategoriasDestaqueComponent, canActivate: [GuardaAtenticacaoService] },
 
-      
-      { path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
+
+      {
+        path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
           { path: 'consolidacao-financeira', component: ConsolidacaoFinanceiraComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'consolidacao-cartao', component: ConsolidacaoCartaoComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'consolidacao-dinheiro', component: ConsolidacaoDinheiroComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'controle-fiado', component: ControleFiadoComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'conciliacao-bancaria', component: ConciliacaoBancariaComponent, canActivate: [GuardaAtenticacaoService] },
-      ] },
+        ]
+      },
 
-      { path: 'relatorio', component: Painel2RelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
-        { path: 'posicao-estoque', component: ItensEstoqueDetalhesComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'historico-vendas', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
-        { path: 'historico-caixa', component: HistoricoCaixaComponent, canActivate: [GuardaAtenticacaoService] },
-    ] },
+      {
+        path: 'relatorio', component: Painel2RelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [
+          { path: 'posicao-estoque', component: ItensEstoqueDetalhesComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'historico-vendas', component: ComprasClientesComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'historico-caixa', component: HistoricoCaixaComponent, canActivate: [GuardaAtenticacaoService] },
+        ]
+      },
 
-      { path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [
-            { path: '', component: PaginaDefaultComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'historico', component: HistoricoComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'estoque-motoboy', component: EstoqueMotoboyComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'lista-motoboys', component: ListaMotoboysComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'logistica', component: EstoqueLogisticaComponent, canActivate: [GuardaConfigSistemaService] },
-            { path: 'batimentos-estoque', component: AbatimentosEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
-      ] },
+      {
+        path: 'estoque', component: EstoqueComponent, canActivate: [GuardaConfigSistemaService], children: [
+          { path: '', component: PaginaDefaultComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'historico', component: HistoricoComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'itens-estoque', component: ItensEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'estoque-motoboy', component: EstoqueMotoboyComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'lista-motoboys', component: ListaMotoboysComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'logistica', component: EstoqueLogisticaComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'batimentos-estoque', component: AbatimentosEstoqueComponent, canActivate: [GuardaConfigSistemaService] },
+        ]
+      },
 
 
       { path: 'meusclientes', component: ClientesComponent, canActivate: [GuardaAtenticacaoService] },
@@ -264,10 +278,10 @@ const routes: Routes = [
           { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'data-retroativa', component: DataRetroativaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService]},
-          
-          { path: 'chaves', component: PagamentoOnlineComponent , canActivate: [GuardaConfigSistemaService]},
-          { path: 'pagamento-online', component: PagamentoOnlineComponent , canActivate: [GuardaConfigSistemaService]},
+          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService] },
+
+          { path: 'chaves', component: PagamentoOnlineComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'pagamento-online', component: PagamentoOnlineComponent, canActivate: [GuardaConfigSistemaService] },
           { path: 'empresa-pags-on', component: EmpresaPagamentosOnlineComponent, canActivate: [GuardaConfigSistemaService] },
 
 
@@ -295,8 +309,8 @@ const routes: Routes = [
         ]
       },
 
-  
-      
+
+
 
 
     ]

@@ -1,7 +1,7 @@
 .g {
     display: grid;
     grid-template-columns: 2fr 5fr;
-    grid-template-rows: 81.4vh;
+    grid-template-rows: 85h;
 }
 
 table {

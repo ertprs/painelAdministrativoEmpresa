@@ -26,6 +26,7 @@ export class PerfilComponent implements OnInit {
 
   statusShowQr = false;
   urlqr: string;
+  btsalvar = false;
 
   constructor(private formBuilder: FormBuilder, public servico: ServicoService, private crud: CrudServicoService,
               private http: HttpClient, public dialog: MatDialog) { }
@@ -64,8 +65,10 @@ export class PerfilComponent implements OnInit {
   }
 
   onclickSalvar() {
+    this.btsalvar = true;
     const accallback = () => {
       console.log('callback');
+      this.btsalvar = false;
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
         this.servico.mostrarMensagem(r.mensagem);

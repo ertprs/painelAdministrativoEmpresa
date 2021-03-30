@@ -75,16 +75,29 @@
 
             <div class="c2">
                 <div>
-                    <div class="imagemusu" [defaultImage]="servapp.getDefaultImage()" [lazyLoad]="servpedidos.getPedido().dadoscliente.imagem">
+                    <div *ngIf="servpedidos.getPedido().dadoscliente.imagem" class="imagemusu" [defaultImage]="servapp.getDefaultImage()" [lazyLoad]="servpedidos.getPedido().dadoscliente.imagem">
 
                     </div>
                 </div>
                 <div>
                     <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}
                     </div>
-                    <div class="c22"><span class="ddc">Telefone:</span> {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 0000-0000'}}
+                    <div class="c22"><span class="ddc">Telefone:</span> 
+                        <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length === 12">
+                        <!-- se o numero tiver 12 = whatsapp : (55) 7488420307 -->
+                        {{servpedidos.getPedido().dadoscliente.telefone | mask: '+00 (00) 0000-0000'}}
+                        </span>
+                        <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length === 11">
+                        <!-- (74) 98842-0307 -->
+                        {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 00000-0000'}}
+                        </span>
+                        <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length > 12">
+                            <!-- 000000000000 -->
+                            {{servpedidos.getPedido().dadoscliente.telefone | mask: '00000000000000'}}
+                            </span>
+
                     </div>
-                    <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}}, {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
+                    <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}} {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
                     </div>
                     <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().endereco.complemento}}
                     </div>

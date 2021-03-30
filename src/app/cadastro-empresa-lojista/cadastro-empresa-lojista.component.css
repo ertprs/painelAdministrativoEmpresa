@@ -9,7 +9,7 @@
     display: grid;
     align-items: center;
     /*background-image: url('../../assets/');*/
-    background: #9c27b0;
+    background: #3f51b5;
 }
 
 .c3 {
@@ -33,4 +33,98 @@
     margin-top: 30px;
     color: white;
     margin-top: 30px;
+}
+
+.nomee {
+    width: 70%;
+}
+
+.telefone {
+    width: 29%;margin-left: 1px;
+}
+.cpf {
+    width: 100%;
+}
+
+.senha {
+    width: 29%; margin-left: 1px;
+}
+
+.cep {
+    width: 80%;
+}
+.numero {
+    width: 19%; margin-left: 1px;
+}
+
+.rua {
+    width: 39%;
+}
+
+.cidade {
+    width: 30%;margin-left: 1px;
+}
+
+.bairro{
+    width: 30%;margin-left: 1px;
+}
+
+
+.elecccment {
+    background-color: #44c734;
+    color: white;
+    margin-top: 20px;
+    width: 87%;
+    margin: auto;
+    margin-top: 17px;
+}
+
+@media(max-width:600px) {
+    
+.elecccment {
+    background-color: white;
+    color: black;
+}
+    .c2 {
+        display: none;
+    }
+    .c1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .nome {
+        width: 100%;
+    }
+    
+    .telefone {
+        width: 100%;
+    }
+    .cpf {
+        width: 100%;
+    }
+    
+    .senha {
+        width: 100%;
+    }
+    
+    .cep {
+        width: 100%;
+    }
+    .numero {
+        width: 100%;
+    }
+    
+    .rua {
+        width: 100%;
+    }
+    
+    .cidade {
+      width: 100%;
+    }
+    
+    .bairro{
+      width: 100%;
+    }
 }

@@ -14,19 +14,19 @@
                 <div class="" style="width: 100%;">
                     <mat-form-field appearance="outline">
                         <mat-label>Valor mínimo do pedido</mat-label>
-                        <input matInput placeholder="Ex. R$8,00" type="text" formControlName="pedidomin" matInput mask="separator.2" thousandSeparator=".">
+                        <input matInput placeholder="Ex. R$8,00" type="text" formControlName="pedidomin" matInput currencyMask>
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" style="margin-left: 10px;">
                         <mat-label>Valor máximo do pedido</mat-label>
-                        <input matInput placeholder="Ex. R$800,00" type="text" formControlName="pedidomax" matInput mask="separator.2" thousandSeparator=".">
+                        <input matInput placeholder="Ex. R$800,00" type="text" formControlName="pedidomax" matInput currencyMask>
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" style="margin-left: 10px;">
-                        <mat-label>Entrega grátis</mat-label>
-                        <input matInput placeholder="Ex. Para pedidos acima de R$100,00" type="text" formControlName="entrega_gratis" matInput mask="separator.2" thousandSeparator=".">
+                        <mat-label>Entrega grátis a partir de</mat-label>
+                        <input matInput placeholder="Ex. pedidos acima de R$100,00" type="text" formControlName="entrega_gratis" matInput currencyMask>
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
@@ -38,14 +38,14 @@
 
                 <div class="" style="width: 100%;">
                     <mat-form-field style="width: 400px" appearance="outline">
-                        <mat-label>Tags</mat-label>
-                        <input matInput placeholder="Ex. hamburguer, pizza, sopa, suco" type="text" formControlName="tags">
+                        <mat-label>Principais produtos do catálogo da empresa</mat-label>
+                        <input matInput placeholder="Separe os itens por vírgula: Ex.: produto1, produto2" type="text" formControlName="tags">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" style="margin-left: 10px;">
                         <mat-label>Tipo empresa</mat-label>
-                        <input matInput placeholder="Ex. Hamburgueria, Pizzaria, Açaiteria" type="text" formControlName="seguimento">
+                        <input matInput placeholder="Ex.: Loja" type="text" formControlName="seguimento">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
                 </div>
@@ -64,7 +64,7 @@
 
                     <mat-form-field appearance="outline" style="margin-left: 10px;">
                         <mat-label>Tempo para retirada</mat-label>
-                        <input matInput placeholder="Ex. 45 a 75 minutos" type="text" formControlName="temporetirada">
+                        <input matInput placeholder="Tempo para o cliente poder retirar" type="text" formControlName="temporetirada">
                         <mat-icon matSuffix>time</mat-icon>
                     </mat-form-field>
                 </div>
@@ -150,36 +150,65 @@
             </mat-step>
 
             <mat-step formArrayName="locaisEntrega">
+                
                 <ng-template matStepLabel>Bairros</ng-template>
 
                 <div style="width: 100%;">
                     <mat-radio-group>
                         <!--{{ cidadeSelecionada }}-->
-                        <span *ngFor="let item of dadosEmpresa.locais_entrega">
-              <mat-radio-button style="margin-left: 18px;" [value]="item" (click)="onClickSelecionarCidadeFiltro(item)">
-                {{ item.nome }} </mat-radio-button>
+                        <span *ngFor="let item of formCadastro.get('locaisEntrega')['controls']; let i = index">
+
+              <mat-radio-button *ngIf="item.value.disponivel" style="margin-left: 18px;" [value]="item" (click)="onClickSelecionarCidadeFiltro(item.value)">
+                {{ item.value.nome }} 
+            </mat-radio-button>
+            
             </span>
                     </mat-radio-group>
                 </div>
 
+                <div class="" class="style1">
+                    <button class="bttt" mat-raised-button color="primary" (click)="carregaTaxas()">Definir taxa de entrega por distância</button>
+                    <button class="bttt" mat-raised-button color="warn"    (click)="selecionartdsb()">Todos bairros</button>
+                    <button class="bttt" mat-raised-button color="warn"    (click)="deselecionartdsb()">Desmarcar bairros</button>
+                  </div>
+
+                 
 
                 <span [formGroupName]="i" *ngFor="let item of formCadastro.get('locaisEntrega')['controls']; let i = index">
           <div class="s" style="width: 100%;">
 
+
+           
+
             <span formArrayName="bairros">
               <span [formGroupName]="b" *ngFor="let bairro of item.controls.bairros.controls; let b = index">
 
-                <div class="" style="width: 100%;" *ngIf="bairro.value.cidade_id === cidadeSelecionada">
+                <div class="" class="style2" *ngIf="bairro.value.cidade_id === cidadeSelecionada">
                   <!--{{ bairro.value | json }}-->
-                  <mat-slide-toggle color="primary" style="width: 300px;" formControlName="disponivel"
-                    matTooltip="{{bairro.value.nome}} - Taxa de entrega {{bairro.value.taxa | currency:'BRL':true}}">
-                    {{ bairro.value.nome }}
+                   
+                  <mat-slide-toggle [id]="'bairro' + bairro.value.id" color="primary" style="width: 300px;" formControlName="disponivel"
+                    matTooltip="{{bairro.value.nome}} - Taxa de entrega {{bairro.value.taxa | currency:'BRL'}}">
+                      {{ bairro.value.nome }} 
+                     
                   </mat-slide-toggle>
-                  <mat-form-field style="margin-left: 5px;width: 150px;" appearance="outline">
-                    <mat-label>Taxa entrega</mat-label>
-                    <input matInput placeholder="Ex. R$10,00" type="text" formControlName="taxa" matInput mask="separator.2" thousandSeparator=",">
+                
+                  <mat-form-field class="intx" appearance="outline">
+                    <mat-label>Taxa entrega <span *ngIf="bairro.value.taxaPorDist"> por distância </span> </mat-label>
+                        <mat-progress-bar *ngIf="bairro.value.statusload" mode="query"></mat-progress-bar>
+                    <input style="text-align: left;" (keyup)="cancelarpordist(bairro.value)" currencyMask [id]="'taxaEntrega' + bairro.value.id" matInput placeholder="R$0,00" type="tel" formControlName="taxa">
                     <mat-icon matSuffix>home_work</mat-icon>
+                    <mat-hint><span *ngIf="bairro.value.taxaPorDist"> Tempo entrega {{ bairro.value.duracao }} / {{ bairro.value.distancia }} </span> </mat-hint>
                   </mat-form-field>
+
+                  <!--<div *ngIf="bairro.value.taxaPorDist === true">
+                      <div class="s3">
+                        <button (click)="cancelarpordist(bairro.value)" mat-icon-button color="warn">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          Taxa por distância
+                        <br>{{ bairro.value.taxa | currency:'BRL'}}
+                      </div>
+                  </div>-->
 
                 </div>
 
@@ -196,7 +225,7 @@
 
 <mat-step>
     <ng-template matStepLabel>Salvar configurações</ng-template>
-    <button style="width: 100%;" mat-raised-button color="warn" (click)="onclickCadastrar()">Salvar</button>
+    <button [disabled]="bbssal" style="width: 100%;" mat-raised-button color="warn" (click)="onclickCadastrar()">Salvar</button>
 </mat-step>
 
 

@@ -56,9 +56,9 @@
             <div> {{ item.precoCompra | currency:'BRL':true }} </div>
             <div> {{ item.tipoEntrada }} </div>
             <div>
-                <button mat-icon-button color="primary" (click)="removeItemFp(data)">
-                <mat-icon>delete</mat-icon>
-              </button>
+                <button mat-icon-button color="primary" (click)="removeItemFp(item)">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
         </div>
     </div>
@@ -67,5 +67,6 @@
 
 <div style="margin-top: 50px;text-align: end;">
     <button mat-stroked-button color="warn" mat-dialog-close> Cancelar </button>
-    <button [disabled]="statusBT" mat-stroked-button color="primary" (click)="prosseguir()" style="margin-left: 5px;"> Ok </button>
+    <button [disabled]="statusBT" mat-stroked-button color="primary" (click)="prosseguir()" style="margin-left: 5px;">
+        Ok </button>
 </div>

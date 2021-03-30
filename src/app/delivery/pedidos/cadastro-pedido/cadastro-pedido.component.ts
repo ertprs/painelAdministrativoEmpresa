@@ -45,8 +45,8 @@ export class CadastroPedidoComponent implements OnInit {
 
 
   constructor(public servico: ServicoService, private crud: CrudServicoService, private dialog: MatDialog,
-              public servcard: CadastroPedidoService, private fb: FormBuilder,
-              private bottomSheet: MatBottomSheet, private router: Router) { }
+    public servcard: CadastroPedidoService, private fb: FormBuilder,
+    private bottomSheet: MatBottomSheet, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -89,16 +89,15 @@ export class CadastroPedidoComponent implements OnInit {
       this.selecionarCartao(data);
     });
 
-  
+
 
   }
 
   trocarTaxa() {
-    console.log(this.servcard.getCarrinho().taxaentrega);
     const taxa = this.servcard.getCarrinho().taxaentrega;
     let taxaEntregaFloat = taxa;
     if (!taxaEntregaFloat) { taxaEntregaFloat = 0; }
-    taxaEntregaFloat =  parseFloat(taxaEntregaFloat.toString());
+    taxaEntregaFloat = parseFloat(taxaEntregaFloat.toString());
     this.servcard.setTaxaEntrega(taxaEntregaFloat);
     this.servcard.setTaxaManual(taxaEntregaFloat);
   }
@@ -106,9 +105,9 @@ export class CadastroPedidoComponent implements OnInit {
   onClickStandBy(status) {
     if (status.checked) {
       this.stand = false;
-     } else {
+    } else {
       this.stand = true;
-     }
+    }
   }
 
   trackByIdx(index: number, obj: any): any {
@@ -118,7 +117,6 @@ export class CadastroPedidoComponent implements OnInit {
   carregaDadosUsuario() {
     this.servcard.iniciaFormCadastro.subscribe(
       (data) => {
-        console.log(data);
 
         this.indexTabGroup = 1;
 
@@ -148,13 +146,12 @@ export class CadastroPedidoComponent implements OnInit {
   }
 
   iniciaFormDados() {
-    console.log(this.servcard.getCadastroClienteLista());
 
     if (this.servcard.getCadastroClienteLista().taxaextra > 0) {
-    this.servcard.getCarrinho().taxaextra = this.servcard.getCadastroClienteLista().taxaextra;
+      this.servcard.getCarrinho().taxaextra = this.servcard.getCadastroClienteLista().taxaextra;
     }
     if (this.servcard.getCadastroClienteLista().desconto > 0) {
-    this.servcard.getCarrinho().desconto = this.servcard.getCadastroClienteLista().desconto;
+      this.servcard.getCarrinho().desconto = this.servcard.getCadastroClienteLista().desconto;
     }
 
     /*this.servcard.getCadastroClienteLista().formaspagamento.forEach(element => {
@@ -181,8 +178,8 @@ export class CadastroPedidoComponent implements OnInit {
     });
 
     this.selecionarCidadeAuto(this.servcard.getCadastroClienteLista().cidade.nome, this.servcard.getCadastroClienteLista().bairro.nome);
-     
-    
+
+
   }
 
   selecionaCidadeSelect(item) {
@@ -210,18 +207,16 @@ export class CadastroPedidoComponent implements OnInit {
 
     let statusCidade = false;
     const accallback = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
         this.servico.setListaBairros(r);
         this.selecionaBairroAuto(nomeBairroRep);
       }
-      console.log(r);
     };
 
 
     this.listaCidades.forEach(element => {
-      if (element.nome === nomeCidade) {
+      if (element.nome.trim() === nomeCidade) {
         statusCidade = true;
         this.form.controls.cidade.setValue(element);
         this.listaBairros = element.bairros;
@@ -252,13 +247,11 @@ export class CadastroPedidoComponent implements OnInit {
   f1(form) {
 
     const accallback = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
         this.servico.mostrarMensagem(r.detalhes);
 
       }
-      console.log(r);
     };
     this.crud.post_api('cadatrar_motoboy', accallback, form);
   }
@@ -266,9 +259,7 @@ export class CadastroPedidoComponent implements OnInit {
   consultaCatalogo() {
 
     this.statusLoad = true;
-    // console.log('#consultaEntregas');
     this.crud.get_api('cardapio&acmenu=listar').subscribe(data => {
-      // console.log(data);
       this.catalogo = data.catalogo;
       this.statusLoad = false;
       this.listaCidades = data.empresa.locais_entrega;
@@ -314,7 +305,6 @@ export class CadastroPedidoComponent implements OnInit {
 
   onClickItem(item): void {
 
-    // console.log(item);
 
     if (item.esgotado === true) {
       this.servico.mostrarMensagem('Item esgotado');
@@ -327,8 +317,6 @@ export class CadastroPedidoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
       if (result) {
 
       }
@@ -344,10 +332,7 @@ export class CadastroPedidoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
       if (result) {
-        console.log(result);
 
         this.servcard.getCarrinho().item_pagamento.id = result.id;
         this.servcard.getCarrinho().item_pagamento.nome = result.nome;
@@ -366,10 +351,7 @@ export class CadastroPedidoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
       if (result) {
-        console.log(result);
         this.servcard.getCarrinho().item_pagamento.id = result.id;
         this.servcard.getCarrinho().item_pagamento.nome = result.nome;
         this.servcard.getCarrinho().item_pagamento.status = true;
@@ -379,13 +361,10 @@ export class CadastroPedidoComponent implements OnInit {
 
 
   onClickFinalizarPedido() {
-    // console.log(this.form.value);
 
-    console.log(this.servcard.getCarrinho());
     // Verifica se as formas de pagamento o total esta maior que o valor do pedido em se
     if (this.servcard.verificaFpsTotal() > this.servcard.getTotalCarrinho()) {
       this.servico.mostrarMensagem('Os valores das formas de pagamento estão maior que o valor total do pedido');
-      console.log(this.servcard.verificaFpsTotal());
       return;
     }
 
@@ -412,10 +391,8 @@ export class CadastroPedidoComponent implements OnInit {
 
     // Verifica se foi selecionado a bandeira do carão em Cartao Crédito ou Déb.
     const nomeFp = this.servcard.getCarrinho().formapagamento.nome.toLocaleLowerCase();
-    console.log(nomeFp);
     if (nomeFp === 'cartão de crédito' || nomeFp === 'cartão de débido') {
       if (this.servcard.getCarrinho().item_pagamento.status === false) {
-        console.warn('Selecionar a bandeira do cartão');
         this.selecionarCartao(this.cataoSelecionado);
         return;
       }
@@ -426,11 +403,9 @@ export class CadastroPedidoComponent implements OnInit {
     if (nomeFp === 'transferência bancária' || nomeFp === 'transferência') {
       if (this.servcard.getCarrinho().item_pagamento.status === false) {
         this.selecionarBanco();
-        console.warn('Selecionar o banco');
         return;
       }
     }
-    console.log('OKK');
 
 
     if (this.servcard.getCarrinho().tipopedido === 'false') {
@@ -474,14 +449,11 @@ export class CadastroPedidoComponent implements OnInit {
 
     this.statusLoaderEnviaPedido = true;
 
-    console.log('Envia para o backend');
-    console.log(this.servcard.getCarrinho());
 
 
     this.statusBtenviar = true;
     const accallback = () => {
 
-      console.log('callback');
       this.statusLoaderEnviaPedido = false;
       const r = this.servico.getRespostaApi();
       if (r.erro === true) {
@@ -493,7 +465,6 @@ export class CadastroPedidoComponent implements OnInit {
         this.servcard.limparCarrinho();
         this.router.navigate(['/painelpedidos/pedidos']);
       }
-      console.log(r);
     };
     this.crud.post_api('adicionar_pedido', accallback, this.servcard.getCarrinho(), true);
 
@@ -502,20 +473,16 @@ export class CadastroPedidoComponent implements OnInit {
   }
 
   selectionChangeCidade(item: any) {
-    console.log('#selectionChangeCidade');
-    console.log(item);
 
     this.cidadeClienteSelecionada = item;
     this.statusLoaderBairros = true;
 
     const accallback = () => {
-      console.log('callback');
       this.statusLoaderBairros = false;
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.mensagem); } else {
         this.servico.setListaBairros(r);
       }
-      console.log(r);
     };
     this.crud.post_api('bairros', accallback, this.cidadeClienteSelecionada);
 
@@ -523,7 +490,6 @@ export class CadastroPedidoComponent implements OnInit {
 
   carregaTaxa(itembairro: any) {
     try {
-      console.log(itembairro);
       let coordendasBairro = '';
       const cidadeNome = this.cidadeClienteSelecionada;
       coordendasBairro = itembairro.lat + ', ' + itembairro.lng;
@@ -544,7 +510,6 @@ export class CadastroPedidoComponent implements OnInit {
               this.servcard.setTaxaEntrega(parseFloat(txe));
               this.servico.getDadosEmpresa().taxa_entrega = parseFloat(txe);
               this.taxaEntregadorText = r.taxa_entrega;
-              console.log(this.form.value);
 
               return;
             }
@@ -579,15 +544,10 @@ export class CadastroPedidoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
 
       // tslint:disable-next-line: prefer-for-of
       for (let x = 0; x < this.servcard.getCarrinho().formasPagamento.length; x++) {
-        console.log(this.servcard.getCarrinho().formasPagamento[x]);
-        console.log(result[0]);
         if (this.servcard.getCarrinho().formasPagamento[x].referencia === result.element.referencia) {
-          console.log('OKKK!');
           this.servcard.getCarrinho().formasPagamento[x].valor = result.valor;
         }
       }

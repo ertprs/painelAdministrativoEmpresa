@@ -1,19 +1,26 @@
 <span *ngIf="us.getStatusPermissoessuario() === true">
     <mat-sidenav-container class="sidenav-container">
-        <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
+        <mat-sidenav #drawer class="sidenav" fixedInViewport
+            [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+            [opened]="true" style="background-color: #F8F8F8;">
 
 
             <mat-toolbar class="ttodelsuc" style="background-color: #353535;">
-                <button color="warn" (click)="selecionarMotoboy()" *ngIf="us.getPermissoessuario()[4].status" mat-icon-button>
-                    <mat-icon  matBadgeColor="accent" [matBadge]="servico.getsetQntEntOn()" style="color: white;" matTooltip="Entregadores online">sports_motorsports</mat-icon>
+                <button color="warn" (click)="selecionarMotoboy()" *ngIf="us.getPermissoessuario()[4].status"
+                    mat-icon-button>
+                    <mat-icon matBadgeColor="accent" [matBadge]="servico.getsetQntEntOn()" style="color: white;"
+                        matTooltip="Entregadores online">sports_motorsports</mat-icon>
                 </button>
 
-                <button *ngIf="us.getPermissoessuario()[4].status" color="warn" (click)="clickMenu(ms.menuSelecionado[4])" routerLink="/notificacoes" mat-icon-button>
-                    <mat-icon  matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" style="color: white;" matTooltip="Notificações" matBadgeColor="accent">mail_outline</mat-icon>
-                    </button>
+                <button *ngIf="us.getPermissoessuario()[4].status" color="warn"
+                    (click)="clickMenu(ms.menuSelecionado[4])" routerLink="/notificacoes" mat-icon-button>
+                    <mat-icon matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" style="color: white;"
+                        matTooltip="Notificações" matBadgeColor="accent">mail_outline</mat-icon>
+                </button>
 
                 <button color="warn" (click)="sair()" mat-icon-button>
-                        <mat-icon style="color: white;" matTooltip="Sair"  matBadgeColor="accent">power_settings_new</mat-icon>
+                    <mat-icon style="color: white;" matTooltip="Sair" matBadgeColor="accent">power_settings_new
+                    </mat-icon>
                 </button>
 
             </mat-toolbar>
@@ -24,36 +31,46 @@
             <mat-nav-list>
 
 
-                <a (click)="clickMenu(ms.menuSelecionado[0])" [class.menuSelecionado]="ms.menuSelecionado[0].selecionado" *ngIf="us.getPermissoessuario()[0].status" mat-list-item [routerLink]="['/painelpedidos/pedidos']">
-                    <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="Loja fechada">info</mat-icon>
+                <a (click)="clickMenu(ms.menuSelecionado[0])"
+                    [class.menuSelecionado]="ms.menuSelecionado[0].selecionado"
+                    *ngIf="us.getPermissoessuario()[0].status" mat-list-item [routerLink]="['/painelpedidos/pedidos']">
+                    <mat-icon *ngIf="!servico.getStatusDelivery()" style="color: #E91E63;" matTooltip="Loja fechada">
+                        info</mat-icon>
                     <mat-icon>description</mat-icon>
-                    <span [matBadge]="servpedidos.getQntPedidoAberto()" [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
-</a>
+                    <span [matBadge]="servpedidos.getQntPedidoAberto()"
+                        [matBadgeHidden]="!servpedidos.getStatusNotificar()" matBadgeColor="accent">Pedidos</span>
+                </a>
 
-<a (click)="clickMenu(ms.menuSelecionado[1])" [class.menuSelecionado]="ms.menuSelecionado[1].selecionado" *ngIf="us.getPermissoessuario()[1].status" mat-list-item routerLink="/meusclientes">
-    <mat-icon>perm_identity</mat-icon>
-    Meus clientes
-</a>
+                <a (click)="clickMenu(ms.menuSelecionado[1])"
+                    [class.menuSelecionado]="ms.menuSelecionado[1].selecionado"
+                    *ngIf="us.getPermissoessuario()[1].status && servico.meusclientebt" mat-list-item routerLink="/meusclientes">
+                    <mat-icon>perm_identity</mat-icon>
+                    Meus clientes
+                </a>
 
-<a (click)="clickMenu(ms.menuSelecionado[2])" [class.menuSelecionado]="ms.menuSelecionado[2].selecionado" *ngIf="us.getPermissoessuario()[2].status" mat-list-item routerLink="/entregas">
-    <mat-icon>view_headline</mat-icon>
-    Entregas
-</a>
+                <a (click)="clickMenu(ms.menuSelecionado[2])"
+                    [class.menuSelecionado]="ms.menuSelecionado[2].selecionado"
+                    *ngIf="us.getPermissoessuario()[2].status" mat-list-item routerLink="/entregas" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>view_headline</mat-icon>
+                    Entregas
+                </a>
 
 
-<a (click)="clickMenu(ms.menuSelecionado[3])" [class.menuSelecionado]="ms.menuSelecionado[3].selecionado" *ngIf="us.getPermissoessuario()[3].status" mat-list-item [routerLink]="['/mapa']">
-    <mat-icon>map</mat-icon>
-    Mapa
-</a>
+                <a (click)="clickMenu(ms.menuSelecionado[3])"
+                    [class.menuSelecionado]="ms.menuSelecionado[3].selecionado"
+                    *ngIf="us.getPermissoessuario()[3].status" mat-list-item [routerLink]="['/mapa']">
+                    <mat-icon>map</mat-icon>
+                    Mapa
+                </a>
 
-<!--<a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[9].children[0].status" mat-list-item [routerLink]="['/painel/cardapio']">
+                <!--<a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[9].children[0].status" mat-list-item [routerLink]="['/painel/cardapio']">
                     <mat-icon>import_contacts</mat-icon>
                     Catálogo
                 </a>-->
 
 
 
-<!--<a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[4].status" mat-list-item routerLink="/notificacoes">
+                <!--<a (click)="clickMenu(ms.menuSelecionado[4])" [class.menuSelecionado]="ms.menuSelecionado[4].selecionado" *ngIf="us.getPermissoessuario()[4].status" mat-list-item routerLink="/notificacoes">
                     <mat-icon>info</mat-icon>
                     <span matBadge="1" [matBadgeHidden]="servico.getMostrarNost()" matBadgeColor="accent"> Notificações
                     </span>
@@ -63,94 +80,115 @@
 
 
 
-<a (click)="clickMenu(ms.menuSelecionado[5])" [class.menuSelecionado]="ms.menuSelecionado[5].selecionado" *ngIf="us.getPermissoessuario()[5].status" mat-list-item routerLink="/estoque/itens-estoque">
-    <mat-icon>book</mat-icon>
-    Estoque
-</a>
+                <a (click)="clickMenu(ms.menuSelecionado[5])"
+                    [class.menuSelecionado]="ms.menuSelecionado[5].selecionado"
+                    *ngIf="us.getPermissoessuario()[5].status && servico.estoque" mat-list-item routerLink="/estoque/itens-estoque" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>book</mat-icon>
+                    Estoque
+                </a>
 
 
 
-<a (click)="clickMenu(ms.menuSelecionado[6])" [class.menuSelecionado]="ms.menuSelecionado[6].selecionado" *ngIf="us.getPermissoessuario()[6].status" mat-list-item routerLink="/relatorio/historico-vendas">
-    <mat-icon>assignment</mat-icon>
-    Relatórios
-</a>
+                <a (click)="clickMenu(ms.menuSelecionado[6])"
+                    [class.menuSelecionado]="ms.menuSelecionado[6].selecionado"
+                    *ngIf="us.getPermissoessuario()[6].status" mat-list-item routerLink="/relatorio/historico-vendas" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>assignment</mat-icon>
+                    Relatórios
+                </a>
 
-<a (click)="clickMenu(ms.menuSelecionado[7])" [class.menuSelecionado]="ms.menuSelecionado[7].selecionado" *ngIf="us.getPermissoessuario()[7].status && servico.financeiro" mat-list-item routerLink="/financeiro/conciliacao-bancaria">
-    <mat-icon>money</mat-icon>
-    Financeiro
-</a>
+                <a (click)="clickMenu(ms.menuSelecionado[7])"
+                    [class.menuSelecionado]="ms.menuSelecionado[7].selecionado"
+                    *ngIf="us.getPermissoessuario()[7].status && servico.financeiro" mat-list-item
+                    routerLink="/financeiro/conciliacao-bancaria" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>money</mat-icon>
+                    Financeiro
+                </a>
 
-<a (click)="clickMenu(ms.menuSelecionado[8])" [class.menuSelecionado]="ms.menuSelecionado[8].selecionado" *ngIf="us.getPermissoessuario()[8].status" mat-list-item routerLink="/fechar-caixa">
-    <mat-icon *ngIf="servico.getStatusCaixa()" class="iconc" [class.statusCaixa]="true" matTooltip="Caixa aberto">info</mat-icon>
+                <a (click)="clickMenu(ms.menuSelecionado[8])"
+                    [class.menuSelecionado]="ms.menuSelecionado[8].selecionado"
+                    *ngIf="us.getPermissoessuario()[8].status && servico.caixa" mat-list-item routerLink="/fechar-caixa" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon *ngIf="servico.getStatusCaixa()" class="iconc" [class.statusCaixa]="true"
+                        matTooltip="Caixa aberto">info</mat-icon>
 
-    <mat-icon>archive</mat-icon>
-    Caixa
-</a>
-
-
-<a *ngIf="servico.faturas" (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item routerLink="/faturas" matBadgeColor="warn">
-    <mat-icon>description</mat-icon>
-    Faturas
-    <mat-icon matTooltip="Existe faturas pendentes" *ngIf="servico.getStatusfatura()" style="color: red;">notification_important</mat-icon>
-</a>
-
-
-<a *ngIf="servico.fidelidade" mat-list-item routerLink="/fidelidade">
-    <mat-icon>settings</mat-icon>
-    Fidelidade
-</a>
-
-<a *ngIf="servico.promocao" mat-list-item routerLink="/promocao">
-    <mat-icon>price_change</mat-icon>
-    Promoção
-</a>
-
-<a (click)="clickMenu(ms.menuSelecionado[9])" [class.menuSelecionado]="ms.menuSelecionado[9].selecionado" *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel">
-    <mat-icon>settings</mat-icon>
-    Configurações
-</a>
+                    <mat-icon>archive</mat-icon>
+                    Caixa
+                </a>
 
 
+                <a *ngIf="servico.faturas" (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item
+                    routerLink="/faturas" matBadgeColor="warn" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>description</mat-icon>
+                    Faturas
+                    <mat-icon matTooltip="Existe faturas pendentes" *ngIf="servico.getStatusfatura()"
+                        style="color: red;">notification_important</mat-icon>
+                </a>
+
+
+                <a *ngIf="servico.fidelidade" mat-list-item routerLink="/fidelidade" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>settings</mat-icon>
+                    Fidelidade
+                </a>
+
+                <a *ngIf="servico.promocao" mat-list-item routerLink="/promocao" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>price_change</mat-icon>
+                    Promoção
+                </a>
+
+                <a *ngIf="servico.whatsapp" mat-list-item routerLink="/whatsapp"[class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    <mat-icon>chat</mat-icon>
+                    Whatsapp
+                </a>
+
+                <a (click)="clickMenu(ms.menuSelecionado[9])"
+                    [class.menuSelecionado]="ms.menuSelecionado[9].selecionado"
+                    *ngIf="us.getPermissoessuario()[9].status" mat-list-item routerLink="/painel">
+                    <mat-icon>settings</mat-icon>
+                    Configurações
+                </a>
 
 
 
-<!--<a mat-list-item routerLink="/config">
+
+
+                <!--<a mat-list-item routerLink="/config">
                     <mat-icon>settings</mat-icon>
                     <span> Configurações </span>
                 </a>-->
-<!--<a mat-list-item routerLink="/login">
+                <!--<a mat-list-item routerLink="/login">
             <mat-icon>input</mat-icon>
             Sair
         </a>-->
-</mat-nav-list>
-</mat-sidenav>
-<mat-sidenav-content>
-    <mat-toolbar color="primary" class="toolb" style="background-color: #353535;">
-        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <mat-toolbar color="primary" class="toolb" style="background-color: #353535;">
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                    *ngIf="isHandset$ | async">
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>
-        <div>
-            <div class="logoEmpresatoolbar" [lazyLoad]="servico.getDadosEmpresa().imagem"></div>
-        </div>
-        <span class="cff13">
-                    <div>Dashboard lojista</div>
+                <div>
+                    <div class="logoEmpresatoolbar" [lazyLoad]="servico.getDadosEmpresa().imagem"></div>
+                </div>
+                <span class="cff13">
+                    <div> {{ this.servico.getDadosEmpresa().nome }} </div>
                     <div class="ddgui_"> {{ this.servico.getDadosEmpresa().operador.nome }} </div>
 
                 </span>
 
-        <div class="cvers"> Versão {{ this.servico.versao }} </div>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <div class="afab" *ngIf="this.servico.getStatusDR()">
-        <button mat-mini-fab color="warn" matTooltip="Data retroativa ativada" routerLink="/painel/data-retroativa">
-                <mat-icon>av_timer</mat-icon>
-            </button>
-    </div>
-    <router-outlet></router-outlet>
+                <div class="cvers"> Versão {{ this.servico.versao }} </div>
+            </mat-toolbar>
+            <!-- Add Content Here -->
+            <div class="afab" *ngIf="this.servico.getStatusDR()">
+                <button mat-mini-fab color="warn" matTooltip="Data retroativa ativada"
+                    routerLink="/painel/data-retroativa">
+                    <mat-icon>av_timer</mat-icon>
+                </button>
+            </div>
+            <router-outlet></router-outlet>
 
 
-</mat-sidenav-content>
-</mat-sidenav-container>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </span>
 
 <div class="ccpendente" *ngIf="us.getStatusPermissoessuario() === false">
@@ -159,6 +197,6 @@
         SUA CONTA ESTÁ PENDENTE
     </div>
     <button class="btsi" color="warn" (click)="sair()" mat-icon-button>
-        <mat-icon style="color: white;" matTooltip="Sair"  matBadgeColor="accent">power_settings_new</mat-icon>
-</button>
+        <mat-icon style="color: white;" matTooltip="Sair" matBadgeColor="accent">power_settings_new</mat-icon>
+    </button>
 </div>

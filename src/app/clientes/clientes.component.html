@@ -3,6 +3,7 @@
 </mat-toolbar>
 <div style="height: 5px;">
     <mat-progress-bar mode="query" *ngIf="statusCons"></mat-progress-bar>
+    <mat-progress-bar mode="determinate" *ngIf="!statusCons" value="0"></mat-progress-bar>
 </div>
 
 

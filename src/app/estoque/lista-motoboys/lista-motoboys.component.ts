@@ -15,7 +15,7 @@ import { ServicoService } from 'src/app/servico.service';
 })
 export class ListaMotoboysComponent implements OnInit {
 
- 
+
   columnsToDisplay = ['motoboy'];
   dataSource = [];
   expandedElement: any | null;
@@ -23,118 +23,127 @@ export class ListaMotoboysComponent implements OnInit {
   statusLoadEntregas: boolean;
   form: FormGroup;
   sst = false;
+  statusLoader = false;
+  loaderstoquemotoboy = false;
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
-              public servapp: ServicoService, private crud: CrudServicoService, private router: Router,
-              public servestm: EstoqueService) { }
+    public servapp: ServicoService, private crud: CrudServicoService, private router: Router,
+    public servestm: EstoqueService) { }
 
   ngOnInit(): void {
-   this.estoque();
+    this.estoque();
   }
   estoque() {
+    this.statusLoader = true;
     this.crud.get_api('consulta_ent_lista_emp').subscribe(data => {
-        this.dataSource = data.resultado;
+      this.dataSource = data.resultado;
+      this.statusLoader = false;
     });
-}
+  }
 
 
-add(): void {
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
-    width: '450px',
-    data: {tipo: 'add', nomeDialog: 'form_estoque'}
-  });
+  add(): void {
+    const dialogRef = this.dialog.open(DialogDinamComponent, {
+      width: '450px',
+      data: { tipo: 'add', nomeDialog: 'form_estoque' }
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
-    if (result) {
-    this.f1(result) ;
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        this.f1(result);
+      }
+    });
+  }
 
-enviar(element): void {
-  element.id = element.id_estoque;
+  enviar(element): void {
+    element.id = element.id_estoque;
 
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
-    width: '450px',
-    data: {tipo: 'editar', nomeDialog: 'form_estoque_enviar', item: element}
-  });
+    const dialogRef = this.dialog.open(DialogDinamComponent, {
+      width: '450px',
+      data: { tipo: 'editar', nomeDialog: 'form_estoque_enviar', item: element }
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
-    if (result) {
-    this.f1(result) ;
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        this.f1(result);
+      }
+    });
+  }
 
-retirar(element): void {
-  element.id = element.id;
-  const dialogRef = this.dialog.open(DialogDinamComponent, {
-    width: '450px',
-    data: {tipo: 'editar', nomeDialog: 'form_estoque_enviar', item: element}
-  });
+  retirar(element): void {
+    element.id = element.id;
+    const dialogRef = this.dialog.open(DialogDinamComponent, {
+      width: '450px',
+      data: { tipo: 'editar', nomeDialog: 'form_estoque_enviar', item: element }
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
-    if (result) {
-   
-      const accallback = () => {
-        console.log('callback');
-        const r = this.servapp.getRespostaApi();
-        if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
-          this.servapp.mostrarMensagem(r.detalhes.mensagem);
-          this.dataSource = r.detalhes.itens;
-        }
-        console.log(r);
-      };
-       
-      this.crud.post_api('subEstoque', accallback, result);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
 
+        const accallback = () => {
+          console.log('callback');
+          const r = this.servapp.getRespostaApi();
+          if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
+            this.servapp.mostrarMensagem(r.detalhes.mensagem);
+            this.dataSource = r.detalhes.itens;
+          }
+          console.log(r);
+        };
 
-    }
-  });
-}
+        this.crud.post_api('subEstoque', accallback, result);
 
 
+      }
+    });
+  }
 
-f1(form) {
 
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servapp.getRespostaApi();
-    if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
-      this.servapp.mostrarMensagem(r.detalhes.mensagem);
-      this.dataSource = r.detalhes.itens;
-    }
-    console.log(r);
-  };
-  this.crud.post_api('enviaEstoque', accallback, form);
-}
 
-removerEstoqueMotoboy(element) {
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servapp.getRespostaApi();
-    if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
-      this.servapp.mostrarMensagem(r.detalhes.mensagem);
-      this.dataSource = r.detalhes.itens;
-    }
-    console.log(r);
-  };
-  this.crud.post_api('remover_estoque_motoboy', accallback, {id: element.id});
+  f1(form) {
 
-}
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
+        this.servapp.mostrarMensagem(r.detalhes.mensagem);
+        this.dataSource = r.detalhes.itens;
+      }
+      console.log(r);
+    };
+    this.crud.post_api('enviaEstoque', accallback, form);
+  }
 
-estoqueMotoboy(element) {
-  this.servestm.setMotoboySelecionado(element);
-  this.crud.get_api('estoque_motoboy&id=' + element.id).subscribe(data => {
-      this.servestm.setListaMotoboys( data );
-  });
-}
+  removerEstoqueMotoboy(element) {
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servapp.getRespostaApi();
+      if (r.erro === true) { this.servapp.mostrarMensagem(r.detalhes.mensagem); } else {
+        this.servapp.mostrarMensagem(r.detalhes.mensagem);
+        this.dataSource = r.detalhes.itens;
+      }
+      console.log(r);
+    };
+    this.crud.post_api('remover_estoque_motoboy', accallback, { id: element.id });
+
+  }
+
+  estoqueMotoboy(element) {
+    this.loaderstoquemotoboy = true;
+    this.servestm.setMotoboySelecionado(element);
+    this.statusLoader = true;
+    this.crud.get_api('estoque_motoboy&id=' + element.id).subscribe(data => {
+      this.servestm.setListaMotoboys(data);
+      this.statusLoader = false;
+      this.loaderstoquemotoboy = false;
+
+    });
+  }
 
 
 }

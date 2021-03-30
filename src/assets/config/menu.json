@@ -10,7 +10,7 @@
     },
     {
         "id": 1,
-        "status": true,
+        "status": false,
         "name": "Meus clientes",
         "children": [
             { "id": 0, "status": true, "name": "Baixar lista em excel" },
@@ -141,5 +141,5 @@
             { "id": 10, "status": true, "name": "Notificações" },
             { "id": 11, "status": true, "name": "Pagamento online" }
         ]
-    }
+    } 
 ]

@@ -129,6 +129,10 @@
     font-weight: 600;
 }
 
+.getStatusSistemaDeliveryoff {
+    color: rgb(122, 120, 120);
+}
+
 @media(max-width:600px) {
     .logoEmpresatoolbar {
         display: none;

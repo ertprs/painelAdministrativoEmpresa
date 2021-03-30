@@ -1,51 +1,52 @@
 <div class="divnocord" *ngIf="servico.getDadosEmpresa().coordenadas[0] === 'coordenadas'">
-    <div class="divnocord-second">
-        <div style="width: 100%;padding-top: 5%;">
-            <mat-card class="csscard">
-                <div>
-                    <mat-icon>info</mat-icon>
-                </div>
-                <h3>Entre em contato conosco para configurar seu estabalecimento</h3>
-                <h4>
-                    <a mat-flat-button color="warn" target="new_" href="https://api.whatsapp.com/send?phone=5574988420307">
-                        <mat-icon>phone</mat-icon> (74)9.8842-0307
-                        <mat-icon>message</mat-icon>
-                    </a>
-
-                </h4>
-            </mat-card>
+  <div class="divnocord-second">
+    <div style="width: 100%;padding-top: 5%;">
+      <mat-card class="csscard">
+        <div>
+          <mat-icon>info</mat-icon>
         </div>
+        <h3>Entre em contato para configurar</h3>
+        <h4>
+          <a mat-flat-button color="warn" target="new_" href="https://api.whatsapp.com/send?phone=5574988420307">
+            <mat-icon>phone</mat-icon> (74)9.8842-0307
+            <mat-icon>message</mat-icon>
+          </a>
+
+        </h4>
+      </mat-card>
     </div>
+  </div>
 </div>
 
 <div class="g">
-    <!--<div class="col1">
+  <!--<div class="col1">
 
         <app-cadastro-pedido></app-cadastro-pedido>
 
     </div>-->
-    <div class="col2">
+  <div class="col2">
 
 
-        <agm-map [fitBounds]="false" [latitude]="lat" [zoom]="13" [longitude]="lgn" *ngIf="servico.getDadosEmpresa().coordenadas[0] !== 'coordenadas'" (mapReady)="onMapReady($event)">
+    <agm-map [fitBounds]="false" [latitude]="lat" [zoom]="13" [longitude]="lgn"
+      *ngIf="servico.getDadosEmpresa().coordenadas[0] !== 'coordenadas'" (mapReady)="onMapReady($event)">
 
-            <!--
+      <!--
 <agm-marker [latitude]="lat" [longitude]="lgn">
   <agm-info-window>iiIIidjf</agm-info-window>
 </agm-marker>
 -->
 
-            <agm-overlay [latitude]="lat" [longitude]="lgn">
-                <!-- blue html square -->
-                <agm-info-window>{{servico.getDadosEmpresa().nome}}</agm-info-window>
-                <div class="customMarker">
-                    <img class="customMarker-img" [lazyLoad]="servico.getDadosEmpresa().imagem">
-                </div>
-            </agm-overlay>
+      <agm-overlay [latitude]="lat" [longitude]="lgn">
+        <!-- blue html square -->
+        <agm-info-window>{{servico.getDadosEmpresa().nome}}</agm-info-window>
+        <div class="customMarker">
+          <img class="customMarker-img" [lazyLoad]="servico.getDadosEmpresa().imagem">
+        </div>
+      </agm-overlay>
 
 
-            <!--Entregas-->
-            <span *ngFor="let item of this.servico.getListaEntregas()">
+      <!--Entregas-->
+      <span *ngFor="let item of this.servico.getListaEntregas()">
 
 
         <!--<agm-overlay [latitude]="getNumber(item.coordenada_cliente[0])" [longitude]="getNumber(item.coordenada_cliente[1])"
@@ -61,8 +62,8 @@
       *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2' || item.status_pedido === '8'">
     </agm-direction>-->
 
-          <div class="customMarkerEntrega">
-            <div class="customMarker-inter"></div>
+          <div class="customMarkerEntrega" [class.customMarkerEntregaEntregue]="item.status_pedido == 3">
+            <div class="customMarker-inter" [class.cssEntregue]="item.status_pedido == 3"></div>
             <!-- <div class="customMarker-linha">
               <div *ngIf="item.entregador" class="customMarker-linha-entre" [lazyLoad]="item.entregador.imagem"
                 (click)="onclickImagemEnt(item)">
@@ -72,16 +73,16 @@
               </div>
               <div class="customMarker-pau"></div>
             </div>-->
-            <div class="customMarkerEntrega-ponta"></div>
+            <div class="customMarkerEntrega-ponta" [class.customMarkerEntregapontaok]="item.status_pedido == 3"></div>
           </div>
 
 
         </agm-overlay>
       </span>
-            <!--Entregas-->
+      <!--Entregas-->
 
-            <!--PEDIDOS-->
-            <span *ngFor="let item of this.servpedidos.getPedidos()">
+      <!--PEDIDOS-->
+      <span *ngFor="let item of this.servpedidos.getPedidos()">
         <!-- SE o motoboy aceitou nao mostra -->
         <span *ngIf="item.status_motoboy === '0'">
           <agm-overlay [latitude]="getNumber(item.coordenada_cliente[0])"
@@ -103,15 +104,15 @@
 
           </agm-overlay>
         </span>
-            </span>
-            <!--PEDIDOS-->
+      </span>
+      <!--PEDIDOS-->
 
 
 
 
 
-            <!--Direções-->
-            <span *ngFor="let item of this.servico.getListaEntregas()">
+      <!--Direções-->
+      <span *ngFor="let item of this.servico.getListaEntregas()">
         <span
           *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2' || item.status_pedido === '8' ">
 
@@ -135,21 +136,21 @@
               </agm-direction>
 
             </span>
-            </span>
-            <!--Sicroniza com o entregador-->
-            <!-- Da empresa para a entrega-->
-            <!--<agm-direction [renderOptions]="renderOptions" [visible]="config.getStatusRotas()" [origin]="{lat: getNumber(item.coordenada_cliente[0]), lng: getNumber(item.coordenada_cliente[1])}" [destination]="{lat: getNumber(lat), lng: getNumber(lgn)}"></agm-direction>-->
+          </span>
+          <!--Sicroniza com o entregador-->
+          <!-- Da empresa para a entrega-->
+          <!--<agm-direction [renderOptions]="renderOptions" [visible]="config.getStatusRotas()" [origin]="{lat: getNumber(item.coordenada_cliente[0]), lng: getNumber(item.coordenada_cliente[1])}" [destination]="{lat: getNumber(lat), lng: getNumber(lgn)}"></agm-direction>-->
 
 
 
-            </span>
-            </span>
-            <!--Direções-->
+        </span>
+      </span>
+      <!--Direções-->
 
 
 
-            <!--Entregadores-->
-            <span *ngFor="let item of servico.getListaEntregador()">
+      <!--Entregadores-->
+      <span *ngFor="let item of servico.getListaEntregador()">
 
         <agm-info-window>{{item.nome}}</agm-info-window>
 
@@ -164,9 +165,9 @@
       </span>
 
 
-        </agm-map>
+    </agm-map>
 
-    </div>
+  </div>
 </div>
 
 

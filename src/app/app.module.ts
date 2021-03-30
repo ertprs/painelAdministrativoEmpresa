@@ -214,6 +214,7 @@ import { GaleriaimagensComponent } from './componentes/galeriaimagens/galeriaima
 import { FidelidadeComponent } from './fidelidade/fidelidade.component';
 import { PromocaoComponent } from './promocao/promocao.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { WhatsappComponent } from './whatsapp/whatsapp.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -387,7 +388,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       RotasEntregadorComponent,
       GaleriaimagensComponent,
       FidelidadeComponent,
-      PromocaoComponent
+      PromocaoComponent,
+      WhatsappComponent
    ],
   imports: [
     BrowserModule,

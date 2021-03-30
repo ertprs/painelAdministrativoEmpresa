@@ -14,14 +14,16 @@ export class ItemCatalogoComponent implements OnInit {
 
   itemCatalogo: {
     prev_preco: boolean, nome: '', imagem: '', descricao: '', categoriaadicional: any, preco: number, total: number, qnt: number
-, adicionais: any, observacao: string, preconormal: number};
+    , adicionais: any, observacao: string, preconormal: number
+  };
   statusLoadItem = false;
-  imagem =  'no.png';
+  imagem = 'no.png';
   statusAdd = false;
   observacaoUsuario: string;
+  itemAdicionais = true;
 
   constructor(public servico: ServicoService, private crud: CrudServicoService, public dialogRef: MatDialogRef<DialogAddMototboyComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private servcard: CadastroPedidoService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private servcard: CadastroPedidoService) { }
 
   ngOnInit(): void {
     this.consultaItem(this.data.id);
@@ -31,8 +33,11 @@ export class ItemCatalogoComponent implements OnInit {
   consultaItem(id) {
     // console.log('#consultaEntregas');
     this.crud.get_api('consulta_item_cardapio_cliente&id_item=' + id + '&id_empresa=' +
-    this.servico.getDadosEmpresa().id).subscribe(data => {
-      // console.log(data);
+      this.servico.getDadosEmpresa().id).subscribe(data => {
+        // console.log(data);
+        /* Verifica se o item tem adicionais */
+
+
         this.itemCatalogo = data.item;
         this.itemCatalogo.qnt = 1;
         this.itemCatalogo.total = this.itemCatalogo.preco;
@@ -43,10 +48,25 @@ export class ItemCatalogoComponent implements OnInit {
         if (!this.itemCatalogo.preco) { this.itemCatalogo.preco = 0; }
         this.itemCatalogo.preconormal = this.itemCatalogo.preco; // preco do item mesmo com as alteracoes de valores do usuario
         this.itemCatalogo.total = this.itemCatalogo.preco;
-    });
+
+        try {
+          this.itemCatalogo.categoriaadicional.forEach(element => {
+            if (element.status === true) {
+              this.itemAdicionais = false;
+            }
+          });
+        } catch (e) { console.error(e); }
+
+      });
   }
 
   onclickAltQntADD() {
+    console.log(this.itemCatalogo);
+    if (!this.itemAdicionais) {
+      this.servico.mostrarMensagem('Opção indisponível para itens com adicionais');
+      return;
+    }
+
     this.itemCatalogo.qnt += 1;
     let res = 0;
     res = this.itemCatalogo.preco + this.getTotalAdicionais();
@@ -168,7 +188,7 @@ export class ItemCatalogoComponent implements OnInit {
             // console.log('Categoria OK');
             // console.log(element);
           } else {
-             // console.error('Categoria ERRO =>');
+            // console.error('Categoria ERRO =>');
             itensErro.push(element);
             qntt++;
             msgErro = 'Verifique os itens obrigatótios nos adicionais';
@@ -216,15 +236,15 @@ export class ItemCatalogoComponent implements OnInit {
     if (r) {
       this.servico.mostrarMensagem('Item adicionado ao carrinho!');
       this.dialogRef.close();
-  }
-    setTimeout( () => { this.statusAdd = false; }, 800 );
+    }
+    setTimeout(() => { this.statusAdd = false; }, 800);
   }
 
   procuraItemArray(array: any, itemprocurar: any, nomeindexarray: string): any {
     try {
       let itemretorno = false;
-      array.forEach( (element, key) => {
-        if (element.id === itemprocurar[nomeindexarray]) {  element.indexkey = key; itemretorno = element;  }
+      array.forEach((element, key) => {
+        if (element.id === itemprocurar[nomeindexarray]) { element.indexkey = key; itemretorno = element; }
       });
       return itemretorno;
     } catch (e) { console.log('Item não encontrado na array...'); }

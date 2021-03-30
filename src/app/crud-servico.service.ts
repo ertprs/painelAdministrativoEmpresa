@@ -47,6 +47,7 @@ export class CrudServicoService {
   }
 
   cc() {
+    
     this.http.get(this.servico.getApiAcao('consulta_entregador_on')).subscribe(
       data => {
         this.resp  = data;

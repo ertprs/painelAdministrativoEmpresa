@@ -17,9 +17,9 @@ export class TelaDoisComponent implements OnInit {
   statusBT = false;
 
   constructor(public dialogRef: MatDialogRef<TelaDoisComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: {saida: '', chagada: '', valorPedido: '', previsaoEntrega: '', itens: [any]},
-              private fb: FormBuilder, private crud: CrudServicoService,
-              private servapp: ServicoService) { }
+    @Inject(MAT_DIALOG_DATA) public data: { saida: '', chagada: '', valorPedido: '', previsaoEntrega: '', itens: [any] },
+    private fb: FormBuilder, private crud: CrudServicoService,
+    private servapp: ServicoService) { }
 
   ngOnInit(): void {
     this.f5();
@@ -34,6 +34,7 @@ export class TelaDoisComponent implements OnInit {
   }
 
   prosseguir() {
+    if (!this.data.itens.length) { this.servapp.mostrarMensagem('Nenhuma lista foi criada'); return; }
     this.f1(this.data);
   }
 
@@ -55,27 +56,27 @@ export class TelaDoisComponent implements OnInit {
     this.crud.get_api('itens_cardapio&tipo=estoque').subscribe(data => {
       console.log(data);
       this.itensCatalogo = data.resultado;
-   });
+    });
   }
 
- addItem() {
-   if (!this.form.value.produto) { this.servapp.mostrarMensagem('Selecione o produto'); return; }
-   if (!this.form.value.quantidade) { this.servapp.mostrarMensagem('Informe a quantidade'); return; }
-   if (!this.form.value.precoCompra) { this.servapp.mostrarMensagem('Informe o preço de compra'); return; }
-   if (!this.form.value.tipoEntrada) { this.servapp.mostrarMensagem('Selecione o tipo de entrada'); return; }
-   this.data.itens.push(this.form.value);
-   console.log(this.data);
-   this.form.reset();
- }
+  addItem() {
+    if (!this.form.value.produto) { this.servapp.mostrarMensagem('Selecione o produto'); return; }
+    if (!this.form.value.quantidade) { this.servapp.mostrarMensagem('Informe a quantidade'); return; }
+    if (!this.form.value.precoCompra) { this.servapp.mostrarMensagem('Informe o preço de compra'); return; }
+    if (!this.form.value.tipoEntrada) { this.servapp.mostrarMensagem('Selecione o tipo de entrada'); return; }
+    this.data.itens.push(this.form.value);
+    console.log(this.data);
+    this.form.reset();
+  }
 
- removeItemFp(item: any) {
-  let indeArray: any;
-  for (const x in this.data.itens) {
-    if (this.data.itens[x] === item) {
-      indeArray = x;
+  removeItemFp(item: any) {
+    let indeArray: any;
+    for (const x in this.data.itens) {
+      if (this.data.itens[x] === item) {
+        indeArray = x;
+      }
     }
+    this.data.itens.splice(indeArray, 1);
   }
-  this.data.itens.splice(indeArray, 1);
-}
 
 }

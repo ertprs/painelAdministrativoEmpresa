@@ -268,3 +268,23 @@ HTML CSSResult Skip Results Iframe EDIT ON body {
         top: 110%;
     }
 }
+
+@media(max-width:600px) {
+    .imglogo[_ngcontent-gkl-c450] {
+        width: 129px;
+    }
+.aform{
+    text-align: -webkit-center;
+     background: #ffffff07; 
+    width: 320px;
+    margin: auto;
+    border-radius: 12px;
+}
+.background {
+    background: #ffffff;
+}
+
+.conteudo {
+    background: #00000000;
+}
+}

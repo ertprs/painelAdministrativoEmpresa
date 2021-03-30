@@ -14,9 +14,12 @@ export class ServicoService {
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
   // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
-   private urlapi = 'https://jfortalapi.ecig.app/index.php';
-  // private urlapi = 'https://api.vulto.site/index.php';
+  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
+   private urlapi = 'https://aplicativo.vulto.site';
+   
   // private urlapi = 'https://api.dinp.com.br/index.php';
+  
+  public serverNode = '';
   private API = 'apiEstabelecimento';
   private statusLogado = false;
   private dadosLogin: any;
@@ -76,8 +79,20 @@ export class ServicoService {
   public posEstEnt = false;
   public criarRota = false;
   public urlAudio = '';
+  public meusclientebt = false;
+  public whatsapp = false;
+  public caixa = false;
+  public estoque = false;
+  public catadc = false;
+
+   
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
+
+
+  getServerNode() {
+    return this.serverNode;
+  }
 
 
   getInterEntregadores(): number {
@@ -156,8 +171,8 @@ export class ServicoService {
     this.dadosLogin = dados.dados_conta;
     this.setStatusDR(dados.status_data_r);
     try {
-    this.listaCidades = dados.cidade;
-  } catch (e) { console.warn('Cidades não configuradas'); }
+      this.listaCidades = dados.cidade;
+    } catch (e) { console.warn('Cidades não configuradas'); }
     try {
       this.listaCidadesEntrega = dados.cidade;
     } catch (e) { console.warn('Cidades não configuradas'); }
@@ -172,33 +187,39 @@ export class ServicoService {
     this.setStatusDelivery(this.dadosEmpresa.status_delivery);
     this.setStatusSistemaDelivery(this.dadosEmpresa.sistema_delivery);
 
-    this.faturas =  dados.config_dash.faturas;
-    this.subimgs =  dados.config_dash.sub_imgs;
-    this.fidelidade =  dados.config_dash.fidelidade;
-    this.promocao =  dados.config_dash.promocao;
-    this.dataRetro =  dados.config_dash.data_retro;
-    this.altoCalcTxEnt =  dados.config_dash.alto_calc_tx_ent;
-    this.orgEnt =  dados.config_dash.org_ent;
-    this.configMaster =  dados.config_dash.config_master;
-    this.estEnt =  dados.config_dash.est_ent;
-    this.batEstoque =  dados.config_dash.bat_estoque;
+    this.faturas = dados.config_dash.faturas;
+    this.subimgs = dados.config_dash.sub_imgs;
+    this.fidelidade = dados.config_dash.fidelidade;
+    this.promocao = dados.config_dash.promocao;
+    this.dataRetro = dados.config_dash.data_retro;
+    this.altoCalcTxEnt = dados.config_dash.alto_calc_tx_ent;
+    this.orgEnt = dados.config_dash.org_ent;
+    this.configMaster = dados.config_dash.config_master;
+    this.estEnt = dados.config_dash.est_ent;
+    this.batEstoque = dados.config_dash.bat_estoque;
 
-    this.concBanc =  dados.config_dash.conc_banc;
-    this.concCartao =  dados.config_dash.conc_cartao;
-    this.concDinheiro =  dados.config_dash.conc_din;
-    this.contFiado =  dados.config_dash.cont_fiado;
-    this.comissaoEntrega =  dados.config_dash.com_entrega;
-    this.concFinanceira =  dados.config_dash.conc_fin;
-    this.financeiro =  dados.config_dash.financeiro;
-    this.alterarPedido =  dados.config_dash.alt_pedido;
-    this.posEstEnt =  dados.config_dash.pos_est_ent;
-    this.criarRota =  dados.config_dash.criar_rota;
-    this.urlAudio =  dados.config_dash.urlAudio;
-    this.urlQrcode =  dados.config_dash.urlQrcode;
-    this.btQrcode =  dados.config_dash.btQrcode;
-    this.altCaminhoSemEnt =  dados.config_dash.alt_status_caminho;
+    this.concBanc = dados.config_dash.conc_banc;
+    this.concCartao = dados.config_dash.conc_cartao;
+    this.concDinheiro = dados.config_dash.conc_din;
+    this.contFiado = dados.config_dash.cont_fiado;
+    this.comissaoEntrega = dados.config_dash.com_entrega;
+    this.concFinanceira = dados.config_dash.conc_fin;
+    this.financeiro = dados.config_dash.financeiro;
+    this.alterarPedido = dados.config_dash.alt_pedido;
+    this.posEstEnt = dados.config_dash.pos_est_ent;
+    this.criarRota = dados.config_dash.criar_rota;
+    this.urlAudio = dados.config_dash.urlAudio;
+    this.urlQrcode = dados.config_dash.urlQrcode;
+    this.btQrcode = dados.config_dash.btQrcode;
+    this.altCaminhoSemEnt = dados.config_dash.alt_status_caminho;
+    // this.serverNode = dados.config_dash.serverNode;
+    this.meusclientebt = dados.config_dash.meusclientebt;
+    this.whatsapp = dados.config_dash.whatsapp;
+    this.caixa = dados.config_dash.obgfecharcaixa;
+    this.estoque = dados.config_dash.estoque;
+    this.catadc = dados.config_dash.catadc;
      
-  }
+  } 
 
   retornaDataHoraAtual() {
     const dNow = new Date();
@@ -208,7 +229,7 @@ export class ServicoService {
   }
 
   getURLCODE() {
-    return this.urlQrcode +=  this.getDadosEmpresa().tagnome + '';
+    return this.urlQrcode += this.getDadosEmpresa().tagnome + '';
   }
 
   getDadosLogin() {

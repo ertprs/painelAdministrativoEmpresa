@@ -1,27 +1,41 @@
 <div class="g">
     <div class="col1">
 
-        <mat-form-field class="f-cli" style="margin-left: 15px;">
-            <mat-label>Nome entregador</mat-label>
+        <mat-form-field class="f-cli" style="margin-left: 15px;width: 87%;     height: 64px;">
+            <mat-label>Filtrar entregador</mat-label>
             <input matInput type="name" #nomeEnt>
         </mat-form-field>
 
+        <mat-progress-bar *ngIf="!statusLoader" mode="determinate" value="0"></mat-progress-bar>
+        <mat-progress-bar *ngIf="statusLoader" mode="query"></mat-progress-bar>
 
+        <div style="    overflow: auto;
+        height: 74vh;">
+            <table mat-table [dataSource]="dataSource | nomes:nomeEnt.value">
 
-        <table mat-table [dataSource]="dataSource | nomes:nomeEnt.value">
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="motoboy">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Entregadores </th>
+                    <td [class.m_selecionado]="element.id == servestm.getIdMotoboy()" mat-cell *matCellDef="let element"
+                        (click)="estoqueMotoboy(element)">
 
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="motoboy">
-                <th mat-header-cell *matHeaderCellDef> Lista de entregadores </th>
-                <td [class.m_selecionado]="element.id == servestm.getIdMotoboy()" mat-cell *matCellDef="let element" (click)="estoqueMotoboy(element)">
+                        <a href="javascript:;" style="text-decoration: none;">
+                            <div [class.m_selecionado]="element.id == servestm.getIdMotoboy()"
+                                style="display: grid;grid-template-columns: 1fr 5fr;align-items: center;">
+                                <img width="40px" style="    border-radius: 10px;
+                        margin: 5px;
+                        height: 50px;" *ngIf="element.imagem" [src]="element.imagem">
+                                {{ element.nome }}
+                            </div>
+                        </a>
 
-                    <span [class.m_selecionado]="element.id == servestm.getIdMotoboy()"> {{ element.nome }} </span>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+        </div>
 
-                </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-            <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-        </table>
 
     </div>
 

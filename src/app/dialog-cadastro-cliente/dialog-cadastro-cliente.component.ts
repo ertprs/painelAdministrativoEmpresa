@@ -18,6 +18,7 @@ export class DialogCadastroClienteComponent implements OnInit {
   cidadeClienteSelecionada: any;
   statusLoaderBairros = false;
   statusLoaderTaxa = false;
+  btss = false;
 
   public appearance = Appearance;
   public zoom: number;
@@ -162,7 +163,7 @@ export class DialogCadastroClienteComponent implements OnInit {
 
 
 salvar() {
-
+  this.btss = true;
   const accallback = () => {
     console.log('callback');
     const r = this.servico.getRespostaApi();
@@ -176,6 +177,7 @@ salvar() {
 }
 
 editar() {
+  this.btss = true;
   const accallback = () => {
     console.log('callback');
     const r = this.servico.getRespostaApi();

@@ -1,11 +1,11 @@
 import { map } from 'rxjs/operators';
 import { DeliveryService } from './../delivery.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CrudServicoService } from 'src/app/crud-servico.service';
 import { ServicoService } from 'src/app/servico.service';
 import { Router } from '@angular/router';
-
+declare var document: any;
 
 @Component({
   selector: 'app-inicio-delivery',
@@ -27,9 +27,10 @@ export class InicioDeliveryComponent implements OnInit {
   private valorSubmit: any;
   public cidadeSelecionada: any;
   public tipoServico: any;
+  bbssal = false;
 
   constructor(private crud: CrudServicoService, private formBuilder: FormBuilder, public servico: ServicoService,
-              private router: Router, public servdelivery: DeliveryService) { }
+              private router: Router, public servdelivery: DeliveryService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -126,8 +127,6 @@ export class InicioDeliveryComponent implements OnInit {
     });
   }
 
-  console.log('PICA');
-  console.log(this.buildFp());
 
   }
 
@@ -172,21 +171,26 @@ export class InicioDeliveryComponent implements OnInit {
       nome: new FormControl(data.nome),
       disponivel: new FormControl(data.disponivel),
       taxa: new FormControl(data.taxa),
+      lat: new FormControl(data.lat),
+      lng: new FormControl(data.lng),
+      distancia: new FormControl(data.distancia),
+      duracao: new FormControl(data.duracao),
+      taxaPorDist: new FormControl(data.taxaPorDist),
     });
   }
 
   buildFp() {
-    console.log('config forma de pagamento');
-    console.log(this.dadosEmpresa.formaspagamento);
+   // console.log('config forma de pagamento');
+   // console.log(this.dadosEmpresa.formaspagamento);
     const valores = this.dadosEmpresa.formaspagamento.map((v, i) => this.createItemFp(v));
-    console.log(valores);
+   // console.log(valores);
     return this.formBuilder.array(valores);
   }
 
   createItemFp(data: any): FormGroup {
-    console.log('data');
+   // console.log('data');
     if (!data.itens) { data.itens = []; }
-    console.log(data);
+   // console.log(data);
 
     return new FormGroup({
       id: new FormControl(data.id),
@@ -216,8 +220,8 @@ export class InicioDeliveryComponent implements OnInit {
 
 
   onclickCadastrar() {
-    console.log('#onclickCadastrar');
-
+   // console.log('#onclickCadastrar');
+    this.bbssal = true;
     let arrayLE: any;
     const arrayLocaisEntrega = [];
     arrayLE = this.formCadastro.controls.locaisEntrega.value;
@@ -229,15 +233,16 @@ export class InicioDeliveryComponent implements OnInit {
 
     }
     this.formCadastro.value.locais_entrega = arrayLocaisEntrega;
-    console.log(this.formCadastro.value);
+   // console.log(this.formCadastro.value);
     this.btCstatus = true;
     const loginres = () => {
-      console.log('callback');
+     // console.log('callback');
       const r = this.servico.getRespostaApi();
-      console.log(r);
+     // console.log(r);
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.mensagem);
         this.btCstatus = false;
+        this.bbssal = false;
       } else {
        /* this.servico.mostrarMensagem(r.mensagem); */
         this.formcadastroStatus = true;
@@ -254,10 +259,123 @@ export class InicioDeliveryComponent implements OnInit {
 
 
   onClickSelecionarCidadeFiltro(item) {
-    console.log(item);
+    // console.log(item);
     this.cidadeSelecionada = item.id;
   }
 
+  selecionartdsb() {
+   // seleciona todos os bairros da cidade selecionada
+   if (!this.cidadeSelecionada) { this.servico.mostrarMensagem('Selecione a cidade'); return; }
+   this.formCadastro.value.locaisEntrega.forEach(cidade => {
+    if (this.cidadeSelecionada === cidade.id) {
+
+        console.log(cidade);
+
+        cidade.bairros.forEach(bairro => {
+            if (!bairro.disponivel) {
+                  document.getElementById('bairro' + bairro.id + '-input').click();
+            }
+             });
+         }
+    });
+  }
+
+  deselecionartdsb() {
+    // seleciona todos os bairros da cidade selecionada
+    if (!this.cidadeSelecionada) { this.servico.mostrarMensagem('Selecione a cidade'); return; }
+    this.formCadastro.value.locaisEntrega.forEach(cidade => {
+     if (this.cidadeSelecionada === cidade.id) {
+
+         console.log(cidade);
+
+         cidade.bairros.forEach(bairro => {
+             if (bairro.disponivel) {
+                   document.getElementById('bairro' + bairro.id + '-input').click();
+             }
+              });
+          }
+     });
+   }
+
+  carregaTaxas() {
+    if (!this.cidadeSelecionada) { this.servico.mostrarMensagem('Selecione a cidade'); return; }
+    let qtdbairros = 0;
+
+    this.formCadastro.controls.locaisEntrega.value.forEach(cidade => {
+      if (this.cidadeSelecionada === cidade.id) {
+           qtdbairros = cidade.bairros.length;
+        }
+     });
+    let cclloop = 0;
+    const guinho = setInterval(() => {
+      this.gettaxab(cclloop);
+      cclloop++;
+      if (cclloop === qtdbairros) {
+        clearInterval(guinho);
+      }
+    }, 1500);
+
+ 
+}
+  
+
+  gettaxab(index) {
+    this.formCadastro.controls.locaisEntrega.value.forEach(cidade => {
+      if (this.cidadeSelecionada === cidade.id) {
+                  
+                  if (cidade.bairros[index].disponivel) {
+                   let coordendasBairro = '';
+                   coordendasBairro = cidade.bairros[index].lat + ', ' + cidade.bairros[index].lng;
+                   cidade.bairros[index].statusload = true;
+
+                   const loginres = () => {
+                    const r = this.servico.getRespostaApi();
+                    if (r.erro === true) {
+                      this.servico.mostrarMensagem(r.mensagem);
+                    } else {
+                      try {
+                        
+                        document.getElementById('taxaEntrega' + cidade.bairros[index].id).value = r.taxa_entrega;
+                        cidade.bairros[index].taxa = r.taxa_entrega;
+                        cidade.bairros[index].distancia = r.rows[0].elements[0].distance.text;
+                        cidade.bairros[index].duracao = r.rows[0].elements[0].duration.text;
+                        cidade.bairros[index].taxaPorDist = true;
+                        this.servico.mostrarMensagem(''+ cidade.bairros[index].nome + ' R$' + r.taxa_entrega + ' Distância: ' + r.rows[0].elements[0].distance.text);
+
+                      } catch (e) { 
+                        cidade.bairros[index].taxaPorDist = false;
+                        this.servico.mostrarMensagem('Não foi possível configurar o bairro ' + cidade.bairros[index].nome); 
+                      }
+                    }
+                    cidade.bairros[index].statusload = false;
+
+                  };
+                   const data = { cidadeNome: cidade.nome , coordendasBairro };
+                   this.crud.post_api('calc_taxa', loginres, data);
+
+
+                  }
+
+
+          }
+     });
+
+  }
+
+  cancelarpordist(b) {
+    console.log(b);
+
+    this.formCadastro.controls.locaisEntrega.value.forEach(cidade => {
+      if (this.cidadeSelecionada === cidade.id) {
+               cidade.bairros.forEach(bairro => {
+                 if (bairro.id === b.id) {
+                  bairro.taxaPorDist = false;
+                 }
+               });
+           }
+      });
+
+  };
 
 
 

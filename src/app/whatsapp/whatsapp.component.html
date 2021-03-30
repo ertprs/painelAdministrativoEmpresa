@@ -1,0 +1,50 @@
+<div class="element1">
+    <div class="c1">
+
+
+        <mat-form-field color="primary" appearance="outline" class="example-full-width" [formGroup]="form">
+            <mat-label color="primary">Telefone</mat-label>
+            <input matInput placeholder="+55(DDD)0000-0000" type="tel" mask="00(00)0000-0000" formControlName="telefone">
+            <mat-hint>Ex.: 55(74)9999-9999</mat-hint>
+        </mat-form-field>
+
+        <div style="    display: grid;
+        gap: 8px;">
+            <button mat-raised-button [disabled]="statusSalvar" (click)="salvarnumero()">Salvar</button>
+            <div class="fuin">
+                <button mat-raised-button color="primary" [disabled]="statusBTW" (click)="conectar()">Conectar</button>
+                <button mat-raised-button color="warn" [disabled]="statusdescBTW" (click)="desconectar()">Cancelar</button>
+            </div>
+        </div>
+         
+
+
+    </div>
+    <div class="c2">
+
+        <div *ngIf="statusConectado === 1" class="ccc">
+            <b>Conectado</b><br>Mantenha o celular conectado com a internet
+        </div>
+        
+
+        <div *ngIf="statusConectado === 0" class="av">
+            <b>Desconectado</b><br>Conecte-se ao whatsapp para receber pedido e enviar o cardápio automaticamente
+        </div>
+
+        <div *ngIf="statusConectado === 4 " class="av">
+            <b>Desconectando</b><br>Desconectando do whatsapp
+        </div>
+        <!--QRCODE-->
+       <div *ngIf="mostrarQR && base64code !=='' && base64code !==' '">
+            <img style="margin: auto;" [src]="base64code" alt="carregando..." />
+         <br><button mat-raised-button color="warn" [disabled]="statusdescBTW2" (click)="desconectar()">Cancelar</button>
+       </div>
+       
+
+        <div>
+            <mat-spinner style="margin: auto;" *ngIf="loaderqR && !base64code && statusConectado !== 1"></mat-spinner>
+        </div>
+        
+        
+    </div>
+</div>

@@ -20,23 +20,24 @@ export class LoginComponent implements OnInit {
   checked = false;
 
   constructor(private crud: CrudServicoService,
-              private formBuilder: FormBuilder,
-              public servico: ServicoService,
-              private router: Router,
-              private auth: AuthService,
-              private us: UsuariosAdmService,
-              private cookieService: CookieService
-              ) {
-                this.crud.pegaHost().subscribe( data => {
-                  this.servico.setHost(data[0].host, data[0].api);
-                 }, error => { alert('Erro ao carregar o host'); } );
+    private formBuilder: FormBuilder,
+    public servico: ServicoService,
+    private router: Router,
+    private auth: AuthService,
+    private us: UsuariosAdmService,
+    private cookieService: CookieService
+  ) {
+    /*
+      this.crud.pegaHost().subscribe( data => {
+        this.servico.setHost(data[0].host, data[0].api);
+       }, error => { alert('Erro ao carregar o host'); } );
+      */
+    this.crud.pegaMenu().subscribe(data => {
+      this.us.setPermissoes(data);
+    }, error => { alert('Erro ao carregar o host'); });
 
-                this.crud.pegaMenu().subscribe( data => {
-                  this.us.setPermissoes(data);
-                 }, error => { alert('Erro ao carregar o host'); } );
 
-
-               }
+  }
 
   ngOnInit(): void {
     this.btloginstatus = false;
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
     if (this.cookieService.check('lgn') && this.cookieService.check('sha')) {
       this.tipoLogin = true;
       this.oncllickEntrar();
-     }
+    }
 
   }
 
@@ -59,37 +60,37 @@ export class LoginComponent implements OnInit {
     this.btloginstatus = true;
     const loginres = () => {
       const r = this.servico.getRespostaApi();
-      setTimeout( () => {  this.btloginstatus = false; } , 1500 );
+      setTimeout(() => { this.btloginstatus = false; }, 1500);
       if (r.erro === true) {
         // Se o login for auto. e der erro, nao mostra a msg
-        if (this.tipoLogin) {  this.tipoLogin = false; return; }
+        if (this.tipoLogin) { this.tipoLogin = false; return; }
         this.servico.mostrarMensagem(r.mensagem);
         this.auth.mostrarMenu.emit(false);
         this.btloginstatus = false;
       } else {
         if (!this.tipoLogin && this.checked) {
-        this.cookieService.set('lgn', this.formLogin.value.email);
-        this.cookieService.set('sha', this.formLogin.value.senha);
+          this.cookieService.set('lgn', this.formLogin.value.email);
+          this.cookieService.set('sha', this.formLogin.value.senha);
         }
         this.servico.setDadosLogin(r.resultado);
         this.crud.consultaSistema();
         // this.router.navigate(['/inicio']);
         if (r.resultado.dados_conta.operador.tipo === 'super') { this.router.navigate(['/admin']); } else {
-           this.router.navigate(['/painelpedidos/pedidos']);
-           this.servico.setStatusfatura(r.resultado.status_fatura);
-           this.servico.setStatusCaixa(r.resultado.status_caixa.itens.status_caixa);
+          this.router.navigate(['/painelpedidos/pedidos']);
+          this.servico.setStatusfatura(r.resultado.status_fatura);
+          this.servico.setStatusCaixa(r.resultado.status_caixa.itens.status_caixa);
         }
         this.us.initPermissao(
           r.resultado.dados_conta.operador.permissoes_status_todas,
           r.resultado.dados_conta.operador.permissoes
-          );
+        );
         this.auth.mostrarMenu.emit(true);
       }
     };
     if (this.tipoLogin) {
-    this.crud.post_api('login_emrpesa', loginres, {email: this.cookieService.get('lgn'), senha: this.cookieService.get('sha')}, true );
+      this.crud.post_api('login_emrpesa', loginres, { email: this.cookieService.get('lgn'), senha: this.cookieService.get('sha') }, true);
     } else {
-    this.crud.post_api('login_emrpesa', loginres, this.formLogin.value, true );
+      this.crud.post_api('login_emrpesa', loginres, this.formLogin.value, true);
     }
   }
 

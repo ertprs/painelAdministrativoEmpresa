@@ -1,26 +1,26 @@
 <mat-progress-bar *ngIf="!statusLoadItem" mode="query">
 </mat-progress-bar>
 <div class="a" *ngIf="statusLoadItem">
-    <div class="aeadelsuc">
-        <div class="e">
-            <img [defaultImage]="servico.getDefaultImage()" [lazyLoad]="itemCatalogo.imagem" alt="">
-        </div>
-        <div>
-            <div class="b">{{itemCatalogo.nome}}</div>
-            <div class="c">{{itemCatalogo.descricao}}</div>
-            <div>{{itemCatalogo.preco | currency}}</div>
-        </div>
-
+  <div class="aeadelsuc">
+    <div class="e">
+      <img [defaultImage]="servico.getDefaultImage()" [lazyLoad]="itemCatalogo.imagem" alt="">
+    </div>
+    <div>
+      <div class="b">{{itemCatalogo.nome}}</div>
+      <div class="c">{{itemCatalogo.descricao}}</div>
+      <div>{{itemCatalogo.preco | currency}}</div>
     </div>
 
-    <div class="ada">
-        <span *ngFor="let catadc of itemCatalogo.categoriaadicional">
+  </div>
+
+  <div class="ada">
+    <span *ngFor="let catadc of itemCatalogo.categoriaadicional">
       <span *ngIf="catadc.status">
-       
+
         {{ catadc.nome }} <span *ngIf="catadc.obrigatorio" class="spanob">Obrigatório</span>
 
         <mat-list role="list">
-            <span *ngFor="let adc of catadc.itens">
+          <span *ngFor="let adc of catadc.itens">
             <mat-list-item role="listitem">
 
               <div>
@@ -38,51 +38,51 @@
                       <mat-icon *ngIf="catadc.qnt_adc_item === 1" icon="ion-navicon, material:md-check">check</mat-icon>
                       <span *ngIf="catadc.qnt_adc_item !== 1">{{ adc.qnt }}</span>
 
-            </span>
-            <span *ngIf="!adc.qnt">0</span>
+                    </span>
+                    <span *ngIf="!adc.qnt">0</span>
 
-    </div>
+                  </div>
 
-    <button color="primary" mat-icon-button (click)="onclickAddAdc(adc, catadc)">
+                  <button color="primary" mat-icon-button (click)="onclickAddAdc(adc, catadc)">
                     <mat-icon>add</mat-icon>
                   </button>
 
-</div>
-</div>
+                </div>
+              </div>
 
-<div class="adcg">
-    <div>{{ adc.nome }} </div>
-    <div style="margin-left: 50px;"> {{ adc.preco | currency:'BRL':true }} </div>
-</div>
+              <div class="adcg">
+                <div>{{ adc.nome }} </div>
+                <div style="margin-left: 50px;"> {{ adc.preco | currency:'BRL':true }} </div>
+              </div>
 
 
-</mat-list-item>
-</span>
-</mat-list>
-</span>
-</span>
-</div>
+            </mat-list-item>
+          </span>
+        </mat-list>
+      </span>
+    </span>
+  </div>
 
-<div>
+  <div>
 
     <mat-form-field>
-        <mat-label>Observação</mat-label>
-        <input #observacaoUsuario matInput placeholder="Observação para este item">
+      <mat-label>Observação</mat-label>
+      <input #observacaoUsuario matInput placeholder="Observação para este item">
     </mat-form-field>
 
-</div>
+  </div>
 
-<div class="d">
+  <div class="d">
 
     <div class="opts">
 
-        <button style="font-size: 36px;" color="primary" mat-icon-button (click)="onclickAltQntSUB()">
+      <button style="font-size: 36px;" color="primary" mat-icon-button (click)="onclickAltQntSUB()">
         -
       </button>
 
-        <div> {{ itemCatalogo.qnt }} </div>
+      <div> {{ itemCatalogo.qnt }} </div>
 
-        <button color="primary" mat-icon-button (click)="onclickAltQntADD()">
+      <button color="primary" mat-icon-button (click)="onclickAltQntADD()">
         <mat-icon>add</mat-icon>
       </button>
 
@@ -90,9 +90,9 @@
 
 
     <button mat-flat-button color="warn" (click)="onclickAddCar(observacaoUsuario.value)">
-      Adicionar {{ itemCatalogo.total | currency:'BRL':true }}
+      Adicionar {{ itemCatalogo.total | currency:'BRL' }}
     </button>
 
 
-</div>
+  </div>
 </div>

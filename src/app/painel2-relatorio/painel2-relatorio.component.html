@@ -2,8 +2,8 @@
     <div class="col1">
 
         <button *ngIf="bt1" mat-button routerLinkActive="active-link" routerLink="/relatorio/historico-vendas"> Histórico de vendas </button>
-        <button *ngIf="bt2" mat-button routerLinkActive="active-link" routerLink="/relatorio/historico-caixa"> Histórico de caixa </button>
-        <button *ngIf="bt3" mat-button routerLinkActive="active-link" routerLink="/relatorio/posicao-estoque"> Posição de estoque </button>
+        <button *ngIf="bt2 && servico.caixa" mat-button routerLinkActive="active-link" routerLink="/relatorio/historico-caixa"> Histórico de caixa </button>
+        <button *ngIf="bt3 && servico.estoque" mat-button routerLinkActive="active-link" routerLink="/relatorio/posicao-estoque"> Posição de estoque </button>
 
     </div>
     <div class="col2">
