@@ -219,6 +219,7 @@ import { MsgRemotaComponent } from './msg-remota/msg-remota.component';
 import { WhatsConfigComponent } from './whats-config/whats-config.component';
 import { ControleCreditoComponent } from './controle-credito/controle-credito.component';
 import { AdicionarCreditoClienteComponent } from './adicionar-credito-cliente/adicionar-credito-cliente.component';
+import { CreditoHistoricoComponent } from './controle-credito/credito-historico/credito-historico.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -397,7 +398,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       MsgRemotaComponent,
       WhatsConfigComponent,
       ControleCreditoComponent,
-      AdicionarCreditoClienteComponent
+      AdicionarCreditoClienteComponent,
+      CreditoHistoricoComponent
    ],
   imports: [
     BrowserModule,

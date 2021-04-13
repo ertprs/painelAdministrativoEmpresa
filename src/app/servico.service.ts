@@ -84,10 +84,11 @@ export class ServicoService {
   public estoque = false;
   public catadc = false;
   public formasFun = false;
+  public contCredito = false;
 
   public rotaRemota = '';
   public mensagemRemota = '';
-
+   
    
 
    
@@ -224,7 +225,8 @@ export class ServicoService {
     this.estoque = dados.config_dash.estoque;
     this.catadc = dados.config_dash.catadc;
     this.formasFun = dados.config_dash.formas_fun;
-
+    this.contCredito = dados.config_dash.contCredito;
+     
     this.rotaRemota = dados.config_dash.rotaRemota;
     this.mensagemRemota = dados.config_dash.mensagemRemota;
      

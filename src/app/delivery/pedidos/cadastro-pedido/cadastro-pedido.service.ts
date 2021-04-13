@@ -418,7 +418,7 @@ export class CadastroPedidoService {
     this.setTipoPedido(this.getConfigTipoPedido().entrega);
 
     this.bottomSheet.dismiss();
-    setTimeout( () => { this.servico.mostrarMensagem('Pedido para entrega'); }, 700 );
+    // setTimeout( () => { this.servico.mostrarMensagem('Pedido para entrega'); }, 700 );
   }
 
   onclickRetiradaTipo() {

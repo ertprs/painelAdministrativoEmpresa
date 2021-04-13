@@ -22,6 +22,15 @@
             <td mat-cell *matCellDef="let element"> <span style="color: rgb(7, 124, 11);">
                     {{ element.credito | currency:'BRL' }} </span> </td>
         </ng-container>
+
+        <ng-container matColumnDef="c4">
+            <th mat-header-cell *matHeaderCellDef> Histórico. </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="primary" (click)="historico(element)">
+                    <mat-icon>description</mat-icon>
+                  </button>
+            </td>
+        </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>

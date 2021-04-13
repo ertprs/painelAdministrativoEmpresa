@@ -41,3 +41,13 @@ mat-form-field {
     color: #2196F3;
     height: 25px;
 }
+
+.credc {
+    background: #4caf50;
+    padding: 7px;
+    color: white;
+    border-radius: 32px;
+}
+.coff {
+    background: #af4c4c;
+}

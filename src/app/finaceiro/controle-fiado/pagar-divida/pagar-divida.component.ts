@@ -18,6 +18,7 @@ export class PagarDividaComponent implements OnInit {
   cartao = false;
   itensPag: any;
   pagamentos: Array<any>;
+  sbt = false;
 
   constructor(public dialogRef: MatDialogRef<PagarDividaComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
@@ -39,11 +40,13 @@ export class PagarDividaComponent implements OnInit {
   }
 
   onClickPagar() {
+    this.sbt = true;
     this.form.value.comprovante = this.upimgserv.getImagem();
     const fcall = () => {
       const r = this.servico.getRespostaApi();
       console.log(r.erro);
       if (r.erro === true) {
+        this.sbt = false;
         this.servico.mostrarMensagem(r.resultado.mensagem);
       } else {
         this.servico.mostrarMensagem(r.resultado.mensagem);

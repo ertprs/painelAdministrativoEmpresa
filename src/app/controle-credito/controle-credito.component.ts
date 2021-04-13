@@ -1,3 +1,4 @@
+import { CreditoHistoricoComponent } from './credito-historico/credito-historico.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,7 +15,7 @@ import { ServicoService } from '../servico.service';
 })
 export class ControleCreditoComponent implements OnInit {
 
-  columnsToDisplay = ['c0', 'c3'];
+  columnsToDisplay = ['c4', 'c0', 'c3'];
   dataSource = [];
   dialogDelsuc: any;
   loader = false;
@@ -33,6 +34,18 @@ this.form = this.fb.group({
 });
 this.consultaPedidosFiado();
 }
+
+historico(item): void {
+  const dialogRef = this.dialog.open(CreditoHistoricoComponent, {
+    width: '450px',
+    data: item
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+  });
+}
+
 
 
 consultaPedidosFiado() {

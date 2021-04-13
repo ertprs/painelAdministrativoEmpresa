@@ -1,0 +1,20 @@
+
+<div class="style1">
+    Histórico de Crédito
+</div>
+<div class="style2">
+    {{ data.nome }}
+</div>
+
+<div style="overflow: auto;     height: 460px;">
+    <div *ngIf="itens.length === 0" class="mm0">
+        Não há histórico de movimentação
+    </div>
+   <div class="item" [class.itemDEB]="item.op == 'deb'" *ngFor="let item of itens">
+
+    <div class="if"> Operação realizada por {{ item.operador }} {{ item.info }} </div>
+    <div> {{ item.observacao }} </div>
+    <div class="vl"> {{ item.valor | currency:'BRL'}} </div>
+
+</div> 
+</div>
