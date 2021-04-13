@@ -19,6 +19,7 @@ export class ConciliacaoBancariaComponent implements OnInit {
   total: any;
   form: FormGroup;
   bancos: Array<any>;
+  loader = false;
   constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -40,10 +41,11 @@ export class ConciliacaoBancariaComponent implements OnInit {
   }
 
   conciliacaoBancaria() {
+    this.loader = true;
     const fcall = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
-      console.log(r);
+      this.loader = false;
+
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.detalhes.resultado.mensagem);
       } else {

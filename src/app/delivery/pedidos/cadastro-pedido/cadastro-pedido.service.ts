@@ -63,7 +63,9 @@ export class CadastroPedidoService {
       imagem: '',
       nome: '',
       telefone: '',
-    }
+    },
+    pagcred: false,
+    credito: 0,
   };
   tiposheet: any;
   bottomSheet: any;
@@ -198,6 +200,8 @@ export class CadastroPedidoService {
     this.carrinho.id_pedido = 0;
     this.carrinho.observacao = '';
     this.taxaEntregaAltManual = 0;
+    this.carrinho.pagcred = false;
+    this.carrinho.credito = 0;
   }
 
   getTipoPedido() {

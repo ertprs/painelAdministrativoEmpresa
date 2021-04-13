@@ -65,6 +65,8 @@ export class CadastroEmpresaLojistaComponent implements OnInit {
       bairro: [null, Validators.required],
       cidade: [null, Validators.required],
       cidade_id: [null, Validators.required],
+      nomep: [null, Validators.required],
+      telefonep: [null, Validators.required],
     });
   }
 
@@ -91,15 +93,12 @@ export class CadastroEmpresaLojistaComponent implements OnInit {
     console.log(this.formCadastro.value);
     this.btCstatus = true;
     const loginres = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
-      console.log(r);
+      this.servico.mostrarMensagem(r.mensagem);
       if (r.erro === true) {
-        this.servico.mostrarMensagem(r.mensagem);
         this.btCstatus = false;
-        this.router.navigate(['/admin/lojas']);
       } else {
-        this.servico.mostrarMensagem(r.mensagem);
+        this.router.navigate(['/admin/lojas']);
         this.formcadastroStatus = true;
       }
     };

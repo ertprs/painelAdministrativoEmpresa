@@ -58,6 +58,7 @@
 <div class="cv">Pagamentos</div>
 
 <div style="height: 270px; overflow: auto;">
+    <span *ngIf="!pagamentos"> Carregando pagamentos... </span>
     <div class="itensPag" *ngFor="let item of pagamentos">
         <div class="adel">#{{ item.id }} Lançado por: {{ item.operador }} - {{ item.dia_pagamento }} </div>
         <div>Forma de pagamento: {{ item.nome }}</div>

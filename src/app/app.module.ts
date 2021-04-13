@@ -215,6 +215,10 @@ import { FidelidadeComponent } from './fidelidade/fidelidade.component';
 import { PromocaoComponent } from './promocao/promocao.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { WhatsappComponent } from './whatsapp/whatsapp.component';
+import { MsgRemotaComponent } from './msg-remota/msg-remota.component';
+import { WhatsConfigComponent } from './whats-config/whats-config.component';
+import { ControleCreditoComponent } from './controle-credito/controle-credito.component';
+import { AdicionarCreditoClienteComponent } from './adicionar-credito-cliente/adicionar-credito-cliente.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -389,7 +393,11 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       GaleriaimagensComponent,
       FidelidadeComponent,
       PromocaoComponent,
-      WhatsappComponent
+      WhatsappComponent,
+      MsgRemotaComponent,
+      WhatsConfigComponent,
+      ControleCreditoComponent,
+      AdicionarCreditoClienteComponent
    ],
   imports: [
     BrowserModule,

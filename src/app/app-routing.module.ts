@@ -1,3 +1,5 @@
+import { ControleCreditoComponent } from './controle-credito/controle-credito.component';
+import { WhatsConfigComponent } from './whats-config/whats-config.component';
 import { PromocaoComponent } from './promocao/promocao.component';
 import { FidelidadeComponent } from './fidelidade/fidelidade.component';
 import { EmpresaPagamentosOnlineComponent } from './empresa-pagamentos-online/empresa-pagamentos-online.component';
@@ -106,6 +108,7 @@ const routes: Routes = [
       { path: 'fidelidade', component: FidelidadeComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'promocao', component: PromocaoComponent },
       { path: 'whatsapp', component: WhatsappComponent },
+      { path: 'whatsapp-config', component: WhatsConfigComponent },
 
       {
         path: 'financeiro', component: FinaceiroComponent, canActivate: [GuardaAtenticacaoService], children: [
@@ -114,8 +117,9 @@ const routes: Routes = [
           { path: 'consolidacao-dinheiro', component: ConsolidacaoDinheiroComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'comissao-entregas', component: ComissaoEntregasComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'controle-fiado', component: ControleFiadoComponent, canActivate: [GuardaAtenticacaoService] },
+          { path: 'controle-credito', component: ControleCreditoComponent },
           { path: 'conciliacao-bancaria', component: ConciliacaoBancariaComponent, canActivate: [GuardaAtenticacaoService] },
-        ]
+        ] 
       },
 
       {

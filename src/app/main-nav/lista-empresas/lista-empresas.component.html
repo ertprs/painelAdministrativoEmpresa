@@ -12,7 +12,7 @@
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label> Data início </mat-label>
+            <mat-label> Data final </mat-label>
             <input matInput type="date" #dbf>
         </mat-form-field>
 
@@ -39,12 +39,14 @@
 </div>
 
 <div>
+    <mat-progress-bar *ngIf="statusloader" mode="query"></mat-progress-bar>
+    <mat-progress-bar *ngIf="!statusloader" mode="determinate" value="0"></mat-progress-bar>
 
     <table mat-table [dataSource]="itens">
 
         <ng-container matColumnDef="status_conta">
             <th mat-header-cell *matHeaderCellDef> Status Delivery </th>
-            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+            <td style="font-size: 12px;" mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 <div style="display: flex; align-items: center; justify-content: space-evenly;">
                     <img style="border-radius: 10px;" width="40px" [defaultImage]="servico.getDefaultImage()" [lazyLoad]="element.imagem" alt="Logo da loja">
                     <mat-slide-toggle [(ngModel)]="element.status" #statusConta (click)="attStatusEnt(element, statusConta)" color="primary" [checked]="element.status === '1'">
@@ -55,7 +57,7 @@
 
         <ng-container matColumnDef="op">
             <th mat-header-cell *matHeaderCellDef> Aberto/Fechado </th>
-            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+            <td style="font-size: 12px;" mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes" style="font-size: 12;">
                 <span *ngIf="element.status_delivery === '1'"> Aberto </span>
                 <span *ngIf="element.status_delivery === '0'"> Fechado </span>
 
@@ -65,32 +67,44 @@
 
 
         <ng-container matColumnDef="c1">
-            <th mat-header-cell *matHeaderCellDef> Nome </th>
-            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+            <th mat-header-cell *matHeaderCellDef> Nome<span *ngIf="servico.whatsapp">/Whatsapp</span>/Coords </th>
+            <td style="font-size: 12px;" mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
 
                 {{ element.nome }}
+                <br> 
+                <span class="stawh" *ngIf="element.coordenadas !== '' && element.coordenadas !== 'coordenadas'"> Coords OK </span>
+
+                <span *ngIf="servico.whatsapp" style="margin-left: 1px;">
+                    <span class="stawh" *ngIf="element.base64qr === 'true'"> Whats ON </span>
+                    <span class="stawhoff" *ngIf="element.base64qr === ''"> Whats OFF </span>
+                    <span class="stawhpen" *ngIf="element.base64qr === 'pendente'"> Whats Pen </span>
+                    <span class="stawhdesc" *ngIf="element.base64qr === 'desconectar'"> Whats Desc </span>
+                    <span class="stawhqr" *ngIf="element.base64qr !== '' && element.base64qr == 'desconectar'&& element.base64qr == 'pendente'&& element.base64qr == 'true'"> Whats Scan </span>
+                </span>
 
             </td>
         </ng-container>
 
         <ng-container matColumnDef="c2">
             <th mat-header-cell *matHeaderCellDef> Bairro - Cidade </th>
-            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+            <td style="font-size: 12px;" mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 {{ element.bairro }} - {{ element.cidade }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="c3">
-            <th mat-header-cell *matHeaderCellDef> Pedidos Concluídos/Cancelados/Total </th>
-            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+            <th mat-header-cell *matHeaderCellDef> Pedidos Conc/Canc/Total </th>
+            <td style="font-size: 12px;" mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 {{ element.qnt_conc }}/{{ element.qnt_canc }}/{{ element.qnt_pedidos }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="c4">
-            <th mat-header-cell *matHeaderCellDef> Data cadastro </th>
-            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+            <th mat-header-cell *matHeaderCellDef> Data cadastro/Ultimo acesso </th>
+            <td style="font-size: 12px;" mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
                 {{ element.data_cadastro }}
+                <br> <span *ngIf="!element.ultimo_acesso" class="nol"> No login </span> 
+                {{ element.ultimo_acesso }}
             </td>
         </ng-container>
 
@@ -102,7 +116,7 @@
                     <mat-icon>add</mat-icon>
                 </button>
             </th>
-            <td mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
+            <td style="font-size: 12px;" mat-cell *matCellDef="let element" [class.emppendente]="!element.permissoes">
 
                 <button matTooltip="Ver loja" (click)="verEmpresa(element)" mat-icon-button color="primary">
                     <mat-icon>remove_red_eye

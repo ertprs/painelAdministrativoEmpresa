@@ -12,6 +12,7 @@ import { ServicoService } from 'src/app/servico.service';
 export class InserirSenhaComponent implements OnInit {
 
   acaoApi = '';
+  statusBT = false;
 
 
   form: FormGroup;
@@ -30,11 +31,11 @@ export class InserirSenhaComponent implements OnInit {
 
 
   onclick() {
-
-    console.log(this.form.value)
+    this.statusBT = true;
 
     const fcall = () => {
-      console.log('callback');
+      this.statusBT = false;
+
       const r = this.servico.getRespostaApi();
       console.log(r);
       if (r.erro === true) {

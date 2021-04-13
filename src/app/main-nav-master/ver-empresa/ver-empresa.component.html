@@ -8,103 +8,124 @@
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Nome </mat-label>
             <input matInput placeholder="Nome" formControlName="nome">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Email </mat-label>
             <input disabled matInput placeholder="email" formControlName="email">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Senha </mat-label>
             <input matInput placeholder="senha" formControlName="senha">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Telefone </mat-label>
             <input matInput placeholder="telefone" formControlName="telefone">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> CNPJ </mat-label>
             <input matInput placeholder="CNPJ" formControlName="cnpj">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> CPF </mat-label>
             <input matInput placeholder="CPF" formControlName="cpf">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Rua </mat-label>
             <input matInput placeholder="Rua" formControlName="rua">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Número </mat-label>
             <input matInput placeholder="numero" formControlName="numero">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Bairro </mat-label>
             <input matInput placeholder="Bairro" formControlName="bairro">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Cidade </mat-label>
             <input matInput placeholder="Cidade" formControlName="cidade">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Coordenadas </mat-label>
             <input matInput placeholder="Ex.: -9999999, -9999999" formControlName="coordenadas">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Política de entrega </mat-label>
             <input matInput placeholder="Política de entrega" formControlName="politica">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Url capa </mat-label>
             <input matInput placeholder="url capa empresas" formControlName="capa">
         </mat-form-field>
     </div>
 
     <div>
-        <mat-form-field class="dsl">
+        <mat-form-field class="dsl" appearance="outline">
             <mat-label> Descrição </mat-label>
-            <input matInput placeholder="Descrição" formControlName="descricao">
+            <input type="text" matInput placeholder="Descrição" formControlName="descricao">
         </mat-form-field>
     </div>
 
+
+<div>
+        <mat-form-field class="dsl" appearance="outline">
+            <mat-label> Em destaque </mat-label>
+            <input type="number" matInput placeholder="0/1" formControlName="destaque">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl" appearance="outline">
+            <mat-label> Proprietário </mat-label>
+            <input type="name" matInput placeholder="0/1" formControlName="nome_proprietario">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dsl" appearance="outline">
+            <mat-label> Telefone proprietário </mat-label>
+            <input type="number" matInput placeholder="Telefone" formControlName="telefone_proprietario">
+        </mat-form-field>
+    </div>
 
 </div>
 
@@ -132,7 +153,7 @@
     </div>
 
     <div style="text-align: center;">
-        <button style="margin:5px" mat-raised-button color="primary" (click)="onClickSalvar()"> Salvar </button>
+        <button [disabled]="btssa" style="margin:5px" mat-raised-button color="primary" (click)="onClickSalvar()"> Salvar </button>
     </div>
 
 

@@ -3,6 +3,8 @@
 </mat-toolbar>
 
 <div>
+    <mat-progress-bar *ngIf="loader" mode="query"></mat-progress-bar>
+    <mat-progress-bar *ngIf="!loader" mode="determinate" value="0"></mat-progress-bar>
 
     <table mat-table [dataSource]="itens">
 

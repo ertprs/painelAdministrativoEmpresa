@@ -1,9 +1,14 @@
 <mat-nav-list *ngIf="servcard.getTipoSheet() === 'formapagamento'">
 
     <span *ngFor="let item of servico.getDadosEmpresa().formaspagamento">
-        <a mat-list-item (click)="openDialog(item)" *ngIf="item.disponivel">
+        <a mat-list-item (click)="openDialog(item)" *ngIf="item.disponivel" [disabled]="item.nome === 'Crédito' && this.servcard.getCarrinho().credito === 0">
             <span mat-line> {{ item.nome }} </span>
-    <span mat-line> {{ item.descricao }} </span>
+    <span mat-line> 
+          {{ item.descricao }} 
+          <br><span class="cd" *ngIf="this.servcard.getCarrinho().credito > 0 && item.nome === 'Crédito'">  Crédito disponível {{ this.servcard.getCarrinho().credito |currency:'BRL'}} </span>
+          <span class="in" *ngIf="this.servcard.getCarrinho().credito === 0 && item.nome === 'Crédito'">  Crédito disponível {{ this.servcard.getCarrinho().credito |currency:'BRL'}} </span>
+         </span>
+         <br>
     </a>
 
     </span>

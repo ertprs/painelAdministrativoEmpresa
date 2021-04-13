@@ -60,4 +60,9 @@
 .c2{
     border-left: none; 
 }
+
+.element1 {
+    display: grid;
+    grid-template-columns: 1fr;
+}
 }

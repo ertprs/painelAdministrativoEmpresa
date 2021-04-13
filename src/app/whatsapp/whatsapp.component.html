@@ -2,10 +2,14 @@
     <div class="c1">
 
 
+        <div style="font-size: 12; color: red;">
+            Antes de salvar o número verifique o seu Whatsapp utiliza o dígito 9(nove).
+        </div>
+
         <mat-form-field color="primary" appearance="outline" class="example-full-width" [formGroup]="form">
             <mat-label color="primary">Telefone</mat-label>
-            <input matInput placeholder="+55(DDD)0000-0000" type="tel" mask="00(00)0000-0000" formControlName="telefone">
-            <mat-hint>Ex.: 55(74)9999-9999</mat-hint>
+            <input matInput placeholder="+55(DDD)0000-0000" type="tel" mask="00(00)000000000" formControlName="telefone">
+            <mat-hint>Ex.: 55(11)9999-9999</mat-hint>
         </mat-form-field>
 
         <div style="    display: grid;
@@ -24,6 +28,10 @@
 
         <div *ngIf="statusConectado === 1" class="ccc">
             <b>Conectado</b><br>Mantenha o celular conectado com a internet
+            <button style="    margin: auto;
+            margin-top: 21px;" mat-icon-button color="primary" routerLink="/whatsapp-config">
+                <mat-icon>settings</mat-icon>
+              </button>
         </div>
         
 

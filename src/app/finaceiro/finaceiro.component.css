@@ -18,3 +18,7 @@
     overflow: auto;
     max-height: 100%;
 }
+
+button {
+    font-size: 12px;
+}

@@ -14,10 +14,9 @@ export class ServicoService {
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
   // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
-  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
-   private urlapi = 'https://aplicativo.vulto.site';
-   
-  // private urlapi = 'https://api.dinp.com.br/index.php';
+   private urlapi = 'https://jfortalapi.ecig.app/index.php';
+ // private urlapi = 'https://aplicativo.vulto.site';
+ // private urlapi = 'https://api.dinp.com.br/index.php';
   
   public serverNode = '';
   private API = 'apiEstabelecimento';
@@ -84,6 +83,12 @@ export class ServicoService {
   public caixa = false;
   public estoque = false;
   public catadc = false;
+  public formasFun = false;
+
+  public rotaRemota = '';
+  public mensagemRemota = '';
+
+   
 
    
   // tslint:disable-next-line: max-line-length
@@ -218,6 +223,10 @@ export class ServicoService {
     this.caixa = dados.config_dash.obgfecharcaixa;
     this.estoque = dados.config_dash.estoque;
     this.catadc = dados.config_dash.catadc;
+    this.formasFun = dados.config_dash.formas_fun;
+
+    this.rotaRemota = dados.config_dash.rotaRemota;
+    this.mensagemRemota = dados.config_dash.mensagemRemota;
      
   } 
 

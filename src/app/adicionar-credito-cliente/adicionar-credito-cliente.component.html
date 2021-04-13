@@ -1,0 +1,36 @@
+ <h2>Adicionar crédito</h2>
+ 
+
+<div style="text-align: center;">
+    <img matCardImage class="im" src="./assets/moneyadd.gif">
+</div>
+
+<div> Cliente:  {{ data.nome }}</div>
+
+
+<div [formGroup]="form" class="a">
+
+    <mat-form-field color="primary" appearance="outline" class="example-full-width" style="width: 100%;">
+        <mat-label color="primary">Observação</mat-label>
+        <input matInput placeholder="Descrição"  type="text" formControlName="observacao"
+            (keydown.enter)="add()">
+    </mat-form-field>
+
+
+    <mat-form-field color="primary" appearance="outline" class="example-full-width" style="width: 100%;">
+        <mat-label color="primary">Valor</mat-label>
+        <input matInput placeholder="R$0,00"  type="tel" currencyMask formControlName="valor"
+            (keydown.enter)="add()">
+    </mat-form-field>
+    
+     
+</div>
+ 
+ 
+
+
+<button mat-raised-button color="warn" mat-dialog-close> Cancelar </button>
+<button mat-raised-button color="primary" [disabled]="statusbt" (click)="add()" style="margin-left: 5px;">Adicionar</button>
+
+
+

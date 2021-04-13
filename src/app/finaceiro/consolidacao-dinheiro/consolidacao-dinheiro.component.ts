@@ -17,6 +17,7 @@ export class ConsolidacaoDinheiroComponent implements OnInit {
   total: any;
   form: FormGroup;
   totalDesc: any;
+  loader = false;
   constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
               private fb: FormBuilder) { }
 
@@ -37,8 +38,11 @@ export class ConsolidacaoDinheiroComponent implements OnInit {
   }
 
   conciliacaoDin() {
+    this.loader = true;
+
     const fcall = () => {
-      console.log('callback');
+      this.loader = false;
+
       const r = this.servico.getRespostaApi();
       console.log(r);
       if (r.erro === true) {

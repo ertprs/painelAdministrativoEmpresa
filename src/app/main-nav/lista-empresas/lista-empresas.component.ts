@@ -17,6 +17,7 @@ export class ListaEmpresasComponent implements OnInit {
   itens = [];
   ggf = false;
   acoes: Array<any>;
+  statusloader = false;
   
   constructor(private crud: CrudServicoService, public servico: ServicoService, private dialog: MatDialog, private router: Router) { }
 
@@ -77,8 +78,9 @@ export class ListaEmpresasComponent implements OnInit {
   }
 
   f5() {
+    this.statusloader = true;
     this.crud.get_api('empresas_cadastradas').subscribe(data => {
-      console.log(data);
+      this.statusloader = false;
       this.itens = data;
     });
   }

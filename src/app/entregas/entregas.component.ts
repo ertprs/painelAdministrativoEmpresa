@@ -86,7 +86,6 @@ export class EntregasComponent implements OnInit {
   consultaEntregas() {
     console.log('#consultaEntregas');
     this.crud.get_api('buscar_entrega').subscribe(data => {
-      console.log(data);
       this.listaEntregas = data;
     });
   }

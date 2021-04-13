@@ -27,9 +27,9 @@
                 <mat-vertical-stepper [linear]="false" #stepper>
 
                     <mat-step>
-                        <ng-template matStepLabel>Dados empresa</ng-template>
+                        <ng-template matStepLabel>Dados da empresa</ng-template>
 
-                        <mat-form-field appearance="outline" class="nome">
+                        <mat-form-field appearance="outline" class="nomeempresa">
                             <mat-label>Nome empresa</mat-label>
                             <input matInput placeholder="Ex. Nome da Empresa" type="text" formControlName="nome">
                             <mat-icon matSuffix>home_work</mat-icon>
@@ -37,17 +37,36 @@
 
                         <mat-form-field appearance="outline" class="telefone">
                             <mat-label>Telefone</mat-label>
-                            <input matInput placeholder="Ex. (00)00000-0000" mask="(00)00000-0000" type="tel" formControlName="telefone">
+                            <input matInput placeholder="Ex. (00)00000-0000" mask="(00)00000-00000000" type="tel" formControlName="telefone">
                             <mat-icon matSuffix>contact_phone</mat-icon>
                             <mat-hint>Telefone comercial.</mat-hint>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="cpf">
                             <mat-label>Cnpj/Cpf</mat-label>
-                            <input matInput placeholder="Ex. 00000000000000" type="tel" formControlName="cnpj">
+                            <input matInput placeholder="Ex. 00000000000000" type="number" formControlName="cnpj">
                             <mat-hint>Infome o CNPJ da empresa ou o CPF do responsável.</mat-hint>
                         </mat-form-field>
 
+                    </mat-step>
+
+                    <mat-step>
+                        <ng-template matStepLabel>Dados do proprietário</ng-template>
+          
+                        <mat-form-field style="width: 70%;" appearance="outline">
+                            <mat-label>Nome completo</mat-label>
+                            <input matInput placeholder="Ex. Nome Completo" type="name" formControlName="nomep">
+                            <mat-icon matSuffix>home_work</mat-icon>
+                        </mat-form-field>
+          
+                        <mat-form-field style="width: 29%;margin-left: 1px;" appearance="outline">
+                            <mat-label>Celular</mat-label>
+                            <input matInput placeholder="Ex. (00)00000-0000" mask="(00)00000000000" type="tel" formControlName="telefonep">
+                            <mat-icon matSuffix>contact_phone</mat-icon>
+                            <mat-hint>Whatsapp.</mat-hint>
+                        </mat-form-field>
+          
+                        
                     </mat-step>
 
                     <mat-step>
@@ -55,7 +74,7 @@
 
                         <mat-form-field appearance="outline" class="nome">
                             <mat-label>Email</mat-label>
-                            <input matInput placeholder="Ex. ***" type="email" formControlName="email">
+                            <input matInput placeholder="Ex. email@" type="email" formControlName="email">
                             <mat-icon matSuffix>alternate_email</mat-icon>
                             <mat-hint>Digite aqui o email para acessar o sistema.</mat-hint>
                         </mat-form-field>
@@ -73,22 +92,17 @@
                     <mat-step>
                         <ng-template matStepLabel>Endereço</ng-template>
 
-                        <div style="width: 100%;"></div>
-                        <mat-form-field appearance="outline" class="cep">
-                            <mat-label>CEP</mat-label>
-                            <input matInput placeholder="Ex. 000.000-000" mask="00.000-000" type="text" formControlName="cep">
+                         
+                        
+                        <mat-form-field appearance="outline" class="rua">
+                            <mat-label>Rua</mat-label>
+                            <input matInput placeholder="Ex. Rua nome" type="text" formControlName="rua">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="numero">
                             <mat-label>número</mat-label>
                             <input matInput placeholder="Ex. 83" type="text" formControlName="numero">
-                            <mat-hint></mat-hint>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline" class="rua">
-                            <mat-label>Rua</mat-label>
-                            <input matInput placeholder="Ex. Rua nome..." type="text" formControlName="rua">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
@@ -102,11 +116,26 @@
                             <mat-hint></mat-hint>
                         </mat-form-field>-->
 
-                        <mat-form-field appearance="outline" #itemCidade cidade="cidade">
+                        <mat-form-field appearance="outline" #itemCidade class="bairro">
+                            <mat-label> Bairro </mat-label>
+                            <input matInput placeholder="Nome do bairro" type="name" formControlName="bairro">
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" #itemCidade class="cidade">
                             <mat-label> Cidade </mat-label>
                             <input matInput placeholder="Nome da cidade" type="name" formControlName="cidade">
                             <mat-hint></mat-hint>
                         </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="cep">
+                            <mat-label>CEP</mat-label>
+                            <input matInput placeholder="Ex. 000.000-000" mask="00.000-000" type="text" formControlName="cep">
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+
+
+                         
 
                         <!--<mat-form-field  style="width: 49%; margin-left: 1px;">
                             <mat-label>Bairro</mat-label>
@@ -118,11 +147,6 @@
                             <mat-hint></mat-hint>
                         </mat-form-field>-->
 
-                        <mat-form-field appearance="outline" #itemCidade class="bairro">
-                            <mat-label> Bairro </mat-label>
-                            <input matInput placeholder="Nome do bairro" type="name" formControlName="bairro">
-                            <mat-hint></mat-hint>
-                        </mat-form-field>
 
                     </mat-step>
 
@@ -161,7 +185,7 @@
             <mat-card class="elecccment" *ngIf="formcadastroStatus === true">
                 <h1> Cadastro realizado com sucesso! </h1>
                 <p>
-                    Sua loja está pendente! Entraremos em contato para a confirmação do cadastro
+                    Cadastro realizado com sucesso! Entraremos em contato para a confirmação do cadastro
                 </p>
                 <p>
                     <button mat-raised-button color="primary" routerLink="/login">Entrar</button>

@@ -14,10 +14,11 @@ export class UploadImagemComponent implements OnInit {
 
   private formPerfil: FormGroup;
   private arquivo: any;
-  public imagem: any;
+  // public imagem: any;
   private status: any;
   statusLoadConteudo = false;
 
+  @Input() imagem: any;
   @Input() nomeBotao: string;
   @Input() tabela: string;
   @Input() coluna: string;

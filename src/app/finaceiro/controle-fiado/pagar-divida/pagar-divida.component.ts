@@ -17,7 +17,7 @@ export class PagarDividaComponent implements OnInit {
   transf = false;
   cartao = false;
   itensPag: any;
-  pagamentos: any;
+  pagamentos: Array<any>;
 
   constructor(public dialogRef: MatDialogRef<PagarDividaComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,

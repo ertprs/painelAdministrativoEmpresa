@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+}
+
+.a {
+    height: 76%;
+    background-color: #eeebeb;
+    overflow: auto;
+}

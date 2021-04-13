@@ -1,3 +1,4 @@
+import { AdicionarCreditoClienteComponent } from './../adicionar-credito-cliente/adicionar-credito-cliente.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FormEnderecoClienteComponent } from './form-endereco-cliente/form-endereco-cliente.component';
 import { EnderecosClienteComponent } from './enderecos-cliente/enderecos-cliente.component';
@@ -44,6 +45,18 @@ export class ClientesComponent implements OnInit {
   }
 
 
+  addc() {
+    console.log(this.itemSelecionado);
+    const dialogRef = this.dialog.open(AdicionarCreditoClienteComponent, {
+      width: '650px',
+      data: this.itemSelecionado
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      this.f5();
+      }
+    });
+  }
 
   consultaClienteFiltro() {
     this.statusCons = true;

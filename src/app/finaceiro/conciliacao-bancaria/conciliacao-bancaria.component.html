@@ -39,6 +39,10 @@
 
 
 </div>
+<mat-progress-bar *ngIf="!loader" mode="determinate" value="0"></mat-progress-bar>
+<mat-progress-bar *ngIf="loader" mode="query"></mat-progress-bar>
+
+
 <table mat-table [dataSource]="dataSource" class="">
 
     <ng-container matColumnDef="c1">

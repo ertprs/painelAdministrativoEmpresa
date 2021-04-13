@@ -49,6 +49,9 @@
 
 
 </div>
+
+<mat-progress-bar *ngIf="!loader" mode="determinate" value="0"></mat-progress-bar>
+<mat-progress-bar *ngIf="loader" mode="query"></mat-progress-bar>
 <table mat-table [dataSource]="dataSource" class="">
 
     <ng-container matColumnDef="c1">
@@ -90,8 +93,8 @@
         <ng-container matColumnDef="c4">
             <th mat-header-cell *matHeaderCellDef> Percentual </th>
             <td mat-cell *matCellDef="let element" [class.linhaOK]="element.status_consolidacao_cartao">
-                <mat-form-field style="width: 40px; text-align: center;" *ngIf="!element.status_consolidacao_cartao" >
-                    <input matInput formControlName="porcentagem" placeholder="%">
+                <mat-form-field style="width: 70px; text-align: center;" *ngIf="!element.status_consolidacao_cartao"appearance="outline" >
+                    <input matInput formControlName="porcentagem" placeholder="%" type="number" [disabled]="loader">
                 </mat-form-field>
                 <span *ngIf="element.status_consolidacao_cartao">
                     {{ element.porcentagem_cartao }}%

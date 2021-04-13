@@ -23,7 +23,6 @@ export class CadastroEmpresaComponent implements OnInit {
   consultaCidades() {
     console.log('#consultaCidades');
     this.crud.get_api('cidades_server').subscribe(data => {
-      console.log(data);
       if (data.lista === null) { } else {
         this.listaCidades = data.lista_cidades;
         this.listaCidadesEntrega = data.lista_cidades_entrega;
@@ -32,8 +31,6 @@ export class CadastroEmpresaComponent implements OnInit {
   }
 
   selectionChangeCidade(item: any) {
-    console.log('#selectionChangeCidade');
-    console.log(item);
 
     this.cidadeClienteSelecionada = item;
 
@@ -65,6 +62,8 @@ export class CadastroEmpresaComponent implements OnInit {
       bairro: [null, Validators.required],
       cidade: [null, Validators.required],
       cidade_id: [null, Validators.required],
+      nomep: [null, Validators.required],
+      telefonep: [null, Validators.required],
     });
   }
 
@@ -91,15 +90,14 @@ export class CadastroEmpresaComponent implements OnInit {
     console.log(this.formCadastro.value);
     this.btCstatus = true;
     const loginres = () => {
-      console.log('callback');
       const r = this.servico.getRespostaApi();
-      console.log(r);
+      this.servico.mostrarMensagem(r.mensagem);
+
       if (r.erro === true) {
-        this.servico.mostrarMensagem(r.mensagem);
         this.btCstatus = false;
-        this.router.navigate(['/admin/lojas']);
+        return;
       } else {
-        this.servico.mostrarMensagem(r.mensagem);
+        this.router.navigate(['/admin/lojas']);
         this.formcadastroStatus = true;
       }
     };

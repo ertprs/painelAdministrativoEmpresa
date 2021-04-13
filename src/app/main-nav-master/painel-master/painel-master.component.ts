@@ -60,7 +60,9 @@ export class PainelMasterComponent implements OnInit {
     this.btUsuApp = this.us.getPermissoessuario()[10].children[7].status;
     this.btCupom = this.us.getPermissoessuario()[10].children[9].status;
     this.btNot = this.us.getPermissoessuario()[10].children[10].status;
+    try {
     this.btPagOnline = this.us.getPermissoessuario()[10].children[11].status;
+    } catch (e) { console.log('Bt nao definido'); }
 
   }
 

@@ -20,6 +20,8 @@ export class ConsolidacaoCartaoComponent implements OnInit {
   total: any;
   form: FormGroup;
   totalDesc: any;
+  loader = false;
+
   constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
               private fb: FormBuilder) { }
 
@@ -43,10 +45,12 @@ export class ConsolidacaoCartaoComponent implements OnInit {
   }
 
   conciliacaoCartao() {
+    this.loader = true;
     const fcall = () => {
       console.log('callback');
       const r = this.servico.getRespostaApi();
-      console.log(r);
+      this.loader = false;
+
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.detalhes.resultado.mensagem);
       } else {
@@ -70,13 +74,16 @@ export class ConsolidacaoCartaoComponent implements OnInit {
   }
 
   lancarFluxo(element, porcentagem) {
+    this.loader = true;
+     
     const fcall = () => {
-      console.log('callback');
+      
       const r = this.servico.getRespostaApi();
-      console.log(r);
+      this.loader = false;
       if (r.erro === true) {
         this.servico.mostrarMensagem(r.resultado.mensagem);
       } else {
+        this.form.controls.porcentagem.setValue('');
         this.servico.mostrarMensagem(r.resultado.mensagem);
         this.conciliacaoCartao();
       }

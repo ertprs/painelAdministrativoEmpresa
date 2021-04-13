@@ -41,8 +41,9 @@ export class VerEmpresaComponent implements OnInit {
   auto_estoque = false;
   estoqueRetirada = false;
   estoqueEntrega = false;
+  btssa = false;
 
-constructor(private route: ActivatedRoute, private fb: FormBuilder, private servico: ServicoService, private crud: CrudServicoService,
+constructor(private route: ActivatedRoute, private fb: FormBuilder, public servico: ServicoService, private crud: CrudServicoService,
             public us: UsuariosAdmService, private router: Router) { }
 
 ngOnInit(): void {
@@ -68,12 +69,16 @@ ngOnInit(): void {
         coordenadas: [this.dadosLoja.coordenadas],
         politica: [this.dadosLoja.politica],
         descricao: [this.dadosLoja.descricao],
+        destaque: [this.dadosLoja.destaque],
         sistema_delivery: [],
         status_delivery: [],
         auto_estoque: [],
         estoqueEntrega: [],
         estoqueRetirada: [],
-      }); 
+        nome_proprietario: [],
+        telefone_proprietario: [],
+         
+      });
 
       this.consultaEmpresa();
     } );
@@ -148,6 +153,9 @@ ngOnInit(): void {
       this.auto_estoque  = r.resultado.auto_estoque;
       this.estoqueEntrega  = r.resultado.auto_estoque_entrega;
       this.estoqueRetirada  = r.resultado.auto_estoque_retirada;
+      this.form.controls.destaque.setValue(r.resultado.destaque);
+      this.form.controls.nome_proprietario.setValue(r.resultado.nome_proprietario);
+      this.form.controls.telefone_proprietario.setValue(r.resultado.telefone_proprietario);
 
     };
     this.crud.post_api('consulta_empresa', accallback, this.dadosLoja.id);
@@ -162,10 +170,10 @@ ngOnInit(): void {
     this.form.controls.estoqueEntrega.setValue(this.estoqueEntrega);
     this.form.controls.estoqueRetirada.setValue(this.estoqueRetirada);
 
-    console.log(this.form.value)
+    this.btssa = true;
 
     const accallback = () => {
-      console.log('callback');
+      this.btssa = false;
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
         this.servico.mostrarMensagem(r.detalhes);

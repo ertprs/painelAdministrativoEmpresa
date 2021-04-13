@@ -30,6 +30,7 @@ export class PedidosFiadoComponent implements OnInit {
   itensOptions = [];
 
   tipof: any;
+  loader = false;
 
   constructor(private servico: ServicoService, private crud: CrudServicoService, public dialog: MatDialog,
               public servpedidos: PedidosService, private fb: FormBuilder) { }
@@ -71,8 +72,11 @@ export class PedidosFiadoComponent implements OnInit {
   }
 
   consultaPedidosFiado() {
+    this.loader = true;
 
     const accallback = () => {
+    this.loader = false;
+
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.resultado.mensagem); } else {
         // this.servico.mostrarMensagem(r.resultado.mensagem);

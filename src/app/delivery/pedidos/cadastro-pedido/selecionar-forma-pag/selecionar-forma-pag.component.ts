@@ -14,6 +14,7 @@ export class SelecionarFormaPagComponent implements OnInit {
   constructor(public servcard: CadastroPedidoService, public servico: ServicoService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
   }
 
 

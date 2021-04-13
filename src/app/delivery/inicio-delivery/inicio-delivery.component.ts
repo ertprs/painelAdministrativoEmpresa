@@ -28,6 +28,7 @@ export class InicioDeliveryComponent implements OnInit {
   public cidadeSelecionada: any;
   public tipoServico: any;
   bbssal = false;
+  statusBTloaderTaxas = false;
 
   constructor(private crud: CrudServicoService, private formBuilder: FormBuilder, public servico: ServicoService,
               private router: Router, public servdelivery: DeliveryService, private cdr: ChangeDetectorRef) { }
@@ -58,11 +59,7 @@ export class InicioDeliveryComponent implements OnInit {
     this.locaisEntrega = this.servdelivery.getLocaisEntrega();
     this.dadosEmpresa = this.servico.getDadosEmpresa();
     this.getHrfun = this.dadosEmpresa.hrfun;
-    this.tipoServico = [
-      { nome: 'Somente entrega', tipo: '1' },
-      { nome: 'Somente retirada', tipo: '2' },
-      { nome: 'Entrega e retirada', tipo: '3' }
-    ];
+    this.tipoServico = this.servico.formasFun;
 
     this.iniciaForm();
   }
@@ -112,6 +109,8 @@ export class InicioDeliveryComponent implements OnInit {
       metodosPagamento: this.buildFp(),
     });
 
+    
+
      // async orders
    /*  console.log(this.dadosEmpresa.formasfuncionamento);
     (this.dadosEmpresa.formasfuncionamento).subscribe(orders => {
@@ -128,6 +127,11 @@ export class InicioDeliveryComponent implements OnInit {
   }
 
 
+  }
+
+  iniciarBuildlocaisEntrega(locais) {
+    const valores = locais.map((v, i) => this.createCidade(v));
+    this.formCadastro.controls.locaisEntrega = this.formBuilder.array(valores);
   }
 
   buildDiasForm() {
@@ -299,30 +303,48 @@ export class InicioDeliveryComponent implements OnInit {
 
   carregaTaxas() {
     if (!this.cidadeSelecionada) { this.servico.mostrarMensagem('Selecione a cidade'); return; }
-    let qtdbairros = 0;
+    this.servico.mostrarMensagem('Aguarde o sistema concluir as configurações...');
 
+    let qtdbairros = 0;
+    this.statusBTloaderTaxas = true;
     this.formCadastro.controls.locaisEntrega.value.forEach(cidade => {
       if (this.cidadeSelecionada === cidade.id) {
-           qtdbairros = cidade.bairros.length;
+        cidade.bairros.forEach(bairro => {
+            if (bairro.disponivel === true) {
+              qtdbairros ++;
+            }
+        });
+
         }
      });
+     
+
     let cclloop = 0;
     const guinho = setInterval(() => {
       this.gettaxab(cclloop);
       cclloop++;
-      if (cclloop === qtdbairros) {
+      // console.log(cclloop  + ' : ' + qtdbairros);
+      if (cclloop > qtdbairros) {
+        // salvar novas config locais
+        // console.log('Salvar...');
+        setTimeout( () =>  {
+          this.iniciarBuildlocaisEntrega(this.formCadastro.controls.locaisEntrega.value);
+          this.statusBTloaderTaxas = false;
+          this.servico.mostrarMensagem('Configurações de bairros concluídas');
+        }, 1500);
         clearInterval(guinho);
+
       }
     }, 1500);
 
  
 }
-  
+
 
   gettaxab(index) {
     this.formCadastro.controls.locaisEntrega.value.forEach(cidade => {
       if (this.cidadeSelecionada === cidade.id) {
-                  
+                try {
                   if (cidade.bairros[index].disponivel) {
                    let coordendasBairro = '';
                    coordendasBairro = cidade.bairros[index].lat + ', ' + cidade.bairros[index].lng;
@@ -334,17 +356,21 @@ export class InicioDeliveryComponent implements OnInit {
                       this.servico.mostrarMensagem(r.mensagem);
                     } else {
                       try {
-                        
+
                         document.getElementById('taxaEntrega' + cidade.bairros[index].id).value = r.taxa_entrega;
                         cidade.bairros[index].taxa = r.taxa_entrega;
                         cidade.bairros[index].distancia = r.rows[0].elements[0].distance.text;
                         cidade.bairros[index].duracao = r.rows[0].elements[0].duration.text;
                         cidade.bairros[index].taxaPorDist = true;
-                        this.servico.mostrarMensagem(''+ cidade.bairros[index].nome + ' R$' + r.taxa_entrega + ' Distância: ' + r.rows[0].elements[0].distance.text);
+                        // tslint:disable-next-line: max-line-length
+                        this.servico.mostrarMensagem('' + cidade.bairros[index].nome + ' R$' + r.taxa_entrega + ' Distância: ' + r.rows[0].elements[0].distance.text);
 
-                      } catch (e) { 
+
+
+                      } catch (e) {
                         cidade.bairros[index].taxaPorDist = false;
-                        this.servico.mostrarMensagem('Não foi possível configurar o bairro ' + cidade.bairros[index].nome); 
+                        this.servico.mostrarMensagem('Não foi possível configurar o bairro ' + cidade.bairros[index].nome);
+                        console.log('erro', e);
                       }
                     }
                     cidade.bairros[index].statusload = false;
@@ -355,9 +381,10 @@ export class InicioDeliveryComponent implements OnInit {
 
 
                   }
-
+                } catch (e) { console.log('Erro Delsuc', e); }
 
           }
+
      });
 
   }

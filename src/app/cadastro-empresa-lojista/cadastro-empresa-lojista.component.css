@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     display: grid;
-    grid-template-columns: 60% 40%
+    grid-template-columns: 57% 43%;
 }
 
 .c2 {
@@ -35,38 +35,45 @@
     margin-top: 30px;
 }
 
-.nomee {
+.nome {
     width: 70%;
 }
 
+.nomeempresa {
+    width: 59%;
+}
+
 .telefone {
-    width: 29%;margin-left: 1px;
+    width: 40%;
+    margin-left: 1px;
 }
 .cpf {
     width: 100%;
 }
 
 .senha {
-    width: 29%; margin-left: 1px;
+    width: 29%;
+    margin-left: 1px;
 }
 
 .cep {
-    width: 80%;
+    width: 40%;
 }
 .numero {
-    width: 19%; margin-left: 1px;
+    width: 30%; margin-left: 1px;
 }
 
 .rua {
-    width: 39%;
+    width: 69%;
 }
 
 .cidade {
-    width: 30%;margin-left: 1px;
+    width: 59%;margin-left: 1px;
 }
 
 .bairro{
-    width: 30%;margin-left: 1px;
+    width: 100%;
+    margin-left: 1px;
 }
 
 
@@ -80,7 +87,10 @@
 }
 
 @media(max-width:600px) {
-    
+    .nomeempresa {
+        width: 100%;
+    }
+      
 .elecccment {
     background-color: white;
     color: black;

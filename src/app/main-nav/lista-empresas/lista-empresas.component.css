@@ -31,3 +31,51 @@ table {
 .emppendente {
     background-color: gold;
 }
+
+.nol {
+    background-color: #921c1c;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 8px;
+    color: white;
+}
+
+.stawh {
+    padding: 5px;
+    border-radius: 1px;
+    background-color: green;
+    color: white;
+    font-size: 7px;
+    margin-left: 2px;
+}
+.stawhoff {
+    border-radius: 1px;
+    color: white;
+    background-color: #921c1c;
+    padding: 5px;
+    font-size: 7px;
+}
+
+.stawhdesc {
+    border-radius: 1px;
+    color: rgb(0, 0, 0);
+    background-color: #a97e09;
+    padding: 5px;
+    font-size: 7px;
+}
+
+.stawhpen {
+    border-radius: 1px;
+    color: rgb(255, 255, 255);
+    background-color: #0011d1;
+    padding: 5px;
+    font-size: 7px;
+}
+
+.stawhqr {
+    border-radius: 1px;
+    color: rgb(255, 255, 255);
+    background-color: #940175;
+    padding: 5px;
+    font-size: 7px;
+}

@@ -14,6 +14,7 @@ export class MototboysComponent implements OnInit {
 
   displayedColumns: string[] = ['status_conta', 'op', 'c1', 'c2', 'c3', 'add'];
   itens = [];
+  loader = false;
 
 
   constructor(private crud: CrudServicoService, private servico: ServicoService, private dialog: MatDialog) { }
@@ -62,15 +63,16 @@ export class MototboysComponent implements OnInit {
   }
 
   f5() {
+    this.loader = true;
     this.crud.get_api('consulta_ent_lista_emp').subscribe(data => {
-      console.log(data);
+      this.loader = false;
       this.itens = data.resultado;
     });
   }
 
   add(): void {
     const dialogRef = this.dialog.open(DialogAddMototboyComponent, {
-      width: '450px',
+      width: '850px',
       data: { acao: 'add' }
     });
 
@@ -85,7 +87,7 @@ export class MototboysComponent implements OnInit {
 
   onClickEditar(item): void {
     const dialogRef = this.dialog.open(DialogAddMototboyComponent, {
-      width: '450px',
+      width: '850px',
       data: { acao: 'editar', usuario: item }
     });
 

@@ -1,0 +1,16 @@
+.example-full-width {
+
+}
+
+.im {
+    width: 20%;
+    margin: auto;
+}
+
+.a {
+    display: grid;
+    margin-top: 5px;
+    grid-template-columns: 1fr 0fr;
+    align-items: baseline;
+    gap: 9px;
+}

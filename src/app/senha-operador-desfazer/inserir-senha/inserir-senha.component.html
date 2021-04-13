@@ -7,5 +7,5 @@
 
 <div>
     <button mat-stroked-button color="accent" [mat-dialog-close]>Cancelar</button>
-    <button mat-flat-button color="warn" style="margin-left: 5px;" (click)="onclick()">Confirmar</button>
+    <button mat-flat-button color="warn" style="margin-left: 5px;" (click)="onclick()" [disabled]="statusBT">Confirmar</button>
 </div>

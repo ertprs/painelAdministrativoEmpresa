@@ -27,14 +27,11 @@ export class BairrosSistemaComponent implements OnInit {
 
   f5() {
     this.crud.get_api('bairros_sistema').subscribe(data => {
-       console.log(data);
        this.itens = data;
-       console.log(data);
     });
 }
 
 select(item) {
-  console.log(item);
   this.itemSelecionado = item;
   this.bairros = item.bairros;
 }
@@ -46,8 +43,6 @@ add(): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
     if (result) {
     this.f1(result) ;
     }
@@ -61,8 +56,6 @@ onClickEditar(i): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
     if (result) {
     this.editar(result) ;
     }
@@ -71,14 +64,12 @@ onClickEditar(i): void {
 
 editar(form) {
   const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
       // this.itens = r.resultado;
       this.route.navigate(['./painel']);
     }
-    console.log(r);
   };
   this.crud.post_api('att_bairro_sistema', accallback, form);
 }
@@ -86,17 +77,20 @@ editar(form) {
 f1(form) {
 
   const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
       // this.itens = r.resultado;
       // this.itemSelecionado;
-      this.route.navigate(['./painel']);
+      console.log(this.servico.getDadosEmpresa().operador);
+      if (this.servico.getDadosEmpresa().operador.tipo === 'super') {
+        this.route.navigate(['./admin/painel/bairros-sistema']);
+      } else {
+        this.route.navigate(['./painel']);
+      }
+      
     }
-    console.log(r);
   };
-  console.log(this.itemSelecionado);
   form.cidade_id = this.itemSelecionado.id;
   this.crud.post_api('add_bairro_sistema', accallback, form);
 }
@@ -104,13 +98,11 @@ f1(form) {
 removerItem(item) {
 
   const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
       this.f5();
     }
-    console.log(r);
   };
   this.crud.post_api('rem_bairro_sistema', accallback, item);
 
@@ -118,14 +110,11 @@ removerItem(item) {
 
 getLocation(item) {
   const accallback = () => {
-    console.log('callback');
     const r = this.servico.getRespostaApi();
     if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
       this.servico.mostrarMensagem(r.detalhes);
-      console.log(this.itemSelecionado);
       let cont = 0;
       this.itemSelecionado.bairros.forEach(element => {
-          console.log(element);
           if (element.id === item.id) {
           this.itemSelecionado.bairros[cont].lat = r.resultado.itens.lat;
           this.itemSelecionado.bairros[cont].lng = r.resultado.itens.lng;

@@ -155,6 +155,9 @@
                     <div style="margin-bottom: 10px;">
                         <mat-slide-toggle color="primary" (click)="onClickStandBy(fpsty)" #fpsty> Pagamento Stand-by </mat-slide-toggle>
                     </div>
+                    <div style="margin-bottom: 10px;">
+                        <mat-slide-toggle color="primary" (click)="pagCred(pcred)" #pcred> Pagamento com crédito ::{{ servcard.getCarrinho().pagcred }} </mat-slide-toggle>
+                    </div>
 
                     <mat-chip-list style="text-align: center;">
                         <mat-chip style="background-color: #3F51B5;
@@ -162,7 +165,7 @@
                         <mat-chip style="background-color: #3F51B5;
     color: white;" (click)="openBottomSheet('tipopedido')">Tipo do pedido</mat-chip>
                         <mat-chip style="background-color: #3F51B5;
-    color: white;" (click)="openBottomSheet('formapagamento')" [disabled]="stand">Forma pagamento</mat-chip>
+    color: white;" (click)="openBottomSheet('formapagamento')" [disabled]="stand">Forma de pagamento</mat-chip>
                     </mat-chip-list>
 
                     <div class="vcb">
@@ -210,7 +213,7 @@
                             <div>
                                 <mat-form-field appearance="fill" style="margin-top: 18px; width: 100%;" *ngIf="item.itens[0]">
                                     <mat-label> Item pagamento </mat-label>
-                                    <mat-select [(ngModel)]="item.itemSelecionado" [ngModelOptions]="{standalone: true}">
+                                    <mat-select [id]="'selecao-itens-fp-' +item.id" [(ngModel)]="item.itemSelecionado" [ngModelOptions]="{standalone: true}">
                                         <mat-option *ngFor="let ipag of item.itens" [value]="ipag">
                                             {{ ipag.nome }}
                                         </mat-option>

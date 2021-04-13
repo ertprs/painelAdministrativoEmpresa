@@ -15,6 +15,7 @@ export class DialogAddMototboyComponent implements OnInit {
 
   form: FormGroup;
   acao: any;
+  tbss = false;
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<DialogAddMototboyComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private crud: CrudServicoService, private servico: ServicoService,
               public upimg: UploadimagemService) { }
@@ -38,6 +39,7 @@ export class DialogAddMototboyComponent implements OnInit {
         cidade: [null, Validators.required],
         cep: [null, Validators.required],
         rg: [null, Validators.required],
+        tipo_veiculo: [null, Validators.required],
       });
 
     } else {
@@ -58,6 +60,7 @@ export class DialogAddMototboyComponent implements OnInit {
         cidade: [this.data.usuario.cidade, Validators.required],
         cep: [this.data.usuario.cep, Validators.required],
         rg: [this.data.usuario.rg, Validators.required],
+        tipo_veiculo: [this.data.usuario.tipo_veiculo, Validators.required],
       });
 
     }
@@ -70,9 +73,11 @@ export class DialogAddMototboyComponent implements OnInit {
     if (this.upimg.getImagem()) {
         this.form.value.imagem = this.upimg.getImagem();
     }
+    this.tbss = true;
 
     const accallback = () => {
-      console.log('callback');
+      this.tbss = false;
+
       const r = this.servico.getRespostaApi();
       if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
         this.servico.mostrarMensagem(r.detalhes);

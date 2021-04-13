@@ -1,0 +1,34 @@
+<mat-toolbar>
+    <span> Configurações do atendente virtual </span>
+</mat-toolbar>
+
+<div style="margin: 10px;">
+    <mat-card style="margin-top: 5px;">
+        <mat-slide-toggle color="warn" [(ngModel)]="configWhats.cardapio">Enviar Catálogo</mat-slide-toggle>
+    </mat-card>
+
+    <mat-card style="margin-top: 5px;">
+        <mat-slide-toggle color="warn" [(ngModel)]="configWhats.pedido">Receber pedidos</mat-slide-toggle>
+    </mat-card>
+
+    <mat-card style="margin-top: 5px;">
+        <mat-slide-toggle color="warn" [(ngModel)]="configWhats.todasmsg">Iniciar conversa após receber qualquer mensagem</mat-slide-toggle>
+    </mat-card>
+
+    <mat-card style="margin-top: 5px;">
+        <mat-slide-toggle color="warn" [(ngModel)]="configWhats.notificacaoPedido"> Receber notificação de pedido no whatsapp: 
+            <span class="tt"> {{numwhats | mask: '+00 (00) 00000000000'}} </span> 
+        </mat-slide-toggle>
+    </mat-card>
+
+    <mat-card style="margin-top: 5px;">
+        <mat-slide-toggle color="warn" [disabled]="true"> Enviar propaganda automática aos clientes (EM BREVE) </mat-slide-toggle>
+    </mat-card>
+    
+
+    <mat-card style="margin-top: 5px;">
+        <button [disabled]="btS" (click)="salvar()" mat-button color="primary">Salvar configurações</button>
+    </mat-card>
+
+</div>
+

@@ -32,6 +32,25 @@
             </mat-step>
 
             <mat-step>
+              <ng-template matStepLabel>Dados do proprietário</ng-template>
+
+              <mat-form-field style="width: 70%;">
+                  <mat-label>Nome completo</mat-label>
+                  <input matInput placeholder="Ex. Nome da Empresa" type="name" formControlName="nomep">
+                  <mat-icon matSuffix>home_work</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field style="width: 29%;margin-left: 1px;">
+                  <mat-label>Celular</mat-label>
+                  <input matInput placeholder="Ex. (00)00000-0000" mask="(00)00000-0000" type="tel" formControlName="telefonep">
+                  <mat-icon matSuffix>contact_phone</mat-icon>
+                  <mat-hint>Whatsapp.</mat-hint>
+              </mat-form-field>
+
+              
+          </mat-step>
+
+            <mat-step>
                 <ng-template matStepLabel>Dados para acesso</ng-template>
 
                 <mat-form-field style="width: 70%;">

@@ -5,6 +5,7 @@ import { PedidosService } from '../pedidos.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicoService } from 'src/app/servico.service';
 import { UsuariosAdmService } from 'src/app/usuarios/usuarios-adm.service';
+import { MsgRemotaComponent } from 'src/app/msg-remota/msg-remota.component';
 
 @Component({
   selector: 'app-painel-pedidos',
@@ -15,6 +16,8 @@ export class PainelPedidosComponent implements OnInit {
 
   form: FormGroup;
   btsp = [{ selecionado: true}, { selecionado: false}];
+  dialogDelsuc: any;
+
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, public us: UsuariosAdmService, private router: Router) { }
@@ -28,8 +31,33 @@ export class PainelPedidosComponent implements OnInit {
       return;
     }
 
+    // verifica se existe alguma rota remota
+    if (this.servapp.rotaRemota) {
+      this.router.navigate([this.servapp.rotaRemota]).then(data => {
+        console.log('OK');
+        // depois de ja ter ido a rota deixa como vazia para nao ficar indo toda hora
+        this.servapp.rotaRemota = '';
+        if (this.servapp.mensagemRemota) {
+          this.mostraMsgRemota(this.servapp.mensagemRemota);
+        }
+      });
+    } else if (this.servapp.mensagemRemota) {
+      this.mostraMsgRemota(this.servapp.mensagemRemota);
+    }
+
     this.form = this.formBuilder.group({
       statusdelivery: [this.servapp.getDadosEmpresa().status_delivery]
+    });
+  }
+
+  mostraMsgRemota(html: string) {
+    this.dialogDelsuc = this.dialog.open(MsgRemotaComponent, {
+      width: '700px',
+      data: html,
+    });
+
+    this.dialogDelsuc.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 
