@@ -32,7 +32,7 @@
                 <mat-menu #menu="matMenu">
                     <button [disabled]="element.id == 'NOT'" (click)="onClickEditar(element)" mat-menu-item> Editar dados</button>
                     <button [disabled]="element.id == 'NOT'" (click)="formaddEnd()" mat-menu-item> Novo endereço </button>
-                    <button *ngIf="servico.contCredito" (click)="addc()" mat-menu-item> Adicionar crédito </button>
+                    <button *ngIf="servico.contCredito && servico.btaddCredito" (click)="addc()" mat-menu-item> Adicionar crédito </button>
                     <button (click)="enderecoCliente(element)" mat-menu-item> Novo pedido </button>
                 </mat-menu>
 

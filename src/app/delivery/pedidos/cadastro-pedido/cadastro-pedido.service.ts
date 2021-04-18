@@ -104,6 +104,10 @@ export class CadastroPedidoService {
     for (const x in this.carrinho.formasPagamento) {
       if (this.carrinho.formasPagamento[x] === item) {
         indeArray = x;
+        if (item.nome === 'Crédito') {
+          console.log('Valor devolver', this.carrinho.formasPagamento[x].valor);
+          this.carrinho.credito += this.carrinho.formasPagamento[x].valor;
+        }
       }
     }
     this.carrinho.formasPagamento.splice(indeArray, 1);

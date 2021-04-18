@@ -49,12 +49,18 @@ export class MainNavComponent {
               }
 
               sair() {
+                // console.log('Exit@');
                 const pin = setInterval(() => {
+                
                   if (this.cookieService.check('lgn')) {
+                    // console.log('Cookies', this.cookieService.getAll());
                     this.cookieService.deleteAll();
+
                   } else {
+
                     location.reload();
                     clearInterval(pin);
+
                   }
                 }, 900);
               }

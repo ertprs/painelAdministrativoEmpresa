@@ -1,3 +1,15 @@
+.ccredc {
+    background: gold;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 4px;
+    color: #000000;
+    z-index: 1;
+    font-size: 15px;
+    margin-top: -41px;
+    text-align: center;
+}
+ 
  .cxata {
      height: 51px;
      width: 271px;

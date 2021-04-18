@@ -1,6 +1,8 @@
 <mat-progress-bar *ngIf="statusLoad" mode="query">
 </mat-progress-bar>
 <div class="bciago">
+
+    
     <mat-tab-group color="primary" [formGroup]="form" [selectedIndex]="indexTabGroup">
 
         <mat-tab label="Dados cliente">
@@ -234,7 +236,7 @@
                             grid-template-columns: 1fr 1fr;
                             align-items: center;">
 
-                                    <button mat-icon-button (click)="onClickEditarvalorFp(item)">
+                                    <button *ngIf="item.nome !== 'Crédito'" mat-icon-button (click)="onClickEditarvalorFp(item)">
                                     <mat-icon>edit</mat-icon>
                                 </button> {{ item.valor | currency:'BRL' }}
                                 </div>
@@ -362,4 +364,6 @@
         </mat-tab>
 
     </mat-tab-group>
+
 </div>
+ 

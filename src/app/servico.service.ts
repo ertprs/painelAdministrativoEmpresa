@@ -85,6 +85,7 @@ export class ServicoService {
   public catadc = false;
   public formasFun = false;
   public contCredito = false;
+  public btaddCredito = false;
 
   public rotaRemota = '';
   public mensagemRemota = '';
@@ -226,11 +227,12 @@ export class ServicoService {
     this.catadc = dados.config_dash.catadc;
     this.formasFun = dados.config_dash.formas_fun;
     this.contCredito = dados.config_dash.contCredito;
+    this.btaddCredito = dados.config_dash.btaddCredito;
      
     this.rotaRemota = dados.config_dash.rotaRemota;
     this.mensagemRemota = dados.config_dash.mensagemRemota;
-     
-  } 
+
+  }
 
   retornaDataHoraAtual() {
     const dNow = new Date();

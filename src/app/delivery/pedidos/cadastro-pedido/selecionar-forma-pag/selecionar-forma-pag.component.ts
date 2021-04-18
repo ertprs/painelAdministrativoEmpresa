@@ -3,6 +3,7 @@ import { ServicoService } from './../../../../servico.service';
 import { CadastroPedidoService } from './../cadastro-pedido.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-selecionar-forma-pag',
@@ -11,7 +12,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SelecionarFormaPagComponent implements OnInit {
 
-  constructor(public servcard: CadastroPedidoService, public servico: ServicoService, public dialog: MatDialog) { }
+  form: FormGroup;
+
+
+  constructor(public servcard: CadastroPedidoService, public servico: ServicoService, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -21,6 +25,11 @@ export class SelecionarFormaPagComponent implements OnInit {
   openDialog(element): void {
 
     this.servcard.bottomSheet.dismiss();
+
+    if (element.nome === 'Crédito') {
+      this.addFP(element);
+      return;
+    }
 
     setTimeout( () => {
 
@@ -38,6 +47,40 @@ export class SelecionarFormaPagComponent implements OnInit {
 
 
   } , 800 );
+  }
+
+
+  addFP(data) {
+    let totalPagar = 0;
+
+
+    if (data.nome === 'Crédito') {
+
+      // verifica se ja tem uma forma de pag. credito adidionada
+      let erroCred = false;
+      this.servcard.getCarrinho().formasPagamento.forEach(element => {
+        if (element.nome === data.nome) {
+          erroCred = true;
+         }
+      });
+      if (erroCred && !data.editar) {
+        this.servico.mostrarMensagem('Você não pode adicionar mais de uma forma de pagamento da modalidade crédito');
+        return;
+      }
+
+      console.warn('forma de pag crédito');
+      if (this.servcard.getCarrinho().credito > this.servcard.getTotalCarrinho()) {
+        // crédido suficiente para pagar total pedido
+         this.servcard.getCarrinho().credito -= this.servcard.getTotalCarrinho();
+         totalPagar = this.servcard.getTotalCarrinho();
+      } else {
+        totalPagar = this.servcard.getCarrinho().credito;
+        this.servcard.getCarrinho().credito = 0;
+      }
+    }
+
+    data.valor = totalPagar;
+    this.servcard.addFp(data);
   }
 
 }
