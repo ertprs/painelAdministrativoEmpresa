@@ -154,6 +154,13 @@
                         </mat-form-field>
                     </div>
 
+                    <div class="boxvaledds" *ngIf="servico.contCredito">
+                        <div style="border-right: 1px solid #d8cbcb;
+                        width: 130px;color: green;"> Crédito: {{ this.servcard.getCarrinho().credito | currency: 'BRL'}} </div>
+                        <div style="color: red;
+                        text-align: center;"> Dívida: {{ this.servcard.getCarrinho().divida | currency: 'BRL'}} </div>
+                    </div>
+
                     <div style="margin-bottom: 10px;">
                         <mat-slide-toggle color="primary" (click)="onClickStandBy(fpsty)" #fpsty> Pagamento Stand-by </mat-slide-toggle>
                     </div>

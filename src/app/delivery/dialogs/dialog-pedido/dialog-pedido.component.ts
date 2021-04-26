@@ -82,6 +82,7 @@ export class DialogPedidoComponent implements OnInit {
       taxaentrega: '',
       itens: item.itens,
       taxaextra: item.taxaextra,
+      tabela: item.dadoscliente.tabela,
     };
 
     item.itens.forEach(element => {

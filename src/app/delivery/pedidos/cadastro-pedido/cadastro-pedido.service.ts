@@ -26,6 +26,7 @@ export class CadastroPedidoService {
 
   private tipoPedido = {entrega: 'entrega', retirada: 'retirada'};
   private formadepagamento = {dinheiro: 'dinheiro', cartao: {nome: 'cartao', cartoes: []}};
+
   private carrinho = {
     id_pedido: 0,
     id_empresa: false,
@@ -66,7 +67,12 @@ export class CadastroPedidoService {
     },
     pagcred: false,
     credito: 0,
+    divida: 0,
+    tabela: '',
   };
+
+
+
   tiposheet: any;
   bottomSheet: any;
   cadastroClienteLista: any;

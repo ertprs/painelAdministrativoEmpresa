@@ -29,6 +29,7 @@ export class PagarDividaComponent implements OnInit {
     this.form = this.fb.group({
       id_cliente: [this.data.item.cliente.id],
       id_pedido: [this.data.item.pedido.id],
+      tabelaCliente: [this.data.item.cliente.tabela],
       valor_pag: [null],
       formapagamento: [null],
       itemPagamento: [null],

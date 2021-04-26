@@ -61,17 +61,19 @@ export class CadastroPedidoComponent implements OnInit {
       const accallback = () => {
         const r = this.servico.getRespostaApi();
         if (r.erro === true) {  this.servcard.getCarrinho().credito = 0; return; } else {
-          this.servcard.getCarrinho().credito = r.resultado.itens.credito;
+          this.servcard.getCarrinho().credito = r.resultado.credito.itens.credito;
+          this.servcard.getCarrinho().divida = r.resultado.divida;
         }
 
       };
-      this.crud.post_api('consultaCreditoCliente', accallback,
-      {idCliente: this.servcard.getCadastroClienteLista().id, tabela: 'clientes_empresa'});
+      console.log('this.servcard.getCadastroClienteLista().tabela', this.servcard.getCadastroClienteLista())
+      this.crud.post_api('consultaCreditoCliente', accallback, {idCliente: this.servcard.getCadastroClienteLista().id, tabela: this.servcard.getCadastroClienteLista().tabela});
 
 
     } else {
       if (this.servcard.getCadastroClienteLista().credito && this.servcard.getCadastroClienteLista().credito > 0) {
         this.servcard.getCarrinho().credito = this.servcard.getCadastroClienteLista().credito;
+        this.servcard.getCarrinho().divida = this.servcard.getCadastroClienteLista().divida;
      }
     }
 
@@ -184,6 +186,8 @@ export class CadastroPedidoComponent implements OnInit {
 
   iniciaFormDados() {
 
+    // console.log('[iniciaFormDados]', this.servcard.getCadastroClienteLista())
+
     if (this.servcard.getCadastroClienteLista().taxaextra > 0) {
       this.servcard.getCarrinho().taxaextra = this.servcard.getCadastroClienteLista().taxaextra;
     }
@@ -191,6 +195,8 @@ export class CadastroPedidoComponent implements OnInit {
       this.servcard.getCarrinho().desconto = this.servcard.getCadastroClienteLista().desconto;
     }
 
+    this.servcard.getCarrinho().tabela = this.servcard.getCadastroClienteLista().tabela;
+    
     /*this.servcard.getCadastroClienteLista().formaspagamento.forEach(element => {
           this.servcard.addFp(element);
         });*/
