@@ -45,6 +45,7 @@ export class FormEnderecoClienteComponent implements OnInit {
       cidade: [null],
       bairro: [null],
       telefone: [this.data.item.telefone],
+      tabela: [this.data.item.tabela],
     });
 
     this.form.controls.cidade.statusChanges.subscribe( (data) => {

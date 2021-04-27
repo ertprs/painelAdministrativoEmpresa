@@ -17,9 +17,9 @@ export class EnderecosClienteComponent implements OnInit {
   displayedColumns: string[] = ['c0', 'c1', 'c2', 'c3', 'c6'];
 
 
-  constructor( public dialogRef: MatDialogRef<EnderecosClienteComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: any, private crud: CrudServicoService,
-               private servico: ServicoService) { }
+  constructor(public dialogRef: MatDialogRef<EnderecosClienteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private crud: CrudServicoService,
+    private servico: ServicoService) { }
 
   ngOnInit(): void {
     console.log(this.data);
@@ -28,24 +28,24 @@ export class EnderecosClienteComponent implements OnInit {
 
   f5() {
     this.statusLoad = true;
-    this.crud.get_api('end_usuario&email_usuario=' + this.data.item.email + '&telefone=' + this.data.item.telefone).subscribe(data => {
-       this.itens = data.resultado;
-    this.statusLoad = false;
+    this.crud.get_api('end_usuario&email_usuario=' + this.data.item.email + '&telefone=' + this.data.item.telefone + '&tabela=' + this.data.item.tabela).subscribe(data => {
+      this.itens = data.resultado;
+      this.statusLoad = false;
 
     });
-}
-selecionarEndereco(element) {
-  this.endereco = element;
-  this.dialogRef.close();
-}
+  }
+  selecionarEndereco(element) {
+    this.endereco = element;
+    this.dialogRef.close();
+  }
 
-onClickAddEndereco() {
-  this.dialogRef.close('add_endereco');
-}
+  onClickAddEndereco() {
+    this.dialogRef.close('add_endereco');
+  }
 
-rem_endereco(element) {
-  element.idendereco = element.id;
-  this.dialogRef.close({acao: 'rem_endereco', item: element});
-}
+  rem_endereco(element) {
+    element.idendereco = element.id;
+    this.dialogRef.close({ acao: 'rem_endereco', item: element });
+  }
 
 }

@@ -53,6 +53,7 @@ export class DialogCadastroClienteComponent implements OnInit {
     } else {
       this.form = this.fb.group({
         id: [this.data.usuario.id],
+        tabela: [this.data.usuario.tabela],
         email: [this.data.usuario.email],
         tipo: [this.data.usuario.tipo],
         nome: [this.data.usuario.nome],
