@@ -1,3 +1,10 @@
+![login](https://user-images.githubusercontent.com/26775889/116541483-e6d7f800-a8c1-11eb-9369-cc371da58381.png)
+![Mapa](https://user-images.githubusercontent.com/26775889/116541487-e6d7f800-a8c1-11eb-8f93-8e0f09bd98f8.png)
+![pedidos](https://user-images.githubusercontent.com/26775889/116541493-e8092500-a8c1-11eb-8d18-2afb61490ec4.png)
+![relatorio-graficos](https://user-images.githubusercontent.com/26775889/116541494-e8092500-a8c1-11eb-9deb-465c91619a66.png)
+![relatorios-de-vendas](https://user-images.githubusercontent.com/26775889/116541496-e8a1bb80-a8c1-11eb-8518-11d6785a6005.png)
+![usuarios_adm](https://user-images.githubusercontent.com/26775889/116541498-e8a1bb80-a8c1-11eb-9622-05105a4228df.png)
+![whats](https://user-images.githubusercontent.com/26775889/116541522-ed666f80-a8c1-11eb-8038-a386dcb1a1ae.png)
 Módulos do sistema administrativo web:
 # [ x ] 1. Cadastro de usuários administrativos da empresa
 Os usuários só podem ser adicionado pelo ADM. com privilégios = adm
