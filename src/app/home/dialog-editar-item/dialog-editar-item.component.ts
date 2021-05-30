@@ -39,13 +39,12 @@ export class DialogEditarItemComponent implements OnInit {
 
   onclickEditartem() {
     this.statusbt = true;
-    console.log(this.formItem.value);
     const accallback = () => {
       const r = this.servicoApp.getRespostaApi();
       this.statusbt = false;
       if (r.erro === true) { this.servicoApp.mostrarMensagem(r.detalhes); } else {
         this.servicoApp.mostrarMensagem(r.mensagem);
-        this.servicoApp.getDialogapp().close();
+        this.servicoApp.getDialogapp().close(this.formItem.value);
         this.servicoCard.consultaCardapio();
       }
       this.servicoApp.mostrarMensagem(r.mensagem);

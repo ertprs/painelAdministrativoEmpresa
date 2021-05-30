@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     setTimeout( () => { this.statusloader = true; } , 900);
     this.urlQR = this.servicoapp.getURLCODE();
     console.log(this.urlQR);
+    
   }
 
 
@@ -138,5 +139,9 @@ export class HomeComponent implements OnInit {
     this.route.navigate(['painel/configitem']);
   }
 
+  verItensCat(item: any) {
+    this.servico.setCardapioSelecionado(item);
+    this.route.navigate(['/painel/itenscatalogo']);
+  }
 
 }

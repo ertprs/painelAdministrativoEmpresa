@@ -11,23 +11,24 @@
 
 .sptrue {
     margin-left: 10px;
-    background: #8BC34A;
-    color: white;
+    color: #4caf50;
     padding: 1px;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 5px;
+    border: 1px solid #4caf50;
+    font-size: 12px;
 }
 
 .spfalse {
     margin-left: 10px;
-    background: #E91E63;
-    ;
+    background: #252525;
     color: white;
     padding: 1px;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 5px;
+    font-size: 12px;
 }
 
 .dels {
@@ -95,4 +96,13 @@
 
 .c {
     padding: 10px;
+}
+.itensCatalogo {
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    padding: 10px;
+    gap: 10px;
+}
+.i-item-nome {
+    font-size: 12px;
 }

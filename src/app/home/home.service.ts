@@ -12,6 +12,7 @@ export class HomeService {
   private acao: boolean;
   private modelitem;
   public statusloaderpage = false;
+  public itemCatalogoSelecionado: any;
 
   constructor(private crud: CrudServicoService) {
 
@@ -24,7 +25,10 @@ export class HomeService {
   getItem() { return this.item; }
 
   setCardapio(arrayCard: any) {  this.cardapio = arrayCard; }
-  getCardapio() { return this.cardapio; }
+  getCardapio(): any { return this.cardapio; }
+
+  setCardapioSelecionado(item: any) {  this.itemCatalogoSelecionado = item; }
+  getCardapioSelecionado(): any { return this.itemCatalogoSelecionado; }
 
   consultaCardapio() {
     this.crud.get_api('cardapio&acmenu=listar').subscribe(data => {

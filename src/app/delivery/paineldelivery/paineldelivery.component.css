@@ -5,7 +5,7 @@
 .g {
     display: grid;
     grid-template-columns: 0.3fr 4fr;
-    grid-template-rows: 90.4vh;
+    grid-template-rows: 89vh;
 }
 
 .c1 {

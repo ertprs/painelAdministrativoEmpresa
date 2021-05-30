@@ -1,3 +1,4 @@
+import { FiltrotabelaPipe } from './pipes/filtrotabela.pipe';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -220,6 +221,7 @@ import { WhatsConfigComponent } from './whats-config/whats-config.component';
 import { ControleCreditoComponent } from './controle-credito/controle-credito.component';
 import { AdicionarCreditoClienteComponent } from './adicionar-credito-cliente/adicionar-credito-cliente.component';
 import { CreditoHistoricoComponent } from './controle-credito/credito-historico/credito-historico.component';
+import { ItensCatalogoEmpresaComponent } from './itens-catalogo-empresa/itens-catalogo-empresa.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -231,7 +233,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 };
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     InicioComponent,
     MainNavComponent,
@@ -399,7 +401,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       WhatsConfigComponent,
       ControleCreditoComponent,
       AdicionarCreditoClienteComponent,
-      CreditoHistoricoComponent
+      CreditoHistoricoComponent,
+      ItensCatalogoEmpresaComponent,
+      FiltrotabelaPipe
    ],
   imports: [
     BrowserModule,

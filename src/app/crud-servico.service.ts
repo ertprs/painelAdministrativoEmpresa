@@ -57,7 +57,7 @@ export class CrudServicoService {
         // this.servico.setListaEntregas(this.resp.api.entregas.lista);
         this.servico.setQntEntOn(this.resp.api.quantidade_entregador_online);
       },
-      error => { console.error('Erro#consulta_entregador_on!*'); console.log(error); });
+      error => { /*console.error('Erro#consulta_entregador_on!*');*/ /*console.log(error);*/ });
   }
 
 

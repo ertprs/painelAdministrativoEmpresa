@@ -1,3 +1,4 @@
+import { ItensCatalogoEmpresaComponent } from './itens-catalogo-empresa/itens-catalogo-empresa.component';
 import { ControleCreditoComponent } from './controle-credito/controle-credito.component';
 import { WhatsConfigComponent } from './whats-config/whats-config.component';
 import { PromocaoComponent } from './promocao/promocao.component';
@@ -91,6 +92,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'recuperar', component: RecuperarContaComponent },
+  { path: 'itenscatalogo', component: ItensCatalogoEmpresaComponent},// remove esss rota
 
   /* SITE - Local de acesso nas paginas do SITE */
   { path: 'cadastro', component: CadastroEmpresaLojistaComponent, /*canActivate: [GuardaAtenticacaoService]*/ },
@@ -152,29 +154,30 @@ const routes: Routes = [
 
       {
         path: 'painel', component: PaineldeliveryComponent, canActivate: [GuardaConfigSistemaService], children: [
-          { path: 'cardapio', component: HomeComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'itensadicionais', component: ItensAdicionaisComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'avaliacoes', component: AvaliacoesComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'delivery', component: InicioDeliveryComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'usuarios', component: UsuariosComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'usuarios-permissoes', component: UsuarioPermissoesComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'bancos', component: BancosComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'cardapio', component: HomeComponent},
+          { path: 'itenscatalogo', component: ItensCatalogoEmpresaComponent},
+          { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent},
+          { path: 'itensadicionais', component: ItensAdicionaisComponent},
+          { path: 'avaliacoes', component: AvaliacoesComponent},
+          { path: 'delivery', component: InicioDeliveryComponent},
+          { path: 'usuarios', component: UsuariosComponent},
+          { path: 'usuarios-permissoes', component: UsuarioPermissoesComponent},
+          { path: 'bancos', component: BancosComponent},
 
-          { path: 'galeria', component: GaleriaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'bairros-sistema', component: BairrosSistemaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'cidades-sistema', component: CidadesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'formas-pagamento', component: FormasPagamentoComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'itens-pagamento', component: ItensPagamentoComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'cupons', component: CuponsComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'perfil', component: PerfilComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'config', component: ConfigComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'configitem', component: EditarItemCompletoComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'motoboys', component: MototboysComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'usuarios-app', component: UsuariosFinaisComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'data-retroativa', component: DataRetroativaComponent, canActivate: [GuardaConfigSistemaService] },
-          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent, canActivate: [GuardaConfigSistemaService] },
+          { path: 'galeria', component: GaleriaComponent},
+          { path: 'bairros-sistema', component: BairrosSistemaComponent},
+          { path: 'cidades-sistema', component: CidadesSistemaComponent},
+          { path: 'formas-pagamento', component: FormasPagamentoComponent},
+          { path: 'itens-pagamento', component: ItensPagamentoComponent},
+          { path: 'cupons', component: CuponsComponent},
+          { path: 'perfil', component: PerfilComponent},
+          { path: 'config', component: ConfigComponent},
+          { path: 'configitem', component: EditarItemCompletoComponent},
+          { path: 'motoboys', component: MototboysComponent},
+          { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent},
+          { path: 'usuarios-app', component: UsuariosFinaisComponent},
+          { path: 'data-retroativa', component: DataRetroativaComponent},
+          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent},
 
           {
             path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [

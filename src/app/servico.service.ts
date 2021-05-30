@@ -13,8 +13,8 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/';
-  private urlapi = 'https://jfortalapi.ecig.app/index.php';
+  private urlapi = 'http://10.0.0.110/api/';
+  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   // private urlapi = 'https://aplicativo.vulto.site';
   // private urlapi = 'https://api.dinp.com.br/index.php';
   
@@ -86,7 +86,7 @@ export class ServicoService {
   public formasFun = false;
   public contCredito = false;
   public btaddCredito = false;
-
+  public btimportarprodutos = false;
   public rotaRemota = '';
   public mensagemRemota = '';
    
@@ -143,6 +143,10 @@ export class ServicoService {
   setHost(host: string, api: string) {
     // this.urlapi = host;
     // this.API = api;
+  }
+
+  getHOSTApi(): string {
+    return this.urlapi;
   }
 
   getDefaultImage() {
@@ -228,6 +232,7 @@ export class ServicoService {
     this.formasFun = dados.config_dash.formas_fun;
     this.contCredito = dados.config_dash.contCredito;
     this.btaddCredito = dados.config_dash.btaddCredito;
+    this.btimportarprodutos = dados.config_dash.btimportarprodutos;
      
     this.rotaRemota = dados.config_dash.rotaRemota;
     this.mensagemRemota = dados.config_dash.mensagemRemota;

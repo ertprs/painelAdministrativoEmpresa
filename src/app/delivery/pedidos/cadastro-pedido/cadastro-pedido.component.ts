@@ -46,35 +46,44 @@ export class CadastroPedidoComponent implements OnInit {
 
 
   constructor(public servico: ServicoService, private crud: CrudServicoService, private dialog: MatDialog,
-              public servcard: CadastroPedidoService, private fb: FormBuilder,
-              private bottomSheet: MatBottomSheet, private router: Router) { }
+    public servcard: CadastroPedidoService, private fb: FormBuilder,
+    private bottomSheet: MatBottomSheet, private router: Router) { }
 
   ngOnInit(): void {
 
     console.log(this.servcard.getCarrinho());
     console.log('getStatusAcaoPedido', this.servcard.getStatusAcaoPedido());
     this.servcard.getCarrinho().credito = 0;
+    this.servcard.getCarrinho().divida = 0;
 
     if (this.servcard.getStatusAcaoPedido() === true) {
       console.log('consulta crédito do cliente########');
 
       const accallback = () => {
         const r = this.servico.getRespostaApi();
-        if (r.erro === true) {  this.servcard.getCarrinho().credito = 0; return; } else {
+        if (r.erro === true) { this.servcard.getCarrinho().credito = 0; return; } else {
           this.servcard.getCarrinho().credito = r.resultado.credito.itens.credito;
           this.servcard.getCarrinho().divida = r.resultado.divida;
         }
 
       };
       console.log('this.servcard.getCadastroClienteLista().tabela', this.servcard.getCadastroClienteLista())
-      this.crud.post_api('consultaCreditoCliente', accallback, {idCliente: this.servcard.getCadastroClienteLista().id, tabela: this.servcard.getCadastroClienteLista().tabela});
+      this.crud.post_api('consultaCreditoCliente', accallback, { idCliente: this.servcard.getCadastroClienteLista().id, tabela: this.servcard.getCadastroClienteLista().tabela });
 
 
     } else {
+
       if (this.servcard.getCadastroClienteLista().credito && this.servcard.getCadastroClienteLista().credito > 0) {
+
         this.servcard.getCarrinho().credito = this.servcard.getCadastroClienteLista().credito;
         this.servcard.getCarrinho().divida = this.servcard.getCadastroClienteLista().divida;
-     }
+
+      }
+
+      if (this.servcard.getCadastroClienteLista().divida && this.servcard.getCadastroClienteLista().divida > 0) {
+        this.servcard.getCarrinho().divida = this.servcard.getCadastroClienteLista().divida;
+
+      }
     }
 
 
@@ -146,7 +155,7 @@ export class CadastroPedidoComponent implements OnInit {
       this.pagcred = true;
       this.servcard.getCarrinho().pagcred = true;
     }
-     
+
   }
 
   trackByIdx(index: number, obj: any): any {
@@ -196,7 +205,7 @@ export class CadastroPedidoComponent implements OnInit {
     }
 
     this.servcard.getCarrinho().tabela = this.servcard.getCadastroClienteLista().tabela;
-    
+
     /*this.servcard.getCadastroClienteLista().formaspagamento.forEach(element => {
           this.servcard.addFp(element);
         });*/
@@ -427,11 +436,11 @@ export class CadastroPedidoComponent implements OnInit {
     }
 
     if (this.servcard.verificaFpsTotal() !== this.servcard.getTotalCarrinho() &&
-        this.stand === false &&
-        this.servcard.getCarrinho().pagcred === false) {
+      this.stand === false &&
+      this.servcard.getCarrinho().pagcred === false) {
 
-          this.servico.mostrarMensagem('Os total da forma de pagamento está menor que o total do pedido.');
-          return;
+      this.servico.mostrarMensagem('Os total da forma de pagamento está menor que o total do pedido.');
+      return;
     }
 
     // Verifica se foi selecionado a bandeira do cartão em Cartao Crédito ou Déb.
@@ -440,19 +449,19 @@ export class CadastroPedidoComponent implements OnInit {
       const nomeFp = element.nome.toLocaleLowerCase();
       if (nomeFp === 'cartão de crédito' || nomeFp === 'cartão de débito') {
         if (!element.itemSelecionado) {
-         this.servico.mostrarMensagem('Selecione a bandeira do cartão');
-         errostatusokFP = true;
+          this.servico.mostrarMensagem('Selecione a bandeira do cartão');
+          errostatusokFP = true;
         }
       }
 
-       // Verifica se foi selecionado o banco da tranderência bancária.
+      // Verifica se foi selecionado o banco da tranderência bancária.
       if (nomeFp === 'transferência bancária' || nomeFp === 'transferência') {
 
         if (!element.itemSelecionado) {
           this.servico.mostrarMensagem('Selecione o banco');
           errostatusokFP = true;
         }
-    }
+      }
 
     });
 
