@@ -88,11 +88,15 @@
 
                   </div>
 
-                  <div>
+                  <span *ngIf="categoria.itens">
                     <button mat-raised-button color="primary" matTooltip="Ver lista de produtos" (click)="verItensCat(categoria)" [matBadge]="categoria.itens.length" matBadgeColor="warn" [matBadgeHidden]="false">
                       <mat-icon>list</mat-icon> Ver itens
                     </button>
-                  </div>
+                  </span>
+
+                  <button *ngIf="!categoria.itens" mat-raised-button color="warn" matTooltip="Adicionar novo item" (click)="dialogAddItem(0)">
+                    <mat-icon>add</mat-icon> Adicionar novo item
+                  </button>
 
                 </div>
                 <div style="width: 100%; font-size: 14px;">

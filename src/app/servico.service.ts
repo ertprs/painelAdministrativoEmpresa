@@ -13,11 +13,10 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-  private urlapi = 'http://10.0.0.110/api/';
-  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
+  // private urlapi = 'http://10.0.0.110/api/';
+  // private urlapi = 'https://jfortalapi.ecig.app/';
   // private urlapi = 'https://aplicativo.vulto.site';
-  // private urlapi = 'https://api.dinp.com.br/index.php';
-  
+   private urlapi = 'https://api.dinp.com.br/';
   public serverNode = '';
   private API = 'apiEstabelecimento';
   private statusLogado = false;

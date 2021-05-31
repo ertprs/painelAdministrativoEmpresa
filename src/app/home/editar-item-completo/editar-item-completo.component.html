@@ -7,7 +7,8 @@
 
         <mat-card class="imagem-card">
 
-            <button *ngIf="servapp.subimgs" color="warn" mat-icon-button style="position: absolute;" (click)="addCaixaSubImg()">
+            <button *ngIf="servapp.subimgs" color="warn" mat-icon-button style="position: absolute;"
+                (click)="addCaixaSubImg()">
                 <mat-icon>add</mat-icon>
             </button>
 
@@ -24,7 +25,8 @@
             </mat-card-actions>
         </mat-card>
 
-        <button style="width: 99%;" mat-raised-button (click)="removerItem(this.servhome.getItem().id)" *ngIf="this.servhome.getTipoAcao()">
+        <button style="width: 99%;" mat-raised-button (click)="removerItem(this.servhome.getItem().id)"
+            *ngIf="this.servhome.getTipoAcao()">
             <mat-icon color="warn">restore_from_trash</mat-icon> Remover item
         </button>
 
@@ -119,8 +121,10 @@
 
                         <mat-list>
 
-                            <mat-list-item formArrayName="disponibilidade" *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
-                                <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])" [checked]="diasLista[i].status">
+                            <mat-list-item formArrayName="disponibilidade"
+                                *ngFor="let item of form.get('disponibilidade')['controls']; let i = index">
+                                <mat-slide-toggle (change)="onClickDiaDisponivel($event, diasLista[i])"
+                                    [checked]="diasLista[i].status">
                                     {{ diasLista[i].nome }}
                                     <!--{{ diasLista[i] | json }}-->
                                     <!--:: {{ diasLista[i].status }}-->
@@ -137,9 +141,10 @@
 
 
         <!--Tabela-->
-        <div class="area-form">
+        <div *ngIf="servapp.catadc" class="area-form">
             <h2>Adicionais</h2>
-            <span formArrayName="categoriaadicional" *ngFor="let item of form.get('categoriaadicional')['controls']; let i = index">
+            <span formArrayName="categoriaadicional"
+                *ngFor="let item of form.get('categoriaadicional')['controls']; let i = index">
 
                 <mat-accordion>
                     <mat-expansion-panel style="margin-top: 2px;" (opened)="panelOpenState = true"
@@ -148,34 +153,36 @@
                             <mat-panel-title>
                                 {{ catsEAdcs[i].nome }}
                                 <span *ngIf="!catsEAdcs[i].disponivel" class="spanDispo">INDISPONIVEL</span>
-            </mat-panel-title>
+                            </mat-panel-title>
 
-            <mat-panel-description>
+                            <mat-panel-description>
 
-            </mat-panel-description>
-            </mat-expansion-panel-header>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
 
-            <mat-list>
-                <mat-list-item>
+                        <mat-list>
+                            <mat-list-item>
 
-                    <!-- {{ catsEAdcs[i].obrigatorio }} -->
-                    <mat-slide-toggle color="primary" [checked]="catsEAdcs[i].obrigatorio" (change)="onClickObrigatorio($event, catsEAdcs[i])">
-                        Obrigatório
-                    </mat-slide-toggle>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>
+                                <!-- {{ catsEAdcs[i].obrigatorio }} -->
+                                <mat-slide-toggle color="primary" [checked]="catsEAdcs[i].obrigatorio"
+                                    (change)="onClickObrigatorio($event, catsEAdcs[i])">
+                                    Obrigatório
+                                </mat-slide-toggle>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
 
-                    <mat-slide-toggle color="primary" [checked]="catsEAdcs[i].prevalecer_preco" (change)="onClickPrevPreco($event, catsEAdcs[i])">
-                        Prevalecer maior preço
-                        <!--{{ catsEAdcs[i].prevalecer_preco }}-->
-                    </mat-slide-toggle>
-                </mat-list-item>
-            </mat-list>
-            <mat-divider></mat-divider>
+                                <mat-slide-toggle color="primary" [checked]="catsEAdcs[i].prevalecer_preco"
+                                    (change)="onClickPrevPreco($event, catsEAdcs[i])">
+                                    Prevalecer maior preço
+                                    <!--{{ catsEAdcs[i].prevalecer_preco }}-->
+                                </mat-slide-toggle>
+                            </mat-list-item>
+                        </mat-list>
+                        <mat-divider></mat-divider>
 
-            <mat-list>
-                <span>
+                        <mat-list>
+                            <span>
                                 <mat-list-item *ngFor="let adicional of catsEAdcs[i].itens; let x = index">
                                     <mat-slide-toggle color="warn" (change)="onClickAdicional($event, adicional)"
                                         [checked]="adicional.status">
@@ -187,17 +194,17 @@
                                     <mat-divider></mat-divider>
                                 </mat-list-item>
                             </span>
-                <span>
+                            <span>
                                 <!--<mat-list-item>
                     Nenhum adicional desta categoria foi criado
                 </mat-list-item>-->
                             </span>
 
-            </mat-list>
+                        </mat-list>
 
 
-            </mat-expansion-panel>
-            </mat-accordion>
+                    </mat-expansion-panel>
+                </mat-accordion>
 
             </span>
 
@@ -221,8 +228,10 @@
                 </mat-expansion-panel-header>
 
                 <mat-list>
-                    <mat-list-item formArrayName="categoria" *ngFor="let item of form.get('categoria')['controls']; let i = index">
-                        <mat-slide-toggle (change)="onClickCategoria($event, categoriasCatalogo[i])" [checked]="categoriasCatalogo[i].status">
+                    <mat-list-item formArrayName="categoria"
+                        *ngFor="let item of form.get('categoria')['controls']; let i = index">
+                        <mat-slide-toggle (change)="onClickCategoria($event, categoriasCatalogo[i])"
+                            [checked]="categoriasCatalogo[i].status">
                             {{ categoriasCatalogo[i].nome }}
                             <!---- {{categoriasCatalogo[i].status}} -->
                         </mat-slide-toggle>
@@ -239,7 +248,8 @@
 
 
 
-            <mat-expansion-panel *ngIf="servapp.estoque" (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="margin-top: 10px;">
+            <mat-expansion-panel *ngIf="servapp.estoque" (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false" style="margin-top: 10px;">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Controle de estoque
@@ -254,7 +264,9 @@
                 <mat-list>
 
                     <mat-list-item>
-                        <mat-slide-toggle (change)="onClickItemRelacionado($event, form.controls.statusEstoqueRelacionado.value)" [checked]="form.controls.statusEstoqueRelacionado.value"> Estoque relacionado
+                        <mat-slide-toggle
+                            (change)="onClickItemRelacionado($event, form.controls.statusEstoqueRelacionado.value)"
+                            [checked]="form.controls.statusEstoqueRelacionado.value"> Estoque relacionado
                         </mat-slide-toggle>
                     </mat-list-item>
 
@@ -266,8 +278,10 @@
                                 <span *ngIf="!form.controls.itemEstoqueRelacionado.value"> Relacionar </span>
                             </mat-label>
                             <mat-select>
-                                <mat-optgroup *ngFor="let categoria of this.servhome.getCardapio(); let i = index" [label]="categoria.nome">
-                                    <mat-option *ngFor="let produto of categoria.itens" [value]="produto.nome" (click)="selecionarOpt(produto)">
+                                <mat-optgroup *ngFor="let categoria of this.servhome.getCardapio(); let i = index"
+                                    [label]="categoria.nome">
+                                    <mat-option *ngFor="let produto of categoria.itens" [value]="produto.nome"
+                                        (click)="selecionarOpt(produto)">
                                         #{{produto.id}} {{produto.nome}}
                                     </mat-option>
                                 </mat-optgroup>
@@ -281,7 +295,8 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label>Estoque mínimo</mat-label>
-                            <input matInput placeholder="Ex. Quantidade mínimo estoque" type="number" formControlName="estoque_mim">
+                            <input matInput placeholder="Ex. Quantidade mínimo estoque" type="number"
+                                formControlName="estoque_mim">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
@@ -293,7 +308,8 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label>Estoque médio</mat-label>
-                            <input matInput placeholder="Ex. Quantidade médio estoque" type="number" formControlName="estoque_med">
+                            <input matInput placeholder="Ex. Quantidade médio estoque" type="number"
+                                formControlName="estoque_med">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
@@ -304,7 +320,8 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label>Qtd. de retirada do estoque</mat-label>
-                            <input title="Quantidade de unidades que será retirado por saida" matInput placeholder="Quantidade" type="number" formControlName="quantidade_retira">
+                            <input title="Quantidade de unidades que será retirado por saida" matInput
+                                placeholder="Quantidade" type="number" formControlName="quantidade_retira">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
@@ -314,7 +331,8 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label> Unidades caixa </mat-label>
-                            <input title="Quantidade de unidades que vem em uma caixa" matInput placeholder="Quantidade" type="number" formControlName="un_caixa">
+                            <input title="Quantidade de unidades que vem em uma caixa" matInput placeholder="Quantidade"
+                                type="number" formControlName="un_caixa">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
@@ -324,7 +342,8 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label> Unidades pacote </mat-label>
-                            <input title="Quantidade de unidades de caixas quem vem em um pacote" matInput placeholder="Quantidade" type="number" formControlName="un_caixa_pacote">
+                            <input title="Quantidade de unidades de caixas quem vem em um pacote" matInput
+                                placeholder="Quantidade" type="number" formControlName="un_caixa_pacote">
                             <mat-hint></mat-hint>
                         </mat-form-field>
 
@@ -352,7 +371,8 @@
 </div>
 
 <div *ngIf="mostrarJanelaG">
-    <app-galeriaimagens (fechar)="fecharGaleria($event)" (fcallb)="onfcalldelsuc($event)" [item]="itemGaleriaSub"></app-galeriaimagens>
+    <app-galeriaimagens (fechar)="fecharGaleria($event)" (fcallb)="onfcalldelsuc($event)" [item]="itemGaleriaSub">
+    </app-galeriaimagens>
 </div>
 <div *ngIf="statusjanela" class="areaqr">
     <div class="fgds">
