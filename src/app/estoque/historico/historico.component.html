@@ -1,9 +1,49 @@
-<div class="item" *ngFor="let item of itens" style="margin: 5px;">
-    <div>
+<mat-progress-bar *ngIf="statusLoader" mode="query"></mat-progress-bar>
+<mat-progress-bar *ngIf="!statusLoader" mode="determinate" value="0"></mat-progress-bar>
+<table mat-table [dataSource]="dataSource">
 
-        <button [disabled]="statusBT" mat-icon-button color="warn" (click)="remItemLog(item)">
-            <mat-icon>delete</mat-icon>
-          </button> {{item.info}}
-    </div>
-    <div> {{item.descricao}} </div>
-</div>
+    <!-- Column -->
+    <ng-container matColumnDef="c1">
+        <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+        <td mat-cell *matCellDef="let element">
+
+            <div [innerHTML]="element.descricao">
+                <!--{{item.descricao}}-->
+            </div>
+
+        </td>
+    </ng-container>
+
+       <!-- Column -->
+       <ng-container matColumnDef="c2">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element">
+
+            {{element.info}}
+
+        </td>
+    </ng-container>
+
+
+    <!-- Column -->
+    <ng-container matColumnDef="c3">
+        <th mat-header-cell *matHeaderCellDef> Remover </th>
+        <td mat-cell *matCellDef="let element">
+
+            <button [disabled]="statusBT" mat-icon-button color="warn" (click)="remItemLog(element)">
+                <mat-icon>delete</mat-icon>
+            </button> 
+
+
+        </td>
+    </ng-container>
+
+   
+     
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[10, 40, 80]" showFirstLastButtons></mat-paginator>
+
+

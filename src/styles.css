@@ -39,6 +39,50 @@ body {
     color: #F44336;
 }
 
+
+
+.a1 {
+    display              : grid;
+    grid-template-columns: 0fr 0fr 0fr 4fr;
+    gap                  : 10px;
+    align-items          : center;
+    font-size            : 12px;
+}
+
+.a3 {
+    height           : 50px;
+    width            : 50px;
+    background-color : rgb(237, 226, 226);
+    border-radius    : 5px;
+    background-size  : 99%;
+    background-repeat: no-repeat;
+    border           : 1px solid #f7f5f5;
+}
+
+.a4 {
+    height           : 50px;
+    width            : 50px;
+    background-size  : 100%;
+    background-repeat: no-repeat;
+    background-image : url("http://localhost/api/imagens/setaR.gif");
+}
+
+.a4Lixo {
+    height           : 50px;
+    width            : 50px;
+    background-size  : 100%;
+    background-repeat: no-repeat;
+    background-image : url("http://localhost/api/imagens/lixo.gif");
+}
+
+.img-audit-his-entregador {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+
+
 @media print {
     @page {
         size: 5.5in 8.5in;

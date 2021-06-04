@@ -12,8 +12,9 @@ import { ServicoService } from 'src/app/servico.service';
 export class FormEstoqueComponent implements OnInit {
 
   form: FormGroup;
-  itensCatalogo: any;
+  itensCatalogo: Array<any>;
   statusBT = false;
+  statusLoader = false;
 
   constructor(public dialogRef: MatDialogRef<FormEstoqueComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { tipo: string, nomeDialog: string, item: any }, private fb: FormBuilder,
@@ -27,8 +28,9 @@ export class FormEstoqueComponent implements OnInit {
   }
 
   f5() {
+    this.statusLoader = true;
     this.crud.get_api('itens_cardapio&tipo=estoque').subscribe(data => {
-      console.log(data);
+      this.statusLoader = false;
       this.itensCatalogo = data.resultado;
    });
   }

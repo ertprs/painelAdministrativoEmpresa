@@ -1,12 +1,42 @@
 .item {
-    margin-top: 5px;
-    padding-top: 22px;
-    padding-left: 28px;
+    margin-top    : 5px;
+    padding-top   : 22px;
+    padding-left  : 28px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgb(197, 197, 197);
+    border-bottom : 1px solid rgb(197, 197, 197);
 }
 
 .item:hover {
-    background: #2196F3;
-    color: white;
+    background: white;
+    color     : rgb(41, 41, 43);
+}
+
+.a1 {
+    display              : grid;
+    grid-template-columns: 0fr 0fr 0fr 4fr;
+    gap                  : 10px;
+    align-items          : center;
+    font-size            : 12px;
+}
+
+.a3 {
+    height           : 50px;
+    width            : 50px;
+    background-color : rgb(237, 226, 226);
+    border-radius    : 5px;
+    background-size  : 99%;
+    background-repeat: no-repeat;
+    border           : 1px solid #f7f5f5;
+}
+
+.a4 {
+    height           : 50px;
+    width            : 50px;
+    background-color : rgb(237, 226, 226);
+    background-size  : 99%;
+    background-repeat: no-repeat;
+    background-image : url("http://localhost/api/imagens/setaR.gif");
+}
+table {
+    width: 100%;
 }
