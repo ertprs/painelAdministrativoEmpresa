@@ -106,3 +106,33 @@
 .i-item-nome {
     font-size: 12px;
 }
+
+.bt01 {
+    margin-left: 10px;
+}
+@media(max-width:600px) {
+    .itensCatalogo {
+        display: grid;
+        grid-template-columns:  1fr;
+    }
+    .sptrue {
+        margin-left: 10px;
+        color: #4caf50;
+        padding: 1px;
+        padding-left: 1px;
+        padding-right: 1px;
+        border-radius: 0px;
+        border: none;
+        font-size: 12px;
+    }
+    .c {
+        padding: 10px;
+        display: grid;
+        justify-content: normal;
+        gap: 6px;
+    }
+    
+.bt01 {
+    margin-left: 0px;
+}
+}

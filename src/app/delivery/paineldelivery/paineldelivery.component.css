@@ -4,8 +4,8 @@
 
 .g {
     display: grid;
-    grid-template-columns: 0.3fr 4fr;
-    grid-template-rows: 89vh;
+    grid-template-columns: 75px 4fr;
+    height: 93.1%;
 }
 
 .c1 {

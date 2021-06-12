@@ -25,12 +25,25 @@
             </mat-card-actions>
         </mat-card>
 
-        <button style="width: 99%;" mat-raised-button (click)="removerItem(this.servhome.getItem().id)"
+        <button class="btsmenu"  mat-raised-button (click)="removerItem(this.servhome.getItem())"
             *ngIf="this.servhome.getTipoAcao()">
             <mat-icon color="warn">restore_from_trash</mat-icon> Remover item
         </button>
 
+        <button class="btsmenu" *ngIf="servapp.btQrcode"  mat-raised-button (click)="buttonShowQR()">
+            <mat-icon color="primary">qr_code_scanner</mat-icon> Qrcode item
+        </button>
 
+        <button class="btsmenu"  mat-raised-button (click)="onClickCancelar()">
+            <mat-icon color="warn">back</mat-icon> Voltar ao catálogo
+        </button>
+
+        <button class="btsmenu"  mat-raised-button (click)="onClickAddItem()">
+            <mat-icon color="primary">save</mat-icon> Salvar
+        </button>
+        
+
+         
 
     </div>
 
@@ -383,7 +396,7 @@
     <qrcode [qrdata]="urlqr" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
 </div>
 
-<div class="barraOpcs" *ngIf="!statusLoadConteudo">
+<!--<div class="barraOpcs" *ngIf="!statusLoadConteudo">
     <div>
 
     </div>
@@ -398,4 +411,4 @@
     </div>
 
 
-</div>
+</div>-->

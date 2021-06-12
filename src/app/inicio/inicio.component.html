@@ -27,7 +27,7 @@
   <div class="col2">
 
 
-    <agm-map [fitBounds]="false" [latitude]="lat" [zoom]="13" [longitude]="lgn"
+    <agm-map (mapClick)="placeMarker($event)" [fitBounds]="false" [latitude]="lat" [zoom]="13" [longitude]="lgn"
       *ngIf="servico.getDadosEmpresa().coordenadas[0] !== 'coordenadas'" (mapReady)="onMapReady($event)">
 
       <!--

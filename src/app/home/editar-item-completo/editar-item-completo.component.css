@@ -63,7 +63,6 @@
 .all {
     padding: 15px;
     float: left;
-    height: 77vh;
     overflow: auto;
     width: 97%;
 }
@@ -147,6 +146,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
+}
+
+.btsmenu {
+    margin-top: 5px;
+    width: 99%;
 }
 
 @media(max-width:600px) {

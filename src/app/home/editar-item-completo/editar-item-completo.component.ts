@@ -148,7 +148,7 @@ export class EditarItemCompletoComponent implements OnInit {
     }
 
 
-     
+
 
   }
 
@@ -162,24 +162,29 @@ export class EditarItemCompletoComponent implements OnInit {
       this.servapp.mostrarMensagem('O Código ainda não foi gerado');
       return;
     }
-    
+
     this.urlqr = this.servapp.urlQrcode + '?item=' + this.itemRequest.id;
-    if (!this.statusjanela) { 
-      this.statusjanela = true; 
-    } else { 
-      this.statusjanela = false; 
+    if (!this.statusjanela) {
+      this.statusjanela = true;
+    } else {
+      this.statusjanela = false;
     }
   }
 
   removerItem(item: any) {
-    const accallback = () => {
-      const r = this.servapp.getRespostaApi();
-      if (r.erro === true) { this.servapp.mostrarMensagem(r.mensagem); } else {
-        this.servapp.mostrarMensagem(r.mensagem);
-        this.route.navigate(['/painel/cardapio']);
-      }
-    };
-    this.crud.post_api('cardapio&acmenu=removerItem', accallback, item, true);
+
+    const resposta = window.confirm('Deseja realmente remover ' + item.nome + ' do seu catálogo?');
+
+    if (resposta) {
+      const accallback = () => {
+        const r = this.servapp.getRespostaApi();
+        if (r.erro === true) { this.servapp.mostrarMensagem(r.mensagem); } else {
+          this.servapp.mostrarMensagem(r.mensagem);
+          this.route.navigate(['/painel/cardapio']);
+        }
+      };
+      this.crud.post_api('cardapio&acmenu=removerItem', accallback, item.id, true);
+    }
   }
 
   onfcalldelsuc(evento) {

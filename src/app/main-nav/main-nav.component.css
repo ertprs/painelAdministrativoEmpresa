@@ -1,6 +1,6 @@
 .cvers {
-    text-align: right;
-    font-size: 12px;
+    text-align : right;
+    font-size  : 12px;
     font-weight: 100;
 }
 
@@ -18,8 +18,8 @@
 
 .mat-toolbar.mat-primary {
     position: sticky;
-    top: 0;
-    z-index: 10;
+    top     : 0;
+    z-index : 10;
 }
 
 .mat-list-item {
@@ -28,24 +28,24 @@
 
 .mat-list-item:hover {
     background-color: rgb(214, 214, 214);
-    /*color: white;*/
+    /*color         : white;*/
 }
 
 .ddgui_ {
-    font-size: 11px;
-    color: white;
+    font-size  : 11px;
+    color      : white;
     font-weight: 100;
-    margin-top: -10px;
+    margin-top : -10px;
 }
 
 .toolb {
-    display: grid;
-    grid-template-columns: 0fr 2fr 1fr;
-    gap: 5px;
+    display              : grid;
+    grid-template-columns: 307px 2fr;
+    gap                  : 5px;
 }
 
 .col2 {
-    text-align: end;
+    text-align   : end;
     padding-right: 14px;
 }
 
@@ -56,20 +56,20 @@
 }
 
 .logoEmpresatoolbar {
-    height: 60px;
-    width: 60px;
+    height             : 60px;
+    width              : 60px;
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60px 60px;
-    margin-left: -13px;
-    border-radius: 3px;
-    box-shadow: -2px -2px 7px #0c0c0cc2;
+    background-repeat  : no-repeat;
+    background-size    : 60px 60px;
+    margin-left        : -13px;
+    border-radius      : 3px;
+    box-shadow         : -2px -2px 7px #0c0c0cc2;
 }
 
 .ttodelsuc {
-    display: flex;
-    justify-content: space-around;
-    padding-top: 20px;
+    display         : flex;
+    justify-content : space-around;
+    padding-top     : 20px;
     background-color: #3F51B5;
 }
 
@@ -78,27 +78,27 @@
 }
 
 .afab {
-    height: 44px;
-    width: 4%;
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
+    height    : 44px;
+    width     : 4%;
+    position  : absolute;
+    z-index   : 1;
+    bottom    : 0;
     text-align: end;
-    position: fixed;
+    position  : fixed;
 }
 
 .ccpendente {
-    display: grid;
-    height: 100vh;
-    background: blueviolet;
-    align-items: center;
+    display      : grid;
+    height       : 100vh;
+    background   : rgb(0, 0, 0);
+    align-items  : center;
     align-content: center;
-    text-align: center;
-    color: white;
+    text-align   : center;
+    color        : white;
 }
 
 .btsi {
-    margin: auto;
+    margin    : auto;
     margin-top: 13px;
     background: #3c3c3c;
 }
@@ -108,39 +108,120 @@
 }
 
 .ccs {
-    background-image: url('/assets/gif/computer-settings.gif');
-    height: 260px;
-    width: 348px;
-    background-size: 100%;
+    background-image : url('/assets/gif/computer-settings.gif');
+    height           : 260px;
+    width            : 348px;
+    background-size  : 100%;
     background-repeat: no-repeat;
-    margin: auto;
-    border-radius: 235px;
+    margin           : auto;
+    border-radius    : 235px;
 }
 
 .cc3 {
-    font-size: 24px;
-    background: #FFEB3B;
-    color: blueviolet;
-    padding: 20px;
-    width: 380px;
-    margin: auto;
-    margin-top: 9px;
+    font-size    : 24px;
+    background   : #FFEB3B;
+    color        : blueviolet;
+    padding      : 20px;
+    width        : 380px;
+    margin       : auto;
+    margin-top   : 9px;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight  : 600;
 }
 
 .getStatusSistemaDeliveryoff {
     color: rgb(122, 120, 120);
 }
 
+.aaaf {
+    width                : 500px;
+    grid-template-columns: 0fr 1fr;
+    display              : grid;
+    gap                  : 10px;
+}
+
+.aaaf2 {
+    margin-top : -12px;
+    font-size  : 12px;
+    font-weight: 100;
+}
+
+.aaaf23 {
+    margin-top: -3px;
+}
+
+.lds-ripple {
+    display    : inline-block;
+    position   : relative;
+    width      : 80px;
+    height     : 80px;
+    position   : absolute;
+    margin-left: -63px;
+    margin-top : -23px;
+}
+
+.lds-ripple div {
+    position     : absolute;
+    border       : 4px solid #ffffff54;
+    opacity      : 1;
+    border-radius: 50%;
+    animation    : lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top    : 36px;
+        left   : 36px;
+        width  : 0;
+        height : 0;
+        opacity: 1;
+    }
+
+    100% {
+        top    : 0px;
+        left   : 0px;
+        width  : 72px;
+        height : 72px;
+        opacity: 0;
+    }
+}
+
+.styOn {
+    background   : #8bc34a;
+    padding      : 3px;
+    border-radius: 4px;
+    color        : white;
+    border       : 1px solid white;
+    font-size    : 10px;
+}
+
 @media(max-width:600px) {
     .logoEmpresatoolbar {
         display: none;
     }
+
     .cvers {
         display: none;
     }
+
     .cff13 {
         display: none;
+    }
+
+    .toolb {
+        display              : grid;
+        grid-template-columns: 30px 2fr;
+        gap                  : 5px;
+    }
+
+    .aaaf {
+        width                : 100%;
+        grid-template-columns: 0fr 1fr;
+        display              : grid;
+        gap                  : 10px;
     }
 }

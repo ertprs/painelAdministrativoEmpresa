@@ -13,9 +13,9 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-   private urlapi = 'http://10.0.0.110/api/';
-  // private urlapi = 'https://jfortalapi.ecig.app/';
-  // private urlapi = 'https://aplicativo.vulto.site';
+  // private urlapi = 'http://10.0.0.110/api/';
+   private urlapi = 'https://jfortalapi.ecig.app/';
+  // private urlapi = 'https://api.juadelivery.site';
   // private urlapi = 'https://api.dinp.com.br/';
   public serverNode = '';
   private API = 'apiEstabelecimento';
@@ -88,10 +88,8 @@ export class ServicoService {
   public btimportarprodutos = false;
   public rotaRemota = '';
   public mensagemRemota = '';
-   
-   
+  public linkEmpresaSite = true;
 
-   
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
 
@@ -232,6 +230,7 @@ export class ServicoService {
     this.contCredito = dados.config_dash.contCredito;
     this.btaddCredito = dados.config_dash.btaddCredito;
     this.btimportarprodutos = dados.config_dash.btimportarprodutos;
+    this.linkEmpresaSite = dados.config_dash.linkEmpresaSite;
      
     this.rotaRemota = dados.config_dash.rotaRemota;
     this.mensagemRemota = dados.config_dash.mensagemRemota;

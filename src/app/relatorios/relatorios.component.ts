@@ -146,9 +146,10 @@ export class RelatoriosComponent implements OnInit {
   f5() {
 
     this.statusloadpedidos = true;
-
+    this.servrelat.setStatusLoader(true);
     const loginres = () => {
       const r = this.servapp.getRespostaApi();
+      this.servrelat.setStatusLoader(false);
       console.log(r);
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.detalhes);
@@ -206,7 +207,10 @@ export class RelatoriosComponent implements OnInit {
         console.log('Relatorio');
         console.log(r);
 
+
       }
+
+
     };
     this.crud.post_api('relatorio', loginres, this.form.value);
 }

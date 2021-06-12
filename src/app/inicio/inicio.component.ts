@@ -56,6 +56,10 @@ export class InicioComponent implements OnInit {
 
   }
 
+  placeMarker(evento: any) {
+    console.log(evento);
+  }
+
   getStatusDelivery() {
     return this.servico.getStatusDelivery();
   }

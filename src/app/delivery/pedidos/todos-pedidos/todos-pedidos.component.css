@@ -5,3 +5,30 @@ table {
 .bts {
     font-size: 11px;
 }
+.piclis {
+    margin-left: 30px;margin-top: 5px;
+}
+
+
+.if{
+    margin-left: 15px;
+}
+
+.btsoncul{
+
+}
+
+@media(max-width:600px) {
+    .if{
+        margin-left: 0px;
+    }
+    .piclis {
+        margin-left: 0px;
+        margin-top: 5px;
+        display: grid;
+        justify-items: normal;
+    }
+    .btsoncul{
+        display: none;
+    }
+}

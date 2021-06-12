@@ -1,5 +1,5 @@
 import { AddObservacaoPedidoComponent } from './../../add-observacao-pedido/add-observacao-pedido.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CrudServicoService } from 'src/app/crud-servico.service';
@@ -27,6 +27,7 @@ export class TabelaPedidosComponent implements OnInit {
   statusLoadEntregas: boolean;
   form: FormGroup;
   filtro: any;
+  @Output() attListaPedidos = new EventEmitter();
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
               public servapp: ServicoService, private crud: CrudServicoService) { }
@@ -77,6 +78,7 @@ export class TabelaPedidosComponent implements OnInit {
         this.servapp.mostrarMensagem(r.detalhes);
       } else {
         this.servpedidos.setPedido(r.resultado.itens);
+        this.attListaPedidos.emit(r.resultado);
       }
     };
     const data = { idPedido: item.id, id_empresa: this.servapp.getDadosEmpresa().id};

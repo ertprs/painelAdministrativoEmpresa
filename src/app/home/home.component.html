@@ -18,11 +18,11 @@
     <mat-icon>add</mat-icon> Nova categoria
   </button>
 
-  <button style="margin-left: 10px;" mat-raised-button color="primary" matTooltip="Adicionar novo item" (click)="dialogAddItem(0)">
+  <button class="bt01" mat-raised-button color="primary" matTooltip="Adicionar novo item" (click)="dialogAddItem(0)">
     <mat-icon>add</mat-icon> Novo item
   </button>
 
-  <a style="margin-left: 10px;" mat-raised-button color="primary" matTooltip="Adicionar novo item" [href]="servicoapp.getHOSTApi() + '/php/importar-produtos'" target="_new" *ngIf="servicoapp.btimportarprodutos">
+  <a  class="bt01" mat-raised-button color="primary" matTooltip="Adicionar novo item" [href]="servicoapp.getHOSTApi() + '/php/importar-produtos'" target="_new" *ngIf="servicoapp.btimportarprodutos">
     <mat-icon>upload</mat-icon> Importar produtos
   </a>
 

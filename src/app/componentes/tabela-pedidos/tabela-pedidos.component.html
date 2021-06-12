@@ -1,6 +1,5 @@
 <div class="telag" style="padding: 20px;">
     <div style="height: 5px;">
-
         <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
     </div>
     <table mat-table [dataSource]="pedidos" class="mat-elevation-z8">
@@ -196,11 +195,11 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
 </div>
 
 <!-- TELA P -->
 <div class="mocel">
+    <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
     <div class="itemPedido" *ngFor="let element of servpedidos.getPedidos()">
         <div>#{{element.id}} {{element.status_texto}} - {{element.info}} às {{element.horario}}</div>
         <div>Nome: {{element.dadoscliente.nome}}</div>

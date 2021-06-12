@@ -1,3 +1,6 @@
+<mat-progress-bar mode="query" *ngIf="servrelat.getStatusLoader()"></mat-progress-bar>
+<mat-progress-bar mode="determinate" value="0" *ngIf="!servrelat.getStatusLoader()"></mat-progress-bar>
+
 <div class="lay">
 
     <div>
@@ -22,9 +25,10 @@
             </div>
         </div>
 
+        <router-outlet></router-outlet>
         <app-relatorios></app-relatorios>
 
-        <router-outlet></router-outlet>
+        
 
     </div>
 </div>

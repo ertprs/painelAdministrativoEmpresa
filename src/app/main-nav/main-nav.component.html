@@ -43,14 +43,17 @@
 
                 <a (click)="clickMenu(ms.menuSelecionado[1])"
                     [class.menuSelecionado]="ms.menuSelecionado[1].selecionado"
-                    *ngIf="us.getPermissoessuario()[1].status && servico.meusclientebt" mat-list-item routerLink="/meusclientes">
+                    *ngIf="us.getPermissoessuario()[1].status && servico.meusclientebt" mat-list-item
+                    routerLink="/meusclientes">
                     <mat-icon>perm_identity</mat-icon>
                     Meus clientes
                 </a>
 
                 <a (click)="clickMenu(ms.menuSelecionado[2])"
                     [class.menuSelecionado]="ms.menuSelecionado[2].selecionado"
-                    *ngIf="us.getPermissoessuario()[2].status" mat-list-item routerLink="/entregas" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    *ngIf="us.getPermissoessuario()[2].status" mat-list-item routerLink="/entregas"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>view_headline</mat-icon>
                     Entregas
                 </a>
@@ -82,7 +85,10 @@
 
                 <a (click)="clickMenu(ms.menuSelecionado[5])"
                     [class.menuSelecionado]="ms.menuSelecionado[5].selecionado"
-                    *ngIf="us.getPermissoessuario()[5].status && servico.estoque" mat-list-item routerLink="/estoque/itens-estoque" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    *ngIf="us.getPermissoessuario()[5].status && servico.estoque" mat-list-item
+                    routerLink="/estoque/itens-estoque"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>book</mat-icon>
                     Estoque
                 </a>
@@ -91,7 +97,9 @@
 
                 <a (click)="clickMenu(ms.menuSelecionado[6])"
                     [class.menuSelecionado]="ms.menuSelecionado[6].selecionado"
-                    *ngIf="us.getPermissoessuario()[6].status" mat-list-item routerLink="/relatorio/historico-vendas" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    *ngIf="us.getPermissoessuario()[6].status" mat-list-item routerLink="/relatorio/historico-vendas"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>assignment</mat-icon>
                     Relatórios
                 </a>
@@ -99,14 +107,18 @@
                 <a (click)="clickMenu(ms.menuSelecionado[7])"
                     [class.menuSelecionado]="ms.menuSelecionado[7].selecionado"
                     *ngIf="us.getPermissoessuario()[7].status && servico.financeiro" mat-list-item
-                    routerLink="/financeiro/conciliacao-bancaria" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    routerLink="/financeiro/conciliacao-bancaria"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>money</mat-icon>
                     Financeiro
                 </a>
 
                 <a (click)="clickMenu(ms.menuSelecionado[8])"
                     [class.menuSelecionado]="ms.menuSelecionado[8].selecionado"
-                    *ngIf="us.getPermissoessuario()[8].status && servico.caixa" mat-list-item routerLink="/fechar-caixa" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    *ngIf="us.getPermissoessuario()[8].status && servico.caixa" mat-list-item routerLink="/fechar-caixa"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon *ngIf="servico.getStatusCaixa()" class="iconc" [class.statusCaixa]="true"
                         matTooltip="Caixa aberto">info</mat-icon>
 
@@ -116,7 +128,9 @@
 
 
                 <a *ngIf="servico.faturas" (click)="clickMenu(ms.menuSelecionado[10])" mat-list-item
-                    routerLink="/faturas" matBadgeColor="warn" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                    routerLink="/faturas" matBadgeColor="warn"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>description</mat-icon>
                     Faturas
                     <mat-icon matTooltip="Existe faturas pendentes" *ngIf="servico.getStatusfatura()"
@@ -124,17 +138,23 @@
                 </a>
 
 
-                <a *ngIf="servico.fidelidade" mat-list-item routerLink="/fidelidade" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                <a *ngIf="servico.fidelidade" mat-list-item routerLink="/fidelidade"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>settings</mat-icon>
                     Fidelidade
                 </a>
 
-                <a *ngIf="servico.promocao" mat-list-item routerLink="/promocao" [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                <a *ngIf="servico.promocao" mat-list-item routerLink="/promocao"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>price_change</mat-icon>
                     Promoção
                 </a>
 
-                <a *ngIf="servico.whatsapp" mat-list-item routerLink="/whatsapp"[class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()" [disabled]="!servico.getStatusSistemaDelivery()">
+                <a *ngIf="servico.whatsapp" mat-list-item routerLink="/whatsapp"
+                    [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
+                    [disabled]="!servico.getStatusSistemaDelivery()">
                     <mat-icon>chat</mat-icon>
                     Whatsapp
                 </a>
@@ -166,16 +186,25 @@
                     *ngIf="isHandset$ | async">
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>
-                <div>
-                    <div class="logoEmpresatoolbar" [lazyLoad]="servico.getDadosEmpresa().imagem"></div>
+
+                <div class="aaaf">
+                    <div>
+                        <div class="logoEmpresatoolbar" [lazyLoad]="servico.getDadosEmpresa().imagem"></div>
+                    </div>
+                    <div>
+                        <div class="aaaf23"> {{ this.servico.getDadosEmpresa().nome }} </div>
+                        <div class="aaaf2">{{ this.servico.getDadosEmpresa().operador.nome }} </div>
+                        <div *ngIf="servico.linkEmpresaSite" class="aaaf2" style="margin-top: -15px;">
+                            <a target="_new" [href]="servico.linkEmpresaSite" style="color: #cddc39; text-decoration: none;"> {{ servico.linkEmpresaSite }} 
+                            <span class="styOn">ONLINE</span>
+                            <div class="lds-ripple"><div></div><div></div></div>
+                         </a>
+                        </div>
+                    </div>
                 </div>
-                <span class="cff13">
-                    <div> {{ this.servico.getDadosEmpresa().nome }} </div>
-                    <div class="ddgui_"> {{ this.servico.getDadosEmpresa().operador.nome }} </div>
 
-                </span>
 
-                <div class="cvers"> Versão {{ this.servico.versao }} </div>
+                <!--<div class="cvers"> Versão {{ this.servico.versao }} </div>-->
             </mat-toolbar>
             <!-- Add Content Here -->
             <div class="afab" *ngIf="this.servico.getStatusDR()">
