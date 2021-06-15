@@ -1,5 +1,206 @@
 <mat-progress-bar *ngIf="!servpedidos.getPedido().id" mode="query"></mat-progress-bar>
-<div *ngIf="servpedidos.getPedido().id" class="conteudo">
+<div class="dadosPedidoCelular" *ngIf="servpedidos.getPedido().id">
+
+    <div style=" display: grid;gap: 4px;">
+
+        <mat-chip mat-dialog-close style="background-color: rgb(177, 6, 6); color: white;">Fechar janela</mat-chip>
+
+        <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(1)"
+            style="background-color: rgb(92, 177, 6); color: white;">Aceitar</mat-chip>
+        <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" [mat-dialog-close]="'cancelar_pedido'"
+            style="background-color:  rgb(168, 14, 40);color: white;"
+            matTooltip="Obs! Se rejeitar este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">
+            Rejeitar</mat-chip>
+        <span *ngIf="servpedidos.getPedido().status_pedido != 4">
+
+            <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 4 || servpedidos.getPedido().status_pedido == 3"
+                (click)="onClickAttStatusPedido(5)">Entregue</mat-chip>
+
+        </span>
+
+        <span *ngIf="servpedidos.getPedido().status_pedido != 7">
+
+            <mat-chip *ngIf="servpedidos.getPedido().status_pedido != 0" [mat-dialog-close]="'cancelar_pedido'">
+                Cancelar pedido
+            </mat-chip>
+
+        </span>
+
+        <span *ngIf="
+            servpedidos.getPedido().status_pedido != 7 && 
+            servpedidos.getPedido().status_pedido != 2 && 
+            servpedidos.getPedido().status_pedido != 1 && 
+            servpedidos.getPedido().status_pedido != 0
+            ">
+            <mat-chip *ngIf="
+    servpedidos.getPedido().status_pedido == 5 || 
+    servpedidos.getPedido().status_pedido != 4
+    " (click)="onClickAttStatusPedido(6)">
+                <mat-icon>check</mat-icon> Concluído
+            </mat-chip>
+        </span>
+
+
+        <mat-chip
+            *ngIf="servpedidos.getPedido().status_pedido > 0 && servpedidos.getPedido().status_pedido <= 5 && servapp.alterarPedido"
+            (click)="onClickEditarPedido(servpedidos.getPedido())">
+            <mat-icon>edit</mat-icon> Alterar pedido
+        </mat-chip>
+    </div>
+
+    <div class="sdc">
+        <div class="c22"><span class="ddc">Nome:</span> <br>{{servpedidos.getPedido().dadoscliente.nome}}
+            {{servpedidos.getPedido().dadoscliente.sobrenome}}
+        </div>
+        <div class="c22"><span class="ddc">Telefone:</span><br>
+            <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length === 12">
+                <!-- se o numero tiver 12 = whatsapp : (55) 7488420307 -->
+                {{servpedidos.getPedido().dadoscliente.telefone | mask: '+00 (00) 0000-0000'}}
+            </span>
+            <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length === 11">
+                <!-- (74) 98842-0307 -->
+                {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 00000-0000'}}
+            </span>
+            <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length > 12">
+                <!-- 000000000000 -->
+                {{servpedidos.getPedido().dadoscliente.telefone | mask: '00000000000000'}}
+            </span>
+
+        </div>
+        <div class="c22"><span class="ddc">Endereço: </span> <br>{{servpedidos.getPedido().endereco.rua}}
+            {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} -
+            {{servpedidos.getPedido().endereco.cidade.nome}}
+        </div>
+        <div class="c22"><span class="ddc">Complemento:</span> <br>{{servpedidos.getPedido().endereco.complemento}}
+        </div>
+        <div class="c22"><span class="ddc">Ponto de referência:</span>
+            <br>{{servpedidos.getPedido().endereco.tiporesidencia}}
+        </div>
+    </div>
+
+    <div>
+        Método de pagamento
+
+        <div class="ccd" *ngIf="!servpedidos.getPedido().formaspagamento"> Métodos de pagamento pendente </div>
+
+        <div class="" *ngFor="let item of servpedidos.getPedido().formaspagamento" class="itemPags">
+            <div style="    display: flex;
+        align-items: center;
+        gap: 9px;">
+                {{ item.nome }} <span *ngIf="item.itemSelecionado">
+                    <span *ngIf="item.itemSelecionado.nome">/</span> {{ item.itemSelecionado.nome }}
+                </span>
+                {{ item.valor | currency:'BRL':true }}
+            </div>
+            <div></div>
+            <div></div>
+            <span *ngIf="item.troco !== '0' || item.troco !== 0">Troco: {{ item.troco | currency:'BRL':true
+                }}</span>
+        </div>
+    </div>
+
+    <div>
+        <div style="    margin-top: 10px;
+        margin-bottom: 10px;
+        background: gold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        border-radius: 7px;
+        font-weight: 500;">
+            Pedido para {{servpedidos.getPedido().tipopedido}}
+        </div>
+
+        <mat-card class="ccupom" *ngIf="servpedidos.getPedido().cupom">
+            <div style="text-align: center;"> O cliente usou um cupom no valor de
+                {{servpedidos.getPedido().cupom.valor | currency:'BRL':true}} para este pedido</div>
+            <div style="font-size: 12px;text-align: center;"> {{ servpedidos.getPedido().cupom.descricao }} </div>
+        </mat-card>
+
+
+        <div *ngFor="let item of servpedidos.getPedido().observacoes" style="    margin-top: 10px;
+        margin-bottom: 10px;
+        background: red;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        color: white;
+        border-radius: 4px;">
+            {{ item.observacao }}
+        </div>
+
+        <div class="">
+
+            <div class="itemped" *ngFor="let element of servpedidos.getPedido().itens">
+                <div class="itmnome"> {{ element.qnt }}x {{element.nome}}</div>
+                <div>Observacão: {{element.observacao}}</div>
+                <div>Adicionais:</div>
+                <div class="itmadc" *ngFor="let adc of element.adicionais">
+                    <div> {{adc.qnt}}x {{adc.nome}}</div>
+                    <div></div>
+                    <div> {{adc.preco * adc.qnt | currency:'BRL':true }}</div>
+                </div>
+                <div>Preço: {{element.preco | currency:'BRL':true}} </div>
+                <div>Total: {{element.preco | currency:'BRL':true}} </div>
+            </div>
+
+            <div class="ccde">
+                <div class="ccde1">
+                    <div class="ccde11">Subtotal</div>
+                    <div>{{servpedidos.getPedido().subtotal | currency:'BRL':true}}</div>
+                </div>
+
+                <div class="ccde1">
+                    <div class="ccde11">Taxa de entrega</div>
+                    <div>{{servpedidos.getPedido().taxaentrega | currency:'BRL':true}}</div>
+                </div>
+
+                <div class="ccde1">
+                    <div class="ccde11">Desconto</div>
+                    <div>{{servpedidos.getPedido().desconto | currency:'BRL':true}}</div>
+                </div>
+
+
+                <div class="ccde1">
+                    <div class="ccde11">Taxa extra</div>
+                    <div>{{servpedidos.getPedido().taxaextra | currency:'BRL':true}}</div>
+                </div>
+
+                <div class="ccde1">
+                    <div class="ccde11"> Total </div>
+                    <div>{{servpedidos.getTotalPedido() | currency:'BRL':true}}</div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div>
+
+
+        <div class="" style="width: 100%;">
+            Histórico do pedido
+            <div class="iconH" *ngFor="let element of servpedidos.getPedido().historico">
+                <div>{{element.nome}}</div>
+                <div>
+                    <span style="font-size: 12px; color: red;font-size: 12px;">{{element.observacao}} </span>
+                </div>
+                <div>
+                    {{element.info}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<!--- PARA DESKTOP -->
+<div *ngIf="servpedidos.getPedido().id" class="conteudo dadosPedidoPC">
 
     <div class="c1">
         <div> Pedido #{{servpedidos.getPedido().id}} </div>
@@ -15,8 +216,11 @@
 
             <mat-chip-list aria-label="Fish selection">
 
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(1)" style="background-color: rgb(92, 177, 6); color: white;">Aceitar</mat-chip>
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" [mat-dialog-close]="'cancelar_pedido'" style="background-color:  rgb(168, 14, 40);color: white;" matTooltip="Obs! Se rejeitar este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" (click)="onClickAttStatusPedido(1)"
+                    style="background-color: rgb(92, 177, 6); color: white;">Aceitar</mat-chip>
+                <mat-chip *ngIf="servpedidos.getPedido().status_pedido == 0" [mat-dialog-close]="'cancelar_pedido'"
+                    style="background-color:  rgb(168, 14, 40);color: white;"
+                    matTooltip="Obs! Se rejeitar este pedido, o mesmo não poderá sofrer mais alterações em seu estatus">
                     Rejeitar</mat-chip>
                 <!--<mat-chip *ngIf="servpedidos.getPedido().status_pedido == 1 && servpedidos.getPedido().tipopedido === 'entrega'" (click)="onClickAttStatusPedido(2)">
                     <mat-icon>done</mat-icon> Pedido pronto </mat-chip>
@@ -55,7 +259,9 @@
                 </span>
 
 
-                <mat-chip *ngIf="servpedidos.getPedido().status_pedido > 0 && servpedidos.getPedido().status_pedido <= 5 && servapp.alterarPedido" (click)="onClickEditarPedido(servpedidos.getPedido())">
+                <mat-chip
+                    *ngIf="servpedidos.getPedido().status_pedido > 0 && servpedidos.getPedido().status_pedido <= 5 && servapp.alterarPedido"
+                    (click)="onClickEditarPedido(servpedidos.getPedido())">
                     <mat-icon>edit</mat-icon> Alterar pedido
                 </mat-chip>
             </mat-chip-list>
@@ -75,33 +281,39 @@
 
             <div class="c2">
                 <div>
-                    <div *ngIf="servpedidos.getPedido().dadoscliente.imagem" class="imagemusu" [defaultImage]="servapp.getDefaultImage()" [lazyLoad]="servpedidos.getPedido().dadoscliente.imagem">
-
+                    <div *ngIf="servpedidos.getPedido().dadoscliente.imagem" class="imagemusu"
+                        [defaultImage]="servapp.getDefaultImage()"
+                        [lazyLoad]="servpedidos.getPedido().dadoscliente.imagem">
                     </div>
                 </div>
                 <div>
-                    <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}} {{servpedidos.getPedido().dadoscliente.sobrenome}}
+                    <div class="c22"><span class="ddc">Nome:</span> {{servpedidos.getPedido().dadoscliente.nome}}
+                        {{servpedidos.getPedido().dadoscliente.sobrenome}}
                     </div>
-                    <div class="c22"><span class="ddc">Telefone:</span> 
+                    <div class="c22"><span class="ddc">Telefone:</span>
                         <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length === 12">
-                        <!-- se o numero tiver 12 = whatsapp : (55) 7488420307 -->
-                        {{servpedidos.getPedido().dadoscliente.telefone | mask: '+00 (00) 0000-0000'}}
+                            <!-- se o numero tiver 12 = whatsapp : (55) 7488420307 -->
+                            {{servpedidos.getPedido().dadoscliente.telefone | mask: '+00 (00) 0000-0000'}}
                         </span>
                         <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length === 11">
-                        <!-- (74) 98842-0307 -->
-                        {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 00000-0000'}}
+                            <!-- (74) 98842-0307 -->
+                            {{servpedidos.getPedido().dadoscliente.telefone | mask: '(00) 00000-0000'}}
                         </span>
                         <span *ngIf="servpedidos.getPedido().dadoscliente.telefone.length > 12">
                             <!-- 000000000000 -->
                             {{servpedidos.getPedido().dadoscliente.telefone | mask: '00000000000000'}}
-                            </span>
+                        </span>
 
                     </div>
-                    <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}} {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} - {{servpedidos.getPedido().endereco.cidade.nome}}
+                    <div class="c22"><span class="ddc">Endereço: </span> {{servpedidos.getPedido().endereco.rua}}
+                        {{servpedidos.getPedido().endereco.numero}}, {{servpedidos.getPedido().endereco.bairro.nome}} -
+                        {{servpedidos.getPedido().endereco.cidade.nome}}
                     </div>
-                    <div class="c22"><span class="ddc">Complemento:</span> {{servpedidos.getPedido().endereco.complemento}}
+                    <div class="c22"><span class="ddc">Complemento:</span>
+                        {{servpedidos.getPedido().endereco.complemento}}
                     </div>
-                    <div class="c22"><span class="ddc">Ponto de referência:</span> {{servpedidos.getPedido().endereco.tiporesidencia}}
+                    <div class="c22"><span class="ddc">Ponto de referência:</span>
+                        {{servpedidos.getPedido().endereco.tiporesidencia}}
                     </div>
                 </div>
 
@@ -155,7 +367,8 @@
             </div>
 
             <mat-card class="ccupom" *ngIf="servpedidos.getPedido().cupom">
-                <div style="text-align: center;"> O cliente usou um cupom no valor de {{servpedidos.getPedido().cupom.valor | currency:'BRL':true}} para este pedido</div>
+                <div style="text-align: center;"> O cliente usou um cupom no valor de
+                    {{servpedidos.getPedido().cupom.valor | currency:'BRL':true}} para este pedido</div>
                 <div style="font-size: 12px;text-align: center;"> {{ servpedidos.getPedido().cupom.descricao }} </div>
             </mat-card>
 

@@ -12,7 +12,7 @@
     width: 200px;
 }
 
-.sidenav .mat-toolbar {
+sidenav .mat-toolbar {
     background: inherit;
 }
 
@@ -20,6 +20,10 @@
     position: sticky;
     top     : 0;
     z-index : 10;
+}
+
+.mat-toolbar{
+    background-color: #353535;
 }
 
 .mat-list-item {
@@ -138,6 +142,7 @@
     grid-template-columns: 0fr 1fr;
     display              : grid;
     gap                  : 10px;
+    color: white;
 }
 
 .aaaf2 {
@@ -199,7 +204,25 @@
     font-size    : 10px;
 }
 
+.sMobile01 {
+    display: grid;
+}
+
+ 
 @media(max-width:600px) {
+    .mat-toolbar{
+        background-color: #ffffff;
+    }
+    
+    .styleMobile02 {
+        font-size: 10px;
+        margin: 0px;
+        margin-top: -10px;
+    }
+    .sMobile01 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
     .logoEmpresatoolbar {
         display: none;
     }
@@ -223,5 +246,6 @@
         grid-template-columns: 0fr 1fr;
         display              : grid;
         gap                  : 10px;
+        color: black;
     }
 }

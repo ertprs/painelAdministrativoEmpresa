@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CrudServicoService } from '../crud-servico.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ServicoService } from '../servico.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './auth.service';
 import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 import { CookieService } from 'ngx-cookie-service';
+declare var window: any;
+declare var cordova: any;
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,7 @@ export class LoginComponent implements OnInit {
   logo = 'assets/vultoroxonome.png';
   tipoLogin = false;
   checked = false;
+  deviceID = '';
 
   constructor(private crud: CrudServicoService,
     private formBuilder: FormBuilder,
@@ -25,7 +28,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private us: UsuariosAdmService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private activatedRoute: ActivatedRoute
   ) {
     /*
       this.crud.pegaHost().subscribe( data => {
@@ -40,6 +44,18 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    try {
+      parent.postMessage({ acao: 'esconderSplash', data: true }, '*');
+      this.activatedRoute.queryParams.subscribe(data => {
+        if (data.deviceid) {
+          console.log(data);
+          this.deviceID = data.deviceid;
+        }
+      });
+    } catch (e) { console.log(e); }
+
+
     this.btloginstatus = false;
 
 
@@ -47,8 +63,9 @@ export class LoginComponent implements OnInit {
       email: [null, Validators.required],
       senha: [null, Validators.required],
     });
+
     // Se existit COOKIES tenta fazer o LOGIN
-    if (this.cookieService.check('lgn') && this.cookieService.check('sha')) {
+    if (this.cookieService.check('lgn') && this.cookieService.check('sha') || this.deviceID !== '') {
       this.tipoLogin = true;
       this.oncllickEntrar();
     }
@@ -87,10 +104,19 @@ export class LoginComponent implements OnInit {
         this.auth.mostrarMenu.emit(true);
       }
     };
+
+
     if (this.tipoLogin) {
-      this.crud.post_api('login_emrpesa', loginres, { email: this.cookieService.get('lgn'), senha: this.cookieService.get('sha') }, true);
+      
+      this.crud.post_api('login_emrpesa&device_id=' + this.deviceID, loginres,
+        { /* PARAMS enviados para login */
+          email: this.cookieService.get('lgn'),
+          senha: this.cookieService.get('sha'),
+        }
+        , true);
+
     } else {
-      this.crud.post_api('login_emrpesa', loginres, this.formLogin.value, true);
+      this.crud.post_api('login_emrpesa&device_id=' + this.deviceID, loginres, this.formLogin.value, true);
     }
   }
 

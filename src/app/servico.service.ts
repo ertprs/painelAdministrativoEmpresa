@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { InicioService } from './inicio/inicio.service';
 import { isEqual } from 'lodash';
 import { ConfigServicoService } from './config/config-servico.service';
+import { ActivatedRoute } from '@angular/router';
+declare var cordovaapp: any;
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,8 @@ export class ServicoService {
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
   // private urlapi = 'http://10.0.0.110/api/';
-   private urlapi = 'https://jfortalapi.ecig.app/';
-  // private urlapi = 'https://api.juadelivery.site';
+  // private urlapi = 'https://jfortalapi.ecig.app/';
+  private urlapi = 'https://api.juadelivery.site';
   // private urlapi = 'https://api.dinp.com.br/';
   public serverNode = '';
   private API = 'apiEstabelecimento';
@@ -89,9 +91,9 @@ export class ServicoService {
   public rotaRemota = '';
   public mensagemRemota = '';
   public linkEmpresaSite = true;
-
   // tslint:disable-next-line: max-line-length
-  constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService) { }
+  constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService,
+              private activatedRoute: ActivatedRoute) { }
 
 
   getServerNode() {
@@ -231,9 +233,13 @@ export class ServicoService {
     this.btaddCredito = dados.config_dash.btaddCredito;
     this.btimportarprodutos = dados.config_dash.btimportarprodutos;
     this.linkEmpresaSite = dados.config_dash.linkEmpresaSite;
-     
+
     this.rotaRemota = dados.config_dash.rotaRemota;
     this.mensagemRemota = dados.config_dash.mensagemRemota;
+
+    try {
+      parent.postMessage({acao: 'dadosEmpresa', data: dados}, '*');
+    } catch (e) { console.log(e); }
 
   }
 

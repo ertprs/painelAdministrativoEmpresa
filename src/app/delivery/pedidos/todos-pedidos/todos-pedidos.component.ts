@@ -19,4 +19,11 @@ export class TodosPedidosComponent implements OnInit {
 
 
   }
+
+  attData(json: any) {
+    if (!json.datai || !json.dataf) {
+      return;
+    }
+    this.servpedidos.consultaTodosPedidos(json);
+  }
 }

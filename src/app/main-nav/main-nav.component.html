@@ -181,7 +181,7 @@
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-            <mat-toolbar color="primary" class="toolb" style="background-color: #353535;">
+            <mat-toolbar  class="toolb">
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
                     *ngIf="isHandset$ | async">
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
@@ -191,11 +191,11 @@
                     <div>
                         <div class="logoEmpresatoolbar" [lazyLoad]="servico.getDadosEmpresa().imagem"></div>
                     </div>
-                    <div>
+                    <div class="sMobile01">
                         <div class="aaaf23"> {{ this.servico.getDadosEmpresa().nome }} </div>
-                        <div class="aaaf2">{{ this.servico.getDadosEmpresa().operador.nome }} </div>
+                        <div class="aaaf2 styleMobile02">{{ this.servico.getDadosEmpresa().operador.nome }} </div>
                         <div *ngIf="servico.linkEmpresaSite" class="aaaf2" style="margin-top: -15px;">
-                            <a target="_new" [href]="servico.linkEmpresaSite" style="color: #cddc39; text-decoration: none;"> {{ servico.linkEmpresaSite }} 
+                            <a target="_new" [href]="servico.linkEmpresaSite" style="color: #4caf50; text-decoration: none;"> {{ servico.linkEmpresaSite }} 
                             <span class="styOn">ONLINE</span>
                             <div class="lds-ripple"><div></div><div></div></div>
                          </a>

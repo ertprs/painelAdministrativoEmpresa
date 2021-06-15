@@ -30,7 +30,7 @@
 
 
 <div class="">
-  <table mat-table [dataSource]="dataSource | filtrotabela:filtrop.value">
+  <table class="tabelaPC" mat-table [dataSource]="dataSource | filtrotabela:filtrop.value">
 
     <!-- Position Column -->
     <ng-container matColumnDef="c1">
@@ -113,6 +113,66 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <table class="tabelaCelular" mat-table [dataSource]="dataSource | filtrotabela:filtrop.value">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="c1">
+      <th mat-header-cell *matHeaderCellDef> Produtos </th>
+      <td mat-cell *matCellDef="let element" style="padding: 0px;">
+
+
+        <div class="adadosItem">
+          <div class="item-imagem" [defaultImage]="servicoapp.getDefaultImage()" [lazyLoad]="element.imagem"
+            offset="100">
+          </div>
+
+          <div class="ffda">
+            <div> #Código {{ element.id }} - {{ element.nome }}
+
+              <span *ngIf="element.itemEstoqueRelacionado !== '0'">
+                <mat-icon matTooltip="Item relacionado">compare_arrows</mat-icon> {{element.itemEstoqueRelacionado}}
+              </span>
+              <span class="dels" *ngIf="element.esgotado === true && element.tipo_acao !== 'esg_estoque'">
+                <mat-icon class="mat-18" matTooltip="Item esgotado">warning</mat-icon>
+
+              </span>
+              <span class="dels2" *ngIf="element.esconder === true">
+                <mat-icon class="mat-18" matTooltip="Item oculto para os clientes">warning</mat-icon>
+              </span>
+
+              <span class="" *ngIf="element.tipo_acao === 'esg_estoque'">
+                <mat-icon class="mat-18" color="warn" matTooltip="Item esgotado por falta de estoque">
+                  transit_enterexit</mat-icon>
+              </span>
+
+
+            </div>
+            <div> {{ element.descricao }} </div>
+          </div>
+
+          <div>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon color="warn">settings</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="dialogEditarItem(element, categoria)">
+                <mat-icon>edit</mat-icon> Editar item
+              </button>
+              <button mat-menu-item (click)="onClickConfigurarItem(element, categoria)">
+                <mat-icon>settings</mat-icon> Configurar item
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsCelular"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsCelular;"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

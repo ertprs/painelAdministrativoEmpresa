@@ -10,7 +10,7 @@ import { ImpressaoPedidoComponent } from 'src/app/delivery/pedidos/impressao-ped
 import { PedidosService } from 'src/app/delivery/pedidos/pedidos.service';
 // tslint:disable-next-line: import-spacing
 import { SelecionarMotoboyEntregaComponent }
-                    from 'src/app/delivery/pedidos/selecionar-motoboy-entrega/selecionar-motoboy-entrega.component';
+  from 'src/app/delivery/pedidos/selecionar-motoboy-entrega/selecionar-motoboy-entrega.component';
 import { ServicoService } from 'src/app/servico.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class TabelaPedidosComponent implements OnInit {
   @Output() attListaPedidos = new EventEmitter();
 
   constructor(private dialog: MatDialog, public servpedidos: PedidosService, private formBuilder: FormBuilder,
-              public servapp: ServicoService, private crud: CrudServicoService) { }
+    public servapp: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
   }
@@ -62,14 +62,14 @@ export class TabelaPedidosComponent implements OnInit {
 
   onClickPedido(item: any) {
 
-    try{
+    try {
 
-    if (item.id === this.servpedidos.getPedido().id && item.status_pedido === this.servpedidos.getPedido().status_pedido) {
-     //  return;
-    }
+      if (item.id === this.servpedidos.getPedido().id && item.status_pedido === this.servpedidos.getPedido().status_pedido) {
+        //  return;
+      }
 
-  } catch (e) { console.log('Pedido ainda nao carregado'); }
-    
+    } catch (e) { console.log('Pedido ainda nao carregado'); }
+
     this.servpedidos.setPedido({});
 
     const loginres = () => {
@@ -81,11 +81,11 @@ export class TabelaPedidosComponent implements OnInit {
         this.attListaPedidos.emit(r.resultado);
       }
     };
-    const data = { idPedido: item.id, id_empresa: this.servapp.getDadosEmpresa().id};
-    this.crud.post_api('consultaPedido', loginres, data );
+    const data = { idPedido: item.id, id_empresa: this.servapp.getDadosEmpresa().id };
+    this.crud.post_api('consultaPedido', loginres, data);
   }
 
-  
+
 
 
 
@@ -101,7 +101,7 @@ export class TabelaPedidosComponent implements OnInit {
       if (result === 'cancelar_pedido') {
         setTimeout(() => { this.onClickCancelarPedido(this.servpedidos.getPedido()); }, 600);
       } else {
-       // this.servpedidos.setPedido({});
+        // this.servpedidos.setPedido({});
       }
     });
 
@@ -122,7 +122,7 @@ export class TabelaPedidosComponent implements OnInit {
   onClickAddObservacao(item): void {
     const dialogRef = this.dialog.open(AddObservacaoPedidoComponent, {
       width: '450px',
-      data:  item 
+      data: item
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -149,8 +149,8 @@ export class TabelaPedidosComponent implements OnInit {
             const callb = () => {
               this.servpedidos.solicitaMotoboy(item.id);
             };
-            this.crud.post_api('attTaxaMotoboy', callb, { idPedido: item.id, taxaEntrega: r.taxa_entrega  }, true);
-         }
+            this.crud.post_api('attTaxaMotoboy', callb, { idPedido: item.id, taxaEntrega: r.taxa_entrega }, true);
+          }
         });
 
 

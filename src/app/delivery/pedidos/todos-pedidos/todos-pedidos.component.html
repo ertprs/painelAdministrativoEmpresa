@@ -1,11 +1,11 @@
 <div class="piclis">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
         <mat-label> Data início </mat-label>
-        <input matInput type="date" #dfi (keydown.enter)="this.servpedidos.consultaTodosPedidos({datai: dfi.value, dataf: dff.value})">
+        <input matInput type="date" #dfi (change)="attData({datai: dfi.value, dataf: dff.value})" (keydown.enter)="this.servpedidos.consultaTodosPedidos({datai: dfi.value, dataf: dff.value})">
     </mat-form-field>
-    <mat-form-field class="if">
+    <mat-form-field class="if" appearance="outline">
         <mat-label> Data final </mat-label>
-        <input matInput type="date" #dff (keydown.enter)="this.servpedidos.consultaTodosPedidos({datai: dfi.value, dataf: dff.value})">
+        <input matInput type="date" #dff (change)="attData({datai: dfi.value, dataf: dff.value})" (keydown.enter)="this.servpedidos.consultaTodosPedidos({datai: dfi.value, dataf: dff.value})">
     </mat-form-field>
 
     <button mat-icon-button class="btsoncul" color="primary" (click)="this.servpedidos.consultaTodosPedidos({datai: dfi.value, dataf: dff.value})">

@@ -35,6 +35,10 @@ export class MainNavComponent {
                   this.ms.menuSelecionado.forEach(element => {
                     if (element === item) {   item.selecionado = true; } else {   element.selecionado = false;  }
                   });
+                  if (window.innerWidth < 600) {
+                    // Se a tela for menor
+                    document.getElementById('btnav').click();
+                  }
               }
 
               selecionarMotoboy() {

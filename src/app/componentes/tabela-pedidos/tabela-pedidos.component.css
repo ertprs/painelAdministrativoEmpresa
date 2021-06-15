@@ -80,6 +80,12 @@ table {
     color: #4CAF50;
 }
 
+.cpp {
+    margin: 7px;
+    background: #8bc34a;
+    color: white;
+}
+
 @keyframes example {
     from {
         background-color: red;

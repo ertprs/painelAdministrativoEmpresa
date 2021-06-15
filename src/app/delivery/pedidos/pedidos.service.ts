@@ -61,33 +61,38 @@ export class PedidosService {
   }
 
   getTotalPedido(): number {
-    return parseFloat( this.pedido.total );
+    return parseFloat(this.pedido.total);
   }
 
   getTaxaExtra(): number {
-    return parseFloat( this.pedido.taxaextra );
+    return parseFloat(this.pedido.taxaextra);
   }
 
   consultaPedidos() {
-      this.statusloadpedidos = true;
-      // console.log('#consultaPEDIDOS');
-      this.crud.get_api('pedidos&id=' + this.servapp.getDadosEmpresa().id).subscribe(data => {
-       
-        this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
-        this.statusloadpedidos = false;
-        // this.servapp.setStatusDelivery(data.status_loja.status_empresa);
-        if (isEqual(this.pedidos, data.resultado.pedidos.lista_pedidos) === false) {
-          this.pedidos = data.resultado.pedidos.lista_pedidos;
-        }
+    this.statusloadpedidos = true;
+    // console.log('#consultaPEDIDOS');
+    this.crud.get_api('pedidos&id=' + this.servapp.getDadosEmpresa().id).subscribe(data => {
 
-        this.statusNotificar = data.resultado.pedidos.notificar;
-        if (this.statusNotificar === true) {
-          this.playAudio1();
-        }
+      this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
+      this.statusloadpedidos = false;
+      // this.servapp.setStatusDelivery(data.status_loja.status_empresa);
+      if (isEqual(this.pedidos, data.resultado.pedidos.lista_pedidos) === false) {
+        this.pedidos = data.resultado.pedidos.lista_pedidos;
+      }
 
-       this.servapp.setListaEntregas(data.resultado.entregas);
+      this.statusNotificar = data.resultado.pedidos.notificar;
+      if (this.statusNotificar === true) {
+        this.playAudio1();
+      }
 
-      });
+      this.servapp.setListaEntregas(data.resultado.entregas);
+
+      try {
+        // Faz chamada no aplicativo CORDOVA
+        parent.postMessage({acao: 'pedidoPendente', data: this.pedidos}, '*');
+      } catch (e) { console.log(e); }
+
+    });
   }
 
   consultaTodosPedidos(filtro: any) {
@@ -95,19 +100,19 @@ export class PedidosService {
     this.statusloadpedidos = true;
     console.log('#consultaTodosPedidos');
     this.crud.get_api('consulta_todos_pedidos&id=' + this.servapp.getDadosEmpresa().id +
-    '&datai=' + filtro.datai +
-     '&dataf=' + filtro.dataf).subscribe(data => {
-      console.log(data);
-      this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
-      this.statusloadpedidos = false;
+      '&datai=' + filtro.datai +
+      '&dataf=' + filtro.dataf).subscribe(data => {
+        console.log(data);
+        this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
+        this.statusloadpedidos = false;
 
-      // if (isEqual(this.pedidos, data.lista_pedidos) === false) {
-      this.todospedidos = data.resultado.pedidos.lista_pedidos;
-      // }
+        // if (isEqual(this.pedidos, data.lista_pedidos) === false) {
+        this.todospedidos = data.resultado.pedidos.lista_pedidos;
+        // }
 
-      this.statusNotificar = data.notificar;
-    });
-}
+        this.statusNotificar = data.notificar;
+      });
+  }
 
   getQntPedidoAberto() {
     return this.qntPedidosEmaberto;

@@ -49,3 +49,38 @@ table {
 .ff1 {
     width: 100%;
 }
+
+.tabelaPC {
+    display: inline-table;
+}
+.tabelaCelular {
+    display: none;
+}
+
+
+@media(max-width:600px) {
+    .tabelaPC {
+        display: none;
+    }
+    .tabelaCelular {
+        display: block;
+    }
+
+    .adadosItem {
+        display: grid;
+        grid-template-columns: 0fr 2fr 0fr;
+        text-align: left;
+        align-items: center;
+    }
+    .item-imagem {
+        width: 60px;
+        height: 60px;
+    }
+    td {
+        padding: 0px;
+    }
+    .ffda {
+        padding-left: 5px;
+        font-size: 10px;
+    }
+}

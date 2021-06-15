@@ -19,6 +19,7 @@ import { ServicoService } from '../servico.service';
 export class ItensCatalogoEmpresaComponent implements OnInit {
 
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c5', 'c4'];
+  displayedColumnsCelular: string[] = ['c1'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dataSource: any;

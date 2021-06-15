@@ -27,6 +27,7 @@ table {
         margin-top: 5px;
         display: grid;
         justify-items: normal;
+        padding: 15px;
     }
     .btsoncul{
         display: none;
