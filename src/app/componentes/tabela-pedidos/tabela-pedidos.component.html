@@ -177,15 +177,16 @@
                     </span>
 
                     <button color="primary" class="bts" *ngIf="element.status_motoboy == 0"
-                        [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'"
-                        (click)="servpedidos.solicitaMotoboy(element.id)" mat-flat-button
+                        [disabled]="element.statusBtSm || element.tipopedido === 'retirada'"
+                        (click)="servpedidos.solicitaMotoboy(element.id, element)" mat-flat-button
                         matTooltip="Envie esta entrega a todos o entregadores que estão online">Solicitar
                         entregador</button>
 
                     <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1"
                         matTooltip="Aguardando entregador aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
 
-                    <button style="margin-top: 11px;" (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id)"
+                    <button style="margin-top: 11px;"
+                        (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id, element)"
                         matTooltip="Cancelar solicitação de entregador" mat-icon-button color="warn"
                         *ngIf="element.status_motoboy == 1">
                         <mat-icon>cancel</mat-icon>
@@ -219,7 +220,9 @@
 
 <!-- TELA PEQUENA -->
 <div class="mocel">
-    <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
+    <div style="height: 5px;">
+        <mat-progress-bar *ngIf="servpedidos.statusloadpedidos" mode="buffer"></mat-progress-bar>
+    </div>
     <div class="itemPedido" *ngFor="let element of pedidos">
         <div>#{{element.id}} {{element.status_texto}} - {{element.info}} às {{element.horario}}</div>
         <div>Nome: {{element.dadoscliente.nome}}</div>
@@ -315,13 +318,21 @@
             </div>
 
             <button color="primary" class="bts" mat-flat-button
-                [disabled]="servpedidos.statusBtSm || element.tipopedido === 'retirada'"
-                *ngIf="element.status_motoboy == 0" (click)="servpedidos.solicitaMotoboy(element.id)">Solicitar
-                entregador</button>
+                [disabled]="
+                element.statusBtSm 
+                || element.tipopedido === 'retirada' 
+                || element.status_pedido == 4
+                || element.status_pedido == 5
+                || element.status_pedido == 6
+                || element.status_pedido == 7
+                " *ngIf="element.status_motoboy == 0"
+                (click)="servpedidos.solicitaMotoboy(element.id, element)">
+                Solicitar entregador
+            </button>
             <div style="display: flex;    align-items: baseline;">
                 <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1"
                     matTooltip="Aguardando entregador aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
-                <button style="margin-top: 11px;" (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id)"
+                <button style="margin-top: 11px;" (click)="servpedidos.cacelarSolicitacaoMotoboy(element.id, element)"
                     mat-icon-button color="warn" *ngIf="element.status_motoboy == 1">
                     <mat-icon>cancel</mat-icon>
                 </button>
@@ -329,12 +340,11 @@
                 <span *ngIf="element.status_motoboy == '2' && element.motoboy">
                     <button mat-button color="primary" *ngIf="element.status_motoboy == '2'" matTooltip="{{element.motoboy.nome}} Telefone: 
                 {{ element.motoboy.telefone | mask: '(00) 0000-0000'}}">
-                        <img [lazyLoad]="element.motoboy.imagem" width="40px"
-                            style="height: 40px;border-radius: 7px;">
+                        <img [lazyLoad]="element.motoboy.imagem" width="40px" style="height: 40px;border-radius: 7px;">
                         Entrega aceita
                     </button>
                 </span>
-                
+
             </div>
 
 

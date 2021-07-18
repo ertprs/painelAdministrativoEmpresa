@@ -1,3 +1,4 @@
+import { CrudServicoService } from 'src/app/crud-servico.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MainNavService } from './main-nav.service';
 import { PedidosService } from './../delivery/pedidos/pedidos.service';
@@ -9,6 +10,7 @@ import { ServicoService } from '../servico.service';
 import { UsuariosAdmService } from '../usuarios/usuarios-adm.service';
 import { SelecionarMotoboyEntregaComponent } from '../delivery/pedidos/selecionar-motoboy-entrega/selecionar-motoboy-entrega.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ProgressSistemaService } from '../componentes/progress-sistema/progress-sistema.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -28,45 +30,50 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, public servico: ServicoService,
               public servpedidos: PedidosService, public us: UsuariosAdmService, public ms: MainNavService,
-              private dialog: MatDialog, private cookieService: CookieService) {
-              }
+              private dialog: MatDialog, private cookieService: CookieService, private crud: CrudServicoService,
+              private progServ: ProgressSistemaService  
+              ) {
+  }
 
-              clickMenu(item) {
-                  this.ms.menuSelecionado.forEach(element => {
-                    if (element === item) {   item.selecionado = true; } else {   element.selecionado = false;  }
-                  });
-                  if (window.innerWidth < 600) {
-                    // Se a tela for menor
-                    document.getElementById('btnav').click();
-                  }
-              }
+  clickMenu(item) {
+    this.ms.menuSelecionado.forEach(element => {
+      if (element === item) { item.selecionado = true; } else { element.selecionado = false; }
+    });
+    if (window.innerWidth < 600) {
+      // Se a tela for menor
+      document.getElementById('btnav').click();
+    }
+  }
 
-              selecionarMotoboy() {
-                this.dialogDelsuc = this.dialog.open(SelecionarMotoboyEntregaComponent, {
-                  width: '560px', data: false
-                });
-                this.dialogDelsuc.afterClosed().subscribe(result => {
-                  if (result) {
+  selecionarMotoboy() {
+    this.dialogDelsuc = this.dialog.open(SelecionarMotoboyEntregaComponent, {
+      width: '560px', data: false
+    });
+    this.dialogDelsuc.afterClosed().subscribe(result => {
+      if (result) {
 
-                  }
-                });
-              }
+      }
+    });
+  }
 
-              sair() {
-                // console.log('Exit@');
-                const pin = setInterval(() => {
-                
-                  if (this.cookieService.check('lgn')) {
-                    // console.log('Cookies', this.cookieService.getAll());
-                    this.cookieService.deleteAll();
+  sair() {
 
-                  } else {
+    this.crud.post_api('sairPainel', () => {
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) {  
+        this.progServ.showProgress.emit(true);
+        this.servico.mostrarMensagem(r.detalhes); 
+        return; }
+      const pin = setInterval(() => {
+        if (this.cookieService.check('lgn')) {
+          this.cookieService.deleteAll();
+        } else {
+          location.reload();
+          clearInterval(pin);
+        }
+      }, 900);
+    }, {}, true);
 
-                    location.reload();
-                    clearInterval(pin);
-
-                  }
-                }, 900);
-              }
+  }
 
 }

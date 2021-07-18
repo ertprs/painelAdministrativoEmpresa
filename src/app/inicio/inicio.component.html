@@ -83,13 +83,34 @@
 
       <!--PEDIDOS-->
       <span *ngFor="let item of this.servpedidos.getPedidos()">
-        <!-- SE o motoboy aceitou nao mostra -->
-        <span *ngIf="item.status_motoboy === '0'">
+        <!-- SE o motoboy aceitou nao mostra e o pedido tem quer ser para entrega -->
+        <span *ngIf="item.status_motoboy === '0' && item.tipopedido === 'entrega'">
           <agm-overlay [latitude]="getNumber(item.coordenada_cliente[0])"
             [longitude]="getNumber(item.coordenada_cliente[1])"
             *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '3' || item.status_pedido === '4' || item.status_pedido === '5'">
 
-            <agm-info-window>Pedido #{{item.id}}</agm-info-window>
+            <agm-info-window>
+              <div>
+                <div>
+                  <b> Status pedido </b> {{ item.status_texto }}
+                </div>
+                <div>
+                  <b> Pedido # </b> {{item.id}} - {{ item.tipopedido }} - {{ item.info }}
+                </div>
+                <div>
+                  <b>Nome cliente: </b> {{ item.dadoscliente.nome }}
+                </div>
+                <div>
+                  <b>Telefone cliente: </b> {{ item.dadoscliente.telefone |  mask:"(00)00000-00000000" }}
+                </div>
+                <div>
+                  <b>Valor:</b> {{ item.total | currency:'BRL' }}
+                </div>
+                <div style="margin-top: 5px;">
+                  <span style="color: red;font-weight: 600;">Nenhum entregador aceitou este pedido</span>
+                </div>
+              </div>
+            </agm-info-window>
             <!--<agm-direction [renderOptions]="{suppressMarkers: true, draggable: true}"
                               [origin]="{lat:getNumber(item.coordenada_cliente[0]), lng:getNumber( item.coordenada_cliente[1])}"
                               [destination]="{lat:lat, lng:lgn} "

@@ -33,6 +33,10 @@ export class ItensEstoqueComponent implements OnInit {
   dialogDelsuc: any;
   statusLoadEntregas: boolean;
   form: FormGroup;
+  f: FormGroup = this.formBuilder.group({
+    filtro: ['']
+  });
+  filtro: string = '';
   sst = false;
   statosprog = false;
   btEnviar = true;
@@ -44,6 +48,12 @@ export class ItensEstoqueComponent implements OnInit {
   ngOnInit(): void {
    this.btEnviar = this.us.getPermissoessuario()[5].children[0].status;
    this.estoque();
+   
+   this.f.controls.filtro.valueChanges.subscribe( data=>{
+     console.log('data', data);
+    this.filtro = data;
+   });
+
   }
   estoque() {
     this.statosprog = true;

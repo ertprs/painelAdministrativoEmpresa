@@ -25,4 +25,7 @@ table {
     .ggfON {
         display: block;
     }
+    .nomeItemEstoque {
+        font-size: 10px;
+    }
 }

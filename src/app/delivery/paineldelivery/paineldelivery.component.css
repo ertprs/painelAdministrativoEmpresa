@@ -29,4 +29,9 @@
         background: #f7f7f7;
         width: 64px;
     }
+    .g {
+        display: grid;
+        grid-template-columns: 65px 4fr;
+        height: 93.1%;
+    }
 }

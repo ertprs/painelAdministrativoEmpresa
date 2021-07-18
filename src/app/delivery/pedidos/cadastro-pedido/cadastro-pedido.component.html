@@ -149,7 +149,7 @@
 
                     <div>
                         <mat-form-field class="fotmg" style="margin-top:20px;" color="primary" appearance="outline">
-                            <mat-label>Observação pedido</mat-label>
+                            <mat-label>Observação para o pedido</mat-label>
                             <input [(ngModel)]="servcard.getCarrinho().observacao" [ngModelOptions]="{standalone: true}" type="text" matInput placeholder="Digite aqui a observação para o pedido">
                         </mat-form-field>
                     </div>
@@ -161,10 +161,10 @@
                         text-align: center;"> Dívida: {{ this.servcard.getCarrinho().divida | currency: 'BRL'}} </div>
                     </div>
 
-                    <div style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 10px;" *ngIf="this.servico.pagamentoStandBy">
                         <mat-slide-toggle color="primary" (click)="onClickStandBy(fpsty)" #fpsty> Pagamento Stand-by </mat-slide-toggle>
                     </div>
-                    <div style="margin-bottom: 10px;">
+                    <div style="margin-bottom: 10px;"  *ngIf="this.servico.pagamentoRestoCredito">
                         <mat-slide-toggle color="primary" (click)="pagCred(pcred)" #pcred> Pagamento com resto para crédito </mat-slide-toggle>
                     </div>
 

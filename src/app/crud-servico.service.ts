@@ -30,10 +30,10 @@ export class CrudServicoService {
     return $.post(this.servico.getApiAcao(acao, mostrarProgesso), { obj: param },
       (data, status) => {
         /*  console.log(data); */
-         this.servico.setRespostaApi(JSON.parse(data));
+        this.servico.setRespostaApi(JSON.parse(data));
         // this.servico.setRespostaApi(data);
-         acaoCallBack();
-         if (mostrarProgesso) { this.progServ.showProgress.emit(false); }
+        acaoCallBack();
+        if (mostrarProgesso) { this.progServ.showProgress.emit(false); }
       });
   }
 
@@ -47,11 +47,17 @@ export class CrudServicoService {
   }
 
   cc() {
-    
+
     this.http.get(this.servico.getApiAcao('consulta_entregador_on')).subscribe(
       data => {
-        this.resp  = data;
-        // console.log(this.resp);
+        this.resp = data;
+
+        try {
+          if (this.resp.erro === true && this.resp.resultado === false) {
+            location.reload();
+          }
+        } catch (e) { console.log(e); }
+
         this.servico.setListaNotificacoes(this.resp.api.notificacoes.lista);
         this.servico.setListaEntregador(this.resp.api.entregador);
         // this.servico.setListaEntregas(this.resp.api.entregas.lista);

@@ -5,3 +5,36 @@ table {
 mat-icon {
     color: rgb(90, 90, 90);
 }
+
+
+.t2 {
+    display: none;
+}
+
+.item {
+    width: 321px;
+    margin-bottom: 29px;
+    color: black;
+    font-size: 12px;
+    padding-top: 30px;
+}
+
+@media(max-width:600px) {
+    .t1 {
+        display: none;
+    }
+    .t2 {
+        display: block;
+    }
+    .forms {
+        padding: 10px;
+        grid-template-columns:1fr;
+        display: grid;
+    }
+    .dasda {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: baseline;
+        gap: 5px;
+    } 
+}

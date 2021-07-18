@@ -24,15 +24,15 @@ export class DialogPedidoComponent implements OnInit {
   loaderPedido = false;
 
   constructor(public servpedidos: PedidosService, public servapp: ServicoService, private crud: CrudServicoService,
-              private dialog: MatDialog, public upimgServ: UploadimagemService, private sercard: CadastroPedidoService,
-              private router: Router, public dialogRef: MatDialogRef<DialogPedidoComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+    private dialog: MatDialog, public upimgServ: UploadimagemService, private sercard: CadastroPedidoService,
+    private router: Router, public dialogRef: MatDialogRef<DialogPedidoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-   
+
   }
 
-  
+
 
   onClickAttStatusPedido(statusPedido) {
     this.btCstatus = true;
@@ -47,12 +47,11 @@ export class DialogPedidoComponent implements OnInit {
         this.dialog.closeAll();
       }
     };
-    const data = { id_pedido: this.servpedidos.getPedido().id, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido};
-    console.log( this.crud.post_api('att_status_pedido', loginres, data ) );
+    const data = { id_pedido: this.servpedidos.getPedido().id, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido };
+    this.crud.post_api('att_status_pedido', loginres, data);
   }
 
   onClickEditarPedido(item: any) {
-    console.log(item);
     const enderecoCliente = { rua: '', numero: '', bairro: '', cidade: '', complemento: '', tiporesidencia: '' };
     enderecoCliente.rua = item.endereco.rua;
     enderecoCliente.numero = item.endereco.numero;
@@ -86,9 +85,9 @@ export class DialogPedidoComponent implements OnInit {
     };
 
     item.itens.forEach(element => {
-    element.total = parseFloat(element.total);
-    element.preco = parseFloat(element.preco);
-    this.sercard.addItemCarrinho(element);
+      element.total = parseFloat(element.total);
+      element.preco = parseFloat(element.preco);
+      this.sercard.addItemCarrinho(element);
     });
 
     this.sercard.setIdPedido(item.id);

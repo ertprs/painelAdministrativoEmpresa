@@ -12,19 +12,19 @@
                 <ng-template matStepLabel>Valores de pedidos</ng-template>
 
                 <div class="" style="width: 100%;">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field class="gg1" appearance="outline">
                         <mat-label>Valor mínimo do pedido</mat-label>
                         <input matInput placeholder="Ex. R$8,00" type="text" formControlName="pedidomin" matInput currencyMask>
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                    <mat-form-field class="gg1" appearance="outline">
                         <mat-label>Valor máximo do pedido</mat-label>
                         <input matInput placeholder="Ex. R$800,00" type="text" formControlName="pedidomax" matInput currencyMask>
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                    <mat-form-field class="gg1" appearance="outline">
                         <mat-label>Entrega grátis a partir de</mat-label>
                         <input matInput placeholder="Ex. pedidos acima de R$100,00" type="text" formControlName="entrega_gratis" matInput currencyMask>
                         <mat-icon matSuffix>home_work</mat-icon>
@@ -37,13 +37,13 @@
                 <ng-template matStepLabel>Tipo empresa/Tags</ng-template>
 
                 <div class="" style="width: 100%;">
-                    <mat-form-field style="width: 400px" appearance="outline">
+                    <mat-form-field  class="gg1" appearance="outline">
                         <mat-label>Principais categorias do catálogo da empresa</mat-label>
                         <input matInput placeholder="Separe os itens por vírgula: Ex.: categoria1, categoria2" type="text" formControlName="tags">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                    <mat-form-field class="gg1" appearance="outline">
                         <mat-label>Tipo empresa</mat-label>
                         <input matInput placeholder="Ex.: Loja" type="text" formControlName="seguimento">
                         <mat-icon matSuffix>home_work</mat-icon>
@@ -56,13 +56,13 @@
                 <ng-template matStepLabel>Tempo entrega</ng-template>
 
                 <div class="" style="width: 100%;">
-                    <mat-form-field appearance="outline">
+                    <mat-form-field class="gg1" appearance="outline">
                         <mat-label>Estimativa de entrega</mat-label>
                         <input matInput placeholder="Ex. 45 a 75 minutos" type="text" formControlName="tempoentrega">
                         <mat-icon matSuffix>home_work</mat-icon>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" style="margin-left: 10px;">
+                    <mat-form-field class="gg1" appearance="outline">
                         <mat-label>Tempo para retirada</mat-label>
                         <input matInput placeholder="Tempo para o cliente poder retirar" type="text" formControlName="temporetirada">
                         <mat-icon matSuffix>time</mat-icon>

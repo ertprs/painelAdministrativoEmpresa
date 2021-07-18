@@ -1,7 +1,7 @@
 .g {
-    display: grid;
+    display              : grid;
     grid-template-columns: 1fr;
-    height: 85.5%;
+    height               : 85.5%;
 }
 
 table {
@@ -9,7 +9,7 @@ table {
 }
 
 .col1 {
-    background: #efefef;
+    background  : #efefef;
     border-right: 1px solid #cecece;
 }
 
@@ -23,9 +23,43 @@ table {
 
 .m_selecionado {
     background: #2196F3;
-    color: white;
+    color     : white;
 }
 
 .f-cli {
     margin-left: 10px;
+}
+
+.cforms {
+    padding              : 10px;
+    grid-template-columns: 1fr 1fr;
+    display              : grid;
+    margin-left          : 10px;
+}
+
+.dasda {
+    display              : grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items          : baseline;
+    gap                  : 5px;
+}
+
+
+
+@media(max-width:600px) {
+
+    .cforms {
+        padding              : 10px;
+        grid-template-columns: 1fr;
+        display              : grid;
+        margin-left          : 0px;
+
+    }
+
+    .dasda {
+        display              : grid;
+        grid-template-columns: 1fr;
+        align-items          : baseline;
+        gap                  : 5px;
+    }
 }

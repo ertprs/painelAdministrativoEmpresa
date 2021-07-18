@@ -5,16 +5,22 @@
         <div class="modphone">
             <div style="margin-right: 30px;" [formGroup]="form">
 
-                <mat-slide-toggle *ngIf="us.getPermissoessuario()[0].children[0].status" [disabled]="!servapp.getStatusSistemaDelivery()" color="primary" style="margin-top: 5px;" (click)="onClickStatusDelivery()" formControlName="statusdelivery">
+                <mat-slide-toggle *ngIf="us.getPermissoessuario()[0].children[0].status"
+                    [disabled]="!servapp.getStatusSistemaDelivery()" color="primary" style="margin-top: 5px;"
+                    (click)="onClickStatusDelivery()" formControlName="statusdelivery">
                     <span class="spstatusdli op" *ngIf="form.value.statusdelivery"> Receber pedidos </span>
-                    <span class="spstatusdli cl" *ngIf="!form.value.statusdelivery" style="color: #c9cacc;"> Receber pedidos </span>
+                    <span class="spstatusdli cl" *ngIf="!form.value.statusdelivery" style="color: #c9cacc;"> Receber
+                        pedidos </span>
                 </mat-slide-toggle>
             </div>
 
             <mat-chip-list>
-                <mat-chip [class.btsele]="btsp[0].selecionado" (click)="onclickBtPainel(0)" routerLink="./pedidos" *ngIf="us.getPermissoessuario()[0].children[1].status">
+                <mat-chip [class.btsele]="btsp[0].selecionado" (click)="onclickBtPainel(0)" routerLink="./pedidos"
+                    *ngIf="us.getPermissoessuario()[0].children[1].status">
                     De hoje</mat-chip>
-                <mat-chip [class.btsele]="btsp[1].selecionado" (click)="onclickBtPainel(1)" matTooltip="Lista de todos os pedidos recebidos" routerLink="./todospedidos" *ngIf="us.getPermissoessuario()[0].children[2].status">
+                <mat-chip [class.btsele]="btsp[1].selecionado" (click)="onclickBtPainel(1)"
+                    matTooltip="Lista de todos os pedidos recebidos" routerLink="./todospedidos"
+                    *ngIf="us.getPermissoessuario()[0].children[2].status">
                     Todos pedidos
                 </mat-chip>
 
@@ -29,16 +35,24 @@
 
     </mat-card>
 
+    <mat-card *ngIf="!servapp.getStatusEmpresaHorarioProgramado()" style="    margin-top: 5px;
+    background:#f44336;
+    color:white;">
+        A empresa está fechada
+    </mat-card>
+
     <mat-card *ngIf="servapp.getStatusfatura()" style="    margin-top: 5px;
     background:rgb(255 222 62);
     color: rgb(0, 0, 0);">
-        A loja está fechada por falta de pagamento de fatura. <a mat-button href="javascript:;" routerLink="/faturas"> Ver fatura(s) </a>
+        A loja está fechada por falta de pagamento de fatura. <a mat-button href="javascript:;" routerLink="/faturas">
+            Ver fatura(s) </a>
     </mat-card>
 
     <mat-card *ngIf="!servapp.getStatusSistemaDelivery()" style="    margin-top: 5px;
     background: red;
     color: white;">
-        O estabelecimento não está configurado para funcionamento delivery. <a mat-button href="javascript:;" routerLink="/painel/delivery"> Clique aqui para configurar </a>
+        O estabelecimento não está configurado para funcionamento delivery. <a mat-button href="javascript:;"
+            routerLink="/painel/delivery"> Clique aqui para configurar </a>
     </mat-card>
 
 </div>

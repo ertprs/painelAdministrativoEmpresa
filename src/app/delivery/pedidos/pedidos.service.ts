@@ -70,7 +70,6 @@ export class PedidosService {
 
   consultaPedidos() {
     this.statusloadpedidos = true;
-    // console.log('#consultaPEDIDOS');
     this.crud.get_api('pedidos&id=' + this.servapp.getDadosEmpresa().id).subscribe(data => {
 
       this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
@@ -85,6 +84,8 @@ export class PedidosService {
         this.playAudio1();
       }
 
+      this.servapp.setStatusEmpresaHorarioProgramado(data.resultado.status_empresa_horario);
+
       this.servapp.setListaEntregas(data.resultado.entregas);
 
       try {
@@ -96,13 +97,10 @@ export class PedidosService {
   }
 
   consultaTodosPedidos(filtro: any) {
-    console.log(filtro);
     this.statusloadpedidos = true;
-    console.log('#consultaTodosPedidos');
     this.crud.get_api('consulta_todos_pedidos&id=' + this.servapp.getDadosEmpresa().id +
       '&datai=' + filtro.datai +
       '&dataf=' + filtro.dataf).subscribe(data => {
-        console.log(data);
         this.qntPedidosEmaberto = data.resultado.pedidos.qnt_pedidos_pendente;
         this.statusloadpedidos = false;
 
@@ -122,69 +120,76 @@ export class PedidosService {
   }
 
 
-  solicitaMotoboy(idPedido) {
-    this.statusBtSm = true;
+  solicitaMotoboy(idPedido: any, element: any) {
+    element.statusBtSm = true;
     const loginres = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
-      console.log(r);
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.mensagem);
       } else {
         this.servapp.mostrarMensagem(r.mensagem);
-        this.consultaPedidos();
+        element.status_motoboy = 1;
+        // this.consultaPedidos();
       }
       setTimeout(() => {
         this.statusBtSm = false;
-      }, 1000);
+      }, 500);
     };
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id };
-    this.crud.post_api('solicita_motoboy_pedido', loginres, data, true);
+    this.crud.post_api('solicita_motoboy_pedido', loginres, data, false);
   }
 
-  cacelarSolicitacaoMotoboy(idPedido) {
+  cacelarSolicitacaoMotoboy(idPedido, element) {
     const loginres = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
-      console.log(r);
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.mensagem);
       } else {
         this.servapp.mostrarMensagem(r.mensagem);
-        this.consultaPedidos();
+        element.statusBtSm = false;
+        element.status_motoboy = 0;
+        // this.consultaPedidos();
       }
     };
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id };
     this.crud.post_api('cancelar_solicitacao_motoboy', loginres, data, true);
   }
 
-  onClickAttStatusPedido(statusPedido, idPedido, params) {
+  onClickAttStatusPedido(statusPedido, idPedido, element) {
 
     const loginres = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
-      console.log(r);
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.detalhes);
       } else {
         this.servapp.mostrarMensagem(r.resultado.itens.detalhes);
-        this.consultaPedidos();
-
+        element.status_pedido = statusPedido;
+        switch (statusPedido) {
+          case 1 : { element.status_texto = 'Aceito'; } break;
+          case 2 : { element.status_texto = 'Pronto para sair'; } break;
+          case 3 : { element.status_texto = 'Pronto para retirar'; } break;
+          case 4 : { element.status_texto = 'A caminho'; } break;
+          case 5 : { element.status_texto = 'Entregue'; } break;
+          case 6 : { element.status_texto = 'Concluído'; } break;
+          case 7 : { element.status_texto = 'Cancelado'; } break;
+          default : {
+            element.status_texto = 'Carregando...';
+            this.consultaPedidos();
+          }
+        }
       }
 
     };
 
-
+    const params = element;
     const data = { id_pedido: idPedido, id_empresa: this.servapp.getDadosEmpresa().id, status: statusPedido, params };
-    this.crud.post_api('att_status_pedido', loginres, data, true);
+    this.crud.post_api('att_status_pedido', loginres, data, false);
 
   }
 
   onClickAttStatusDelivery(statusDelivery) {
     const loginres = () => {
-      console.log('callback');
       const r = this.servapp.getRespostaApi();
-      console.log(r);
       if (r.erro === true) {
         this.servapp.mostrarMensagem(r.mensagem);
       } else {

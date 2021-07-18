@@ -31,7 +31,7 @@ export class ItensCatalogoEmpresaComponent implements OnInit {
   });
 
   constructor(public dialog: MatDialog, private formBuilder: FormBuilder, public servico: HomeService,
-              private crud: CrudServicoService, public servicoapp: ServicoService, private route: Router, private servHome: HomeService) { }
+    private crud: CrudServicoService, public servicoapp: ServicoService, private route: Router, private servHome: HomeService) { }
 
 
 
@@ -55,11 +55,17 @@ export class ItensCatalogoEmpresaComponent implements OnInit {
     this.dialogDelsuc.afterClosed().subscribe(result => {
 
       this.dataSource.filteredData.forEach(element => {
-        if (element.id === result.id) {
-          element.esconder = result.esconder;
-          element.esgotado = result.esgotado;
-        }
+        try {
+          if (element.id === result.id) {
+            element.esconder = result.esconder;
+            element.esgotado = result.esgotado;
+            element.nome = result.nome;
+            element.preco = result.preco;
+            element.descricao = result.descricao;
+          }
+        } catch (e) { /* erro quando fecha a janela */ }
       });
+
     });
 
     this.servicoapp.setDialogapp(this.dialogDelsuc);

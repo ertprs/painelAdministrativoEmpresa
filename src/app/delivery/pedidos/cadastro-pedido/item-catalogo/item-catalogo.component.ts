@@ -21,6 +21,7 @@ export class ItemCatalogoComponent implements OnInit {
   statusAdd = false;
   observacaoUsuario: string;
   itemAdicionais = true;
+  private statusEstoqueItem = true;
 
   constructor(public servico: ServicoService, private crud: CrudServicoService, public dialogRef: MatDialogRef<DialogAddMototboyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private servcard: CadastroPedidoService) { }
@@ -37,7 +38,7 @@ export class ItemCatalogoComponent implements OnInit {
         // console.log(data);
         /* Verifica se o item tem adicionais */
 
-
+        this.statusEstoqueItem = data.item_estoque.status_estoque;
         this.itemCatalogo = data.item;
         this.itemCatalogo.qnt = 1;
         this.itemCatalogo.total = this.itemCatalogo.preco;
@@ -222,7 +223,10 @@ export class ItemCatalogoComponent implements OnInit {
 
   onclickAddCar(obs) {
     if (this.statusAdd === true) { return; }
-
+    if (this.statusEstoqueItem === false) {
+      this.servico.mostrarMensagem('Item sem estoque');
+      return;
+    }
 
     const x = this.vericaCatObrigatorio();
     if (x.status === true) {

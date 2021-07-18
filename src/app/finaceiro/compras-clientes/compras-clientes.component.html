@@ -1,49 +1,43 @@
-<div [formGroup]="form" style="padding: 10px;">
-    <span>
-        <mat-form-field class="example-full-width">
-            <mat-label>Data iníncio</mat-label>
-            <input matInput type="date" formControlName="dataInicio">
-          </mat-form-field>
+<div [formGroup]="form" class="cforms">
+  <div class="dasda">
+    <mat-form-field  appearance="outline" class="example-full-width">
+      <mat-label>Data iníncio</mat-label>
+      <input matInput type="date" formControlName="dataInicio">
+    </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Data fim</mat-label>
-            <input matInput type="date" formControlName="dataFim">
-          </mat-form-field>
+    <mat-form-field  appearance="outline" class="example-full-width">
+      <mat-label>Data fim</mat-label>
+      <input matInput type="date" formControlName="dataFim">
+    </mat-form-field>
 
-          <button mat-stroked-button color="primary" (click)="consultaPedidoCliente('periodo')">Filtrar período</button>
+    <button mat-stroked-button color="primary" (click)="consultaPedidoCliente('periodo')">Filtrar período</button>
 
-    </span>
+  </div>
 
-    <span>
+  <div class="dasda">
 
-        <mat-form-field class="example-full-width" style="margin-left: 20px;">
-            <input type="text"
-                   placeholder="Filtrar por cliente"
-                   aria-label="Number"
-                   matInput
-                   formControlName="clienteNome"
-                   (keyup)="consultaClienteFiltro()" 
-                
-                   [matAutocomplete]="auto">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-              <mat-option *ngFor="let option of clientes" [value]="option.nome">
-                {{option.nome}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
+    <mat-form-field  appearance="outline" class="example-full-width">
+      <input type="text" placeholder="Filtrar por cliente" aria-label="Number" matInput formControlName="clienteNome"
+        (keyup)="consultaClienteFiltro()" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of clientes" [value]="option.nome">
+          {{option.nome}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
 
-          <button mat-stroked-button color="primary" (click)="consultaPedidoCliente('nome')">Filtrar cliente</button>
-         
+    <button mat-stroked-button color="primary" (click)="consultaPedidoCliente('nome')">Filtrar cliente</button>
 
-    </span>
+
+  </div>
 
 </div>
 
 <div class="g">
 
-    <div class="col2">
-        <mat-progress-bar mode="indeterminate" *ngIf="statusLoader"></mat-progress-bar>
-        <app-lista-compras-clientes></app-lista-compras-clientes>
-    </div>
+  <div class="col2">
+    <mat-progress-bar mode="indeterminate" *ngIf="statusLoader"></mat-progress-bar>
+    <app-lista-compras-clientes></app-lista-compras-clientes>
+  </div>
 
 </div>

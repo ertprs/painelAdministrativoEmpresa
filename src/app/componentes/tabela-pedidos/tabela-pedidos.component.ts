@@ -147,7 +147,7 @@ export class TabelaPedidosComponent implements OnInit {
           if (result) {
             // Atualiza a taxa de entrega do motoboy
             const callb = () => {
-              this.servpedidos.solicitaMotoboy(item.id);
+              this.servpedidos.solicitaMotoboy(item.id, item);
             };
             this.crud.post_api('attTaxaMotoboy', callb, { idPedido: item.id, taxaEntrega: r.taxa_entrega }, true);
           }

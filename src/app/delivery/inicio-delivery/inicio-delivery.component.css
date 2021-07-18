@@ -93,6 +93,10 @@ mat-icon {
     margin-right: 3px;
 }
 
+.gg1 {
+    margin-left: 10px;
+}
+
 @media(max-width:600px) {
   
 .style2 {
@@ -104,4 +108,18 @@ mat-icon {
     margin: 0px;
     margin-top: 5px;
 }
+
+.allc {
+    width: 90%;
+    float: left;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+}
+
+.gg1 {
+    margin-left: 0px;
+    width: 200px;
+}
+
 }

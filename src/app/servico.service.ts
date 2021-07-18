@@ -5,7 +5,6 @@ import { InicioService } from './inicio/inicio.service';
 import { isEqual } from 'lodash';
 import { ConfigServicoService } from './config/config-servico.service';
 import { ActivatedRoute } from '@angular/router';
-declare var cordovaapp: any;
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class ServicoService {
   private logoEmpresa = '/assets/logoEmpresa.png';
   // private urlapi = 'http://10.0.0.110/api/';
   // private urlapi = 'https://jfortalapi.ecig.app/';
-  private urlapi = 'https://api.juadelivery.site';
+   private urlapi = 'https://api.juadelivery.site';
   // private urlapi = 'https://api.dinp.com.br/';
   public serverNode = '';
   private API = 'apiEstabelecimento';
@@ -91,15 +90,29 @@ export class ServicoService {
   public rotaRemota = '';
   public mensagemRemota = '';
   public linkEmpresaSite = true;
+  public pagamentoStandBy = true;
+  public pagamentoRestoCredito = true;
+   
+
+  public statusEmpresaHorarioProgramado = true;
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService,
-              private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) { }
 
 
   getServerNode() {
     return this.serverNode;
   }
 
+
+  setStatusEmpresaHorarioProgramado(status: boolean) {
+    if (!status === true && !status === false) { return; }
+    this.statusEmpresaHorarioProgramado = status;
+  }
+
+  getStatusEmpresaHorarioProgramado(): boolean {
+    return this.statusEmpresaHorarioProgramado;
+  }
 
   getInterEntregadores(): number {
     return this.intervalEntregadores;
@@ -233,12 +246,14 @@ export class ServicoService {
     this.btaddCredito = dados.config_dash.btaddCredito;
     this.btimportarprodutos = dados.config_dash.btimportarprodutos;
     this.linkEmpresaSite = dados.config_dash.linkEmpresaSite;
-
+    this.pagamentoStandBy = dados.config_dash.pagamentoStandBy;
+    this.pagamentoRestoCredito = dados.config_dash.pagamentoRestoCredito;
+     
     this.rotaRemota = dados.config_dash.rotaRemota;
     this.mensagemRemota = dados.config_dash.mensagemRemota;
 
     try {
-      parent.postMessage({acao: 'dadosEmpresa', data: dados}, '*');
+      parent.postMessage({ acao: 'dadosEmpresa', data: dados }, '*');
     } catch (e) { console.log(e); }
 
   }
