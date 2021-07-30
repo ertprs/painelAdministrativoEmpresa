@@ -222,6 +222,7 @@ import { ControleCreditoComponent } from './controle-credito/controle-credito.co
 import { AdicionarCreditoClienteComponent } from './adicionar-credito-cliente/adicionar-credito-cliente.component';
 import { CreditoHistoricoComponent } from './controle-credito/credito-historico/credito-historico.component';
 import { ItensCatalogoEmpresaComponent } from './itens-catalogo-empresa/itens-catalogo-empresa.component';
+import { LinksComponent } from './links/links.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
   allowNegative: true,
@@ -403,7 +404,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       AdicionarCreditoClienteComponent,
       CreditoHistoricoComponent,
       ItensCatalogoEmpresaComponent,
-      FiltrotabelaPipe
+      FiltrotabelaPipe,
+      LinksComponent
    ],
   imports: [
     BrowserModule,

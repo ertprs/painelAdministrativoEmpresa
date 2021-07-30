@@ -177,10 +177,11 @@
                     </span>
 
                     <button color="primary" class="bts" *ngIf="element.status_motoboy == 0"
-                        [disabled]="element.statusBtSm || element.tipopedido === 'retirada'"
+                        [disabled]="element.statusBtSm || element.tipopedido === 'retirada' || element.status_pedido == 5 || element.status_pedido == 6 || element.status_pedido == 7"
                         (click)="servpedidos.solicitaMotoboy(element.id, element)" mat-flat-button
-                        matTooltip="Envie esta entrega a todos o entregadores que estão online">Solicitar
-                        entregador</button>
+                        matTooltip="Envie esta entrega a todos o entregadores que estão online">
+                        Solicitar entregador
+                    </button>
 
                     <mat-progress-bar style="margin-top: 18px;" *ngIf="element.status_motoboy == 1"
                         matTooltip="Aguardando entregador aceitar esta entrega" mode="indeterminate"></mat-progress-bar>
@@ -317,16 +318,14 @@
                 </mat-menu>
             </div>
 
-            <button color="primary" class="bts" mat-flat-button
-                [disabled]="
+            <button color="primary" class="bts" mat-flat-button [disabled]="
                 element.statusBtSm 
                 || element.tipopedido === 'retirada' 
                 || element.status_pedido == 4
                 || element.status_pedido == 5
                 || element.status_pedido == 6
                 || element.status_pedido == 7
-                " *ngIf="element.status_motoboy == 0"
-                (click)="servpedidos.solicitaMotoboy(element.id, element)">
+                " *ngIf="element.status_motoboy == 0" (click)="servpedidos.solicitaMotoboy(element.id, element)">
                 Solicitar entregador
             </button>
             <div style="display: flex;    align-items: baseline;">

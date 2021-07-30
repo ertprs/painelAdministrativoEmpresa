@@ -4,7 +4,7 @@ import { CrudServicoService } from '../crud-servico.service';
 import { ServicoService } from '../servico.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormularioUsuarioComponent } from '../usuarios/formulario-usuario/formulario-usuario.component';
-import {Appearance, GermanAddress, Location} from '@angular-material-extensions/google-maps-autocomplete';
+import { Appearance, GermanAddress, Location } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
@@ -29,7 +29,7 @@ export class DialogCadastroClienteComponent implements OnInit {
   public bairros: [];
   public bairroGoogleApi: string;
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<DialogCadastroClienteComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public servico: ServicoService, private crud: CrudServicoService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, public servico: ServicoService, private crud: CrudServicoService) { }
 
   ngOnInit(): void {
     console.log(this.data);
@@ -69,7 +69,7 @@ export class DialogCadastroClienteComponent implements OnInit {
 
     }
 
-    this.form.controls.cidade.statusChanges.subscribe( (data) => {
+    this.form.controls.cidade.statusChanges.subscribe((data) => {
       this.selectionChangeCidade(this.form.controls.cidade.value);
     });
 
@@ -79,14 +79,14 @@ export class DialogCadastroClienteComponent implements OnInit {
     console.log('onAutocompleteSelected: ', result);
     this.form.controls.rua.setValue(result.address_components[0].long_name);
     this.cidades.forEach((element: { nome: string, id: string }) => {
-       if (element.nome === result.address_components[2].long_name) {
+      if (element.nome === result.address_components[2].long_name) {
         this.form.controls.cidade.setValue(element);
         this.bairroGoogleApi = result.address_components[1].long_name;
         this.form.controls.uf.setValue(result.address_components[3].short_name);
 
-       }
+      }
     });
-   // this.form.controls.rua.setValue(result[0].long_name);
+    // this.form.controls.rua.setValue(result[0].long_name);
   }
 
   onLocationSelected(location: Location) {
@@ -95,7 +95,7 @@ export class DialogCadastroClienteComponent implements OnInit {
     this.longitude = location.longitude;
   }
 
- 
+
   onGermanAddressMapped($event: GermanAddress) {
     console.log('onGermanAddressMapped', $event);
   }
@@ -118,9 +118,9 @@ export class DialogCadastroClienteComponent implements OnInit {
 
         this.bairros.forEach((element: { nome: string, id: string }) => {
           if (element.nome === this.bairroGoogleApi) {
-           this.form.controls.bairro.setValue(element);
+            this.form.controls.bairro.setValue(element);
           }
-       });
+        });
 
       }
       console.log(r);
@@ -132,64 +132,68 @@ export class DialogCadastroClienteComponent implements OnInit {
 
   carregaTaxa(itembairro: any) {
     try {
-    console.log(itembairro);
-    let coordendasBairro = '';
-    const cidadeNome = this.cidadeClienteSelecionada.nome;
-    coordendasBairro = itembairro.lat + ', ' + itembairro.lng;
+      console.log(itembairro);
+      let coordendasBairro = '';
+      const cidadeNome = this.cidadeClienteSelecionada.nome;
+      coordendasBairro = itembairro.lat + ', ' + itembairro.lng;
 
-    const fcallb = () => {
-      this.statusLoaderTaxa = false;
-      const r = this.servico.getRespostaApi();
-      if (r.erro === true) {
-        this.servico.mostrarMensagem(r.mensagem);
-      } else {
-        for (const x in this.servico.getListaBairros()) {
-          if (this.servico.getListaBairros()[x].id === itembairro.id) {
-             this.servico.getListaBairros()[x].taxa = r.taxa_entrega;
-             this.servico.getListaBairros()[x].distancia = r.rows[0].elements[0].distance.text;
-             this.servico.getListaBairros()[x].duracao = r.rows[0].elements[0].duration.text;
-             const txe = r.taxa_entrega.toString().replace('.', ',');
-             console.log(this.form.value);
+      const fcallb = () => {
+        this.statusLoaderTaxa = false;
+        const r = this.servico.getRespostaApi();
+        if (r.erro === true) {
+          this.servico.mostrarMensagem(r.mensagem);
+        } else {
+          for (const x in this.servico.getListaBairros()) {
+            if (this.servico.getListaBairros()[x].id === itembairro.id) {
+              this.servico.getListaBairros()[x].taxa = r.taxa_entrega;
+              this.servico.getListaBairros()[x].distancia = r.rows[0].elements[0].distance.text;
+              this.servico.getListaBairros()[x].duracao = r.rows[0].elements[0].duration.text;
+              const txe = r.taxa_entrega.toString().replace('.', ',');
+              console.log(this.form.value);
 
-             return;
+              return;
+            }
           }
         }
+      };
+      this.statusLoaderTaxa = true;
+      const data = { cidadeNome, coordendasBairro };
+      this.crud.post_api('calc_taxa', fcallb, data);
+    } catch (e) { this.servico.mostrarMensagem('Não foi possível calcular a taxa de entrega. Tente cadastrar uma nova entrega novamente.'); }
+  }
+
+
+  salvar() {
+    this.btss = true;
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.btss = false;
+
+      } else {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.dialogRef.close(true);
       }
+      console.log(r);
     };
-    this.statusLoaderTaxa = true;
-    const data = { cidadeNome, coordendasBairro };
-    this.crud.post_api('calc_taxa', fcallb, data);
-  } catch (e) { this.servico.mostrarMensagem('Não foi possível calcular a taxa de entrega. Tente cadastrar uma nova entrega novamente.'); }
-}
+    this.crud.post_api('add_cliente_lista_emp', accallback, this.form.value);
+  }
 
-
-salvar() {
-  this.btss = true;
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servico.getRespostaApi();
-    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
-      this.servico.mostrarMensagem(r.detalhes);
-      this.dialogRef.close(true);
-    }
-    console.log(r);
-  };
-  this.crud.post_api('add_cliente_lista_emp', accallback, this.form.value);
-}
-
-editar() {
-  this.btss = true;
-  const accallback = () => {
-    console.log('callback');
-    const r = this.servico.getRespostaApi();
-    if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
-      this.servico.mostrarMensagem(r.detalhes);
-      this.dialogRef.close(true);
-    }
-    console.log(r);
-  };
-  this.crud.post_api('att_cliente_lista_emp', accallback, this.form.value);
-}
+  editar() {
+    this.btss = true;
+    const accallback = () => {
+      console.log('callback');
+      const r = this.servico.getRespostaApi();
+      if (r.erro === true) { this.servico.mostrarMensagem(r.detalhes); } else {
+        this.servico.mostrarMensagem(r.detalhes);
+        this.dialogRef.close(true);
+      }
+      console.log(r);
+    };
+    this.crud.post_api('att_cliente_lista_emp', accallback, this.form.value);
+  }
 
 
 }

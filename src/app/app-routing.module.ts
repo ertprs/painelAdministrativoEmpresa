@@ -86,13 +86,14 @@ import { UsuarioPermissoesComponent } from './usuarios/usuario-permissoes/usuari
 import { OrganizacaoEntregadorComponent } from './organizacao-entregador/organizacao-entregador.component';
 import { MainNavMasterComponent } from './main-nav-master/main-nav-master.component';
 import { WhatsappComponent } from './whatsapp/whatsapp.component';
+import { LinksComponent } from './links/links.component';
 
 const routes: Routes = [
 
 
   { path: 'login', component: LoginComponent },
   { path: 'recuperar', component: RecuperarContaComponent },
-  { path: 'itenscatalogo', component: ItensCatalogoEmpresaComponent},// remove esss rota
+  { path: 'itenscatalogo', component: ItensCatalogoEmpresaComponent },// remove esss rota
 
   /* SITE - Local de acesso nas paginas do SITE */
   { path: 'cadastro', component: CadastroEmpresaLojistaComponent, /*canActivate: [GuardaAtenticacaoService]*/ },
@@ -104,6 +105,7 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, canActivate: [GuardaAtenticacaoService], children: [
 
+      { path: 'apps', component: LinksComponent },
       { path: 'mapa', component: InicioComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'fechar-caixa', component: CaixaFinanceiroComponent, canActivate: [GuardaAtenticacaoService] },
       { path: 'faturas', component: FaturasComponent, canActivate: [GuardaAtenticacaoService] },
@@ -121,7 +123,7 @@ const routes: Routes = [
           { path: 'controle-fiado', component: ControleFiadoComponent, canActivate: [GuardaAtenticacaoService] },
           { path: 'controle-credito', component: ControleCreditoComponent },
           { path: 'conciliacao-bancaria', component: ConciliacaoBancariaComponent, canActivate: [GuardaAtenticacaoService] },
-        ] 
+        ]
       },
 
       {
@@ -154,30 +156,30 @@ const routes: Routes = [
 
       {
         path: 'painel', component: PaineldeliveryComponent, canActivate: [GuardaConfigSistemaService], children: [
-          { path: 'cardapio', component: HomeComponent},
-          { path: 'itenscatalogo', component: ItensCatalogoEmpresaComponent},
-          { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent},
-          { path: 'itensadicionais', component: ItensAdicionaisComponent},
-          { path: 'avaliacoes', component: AvaliacoesComponent},
-          { path: 'delivery', component: InicioDeliveryComponent},
-          { path: 'usuarios', component: UsuariosComponent},
-          { path: 'usuarios-permissoes', component: UsuarioPermissoesComponent},
-          { path: 'bancos', component: BancosComponent},
+          { path: 'cardapio', component: HomeComponent },
+          { path: 'itenscatalogo', component: ItensCatalogoEmpresaComponent },
+          { path: 'categoriasadicionais', component: CategoriasAdicionaisComponent },
+          { path: 'itensadicionais', component: ItensAdicionaisComponent },
+          { path: 'avaliacoes', component: AvaliacoesComponent },
+          { path: 'delivery', component: InicioDeliveryComponent },
+          { path: 'usuarios', component: UsuariosComponent },
+          { path: 'usuarios-permissoes', component: UsuarioPermissoesComponent },
+          { path: 'bancos', component: BancosComponent },
 
-          { path: 'galeria', component: GaleriaComponent},
-          { path: 'bairros-sistema', component: BairrosSistemaComponent},
-          { path: 'cidades-sistema', component: CidadesSistemaComponent},
-          { path: 'formas-pagamento', component: FormasPagamentoComponent},
-          { path: 'itens-pagamento', component: ItensPagamentoComponent},
-          { path: 'cupons', component: CuponsComponent},
-          { path: 'perfil', component: PerfilComponent},
-          { path: 'config', component: ConfigComponent},
-          { path: 'configitem', component: EditarItemCompletoComponent},
-          { path: 'motoboys', component: MototboysComponent},
-          { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent},
-          { path: 'usuarios-app', component: UsuariosFinaisComponent},
-          { path: 'data-retroativa', component: DataRetroativaComponent},
-          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent},
+          { path: 'galeria', component: GaleriaComponent },
+          { path: 'bairros-sistema', component: BairrosSistemaComponent },
+          { path: 'cidades-sistema', component: CidadesSistemaComponent },
+          { path: 'formas-pagamento', component: FormasPagamentoComponent },
+          { path: 'itens-pagamento', component: ItensPagamentoComponent },
+          { path: 'cupons', component: CuponsComponent },
+          { path: 'perfil', component: PerfilComponent },
+          { path: 'config', component: ConfigComponent },
+          { path: 'configitem', component: EditarItemCompletoComponent },
+          { path: 'motoboys', component: MototboysComponent },
+          { path: 'notificacoes-usuarios', component: NotificacoesSistemaComponent },
+          { path: 'usuarios-app', component: UsuariosFinaisComponent },
+          { path: 'data-retroativa', component: DataRetroativaComponent },
+          { path: 'organizacao-entregador', component: OrganizacaoEntregadorComponent },
 
           {
             path: 'painel-relatorio', component: PainelRelatorioComponent, canActivate: [GuardaAtenticacaoService], children: [

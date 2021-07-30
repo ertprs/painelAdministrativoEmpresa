@@ -1,0 +1,10 @@
+<div class="a" *ngFor="let x of serviceApp.apps">
+    <div>
+        <a target="_new" [href]="x.link"><img width="170" src="{{ x.imagem }}" alt=""></a>
+    </div>
+    <div>
+        <div><b>{{ x.nome }}</b></div>
+        <div class="b">{{ x.descricao }}</div>
+        <div class="c"> <a target="_new" [href]="x.link">{{ x.link }}</a> </div>
+    </div>
+</div>

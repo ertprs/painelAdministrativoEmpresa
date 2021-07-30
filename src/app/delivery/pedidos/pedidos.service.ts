@@ -165,13 +165,12 @@ export class PedidosService {
         this.servapp.mostrarMensagem(r.resultado.itens.detalhes);
         element.status_pedido = statusPedido;
         switch (statusPedido) {
-          case 1 : { element.status_texto = 'Aceito'; } break;
-          case 2 : { element.status_texto = 'Pronto para sair'; } break;
-          case 3 : { element.status_texto = 'Pronto para retirar'; } break;
-          case 4 : { element.status_texto = 'A caminho'; } break;
-          case 5 : { element.status_texto = 'Entregue'; } break;
-          case 6 : { element.status_texto = 'Concluído'; } break;
-          case 7 : { element.status_texto = 'Cancelado'; } break;
+          case 1 : { element.status_texto = 'Aceito';  element.status_pedido = statusPedido; } break;
+          case 2 : { element.status_texto = 'Pronto para sair';  element.status_pedido = statusPedido; } break;
+          case 3 : { element.status_texto = 'Pronto para retirar';  element.status_pedido = statusPedido; } break;
+          case 4 : { element.status_texto = 'A caminho';  element.status_pedido = statusPedido; } break;
+          case 5 : { element.status_texto = 'Entregue';  element.status_pedido = statusPedido; } break;
+          case 6 : { element.status_texto = 'Concluído';  element.status_pedido = statusPedido; } break;
           default : {
             element.status_texto = 'Carregando...';
             this.consultaPedidos();

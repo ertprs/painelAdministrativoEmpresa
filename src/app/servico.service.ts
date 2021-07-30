@@ -14,7 +14,7 @@ export class ServicoService {
   private dadosCliente = false;
   private defaultImg = '/assets/semImg.png';
   private logoEmpresa = '/assets/logoEmpresa.png';
-  // private urlapi = 'http://10.0.0.110/api/';
+  // private urlapi = 'http://10.0.0.111/api/';
   // private urlapi = 'https://jfortalapi.ecig.app/';
    private urlapi = 'https://api.juadelivery.site';
   // private urlapi = 'https://api.dinp.com.br/';
@@ -92,8 +92,10 @@ export class ServicoService {
   public linkEmpresaSite = true;
   public pagamentoStandBy = true;
   public pagamentoRestoCredito = true;
+  public apps = false;
+  public listaApps = false;
    
-
+   
   public statusEmpresaHorarioProgramado = true;
   // tslint:disable-next-line: max-line-length
   constructor(private snackBar: MatSnackBar, private inicioServico: InicioService, private config: ConfigServicoService, private servProg: ProgressSistemaService,
@@ -248,6 +250,8 @@ export class ServicoService {
     this.linkEmpresaSite = dados.config_dash.linkEmpresaSite;
     this.pagamentoStandBy = dados.config_dash.pagamentoStandBy;
     this.pagamentoRestoCredito = dados.config_dash.pagamentoRestoCredito;
+    this.apps = dados.config_dash.apps;
+    this.listaApps = dados.config_dash.listaApps;
      
     this.rotaRemota = dados.config_dash.rotaRemota;
     this.mensagemRemota = dados.config_dash.mensagemRemota;

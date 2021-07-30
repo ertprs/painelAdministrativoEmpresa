@@ -152,6 +152,12 @@
                     Promoção
                 </a>
 
+                <a *ngIf="servico.listaApps" mat-list-item [routerLink]="['/apps']">
+                    <mat-icon>accessibility_new</mat-icon>
+                    Aplicativos
+                </a>
+
+
                 <a *ngIf="servico.whatsapp" mat-list-item routerLink="/whatsapp"
                     [class.getStatusSistemaDeliveryoff]="!servico.getStatusSistemaDelivery()"
                     [disabled]="!servico.getStatusSistemaDelivery()">
@@ -181,7 +187,7 @@
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-            <mat-toolbar  class="toolb">
+            <mat-toolbar class="toolb">
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
                     *ngIf="isHandset$ | async">
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
@@ -195,10 +201,14 @@
                         <div class="aaaf23"> {{ this.servico.getDadosEmpresa().nome }} </div>
                         <div class="aaaf2 styleMobile02">{{ this.servico.getDadosEmpresa().operador.nome }} </div>
                         <div *ngIf="servico.linkEmpresaSite" class="aaaf2" style="margin-top: -15px;">
-                            <a target="_new" [href]="servico.linkEmpresaSite" style="color: #4caf50; text-decoration: none;"> {{ servico.linkEmpresaSite }} 
-                            <span class="styOn">ONLINE</span>
-                            <div class="lds-ripple"><div></div><div></div></div>
-                         </a>
+                            <a target="_new" [href]="servico.linkEmpresaSite"
+                                style="color: #4caf50; text-decoration: none;"> {{ servico.linkEmpresaSite }}
+                                <span class="styOn">ONLINE</span>
+                                <div class="lds-ripple">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
